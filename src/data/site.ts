@@ -23,6 +23,7 @@ export const SITE = {
 export const NAV = [
   { href: '/', label: 'Home', hi: 'होम' },
   { href: '/notices/', label: 'Notices', hi: 'सूचनाएँ' },
+  { href: '/current-affairs/', label: 'Current Affairs', hi: 'करेंट अफेयर्स' },
   { href: '/exams/', label: 'Exams', hi: 'परीक्षाएँ' },
   { href: '/gk/', label: 'Uttarakhand GK', hi: 'उत्तराखंड GK' },
   { href: '/quiz/', label: 'Quiz', hi: 'क्विज़' },

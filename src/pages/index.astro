@@ -4,6 +4,9 @@ import Icon from '../components/Icon.astro';
 import DailyQuestion from '../components/DailyQuestion.astro';
 import NoticeList from '../components/NoticeList.astro';
 import RecruitmentList from '../components/RecruitmentList.astro';
+import NewsList from '../components/NewsList.astro';
+import { topNews } from '../lib/news';
+const news5 = topNews(5);
 import { openRecruitments, admitCards, otherNotices } from '../lib/notices';
 const open = openRecruitments();
 const latest5 = [...admitCards(), ...otherNotices()].slice(0, 4);
@@ -71,6 +74,10 @@ const latest = [
         {latest5.length > 0 && (<>
           <div class="ln-head"><h2>नवीनतम सूचनाएँ</h2></div>
           <NoticeList items={latest5} compact />
+        </>)}
+        {news5.length > 0 && (<>
+          <div class="ln-head"><h2>उत्तराखंड करेंट अफेयर्स</h2><a href="/current-affairs/">सभी →</a></div>
+          <NewsList items={news5} compact />
         </>)}
       </section>
     </aside>

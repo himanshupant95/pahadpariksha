@@ -1,0 +1,41 @@
+name: Uttarakhand current-affairs tracker
+
+on:
+  schedule:
+    - cron: '17 */3 * * *' # every 3 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: news
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Fetch news
+        run: node scripts/fetch-news.mjs
+      - name: Commit and redeploy if anything is new
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COUNT=$(node -e "console.log(require('./new-news.json').count)")
+          git config user.name "news-bot"
+          git config user.email "news-bot@users.noreply.github.com"
+          git add src/data/news.json
+          if git diff --cached --quiet || [ "$COUNT" = "0" ]; then echo "No new items."; exit 0; fi
+          git commit -m "Current affairs: $COUNT new"
+          git pull --rebase origin main
+          git push
+          gh workflow run deploy.yml --ref main
