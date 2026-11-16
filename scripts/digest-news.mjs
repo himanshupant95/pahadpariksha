@@ -39,14 +39,17 @@ async function ask(user) {
     for (let attempt = 0; attempt < 2; attempt++) {
       const res = await fetch('https://models.github.ai/inference/chat/completions', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' },
+        headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({ model, temperature: 0.1, max_tokens: 3000, response_format: { type: 'json_object' },
           messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: user }] }),
         signal: AbortSignal.timeout(120000),
       }).catch((e) => ({ ok: false, status: 0, text: async () => String(e) }));
       if (res.ok) {
-        const j = await res.json();
-        return { model, out: JSON.parse(j.choices[0].message.content) };
+        const raw = await res.text();
+        let j; try { j = JSON.parse(raw); } catch { lastErr = `${model}: non-JSON reply (${res.status}, ${res.headers.get?.('content-type')}): ${raw.slice(0, 200)}`; continue; }
+        const txt = j.choices?.[0]?.message?.content ?? '';
+        const m = txt.match(/\{[\s\S]*\}/);
+        try { return { model, out: JSON.parse(m ? m[0] : txt) }; } catch { lastErr = `${model}: bad content: ${txt.slice(0, 200)}`; continue; }
       }
       lastErr = `${model}: HTTP ${res.status} ${(await res.text()).slice(0, 200)}`;
       if (res.status === 429 || res.status >= 500) await new Promise((r) => setTimeout(r, 15000));
