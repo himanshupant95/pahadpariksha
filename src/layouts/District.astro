@@ -3,6 +3,7 @@
 // tags (इतिहास / पौराणिक / परीक्षा बिंदु), timelines and tables. Content goes in the slot.
 import Base from './Base.astro';
 import { SITE } from '../data/site';
+import { SERIES, DISTRICTS, districtHref } from '../data/districts';
 
 interface Toc { id: string; label: string }
 interface Fact { k: string; v: string }
@@ -14,6 +15,12 @@ interface Props {
   faq?: { q: string; a: string }[]; sources: { label: string; url?: string }[];
 }
 const p = Astro.props;
+const me = DISTRICTS.find((d) => d.slug === p.slug);
+const liveList = DISTRICTS.filter((d) => d.live);
+const idx = liveList.findIndex((d) => d.slug === p.slug);
+const prevD = idx > 0 ? liveList[idx - 1] : undefined;
+const nextD = idx >= 0 && idx < liveList.length - 1 ? liveList[idx + 1] : undefined;
+const nextSoon = DISTRICTS.find((d) => !d.live);
 const updated = p.updated ?? p.published;
 const url = new URL(Astro.url.pathname, SITE.url).href;
 const enUrl = `https://pahadpariksha-in.translate.goog${Astro.url.pathname}?_x_tr_sl=hi&_x_tr_tl=en&_x_tr_hl=en`;
@@ -39,7 +46,7 @@ if (p.faq?.length) schema.push({ '@context': 'https://schema.org', '@type': 'FAQ
   <header class="d-hero">
     {p.image && <img src={p.image} srcset={p.heroSrcset ?? (p.image.endsWith('.webp') ? `${p.image.replace(/\.webp$/, '-800.webp')} 800w, ${p.image} 1200w` : undefined)} sizes="(max-width: 1040px) 100vw, 1040px" alt={p.imageAlt ?? ''} width="1200" height="630" fetchpriority="high" referrerpolicy="no-referrer" />}
     <div class="d-hero-in">
-      <p class="d-kicker">{p.division} मंडल · उत्तराखंड का जिला</p>
+      <p class="d-kicker">{me ? <a class="series-pill" href={SERIES.href}>{SERIES.name} · भाग {me.part}/13</a> : null} {p.division} मंडल · उत्तराखंड का जिला</p>
       <h1>{p.name} <span>जिला</span></h1>
       <p class="d-sub">{p.nameEn} District — इतिहास, भूगोल, समाज, मेले, संस्थान और परीक्षा बिंदु</p>
       <p class="d-meta">लेखक: <a href={SITE.author.url}>{SITE.author.name}</a> · अपडेट: <time datetime={updated}>{fmt(updated)}</time></p>
@@ -78,6 +85,15 @@ if (p.faq?.length) schema.push({ '@context': 'https://schema.org', '@type': 'FAQ
         </section>
       )}
 
+      <nav class="series-nav" aria-label={SERIES.name}>
+        <p class="sn-title"><a href={SERIES.href}>{SERIES.name}</a> — {SERIES.tagline}</p>
+        <div class="sn-row">
+          {prevD ? <a class="sn prev" href={districtHref(prevD)}><small>← पिछला भाग {prevD.part}</small><strong>{prevD.name}</strong></a> : <span />}
+          {nextD ? <a class="sn next" href={districtHref(nextD)}><small>अगला भाग {nextD.part} →</small><strong>{nextD.name}</strong></a>
+            : nextSoon ? <span class="sn next soon"><small>अगला भाग {nextSoon.part} · जल्द</small><strong>{nextSoon.name}</strong></span> : <span />}
+        </div>
+      </nav>
+
       <section id="sources" class="d-sources">
         <h2>स्रोत</h2>
         <ul>{p.sources.map((s) => <li>{s.url ? <a href={s.url} target="_blank" rel="noopener nofollow">{s.label}</a> : s.label}</li>)}</ul>
@@ -100,6 +116,17 @@ if (p.faq?.length) schema.push({ '@context': 'https://schema.org', '@type': 'FAQ
   .d-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,30,18,.05) 20%, rgba(10,30,18,.85)); }
   .d-hero-in { position: relative; z-index: 1; padding: 22px 24px; color: #fff; }
   .d-kicker { margin: 0; color: #fdba74; font-weight: 600; font-size: .85rem; }
+  .series-pill { display: inline-block; background: #fdba74; color: #3b1d06; text-decoration: none; font-weight: 700; padding: 1px 10px; border-radius: 999px; margin-right: 6px; }
+  .series-pill:hover { background: #fff; color: #3b1d06; }
+  .series-nav { margin: 26px 0 8px; background: var(--green-soft); border-radius: 14px; padding: 14px; }
+  .sn-title { margin: 0 0 10px; font-weight: 700; color: var(--green); }
+  .sn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sn { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; text-decoration: none; color: var(--ink); }
+  a.sn:hover { border-color: var(--green-2); }
+  .sn small { display: block; color: var(--muted); font-size: .78rem; }
+  .sn strong { color: var(--green); font-size: 1.05rem; }
+  .sn.next { text-align: right; }
+  .sn.soon { opacity: .7; }
   .d-hero h1 { color: #fff; margin: 2px 0; font-size: clamp(2rem, 6vw, 3rem); }
   .d-hero h1 span { color: #bbf7d0; font-weight: 600; font-size: .6em; }
   .d-sub { margin: 0; color: #ecfdf3; }

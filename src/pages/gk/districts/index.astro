@@ -1,0 +1,52 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SeriesGrid from '../../../components/SeriesGrid.astro';
+import { SERIES, DISTRICTS, liveCount, districtHref } from '../../../data/districts';
+const done = liveCount();
+const schema = {
+  '@context': 'https://schema.org', '@type': 'ItemList', name: `${SERIES.name}: उत्तराखंड के 13 ज़िले`,
+  itemListElement: DISTRICTS.filter((d) => d.live).map((d) => ({ '@type': 'ListItem', position: d.part, url: `https://pahadpariksha.in${districtHref(d)}`, name: `${d.name} ज़िला` })),
+};
+---
+<Base title={`${SERIES.name}: उत्तराखंड के 13 ज़िलों की संपूर्ण शृंखला (${SERIES.tagline})`} description={`${SERIES.name} — ${SERIES.blurb} UKSSSC/UKPSC के लिए।`}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › {SERIES.name}</nav>
+  <header class="sh">
+    <p class="kick">शृंखला · {SERIES.nameEn}</p>
+    <h1>{SERIES.name} <span>{SERIES.tagline}</span></h1>
+    <p>{SERIES.blurb}</p>
+    <div class="prog" aria-label={`${done} of 13 published`}><div style={`width:${(done / 13) * 100}%`}></div></div>
+    <p class="pl">{done} / 13 भाग प्रकाशित · हर नए भाग की सूचना होमपेज पर</p>
+  </header>
+
+  <h2>गढ़वाल और कुमाऊँ — सभी 13 भाग</h2>
+  <SeriesGrid />
+
+  <h2>हर भाग में क्या मिलेगा</h2>
+  <ul class="what">
+    <li><b>नाम की कहानी</b> — ऐतिहासिक तथ्य, पौराणिक कथा और भ्रम अलग-अलग</li>
+    <li><b>इतिहास व प्रशासनिक समयरेखा</b> — प्राचीन से राज्य गठन तक</li>
+    <li><b>भूगोल</b> — मानचित्र, नदियाँ, झीलें, संरक्षित क्षेत्र</li>
+    <li><b>समाज</b> — जनगणना 2011 आँकड़े, जनजातियाँ, बोली, लोक-संस्कृति</li>
+    <li><b>मेले व स्थल</b> — कौन मनाता है, क्यों, कब</li>
+    <li><b>संस्थान, आंदोलन, व्यक्तित्व</b> — स्थापना वर्ष सहित</li>
+    <li><b>ट्रिक प्रश्न (सावधान)</b> और <b>One-liners</b> — दोहराव के लिए</li>
+    <li><b>15–20 प्रश्नों का क्विज़</b> — तुरंत उत्तर व व्याख्या</li>
+  </ul>
+  <p class="muted">सभी ज़िलों की एक-पंक्ति तुलना के लिए देखें: <a href="/gk/uttarakhand-districts/">उत्तराखंड के 13 जिले — सारणी</a>।</p>
+</Base>
+
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted); margin: 4px 0 10px; }
+  .sh { background: linear-gradient(135deg, #0f3d22, var(--green-2)); color: #fff; border-radius: 18px; padding: 26px 24px; }
+  .sh .kick { margin: 0; color: #fdba74; font-weight: 700; font-size: .82rem; }
+  .sh h1 { color: #fff; margin: 4px 0 6px; }
+  .sh h1 span { display: block; font-size: 1.05rem; color: #fdba74; font-weight: 600; }
+  .sh p { color: #ecfdf3; margin: 0 0 8px; max-width: 760px; }
+  .prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 8px; overflow: hidden; max-width: 420px; margin-top: 12px; }
+  .prog div { height: 100%; background: #fdba74; border-radius: 8px; }
+  .sh .pl { font-size: .85rem; margin-top: 6px; }
+  .what { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; list-style: none; padding: 0; }
+  .what li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .92rem; }
+  .what b { color: var(--green); }
+</style>

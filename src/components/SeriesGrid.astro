@@ -1,0 +1,65 @@
+---
+import { DISTRICTS, districtHref } from '../data/districts';
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+const groups = [
+  { label: 'गढ़वाल मंडल', cls: 'ga', items: DISTRICTS.filter((d) => d.division === 'गढ़वाल') },
+  { label: 'कुमाऊँ मंडल', cls: 'ku', items: DISTRICTS.filter((d) => d.division === 'कुमाऊँ') },
+];
+---
+{groups.map((g) => (<>
+<p class={`sg-label ${g.cls}`}>{g.label} <small>({g.items.length} ज़िले · {g.items.filter((d) => d.live).length} प्रकाशित)</small></p>
+<ol class={`series-grid ${compact ? 'compact' : ''} ${g.cls}`}>
+  {g.items.map((d) => d.live ? (
+    <li class={`sd live ${d.division === 'कुमाऊँ' ? 'ku' : 'ga'}`}>
+      <a href={districtHref(d)}>
+        <span class="sd-img">{d.img && <img src={d.img} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="500" height="320" />}<b class="part">भाग {d.part}</b></span>
+        <span class="sd-body">
+          <strong>{d.name}</strong>
+          {!compact && <em>{d.hook}</em>}
+          <span class="go">पढ़ें →</span>
+        </span>
+      </a>
+    </li>
+  ) : (
+    <li class={`sd soon ${d.division === 'कुमाऊँ' ? 'ku' : 'ga'}`}>
+      <span class="sd-body">
+        <b class="part">भाग {d.part}</b>
+        <strong>{d.name}</strong>
+        {!compact && <em>{d.hook}</em>}
+        <span class="badge">जल्द</span>
+      </span>
+    </li>
+  ))}
+</ol>
+</>))}
+
+<style is:global>
+  .series-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+  .series-grid .sd { border-radius: 14px; overflow: hidden; background: var(--card); border: 1px solid var(--line); position: relative; }
+  .series-grid .sd.live a { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: var(--ink); }
+  .series-grid .sd.live:hover { border-color: var(--green-2); box-shadow: 0 8px 22px rgba(20,83,45,.12); transform: translateY(-2px); transition: .15s; }
+  .series-grid .sd-img { position: relative; display: block; aspect-ratio: 16/10; background: var(--green-soft); }
+  .series-grid .sd-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .series-grid .part { font-size: .72rem; font-weight: 700; letter-spacing: .02em; }
+  .series-grid .sd-img .part { position: absolute; left: 8px; top: 8px; background: rgba(10,30,18,.78); color: #fff; padding: 2px 9px; border-radius: 20px; }
+  .series-grid .sd-body { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px 12px; flex: 1; }
+  .series-grid .sd-body small { color: var(--muted); font-size: .75rem; }
+  .series-grid .sd-body strong { font-size: 1.1rem; color: var(--green); }
+  .series-grid .ku .sd-body strong { color: #9a3412; }
+  .series-grid .sd-body em { font-style: normal; font-size: .82rem; color: var(--muted); line-height: 1.5; }
+  .series-grid .go { margin-top: auto; padding-top: 6px; font-weight: 700; font-size: .88rem; color: var(--green-2); }
+  .series-grid .soon { background: repeating-linear-gradient(135deg, var(--card), var(--card) 10px, #f6f8f6 10px, #f6f8f6 20px); }
+  .series-grid .soon { display: flex; } .series-grid .soon .sd-body { min-height: 120px; }
+  .series-grid .soon .part { color: var(--muted); }
+  .series-grid .soon strong { opacity: .7; }
+  .series-grid .badge { margin-top: auto; align-self: flex-start; font-size: .72rem; background: #fff7ed; color: var(--accent); border-radius: 20px; padding: 1px 9px; }
+  .series-grid.compact { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
+  .series-grid.compact .sd-body strong { font-size: 1rem; }
+  @media (max-width: 1000px) { .series-grid.compact { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
+  .sg-label { margin: 14px 0 8px; font-weight: 700; font-size: .95rem; color: var(--green); }
+  .sg-label small { font-weight: 400; color: var(--muted); }
+  .series-band .sg-label { color: #fff; } .series-band .sg-label small { color: #bbf7d0; }
+  .series-band .sg-label.ku { color: #fdba74; }
+  .series-grid.compact .soon .sd-body { min-height: 0; }
+</style>
