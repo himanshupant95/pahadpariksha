@@ -21,10 +21,10 @@ export const SITE = {
 };
 
 export const NAV = [
-  { href: '/', label: 'होम' },
-  { href: '/notices/', label: 'सूचनाएँ' },
-  { href: '/exams/', label: 'परीक्षाएँ' },
-  { href: '/gk/', label: 'उत्तराखंड GK' },
-  { href: '/quiz/', label: 'क्विज़' },
-  { href: '/search/', label: 'खोजें' },
+  { href: '/', label: 'Home', hi: 'होम' },
+  { href: '/notices/', label: 'Notices', hi: 'सूचनाएँ' },
+  { href: '/exams/', label: 'Exams', hi: 'परीक्षाएँ' },
+  { href: '/gk/', label: 'Uttarakhand GK', hi: 'उत्तराखंड GK' },
+  { href: '/quiz/', label: 'Quiz', hi: 'क्विज़' },
+  { href: '/search/', label: 'Search', hi: 'खोजें' },
 ];
