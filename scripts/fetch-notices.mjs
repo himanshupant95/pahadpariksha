@@ -75,8 +75,9 @@ for (const src of SOURCES) {
     console.log(`${src.name}: ${items.length} items`);
     for (const it of items) if (!known.has(it.id)) { fresh.push({ ...it, firstSeen: now }); known.add(it.id); }
   } catch (e) {
-    console.error(`ERROR ${e.message}`);
-    errors.push(e.message);
+    const cause = e.cause ? ` (${e.cause.code || ''} ${e.cause.message || e.cause})` : '';
+    console.error(`ERROR ${src.name}: ${e.message}${cause}`);
+    errors.push(`${src.name}: ${e.message}${cause}`);
   }
 }
 
