@@ -155,7 +155,9 @@ if (p.faq?.length) schema.push({ '@context': 'https://schema.org', '@type': 'FAQ
   .timeline { list-style: none; padding: 0; margin: 12px 0; border-left: 3px solid var(--green-soft); }
   .timeline li { position: relative; padding: 4px 0 10px 18px; }
   .timeline li::before { content: ''; position: absolute; left: -8px; top: 12px; width: 13px; height: 13px; border-radius: 50%; background: var(--green-2); border: 2px solid #fff; }
-  .timeline b { color: var(--green); display: inline-block; min-width: 110px; }
+  .timeline li { display: grid; grid-template-columns: 112px 1fr; gap: 0 10px; align-items: baseline; }
+  .timeline .yr { color: var(--green); font-weight: 700; }
+  @media (max-width: 560px) { .timeline li { grid-template-columns: 1fr; } }
 
   .chips2 { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; list-style: none; }
   .chips2 li { background: var(--green-soft); color: var(--green); border-radius: 20px; padding: 2px 12px; font-size: .9rem; }
