@@ -52,14 +52,16 @@ const RULES = [
 ];
 
 // Noise: crime, accidents, gossip, routine politics, weather nowcasts
-const NOISE = /हत्या|murder|दुष्कर्म|rape|बलात्कार|छेड़छाड़|चोरी|theft|लूट|robbery|गिरफ्तार|arrest|ठगी|fraud|scam|साइबर ठग|नशा तस्कर|smuggl|शराब|liquor|हादसा|accident|दुर्घटना|crash|खाई में गिरी|मौत|died|death|dead|शव|body found|आत्महत्या|suicide|घायल|injured|फायरिंग|firing|मारपीट|झगड़ा|विवाद|तेंदुआ हमला|गुलदार|leopard attack|attack|हमला|राशिफल|horoscope|आज का मौसम|weather today|बारिश का अलर्ट|rain alert|रेड अलर्ट|ऑरेंज अलर्ट|पीला अलर्ट|yellow alert|orange alert|स्टॉक|stock|IPL|मैच रिपोर्ट|live score|फिल्म|bollywood|बॉलीवुड|शादी|wedding|वायरल|viral|कांग्रेस का आरोप|आरोप लगाया|alleges|slams|निशाना|पलटवार|बयान|चुनावी|प्रचार|टिकट|ticket to/i;
+const NOISE = /हत्या|murder|दुष्कर्म|rape|बलात्कार|छेड़छाड़|चोरी|theft|लूट|robbery|गिरफ्तार|arrest|ठगी|fraud|scam|साइबर ठग|नशा तस्कर|smuggl|शराब|liquor|हादसा|accident|दुर्घटना|crash|खाई में गिरी|मौत|died|death|dead|शव|body found|आत्महत्या|suicide|घायल|injured|फायरिंग|firing|मारपीट|झगड़ा|विवाद|तेंदुआ हमला|गुलदार|leopard attack|attack|हमला|राशिफल|horoscope|आज का मौसम|weather today|बारिश का अलर्ट|rain alert|रेड अलर्ट|ऑरेंज अलर्ट|पीला अलर्ट|yellow alert|orange alert|स्टॉक|stock|IPL|मैच रिपोर्ट|live score|फिल्म|bollywood|बॉलीवुड|शादी|wedding|वायरल|viral|कांग्रेस का आरोप|आरोप लगाया|alleges|slams|निशाना|पलटवार|बयान|चुनावी|प्रचार|टिकट|ticket to|भाजपा|बीजेपी|कांग्रेस|\bbjp\b|congress|\baap\b|आप ने|सपा |चुनाव 20|election 20|विधानसभा चुनाव|assembly polls|polls|मौन उपवास|घेराव|घेराब|ponzi|पोंजी|हस्ताक्षर अभियान|की होगी जांच|जांच के आदेश|probe|consistently ranked|top engineering colleges|admission open|प्रवेश प्रारंभ|sponsored|ruckus|हंगामा|बवाल/i;
 
 const SRC_BLOCK = /youtube|facebook|instagram|x\.com|twitter|dailyhunt|sharechat|newsbreak/i;
 
 const clean = (t) => cheerio.load(`<p>${t}</p>`)('p').text().replace(/\s+/g, ' ').trim();
-const norm = (t) => t.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, ' ').replace(/\s+/g, ' ').trim();
-const tokens = (t) => new Set(norm(t).split(' ').filter((w) => w.length > 2));
-const jaccard = (a, b) => { let i = 0; for (const x of a) if (b.has(x)) i++; return i / (a.size + b.size - i || 1); };
+const norm = (t) => t.toLowerCase().replace(/[^\p{L}\p{M}\p{N} ]/gu, ' ').replace(/\s+/g, ' ').trim();
+const STOP = new Set('के में की को ने से और पर है हैं का लिए एक यह वह भी तो कर किया करेंगे करेगी किए गया गई होगा होगी होंगे बोले कहा अब साथ बड़ी बड़ा बड़े नई नया नए सीएम मुख्यमंत्री धामी पुष्कर सिंह उत्तराखंड उत्तराखण्ड प्रदेश राज्य सरकार news समाचार खबर the of to in for and a an on with at by from as is are be new cm dhami pushkar singh uttarakhand state government govt'.split(' '));
+const tokens = (t) => new Set(norm(t).split(' ').filter((w) => (w.length > 2 || /^\d+$/.test(w)) && !STOP.has(w)));
+// overlap coefficient: share of the shorter headline's key words found in the other
+const similar = (a, b) => { const m = Math.min(a.size, b.size); if (m < 3) return false; let i = 0; for (const x of a) if (b.has(x)) i++; return i / m >= 0.5; };
 const idOf = (t) => createHash('sha1').update(norm(t)).digest('hex').slice(0, 12);
 
 function score(title) {
@@ -94,19 +96,26 @@ async function readFeed(url) {
 const old = JSON.parse(await readFile(DATA, 'utf8').catch(() => '{"items":[]}'));
 const firstRun = old.items.length === 0;
 const cutoff = Date.now() - KEEP_DAYS * 864e5;
-const items = old.items.filter((i) => Date.parse(i.published) > cutoff);
+const items = [];
+for (const i of old.items.filter((i) => Date.parse(i.published) > cutoff).sort((a, b) => b.score - a.score)) {
+  if (!score(i.title)) continue;
+  const tk = tokens(i.title);
+  const dup = items.find((x) => Math.abs(Date.parse(x.published) - Date.parse(i.published)) < 4 * 864e5 && similar(tk, tokens(x.title)));
+  if (dup) { for (const s of [i.source, ...(i.sources || [])]) if (s && s !== dup.source && !dup.sources.includes(s)) dup.sources.push(s); continue; }
+  items.push({ ...i, sources: i.sources || [] });
+}
 const errors = [];
 const fresh = [];
 
-for (const url of FEEDS) {
+for (const url of process.env.OFFLINE ? [] : FEEDS) {
   try {
     for (const n of await readFeed(url)) {
       if (Date.parse(n.published) < cutoff || Date.parse(n.published) > Date.now() + 36e5) continue;
       const sc = score(n.title);
       if (!sc) continue;
       const tk = tokens(n.title);
-      const dup = [...items, ...fresh].find((x) => x.id === idOf(n.title) || jaccard(tk, tokens(x.title)) >= 0.55);
-      if (dup) { if (!dup.sources?.includes(n.source) && n.source) (dup.sources ||= []).push(n.source); continue; }
+      const dup = [...items, ...fresh].find((x) => x.id === idOf(n.title) || (Math.abs(Date.parse(x.published) - Date.parse(n.published)) < 4 * 864e5 && similar(tk, tokens(x.title))));
+      if (dup) { if (n.source && n.source !== dup.source && !dup.sources?.includes(n.source)) (dup.sources ||= []).push(n.source); continue; }
       fresh.push({ id: idOf(n.title), ...n, ...sc, sources: [], firstSeen: new Date().toISOString() });
     }
   } catch (e) {
@@ -118,4 +127,4 @@ const all = [...fresh, ...items].sort((a, b) => b.published.localeCompare(a.publ
 await writeFile(DATA, JSON.stringify({ updated: new Date().toISOString(), items: all }, null, 1) + '\n');
 await writeFile('new-news.json', JSON.stringify({ firstRun, errors, count: fresh.length }));
 console.log(`news: +${fresh.length} new, ${all.length} kept, ${errors.length} feed errors`);
-if (errors.length === FEEDS.length) { console.error(errors.join('\n')); process.exit(1); }
+if (!process.env.OFFLINE && errors.length === FEEDS.length) { console.error(errors.join('\n')); process.exit(1); }
