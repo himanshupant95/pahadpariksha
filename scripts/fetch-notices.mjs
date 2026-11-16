@@ -21,6 +21,8 @@ const SOURCES = [
     name: 'UKPSC',
     url: 'https://psc.uk.gov.in/',
     selector: '.custom-marque-section .marque-size a',
+    // Paused: psc.uk.gov.in times out for GitHub's (US) runners. Re-enable when the job runs from an Indian network.
+    disabled: true,
   },
 ];
 
@@ -69,7 +71,7 @@ const now = new Date().toISOString();
 const fresh = [];
 const errors = [];
 
-for (const src of SOURCES) {
+for (const src of SOURCES.filter((s) => !s.disabled)) {
   try {
     const items = await scrape(src);
     console.log(`${src.name}: ${items.length} items`);
@@ -85,4 +87,4 @@ const merged = [...fresh, ...existing].slice(0, MAX_ITEMS);
 await writeFile(DATA, JSON.stringify(merged, null, 2) + '\n');
 await writeFile('new-notices.json', JSON.stringify({ firstRun, items: fresh, errors }, null, 2));
 console.log(`new: ${fresh.length}${firstRun ? ' (first run — seeding, no alert)' : ''}; errors: ${errors.length}`);
-if (errors.length === SOURCES.length) process.exit(1);
+if (errors.length && errors.length === SOURCES.filter((s) => !s.disabled).length) process.exit(1);
