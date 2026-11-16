@@ -136,7 +136,42 @@ async function ask(user, system = SYSTEM) {
       else break; // 4xx other than 429 → try next model
     }
   }
+  // Backup AI: Groq free tier (OpenAI-compatible), used only when every Gemini model failed.
+  if (GROQ) {
+    for (const model of await groqModels()) {
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${GROQ}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model, temperature: 0.1, max_tokens: 6000, response_format: { type: 'json_object' },
+            messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }),
+          signal: AbortSignal.timeout(120000),
+        }).catch((e) => ({ ok: false, status: 0, text: async () => String(e) }));
+        if (res.ok) {
+          const txt = (await res.json()).choices?.[0]?.message?.content ?? '';
+          const m = txt.match(/\{[\s\S]*\}/);
+          try { console.log(`  (Gemini failed: ${lastErr.slice(0, 120)} → used Groq ${model})`); return { model: 'groq/' + model, out: JSON.parse(m ? m[0] : txt) }; }
+          catch { lastErr = `groq ${model}: bad content`; continue; }
+        }
+        lastErr = `groq ${model}: HTTP ${res.status} ${(await res.text()).slice(0, 200)}`;
+        if (res.status === 429 || res.status >= 500) await new Promise((r) => setTimeout(r, 20000)); else break;
+      }
+    }
+  }
   throw new Error(lastErr);
+}
+
+const GROQ = process.env.GROQ_API_KEY;
+let _groq;
+async function groqModels() { // prefer the big open models; picked at run time because Groq's list changes
+  if (_groq) return _groq;
+  const pref = [/gpt-oss-120b/, /llama-4-maverick/, /qwen.*(32|27|30)b/i, /llama-3\.3-70b/, /gpt-oss-20b/];
+  try {
+    const ids = ((await (await fetch('https://api.groq.com/openai/v1/models', { headers: { Authorization: `Bearer ${GROQ}` }, signal: AbortSignal.timeout(20000) })).json()).data || []).map((m) => m.id);
+    _groq = pref.map((re) => ids.find((id) => re.test(id) && !/guard|whisper|tts/i.test(id))).filter(Boolean).slice(0, 2);
+  } catch { _groq = []; }
+  if (!_groq.length) _groq = ['openai/gpt-oss-120b'];
+  return _groq;
 }
 
 if (!KEY) { console.log('digest: GEMINI_API_KEY not set — skipping AI step'); await writeFile('new-digest.json', JSON.stringify({ added: 0, calls: 0, errors: [] })); process.exit(0); }
