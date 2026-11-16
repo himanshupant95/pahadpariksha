@@ -57,6 +57,13 @@ const groups = [
   .series-grid.compact { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
   .series-grid.compact .sd-body strong { font-size: 1rem; }
   @media (max-width: 1000px) { .series-grid.compact { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
+  @media (max-width: 640px) {
+    .series-grid.compact { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 46%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: none; }
+    .series-grid.compact::-webkit-scrollbar { display: none; }
+    .series-grid.compact .sd { scroll-snap-align: start; }
+    .series-grid.compact .soon .sd-body { min-height: 100%; }
+    .sg-label small::after { content: ' · स्वाइप करें →'; }
+  }
   .sg-label { margin: 14px 0 8px; font-weight: 700; font-size: .95rem; color: var(--green); }
   .sg-label small { font-weight: 400; color: var(--muted); }
   .series-band .sg-label { color: #fff; } .series-band .sg-label small { color: #bbf7d0; }
