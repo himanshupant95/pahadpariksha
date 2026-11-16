@@ -155,6 +155,8 @@ const pending = PREVIEW
   ? news.filter((n) => istDay(n.published) === today)
   : news.filter((n) => !reviewed.has(n.id) && istDay(n.published) < today);
 const previewOut = [];
+let added = 0, calls = 0;
+const errors = [];
 if (process.env.BACKFILL) {
   const todo = dg.points.filter((p) => !p.details).slice(0, 24);
   let done = 0;
@@ -172,8 +174,6 @@ if (process.env.BACKFILL) {
   process.exit(0);
 }
 const days = [...new Set(pending.map((n) => istDay(n.published)))].sort();
-let added = 0, calls = 0;
-const errors = [];
 
 for (const day of days) {
   const items = pending.filter((n) => istDay(n.published) === day).sort((a, b) => a.published.localeCompare(b.published));
