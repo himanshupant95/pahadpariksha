@@ -1,0 +1,56 @@
+---
+// "आज का प्रश्न" — picks one question per day from all quiz files (rotates daily, same for everyone).
+const files = import.meta.glob('../data/quizzes/*.json', { eager: true }) as Record<string, { default: any[] }>;
+const pool = Object.entries(files).flatMap(([path, m]) => {
+  const slug = path.split('/').pop()!.replace('.json', '');
+  return m.default.map((q) => ({ ...q, slug }));
+});
+const quizUrl: Record<string, string> = { 'districts-rivers': '/quiz/uttarakhand-districts-rivers/' };
+const data = pool.map((q) => ({ q: q.q, o: q.options, a: q.answer, e: q.explain, u: quizUrl[q.slug] ?? '/quiz/' }));
+---
+<section class="daily" aria-labelledby="daily-h">
+  <div class="daily-head">
+    <h2 id="daily-h">आज का प्रश्न</h2>
+    <span class="daily-date" id="daily-date"></span>
+  </div>
+  <p class="daily-q" id="daily-q">लोड हो रहा है…</p>
+  <div class="daily-opts" id="daily-opts"></div>
+  <p class="daily-exp" id="daily-exp" hidden></p>
+</section>
+<script type="application/json" id="daily-data" set:html={JSON.stringify(data)} />
+<script>
+  const pool = JSON.parse(document.getElementById('daily-data')!.textContent!);
+  const now = new Date();
+  const day = Math.floor((Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - Date.UTC(2026, 0, 1)) / 864e5);
+  const item = pool[((day % pool.length) + pool.length) % pool.length];
+  document.getElementById('daily-date')!.textContent = now.toLocaleDateString('hi-IN', { day: 'numeric', month: 'long' });
+  document.getElementById('daily-q')!.textContent = item.q;
+  const box = document.getElementById('daily-opts')!;
+  const exp = document.getElementById('daily-exp')!;
+  item.o.forEach((text: string, i: number) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'dopt'; b.textContent = text;
+    b.onclick = () => {
+      box.querySelectorAll('button').forEach((x, j) => { (x as HTMLButtonElement).disabled = true; if (j === item.a) x.classList.add('right'); });
+      if (i !== item.a) b.classList.add('wrong');
+      exp.hidden = false;
+      exp.innerHTML = `<strong>${i === item.a ? 'सही उत्तर! ✓' : 'गलत।'}</strong> ${item.e} <a href="${item.u}">पूरा क्विज़ हल करें →</a>`;
+    };
+    box.appendChild(b);
+  });
+</script>
+
+<style is:global>
+  .daily { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 14px; padding: 16px 18px; }
+  .daily-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .daily h2 { margin: 0; border: 0; font-size: 1.15rem; color: var(--accent); }
+  .daily-date { color: var(--muted); font-size: .85rem; }
+  .daily-q { font-weight: 600; margin: 8px 0 10px; }
+  .daily-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .dopt { font: inherit; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; color: var(--ink); }
+  .dopt:hover:not(:disabled) { border-color: var(--green-2); background: var(--green-soft); }
+  .dopt.right { background: #dcfce7; border-color: #16a34a; }
+  .dopt.wrong { background: #fee2e2; border-color: #dc2626; }
+  .daily-exp { margin: 10px 0 0; font-size: .93rem; background: var(--green-soft); padding: 8px 12px; border-radius: 8px; }
+  @media (max-width: 480px) { .daily-opts { grid-template-columns: 1fr; } }
+</style>

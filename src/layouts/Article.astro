@@ -11,6 +11,9 @@ const breadcrumbs: Crumb[] = p.breadcrumbs ?? [];
 const published: string = p.published;
 const updated: string = p.updated ?? p.published;
 const faq: { q: string; a: string }[] = p.faq ?? [];
+const image: string | undefined = p.image; // e.g. /images/rivers/devprayag.webp (put file in public/images/)
+const imageAlt: string = p.imageAlt ?? title;
+const imageCredit: string | undefined = p.imageCredit;
 
 const url = new URL(Astro.url.pathname, SITE.url).href;
 const crumbs = [{ name: 'होम', href: '/' }, ...breadcrumbs, { name: title, href: Astro.url.pathname }];
@@ -26,6 +29,7 @@ const schema: Record<string, unknown>[] = [
     datePublished: published,
     dateModified: updated,
     mainEntityOfPage: url,
+    ...(image ? { image: new URL(image, SITE.url).href } : {}),
     author: { '@type': 'Person', name: SITE.author.nameEn, url: SITE.url + SITE.author.url },
     publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: SITE.url + '/logo.png' } },
   },
@@ -43,7 +47,7 @@ if (faq.length) {
   });
 }
 ---
-<Base title={title} description={description} ogType="article" schema={schema}>
+<Base title={title} description={description} ogType="article" schema={schema} image={image}>
   <nav class="crumbs" aria-label="ब्रेडक्रम्ब">
     {crumbs.map((c, i) => i < crumbs.length - 1 ? <><a href={c.href}>{c.name}</a> › </> : <span aria-current="page">{c.name}</span>)}
   </nav>
@@ -52,6 +56,12 @@ if (faq.length) {
     <p class="meta muted">
       लेखक: <a href={SITE.author.url}>{SITE.author.name}</a> · अपडेट: <time datetime={updated}>{fmt(updated)}</time>
     </p>
+    {image && (
+      <figure class="hero-img">
+        <img src={image} alt={imageAlt} width="1200" height="630" loading="eager" fetchpriority="high" decoding="async" />
+        {imageCredit && <figcaption>चित्र: {imageCredit}</figcaption>}
+      </figure>
+    )}
     <slot />
     {faq.length > 0 && (
       <section>
@@ -71,6 +81,9 @@ if (faq.length) {
   .crumbs a { text-decoration: none; }
   .article { max-width: 760px; }
   .meta { margin-top: -6px; }
+  .hero-img { margin: 0 0 1.2em; }
+  .hero-img img { width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover; border-radius: 12px; background: var(--green-soft); }
+  .hero-img figcaption { font-size: .78rem; color: var(--muted); margin-top: 4px; }
   .faq { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 8px 0; }
   .faq summary { font-weight: 600; cursor: pointer; }
   .author-box { margin-top: 2.5em; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--green-2); border-radius: 10px; padding: 14px 18px; font-size: .95rem; }

@@ -1,38 +1,144 @@
 ---
 import Base from '../layouts/Base.astro';
+import HeroArt from '../components/HeroArt.astro';
+import Icon from '../components/Icon.astro';
+import DailyQuestion from '../components/DailyQuestion.astro';
 import { SITE } from '../data/site';
+
+const topics = [
+  { icon: 'district', t: 'जिले', d: '13 जिले, मुख्यालय, सीमाएँ', href: '/gk/uttarakhand-districts/' },
+  { icon: 'river', t: 'नदियाँ', d: 'उद्गम, संगम, पंच प्रयाग', href: '/gk/uttarakhand-rivers/' },
+  { icon: 'quiz', t: 'क्विज़', d: 'टॉपिक-वाइज MCQ अभ्यास', href: '/quiz/' },
+  { icon: 'exam', t: 'परीक्षाएँ', d: 'UKSSSC व UKPSC भर्तियाँ', href: '/exams/' },
+  { icon: 'history', t: 'इतिहास', d: 'कत्यूरी, चंद, परमार वंश', soon: true },
+  { icon: 'geography', t: 'भूगोल', d: 'हिमनद, दर्रे, झीलें', soon: true },
+  { icon: 'culture', t: 'कला-संस्कृति', d: 'लोक नृत्य, मेले, वाद्य', soon: true },
+  { icon: 'paper', t: 'पिछले प्रश्न पत्र', d: 'हल सहित, टॉपिक-वाइज', soon: true },
+];
+const garhwal = ['देहरादून', 'हरिद्वार', 'टिहरी गढ़वाल', 'उत्तरकाशी', 'चमोली', 'रुद्रप्रयाग', 'पौड़ी गढ़वाल'];
+const kumaon = ['नैनीताल', 'अल्मोड़ा', 'पिथौरागढ़', 'बागेश्वर', 'चंपावत', 'ऊधम सिंह नगर'];
+const latest = [
+  { href: '/gk/uttarakhand-districts/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड के 13 जिले: मंडल, मुख्यालय और महत्वपूर्ण तथ्य', icon: 'district' },
+  { href: '/gk/uttarakhand-rivers/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड की प्रमुख नदियाँ: उद्गम, संगम और पंच प्रयाग', icon: 'river' },
+  { href: '/quiz/uttarakhand-districts-rivers/', tag: 'क्विज़', t: 'उत्तराखंड जिले और नदियाँ क्विज़ (12 प्रश्न)', icon: 'quiz' },
+];
 ---
 <Base title={SITE.name} description={SITE.description}>
   <section class="hero">
-    <h1>उत्तराखंड प्रतियोगी परीक्षाओं की तैयारी — हिंदी में, मुफ्त</h1>
-    <p>UKSSSC और UKPSC की परीक्षाओं (कनिष्ठ सहायक, पटवारी/लेखपाल, VDO, वन आरक्षी, लोअर PCS आदि) के लिए उत्तराखंड सामान्य ज्ञान, प्रैक्टिस क्विज़ और परीक्षा जानकारी — एक ही जगह।</p>
-    <p class="hero-cta">
-      <a class="btn" href="/gk/">उत्तराखंड GK पढ़ें</a>
-      <a class="btn ghost" href="/quiz/">क्विज़ हल करें</a>
-    </p>
+    <HeroArt />
+    <div class="hero-inner">
+      <p class="kicker">UKSSSC · UKPSC · पटवारी · VDO · लोअर PCS</p>
+      <h1>पहाड़ की परीक्षा, <span>पहाड़ जैसी तैयारी</span></h1>
+      <p class="lead">उत्तराखंड सामान्य ज्ञान, पिछले प्रश्न पत्र और प्रैक्टिस क्विज़ — हिंदी में, बिल्कुल मुफ्त।</p>
+      <div class="hero-cta">
+        <a class="btn" href="/gk/">तैयारी शुरू करें</a>
+        <a class="btn ghost" href="/quiz/">क्विज़ हल करें</a>
+      </div>
+    </div>
   </section>
 
-  <h2>नवीनतम सामग्री</h2>
-  <div class="cards">
-    <a class="card" href="/gk/uttarakhand-districts/"><h3>उत्तराखंड के 13 जिले</h3><p>मंडल, मुख्यालय, सीमावर्ती जिले, गठन वर्ष और जनगणना तथ्य।</p></a>
-    <a class="card" href="/gk/uttarakhand-rivers/"><h3>उत्तराखंड की प्रमुख नदियाँ</h3><p>उद्गम, सहायक नदियाँ और पंच प्रयाग — याद रखने की ट्रिक के साथ।</p></a>
-    <a class="card" href="/quiz/uttarakhand-districts-rivers/"><h3>क्विज़: जिले और नदियाँ</h3><p>12 MCQ, तुरंत उत्तर और व्याख्या।</p></a>
-    <a class="card" href="/exams/"><h3>UKSSSC / UKPSC परीक्षाएँ</h3><p>प्रमुख भर्ती परीक्षाओं की सूची और आधिकारिक लिंक।</p></a>
+  <ul class="trust">
+    <li><Icon name="hindi" size={22} /> पूरी तरह हिंदी में</li>
+    <li><Icon name="shield" size={22} /> स्रोतों से मिलान किए तथ्य</li>
+    <li><Icon name="free" size={22} /> 100% मुफ्त</li>
+    <li><Icon name="paper" size={22} /> परीक्षा-केंद्रित सामग्री</li>
+  </ul>
+
+  <div class="two-col">
+    <div>
+      <h2>विषय चुनें</h2>
+      <div class="topics">
+        {topics.map((x) => x.soon ? (
+          <div class="topic soon"><span class="ic"><Icon name={x.icon} /></span><strong>{x.t}</strong><small>{x.d}</small><em>जल्द</em></div>
+        ) : (
+          <a class="topic" href={x.href}><span class="ic"><Icon name={x.icon} /></span><strong>{x.t}</strong><small>{x.d}</small></a>
+        ))}
+      </div>
+    </div>
+    <aside>
+      <DailyQuestion />
+    </aside>
   </div>
 
-  <h2>विषय अनुसार तैयारी</h2>
-  <div class="cards">
-    <a class="card" href="/gk/"><h3>उत्तराखंड सामान्य ज्ञान</h3><p>इतिहास, भूगोल, संस्कृति, जिले, योजनाएँ।</p></a>
-    <a class="card" href="/quiz/"><h3>प्रैक्टिस क्विज़</h3><p>टॉपिक-वाइज MCQ अभ्यास।</p></a>
-    <div class="card"><h3>पिछले वर्षों के प्रश्न पत्र</h3><p>जल्द आ रहा है।</p></div>
-    <div class="card"><h3>उत्तराखंड करेंट अफेयर्स</h3><p>मासिक संकलन — जल्द आ रहा है।</p></div>
+  <h2>नवीनतम सामग्री</h2>
+  <div class="latest">
+    {latest.map((x) => (
+      <a class="post" href={x.href}>
+        <span class="thumb"><Icon name={x.icon} size={40} /></span>
+        <span class="post-body"><small>{x.tag}</small><strong>{x.t}</strong></span>
+      </a>
+    ))}
   </div>
+
+  <h2>जिलेवार उत्तराखंड</h2>
+  <div class="districts">
+    <div class="division">
+      <h3>गढ़वाल मंडल <small>(7 जिले · मुख्यालय पौड़ी)</small></h3>
+      <div class="chips">{garhwal.map((d) => <a href="/gk/uttarakhand-districts/">{d}</a>)}</div>
+    </div>
+    <div class="division kumaon">
+      <h3>कुमाऊँ मंडल <small>(6 जिले · मुख्यालय नैनीताल)</small></h3>
+      <div class="chips">{kumaon.map((d) => <a href="/gk/uttarakhand-districts/">{d}</a>)}</div>
+    </div>
+  </div>
+
+  <section class="cta-band">
+    <div>
+      <h2>रोज़ 10 मिनट, परीक्षा में पूरे अंक</h2>
+      <p>हर दिन एक नया प्रश्न, हर हफ्ते नए टॉपिक। इस साइट को बुकमार्क करें और नियमित अभ्यास करें।</p>
+    </div>
+    <a class="btn light" href="/quiz/">अभ्यास शुरू करें →</a>
+  </section>
 </Base>
 
 <style>
-  .hero { background: linear-gradient(135deg, #ecfdf3, #fff); border: 1px solid var(--line); border-radius: 16px; padding: 24px 22px; }
-  .hero h1 { margin-top: 0; }
+  .hero { position: relative; overflow: hidden; border-radius: 18px; min-height: 380px; display: flex; align-items: flex-start; border: 1px solid var(--line); }
+  .hero-inner { position: relative; z-index: 1; padding: 34px 28px 150px; max-width: 640px; }
+  .kicker { margin: 0; font-size: .82rem; font-weight: 600; color: var(--accent); letter-spacing: .02em; }
+  .hero h1 { margin: 6px 0 8px; font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.3; color: #14532d; }
+  .hero h1 span { color: var(--accent); }
+  .lead { font-size: 1.05rem; color: #44403c; margin: 0 0 16px; }
   .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; }
-  .ghost { background: #fff; color: var(--green-2); border: 2px solid var(--green-2); }
-  .ghost:hover { background: var(--green-soft); color: var(--green); }
+  .ghost { background: rgba(255,255,255,.85); color: var(--green-2); border: 2px solid var(--green-2); }
+  .ghost:hover { background: #fff; color: var(--green); }
+
+  .trust { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+  .trust li { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .92rem; font-weight: 600; color: var(--green); }
+
+  .two-col { display: grid; grid-template-columns: 1.6fr 1fr; gap: 22px; align-items: start; }
+  .two-col aside { margin-top: 2.2em; }
+  @media (max-width: 820px) { .two-col { grid-template-columns: 1fr; } .two-col aside { margin-top: 0; } }
+
+  .topics { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .topic { position: relative; display: flex; flex-direction: column; gap: 2px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; text-decoration: none; color: var(--ink); transition: transform .15s, border-color .15s, box-shadow .15s; }
+  a.topic:hover { transform: translateY(-2px); border-color: var(--green-2); box-shadow: 0 6px 18px rgba(20,83,45,.08); color: var(--ink); }
+  .topic .ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--green-soft); color: var(--green-2); margin-bottom: 6px; }
+  .topic strong { color: var(--green); }
+  .topic small { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+  .topic.soon { opacity: .65; }
+  .topic em { position: absolute; top: 10px; right: 10px; font-style: normal; font-size: .72rem; background: #fff7ed; color: var(--accent); border-radius: 20px; padding: 1px 8px; }
+
+  .latest { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .post { display: flex; gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-decoration: none; color: var(--ink); }
+  .post:hover { border-color: var(--green-2); color: var(--ink); }
+  .thumb { flex: 0 0 72px; height: 72px; border-radius: 10px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #166534, #4d7c5f); }
+  .post-body small { display: block; color: var(--accent); font-weight: 600; font-size: .78rem; }
+  .post-body strong { font-size: .98rem; line-height: 1.5; color: var(--green); }
+
+  .districts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .districts { grid-template-columns: 1fr; } }
+  .division { background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--green-2); border-radius: 12px; padding: 12px 16px; }
+  .division.kumaon { border-left-color: var(--accent); }
+  .division h3 { margin: 0 0 8px; font-size: 1.05rem; }
+  .division h3 small { color: var(--muted); font-weight: 400; font-size: .8rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips a { background: var(--green-soft); color: var(--green); text-decoration: none; padding: 3px 12px; border-radius: 20px; font-size: .9rem; }
+  .kumaon .chips a { background: #fff7ed; color: #9a3412; }
+  .chips a:hover { filter: brightness(.95); }
+
+  .cta-band { margin-top: 2.2em; background: linear-gradient(120deg, #14532d, #166534 60%, #4d7c5f); color: #ecfdf3; border-radius: 16px; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .cta-band h2 { color: #fff; border: 0; margin: 0 0 4px; }
+  .cta-band p { margin: 0; }
+  .btn.light { background: #fff; color: var(--green); }
+  .btn.light:hover { background: #fef3c7; color: var(--green); }
 </style>
