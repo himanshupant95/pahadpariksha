@@ -36,7 +36,10 @@ const path = Astro.url.pathname;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#14532d" />
 
@@ -72,7 +75,7 @@ const path = Astro.url.pathname;
     <header class="site-header">
       <div class="wrap header-inner">
         <a href="/" class="brand" aria-label={SITE.name}>
-          <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 27 L12 10 L17 18 L21 12 L30 27 Z" fill="#fff"/><path d="M12 10 L14.5 14.2 L12 13 L9.6 14.2 Z" fill="#bbf7d0"/></svg>
+          <svg width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0f3d22"/><circle cx="46" cy="18" r="7.5" fill="#f97316"/><path d="M4 52 L24 18 L34 34 L41 24 L60 52 Z" fill="#fff"/><path d="M24 18 L29.5 27.4 L26.5 25.6 L24 28 L21.4 25.6 L18.4 27.4 Z M41 24 L45 30.6 L42.6 29.4 L41 31 L39.4 29.4 L37 30.6 Z" fill="#bbf7d0"/><path d="M4 52 C16 46 26 50 34 47 C44 43.5 52 48 60 46 L60 52 Z" fill="#4ade80" opacity=".55"/></svg>
           <span>{SITE.name}</span>
         </a>
         <nav aria-label="मुख्य मेनू">
