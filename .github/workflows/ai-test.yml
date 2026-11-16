@@ -1,0 +1,18 @@
+name: AI grounding test
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          K: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          for M in gemini-3.8-flash gemini-3.5-flash-lite gemini-2.5-flash; do
+            echo "== $M"
+            curl -s -w "\nHTTP %{http_code}\n" "https://generativelanguage.googleapis.com/v1beta/models/$M:generateContent?key=$K" \
+              -H "Content-Type: application/json" \
+              -d '{"contents":[{"parts":[{"text":"Shiv Prasad Chamoli of Uttarakhand received the Tenzing Norgay National Adventure Award in November 2026. In Hindi, 3 short bullet points: why he got it, which category, and who gives this award. Use Google Search."}]}],"tools":[{"google_search":{}}]}' \
+              | python3 -c "import sys,json;raw=sys.stdin.read();body,code=raw.rsplit('HTTP',1);print('HTTP',code.strip());j=json.loads(body) if body.strip().startswith('{') else {};c=(j.get('candidates') or [{}])[0];print((c.get('content',{}).get('parts') or [{}])[0].get('text','')[:600]);g=c.get('groundingMetadata',{});print('SOURCES:',[x.get('web',{}).get('title') for x in g.get('groundingChunks',[])][:5]);print('ERR:',j.get('error',{}).get('message','')[:300])"
+          done
