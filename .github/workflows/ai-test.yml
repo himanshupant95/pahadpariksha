@@ -1,0 +1,15 @@
+name: AI key test
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          K: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          curl -s https://api.groq.com/openai/v1/models -H "Authorization: Bearer $K" | python3 -c "import sys,json;j=json.load(sys.stdin);print('MODELS:',[m['id'] for m in j.get('data',[])][:20]);print('ERR:',j.get('error'))"
+          curl -s https://api.groq.com/openai/v1/chat/completions -H "Authorization: Bearer $K" -H "Content-Type: application/json" \
+            -d '{"model":"openai/gpt-oss-120b","messages":[{"role":"user","content":"उत्तराखंड की राजधानी? एक शब्द में।"}]}' \
+            | python3 -c "import sys,json;j=json.load(sys.stdin);print('REPLY:',(j.get('choices') or [{}])[0].get('message',{}).get('content'));print('ERR:',j.get('error'))"
