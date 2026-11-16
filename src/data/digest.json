@@ -59,7 +59,13 @@
   "b5a2b4588a18",
   "fa429b91e5d6",
   "3ebfe819125c",
-  "e65cf29b1118"
+  "e65cf29b1118",
+  "0c63aab59749",
+  "4f3902a6fe06",
+  "3f598ef7728f",
+  "2923af5141f9",
+  "2bc84d79707e",
+  "214f19719b89"
  ],
  "points": [
   {
@@ -117,6 +123,23 @@
     }
    ],
    "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "9e3212530c",
+   "date": "2026-11-16",
+   "fact": "उत्तराखंड में देश की पहली स्किल डेवलपमेंट पॉलिसी (Skill Development Policy) तैयार की जा रही है।",
+   "cat": "योजना/नीति",
+   "imp": 3,
+   "tag": "स्किल डेवलपमेंट पॉलिसी",
+   "model": "gemini-3.6-flash",
+   "refs": [
+    {
+     "title": "उत्तराखंड में तैयार हो रहा देश का पहला स्किल डेवलपमेंट पॉलिसी, 35 युवाओं को सौंपा गया नियुक्ति पत्र",
+     "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQUVBWYWlNTjY2RlN6MXJnYTcwYy1nbE1UcTNzRmlVeVRfS3M0VDZiakhkYkRUX09pd2N4ZldlMko4Rnd3VmU5QWViVzlha25GbmdxWHU0aFBLUmd0dWlfNVlhYVJNVWlsYXJ4REl5VlJkZlhEelRxQm4zSHVZNFV4b3pwQnJ6LTgyS0ZpUjV1a2JSdjQ1cFowQl9EMlJJcjFIVnd0dmJHUEFkVEY4Tkt2YUhRMWRyWHp0SE5tdFBkONIBxAFBVV95cUxQdU5BMlBWRmhicGF5cEJTeHdFVkM2NWo2ekd0b3A3LVZQd2lpdkFlWlQySzRXWWlEZG1JQzdhWGgzdF9hWlJheC0tSVR4eXFvQVBLLTY3WGdobVRfeGRfamlxZWYwZnU4aWx0VEhVbmZtdmVxTWdMSkJhZlBtNGdjR0FQRG5QWW5rZXI5M3h5QWZtalpoLUNFUHFTcklsQlVvYTZ1aDNTNWR2TEFfLUNETnlZMzBpLVZtdG8tMDNBbDc1RlF2?oc=5",
+     "source": "ETV Bharat"
+    }
+   ],
+   "added": "2026-11-16T15:36:42.979Z"
   },
   {
    "id": "9c8d6d59f2",
@@ -527,5 +550,5 @@
    "added": "2026-11-16T12:58:45.388Z"
   }
  ],
- "updated": "2026-11-16T12:58:45.397Z"
+ "updated": "2026-11-16T15:36:42.979Z"
 }
