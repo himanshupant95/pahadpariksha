@@ -13,8 +13,8 @@ export const SITE = {
     nameEn: 'Himanshu Pant',
     url: '/author/himanshu/',
   },
-  // TODO: set up an email forward (e.g. contact@pahadpariksha.in) in GoDaddy, then keep this.
-  contactEmail: 'contact@pahadpariksha.in',
+  // Contact is via the form on /contact/ (Google Forms backend). Set contactEmail once mail forwarding works.
+  contactEmail: '',
   // TODO: add once the Telegram channel exists, e.g. 'https://t.me/pahadpariksha'
   telegram: '',
   gaId: 'G-ENLSJ7JMPL',

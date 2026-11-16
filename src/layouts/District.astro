@@ -97,7 +97,7 @@ if (p.faq?.length) schema.push({ '@context': 'https://schema.org', '@type': 'FAQ
       <section id="sources" class="d-sources">
         <h2>स्रोत</h2>
         <ul>{p.sources.map((s) => <li>{s.url ? <a href={s.url} target="_blank" rel="noopener nofollow">{s.label}</a> : s.label}</li>)}</ul>
-        <p class="muted">कोई तथ्य गलत लगे तो स्रोत सहित <a href="/contact/">हमें बताएँ</a> — हम हर सूचना की जाँच करके पेज अपडेट करते हैं।</p>
+        <p class="report"><a class="report-btn" href={`/contact/?topic=${encodeURIComponent('तथ्य में त्रुटि')}&page=${encodeURIComponent(`${p.name} जिला — https://pahadpariksha.in/gk/districts/${p.slug}/`)}`}>⚠ त्रुटि की सूचना दें</a> <span class="muted">कोई तथ्य गलत लगे तो स्रोत सहित बताएँ — हम हर सूचना जाँचकर पेज अपडेट करते हैं।</span></p>
       </section>
     </article>
   </div>
@@ -196,4 +196,7 @@ if (p.faq?.length) schema.push({ '@context': 'https://schema.org', '@type': 'FAQ
   .faq { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 8px 0; }
   .faq summary { font-weight: 600; cursor: pointer; }
   .d-sources li { font-size: .9rem; margin: 3px 0; }
+  .report { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .report-btn { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; padding: 5px 12px; border-radius: 999px; font-weight: 700; text-decoration: none; font-size: .9rem; }
+  .report-btn:hover { background: #ffedd5; }
 </style>

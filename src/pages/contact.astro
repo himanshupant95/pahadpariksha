@@ -1,11 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import ContactForm from '../components/ContactForm.astro';
 import { SITE } from '../data/site';
 ---
-<Base title="संपर्क करें" description={`${SITE.name} से संपर्क करें — सुझाव, त्रुटि सूचना या सहयोग के लिए।`}>
+<Base title="संपर्क करें" description={`${SITE.name} से संपर्क करें — किसी तथ्य में त्रुटि की सूचना, सुझाव या सहयोग के लिए फ़ॉर्म भरें।`}>
   <h1>संपर्क करें</h1>
-  <p>सुझाव, किसी तथ्य में त्रुटि की सूचना, या सहयोग के लिए हमें ईमेल करें:</p>
-  <p><a class="btn" href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></p>
+  <p>किसी तथ्य में त्रुटि दिखी, कोई नया टॉपिक चाहिए, या सहयोग करना चाहते हैं? नीचे फ़ॉर्म भरें — संदेश सीधे हमारे पास पहुँचता है।</p>
+  <ContactForm />
   {SITE.telegram && <p>टेलीग्राम चैनल: <a href={SITE.telegram} rel="noopener" target="_blank">{SITE.telegram}</a></p>}
-  <p class="muted">त्रुटि बताते समय पेज का लिंक और सही जानकारी का स्रोत ज़रूर लिखें। हम आमतौर पर 2–3 दिन में जवाब देते हैं।</p>
+  <p class="muted">त्रुटि बताते समय सही जानकारी का स्रोत (आधिकारिक वेबसाइट, पुस्तक, समाचार) ज़रूर लिखें — हम हर सूचना जाँचकर पेज अपडेट करते हैं। जवाब चाहिए तो अपना ईमेल या मोबाइल नंबर लिखें; यह केवल जवाब देने के लिए उपयोग होगा।</p>
 </Base>

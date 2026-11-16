@@ -1,0 +1,65 @@
+---
+// Contact form styled for the site; submissions go to a Google Form (responses sheet + email alert
+// to the owner). Google's endpoint does not allow reading the reply (no-cors), so success is shown
+// once the request is sent. A hidden honeypot field silently drops most bots.
+const FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSe6tmWd7kSrC0RUbBXcIC5V8trG5RY4EHN2RirFLdHaffitmg/formResponse';
+const F = { name: 'entry.1823917731', contact: 'entry.1204896361', topic: 'entry.1987672982', page: 'entry.1818749491', message: 'entry.109340213' };
+const topics = ['तथ्य में त्रुटि', 'सुझाव / नया टॉपिक', 'सहयोग / विज्ञापन', 'अन्य'];
+---
+<form class="cform" id="cform" data-action={FORM} novalidate>
+  <div class="row2">
+    <label><span>नाम <small>(वैकल्पिक)</small></span><input name={F.name} autocomplete="name" maxlength="80" /></label>
+    <label><span>ईमेल या मोबाइल <small>(जवाब चाहिए तो)</small></span><input name={F.contact} autocomplete="email" maxlength="120" inputmode="email" /></label>
+  </div>
+  <label><span>विषय</span>
+    <select name={F.topic}>{topics.map((t) => <option>{t}</option>)}</select>
+  </label>
+  <label><span>किस पेज के बारे में? <small>(वैकल्पिक)</small></span><input name={F.page} id="cf-page" maxlength="300" placeholder="पेज का लिंक या नाम" /></label>
+  <label><span>संदेश</span><textarea name={F.message} id="cf-msg" rows="6" maxlength="4000" required placeholder="त्रुटि हो तो सही जानकारी और उसका स्रोत भी लिखें।"></textarea></label>
+  <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off" /></label>
+  <button type="submit" class="btn cta">संदेश भेजें</button>
+  <p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  const f = document.getElementById('cform') as HTMLFormElement;
+  const status = document.getElementById('cf-status')!;
+  const qs = new URLSearchParams(location.search);
+  const page = qs.get('page'); const topic = qs.get('topic');
+  if (page) (document.getElementById('cf-page') as HTMLInputElement).value = page;
+  if (topic) { const s = f.querySelector('select') as HTMLSelectElement; [...s.options].forEach((o) => { if (o.text === topic) s.value = o.value; }); }
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = (document.getElementById('cf-msg') as HTMLTextAreaElement).value.trim();
+    if (msg.length < 10) { status.textContent = 'कृपया संदेश थोड़ा विस्तार से लिखें (कम से कम 10 अक्षर)।'; status.className = 'cf-status err'; return; }
+    const btn = f.querySelector('button')!; btn.disabled = true; btn.textContent = 'भेजा जा रहा है…';
+    const data = new FormData(f);
+    const bot = (data.get('website') as string) !== '';
+    data.delete('website');
+    try {
+      if (!bot) await fetch(f.dataset.action!, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data as any) });
+      f.reset(); f.querySelectorAll('label, .row2').forEach((el) => ((el as HTMLElement).hidden = true)); btn.hidden = true;
+      status.textContent = '✅ धन्यवाद! आपका संदेश हमें मिल गया है। ज़रूरत होने पर हम 2–3 दिन में जवाब देंगे।'; status.className = 'cf-status ok';
+    } catch {
+      btn.disabled = false; btn.textContent = 'संदेश भेजें';
+      status.textContent = 'संदेश नहीं भेजा जा सका — इंटरनेट कनेक्शन जाँचकर दोबारा कोशिश करें।'; status.className = 'cf-status err';
+    }
+  });
+</script>
+
+<style>
+  .cform { display: grid; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; max-width: 680px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 560px) { .row2 { grid-template-columns: 1fr; } }
+  label { display: grid; gap: 4px; font-weight: 600; font-size: .92rem; color: var(--green); }
+  label small { font-weight: 400; color: var(--muted); }
+  input, select, textarea { font: inherit; font-weight: 400; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; background: #fff; width: 100%; box-sizing: border-box; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--green-2); outline-offset: 1px; border-color: transparent; }
+  textarea { resize: vertical; min-height: 120px; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  button { justify-self: start; border: 0; cursor: pointer; font: inherit; font-weight: 700; }
+  button:disabled { opacity: .6; cursor: wait; }
+  .cf-status { margin: 0; font-weight: 600; }
+  .cf-status.ok { color: var(--green); background: var(--green-soft); padding: 12px 14px; border-radius: 10px; }
+  .cf-status.err { color: #b91c1c; }
+</style>
