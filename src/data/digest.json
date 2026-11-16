@@ -1,5 +1,531 @@
 {
- "reviewed": [],
- "points": [],
- "updated": "2026-11-16T12:53:35.882Z"
+ "reviewed": [
+  "068e7ae95d40",
+  "c7e6d7ce8e9b",
+  "ef08233b3bf5",
+  "7b877ab6918d",
+  "0a1085ff4d65",
+  "30431a1ec97e",
+  "468e6087f284",
+  "a39570e56d40",
+  "17afc560e77b",
+  "01ccc0fd5747",
+  "a5a1b6c92ec8",
+  "cf44bb01e32e",
+  "e6d2d8f497c2",
+  "4cb075bcb4a3",
+  "70e2411cf814",
+  "60a8bcb21adb",
+  "81a48929b0f1",
+  "d30bff0b3397",
+  "6e3d68d0f4b1",
+  "375377f7fed1",
+  "0ee9cc924160",
+  "63949004d34c",
+  "30dd0350bdca",
+  "abccd98e8af1",
+  "97739467d883",
+  "d4d928c5d3e6",
+  "3ffde4ba91f7",
+  "10fd3f1a6c8d",
+  "58af53aa491e",
+  "17f3c837eece",
+  "0b4265de705e",
+  "545f2430e1af",
+  "ee9563bfcafa",
+  "d0a81e690cb9",
+  "0021743b0ba4",
+  "24e4009458e1",
+  "a8759db26023",
+  "c5faf654bb18",
+  "d55629165bdb",
+  "0f9c0eff40de",
+  "e6912a1908df",
+  "6951d083ae17",
+  "b39a7f84d49c",
+  "c77e20e70bfe",
+  "759f9f9919c3",
+  "a3669c46c959",
+  "5e29c48dd726",
+  "3d17058f638d",
+  "f8ce2ffeccd1",
+  "d40aed0c4170",
+  "6973a179eac4",
+  "783ea47bcd15",
+  "4365bf48d02c",
+  "6eefeb88ac8a",
+  "a8dc0fe1be9d",
+  "974928ef97ba",
+  "b5a2b4588a18",
+  "fa429b91e5d6",
+  "3ebfe819125c",
+  "e65cf29b1118"
+ ],
+ "points": [
+  {
+   "id": "0eb720e81a",
+   "date": "2026-11-16",
+   "fact": "उत्तराखंड में जनगणना 2027 का दूसरा चरण शुरू; राज्यपाल और मुख्यमंत्री ने स्व-गणना (Self Enumeration) करके इसका शुभारंभ किया।",
+   "cat": "प्रशासन",
+   "imp": 3,
+   "tag": "जनगणना 2027",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड में जनगणना 2027 का दूसरा चरण शुरू, राज्यपाल व मुख्यमंत्री ने स्व गणना कर किया शुभारंभ",
+     "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQS0pybWVteW1MRDl2U1ZqM2hJQVdUS0ZzbHJtVTJvNEVNUTB5eFRDYXlIZjRKTkxoMDlvNjZWTnBlLWdYTGxBOUhIY0NUVERxcGJPZC1IUXd3WFAySGNDM2JkUmpqcnVTYVNtX3hGQTAyNWlFRFNzakd0Z0lzQzFZYTVaODFrM2t5SGZObWRKTkF2M0NiODlxZDUzcVkwQTkxeVNVWVRUQ0JOc2tnZEZVZVA3ODE4QWZTN21wakktZkgwVi1KWEE?oc=5",
+     "source": "Jagran"
+    },
+    {
+     "title": "उत्तराखंड में स्वगणना का शुभारंभ रविवार से, राज्यपाल और मुख्यमंत्री करेंगे शुरुआत",
+     "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUjRfT2FlcVV2Y0JpUjN3SkxhdEZ0OXhqdzdJTUlNMVpsQllQVWFUdjktNUZSOFRvWFQ2czhWcy1qeUo4cTFHdmhmVUpFalE0aU5ScE5iRUpUa05DNzBDLXpzVjRBQk90dFdfazlXend3QzNYOTBjMzh3VVRueFpadmNyLUN4bGlzTlpucEViMURlR0l6Z1BFYmZaZzN6dTJuQnAzVUMtN0QycDJaT0U1N0VsOTd2TExjUXdj?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.387Z"
+  },
+  {
+   "id": "0c24532684",
+   "date": "2026-11-16",
+   "fact": "उत्तराखंड 'राष्ट्रपति पुलिस ध्वज' (President's Police Colours) सम्मान पाने वाला देश का 16वाँ राज्य बना।",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 3,
+   "tag": "राष्ट्रपति पुलिस ध्वज",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Uttarakhand becomes 16th State to receive President’s Police Colours Award",
+     "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQakhvX2U1em9BcFdMeUs1U0pRby0zWmRHRUNnRVBLdi1ucHJkenR3YXdIVFluR1VOSEd3eHpPM2Q4NElVN2VNcGJ3WUxNaUw2cUtTQkoycHNOSEFmRFpQUGwteEZpcG56WlV5bDVlOHhBeUhIN3BjejJfMkJpeDNnWURmQUJrTS1JczUwWUV2UnNrbEF4MWFkclA3aHlJZw?oc=5",
+     "source": "Pioneer Edge"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "08024766dc",
+   "date": "2026-11-16",
+   "fact": "स्वाति आले 600 किमी की BRM साइकिल राइड पूरी कर उत्तराखंड की पहली महिला 'सुपर रैंडोन्योर' बनीं।",
+   "cat": "खेल",
+   "imp": 3,
+   "tag": "सुपर रैंडोन्योर",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "दून के आठ साइकिलिस्टों ने पूरी की 600 किमी की बीआरएम राइड स्वाति आले बनीं उत्तराखंड की पहली महिला सुपर रैंडोन्योर - dehradun cyclists conquer 600km brm swati ale first woman sr",
+     "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNd0hYNV9RU2FYQUdMQXJFd3cxZklkbUs5enBSTER1NlpvSGFVWTR1ei03UVI5VzVVWWFiRnUtaElkdzJBU1N6YTJCX0FiWUtacmFMdmYwWW5LX2JodE50NldrWVR6WjZGaHJCYXhEejFSNFBabkFMdEVRQWJxbjUzYU1jQTJtSDBFeUQtMlFQdjRHOG9Sd09YVFdXelEyVVRrQVMwRUNrWlJ4dVltT2RNQlBvLW9wcThvWXp6TkhQeGg?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "9c8d6d59f2",
+   "date": "2026-11-16",
+   "fact": "उत्तराखंड के तीन जिलों में भूकंप गतिविधियों की निगरानी के लिए खनन विभाग और वाडिया इंस्टीट्यूट के बीच MoU हुआ।",
+   "cat": "विज्ञान/शिक्षा",
+   "imp": 2,
+   "tag": "भूकंप निगरानी MoU",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड - तीन जिलों में होगी भूकंप गतिविधियों की मॉनिटरिंग, खनन विभाग और वाडिया इंस्टीट्यूट के बीच हुआ MOU",
+     "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQNlkzWkhlT2p5bG9Neml3LVl5cy03eUlTaEJ4bU8xTy0zVi1DMmV1N2F6cnoxblZxRkktZWptWE44UkhoX0dZMHZ2d0FlTzBLMzB3U0VBME1zbHBqblF3SHJNVzM0emZ1WGFyRFJxLXRCdWlld3Q0ZW5fWmtWc0paQUx0ZGIteFYzaVZXbm0yRndaclFVQTdoVkdGLW5Eajg3ZTVQR05OZ2FLRGZaay1CNFEtSW1HNGlxcGc?oc=5",
+     "source": "News Today Network"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "95467be29f",
+   "date": "2026-11-16",
+   "fact": "उत्तराखंड सरकार ने प्रतियोगी परीक्षाओं की तैयारी हेतु निःशुल्क कोचिंग योजना के पात्रता नियमों में बदलाव किया।",
+   "cat": "परीक्षा/भर्ती",
+   "imp": 2,
+   "tag": "निःशुल्क कोचिंग योजना",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड सरकार ने प्रतियोगी परीक्षाओं की तैयारी में बड़ी राहत देते हुए निःशुल्क कोचिंग योजना के पात्रता नियमों में महत्वपूर्ण बदलाव किया है।",
+     "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9BZnl4YUUwUEkwbmFiejA3Z29BWW5NQmFtbmh5SzBRNVZMRTc4U3VQWUVvOTJ3V21MYXVjMnlsX3U4OTlnR3hVQ0Nzdi05QWdJaG9BSVFpMmlmYnhYRGc?oc=5",
+     "source": "AIMA Media"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "fdc2dcced7",
+   "date": "2026-11-16",
+   "fact": "वन्यजीव अपराधों पर रोक के लिए गढ़वाल और कुमाऊँ में वाइल्डलाइफ क्राइम कंट्रोल यूनिट बनाई जाएँगी।",
+   "cat": "पर्यावरण",
+   "imp": 2,
+   "tag": "वाइल्डलाइफ क्राइम कंट्रोल यूनिट",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड में वन्यजीव अपराधों पर लगेगी लगाम, गढ़वाल और कुमाऊं में बनेंगी वाइल्डलाइफ क्राइम कंट्रोल यूनिट",
+     "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQUzBXWkJFZkF6TzZyZlRxMWlHX25lUXpDOUtybE81cEdaZU1pZUtPU2N4TmRENXF1Y3NrUEZLZVdPb3JuelpnNDdNVm5ReXFYMnFCMzA3bE9nNVFKaUFCdFNqZ2JaYnFBRC1nSFZvbHFvQzZieHQ2amRyWTJpN2hXN3JXZ2NWUmFob0UzMnBjTUloSS1nOEZQblhjdWlKVjM4RjFJTmN6VUVCc01wN3RYNjFjZXdUQ0E?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "343c32ebf2",
+   "date": "2026-11-16",
+   "fact": "बदरीनाथ धाम के कपाट शीतकाल के लिए 16 नवंबर को बंद हुए, जिससे चारधाम यात्रा का समापन हुआ; परंपरा के अनुसार कपाट बंदी पर पुजारी स्त्री वेश धारण करते हैं।",
+   "cat": "संस्कृति/धर्म",
+   "imp": 2,
+   "tag": "बदरीनाथ कपाट बंद",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Badrinath Temple Portals To Close For Winter, Ending Char Dham Yatra",
+     "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNSWxBLTA0cVJnTVY1RF9nQzBuZ0RmeEdZVG0xbmdNeHNBLThUVTdUM0dZRzhqaE5VVWVxa0FNLXFNNTdYeG1MNVRwV0xOeEdrN0NBZEF0SE9rOWZJNXVGa0hFSDg5NDhlMWs0b3ZBdHJ5YXJDak85TTZSc3JpMVpXODdaNlVFa0Qxa0xOWjNNc21CaGxzWWtwMk1raE9sSDBZWUFxQTh4a3hPSkpVRlZIY245aGXSAboBQVVfeXFMT2NYMjRVUExqT1FIbUR1VXNKMklEZmNuZUlqLVJlVlg0WEhNZkxLaW5qcS1oMDdHSW1TeGdJcGYwYmZLeFdJQk1naXZrQ2toWEVxT08xb05CdTNWdTcxNmlpQmJUbGdkbEVoODduaTA3OW1kWExKaHVweDZQZkkxM1h1dE40S2Q1VEZsb1o3YzZNM04yaC1lSDZQWnpoMVJIOHZDVkpnSjlQaW5GbEFTLW15bndvOW4tMWFR?oc=5",
+     "source": "Deccan Chronicle"
+    },
+    {
+     "title": "उत्तराखंड: बदरीनाथ धाम के आज बंद होंगे कपाट, जानें पुजारी को क्यों धारण करना पड़ता है स्त्री वेश",
+     "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQSTQwREdteUlzQlRhX2JEbFpXRjhnUElmcnloLWxCdmJiSG9iVENDVWZCcDdYWHM2WTRHWkJQQVg2SGJPMFl2alcwTzdpS014Y013dzVyanl2T3hpMzBpcG84TFpDNFpteE9uRkw0X04yOHk0RDJxLXE5UXc2TElaV3BPZklEU3FXRDZocEFZQ0lncHo4bnlRQ0VBcDZod3d6NUo1OWIzTXdLQ3dqU2ViSDVWLV9qU2JqWV80Qnd6NS1obGtUYmxSUUR5UWIxTTI5azJuMjQ0bknSAd4BQVVfeXFMTXA4SVFXdUJkZmVTbUJsYk4wSEpDbmVYUm0xQ3lTWXM4SWpxSzhuTVEtTnYxUzdQYTJXcEN1bFlWYkNCeXYxeTlQOU5xMzJsR0Q0MnJfUDV1bnRtSzZGcFlQdjF4VDU5VDVYVE5DSHdHVFZNMjljZXF6cDdWNHVkaUZyZlZSVmJEUXh1Y3ByQ3BzTWtkSTRhOUE5a3BSYWV4clJEMnhzT29PcDBreVJyWW10aExZOFBVMmJySk5wWEtlalk1WUt4YUdEMExhaG90NHB6QUR6ME4ySlhvVG1n?oc=5",
+     "source": "ETV Bharat"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "7daf70e619",
+   "date": "2026-11-16",
+   "fact": "'रैबार उत्तराखंड @26: मिशन 2047' कार्यक्रम में मुख्यमंत्री ने विकसित उत्तराखंड 2047 का रोडमैप रखा — UCC, एप्पल मिशन, खेल, कृषि, रोजगार और 'हाउस ऑफ हिमालयाज' प्राथमिकताएँ।",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "मिशन 2047",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Uttarakhand CM Dhami Outlines Mission 2047 Priorities; Highlights UCC, Apple Mission, Jobs and Tourism",
+     "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPMWpoWDhvV05YSHlWS1l4RktWeDl6UmpTc1JHeGEtWHRnbmlweTlTejJKWVRxNkpHblAzLWw5ZWFmUE53aVJ1TWtZUW5SMlltZldzVGpLMTVnVlhJOExvWkVVU3hhOTVCWmsxaHpaOWhoSXlrRlZXX1JUNkZRa0xMcm05TUVxcWNtX3IwU2Zzc2J0SWY3NFRTaVFwYw?oc=5",
+     "source": "Indian Masterminds"
+    },
+    {
+     "title": "Uttarakhand Mission 2047: CM Dhami Reveals Big Plans For UCC, Sports, Agriculture And Local Products",
+     "link": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQc3kwZ1lvREpvV2ZuYWJxZlhBbHlUTWkzaXlZUWdtdVB4MWJDVS1aRWd2bU41WEgzU3lPcE5xWDBfZEdmZnpNS1BpMVNHS203aEVoZmo3UmFfR0NGOGF3SmhjdEhjWktSdjJaQkFjMVF2bzV5VVhha3pOa3d4MlZPRktsUThuYVp1X2ZZWFJzbnFLcmd0elV3el9HSlFscmZ3TE5QYkpfQkJCNXZ3VDQyWkFkVTlTY3FwSnlfYXNROENqNy1LMEltb0NWdDh4Wng2dE1ZN0tpSG1BYTVUZFZjdXVEQWVvQ1k5MlRPTNIB8gFBVV95cUxOa2J6TkQ1cVA2TE91Mkc1VEp2ZnItSHFsbF96aFRaanNWSU9BcWh6OTVrSFBrTm5FQUxocVBCSzI0UGNCWkV0S1NRMHdub3gwVTU4dFZGbTBwaUg3NTJxV3A5eWNCWmZOTW0tUDFLUHlUZlZRekFISS1JNXhvaWk2aGFIdllaaS1tUlZyMDE1UjhtUUduVXdRaTctajlocm9sRHo4MUxGM0lOUG5TS3plQ281ZjRCOG51V2NsaXo3WXhBS1pfWUUzU3B2RlFwajFOZVhUc0Zxd0dMUF9ZUTJrdzFSMGtuS1RKV1A2UTZwUllYQQ?oc=5",
+     "source": "Asianet Newsable"
+    },
+    {
+     "title": "मुख्यमंत्री धामी ने ‘रैबार उत्तराखण्ड @26 : मिशन 2047’ में भाग लिया, विकसित उत्तराखण्ड का रोडमैप साझा किया",
+     "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQMlR2WUFZTTJ0V1F1S1lwTzM1VEVXU2JEblJXZHBVai1CaGpCeFZVNnpvSGQ0Rm1EM25tMkFOeEcwR2ZpT3BiZ2ptajdRREh5M0g3UjNrWU53bk9ZVzNlYXI0UWRGNGsxOE93NnhDbFpmbm9NRkFqRmJQcHI4Q08wUkZTbG5OSHVMTkZ0ZXI1VlJ4VlpGeDlFeVl4ZzJNYVJubmpOMWZwb9IBrAFBVV95cUxQZ3V0RUpvSFhSMTRhN3UtU2VucVVCRW9ubFk0emVwOFUxS2Q5Rmk4R1dMSXhIZmlfbjF1eU5DVHdxdGdodjZPVV90a0tPVzhaV1VIbktFMTAzN2taMFNzWDdjYTlYdlJjSGRwZl9kWFpxc2VKWVJZZy14LS1FYnU5dUZXa3hGTzZPTzR2Vk10TmozRHFKOVZZSkE5NnBERG1HUGotZkU0cWNqb3I5?oc=5",
+     "source": "Panchjanya"
+    },
+    {
+     "title": "Viksit Uttarakhand 2047 : पुष्कर सिंह धामी का विजन, UCC से लेकर 'हाउस ऑफ हिमालयाज' और रोजगार पर कही बड़ी बात",
+     "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOQjliZ3hTN2hWSEZBUFQzVFNOMVNNNFpIcVJ2V0tmNmpqM1dGVG9LU3ZYY3lTOS1DeFNyRzRxZFJZYWpZRW82ZVp3X0NKYmJKd3ZJeEdkOFE4bHk5bFMzNkN6SkJHbUZUM04tbkE3VFlCZzBBNFlkZ2lGbFBpRlZpa3dXdE9YT2RCLVE?oc=5",
+     "source": "The Bharat Now"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "81fd36f1ca",
+   "date": "2026-11-16",
+   "fact": "चंपावत में राष्ट्रीय कुमाउनी भाषा सम्मेलन में जनार्दन चिलकोटी को 'जमुना देवी खनी स्मृति कुमाउनी संस्मरण लेखन पुरस्कार' मिला।",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 2,
+   "tag": "कुमाउनी भाषा सम्मेलन",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "चंपावत:राष्ट्रीय कुमाउनी भाषा सम्मेलन में जनार्दन चिलकोटी को मिला ‘जमुना देवी खनी स्मृति कुमाउनी संस्मरण लेखन पुरस्कार’",
+     "link": "https://news.google.com/rss/articles/CBMihgJBVV95cUxPZmw2RkZnUGZHVTRDbllWTllZX3dad0x2X19Ma3d3czA2OGhoUTh3QXdhVlZQcjRGT2lTZVgxSnAwRWpCY0VxRXUyVWVKTmZWclVQU0JCNzdUZl8wVHd2MkNYY0pBbVlXUkF2TEpBWnNvc1V2c29qUXFwWkhCVHE3Ynhsb050UkxLQjlGb2cyRmN1VXRITUZGdzZtYVVmajRSRGZZZjhKa2c5V3J5ZDFuTVh5M2s5QWVrcGxwSXh0T3VmQnR6R0stRV9SbzU4REsyblNnXzlfakFEc052TVdCOEViWmRQcFlmVm1pUWczbUdSVE5xLUpzMk8wQ2FmMDhFc0c3SDB3?oc=5",
+     "source": "Kali Kumaun Khabar"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "f842c673c0",
+   "date": "2026-11-15",
+   "fact": "केदारनाथ में तीर्थयात्रियों को गर्म पानी देने के लिए भारत के पहले गोबर-चीड़ (पिरूल) ईंधन पेलेट का उपयोग किया गया।",
+   "cat": "पर्यावरण",
+   "imp": 3,
+   "tag": "गोबर-पिरूल पेलेट",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "India’s First Dung-Pine fire Pellets provide warm water to Pilgrims in Kedarnath",
+     "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNT2J2a01fQXVCdFlxUlNIQ1FKcktZY2FnOUdmM2ZOUVNkVURwWk90SERPTzZoM19rbVBEMjlTR1BtRnljc0pYeFhkOEpiQmp2TXMyZHJLUnpiNVlEc3VYZ05DNXJxdm5wdHdyN3MtZko3UWo2QkpRazBjQlB1T045WWtPcHgtOElsV1FwekNKNi1DeEs0SU1RVVFBd0lZV1ZPX3lQeU1R?oc=5",
+     "source": "Garhwal Post"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "b014c24c4c",
+   "date": "2026-11-15",
+   "fact": "हेमा नेगी करासी को लोकसंस्कृति में 25 वर्षों के योगदान के लिए 'उत्तराखंड गौरव सम्मान' हेतु चुना गया।",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 3,
+   "tag": "उत्तराखंड गौरव सम्मान",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "हेमा नेगी करासी उत्तराखंड गौरव सम्मान के लिए चुनी गईं: लोकसंस्कृति में 25 साल के योगदान पर 6 नवंबर को मुख्य...",
+     "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNWDJ5ektqaEphMTJtNzA1NVpjUHF4WHFLUlBLUWhzaGprVXB2cUVFQVZ4VHB6dW9sUC1aTDRLSFVXSENXQzI0SnZ6WXJ1OEdxU0FPLXRET3BrRVh2dmVGZnFlSnB5N0R1MlRPMEZTRks3b1lKck9DTWkyamdRTGQzVXdTMUJkTDZpdFZscjVtOXNOZlJGYnF6dTlBZzAza1JwYU1uaHZ4d1c0UUZTSWZpX250U0lLS2ozSTdSa2J3OUJGUy1nMkFyakFCTkUxZ0tv0gHWAUFVX3lxTE8wTGd3ejRFcUFZOGFrUUpSTmJoTFdqQUt4dERVcFNucWF5YjBibXhvc2FHdURybm5CV3ZtTHdhMXZXNkttX3d4S0Nic1J0bEhuVEg2ODJMN1p1WnlJYTFyUndoaDlMMkUzUVQ1SEMyQk1oX3VmNF9pS3pWWE1FQl96NnotNW1fUmVLeUFnbURSYVlvUjZ2bUNVNUUydjM5dTVpNHNIZXdLU0JQVkNnUTE5eGRWeXY1emdra0lZblh2N2hILVhOU1hHd2NfWWhpbmJ6MHNidUE?oc=5",
+     "source": "Dainik Bhaskar"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "b7ac40d73b",
+   "date": "2026-11-15",
+   "fact": "उत्तराखंड में अनुसूचित जाति (SC) के छात्रों को निःशुल्क कोचिंग मिलेगी; राज्य का पहला निःशुल्क कोचिंग केंद्र बनेगा।",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "SC छात्र निःशुल्क कोचिंग",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड में एससी छात्रों मिलेगी फ्री कोचिंग, बनेगा पहला निशुल्क कोचिंग सेंटर",
+     "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQX2EyMC1qSGJ4RnB4SlptY0JMeDV0WG1lT1lIaS1NV21zb2RYVGhhYXdkRUtHVnkwSUkyd2FkNlg1Sjl0a1JvMVdjSjUyZ2xsTnFOdjg5emdON0tCZy0tZ2k0X2dzOHA4UUVISGQwTURzdi1GeTgtODVoZDZTWG0wN3otMFk2OXQxRllhM2tSTzlfNVZfaHlTUWN4QTFObVZTX0JhRjdyM3VkUXBtTENUV3J4aWRLQ0hH?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "efc2cd8e75",
+   "date": "2026-11-15",
+   "fact": "उत्तराखंड अध्यापक पात्रता परीक्षा (UTET) 2026 का परिणाम ukutet.com पर घोषित हुआ।",
+   "cat": "परीक्षा/भर्ती",
+   "imp": 2,
+   "tag": "UTET 2026",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "UTET Result 2026 Out: उत्तराखंड अध्यापक पात्रता परीक्षा का परिणाम ukutet.com घोषित, स्कोरकार्ड डाउनलोड करें",
+     "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNbmVRMXhzRndDSE9OdXZMaEVIdG4xS1lVZVhSWFRJN3BSTElGdkRLMEJ6VmE0SlpQNkNNQkE3VGh2Zzd4M2hBWGMzbktGU3FzeUVHTGhIRTNWQ282UDdVNHNjdmlmS1lYWXBlWGRLN3l5THd6bkR2NmRhdnlKc0NYc0VnZll5bHdKQjNYaGZmOVVGQ1pSNzFjWFNNejVqQ0gwcm9mR1huSlNyLVRZVDRlbE5faExCa041ZXZrQU9R0gHEAUFVX3lxTE54UkN6MzVvSU02eVR1T2hQN284SmFJU0JiOXFOMERHNF9ES2thdVVWSXdVV2ZsVmcxYnNmX0tMX2c1dFU3b2hhTW5KSDktNHJQNnJHUDNUdTNCOXBnc055RGd1SlV1Vk1QMFl5Mm4zS21paC03WE5SVXN3VWQzOXVnTC1SX3lET2g0SDJtQ2RLSVQ5S2VENFItZ3ZJbXBWWUlEVUhQVVFGQmcxNENJZC1ibGxTbVZuTjNFMUhSVWhGOE1pclM?oc=5",
+     "source": "Jagran Josh"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "207cfe447a",
+   "date": "2026-11-14",
+   "fact": "उत्तराखंड की अद्वैता काला प्रसार भारती की प्रधान सलाहकार (Principal Advisor) नियुक्त की गईं।",
+   "cat": "नियुक्ति",
+   "imp": 3,
+   "tag": "प्रसार भारती",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Uttarakhand’s daughter Advaita Kala appointed Principal Advisor to Prasar Bharati",
+     "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNYUZGTE1Id3hTME1NaWRXcTY4NEtTMmI4UEk1elltdWJzNkpvV3RKOEJGUC0yUV9iN0xsU0hxQUdNUTJ5MnV4N0RjRzFiOUdMNENtUlR0cVNQM2JUTVR4bXhZYVQzY0dCTGZ0UmYtOHgwY2piX0xHNHUweEhMSXU0RV91Z09VZ0NxUHV6YUprQjNwNHpKdExiTV8zeUxKeWxYa1p1UU1JOA?oc=5",
+     "source": "Garhwal Post"
+    },
+    {
+     "title": "Uttarakhand News: उत्तराखंड की अद्वैता काला को मिली बड़ी जिम्मेदारी, प्रसार भारती की प्रधान सलाहकार नियुक्त",
+     "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNRE9DWkV6Uko3aGZ3c2c5Z1BMemNwRmJYVC1ibmpHQ3lpYkc5dzFuZXVHR1ZocmxtbXFYOEpna3pySWZtdlpLWm9PT3FDVTZXdGJVZXdQVUpIZEpraUFvbVZpRktvcEdzTlQxSDVPZjhuT01ROFB4bjE1SThXSWY0R3hhQlJiMGIteDVTYXJ3Zlpzby1SSFRWalln?oc=5",
+     "source": "Khabar Fast"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "a2bde163ed",
+   "date": "2026-11-14",
+   "fact": "उत्तराखंड में स्वयं सहायता समूहों के माध्यम से डेढ़ लाख (1.5 लाख) से अधिक महिलाएँ 'लखपति दीदी' बनीं।",
+   "cat": "योजना/नीति",
+   "imp": 3,
+   "tag": "लखपति दीदी",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड में स्वयं सहायता समूहों से बदल रही गांवों की अर्थव्यवस्था, डेढ़ लाख से अधिक महिलाएं बनीं लखपति दीदी In Uttarakhand self help groups transforming rural economies; over 150000 women have become Lakhp",
+     "link": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQTnU1Z0dfaVRjNjNEZFlNekYwcU95bmVKUENMcHAtZzdGc01DY1hubmZMUDBCalFkSVJGdkt1N1NqWFJOb0d0Uy1pT1BqcDN1RGJ1VmExaVZPeUNYMUJjLXU0bUM1Vk5GMkNyWWdGVVo0Y2RqeGhIMVYtUW84NmhzQ0NBYTAwSGZMR1pxZ05kZXM4NlZ2bnpPenJfNEZNRmJ6RzRsQUMwbTBVaGd0WXBUc3JEdlBhdnpFRi10YVo0TXlTQTlGc2RWOEFaRjFkQzZJUUtJMjZHNGRuZEJUdjYxVG9KdEd3X3RlOEl2RVg0SjhUREc40gH0AUFVX3lxTFBOdTVnR19pVGM2M0RkWU16RjBxT3luZUpQQ0xwcC1nN0ZzTUNjWG5uZkxQMEJqUWRJUkZ2S3U3U2pYUk5vR3RTLWlPUGpwM3VEYnVWYTFpVk95Q1gxQmMtdTRtQzVWTkYyQ3JZZ0ZVWjRjZGp4aEgxVi1Rbzg2aHNDQ0FhMDBIZkxHWnFnTmRlczg2VnZuek96cl80Rk1GYnpHNGxBQzBtMFVoZ3RZcFRzckR2UGF2ekVGLXRhWjRNeVNBOUZzZFY4QVpGMWRDNklRS0kyNkc0ZG5kQlR2NjFUb0p0R3dfdGU4SXZFWDRKOFRERzg?oc=5",
+     "source": "Newsnation"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "f52c9b2502",
+   "date": "2026-11-14",
+   "fact": "मुख्यमंत्री धामी ने भारत-नेपाल की साझा विरासत के प्रतीक जौलजीबी मेले का उद्घाटन किया और पिथौरागढ़ के लिए ₹102.72 करोड़ की 25 परियोजनाओं की घोषणा की।",
+   "cat": "संस्कृति/धर्म",
+   "imp": 2,
+   "tag": "जौलजीबी मेला",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड में लगता है तीन देशों की सांस्कृतिक पहचान का प्रतीक जौलजीबी मेला, सीएम धामी ने किया उद्घाटन",
+     "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNLUxUMmhldzBoYjNBQ3I0Nnp2VHdCSTNJeW91UFktaEliM0FaSFE5WnJ3RFdjNGM5ZHBuN2tLTGZFMVJVN0x3UHBnbWkzSmg2aTN4QVZsRmhaU2V2ZnRqbGQ5RmNkQkl4VzhDUjlZT3pGQmRIXzRRWjVuU0lENm1GaW05QU5udU1NSmJoZ0VNRkFsbVZFNTZqQVRab1dUWVVYQm1vUURFcGdNdzQ0MkdTUWNmMEYxVGQ1WTVUaF9tbC1mdU9FYlBZ?oc=5",
+     "source": "Jagran"
+    },
+    {
+     "title": "Jauljibi fair is symbol of Indo-Nepali shared heritage: Dhami",
+     "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOVmtKTmZHenl1Z09scjE2WV9yVlk1SWVuaWlPWjBzLXRrMGlnaTQ2M2I2YVpyODdER3BjY2VxQnZMVFB2MmVnMUxjeURkYW9ROWZneWpJVlY0VkdaOHdkUFZCc0lPUVBPcmx6UzhYM2tpdzdKZEFEb1NfWC05RE5NLWdKVUZJSDQxWnhNQg?oc=5",
+     "source": "Garhwal Post"
+    },
+    {
+     "title": "Uttarakhand CM Pushkar Singh Dhami Inaugurates Jauljibi Fair, Announces 25 Projects Worth ₹102.72 Crore",
+     "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQcXlNM21nbzktU2V6RkRJSkdNOUZwXzBNS2dEX2tvMmRyaUY5Z1Fyb2JMeTJjei1nN3dmXzZGQUo2NmlmNU9OVVBSRF9DVkNHc1FDVHhQSHFYeGRuTVZmeWxsVFNiUExlS252MVBucnAyakYtVFlqOW52RTVJVllGakt3a0FXV1VzRnVGbW9uZ04xdDNJMUJBV3FIMkFRMktjNkFmaVhtRGFlUjQ?oc=5",
+     "source": "Indian Masterminds"
+    },
+    {
+     "title": "पिथौरागढ़ को 102 करोड़ रुपये की सौगात, जौलजीबी मेले में CM धामी ने बाढ़ सुरक्षा, सड़क और पेयजल योजनाओं की रखी…",
+     "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPVGcyVzY4R3NHaTVreVd6S09NLUV2aGhSME9tRmpoUTU0U3pXNkdXTDJJSmMyMjlfaHBGOVE1ZnZSWUhNdTg1SDZlM0IwU1hrb1UwdGg1NGtGdnJvdUp3ckYtUDZQd3ZDZkNkMFNSVXFVY1hrNXFfMU15dncwUWd6ZTJaY29LNW1td2ViQmhVNjVoWlljRjNPdExnanU2RzBfSTNVWjBxRF9KTnFGczlxRExhUnQ5ZDNrajVJ?oc=5",
+     "source": "MP Breaking News"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "6a22db8359",
+   "date": "2026-11-14",
+   "fact": "74वें गौचर मेले का उद्घाटन मुख्यमंत्री धामी ने किया; यह मेला 1943 से आयोजित हो रहा है।",
+   "cat": "संस्कृति/धर्म",
+   "imp": 2,
+   "tag": "गौचर मेला",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Uttarakhand CM Pushkar Singh Dhami inaugurates 74th Gauchar Mela, bats for 'vocal for local'",
+     "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPelFyMVNfOU1RTEdUcFAxNGl0TnI5MWlkaEtGclRNbDVaaE14S1hIVlM4NnZxM3lrTGI0REloOXFsOVhaODFNd3pHZENMTXhtcVByU1FNQjNGTzNWRlFGWFhaU2lBWXhPSjVSLXVQaHBKZGxvTW45UlF6cXFNS1FXTjVEMkhUanR2S211LUUzYXVfUzFLcTZzR0o2VkRDVi15QkhsVjYwRjY3ejFIbFRlbkRRMjItMnFWWlZlLWxXWC1XQ3JXY3BqZ1RZLUJYVmFyMkFOV2NuSERrZ2pGSVBaczJnZTdSM2xKOXVQZ09VQU8wVGpYRnJreNIB_gFBVV95cUxNTVhzQWltbmRFUHNSQTRNTUtDUTVMWlBDa1ZOX0NmZ1hZWnM1NDZGVXAydFZNOVRVaVFSb1V4Uy0yRlh4YVNoZ2l0TkhFcjczZTc1TkZjb2N6YVhHQjNuVS1UVjFQWFl3cDYzSHpmWEw3cEJVRzlfYnlWWUllNlg4Q0hzOHg1eUNSOXFKbC1HbUh1TE8yWl9TeGRMUTdpaTd5aDQ3a1N5bXpNZWItZFc2UF85Z29TQWZxMmRVOWlWdVVZS3d0LW1QV2ZlSU1KbnFfZ1JpM0Q0QzhJN3k0RTY0Vm53NUh3RTV2eGxqVmR2YTdvV2R6OUlabWlSX2pSdw?oc=5",
+     "source": "The Times of India"
+    },
+    {
+     "title": "'1943 से चली आ रही विरासत, गौचर मेला सिर्फ आयोजन नहीं उत्तराखंड की पहचान है', बोले CM धामी",
+     "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOTUVWSEQyQmpISzhwMFdCS1lwdE5Rd3NOVGtTU3g0Tnp0WlhMTFpybXg3X094QzRMMDhGLVRBVnpnTkhtTjBhU3Y1ZmRmSjZGOExFbGdtRmVXb2twMDI2cmtjNjdMYUQwcFd1OHRKWnp6YnhremduUHpSOE95alhSNElRNHlfVE5DYkNrbHMzT3l5bU0yYl9tNjBiQmc3Nkg2azFoRHZhXzBPclV0aGV3ZHBJc3NKWXpvTFBzYVR4LW1IazlrclhmdkZEYl83WGJYRUtOa3B3bXYtR09OZURGNTZhTHU5U19lX0hWUkdxajhWVFRjYTBGedIB_gFBVV95cUxNRTMwRlJoMGljYXdZd25iU3g3dDF4eFFsLXlicC1SMUduSGpRV3lkbHc2d0gtU2dkQnBQN3pNdWI4OWxVcnZOVG9vbmZfNGV2dVBHbklRcXBkLVJaSzYyQXJFeWVZbG91WUs2LXNvSVF3eS1uNWlkbVpDWDNUdlJ4SW9LbEplZDRBMkprM3N1Y0lheHFqUnc5VmR6T0xPLTA2Y3pWYlVzREtudTdheFFpcjh1V0gyWU1VVWFtVVNudDRjLWdvSjNPMFg4VGdPNGYzYk5BbnFNb0tSOUZNdml2YWxCekx3VnhRMG84NU1DTG1fZ0duajBFdmd1akw4dw?oc=5",
+     "source": "Navbharat Times"
+    },
+    {
+     "title": "गौचर मेला: सीएम धामी की बड़ी घोषणा, सिमली अस्पताल पर बनेगी समिति, मेडिकल कॉलेज के लिए केंद्र को प्रस्ताव",
+     "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPWFBPZFgtTDV5QjUtRHA5SWxCV2U2T3JCc0lJYm9IcGVxWk1LUkFlRTYxeEU5Mjc3bFZtUXcxa2djZU10NXBlUUY0ajFfLW5HaVdoYVdPN21fOXVFanZVaFl4V1BwR2lfQndMdy1HVlpWNlUxdS1yTHdhUnh1NVR6TWRLdkNCbFJfeFdsTnVZdFk3c0pweXdsVHE3ckpUbmtaUjQ1RWk2eS01R3E0d1pVTDR1bTNkLUlCSWFn0gHAAUFVX3lxTE9LUHdZN2d1VW1ocDlVNXZ4MXpYNGdhWlZfcGM0VUZTeWJBaWxjR09JV2Z3YmdqR3otaHFiSmNENUhpSG5MM0pNYlA5NDg1SmpfQzZHNTdwZFh1Z2ZRbzFLWXpGSmdrWS0wZUZkcmhZdzZKV19tTDNpejlxeUdKS1VZZTdEanlLcGM1MUdpUWpJdW8xNFlaZVpxZnl2RlNfSFhMUkhCSW5udHhETEVQamVvZjR5WlpOV2F2UXZqdnZRdQ?oc=5",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "गौचर मेला उत्तराखंड की ऐतिहासिक विरासत : धामी - Naya India-Hindi News, Latest Hindi News, Breaking News,",
+     "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQU293Z2F0cTBlTDhCRkpxT2N1Q0dLNldiQWtORHNwQ1BsaHJPd0ptNG5LX0RvRnlMWWF4amxWczRTQlBEVG1GQ3BkNU9JV3ZJUW1WeU4wdU0ySkRFdnZfRHJ0LWQ1UUdaRFB4Uk90UDZJbTljYWFfVWxGSmw4RGo0U0Y1Tmd4VTltc2ZXaDRRZFlhRTRPR3ZXTWpGOXozNEc1MnBMNUh2LTdHNFZVSFFFcXNhcXZJTXdNMlFnZFNNQUFlRVZM0gHMAUFVX3lxTFB4d0l3LXdFZ3VjeUhEb0JtRTZ5RGpFNndoaFlEeWZyMUpBQXZhV1B1OGtBamZuVFdSZlFpM2F1em50RUFSV3JEUm9oVFRpdkRjb0Z6SEVoVTNsQjdHUDIxeWNJcktuTE81RlRHa2M3ZUg2YndNQkY2VGZXQkdhYnppdTg3SVBnM0VIclotbGdqTUFpVjh0RHlFdm9SRFNjYlltM3I0d19KR0ZoQURnZkdyMHU0eGJRU0R5RVRLSkVYRTZKOTcxMzdjY0lKcw?oc=5",
+     "source": "Naya India-Hindi News, Latest Hindi News, Breaking News, Hindi Samachar"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "02f5139f1c",
+   "date": "2026-11-13",
+   "fact": "उत्तराखंड के शिव प्रसाद चमोली को राष्ट्रपति द्रौपदी मुर्मू ने तेनजिंग नोर्गे राष्ट्रीय साहसिक पुरस्कार (लाइफटाइम अचीवमेंट) से सम्मानित किया।",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 3,
+   "tag": "तेनजिंग नोर्गे पुरस्कार",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Prez Murmu Presents National Sports Awards 2025; Uttarakhand's Shiv Prasad Honoured With Tenzing Norgay Lifetime Achievement Award",
+     "link": "https://news.google.com/rss/articles/CBMiugJBVV95cUxPOGxRQXdONjQ0SEpFMzdWNDc3Wkl2ZmFvb1kxTmNDT1ZqYXNUaWVjTHZuNGpPSjN2cWNnREYyZi1ySHcybVdWUG9ESG92WGtHMS1ocmhEUXJ0amxNQ3hJTlZtWGRZX29yVnRxbURxMjFsYjRNQTRicHI2ekFZU0NzLTNORkhMd0VYM2d5TzVSY25rcDNYYVBmRTUtcV81cWNFQVhSenp4ODBvX19wSVRaVWlZZlp5TS03NHpBbS1HZU1GQ2ZQTS00M1hZR2hDSjhOdGw4UFpVZElpTklwejZyUTc5Wldqei10YnhuVXRzQ3JVQUFqeHFCbl8zZTNPbU9PMDZQZFhnRDR1Yzh4YWRPWExCSUkzbkZEbjZwYW9CLU1rdXpyZTZQdU5Gb0x4UUZrWVFKei1TbUF3QdIBvwJBVV95cUxPOVZ5X2Q0U1FINDFhVkdVSjh1QzJRR09HMl9DQXFRd3FBenBXRm5CR2p3b3lVMEdPR3Q5NnpuTmRrcFBVSkxJbWtyaU1XcW5HVjE4R1dodHROV2ZSVC1PdDFTMUNWbXhSWEhjUVdnOWxpVmEwNHZvMkhSNDFXc1dBR0g3RGNlN0hxU2E1ZExpWEdSeUhWMHZLMHFDV1VqSUsxWTFtQWlOYU9MTmdpckZpSUxiUFlPZ3V4V0JOVWhOVTlmX0p2VjQ4MXJwS1g0cENXTGNVeDRjWnlvdVI5TE10SGxjNmtPVlAyVl9MNl9pSGJUWlY0UnF0RVRYWExVS2VJRFVJMFUwdEU1ZWlqaTh4RlE2S0t3LTFyRG04NWpTejhhM1UxaG9qRjNpUFVBWUI4NDJJXy0zN1dUNThYZzhF?oc=5",
+     "source": "ETV Bharat"
+    },
+    {
+     "title": "शिव प्रसाद चमोली को तेनजिंग नोर्गे पुरस्कार मिला: राष्ट्रपति द्रौपदी मुर्मू ने 2024 के राष्ट्रीय साहसिक पुर...",
+     "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQbElxNEljOGM1b01LcmhQMmoxckJFMXVKaG4xMWlURjJObEdzVmpSdlZBeHZIcDBKeE5kUnJSMDlKTXJKQ1FmQzZuOFJiQjk5Mm91TlpFMHBWWFlmQmQ0YzFZcXlsNFcxT2RSWFkzblY4bWQ1cVBVRHdEek5TT2pEWlp1Y1c1THVOelZ3bHR4SXlxd3owTVpZZHYwMHVrWDhWQXZ3TjFvSEJBaVc2eE1nTUI5dXJjOEM1OC03Zm1iZHk4bW9taWFCUnYzZ0tPdURBeW1NUDFiczfSAd4BQVVfeXFMT2pFQUNyemx1VTh5QW93QVNKN0dlZkNfc29mbXhMMGx5NVo5OVM0VmNFb3BDUElDNjZ4UWkwQnk3X01McC1PbENUV3M4YmdrMC1mWTNqaWNZWkNZLUVRS1JxZjBwWU5nWEk2WDBsMVAwbFliR29XckUtSm54RjhvSzR1aVcxRUlvQUF0T2RhYTFuVkdhbzhmam9La3F6al9iZlFkOVJPeDR4TXhqY2pIaFhIVFhVR096Vi14RlFiMDU1eTZhS2gwVDRWVDljaFBGUnlsYjRNdG0zcG5hN3ZR?oc=5",
+     "source": "Dainik Bhaskar"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "e375c049b9",
+   "date": "2026-11-13",
+   "fact": "उत्तराखंड के स्वच्छ सर्वेक्षण में काशीपुर और रुद्रपुर ने पहला स्थान प्राप्त किया।",
+   "cat": "रिपोर्ट/रैंकिंग",
+   "imp": 2,
+   "tag": "स्वच्छ सर्वेक्षण",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड स्वच्छ सर्वेक्षण में काशीपुर और रुद्रपुर का जलवा, हासिल किया पहला स्थान",
+     "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNMmVLeWZaWHpPSEExNlUtTEUycFhwMnFJUTMwY0Nsd2R2WW9TdUpDaTlVV3JtMEVRN0Y2OThDM0ExZFNCSEFSbFdSUUpvWWh1MklIMzI2ZDBwbGhPRDI3WnpYOG5zei1rcVhkWmRQWkQ1NTVhMG9OR29iTTZpaVFrUmktWUJjMTJualdvX3ZCSEpDNEdrbFYtRzc1OUZpVndJNGM4ZXJobTRxTHZX0gGyAUFVX3lxTE5jREZQRnllQ2NQcmt4Yl9tVVlkUFQ1ajZSbGxOQ2t3X3RJX1d5MnZoVlRQUEFhU29KVnJORy02MXl5cGhvYm5mX3FNTWpZTk1raXBXOTl5VFRPeVozVjBuVDFVSkI2SG82TFpfeWhSN2ZLMUs4Umhqb1JXLTlxcl9zaVFMSDBXMjFnZTJFRHVGN0ZWaWZ1V2N6NC01ZUlSVTl1bEJoYzdTQ1J3bDJTR2JWZ0E?oc=5",
+     "source": "ABP News"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "d9123004fb",
+   "date": "2026-11-13",
+   "fact": "मुख्यमंत्री ने कुंभ 2027 की तैयारियों, सड़क और पेयजल योजनाओं सहित विकास कार्यों के लिए ₹78.18 करोड़ स्वीकृत किए।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 2,
+   "tag": "कुंभ 2027",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Uttarakhand CM Dhami Approves Rs 78.18 Crore for Development Projects and Kumbh Mela 2027 Preparations",
+     "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPQlREYUo0Tl82T3BFUXZtTW5wLV9Ga0hNbWxBZlp1MTVIbVFUN3VUalQzbWpRVlpIb2tlaS1wdzdlRDRUZGszLWduUkJ3ekpSQmpGTVd6SDlzaEJ4RzNpeG42NnFuemRyYTlUWkgzem1wLV9aVFlnMWJFQnJiTTJTU0RIdWdNTFNlRUphOFlHek1XSG1HdGVKTWhVbjVfTzhuTW90WEJabi1GMVUtMXQ5cDRHMVE3cW05Y0Zn?oc=5",
+     "source": "Indian Masterminds"
+    },
+    {
+     "title": "Uttarakhand News:CM धामी ने दी 78.18 करोड़ की सौगात, कुंभ 2027 की तैयारियों से लेकर सड़क-पेयजल योजनाओं को मंजूरी",
+     "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOODRBdlJGYUlQQ3g0OTEzOXdZejRQQ183LTgzNXhfbHlFYWdJQWdCMjU4WGpLTGh0aUdEMjZoSHdwNXhkX1Q4R2tvcDk3X2FlaGkwbXJFb3VoRF9NSHAxMUtyLVpSV0tyZnY4eDh2YmtESmFKdkZHV0tpLWVrU2s4M1VtX0FFa0hhcjdQTmFZeW5idE5acDcxandzNDRfbElHbTJIM2NNYk9uWVdGODBMR1Z3ZnVJUDZSUVhyLWp3a3ZIRkplVGJCbzFTMEtMcFJTMTY5RkpiR0lWNlNTRVY5MEJqb0hBN2luTzdrQUhR?oc=5",
+     "source": "Khabar Fast"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "4682cb1b8a",
+   "date": "2026-11-13",
+   "fact": "देहरादून में प्रवासी उत्तराखंडी सम्मेलन-2026 आयोजित; अपने गाँव गोद लेकर विकास में योगदान देने वाले 30 प्रवासियों को सम्मानित किया गया।",
+   "cat": "संस्कृति/धर्म",
+   "imp": 2,
+   "tag": "प्रवासी उत्तराखंडी सम्मेलन",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Uttarakhand CM Dhami participates in Pravasi Uttarakhandi Sammelan-2026 in Dehradun, highlights state's d",
+     "link": "https://news.google.com/rss/articles/CBMimAJBVV95cUxPS0lhaEJ6R19QRW54Z2Q1LTZKZk40WnRGQXRJQTFsTWRMUGljQ2ttMXc3dFBvR3pwQmFtdldYdllqNHliX3VwRmhYQzVqM2VvbnNybmllZnVyaERaODhFa0Jack52YlZtUGpuMS1Rd0hhV0txb3R3bjFHVHBKWTFvT0pJd3pRczU5eGxRYmxLd3MwbmFzR2UxNVBSY1lZOEhlU0o5el9GVjgzdDh4WldZMzdLMy00UzZTZy1hRkdJMU90Ukp3czdCMm4wQkdibGVSU3JHRzl5Mk90MTAxUTFSSzVZVENfbjdnQmdxNkZ3S2haNzJJeVdvdW16U3hiUnV4bUN5cjNaVF9nUTIzNFQyOC0zaEpBNzBW0gGeAkFVX3lxTE9MNzVTbzdyOGU1SkNBb0hHSVdXclBrRFJjOWtGV1o5NzBoeXptX3hxRHUxM2lzUFZieFFpU1hYWlNUakFGUk0wUGhpMlFzMm9VSnNtT2ExdlpxZmx6MGR2bFljRFZuSVVzd2p1eWltbFRTMEVlQTBYTVFKQjFQN0x0Q1kydEV0VnNscWhpVVZ0NVJvaENuNWlFOTNJMUJmT0FadU9QbmFIWWtBTkRrR3ZidGZ5YlRMUFQ0T1JQWEc0dWJpTVJVT1ptR2x2dmVDN2Nqc1d5b0RRei1jUFpsNlFRVWYyS3UwektyMkdZZm9GQ1lPSlE5ZTZoY29FWmdXcjF4cHhUQkZORUZ6d09zbVdUNXhiV2pQOHFoUjktTkE?oc=5",
+     "source": "The Times of India"
+    },
+    {
+     "title": "Pravasi Uttarakhandis vital to state’s development: Dhami",
+     "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQcUtTQ0xOUThPZjVxMEZ2MFlFc3ZsaUxfLXQxQTROUTFtMmRndGt6VmZRelZESnROUFN5OG40Nm1mdWZGR0l1YTlkcXUwMmZ5azdKWlVZaUpRNUVpSVlnSFVuSHFta1BXQzFYd3E0eGZqdkduTi0zd2hXQUNMR01yVHF3c2dwUQ?oc=5",
+     "source": "Garhwal Post"
+    },
+    {
+     "title": "उत्तराखंड में अपने गांवों को गोद लेकर विकास में योगदान दे रहे 30 प्रवासी, CM धामी ने किया सम्मानित, बोले- अपनी जड़ों से जुड़े रहें",
+     "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPQjlEdlpUVXZtRXdlSnhwNm5yazlOVmxzVUpabUlIdkVPWGRBUHhmc1RLdFFGbl9RQm11YUFJYlFZLVFKWTVkV0lVd01OdkFYTUVkRkRYRENucE1yeC1IRWtieFQtbExiZTZ2MkN1MXZ3MUtLSWpxUFpweG54T0lRbGswWVZLNXBxdGt0QlFJZERWdi1Uc3I4TnFrR0ZjQ1MwTVhuSG9SeWJncER0MXdUUjliQ0ZzMk9mMFZxYlZ0LUQyc3V4SHhNZzZ0Vko4SXhzbU52MERyT2o3NzVHaHd5YTFpdEJvRUXSAewBQVVfeXFMUGdOaGlTM2tCRjN0SUtrNWtCSzhoZ3RHV1FoVGptMmZpYkN5R0s3MkhHbUdUeGdhV2NUb09MU1pwdUhLRnIyVGNfSFhyWGpxSGM4V0NuSzJacUhfY3djdVB3UHB3VTNtTHYzZTViVGJHNmhEUWRBVFlWNFhTUG5oWVdPczZJSGNCbUM3aFFTY3JXNmV4T2RKTmlYMFpRZlV4eGFVSzRKS0ctQTZkaG4yQTFndzloNnRLeVBzV2JCUDkzcjJrdVItZXlXMHRSM01WSlNqZXQ2M3lFaXpueU1obnNGcTlIUmpXRHNFM3Y?oc=5",
+     "source": "Navbharat Times"
+    },
+    {
+     "title": "धामी बोले, उत्तराखंड की संस्कृति के ध्वजवाहक है हमारे प्रवासी",
+     "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPeloxZU1TeWVoQ0h1X3RBQWFacV9xZ2tEMHFvVmMtWWFwWXJWLUdWZGdHdzNLaGpvTC1Eb1NTMi1mMnpYN1Vqemozd2M2WlYxN1A5TDBReVFwQTlyV1JBUXZFcEtCOFBDSWF3ZGl6bUhSTzlWeWpaZThRQm9DSkJMNEI5ajhlSzlweFdyc0tYdXhwMmlGRHdyaE96c2F5QQ?oc=5",
+     "source": "Current Crime"
+    },
+    {
+     "title": "परदेस में हैं, लेकिन दिल आज भी उत्तराखंड के लिए धड़कता है - uttarakhandi diasporas heartfelt bond with homeland",
+     "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWVRtWldkNXJ6aVZUUjBKZGZUOXA2eml1b1UzVzczaV95ekFmZ3A3Y1dTZFc0aXRnQlBqMml0Wm1wUkZidmx1OXptWVBLRUFpX3JEUllSbEVaWHpWbkMyUXdXWUdKLUZUMFhpSjFmUUNJUFppenY5RXI4ZE15VHBSMzNKN0lGTEI2Z0FpeHRRUHlWVTdnTEx3RXV2azRWQ3BaTTc3bUpsR0d1c1Rja2pGSnU4eFg?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  },
+  {
+   "id": "7d4f12a09a",
+   "date": "2026-11-13",
+   "fact": "उत्तराखंड में SIR के बाद चलाए गए 27 दिन के विशेष अभियान में 1.19 लाख नए मतदाता जुड़े।",
+   "cat": "प्रशासन",
+   "imp": 2,
+   "tag": "मतदाता सूची SIR",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड में SIR के बाद चलाए गए 27 दिन के विशेष अभियान से जुड़े 1.19 लाख नए मतदाता, अभी भी है नाम शामिल कराने का मौका",
+     "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPTlpvcEhtdEtuSDEzVEZJeDdHXzIzSnpqY0xCN3hvR1RhaXRIWklBb0NXSWZuLXZPczlXelFlNjRRV3ZVbEk4NGxDa2k5V2ZEQTNsY25pZTU4M1V5YUh2SDF4NFJwTUNkVEMyclR0emsycDJIS0dHUGw5OUh1LTVaZlU5TkNZRFBjMWZaLU0xcW1TbGdONDhOVzlNbFdBVXRvaUtCZjB5X3NMRXZycHRQMGFn?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-16T12:58:45.388Z"
+  }
+ ],
+ "updated": "2026-11-16T12:58:45.397Z"
 }

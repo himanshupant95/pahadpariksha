@@ -1,15 +1,29 @@
 // AI editor for the current-affairs feed.
 // Reads candidate headlines (src/data/news.json), sends the ones not yet reviewed to an LLM
-// (GitHub Models, free with the Actions GITHUB_TOKEN), and keeps only exam-worthy facts,
-// rewritten as one-line Hindi exam points, in src/data/digest.json.
-// Needs env GITHUB_TOKEN (or GH_TOKEN). Run: node scripts/digest-news.mjs
+// (Google Gemini API, free tier, via its OpenAI-compatible endpoint), and keeps only exam-worthy
+// facts, rewritten as one-line Hindi exam points, in src/data/digest.json.
+// Needs env GEMINI_API_KEY (GitHub secret). Run: node scripts/digest-news.mjs
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
 const NEWS = 'src/data/news.json';
 const DIGEST = 'src/data/digest.json';
-const TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
-const MODELS = ['openai/gpt-4.1', 'openai/gpt-4.1-mini'];
+const KEY = process.env.GEMINI_API_KEY;
+const API = 'https://generativelanguage.googleapis.com/v1beta';
+
+// Pick the best available Flash model at run time (Google renames models often).
+async function pickModels() {
+  const res = await fetch(`${API}/models?pageSize=200&key=${KEY}`, { signal: AbortSignal.timeout(30000) });
+  if (!res.ok) throw new Error(`model list: HTTP ${res.status} ${(await res.text()).slice(0, 200)}`);
+  const names = ((await res.json()).models || [])
+    .filter((m) => (m.supportedGenerationMethods || []).includes('generateContent'))
+    .map((m) => m.name.replace(/^models\//, ''))
+    .filter((n) => /^gemini-[\d.]+-flash/.test(n) && !/image|tts|audio|live|thinking|exp|preview|embedding|computer/.test(n));
+  const ver = (n) => parseFloat(n.match(/gemini-([\d.]+)/)[1]);
+  const rank = (n) => ver(n) * 10 - (/lite/.test(n) ? 5 : 0);
+  return names.sort((a, b) => rank(b) - rank(a)).slice(0, 3);
+}
+let MODELS = [];
 const BATCH = 22;            // headlines per request (free tier: ~8k input tokens)
 const CATS = ['योजना/नीति', 'नियुक्ति', 'पुरस्कार/सम्मान', 'खेल', 'रिपोर्ट/रैंकिंग', 'पर्यावरण', 'परियोजना/अवसंरचना', 'अर्थव्यवस्था', 'संस्कृति/धर्म', 'विज्ञान/शिक्षा', 'परीक्षा/भर्ती', 'प्रशासन', 'अन्य'];
 
@@ -37,10 +51,10 @@ async function ask(user) {
   let lastErr;
   for (const model of MODELS) {
     for (let attempt = 0; attempt < 2; attempt++) {
-      const res = await fetch('https://models.github.ai/inference/chat/completions', {
+      const res = await fetch(`${API}/openai/chat/completions`, {
         method: 'POST',
-        headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ model, temperature: 0.1, max_tokens: 3000, response_format: { type: 'json_object' },
+        headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ model, temperature: 0.1, max_tokens: 6000, response_format: { type: 'json_object' },
           messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: user }] }),
         signal: AbortSignal.timeout(120000),
       }).catch((e) => ({ ok: false, status: 0, text: async () => String(e) }));
@@ -59,7 +73,10 @@ async function ask(user) {
   throw new Error(lastErr);
 }
 
-if (!TOKEN) { console.error('No GITHUB_TOKEN'); process.exit(1); }
+if (!KEY) { console.log('digest: GEMINI_API_KEY not set — skipping AI step'); await writeFile('new-digest.json', JSON.stringify({ added: 0, calls: 0, errors: [] })); process.exit(0); }
+MODELS = await pickModels();
+console.log('models:', MODELS.join(', '));
+if (!MODELS.length) throw new Error('No Gemini Flash model available');
 const news = JSON.parse(await readFile(NEWS, 'utf8')).items;
 const dg = JSON.parse(await readFile(DIGEST, 'utf8').catch(() => '{"reviewed":[],"points":[]}'));
 const reviewed = new Set(dg.reviewed);
