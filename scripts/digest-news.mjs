@@ -36,7 +36,7 @@ THE ONLY TEST: "Could a UKPSC/UKSSSC general-knowledge question plausibly be ask
 KEEP only concrete, durable facts such as:
 - a named state/central scheme, policy, act, rule, ordinance or cabinet decision concerning Uttarakhand (with its name);
 - appointment of a person to a notable state or national post (Governor, Chief Secretary, DGP, Chief Justice, Vice-Chancellor, chairman of a commission/board, brand ambassador);
-- a national/state award or honour to a person/institution of Uttarakhand (name the award);
+- a government (central/state) or nationally recognised award or honour to a person/institution of Uttarakhand (name the award) — NOT memorial (स्मृति) awards, awards given at conferences/sammelans, or awards by private trusts, societies or media houses;
 - a national ranking/index/survey result, an all-India or state "first", or a record;
 - a new institution, major project, MoU or investment with name, place and amount; GI tag; Ramsar site, tiger reserve, protected area, eco-sensitive zone;
 - medals of Uttarakhand athletes at national/international events;
