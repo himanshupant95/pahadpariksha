@@ -1,0 +1,41 @@
+---
+// Renders exam notices (from src/data/notices.json, filled by the tracker every 30 min).
+interface Notice { id: string; source: string; title: string; url: string; category: string; firstSeen: string }
+interface Props { items: Notice[]; compact?: boolean }
+const { items, compact = false } = Astro.props;
+const fmt = (d: string) => new Date(d).toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', ...(compact ? {} : { hour: '2-digit', minute: '2-digit' }) });
+---
+<ul class={`notices ${compact ? 'compact' : ''}`}>
+  {items.map((n) => (
+    <li>
+      <div class="n-meta">
+        <span class={`src ${n.source.toLowerCase()}`}>{n.source}</span>
+        <span class="cat">{n.category}</span>
+        <time datetime={n.firstSeen}>{fmt(n.firstSeen)}</time>
+      </div>
+      <a href={n.url} target="_blank" rel="noopener nofollow">{n.title}</a>
+    </li>
+  ))}
+</ul>
+<script>
+  // "नया" badge computed in the browser so it stays accurate between rebuilds
+  document.querySelectorAll<HTMLTimeElement>('.notices time').forEach((t) => {
+    if (Date.now() - new Date(t.dateTime).getTime() < 3 * 864e5) {
+      const b = document.createElement('span'); b.className = 'new'; b.textContent = 'नया'; t.after(b);
+    }
+  });
+</script>
+
+<style is:global>
+  .notices { list-style: none; margin: 0; padding: 0; }
+  .notices li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; }
+  .notices.compact li { padding: 8px 12px; margin-bottom: 6px; }
+  .n-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .78rem; color: var(--muted); margin-bottom: 2px; }
+  .notices .src { font-weight: 700; padding: 0 8px; border-radius: 20px; color: #fff; background: var(--green-2); }
+  .notices .src.ukpsc { background: #1d4ed8; }
+  .notices .cat { background: var(--green-soft); color: var(--green); padding: 0 8px; border-radius: 20px; }
+  .notices .new { background: #dc2626; color: #fff; padding: 0 7px; border-radius: 20px; font-weight: 700; }
+  .notices a { text-decoration: none; color: var(--ink); font-weight: 600; line-height: 1.55; display: block; }
+  .notices a:hover { color: var(--green-2); text-decoration: underline; }
+  .notices.compact a { font-size: .93rem; font-weight: 500; }
+</style>

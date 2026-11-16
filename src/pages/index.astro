@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import DailyQuestion from '../components/DailyQuestion.astro';
+import NoticeList from '../components/NoticeList.astro';
+import notices from '../data/notices.json';
 import { SITE } from '../data/site';
 
 const topics = [
@@ -59,6 +61,12 @@ const latest = [
     </div>
     <aside>
       <DailyQuestion />
+      {notices.length > 0 && (
+        <section class="latest-notices">
+          <div class="ln-head"><h2>नवीनतम सूचनाएँ</h2><a href="/notices/">सभी देखें →</a></div>
+          <NoticeList items={(notices as any).slice(0, 5)} compact />
+        </section>
+      )}
     </aside>
   </div>
 
@@ -143,6 +151,10 @@ const latest = [
 
   .btn.cta { background: #ea580c; }
   .btn.cta:hover { background: #c2410c; color: #fff; }
+  .latest-notices { margin-top: 18px; }
+  .ln-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .ln-head h2 { margin: 0 0 8px; font-size: 1.15rem; border: 0; }
+  .ln-head a { font-size: .88rem; }
   .cta-band { margin-top: 2.2em; background: linear-gradient(120deg, #14532d, #166534 60%, #4d7c5f); color: #ecfdf3; border-radius: 16px; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
   .cta-band h2 { color: #fff; border: 0; margin: 0 0 4px; }
   .cta-band p { margin: 0; }

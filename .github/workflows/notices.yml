@@ -1,0 +1,56 @@
+name: Exam notices tracker
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # every 30 min (GitHub may delay a few minutes)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: notices
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Fetch notices
+        run: node scripts/fetch-notices.mjs
+
+      - name: Commit, alert and redeploy if anything is new
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COUNT=$(node -e "const d=require('./new-notices.json');console.log(d.items.length)")
+          FIRST=$(node -e "const d=require('./new-notices.json');console.log(d.firstRun)")
+          ERRS=$(node -e "const d=require('./new-notices.json');console.log(d.errors.join(' | '))")
+          if [ -n "$ERRS" ]; then
+            # one open issue per breakage, not one per run
+            if [ -z "$(gh issue list --label tracker-error --state open --json number --jq '.[0].number')" ]; then
+              gh label create tracker-error --color d73a4a --force >/dev/null 2>&1 || true
+              gh issue create --label tracker-error --title "⚠️ नोटिस ट्रैकर में त्रुटि" --body "Scraper error: $ERRS — the commission website may be down or its layout changed. Ask Claude to fix scripts/fetch-notices.mjs. Close this issue once fixed."
+            fi
+          fi
+          if [ "$COUNT" = "0" ]; then echo "Nothing new."; exit 0; fi
+          git config user.name "notices-bot"
+          git config user.email "notices-bot@users.noreply.github.com"
+          git add src/data/notices.json
+          git commit -m "Notices: $COUNT new"
+          git push
+          if [ "$FIRST" != "true" ]; then
+            BODY=$(node -e "const d=require('./new-notices.json');console.log(d.items.map(i=>'- **'+i.source+'** · '+i.category+' — ['+i.title+']('+i.url+')').join('\n')+'\n\nसाइट पर: https://pahadpariksha.in/notices/')")
+            gh label create notice --color 0e8a16 --force >/dev/null 2>&1 || true
+            gh issue create --label notice --title "🔔 $COUNT नई सूचना ($(TZ=Asia/Kolkata date '+%d %b %H:%M'))" --body "$BODY"
+          fi
+          gh workflow run deploy.yml --ref main

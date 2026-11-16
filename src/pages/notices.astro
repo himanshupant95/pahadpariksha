@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import NoticeList from '../components/NoticeList.astro';
+import notices from '../data/notices.json';
+
+const cats = ['सभी', 'भर्ती/विज्ञापन', 'प्रवेश पत्र', 'उत्तर कुंजी', 'परिणाम', 'साक्षात्कार', 'परीक्षा तिथि', 'सूचना'];
+const counts: Record<string, number> = {};
+for (const n of notices as any[]) counts[n.category] = (counts[n.category] ?? 0) + 1;
+---
+<Base
+  title="UKSSSC व UKPSC नवीनतम सूचनाएँ — भर्ती, एडमिट कार्ड, आंसर की, रिजल्ट"
+  description="उत्तराखंड अधीनस्थ सेवा चयन आयोग (UKSSSC) और उत्तराखंड लोक सेवा आयोग (UKPSC) की नवीनतम सूचनाएँ — भर्ती विज्ञापन, प्रवेश पत्र, उत्तर कुंजी और परिणाम, आधिकारिक लिंक के साथ। हर 30 मिनट में अपडेट।"
+>
+  <h1>UKSSSC व UKPSC नवीनतम सूचनाएँ</h1>
+  <p>दोनों आयोगों की वेबसाइट से नई सूचनाएँ हर 30 मिनट में अपने-आप यहाँ जुड़ती हैं। हर लिंक सीधे <strong>आधिकारिक वेबसाइट/PDF</strong> पर जाता है।</p>
+  <div class="note">यह स्वचालित सूची है। आवेदन, तिथि या पात्रता से जुड़ा कोई भी निर्णय लेने से पहले आयोग की आधिकारिक विज्ञप्ति अवश्य पढ़ें।</div>
+
+  {notices.length === 0 ? (
+    <p class="muted">सूचनाएँ लोड हो रही हैं — पहला अपडेट कुछ ही मिनटों में आएगा।</p>
+  ) : (
+    <>
+      <div class="filters" role="tablist">
+        {cats.filter((c) => c === 'सभी' || counts[c]).map((c, i) => (
+          <button type="button" data-cat={c} class={i === 0 ? 'on' : ''}>{c}{c !== 'सभी' && <small> {counts[c]}</small>}</button>
+        ))}
+      </div>
+      <NoticeList items={notices as any} />
+    </>
+  )}
+  <p class="muted">आधिकारिक वेबसाइटें: <a href="https://sssc.uk.gov.in/" rel="noopener" target="_blank">sssc.uk.gov.in</a> · <a href="https://psc.uk.gov.in/" rel="noopener" target="_blank">psc.uk.gov.in</a></p>
+</Base>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.filters button');
+  btns.forEach((b) => b.addEventListener('click', () => {
+    btns.forEach((x) => x.classList.toggle('on', x === b));
+    const c = b.dataset.cat;
+    document.querySelectorAll<HTMLLIElement>('.notices li').forEach((li) => {
+      li.hidden = c !== 'सभी' && li.querySelector('.cat')!.textContent !== c;
+    });
+  }));
+</script>
+
+<style>
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+  .filters button { font: inherit; font-size: .88rem; border: 1px solid var(--line); background: var(--card); border-radius: 20px; padding: 3px 12px; cursor: pointer; color: var(--ink); }
+  .filters button.on { background: var(--green-2); color: #fff; border-color: var(--green-2); }
+  .filters small { opacity: .75; }
+</style>

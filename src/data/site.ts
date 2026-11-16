@@ -22,6 +22,7 @@ export const SITE = {
 
 export const NAV = [
   { href: '/', label: 'होम' },
+  { href: '/notices/', label: 'सूचनाएँ' },
   { href: '/exams/', label: 'परीक्षाएँ' },
   { href: '/gk/', label: 'उत्तराखंड GK' },
   { href: '/quiz/', label: 'क्विज़' },
