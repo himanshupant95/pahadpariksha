@@ -9,10 +9,10 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'collect = headlines only; edition = headlines + AI + deploy'
+        description: 'collect = headlines only; edition = headlines + AI + deploy; preview = dry run; backfill = add details to older points'
         default: edition
         type: choice
-        options: [edition, collect, preview]
+        options: [edition, collect, preview, backfill]
 
 permissions:
   contents: write
@@ -47,6 +47,12 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/digest-news.mjs
+      - name: Add details to older points
+        if: env.MODE == 'backfill'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          BACKFILL: '1'
+        run: node scripts/digest-news.mjs
       - name: Commit and redeploy
         if: env.MODE != 'preview'
         env:
@@ -61,4 +67,4 @@ jobs:
           git commit -m "Current affairs ($MODE): +$ADDED exam points [skip ci]"
           git pull --rebase origin main
           git push
-          if [ "$MODE" = "edition" ]; then gh workflow run deploy.yml --ref main; fi
+          if [ "$MODE" = "edition" ] || [ "$MODE" = "backfill" ]; then gh workflow run deploy.yml --ref main; fi

@@ -10,6 +10,9 @@ const uniq = (refs: Point['refs']) => refs.filter((r, i, a) => a.findIndex((x) =
   {items.map((p) => (
     <li class={p.imp >= 3 ? 'imp' : undefined} data-cat={p.cat}>
       <p class="fact">{p.fact}</p>
+      {p.details && p.details.length > 0 && (
+        <ul class="dets">{p.details.map((d) => <li><b>{d.k}:</b> {d.v}</li>)}</ul>
+      )}
       <div class="p-meta">
         {p.imp >= 3 && <span class="star">★ महत्वपूर्ण</span>}
         {showCat && <span class="cat">{p.cat}</span>}
@@ -24,14 +27,19 @@ const uniq = (refs: Point['refs']) => refs.filter((r, i, a) => a.findIndex((x) =
 <style is:global>
   .points { list-style: none; margin: 0; padding: 0; }
   .points.num { counter-reset: pt; }
-  .points li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; position: relative; }
-  .points.num li { counter-increment: pt; padding-left: 46px; }
-  .points.num li::before { content: counter(pt); position: absolute; left: 12px; top: 10px; width: 24px; height: 24px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-weight: 700; font-size: .8rem; display: grid; place-items: center; }
-  .points li.imp { border-left: 4px solid var(--accent); }
+  .points > li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; position: relative; }
+  .points.num > li { counter-increment: pt; padding-left: 46px; }
+  .points.num > li::before { content: counter(pt); position: absolute; left: 12px; top: 10px; width: 24px; height: 24px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-weight: 700; font-size: .8rem; display: grid; place-items: center; }
+  .points > li.imp { border-left: 4px solid var(--accent); }
   .points .fact { margin: 0; font-weight: 600; line-height: 1.6; color: var(--ink); }
   .points.compact .fact { font-size: .93rem; font-weight: 500; }
-  .points.compact li { padding: 8px 12px; margin-bottom: 6px; }
-  .points.num li, .points.num.compact li { padding-left: 46px; }
+  .points.compact > li { padding: 8px 12px; margin-bottom: 6px; }
+  .points.num > li, .points.num.compact > li { padding-left: 46px; }
+  .points .dets { list-style: none; margin: 5px 0 2px; padding: 0; }
+  .points .dets li { background: none; border: 0; border-radius: 0; margin: 0; padding: 1px 0 1px 16px; font-size: .9rem; line-height: 1.55; color: var(--ink); position: relative; }
+  .points .dets li::before { content: '›'; position: absolute; left: 3px; top: 0; width: auto; height: auto; background: none; color: var(--accent); font-weight: 700; display: inline; }
+  .points .dets b { color: var(--green); font-weight: 600; }
+  .points.compact .dets li { font-size: .85rem; }
   .points .p-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .76rem; color: var(--muted); margin-top: 4px; }
   .points .cat { background: var(--green-soft); color: var(--green); padding: 0 8px; border-radius: 20px; }
   .points .star { background: #fff7ed; color: #9a3412; padding: 0 8px; border-radius: 20px; font-weight: 700; }

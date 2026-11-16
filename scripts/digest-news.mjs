@@ -52,21 +52,76 @@ STRICT RULES:
 - "cat": exactly one of: ${CATS.join(', ')}.
 - "tag": 1–3 word Hindi revision keyword (e.g. "तेनजिंग नोर्गे पुरस्कार").
 - At most ${MAX_PER_DAY} points, most important first.
+- "q": a short news-search query (3–6 words, Hindi) naming the key person/scheme/place of the point; "qen": the same in English.
 
-Reply with JSON only: {"points":[{"ids":["..."],"fact":"...","cat":"...","imp":3,"tag":"..."}]}`;
+Reply with JSON only: {"points":[{"ids":["..."],"fact":"...","cat":"...","imp":3,"tag":"...","q":"...","qen":"..."}]}`;
+
+// Stage 2: add the "why / which category / background" sub-points that headlines alone rarely carry.
+const DKEYS = ['कारण', 'विवरण', 'श्रेणी', 'संस्था', 'पृष्ठभूमि'];
+const ENRICH = `You add exam detail to Uttarakhand current-affairs points for UKPSC/UKSSSC aspirants.
+For each numbered POINT you get RELATED HEADLINES (other outlets' coverage of the same story). Give 0–3 short sub-points that an examiner could turn into a question.
+
+Allowed keys and where the information may come from:
+- "कारण" (why it was given / what was achieved), "विवरण" (specific detail: event, place, amount, rank, category won, partner, date) — ONLY from the POINT text or its RELATED HEADLINES. Never infer or guess these.
+- "श्रेणी" (the award/medal category or type), "संस्था" (who gives/runs it: ministry, body) — from headlines, or from well-established general knowledge.
+- "पृष्ठभूमि" (one static-GK fact about the award/scheme/institution/place, e.g. when it was instituted, what it is the highest honour for, which ministry, a related state "first") — ONLY a widely documented fact you are certain of. Never about this year's event, never a guessed number or name.
+
+RULES:
+- If unsure, leave it out. Fewer, correct sub-points beat many. An empty list is fine.
+- Do not repeat what the POINT already says.
+- Simple Hindi, each "v" max 22 words, no trailing full stop needed.
+
+Reply with JSON only: {"items":[{"n":1,"details":[{"k":"कारण","v":"..."}]}]}`;
+
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36';
+const addDays = (d, n) => new Date(Date.parse(d) + n * 864e5).toISOString().slice(0, 10);
+const unent = (t) => t.replace(/<!\[CDATA\[|\]\]>/g, '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').trim();
+// Related coverage from the same public Google News RSS feed the collector uses.
+async function related(q, day, lang) {
+  if (!q) return [];
+  const range = ` after:${addDays(day, -2)} before:${addDays(day, 3)}`;
+  const url = lang === 'hi'
+    ? `https://news.google.com/rss/search?q=${encodeURIComponent(q + range)}&hl=hi&gl=IN&ceid=IN:hi`
+    : `https://news.google.com/rss/search?q=${encodeURIComponent(q + range)}&hl=en-IN&gl=IN&ceid=IN:en`;
+  try {
+    const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(20000) });
+    if (!res.ok) return [];
+    const xml = await res.text();
+    return [...xml.matchAll(/<item>[\s\S]*?<title>([\s\S]*?)<\/title>[\s\S]*?<\/item>/g)].map((m) => unent(m[1])).slice(0, 8);
+  } catch { return []; }
+}
+
+async function enrich(list) { // list: [{fact, day, q, qen, titles:[]}] → mutates .details
+  if (!list.length) return 0;
+  for (const p of list) {
+    const extra = [...await related(p.q, p.day, 'hi'), ...await related(p.qen, p.day, 'en')];
+    const seen = new Set(p.titles.map((t) => t.toLowerCase()));
+    p.ctx = [...p.titles, ...extra.filter((t) => !seen.has(t.toLowerCase()) && seen.add(t.toLowerCase()))].slice(0, 14);
+  }
+  const user = list.map((p, i) => `POINT ${i + 1}: ${p.fact}\nRELATED HEADLINES:\n${p.ctx.map((t) => '- ' + t).join('\n') || '(none)'}`).join('\n\n');
+  const { out } = await ask(user, ENRICH);
+  let n = 0;
+  for (const it of out.items || []) {
+    const p = list[(it.n || 0) - 1]; if (!p) continue;
+    p.details = (it.details || []).filter((d) => DKEYS.includes(d.k) && d.v && String(d.v).length < 200)
+      .slice(0, 3).map((d) => ({ k: d.k, v: String(d.v).trim().replace(/[।.]$/, '') }));
+    n++;
+  }
+  return n;
+}
 
 const istDay = (iso) => new Date(iso).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
 const hash = (s) => createHash('sha1').update(s).digest('hex').slice(0, 10);
 
-async function ask(user) {
+async function ask(user, system = SYSTEM) {
   let lastErr;
   for (const model of MODELS) {
-    for (let attempt = 0; attempt < 2; attempt++) {
+    for (let attempt = 0; attempt < 3; attempt++) {
       const res = await fetch(`${API}/openai/chat/completions`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({ model, temperature: 0.1, max_tokens: 6000, response_format: { type: 'json_object' },
-          messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: user }] }),
+          messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }),
         signal: AbortSignal.timeout(120000),
       }).catch((e) => ({ ok: false, status: 0, text: async () => String(e) }));
       if (res.ok) {
@@ -77,7 +132,7 @@ async function ask(user) {
         try { return { model, out: JSON.parse(m ? m[0] : txt) }; } catch { lastErr = `${model}: bad content: ${txt.slice(0, 200)}`; continue; }
       }
       lastErr = `${model}: HTTP ${res.status} ${(await res.text()).slice(0, 200)}`;
-      if (res.status === 429 || res.status >= 500) await new Promise((r) => setTimeout(r, 15000));
+      if (res.status === 429 || res.status >= 500) await new Promise((r) => setTimeout(r, 20000 * (attempt + 1)));
       else break; // 4xx other than 429 → try next model
     }
   }
@@ -100,6 +155,22 @@ const pending = PREVIEW
   ? news.filter((n) => istDay(n.published) === today)
   : news.filter((n) => !reviewed.has(n.id) && istDay(n.published) < today);
 const previewOut = [];
+if (process.env.BACKFILL) {
+  const todo = dg.points.filter((p) => !p.details).slice(0, 24);
+  let done = 0;
+  for (let i = 0; i < todo.length; i += 12) {
+    const chunk = todo.slice(i, i + 12);
+    const list = chunk.map((p) => ({ fact: p.fact, day: p.date, q: p.tag, qen: '', titles: p.refs.map((r) => r.title) }));
+    try { await enrich(list); calls++; } catch (e) { errors.push(`backfill: ${e.message}`); break; }
+    chunk.forEach((p, k) => { p.details = list[k].details || []; if (p.details.length) done++; console.log(`• ${p.fact}` + p.details.map((d) => `\n   - ${d.k}: ${d.v}`).join('')); });
+  }
+  dg.updated = new Date().toISOString();
+  await writeFile(DIGEST, JSON.stringify(dg, null, 1) + '\n');
+  await writeFile('new-digest.json', JSON.stringify({ added: 0, enriched: done, calls, errors }));
+  console.log(`backfill: ${done}/${todo.length} points got details, ${calls} AI calls`);
+  if (errors.length) console.error(errors.join('\n'));
+  process.exit(0);
+}
 const days = [...new Set(pending.map((n) => istDay(n.published)))].sort();
 let added = 0, calls = 0;
 const errors = [];
@@ -113,17 +184,27 @@ for (const day of days) {
     const { model, out } = await ask(user);
     calls++;
     let kept = 0;
+    const fresh = [];
     for (const p of (out.points || []).sort((a, b) => (b.imp || 0) - (a.imp || 0))) {
       const ids = (p.ids || []).filter((id) => byId.has(id));
       if (!ids.length || !p.fact || !CATS.includes(p.cat) || !(p.imp >= 2) || kept >= MAX_PER_DAY) continue;
       const refs = ids.map((id) => byId.get(id));
-      if (PREVIEW) { previewOut.push(`${p.imp >= 3 ? '★' : '·'} [${p.cat}] ${p.fact}  #${p.tag}\n     ← ${refs.map((r) => r.title.slice(0, 90)).join(' || ')}`); kept++; continue; }
-      dg.points.push({
+      fresh.push({
         id: hash(p.fact), date: day, fact: p.fact.trim(), cat: p.cat, imp: Math.min(3, p.imp), tag: (p.tag || '').trim(), model,
         refs: refs.map((r) => ({ title: r.title, link: r.link, source: r.source })),
         added: new Date().toISOString(),
+        _e: { day, q: p.q, qen: p.qen, titles: refs.map((r) => r.title) },
       });
-      added++; kept++;
+      kept++;
+    }
+    if (fresh.length) {
+      const list = fresh.map((f) => ({ fact: f.fact, ...f._e }));
+      try { await enrich(list); calls++; } catch (e) { errors.push(`${day} enrich (kept points without details): ${e.message}`); }
+      fresh.forEach((f, i) => { delete f._e; if (list[i].details?.length) f.details = list[i].details; });
+    }
+    for (const f of fresh) {
+      if (PREVIEW) { previewOut.push(`${f.imp >= 3 ? '★' : '·'} [${f.cat}] ${f.fact}  #${f.tag}` + (f.details || []).map((d) => `\n     • ${d.k}: ${d.v}`).join('') + `\n     ← ${f.refs.map((r) => r.title.slice(0, 90)).join(' || ')}`); continue; }
+      dg.points.push(f); added++;
     }
     items.forEach((n) => reviewed.add(n.id));
     console.log(`  ${day}: ${items.length} headlines → ${kept} points`);
