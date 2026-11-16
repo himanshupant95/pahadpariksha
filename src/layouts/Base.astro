@@ -26,6 +26,7 @@ const siteSchema = {
 };
 const allSchema = Astro.url.pathname === '/' ? [siteSchema, ...schema] : schema;
 const path = Astro.url.pathname;
+const enUrl = `https://pahadpariksha-in.translate.goog${path}?_x_tr_sl=hi&_x_tr_tl=en&_x_tr_hl=en`;
 ---
 <!doctype html>
 <html lang="hi">
@@ -84,6 +85,7 @@ const path = Astro.url.pathname;
             {NAV.map((n) => (
               <li><a href={n.href} aria-current={(n.href === '/' ? path === '/' : path.startsWith(n.href)) ? 'page' : undefined}><span class="en">{n.label}</span><span class="hi">{n.hi}</span></a></li>
             ))}
+            <li><a class="nav-en" href={enUrl} rel="nofollow noopener" target="_blank" lang="en" title="Read this page in English (Google Translate)"><span class="en">English</span><span class="hi">अंग्रेज़ी में पढ़ें</span></a></li>
           </ul>
         </nav>
       </div>
@@ -155,6 +157,8 @@ const path = Astro.url.pathname;
   .site-header nav a { color: #dcfce7; text-decoration: none; padding: 4px 10px; border-radius: 8px; font-size: .95rem; display: flex; flex-direction: column; align-items: center; line-height: 1.25; }
   .site-header nav a .en { font-weight: 600; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; letter-spacing: .01em; }
   .site-header nav a .hi { font-size: .72rem; opacity: .75; }
+  .site-header nav a.nav-en { background: #fef3c7; color: #14532d; }
+  .site-header nav a.nav-en:hover { background: #fff; color: #14532d; }
   .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
   .brand-text small { font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #bbf7d0; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
   @media (max-width: 640px) { .site-header nav a .hi { display: none; } .site-header nav a { padding: 5px 8px; font-size: .9rem; } }
