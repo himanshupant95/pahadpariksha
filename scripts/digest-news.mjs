@@ -95,7 +95,11 @@ const byId = new Map(news.map((n) => [n.id, n]));
 
 // Daily edition: review complete IST days only (normally yesterday), one AI call per day.
 const today = istDay(new Date().toISOString());
-const pending = news.filter((n) => !reviewed.has(n.id) && istDay(n.published) < today);
+const PREVIEW = !!process.env.PREVIEW; // dry run on today's headlines: print points, save nothing
+const pending = PREVIEW
+  ? news.filter((n) => istDay(n.published) === today)
+  : news.filter((n) => !reviewed.has(n.id) && istDay(n.published) < today);
+const previewOut = [];
 const days = [...new Set(pending.map((n) => istDay(n.published)))].sort();
 let added = 0, calls = 0;
 const errors = [];
@@ -113,6 +117,7 @@ for (const day of days) {
       const ids = (p.ids || []).filter((id) => byId.has(id));
       if (!ids.length || !p.fact || !CATS.includes(p.cat) || !(p.imp >= 2) || kept >= MAX_PER_DAY) continue;
       const refs = ids.map((id) => byId.get(id));
+      if (PREVIEW) { previewOut.push(`${p.imp >= 3 ? '★' : '·'} [${p.cat}] ${p.fact}  #${p.tag}\n     ← ${refs.map((r) => r.title.slice(0, 90)).join(' || ')}`); kept++; continue; }
       dg.points.push({
         id: hash(p.fact), date: day, fact: p.fact.trim(), cat: p.cat, imp: Math.min(3, p.imp), tag: (p.tag || '').trim(), model,
         refs: refs.map((r) => ({ title: r.title, link: r.link, source: r.source })),
@@ -126,6 +131,13 @@ for (const day of days) {
     errors.push(`${day}: ${e.message}`);
     break; // try again next run
   }
+}
+
+if (PREVIEW) {
+  console.log(`\n===== PREVIEW ${today}: ${pending.length} headlines → ${previewOut.length} points =====\n` + previewOut.join('\n') + '\n===== (nothing saved) =====');
+  await writeFile('new-digest.json', JSON.stringify({ added: 0, calls, errors }));
+  if (errors.length) console.error(errors.join('\n'));
+  process.exit(0);
 }
 
 // forget reviewed ids that have left the candidate pool

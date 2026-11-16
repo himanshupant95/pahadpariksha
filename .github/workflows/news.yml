@@ -12,7 +12,7 @@ on:
         description: 'collect = headlines only; edition = headlines + AI + deploy'
         default: edition
         type: choice
-        options: [edition, collect]
+        options: [edition, collect, preview]
 
 permissions:
   contents: write
@@ -36,12 +36,19 @@ jobs:
       - run: npm ci
       - name: Collect headlines
         run: node scripts/fetch-news.mjs
+      - name: AI preview on today's headlines (saves nothing)
+        if: env.MODE == 'preview'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PREVIEW: '1'
+        run: node scripts/digest-news.mjs
       - name: AI daily edition (previous day)
         if: env.MODE == 'edition'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/digest-news.mjs
       - name: Commit and redeploy
+        if: env.MODE != 'preview'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
