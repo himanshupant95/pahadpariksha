@@ -16,7 +16,7 @@ const upd = digestUpdated ? new Date(digestUpdated).toLocaleString('hi-IN', { ti
 >
   <h1>उत्तराखंड करेंट अफेयर्स</h1>
   <p>रोज़ की सैकड़ों ख़बरों में से केवल वे बिंदु जो <strong>परीक्षा में पूछे जा सकते हैं</strong> — एक पंक्ति में, स्रोत के साथ। राजनीति, अपराध और सामान्य समारोह हटा दिए जाते हैं। <strong>★</strong> वाले बिंदु सबसे महत्वपूर्ण हैं।</p>
-  {upd && <p class="muted upd">अंतिम अपडेट: {upd} · हर 3 घंटे में स्वतः अपडेट</p>}
+  {upd && <p class="muted upd">अंतिम अपडेट: {upd} · हर रात 12 बजे पिछले दिन का संस्करण</p>}
 
   <div class="compile">
     {ws[0] && <a class="big" href={`/current-affairs/week/${ws[0].key}/`}><strong>इस सप्ताह का संकलन</strong><span>{weekLabel(ws[0].start, ws[0].end)} · {ws[0].items.length} बिंदु · PDF</span></a>}

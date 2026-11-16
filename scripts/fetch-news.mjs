@@ -13,8 +13,8 @@ const UA = 'Mozilla/5.0 (compatible; PahadParikshaBot/1.0; +https://pahadpariksh
 
 const gn = (q, lang) =>
   lang === 'hi'
-    ? `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:3d')}&hl=hi&gl=IN&ceid=IN:hi`
-    : `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:3d')}&hl=en-IN&gl=IN&ceid=IN:en`;
+    ? `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:2d')}&hl=hi&gl=IN&ceid=IN:hi`
+    : `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:2d')}&hl=en-IN&gl=IN&ceid=IN:en`;
 
 const FEEDS = [
   gn('उत्तराखंड', 'hi'),

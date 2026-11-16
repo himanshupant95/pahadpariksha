@@ -1,13 +1,21 @@
 name: Uttarakhand current-affairs tracker
 
+# Daily edition: headlines are collected at ~12:10 PM IST (no AI) and again just after midnight IST,
+# then ONE AI pass turns the previous day's headlines into exam points and the site is rebuilt.
 on:
   schedule:
-    - cron: '17 */3 * * *' # every 3 hours
+    - cron: '41 6 * * *'   # 12:11 PM IST — collect headlines only
+    - cron: '35 18 * * *'  # 12:05 AM IST — collect + AI daily edition + deploy
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'collect = headlines only; edition = headlines + AI + deploy'
+        default: edition
+        type: choice
+        options: [edition, collect]
 
 permissions:
   contents: write
-  issues: write
   actions: write
 
 concurrency:
@@ -15,8 +23,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  fetch:
+  run:
     runs-on: ubuntu-latest
+    env:
+      MODE: ${{ github.event.schedule == '41 6 * * *' && 'collect' || (github.event.inputs.mode || 'edition') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,22 +34,24 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Fetch news
+      - name: Collect headlines
         run: node scripts/fetch-news.mjs
-      - name: AI editor (exam points)
+      - name: AI daily edition (previous day)
+        if: env.MODE == 'edition'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/digest-news.mjs
-      - name: Commit and redeploy if anything is new
+      - name: Commit and redeploy
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ADDED=$(node -e "console.log(require('./new-digest.json').added)")
+          ADDED=0
+          [ -f new-digest.json ] && ADDED=$(node -e "console.log(require('./new-digest.json').added)")
           git config user.name "news-bot"
           git config user.email "news-bot@users.noreply.github.com"
           git add src/data/news.json src/data/digest.json
           if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
-          git commit -m "Current affairs: +$ADDED exam points"
+          git commit -m "Current affairs ($MODE): +$ADDED exam points [skip ci]"
           git pull --rebase origin main
           git push
-          if [ "$ADDED" != "0" ]; then gh workflow run deploy.yml --ref main; fi
+          if [ "$MODE" = "edition" ]; then gh workflow run deploy.yml --ref main; fi

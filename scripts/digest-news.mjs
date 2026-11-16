@@ -24,25 +24,36 @@ async function pickModels() {
   return names.sort((a, b) => rank(b) - rank(a)).slice(0, 3);
 }
 let MODELS = [];
-const BATCH = 22;            // headlines per request (free tier: ~8k input tokens)
 const CATS = ['योजना/नीति', 'नियुक्ति', 'पुरस्कार/सम्मान', 'खेल', 'रिपोर्ट/रैंकिंग', 'पर्यावरण', 'परियोजना/अवसंरचना', 'अर्थव्यवस्था', 'संस्कृति/धर्म', 'विज्ञान/शिक्षा', 'परीक्षा/भर्ती', 'प्रशासन', 'अन्य'];
 
-const SYSTEM = `You are the editor of a Hindi current-affairs bulletin for Uttarakhand state government exams (UKSSSC, UKPSC: Patwari, VDO, Lower PCS, etc.).
-You receive news HEADLINES about Uttarakhand (Hindi or English), each with an id. Your job is to keep ONLY headlines that contain a concrete, durable fact a state exam could ask, and rewrite each as a crisp Hindi exam point.
+const MAX_PER_DAY = 10;
 
-KEEP (examples): a named government scheme/policy/act/cabinet decision; an appointment to a notable post; an award or honour to a person/institution of Uttarakhand (name the award); a national/state ranking, "first"/record achievement; a new institution, project, MoU, budget figure with place/amount; GI tag, Ramsar site, tiger reserve, protected area; sports medals by state athletes; official start/close of a major yatra/fair with date; census/survey/index results; recruitment exam results/notifications of state commissions.
-DROP: political speeches, "vision/roadmap" talk without a concrete decision, party or election news, protests, generic "CM inaugurated/attended" items with no named outcome, small local functions, felicitation of many unnamed people, college/coaching promotions, opinion/analysis, crime, accidents, weather, anything you are unsure about.
+const SYSTEM = `You are the current-affairs editor for UKPSC and UKSSSC exams (Uttarakhand Public Service Commission and Subordinate Service Selection Commission: Lower PCS, PCS, Patwari/Lekhpal, VDO, JA etc.).
+You receive ALL news headlines about Uttarakhand from ONE day (Hindi or English), each with an id. Produce that day's exam bulletin.
+
+THE ONLY TEST: "Could a UKPSC/UKSSSC general-knowledge question plausibly be asked on this?" If not clearly yes, DROP it. Most days only 2–8 items pass; an empty list is fine. Never pad.
+
+KEEP only concrete, durable facts such as:
+- a named state/central scheme, policy, act, rule, ordinance or cabinet decision concerning Uttarakhand (with its name);
+- appointment of a person to a notable state or national post (Governor, Chief Secretary, DGP, Chief Justice, Vice-Chancellor, chairman of a commission/board, brand ambassador);
+- a national/state award or honour to a person/institution of Uttarakhand (name the award);
+- a national ranking/index/survey result, an all-India or state "first", or a record;
+- a new institution, major project, MoU or investment with name, place and amount; GI tag; Ramsar site, tiger reserve, protected area, eco-sensitive zone;
+- medals of Uttarakhand athletes at national/international events;
+- official opening/closing dates of Char Dham or other major yatras and fairs (named fair + place);
+- census/data releases; state foundation-level events with a concrete fact.
+DROP: speeches, visions, roadmaps, "CM said/directed/reviewed", inspections, felicitation functions, small local events or awards by private bodies, routine fund sanctions, exam results/admit cards, party politics, elections, protests, crime, accidents, weather, opinion, promotions, and anything already in ALREADY PUBLISHED.
 
 STRICT RULES:
-- Use ONLY information present in the headline(s). Never add names, numbers, dates or places that are not in the input. If the headline is vague, DROP it.
-- If several headlines (Hindi/English) describe the same event, output ONE point and list all their ids.
-- Do not repeat any point already listed under ALREADY PUBLISHED.
-- Write the point in simple Hindi, one sentence, max 30 words, starting with the key subject (person/scheme/place). Keep proper nouns as commonly written in Hindi.
-- "imp": 3 = very likely in exam (named scheme/award/appointment/first/ranking/designation), 2 = useful, 1 = minor. Prefer dropping over imp 1.
+- Use ONLY information present in the headlines. Never add names, numbers, dates or places not in the input. If a headline is vague, DROP it.
+- Several headlines about the same event → ONE point listing all their ids.
+- Simple Hindi, one sentence, max 30 words, starting with the key subject (person/scheme/place); keep common Hindi spellings of proper nouns.
+- "imp": 3 = very likely to be asked (named scheme/award/appointment/first/ranking/designation); 2 = useful fact. Never output imp 1 — drop it instead.
 - "cat": exactly one of: ${CATS.join(', ')}.
-- "tag": 1–3 word Hindi keyword for revision (e.g. "तेनजिंग नोर्गे पुरस्कार").
+- "tag": 1–3 word Hindi revision keyword (e.g. "तेनजिंग नोर्गे पुरस्कार").
+- At most ${MAX_PER_DAY} points, most important first.
 
-Reply with JSON only: {"points":[{"ids":["..."],"fact":"...","cat":"...","imp":3,"tag":"..."}]}  — an empty list is fine.`;
+Reply with JSON only: {"points":[{"ids":["..."],"fact":"...","cat":"...","imp":3,"tag":"..."}]}`;
 
 const istDay = (iso) => new Date(iso).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
 const hash = (s) => createHash('sha1').update(s).digest('hex').slice(0, 10);
@@ -82,36 +93,38 @@ const dg = JSON.parse(await readFile(DIGEST, 'utf8').catch(() => '{"reviewed":[]
 const reviewed = new Set(dg.reviewed);
 const byId = new Map(news.map((n) => [n.id, n]));
 
-const todo = news.filter((n) => !reviewed.has(n.id)).sort((a, b) => a.published.localeCompare(b.published));
-const LIMIT = Number(process.env.DIGEST_LIMIT || 200);
+// Daily edition: review complete IST days only (normally yesterday), one AI call per day.
+const today = istDay(new Date().toISOString());
+const pending = news.filter((n) => !reviewed.has(n.id) && istDay(n.published) < today);
+const days = [...new Set(pending.map((n) => istDay(n.published)))].sort();
 let added = 0, calls = 0;
 const errors = [];
 
-for (let i = 0; i < Math.min(todo.length, LIMIT); i += BATCH) {
-  const batch = todo.slice(i, i + BATCH);
-  const days = new Set(batch.map((n) => istDay(n.published)));
-  const recent = dg.points.filter((p) => days.has(p.date) || Date.parse(p.date) > Date.now() - 5 * 864e5).map((p) => `- ${p.fact}`);
-  const user = `ALREADY PUBLISHED:\n${recent.join('\n') || '(none)'}\n\nHEADLINES:\n` +
-    batch.map((n) => `[${n.id}] (${istDay(n.published)}) ${n.title} — ${n.source}`).join('\n');
+for (const day of days) {
+  const items = pending.filter((n) => istDay(n.published) === day).sort((a, b) => a.published.localeCompare(b.published));
+  const recent = dg.points.filter((p) => Math.abs(Date.parse(p.date) - Date.parse(day)) <= 7 * 864e5).map((p) => `- ${p.fact}`);
+  const user = `DATE: ${day}\n\nALREADY PUBLISHED:\n${recent.join('\n') || '(none)'}\n\nHEADLINES (${items.length}):\n` +
+    items.map((n) => `[${n.id}] ${n.title} — ${n.source}`).join('\n');
   try {
     const { model, out } = await ask(user);
     calls++;
-    for (const p of out.points || []) {
+    let kept = 0;
+    for (const p of (out.points || []).sort((a, b) => (b.imp || 0) - (a.imp || 0))) {
       const ids = (p.ids || []).filter((id) => byId.has(id));
-      if (!ids.length || !p.fact || !CATS.includes(p.cat) || !(p.imp >= 2)) continue;
+      if (!ids.length || !p.fact || !CATS.includes(p.cat) || !(p.imp >= 2) || kept >= MAX_PER_DAY) continue;
       const refs = ids.map((id) => byId.get(id));
-      const date = istDay(refs.map((r) => r.published).sort()[0]);
       dg.points.push({
-        id: hash(p.fact), date, fact: p.fact.trim(), cat: p.cat, imp: Math.min(3, p.imp), tag: (p.tag || '').trim(), model,
+        id: hash(p.fact), date: day, fact: p.fact.trim(), cat: p.cat, imp: Math.min(3, p.imp), tag: (p.tag || '').trim(), model,
         refs: refs.map((r) => ({ title: r.title, link: r.link, source: r.source })),
         added: new Date().toISOString(),
       });
-      added++;
+      added++; kept++;
     }
-    batch.forEach((n) => reviewed.add(n.id));
+    items.forEach((n) => reviewed.add(n.id));
+    console.log(`  ${day}: ${items.length} headlines → ${kept} points`);
   } catch (e) {
-    errors.push(e.message);
-    break; // keep the rest for next run (likely rate limit)
+    errors.push(`${day}: ${e.message}`);
+    break; // try again next run
   }
 }
 
@@ -122,5 +135,5 @@ dg.points.sort((a, b) => b.date.localeCompare(a.date) || b.imp - a.imp);
 dg.updated = new Date().toISOString();
 await writeFile(DIGEST, JSON.stringify(dg, null, 1) + '\n');
 await writeFile('new-digest.json', JSON.stringify({ added, calls, errors }));
-console.log(`digest: ${todo.length} to review, ${calls} AI calls, +${added} points, ${errors.length} errors`);
+console.log(`digest: ${days.length} day(s) to review, ${calls} AI calls, +${added} points, ${errors.length} errors`);
 if (errors.length) console.error(errors.join('\n'));
