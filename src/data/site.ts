@@ -17,6 +17,7 @@ export const SITE = {
   contactEmail: 'contact@pahadpariksha.in',
   // TODO: add once the Telegram channel exists, e.g. 'https://t.me/pahadpariksha'
   telegram: '',
+  gaId: 'G-ENLSJ7JMPL',
 };
 
 export const NAV = [
