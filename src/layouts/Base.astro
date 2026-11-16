@@ -1,0 +1,155 @@
+---
+import { SITE, NAV } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: Record<string, unknown>[];
+}
+
+const { title, description = SITE.description, ogType = 'website', noindex = false, schema = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const fullTitle = Astro.url.pathname === '/' ? `${SITE.name} — ${SITE.tagline}` : `${title} | ${SITE.name}`;
+const ogImage = new URL('/og-default.png', SITE.url).href;
+
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  alternateName: SITE.nameEn,
+  url: SITE.url + '/',
+  inLanguage: 'hi-IN',
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url + '/', logo: { '@type': 'ImageObject', url: SITE.url + '/logo.png' } },
+};
+const allSchema = Astro.url.pathname === '/' ? [siteSchema, ...schema] : schema;
+const path = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#14532d" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    {allSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">मुख्य सामग्री पर जाएँ</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a href="/" class="brand" aria-label={SITE.name}>
+          <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 27 L12 10 L17 18 L21 12 L30 27 Z" fill="#fff"/><path d="M12 10 L14.5 14.2 L12 13 L9.6 14.2 Z" fill="#bbf7d0"/></svg>
+          <span>{SITE.name}</span>
+        </a>
+        <nav aria-label="मुख्य मेनू">
+          <ul>
+            {NAV.map((n) => (
+              <li><a href={n.href} aria-current={(n.href === '/' ? path === '/' : path.startsWith(n.href)) ? 'page' : undefined}>{n.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="wrap" data-pagefind-body={noindex ? undefined : true}>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <strong>{SITE.name}</strong>
+          <p>{SITE.tagline}। UKSSSC, UKPSC और उत्तराखंड की अन्य भर्ती परीक्षाओं के लिए मुफ्त अध्ययन सामग्री।</p>
+        </div>
+        <div>
+          <strong>साइट</strong>
+          <ul>
+            <li><a href="/about/">हमारे बारे में</a></li>
+            <li><a href="/contact/">संपर्क करें</a></li>
+            <li><a href="/privacy-policy/">गोपनीयता नीति</a></li>
+            <li><a href="/disclaimer/">अस्वीकरण</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong>आधिकारिक वेबसाइटें</strong>
+          <ul>
+            <li><a href="https://sssc.uk.gov.in/" rel="noopener" target="_blank">UKSSSC</a></li>
+            <li><a href="https://psc.uk.gov.in/" rel="noopener" target="_blank">UKPSC</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="wrap copy">© {new Date().getFullYear()} {SITE.name}. यह एक स्वतंत्र शैक्षिक वेबसाइट है, किसी सरकारी संस्था से संबद्ध नहीं।</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --green: #14532d; --green-2: #166534; --green-soft: #ecfdf3; --ink: #1c1917; --muted: #57534e;
+    --line: #e7e5e4; --bg: #fafaf9; --card: #fff; --accent: #c2410c; --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; font-family: 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', sans-serif; color: var(--ink); background: var(--bg); line-height: 1.75; font-size: 17px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 18px; }
+  a { color: var(--green-2); }
+  a:hover { color: var(--accent); }
+  img { max-width: 100%; height: auto; }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 8px; top: 8px; background: #fff; padding: 6px 10px; z-index: 10; }
+
+  .site-header { background: var(--green); color: #fff; position: sticky; top: 0; z-index: 5; }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+  .brand { display: flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-weight: 700; font-size: 1.25rem; }
+  .site-header ul { list-style: none; display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; }
+  .site-header nav a { color: #dcfce7; text-decoration: none; padding: 6px 10px; border-radius: 8px; font-size: .95rem; }
+  .site-header nav a:hover, .site-header nav a[aria-current='page'] { background: rgba(255,255,255,.14); color: #fff; }
+
+  main { padding-top: 24px; padding-bottom: 48px; min-height: 60vh; }
+  h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.35; margin: .3em 0 .5em; color: var(--green); }
+  h2 { font-size: 1.4rem; margin-top: 1.8em; color: var(--green); border-bottom: 2px solid var(--green-soft); padding-bottom: 4px; }
+  h3 { font-size: 1.15rem; margin-top: 1.4em; }
+  table { width: 100%; border-collapse: collapse; margin: 1em 0; background: var(--card); font-size: .95rem; display: block; overflow-x: auto; }
+  thead { background: var(--green-soft); }
+  th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .table-wrap { overflow-x: auto; }
+  .note { background: #fff7ed; border-left: 4px solid var(--accent); padding: 10px 14px; border-radius: 6px; margin: 1em 0; }
+  .keypoints { background: var(--green-soft); border-radius: var(--radius); padding: 12px 18px; margin: 1em 0; }
+  .keypoints h2 { border: 0; margin-top: .3em; font-size: 1.15rem; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin: 1em 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; text-decoration: none; color: inherit; display: block; transition: border-color .15s, transform .15s; }
+  a.card:hover { border-color: var(--green-2); transform: translateY(-2px); color: inherit; }
+  .card h3 { margin: 0 0 6px; color: var(--green); font-size: 1.08rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .93rem; }
+  .btn { display: inline-block; background: var(--green-2); color: #fff; padding: 10px 18px; border-radius: 10px; text-decoration: none; font-weight: 600; border: 0; cursor: pointer; font: inherit; }
+  .btn:hover { background: var(--green); color: #fff; }
+  .muted { color: var(--muted); font-size: .92rem; }
+
+  .site-footer { background: #1c1917; color: #d6d3d1; padding: 28px 0 10px; font-size: .93rem; }
+  .site-footer a { color: #bbf7d0; text-decoration: none; }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  .footer-grid ul { list-style: none; padding: 0; margin: 6px 0; }
+  .copy { border-top: 1px solid #44403c; padding-top: 10px; margin-top: 18px; font-size: .85rem; color: #a8a29e; }
+</style>

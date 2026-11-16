@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+---
+<Base title={SITE.name} description={SITE.description}>
+  <section class="hero">
+    <h1>उत्तराखंड प्रतियोगी परीक्षाओं की तैयारी — हिंदी में, मुफ्त</h1>
+    <p>UKSSSC और UKPSC की परीक्षाओं (कनिष्ठ सहायक, पटवारी/लेखपाल, VDO, वन आरक्षी, लोअर PCS आदि) के लिए उत्तराखंड सामान्य ज्ञान, प्रैक्टिस क्विज़ और परीक्षा जानकारी — एक ही जगह।</p>
+    <p class="hero-cta">
+      <a class="btn" href="/gk/">उत्तराखंड GK पढ़ें</a>
+      <a class="btn ghost" href="/quiz/">क्विज़ हल करें</a>
+    </p>
+  </section>
+
+  <h2>नवीनतम सामग्री</h2>
+  <div class="cards">
+    <a class="card" href="/gk/uttarakhand-districts/"><h3>उत्तराखंड के 13 जिले</h3><p>मंडल, मुख्यालय, सीमावर्ती जिले, गठन वर्ष और जनगणना तथ्य।</p></a>
+    <a class="card" href="/gk/uttarakhand-rivers/"><h3>उत्तराखंड की प्रमुख नदियाँ</h3><p>उद्गम, सहायक नदियाँ और पंच प्रयाग — याद रखने की ट्रिक के साथ।</p></a>
+    <a class="card" href="/quiz/uttarakhand-districts-rivers/"><h3>क्विज़: जिले और नदियाँ</h3><p>12 MCQ, तुरंत उत्तर और व्याख्या।</p></a>
+    <a class="card" href="/exams/"><h3>UKSSSC / UKPSC परीक्षाएँ</h3><p>प्रमुख भर्ती परीक्षाओं की सूची और आधिकारिक लिंक।</p></a>
+  </div>
+
+  <h2>विषय अनुसार तैयारी</h2>
+  <div class="cards">
+    <a class="card" href="/gk/"><h3>उत्तराखंड सामान्य ज्ञान</h3><p>इतिहास, भूगोल, संस्कृति, जिले, योजनाएँ।</p></a>
+    <a class="card" href="/quiz/"><h3>प्रैक्टिस क्विज़</h3><p>टॉपिक-वाइज MCQ अभ्यास।</p></a>
+    <div class="card"><h3>पिछले वर्षों के प्रश्न पत्र</h3><p>जल्द आ रहा है।</p></div>
+    <div class="card"><h3>उत्तराखंड करेंट अफेयर्स</h3><p>मासिक संकलन — जल्द आ रहा है।</p></div>
+  </div>
+</Base>
+
+<style>
+  .hero { background: linear-gradient(135deg, #ecfdf3, #fff); border: 1px solid var(--line); border-radius: 16px; padding: 24px 22px; }
+  .hero h1 { margin-top: 0; }
+  .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .ghost { background: #fff; color: var(--green-2); border: 2px solid var(--green-2); }
+  .ghost:hover { background: var(--green-soft); color: var(--green); }
+</style>

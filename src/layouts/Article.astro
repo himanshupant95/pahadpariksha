@@ -1,0 +1,78 @@
+---
+// Used by .astro pages (props) and by .md pages (frontmatter: layout: ../../layouts/Article.astro)
+import Base from './Base.astro';
+import { SITE } from '../data/site';
+
+interface Crumb { name: string; href: string }
+const p = (Astro.props as any).frontmatter ?? Astro.props;
+const title: string = p.title;
+const description: string = p.description;
+const breadcrumbs: Crumb[] = p.breadcrumbs ?? [];
+const published: string = p.published;
+const updated: string = p.updated ?? p.published;
+const faq: { q: string; a: string }[] = p.faq ?? [];
+
+const url = new URL(Astro.url.pathname, SITE.url).href;
+const crumbs = [{ name: 'होम', href: '/' }, ...breadcrumbs, { name: title, href: Astro.url.pathname }];
+const fmt = (d: string) => new Date(d).toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const schema: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    inLanguage: 'hi-IN',
+    datePublished: published,
+    dateModified: updated,
+    mainEntityOfPage: url,
+    author: { '@type': 'Person', name: SITE.author.nameEn, url: SITE.url + SITE.author.url },
+    publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: SITE.url + '/logo.png' } },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, SITE.url).href })),
+  },
+];
+if (faq.length) {
+  schema.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  });
+}
+---
+<Base title={title} description={description} ogType="article" schema={schema}>
+  <nav class="crumbs" aria-label="ब्रेडक्रम्ब">
+    {crumbs.map((c, i) => i < crumbs.length - 1 ? <><a href={c.href}>{c.name}</a> › </> : <span aria-current="page">{c.name}</span>)}
+  </nav>
+  <article class="article">
+    <h1>{title}</h1>
+    <p class="meta muted">
+      लेखक: <a href={SITE.author.url}>{SITE.author.name}</a> · अपडेट: <time datetime={updated}>{fmt(updated)}</time>
+    </p>
+    <slot />
+    {faq.length > 0 && (
+      <section>
+        <h2>अक्सर पूछे जाने वाले प्रश्न (FAQ)</h2>
+        {faq.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </section>
+    )}
+    <aside class="author-box">
+      <strong>{SITE.author.name}</strong>
+      <p>उत्तराखंड प्रतियोगी परीक्षाओं (UKSSSC/UKPSC) के अभ्यर्थी और इस साइट के लेखक। सभी तथ्य मानक पुस्तकों और आधिकारिक स्रोतों से मिलान करके लिखे जाते हैं। कोई त्रुटि दिखे तो <a href="/contact/">हमें बताएँ</a>।</p>
+    </aside>
+  </article>
+</Base>
+
+<style>
+  .crumbs { font-size: .88rem; color: var(--muted); }
+  .crumbs a { text-decoration: none; }
+  .article { max-width: 760px; }
+  .meta { margin-top: -6px; }
+  .faq { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 8px 0; }
+  .faq summary { font-weight: 600; cursor: pointer; }
+  .author-box { margin-top: 2.5em; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--green-2); border-radius: 10px; padding: 14px 18px; font-size: .95rem; }
+  .author-box p { margin: 4px 0 0; }
+</style>

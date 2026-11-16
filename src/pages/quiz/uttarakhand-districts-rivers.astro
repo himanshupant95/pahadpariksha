@@ -1,0 +1,14 @@
+---
+import Article from '../../layouts/Article.astro';
+import Quiz from '../../components/Quiz.astro';
+import questions from '../../data/quizzes/districts-rivers.json';
+---
+<Article
+  title="उत्तराखंड जिले और नदियाँ क्विज़ (12 प्रश्न)"
+  description="उत्तराखंड के जिलों और प्रमुख नदियों पर 12 MCQ प्रश्नों का मुफ्त ऑनलाइन क्विज़ — उत्तर और व्याख्या के साथ। UKSSSC, UKPSC, पटवारी, VDO परीक्षा के लिए।"
+  breadcrumbs={[{ name: 'क्विज़', href: '/quiz/' }]}
+  published="2026-11-16"
+>
+  <p>हर प्रश्न का एक विकल्प चुनें — सही उत्तर और व्याख्या तुरंत दिखेगी। पहले पढ़ना चाहें तो: <a href="/gk/uttarakhand-districts/">उत्तराखंड के जिले</a> · <a href="/gk/uttarakhand-rivers/">उत्तराखंड की नदियाँ</a>।</p>
+  <Quiz id="districts-rivers" title="उत्तराखंड जिले और नदियाँ क्विज़" questions={questions} />
+</Article>

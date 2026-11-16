@@ -1,0 +1,97 @@
+---
+// Reusable MCQ quiz. Questions come from a JSON file in src/data/quizzes/.
+export interface Question { q: string; options: string[]; answer: number; explain: string }
+interface Props { id: string; title: string; questions: Question[] }
+const { id, title, questions } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Quiz',
+  name: title,
+  inLanguage: 'hi-IN',
+  educationalLevel: 'Competitive exam',
+  hasPart: questions.map((x) => ({
+    '@type': 'Question',
+    eduQuestionType: 'Multiple choice',
+    text: x.q,
+    acceptedAnswer: { '@type': 'Answer', text: x.options[x.answer] },
+    suggestedAnswer: x.options.filter((_, i) => i !== x.answer).map((t) => ({ '@type': 'Answer', text: t })),
+  })),
+};
+const letters = ['A', 'B', 'C', 'D', 'E'];
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<div class="quiz" data-quiz={id} data-total={questions.length}>
+  <ol class="qlist">
+    {questions.map((x, qi) => (
+      <li class="qitem" data-answer={x.answer}>
+        <p class="qtext">{x.q}</p>
+        <div class="opts">
+          {x.options.map((o, oi) => (
+            <button type="button" class="opt" data-i={oi}><b>{letters[oi]}</b> {o}</button>
+          ))}
+        </div>
+        <p class="explain" hidden><strong>व्याख्या:</strong> {x.explain}</p>
+      </li>
+    ))}
+  </ol>
+  <div class="scorebar" aria-live="polite">
+    <span class="score">स्कोर: 0 / {questions.length}</span>
+    <button type="button" class="btn reset">दोबारा शुरू करें</button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.quiz').forEach((quiz) => {
+    const total = Number(quiz.dataset.total);
+    const scoreEl = quiz.querySelector('.score')!;
+    let score = 0, done = 0;
+    const update = () => {
+      scoreEl.textContent = `स्कोर: ${score} / ${total}` + (done === total ? ` — ${Math.round((score / total) * 100)}%` : ` (${done} हल किए)`);
+    };
+    quiz.querySelectorAll<HTMLElement>('.qitem').forEach((item) => {
+      const ans = Number(item.dataset.answer);
+      item.querySelectorAll<HTMLButtonElement>('.opt').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          if (item.classList.contains('answered')) return;
+          item.classList.add('answered');
+          const i = Number(btn.dataset.i);
+          item.querySelectorAll<HTMLButtonElement>('.opt').forEach((b) => {
+            b.disabled = true;
+            if (Number(b.dataset.i) === ans) b.classList.add('right');
+          });
+          if (i === ans) score++; else btn.classList.add('wrong');
+          done++;
+          item.querySelector<HTMLElement>('.explain')!.hidden = false;
+          update();
+        });
+      });
+    });
+    quiz.querySelector('.reset')!.addEventListener('click', () => {
+      score = 0; done = 0;
+      quiz.querySelectorAll('.qitem').forEach((item) => {
+        item.classList.remove('answered');
+        item.querySelector<HTMLElement>('.explain')!.hidden = true;
+        item.querySelectorAll<HTMLButtonElement>('.opt').forEach((b) => { b.disabled = false; b.classList.remove('right', 'wrong'); });
+      });
+      update();
+      quiz.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+<style>
+  .qlist { padding-left: 1.3em; }
+  .qitem { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; margin: 0 0 14px; }
+  .qtext { font-weight: 600; margin: 0 0 8px; }
+  .opts { display: grid; gap: 8px; }
+  .opt { text-align: left; font: inherit; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; cursor: pointer; color: var(--ink); }
+  .opt:hover:not(:disabled) { border-color: var(--green-2); background: var(--green-soft); }
+  .opt b { color: var(--muted); margin-right: 6px; }
+  .opt.right { background: #dcfce7; border-color: #16a34a; }
+  .opt.wrong { background: #fee2e2; border-color: #dc2626; }
+  .opt:disabled { cursor: default; }
+  .explain { margin: 10px 0 0; font-size: .94rem; background: var(--green-soft); padding: 8px 12px; border-radius: 8px; }
+  .scorebar { position: sticky; bottom: 0; background: var(--green); color: #fff; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 10px; flex-wrap: wrap; }
+  .scorebar .btn { background: #fff; color: var(--green); padding: 6px 14px; }
+</style>

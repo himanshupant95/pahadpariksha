@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../data/site';
+const schema = [{
+  '@context': 'https://schema.org', '@type': 'ProfilePage',
+  mainEntity: { '@type': 'Person', name: SITE.author.nameEn, alternateName: SITE.author.name, url: SITE.url + SITE.author.url, jobTitle: 'SEO Specialist', knowsAbout: ['Uttarakhand GK', 'UKSSSC', 'UKPSC'] },
+}];
+---
+<Base title={`${SITE.author.name} — लेखक`} description={`${SITE.author.name}, ${SITE.name} के लेखक — उत्तराखंड प्रतियोगी परीक्षाओं के अभ्यर्थी।`} schema={schema}>
+  <h1>{SITE.author.name}</h1>
+  <p>नमस्ते! मैं हिमांशु हूँ — उत्तराखंड (कोटद्वार) से जुड़ा हूँ, अंग्रेज़ी में MA हूँ और पेशे से SEO विशेषज्ञ हूँ। मैं स्वयं UKSSSC और UKPSC परीक्षाओं की तैयारी कर रहा हूँ।</p>
+  <p>तैयारी के दौरान बनाए गए नोट्स, ट्रिक्स और क्विज़ को मैं इस वेबसाइट पर व्यवस्थित रूप में साझा करता हूँ, ताकि दूसरे अभ्यर्थियों को भी सही और परीक्षा-केंद्रित सामग्री मुफ्त में मिल सके। हर तथ्य को मानक पुस्तकों और पिछले प्रश्न पत्रों से मिलाकर लिखा जाता है।</p>
+  <p>संपर्क: <a href="/contact/">संपर्क पेज</a></p>
+</Base>
