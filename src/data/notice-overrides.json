@@ -1,0 +1,7 @@
+{
+  "_help": "Per-notice manual dates. Key = notice id from notices.json. examDate (YYYY-MM-DD) keeps an admit card visible until that day; expired:true hides a notice. Admit cards without an entry show for 10 days after first seen.",
+  "f9bcd3e362d4": { "expired": true, "reason": "पर्यटक अधिकारी — उत्तरकुंजी 05/11/2026 को जारी, परीक्षा सम्पन्न" },
+  "208d115c8b28": { "expired": true, "reason": "पर्यटक अधिकारी — उत्तरकुंजी 05/11/2026 को जारी, परीक्षा सम्पन्न" },
+  "3811445b2691": { "expired": true, "reason": "लाइनमैन/मनोवैज्ञानिक/अनुदेशक — उत्तरकुंजी 05/11/2026 को जारी" },
+  "5f831e4c367b": { "expired": true, "reason": "पशुधन प्रसार अधिकारी/सर्वेक्षक — उत्तरकुंजी 05/11/2026 को जारी" }
+}

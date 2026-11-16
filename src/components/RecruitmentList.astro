@@ -1,0 +1,44 @@
+---
+// Open applications with last date + live countdown. Rows disappear by themselves after the last date.
+import { recruitExpiry, type Recruitment } from '../lib/notices';
+interface Props { items: Recruitment[]; compact?: boolean }
+const { items, compact = false } = Astro.props;
+const dmy = (d: string) => d.split('-').reverse().join('/');
+---
+{items.length === 0 ? <p class="muted n-empty">अभी कोई भर्ती आवेदन चालू नहीं है। नई भर्ती आते ही यहाँ दिखेगी।</p> : (
+<ul class={`recruits ${compact ? 'compact' : ''}`}>
+  {items.map((r) => (
+    <li data-expires={recruitExpiry(r)}>
+      <div class="r-top">
+        <span class="src">{r.source}</span>
+        <span class="advt">विज्ञापन {r.advt}</span>
+        <span class="left" data-end={recruitExpiry(r)}></span>
+      </div>
+      <strong class="r-title">{r.title}</strong>
+      <div class="r-dates">आवेदन: {dmy(r.start)} – <b>{dmy(r.end)}</b> <a class="apply" href={r.apply} target="_blank" rel="noopener nofollow">आवेदन करें / विज्ञापन देखें →</a></div>
+    </li>
+  ))}
+</ul>
+)}
+<script>
+  document.querySelectorAll<HTMLElement>('.recruits .left').forEach((el) => {
+    const days = Math.ceil((Date.parse(el.dataset.end!) - Date.now()) / 864e5);
+    if (days <= 0) { el.closest('li')?.remove(); return; }
+    el.textContent = days === 1 ? 'आज अंतिम दिन' : `${days} दिन शेष`;
+    if (days <= 3) el.classList.add('urgent');
+  });
+</script>
+<style is:global>
+  .recruits { list-style: none; margin: 0; padding: 0; }
+  .recruits li { background: var(--card); border: 1px solid var(--line); border-left: 5px solid #ea580c; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
+  .r-top { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .78rem; }
+  .recruits .src { font-weight: 700; padding: 0 8px; border-radius: 20px; color: #fff; background: var(--green-2); }
+  .recruits .advt { color: var(--muted); }
+  .recruits .left { margin-left: auto; background: #fff7ed; color: #c2410c; font-weight: 700; padding: 0 9px; border-radius: 20px; }
+  .recruits .left.urgent { background: #dc2626; color: #fff; }
+  .r-title { display: block; margin: 4px 0; line-height: 1.55; color: var(--ink); }
+  .recruits.compact .r-title { font-size: .93rem; font-weight: 600; }
+  .r-dates { font-size: .88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+  .r-dates b { color: var(--ink); }
+  .apply { font-weight: 600; }
+</style>

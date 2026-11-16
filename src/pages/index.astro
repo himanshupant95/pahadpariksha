@@ -3,7 +3,10 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import DailyQuestion from '../components/DailyQuestion.astro';
 import NoticeList from '../components/NoticeList.astro';
-import notices from '../data/notices.json';
+import RecruitmentList from '../components/RecruitmentList.astro';
+import { openRecruitments, admitCards, otherNotices } from '../lib/notices';
+const open = openRecruitments();
+const latest5 = [...admitCards(), ...otherNotices()].slice(0, 4);
 import { SITE } from '../data/site';
 
 const topics = [
@@ -61,12 +64,14 @@ const latest = [
     </div>
     <aside>
       <DailyQuestion />
-      {notices.length > 0 && (
-        <section class="latest-notices">
-          <div class="ln-head"><h2>नवीनतम सूचनाएँ</h2><a href="/notices/">सभी देखें →</a></div>
-          <NoticeList items={(notices as any).slice(0, 5)} compact />
-        </section>
-      )}
+      <section class="latest-notices">
+        <div class="ln-head"><h2>आवेदन चालू</h2><a href="/notices/">सभी सूचनाएँ →</a></div>
+        <RecruitmentList items={open} compact />
+        {latest5.length > 0 && (<>
+          <div class="ln-head"><h2>नवीनतम सूचनाएँ</h2></div>
+          <NoticeList items={latest5} compact />
+        </>)}
+      </section>
     </aside>
   </div>
 

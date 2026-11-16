@@ -1,49 +1,51 @@
 ---
 import Base from '../layouts/Base.astro';
 import NoticeList from '../components/NoticeList.astro';
-import notices from '../data/notices.json';
+import RecruitmentList from '../components/RecruitmentList.astro';
+import { openRecruitments, admitCards, otherNotices } from '../lib/notices';
 
-const cats = ['सभी', 'भर्ती/विज्ञापन', 'प्रवेश पत्र', 'उत्तर कुंजी', 'परिणाम', 'साक्षात्कार', 'परीक्षा तिथि', 'सूचना'];
-const counts: Record<string, number> = {};
-for (const n of notices as any[]) counts[n.category] = (counts[n.category] ?? 0) + 1;
+const open = openRecruitments();
+const admits = admitCards();
+const others = otherNotices();
 ---
 <Base
-  title="UKSSSC व UKPSC नवीनतम सूचनाएँ — भर्ती, एडमिट कार्ड, आंसर की, रिजल्ट"
-  description="उत्तराखंड अधीनस्थ सेवा चयन आयोग (UKSSSC) और उत्तराखंड लोक सेवा आयोग (UKPSC) की नवीनतम सूचनाएँ — भर्ती विज्ञापन, प्रवेश पत्र, उत्तर कुंजी और परिणाम, आधिकारिक लिंक के साथ। हर 30 मिनट में अपडेट।"
+  title="UKSSSC व UKPSC: चालू भर्तियाँ, एडमिट कार्ड और नवीनतम सूचनाएँ"
+  description="उत्तराखंड UKSSSC/UKPSC की वे भर्तियाँ जिनमें अभी आवेदन चालू है (अंतिम तिथि सहित), आगामी परीक्षाओं के एडमिट कार्ड, उत्तर कुंजी और परिणाम — आधिकारिक लिंक के साथ, हर 30 मिनट में अपडेट।"
 >
-  <h1>UKSSSC व UKPSC नवीनतम सूचनाएँ</h1>
-  <p>दोनों आयोगों की वेबसाइट से नई सूचनाएँ हर 30 मिनट में अपने-आप यहाँ जुड़ती हैं। हर लिंक सीधे <strong>आधिकारिक वेबसाइट/PDF</strong> पर जाता है।</p>
-  <div class="note">यह स्वचालित सूची है। आवेदन, तिथि या पात्रता से जुड़ा कोई भी निर्णय लेने से पहले आयोग की आधिकारिक विज्ञप्ति अवश्य पढ़ें।</div>
+  <h1>भर्ती, एडमिट कार्ड और सूचनाएँ</h1>
+  <p>केवल <strong>काम की</strong> सूचनाएँ: जिन भर्तियों में अभी आवेदन चालू है और जिन परीक्षाओं की तिथि अभी आनी है। अंतिम तिथि बीतते ही सूचना यहाँ से अपने-आप हट जाती है। हर लिंक सीधे आधिकारिक वेबसाइट/PDF पर जाता है।</p>
 
-  {notices.length === 0 ? (
-    <p class="muted">सूचनाएँ लोड हो रही हैं — पहला अपडेट कुछ ही मिनटों में आएगा।</p>
-  ) : (
-    <>
-      <div class="filters" role="tablist">
-        {cats.filter((c) => c === 'सभी' || counts[c]).map((c, i) => (
-          <button type="button" data-cat={c} class={i === 0 ? 'on' : ''}>{c}{c !== 'सभी' && <small> {counts[c]}</small>}</button>
-        ))}
-      </div>
-      <NoticeList items={notices as any} />
-    </>
-  )}
-  <p class="muted">आधिकारिक वेबसाइटें: <a href="https://sssc.uk.gov.in/" rel="noopener" target="_blank">sssc.uk.gov.in</a> · <a href="https://psc.uk.gov.in/" rel="noopener" target="_blank">psc.uk.gov.in</a></p>
+  <h2 id="open">आवेदन चालू है</h2>
+  <RecruitmentList items={open} />
+
+  <h2 id="admit">प्रवेश पत्र — आगामी परीक्षाएँ</h2>
+  <NoticeList items={admits} empty="अभी किसी आगामी परीक्षा का प्रवेश पत्र जारी नहीं है।" />
+
+  <h2 id="other">उत्तर कुंजी, परिणाम व अन्य सूचनाएँ <small class="muted">(पिछले 60 दिन)</small></h2>
+  <div class="filters" role="tablist"></div>
+  <NoticeList items={others} />
+
+  <div class="note">यह स्वचालित सूची है। आवेदन, तिथि या पात्रता से जुड़ा निर्णय लेने से पहले आयोग की आधिकारिक विज्ञप्ति अवश्य पढ़ें। आधिकारिक वेबसाइटें: <a href="https://sssc.uk.gov.in/" rel="noopener" target="_blank">sssc.uk.gov.in</a> · <a href="https://ukssscrecruitment.in/" rel="noopener" target="_blank">ukssscrecruitment.in</a> · <a href="https://psc.uk.gov.in/" rel="noopener" target="_blank">psc.uk.gov.in</a></div>
 </Base>
 
 <script>
-  const btns = document.querySelectorAll<HTMLButtonElement>('.filters button');
-  btns.forEach((b) => b.addEventListener('click', () => {
-    btns.forEach((x) => x.classList.toggle('on', x === b));
-    const c = b.dataset.cat;
-    document.querySelectorAll<HTMLLIElement>('.notices li').forEach((li) => {
-      li.hidden = c !== 'सभी' && li.querySelector('.cat')!.textContent !== c;
+  // category filter for the "other" list, built from what is actually visible
+  const box = document.querySelector<HTMLElement>('.filters')!;
+  const list = box.nextElementSibling;
+  const items = list ? [...list.querySelectorAll<HTMLLIElement>('li')] : [];
+  const cats = ['सभी', ...new Set(items.map((li) => li.querySelector('.cat')!.textContent!))];
+  if (items.length && cats.length > 2) {
+    cats.forEach((c, i) => {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = c; if (i === 0) b.className = 'on';
+      b.onclick = () => { box.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b)); items.forEach((li) => (li.hidden = c !== 'सभी' && li.querySelector('.cat')!.textContent !== c)); };
+      box.appendChild(b);
     });
-  }));
+  }
 </script>
 
 <style>
-  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
-  .filters button { font: inherit; font-size: .88rem; border: 1px solid var(--line); background: var(--card); border-radius: 20px; padding: 3px 12px; cursor: pointer; color: var(--ink); }
-  .filters button.on { background: var(--green-2); color: #fff; border-color: var(--green-2); }
-  .filters small { opacity: .75; }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+  .filters :global(button) { font: inherit; font-size: .88rem; border: 1px solid var(--line); background: var(--card); border-radius: 20px; padding: 3px 12px; cursor: pointer; color: var(--ink); }
+  .filters :global(button.on) { background: var(--green-2); color: #fff; border-color: var(--green-2); }
+  h2 small { font-size: .8rem; font-weight: 400; }
 </style>

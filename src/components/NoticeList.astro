@@ -1,13 +1,15 @@
 ---
-// Renders exam notices (from src/data/notices.json, filled by the tracker every 30 min).
-interface Notice { id: string; source: string; title: string; url: string; category: string; firstSeen: string }
-interface Props { items: Notice[]; compact?: boolean }
-const { items, compact = false } = Astro.props;
+// Renders notices. Each item carries data-expires; a tiny script hides anything that expires
+// between site rebuilds, so the list never shows a stale admit card or closed form.
+import type { Notice } from '../lib/notices';
+interface Props { items: Notice[]; compact?: boolean; empty?: string }
+const { items, compact = false, empty = 'अभी कोई सूचना नहीं।' } = Astro.props;
 const fmt = (d: string) => new Date(d).toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', ...(compact ? {} : { hour: '2-digit', minute: '2-digit' }) });
 ---
+{items.length === 0 ? <p class="muted n-empty">{empty}</p> : (
 <ul class={`notices ${compact ? 'compact' : ''}`}>
   {items.map((n) => (
-    <li>
+    <li data-expires={n.expires}>
       <div class="n-meta">
         <span class={`src ${n.source.toLowerCase()}`}>{n.source}</span>
         <span class="cat">{n.category}</span>
@@ -17,10 +19,14 @@ const fmt = (d: string) => new Date(d).toLocaleString('hi-IN', { timeZone: 'Asia
     </li>
   ))}
 </ul>
+)}
 <script>
-  // "नया" badge computed in the browser so it stays accurate between rebuilds
+  const now = Date.now();
+  document.querySelectorAll<HTMLElement>('[data-expires]').forEach((el) => {
+    if (el.dataset.expires && Date.parse(el.dataset.expires) <= now) el.remove();
+  });
   document.querySelectorAll<HTMLTimeElement>('.notices time').forEach((t) => {
-    if (Date.now() - new Date(t.dateTime).getTime() < 3 * 864e5) {
+    if (now - new Date(t.dateTime).getTime() < 3 * 864e5 && !t.nextElementSibling?.classList.contains('new')) {
       const b = document.createElement('span'); b.className = 'new'; b.textContent = 'नया'; t.after(b);
     }
   });

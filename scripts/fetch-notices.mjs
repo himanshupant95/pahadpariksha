@@ -31,12 +31,14 @@ const SKIP = /tender|quotation|निविदा|कोटेशन|photo galle
 function categorize(t) {
   const s = t.toLowerCase();
   if (/admit|प्रवेश पत्र|प्रवेश-पत्र/.test(s)) return 'प्रवेश पत्र';
-  if (/answer ?key|उत्तर कुंजी|उत्तरकुंजी|objection|आपत्ति/.test(s)) return 'उत्तर कुंजी';
-  if (/result|परिणाम|merit|मेरिट|संस्तुति|recommendation|selected|चयनित/.test(s)) return 'परिणाम';
+  if (/answer ?key|उत्तर ?कुंजी|objection|आपत्ति/.test(s)) return 'उत्तर कुंजी';
+  if (/स्थगन|postpone|परीक्षा तिथि|exam date|calendar|कैलेंडर|परीक्षा कार्यक्रम/.test(s)) return 'परीक्षा तिथि';
+  if (/टंकण|आशुलेखन|typing|steno(graphy)? test|कौशल/.test(s)) return 'कौशल परीक्षा';
+  if (/अभिलेख|सन्निरीक्षा|document verification|डॉक्यूमेंट/.test(s)) return 'अभिलेख सत्यापन';
+  if (/result|परिणाम|merit|मेरिट|श्रेष्ठता|संस्तुति|recommendation|selected|चयनित|निरस्तीकरण/.test(s)) return 'परिणाम';
   if (/interview|साक्षात्कार/.test(s)) return 'साक्षात्कार';
-  if (/advt|advertisement|विज्ञापन|recruitment|भर्ती|online application|आवेदन/.test(s)) return 'भर्ती/विज्ञापन';
   if (/syllabus|पाठ्यक्रम/.test(s)) return 'पाठ्यक्रम';
-  if (/exam date|परीक्षा तिथि|calendar|कैलेंडर|schedule|कार्यक्रम/.test(s)) return 'परीक्षा तिथि';
+  if (/ऑनलाइन आवेदन|online application|विज्ञापन|advertisement|सीधी भर्ती|fill application/.test(s)) return 'भर्ती/विज्ञापन';
   return 'सूचना';
 }
 
@@ -64,7 +66,32 @@ async function scrape(src) {
   return out;
 }
 
+// ---- Open applications: UKSSSC application portal lists every advertisement with start/end dates ----
+const RECRUIT = 'src/data/recruitments.json';
+const toISO = (d) => { const m = d.match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/); return m ? `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}` : null; };
+async function scrapeRecruitments() {
+  const url = 'https://ukssscrecruitment.in/';
+  const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(20000) });
+  if (!res.ok) throw new Error(`UKSSSC portal: HTTP ${res.status}`);
+  const $ = cheerio.load(await res.text());
+  const rows = [];
+  $('table tr').each((_, tr) => {
+    const td = $(tr).find('td');
+    if (td.length < 5) return;
+    const advt = clean($(td[1]).text());
+    const start = toISO($(td[3]).text()), end = toISO($(td[4]).text());
+    if (!/UKSSSC/i.test(advt) || !end) return;
+    const href = $(td[5] || td[td.length - 1]).find('a').attr('href');
+    rows.push({ source: 'UKSSSC', advt, type: clean($(td[0]).text()), title: clean($(td[2]).text()), start, end,
+      url: href ? new URL(href, url).href : url, apply: url });
+  });
+  if (!rows.length) throw new Error('UKSSSC portal: 0 advertisements parsed — layout may have changed');
+  return rows;
+}
+
 const existing = JSON.parse(await readFile(DATA, 'utf8'));
+// re-apply the latest category rules to everything already stored
+for (const n of existing) n.category = categorize(n.title);
 const known = new Set(existing.map((n) => n.id));
 const firstRun = existing.length === 0;
 const now = new Date().toISOString();
@@ -82,6 +109,21 @@ for (const src of SOURCES.filter((s) => !s.disabled)) {
     errors.push(`${src.name}: ${e.message}${cause}`);
   }
 }
+
+let newAdvts = [];
+try {
+  const prev = JSON.parse(await readFile(RECRUIT, 'utf8').catch(() => '[]'));
+  const rec = await scrapeRecruitments();
+  console.log(`UKSSSC portal: ${rec.length} advertisements`);
+  const prevKeys = new Set(prev.map((r) => r.advt));
+  newAdvts = rec.filter((r) => !prevKeys.has(r.advt)).map((r) => ({ id: idOf('advt', r.advt, r.end), source: r.source, title: `नई भर्ती: ${r.title} (विज्ञापन ${r.advt}, अंतिम तिथि ${r.end.split('-').reverse().join('/')})`, url: r.apply, category: 'भर्ती/विज्ञापन' }));
+  if (prev.length === 0) newAdvts = []; // first run: seed silently
+  await writeFile(RECRUIT, JSON.stringify(rec, null, 2) + '\n');
+} catch (e) {
+  console.error(`ERROR ${e.message}`);
+  errors.push(e.message);
+}
+for (const a of newAdvts) fresh.push({ ...a, firstSeen: now });
 
 const merged = [...fresh, ...existing].slice(0, MAX_ITEMS);
 await writeFile(DATA, JSON.stringify(merged, null, 2) + '\n');

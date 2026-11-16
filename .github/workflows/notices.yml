@@ -42,11 +42,12 @@ jobs:
               gh issue create --label tracker-error --title "⚠️ नोटिस ट्रैकर में त्रुटि" --body "Scraper error: $ERRS — the commission website may be down or its layout changed. Ask Claude to fix scripts/fetch-notices.mjs. Close this issue once fixed."
             fi
           fi
-          if [ "$COUNT" = "0" ]; then echo "Nothing new."; exit 0; fi
           git config user.name "notices-bot"
           git config user.email "notices-bot@users.noreply.github.com"
-          git add src/data/notices.json
+          git add src/data/notices.json src/data/recruitments.json
+          if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
           git commit -m "Notices: $COUNT new"
+          if [ "$COUNT" = "0" ]; then git push; gh workflow run deploy.yml --ref main; exit 0; fi
           git push
           if [ "$FIRST" != "true" ]; then
             BODY=$(node -e "const d=require('./new-notices.json');console.log(d.items.map(i=>'- **'+i.source+'** · '+i.category+' — ['+i.title+']('+i.url+')').join('\n')+'\n\nसाइट पर: https://pahadpariksha.in/notices/')")
