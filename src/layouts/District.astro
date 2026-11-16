@@ -1,0 +1,151 @@
+---
+// Reusable district template: hero, sticky TOC, fact box, and shared styles for
+// tags (इतिहास / पौराणिक / परीक्षा बिंदु), timelines and tables. Content goes in the slot.
+import Base from './Base.astro';
+import { SITE } from '../data/site';
+
+interface Toc { id: string; label: string }
+interface Fact { k: string; v: string }
+interface Props {
+  name: string; nameEn: string; slug: string; division: string;
+  title: string; description: string; image?: string; imageAlt?: string;
+  published: string; updated?: string; toc: Toc[]; facts: Fact[];
+  faq?: { q: string; a: string }[]; sources: { label: string; url?: string }[];
+}
+const p = Astro.props;
+const updated = p.updated ?? p.published;
+const url = new URL(Astro.url.pathname, SITE.url).href;
+const fmt = (d: string) => new Date(d).toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+const schema: Record<string, unknown>[] = [
+  { '@context': 'https://schema.org', '@type': 'Article', headline: p.title, description: p.description, inLanguage: 'hi-IN',
+    datePublished: p.published, dateModified: updated, mainEntityOfPage: url,
+    ...(p.image ? { image: new URL(p.image, SITE.url).href } : {}),
+    about: { '@type': 'AdministrativeArea', name: `${p.nameEn} district`, alternateName: `${p.name} जिला`, containedInPlace: { '@type': 'State', name: 'Uttarakhand' } },
+    author: { '@type': 'Person', name: SITE.author.nameEn, url: SITE.url + SITE.author.url },
+    publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: SITE.url + '/logo.png' } } },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'होम', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'उत्तराखंड GK', item: SITE.url + '/gk/' },
+    { '@type': 'ListItem', position: 3, name: 'जिले', item: SITE.url + '/gk/uttarakhand-districts/' },
+    { '@type': 'ListItem', position: 4, name: p.name, item: url } ] },
+];
+if (p.faq?.length) schema.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: p.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
+---
+<Base title={p.title} description={p.description} ogType="article" schema={schema} image={p.image}>
+  <nav class="crumbs" aria-label="ब्रेडक्रम्ब"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › <a href="/gk/uttarakhand-districts/">जिले</a> › <span>{p.name}</span></nav>
+
+  <header class="d-hero">
+    {p.image && <img src={p.image} srcset={`${p.image.replace(/\.webp$/, '-800.webp')} 800w, ${p.image} 1200w`} sizes="(max-width: 1040px) 100vw, 1040px" alt={p.imageAlt ?? ''} width="1200" height="630" fetchpriority="high" />}
+    <div class="d-hero-in">
+      <p class="d-kicker">{p.division} मंडल · उत्तराखंड का जिला</p>
+      <h1>{p.name} <span>जिला</span></h1>
+      <p class="d-sub">{p.nameEn} District — इतिहास, भूगोल, जनजातियाँ, मेले, संस्थान और परीक्षा बिंदु</p>
+      <p class="d-meta">लेखक: <a href={SITE.author.url}>{SITE.author.name}</a> · अपडेट: <time datetime={updated}>{fmt(updated)}</time></p>
+    </div>
+  </header>
+
+  <div class="d-grid">
+    <aside class="d-toc" aria-label="इस पेज पर">
+      <details open id="toc-details">
+        <summary>इस पेज पर</summary>
+        <ol>{p.toc.map((t) => <li><a href={`#${t.id}`}>{t.label}</a></li>)}</ol>
+      </details>
+    </aside>
+
+    <article class="d-body">
+      <section class="d-facts" id="at-a-glance">
+        <h2>एक नज़र में</h2>
+        <dl>{p.facts.map((f) => <div><dt>{f.k}</dt><dd set:html={f.v} /></div>)}</dl>
+      </section>
+
+      <div class="legend">
+        <span class="tag hist">ऐतिहासिक तथ्य</span>
+        <span class="tag myth">पौराणिक / जनश्रुति</span>
+        <span class="tag exam">परीक्षा बिंदु</span>
+        <span class="tag trap">सावधान: ट्रिक प्रश्न</span>
+      </div>
+
+      <slot />
+
+      {p.faq && p.faq.length > 0 && (
+        <section id="faq">
+          <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+          {p.faq.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+        </section>
+      )}
+
+      <section id="sources" class="d-sources">
+        <h2>स्रोत</h2>
+        <ul>{p.sources.map((s) => <li>{s.url ? <a href={s.url} target="_blank" rel="noopener nofollow">{s.label}</a> : s.label}</li>)}</ul>
+        <p class="muted">कोई तथ्य गलत लगे तो स्रोत सहित <a href="/contact/">हमें बताएँ</a> — हम हर सूचना की जाँच करके पेज अपडेट करते हैं।</p>
+      </section>
+    </article>
+  </div>
+</Base>
+
+<script>
+  // collapse the contents list on phones so the article starts sooner
+  if (window.matchMedia('(max-width: 860px)').matches) document.getElementById('toc-details')?.removeAttribute('open');
+</script>
+
+<style is:global>
+  .crumbs { font-size: .85rem; color: var(--muted); margin-bottom: 8px; }
+  .crumbs a { text-decoration: none; }
+  .d-hero { position: relative; border-radius: 18px; overflow: hidden; min-height: 300px; display: flex; align-items: flex-end; background: #14532d; }
+  .d-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .d-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,30,18,.05) 20%, rgba(10,30,18,.85)); }
+  .d-hero-in { position: relative; z-index: 1; padding: 22px 24px; color: #fff; }
+  .d-kicker { margin: 0; color: #fdba74; font-weight: 600; font-size: .85rem; }
+  .d-hero h1 { color: #fff; margin: 2px 0; font-size: clamp(2rem, 6vw, 3rem); }
+  .d-hero h1 span { color: #bbf7d0; font-weight: 600; font-size: .6em; }
+  .d-sub { margin: 0; color: #ecfdf3; }
+  .d-meta { margin: 6px 0 0; font-size: .85rem; color: #d6d3d1; }
+  .d-meta a { color: #bbf7d0; }
+
+  .d-grid { display: grid; grid-template-columns: 230px 1fr; gap: 26px; margin-top: 20px; align-items: start; }
+  .d-toc { position: sticky; top: 76px; max-height: calc(100vh - 90px); overflow: auto; font-size: .9rem; }
+  .d-toc summary { font-weight: 700; color: var(--green); cursor: pointer; margin-bottom: 6px; }
+  .d-toc ol { margin: 0; padding-left: 2em; }
+  .d-toc li { margin: 4px 0; }
+  .d-toc a { text-decoration: none; color: var(--ink); }
+  .d-toc a:hover { color: var(--green-2); }
+  @media (max-width: 860px) {
+    .d-grid { grid-template-columns: 1fr; }
+    .d-toc { position: static; max-height: none; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+  }
+  .d-body { min-width: 0; }
+  .d-body h2 { scroll-margin-top: 80px; }
+  .d-body h3 { scroll-margin-top: 80px; color: var(--ink); }
+  .d-body section { scroll-margin-top: 80px; }
+
+  .d-facts { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--green-2); border-radius: 14px; padding: 6px 18px 14px; }
+  .d-facts h2 { border: 0; margin-top: .6em; }
+  .d-facts dl { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px 18px; margin: 0; }
+  .d-facts dt { font-size: .8rem; color: var(--muted); }
+  .d-facts dd { margin: 0; font-weight: 600; line-height: 1.5; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 4px; font-size: .8rem; }
+  .tag { display: inline-block; font-size: .74rem; font-weight: 700; padding: 1px 8px; border-radius: 20px; vertical-align: middle; white-space: nowrap; }
+  .tag.hist { background: #dbeafe; color: #1e40af; }
+  .tag.myth { background: #fae8ff; color: #86198f; }
+  .tag.exam { background: #fef3c7; color: #92400e; }
+  .tag.trap { background: #fee2e2; color: #991b1b; }
+
+  .box-myth, .box-hist, .box-exam, .box-trap { border-radius: 12px; padding: 10px 16px; margin: 12px 0; border-left: 5px solid; }
+  .box-hist { background: #eff6ff; border-color: #3b82f6; }
+  .box-myth { background: #fdf4ff; border-color: #c026d3; }
+  .box-exam { background: #fffbeb; border-color: #f59e0b; }
+  .box-trap { background: #fef2f2; border-color: #ef4444; }
+  .box-hist > strong:first-child, .box-myth > strong:first-child, .box-exam > strong:first-child, .box-trap > strong:first-child { display: block; margin-bottom: 2px; }
+
+  .timeline { list-style: none; padding: 0; margin: 12px 0; border-left: 3px solid var(--green-soft); }
+  .timeline li { position: relative; padding: 4px 0 10px 18px; }
+  .timeline li::before { content: ''; position: absolute; left: -8px; top: 12px; width: 13px; height: 13px; border-radius: 50%; background: var(--green-2); border: 2px solid #fff; }
+  .timeline b { color: var(--green); display: inline-block; min-width: 110px; }
+
+  .chips2 { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; list-style: none; }
+  .chips2 li { background: var(--green-soft); color: var(--green); border-radius: 20px; padding: 2px 12px; font-size: .9rem; }
+  .faq { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 8px 0; }
+  .faq summary { font-weight: 600; cursor: pointer; }
+  .d-sources li { font-size: .9rem; margin: 3px 0; }
+</style>

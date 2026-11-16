@@ -20,6 +20,7 @@ const topics = [
   { icon: 'paper', t: 'पिछले प्रश्न पत्र', d: 'हल सहित, टॉपिक-वाइज', soon: true },
 ];
 const garhwal = ['देहरादून', 'हरिद्वार', 'टिहरी गढ़वाल', 'उत्तरकाशी', 'चमोली', 'रुद्रप्रयाग', 'पौड़ी गढ़वाल'];
+const districtPages: Record<string, string> = { 'देहरादून': '/gk/districts/dehradun/' };
 const kumaon = ['नैनीताल', 'अल्मोड़ा', 'पिथौरागढ़', 'बागेश्वर', 'चंपावत', 'ऊधम सिंह नगर'];
 const latest = [
   { href: '/gk/uttarakhand-districts/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड के 13 जिले: मंडल, मुख्यालय और महत्वपूर्ण तथ्य', img: '/images/uttarakhand-hills-800.webp' },
@@ -89,11 +90,11 @@ const latest = [
   <div class="districts">
     <div class="division">
       <h3>गढ़वाल मंडल <small>(7 जिले · मुख्यालय पौड़ी)</small></h3>
-      <div class="chips">{garhwal.map((d) => <a href="/gk/uttarakhand-districts/">{d}</a>)}</div>
+      <div class="chips">{garhwal.map((d) => <a href={districtPages[d] ?? '/gk/uttarakhand-districts/'} class={districtPages[d] ? 'has-page' : undefined}>{d}</a>)}</div>
     </div>
     <div class="division kumaon">
       <h3>कुमाऊँ मंडल <small>(6 जिले · मुख्यालय नैनीताल)</small></h3>
-      <div class="chips">{kumaon.map((d) => <a href="/gk/uttarakhand-districts/">{d}</a>)}</div>
+      <div class="chips">{kumaon.map((d) => <a href={districtPages[d] ?? '/gk/uttarakhand-districts/'} class={districtPages[d] ? 'has-page' : undefined}>{d}</a>)}</div>
     </div>
   </div>
 
@@ -153,6 +154,8 @@ const latest = [
   .chips a { background: var(--green-soft); color: var(--green); text-decoration: none; padding: 3px 12px; border-radius: 20px; font-size: .9rem; }
   .kumaon .chips a { background: #fff7ed; color: #9a3412; }
   .chips a:hover { filter: brightness(.95); }
+  .chips a.has-page { background: var(--green-2); color: #fff; font-weight: 600; }
+  .chips a.has-page::after { content: ' →'; }
 
   .btn.cta { background: #ea580c; }
   .btn.cta:hover { background: #c2410c; color: #fff; }
