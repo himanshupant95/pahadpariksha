@@ -9,6 +9,7 @@ permissions:
   contents: write
   issues: write
   actions: write
+  models: read
 
 concurrency:
   group: news
@@ -26,16 +27,20 @@ jobs:
       - run: npm ci
       - name: Fetch news
         run: node scripts/fetch-news.mjs
+      - name: AI editor (exam points)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/digest-news.mjs
       - name: Commit and redeploy if anything is new
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COUNT=$(node -e "console.log(require('./new-news.json').count)")
+          ADDED=$(node -e "console.log(require('./new-digest.json').added)")
           git config user.name "news-bot"
           git config user.email "news-bot@users.noreply.github.com"
-          git add src/data/news.json
-          if git diff --cached --quiet || [ "$COUNT" = "0" ]; then echo "No new items."; exit 0; fi
-          git commit -m "Current affairs: $COUNT new"
+          git add src/data/news.json src/data/digest.json
+          if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
+          git commit -m "Current affairs: +$ADDED exam points"
           git pull --rebase origin main
           git push
-          gh workflow run deploy.yml --ref main
+          if [ "$ADDED" != "0" ]; then gh workflow run deploy.yml --ref main; fi

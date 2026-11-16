@@ -1,0 +1,15 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Compilation from '../../../components/Compilation.astro';
+import { weeks, weekLabel } from '../../../lib/digest';
+export function getStaticPaths() {
+  const all = weeks();
+  return all.map((w, i) => ({ params: { w: w.key }, props: { w, prev: all[i + 1], next: all[i - 1] } }));
+}
+const { w, prev, next } = Astro.props;
+const label = weekLabel(w.start, w.end);
+const link = (x: any) => x && { href: `/current-affairs/week/${x.key}/`, label: weekLabel(x.start, x.end) };
+---
+<Base title={`उत्तराखंड करेंट अफेयर्स साप्ताहिक संकलन: ${label} (PDF)`} description={`${label} के उत्तराखंड करेंट अफेयर्स — ${w.items.length} परीक्षा-उपयोगी बिंदु, विषयवार, PDF डाउनलोड के साथ। UKSSSC/UKPSC के लिए।`}>
+  <Compilation kind="साप्ताहिक" label={label} items={w.items} prev={link(prev)} next={link(next)} />
+</Base>

@@ -1,0 +1,38 @@
+---
+import type { Point } from '../lib/digest';
+import { fmtShort } from '../lib/digest';
+interface Props { items: Point[]; showDate?: boolean; showCat?: boolean; compact?: boolean; numbered?: boolean }
+const { items, showDate = false, showCat = true, compact = false, numbered = false } = Astro.props;
+const Tag = numbered ? 'ol' : 'ul';
+---
+<Tag class={`points ${compact ? 'compact' : ''} ${numbered ? 'num' : ''}`}>
+  {items.map((p) => (
+    <li class={p.imp >= 3 ? 'imp' : undefined} data-cat={p.cat}>
+      <p class="fact">{p.fact}</p>
+      <div class="p-meta">
+        {p.imp >= 3 && <span class="star">★ महत्वपूर्ण</span>}
+        {showCat && <span class="cat">{p.cat}</span>}
+        {p.tag && <span class="tag">#{p.tag}</span>}
+        {showDate && <span class="dt">{fmtShort(p.date)}</span>}
+        {!compact && <span class="src">स्रोत: {p.refs.slice(0, 3).map((r, i) => <>{i > 0 && ', '}<a href={r.link} target="_blank" rel="noopener nofollow">{r.source || 'समाचार'}</a></>)}{p.refs.length > 3 && ` +${p.refs.length - 3}`}</span>}
+      </div>
+    </li>
+  ))}
+</Tag>
+
+<style is:global>
+  .points { list-style: none; margin: 0; padding: 0; }
+  .points.num { counter-reset: pt; }
+  .points li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; position: relative; }
+  .points.num li { counter-increment: pt; padding-left: 46px; }
+  .points.num li::before { content: counter(pt); position: absolute; left: 12px; top: 10px; width: 24px; height: 24px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-weight: 700; font-size: .8rem; display: grid; place-items: center; }
+  .points li.imp { border-left: 4px solid var(--accent); }
+  .points .fact { margin: 0; font-weight: 600; line-height: 1.6; color: var(--ink); }
+  .points.compact .fact { font-size: .93rem; font-weight: 500; }
+  .points.compact li { padding: 8px 12px; margin-bottom: 6px; }
+  .points .p-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .76rem; color: var(--muted); margin-top: 4px; }
+  .points .cat { background: var(--green-soft); color: var(--green); padding: 0 8px; border-radius: 20px; }
+  .points .star { background: #fff7ed; color: #9a3412; padding: 0 8px; border-radius: 20px; font-weight: 700; }
+  .points .tag { color: var(--green-2); }
+  .points .src a { color: var(--muted); }
+</style>

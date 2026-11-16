@@ -1,0 +1,15 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Compilation from '../../../components/Compilation.astro';
+import { months, monthLabel } from '../../../lib/digest';
+export function getStaticPaths() {
+  const all = months();
+  return all.map((m, i) => ({ params: { m: m.key }, props: { m, prev: all[i + 1], next: all[i - 1] } }));
+}
+const { m, prev, next } = Astro.props;
+const label = monthLabel(m.key);
+const link = (x: any) => x && { href: `/current-affairs/month/${x.key}/`, label: monthLabel(x.key) };
+---
+<Base title={`उत्तराखंड करेंट अफेयर्स ${label}: मासिक संकलन (PDF)`} description={`${label} के उत्तराखंड करेंट अफेयर्स — ${m.items.length} परीक्षा-उपयोगी बिंदु, विषयवार, PDF डाउनलोड के साथ। UKSSSC/UKPSC के लिए।`}>
+  <Compilation kind="मासिक" label={label} items={m.items} prev={link(prev)} next={link(next)} />
+</Base>
