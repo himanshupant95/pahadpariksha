@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import HeroArt from '../components/HeroArt.astro';
 import Icon from '../components/Icon.astro';
 import DailyQuestion from '../components/DailyQuestion.astro';
 import { SITE } from '../data/site';
@@ -18,20 +17,23 @@ const topics = [
 const garhwal = ['देहरादून', 'हरिद्वार', 'टिहरी गढ़वाल', 'उत्तरकाशी', 'चमोली', 'रुद्रप्रयाग', 'पौड़ी गढ़वाल'];
 const kumaon = ['नैनीताल', 'अल्मोड़ा', 'पिथौरागढ़', 'बागेश्वर', 'चंपावत', 'ऊधम सिंह नगर'];
 const latest = [
-  { href: '/gk/uttarakhand-districts/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड के 13 जिले: मंडल, मुख्यालय और महत्वपूर्ण तथ्य', icon: 'district' },
-  { href: '/gk/uttarakhand-rivers/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड की प्रमुख नदियाँ: उद्गम, संगम और पंच प्रयाग', icon: 'river' },
-  { href: '/quiz/uttarakhand-districts-rivers/', tag: 'क्विज़', t: 'उत्तराखंड जिले और नदियाँ क्विज़ (12 प्रश्न)', icon: 'quiz' },
+  { href: '/gk/uttarakhand-districts/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड के 13 जिले: मंडल, मुख्यालय और महत्वपूर्ण तथ्य', img: '/images/uttarakhand-hills-800.webp' },
+  { href: '/gk/uttarakhand-rivers/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड की प्रमुख नदियाँ: उद्गम, संगम और पंच प्रयाग', img: '/images/river-confluence-800.webp' },
+  { href: '/quiz/uttarakhand-districts-rivers/', tag: 'क्विज़', t: 'उत्तराखंड जिले और नदियाँ क्विज़ (12 प्रश्न)', img: '/images/mountain-study-800.webp' },
 ];
 ---
 <Base title={SITE.name} description={SITE.description}>
   <section class="hero">
-    <HeroArt />
+    <picture>
+      <source type="image/webp" srcset="/images/uttarakhand-hills-800.webp 800w, /images/uttarakhand-hills.webp 1200w" sizes="(max-width: 1040px) 100vw, 1040px" />
+      <img class="hero-img" src="/images/uttarakhand-hills.webp" alt="" width="1200" height="630" fetchpriority="high" decoding="async" />
+    </picture>
     <div class="hero-inner">
       <p class="kicker">UKSSSC · UKPSC · पटवारी · VDO · लोअर PCS</p>
       <h1>पहाड़ की परीक्षा, <span>पहाड़ जैसी तैयारी</span></h1>
       <p class="lead">उत्तराखंड सामान्य ज्ञान, पिछले प्रश्न पत्र और प्रैक्टिस क्विज़ — हिंदी में, बिल्कुल मुफ्त।</p>
       <div class="hero-cta">
-        <a class="btn" href="/gk/">तैयारी शुरू करें</a>
+        <a class="btn cta" href="/gk/">तैयारी शुरू करें</a>
         <a class="btn ghost" href="/quiz/">क्विज़ हल करें</a>
       </div>
     </div>
@@ -64,7 +66,7 @@ const latest = [
   <div class="latest">
     {latest.map((x) => (
       <a class="post" href={x.href}>
-        <span class="thumb"><Icon name={x.icon} size={40} /></span>
+        <img class="thumb" src={x.img} alt="" width="800" height="450" loading="lazy" decoding="async" />
         <span class="post-body"><small>{x.tag}</small><strong>{x.t}</strong></span>
       </a>
     ))}
@@ -92,14 +94,17 @@ const latest = [
 </Base>
 
 <style>
-  .hero { position: relative; overflow: hidden; border-radius: 18px; min-height: 380px; display: flex; align-items: flex-start; border: 1px solid var(--line); }
-  .hero-inner { position: relative; z-index: 1; padding: 34px 28px 150px; max-width: 640px; }
-  .kicker { margin: 0; font-size: .82rem; font-weight: 600; color: var(--accent); letter-spacing: .02em; }
-  .hero h1 { margin: 6px 0 8px; font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.3; color: #14532d; }
-  .hero h1 span { color: var(--accent); }
-  .lead { font-size: 1.05rem; color: #44403c; margin: 0 0 16px; }
+  .hero { position: relative; overflow: hidden; border-radius: 18px; min-height: 400px; display: flex; align-items: center; background: #14532d; }
+  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,30,18,.78) 0%, rgba(10,30,18,.5) 45%, rgba(10,30,18,.05) 80%); }
+  .hero-inner { position: relative; z-index: 1; padding: 44px 28px 60px; max-width: 620px; }
+  @media (max-width: 640px) { .hero::after { background: linear-gradient(180deg, rgba(10,30,18,.55), rgba(10,30,18,.8)); } }
+  .kicker { margin: 0; font-size: .82rem; font-weight: 600; color: #fdba74; letter-spacing: .02em; }
+  .hero h1 { margin: 6px 0 8px; font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.3; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.35); }
+  .hero h1 span { color: #fdba74; }
+  .lead { font-size: 1.05rem; color: #ecfdf3; margin: 0 0 18px; }
   .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; }
-  .ghost { background: rgba(255,255,255,.85); color: var(--green-2); border: 2px solid var(--green-2); }
+  .ghost { background: rgba(255,255,255,.12); color: #fff; border: 2px solid rgba(255,255,255,.8); }
   .ghost:hover { background: #fff; color: var(--green); }
 
   .trust { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
@@ -121,7 +126,7 @@ const latest = [
   .latest { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
   .post { display: flex; gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-decoration: none; color: var(--ink); }
   .post:hover { border-color: var(--green-2); color: var(--ink); }
-  .thumb { flex: 0 0 72px; height: 72px; border-radius: 10px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #166534, #4d7c5f); }
+  .thumb { flex: 0 0 104px; width: 104px; height: 78px; object-fit: cover; border-radius: 10px; background: var(--green-soft); }
   .post-body small { display: block; color: var(--accent); font-weight: 600; font-size: .78rem; }
   .post-body strong { font-size: .98rem; line-height: 1.5; color: var(--green); }
 
@@ -136,6 +141,8 @@ const latest = [
   .kumaon .chips a { background: #fff7ed; color: #9a3412; }
   .chips a:hover { filter: brightness(.95); }
 
+  .btn.cta { background: #ea580c; }
+  .btn.cta:hover { background: #c2410c; color: #fff; }
   .cta-band { margin-top: 2.2em; background: linear-gradient(120deg, #14532d, #166534 60%, #4d7c5f); color: #ecfdf3; border-radius: 16px; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
   .cta-band h2 { color: #fff; border: 0; margin: 0 0 4px; }
   .cta-band p { margin: 0; }

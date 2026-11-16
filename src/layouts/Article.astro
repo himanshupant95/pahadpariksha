@@ -58,8 +58,8 @@ if (faq.length) {
     </p>
     {image && (
       <figure class="hero-img">
-        <img src={image} alt={imageAlt} width="1200" height="630" loading="eager" fetchpriority="high" decoding="async" />
-        {imageCredit && <figcaption>चित्र: {imageCredit}</figcaption>}
+        <img src={image} srcset={image.endsWith('.webp') ? `${image.replace(/\.webp$/, '-800.webp')} 800w, ${image} 1200w` : undefined} sizes="(max-width: 800px) 100vw, 760px" alt={imageAlt} width="1200" height="630" loading="eager" fetchpriority="high" decoding="async" />
+        <figcaption>{imageCredit ?? 'चित्रांकन (प्रतीकात्मक)'}</figcaption>
       </figure>
     )}
     <slot />

@@ -13,7 +13,7 @@ interface Props {
 const { title, description = SITE.description, ogType = 'website', noindex = false, schema = [], image } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const fullTitle = Astro.url.pathname === '/' ? `${SITE.name} — ${SITE.tagline}` : `${title} | ${SITE.name}`;
-const ogImage = new URL(image ?? '/og-default.png', SITE.url).href;
+const ogImage = new URL(image ?? '/og-default.jpg', SITE.url).href;
 
 const siteSchema = {
   '@context': 'https://schema.org',
