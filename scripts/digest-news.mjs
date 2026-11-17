@@ -118,6 +118,63 @@ async function enrich(list) { // list: [{fact, day, q, qen, titles:[]}] → muta
   return n;
 }
 
+// Stage 3: an independent model (Groq — a different model family from the Gemini writer) checks every
+// pointer against the same headlines. Keys that must come from the news are dropped unless supported;
+// पृष्ठभूमि (static GK) is kept only if the checker is sure it is a correct, well-documented fact.
+const NEWS_KEYS = new Set(['कब', 'कहाँ', 'कौन', 'कितना', 'कारण', 'विवरण']);
+const VERIFY = `You are a strict fact-checker for an exam-preparation website (Uttarakhand, India).
+For each numbered POINT you get the RELATED HEADLINES (the only news evidence) and its POINTERS (each with an id like 2.3 and a key).
+Judge every pointer:
+- "ok": the specific facts in it (names, numbers, dates, places, bodies) are stated in, or directly follow from, the headlines or the POINT text.
+- "gk": not in the headlines, but a correct, widely documented general-knowledge fact about the SAME thing the point names (e.g. when an award was instituted, which ministry gives it), and you are certain it is true.
+- "off": true or not, it is about something the point does not name, or adds nothing exam-relevant (padding, vague purpose, restating the point).
+- "bad": contradicts the headlines, looks invented/guessed, or you are not sure it is true (wrong person, year, number, body, title).
+When unsure between "gk" and "bad", answer "bad". Be strict about names, posts and numbers.
+Reply with JSON only: {"v":[{"id":"2.3","r":"ok|gk|off|bad","why":"max 12 words"}]}`;
+
+async function verify(list, writer = '') { // list: [{fact, ctx|titles, details}] → filters .details; returns removed[]
+  const items = list.filter((p) => p.details?.length);
+  if (!items.length) return [];
+  const user = items.map((p, i) => `POINT ${i + 1}: ${p.fact}\nRELATED HEADLINES:\n${(p.ctx || p.titles || []).map((t) => '- ' + t).join('\n') || '(none)'}\nPOINTERS:\n` +
+    p.details.map((d, j) => `${i + 1}.${j + 1} [${d.k}] ${d.v}`).join('\n')).join('\n\n');
+  let out;
+  try {
+    out = (GROQ && !writer.startsWith('groq/') ? await askGroq(user, VERIFY) : await ask(user, VERIFY)).out; // never let a model grade itself
+  } catch (e) { console.log(`  verify skipped: ${e.message.slice(0, 160)}`); return []; }
+  const verdict = new Map((out.v || []).map((x) => [String(x.id).trim(), x]));
+  const removed = [];
+  items.forEach((p, i) => {
+    p.details = p.details.filter((d, j) => {
+      const v = verdict.get(`${i + 1}.${j + 1}`); const r = v?.r || 'bad'; // no verdict = not verified
+      const keep = r === 'ok' ? true : r === 'gk' ? !NEWS_KEYS.has(d.k) : false;
+      if (!keep) removed.push({ fact: p.fact, k: d.k, v: d.v, r, why: v?.why || 'no verdict' });
+      return keep;
+    });
+  });
+  return removed;
+}
+
+async function askGroq(user, system) {
+  let lastErr = 'no Groq model';
+  for (const model of await groqModels()) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST', headers: { Authorization: `Bearer ${GROQ}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model, temperature: 0, max_tokens: 6000, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }),
+        signal: AbortSignal.timeout(120000),
+      }).catch((e) => ({ ok: false, status: 0, text: async () => String(e) }));
+      if (res.ok) {
+        const txt = (await res.json()).choices?.[0]?.message?.content ?? '';
+        const m = txt.match(/\{[\s\S]*\}/);
+        try { return { model: 'groq/' + model, out: JSON.parse(m ? m[0] : txt) }; } catch { lastErr = `groq ${model}: bad content`; continue; }
+      }
+      lastErr = `groq ${model}: HTTP ${res.status} ${(await res.text()).slice(0, 160)}`;
+      if (res.status === 429 || res.status >= 500) await new Promise((r) => setTimeout(r, 20000)); else break;
+    }
+  }
+  throw new Error(lastErr);
+}
+
 const istDay = (iso) => new Date(iso).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
 const hash = (s) => createHash('sha1').update(s).digest('hex').slice(0, 10);
 
@@ -200,7 +257,21 @@ const pending = PREVIEW
 const previewOut = [];
 let added = 0, calls = 0;
 const addedIds = [];
+const checked = []; // pointers removed by the Stage-3 checker
 const errors = [];
+if (process.env.CHECK) { // dry run: grade the saved sample (scripts/fixtures/verify-sample.json) with the checker
+  const sample = JSON.parse(await readFile('scripts/fixtures/verify-sample.json', 'utf8'));
+  for (const p of sample) {
+    const extra = [...await related(p.tag, p.date, 'hi'), ...await related(p.tag, p.date, 'en')];
+    p.ctx = [...new Set([...p.titles, ...extra])].slice(0, 16);
+  }
+  const before = sample.reduce((n, p) => n + p.details.length, 0);
+  const rm = await verify(sample);
+  checked.push(...rm); logChecked();
+  console.log(`check: ${before} pointers → kept ${before - rm.length}, removed ${rm.length}`);
+  sample.forEach((p) => console.log(`• ${p.fact.slice(0, 70)}\n` + p.details.map((d) => `   ✓ ${d.k}: ${d.v}`).join('\n')));
+  process.exit(0);
+}
 if (process.env.BACKFILL) {
   const todo = dg.points.filter((p) => !p.details).slice(0, 24);
   let done = 0;
@@ -208,11 +279,13 @@ if (process.env.BACKFILL) {
     const chunk = todo.slice(i, i + 8);
     const list = chunk.map((p) => ({ fact: p.fact, day: p.date, q: p.q || p.tag, qen: p.qen || '', titles: p.refs.map((r) => r.title) }));
     try { await enrich(list); calls++; } catch (e) { errors.push(`backfill: ${e.message}`); break; }
+    const rm = await verify(list); if (rm.length) { calls++; checked.push(...rm); }
     chunk.forEach((p, k) => { p.details = list[k].details || []; if (p.details.length) done++; console.log(`• ${p.fact}` + p.details.map((d) => `\n   - ${d.k}: ${d.v}`).join('')); });
   }
   dg.updated = new Date().toISOString();
   await writeFile(DIGEST, JSON.stringify(dg, null, 1) + '\n');
-  await writeFile('new-digest.json', JSON.stringify({ added: 0, enriched: done, calls, errors }));
+  await writeFile('new-digest.json', JSON.stringify({ added: 0, enriched: done, calls, errors, checked }));
+  logChecked();
   console.log(`backfill: ${done}/${todo.length} points got details, ${calls} AI calls`);
   if (errors.length) console.error(errors.join('\n'));
   process.exit(0);
@@ -244,6 +317,7 @@ for (const day of days) {
     if (fresh.length) {
       const list = fresh.map((f) => ({ fact: f.fact, ...f._e }));
       try { await enrich(list); calls++; } catch (e) { errors.push(`${day} enrich (kept points without details): ${e.message}`); }
+      const rm = await verify(list, fresh[0]?.model || ''); calls++; checked.push(...rm);
       fresh.forEach((f, i) => { delete f._e; if (list[i].details?.length) f.details = list[i].details; });
     }
     for (const f of fresh) {
@@ -260,7 +334,8 @@ for (const day of days) {
 
 if (PREVIEW) {
   console.log(`\n===== PREVIEW ${today}: ${pending.length} headlines → ${previewOut.length} points =====\n` + previewOut.join('\n') + '\n===== (nothing saved) =====');
-  await writeFile('new-digest.json', JSON.stringify({ added: 0, calls, errors }));
+  await writeFile('new-digest.json', JSON.stringify({ added: 0, calls, errors, checked }));
+  logChecked();
   if (errors.length) console.error(errors.join('\n'));
   process.exit(0);
 }
@@ -271,6 +346,12 @@ dg.reviewed = [...reviewed].filter((id) => live.has(id));
 dg.points.sort((a, b) => b.date.localeCompare(a.date) || b.imp - a.imp);
 dg.updated = new Date().toISOString();
 await writeFile(DIGEST, JSON.stringify(dg, null, 1) + '\n');
-await writeFile('new-digest.json', JSON.stringify({ added, ids: addedIds, days: days.length, calls, errors }));
+await writeFile('new-digest.json', JSON.stringify({ added, ids: addedIds, days: days.length, calls, errors, checked }));
+logChecked();
 console.log(`digest: ${days.length} day(s) to review, ${calls} AI calls, +${added} points, ${errors.length} errors`);
 if (errors.length) console.error(errors.join('\n'));
+
+function logChecked() {
+  if (!checked.length) return console.log('verify: all pointers passed');
+  console.log(`verify: removed ${checked.length} pointer(s):\n` + checked.map((c) => `  ✗ [${c.r}] ${c.k}: ${c.v}  — ${c.why}  (${c.fact.slice(0, 50)}…)`).join('\n'));
+}

@@ -11,10 +11,10 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'collect = headlines only; edition = headlines + AI + deploy; preview = dry run; backfill = add details to older points'
+        description: 'collect = headlines only; edition = headlines + AI + deploy; preview = dry run; backfill = add details to older points; check = grade the sample with the fact-checker (dry)'
         default: edition
         type: choice
-        options: [edition, collect, preview, backfill]
+        options: [edition, collect, preview, backfill, check]
 
 permissions:
   contents: write
@@ -52,6 +52,13 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: node scripts/digest-news.mjs
+      - name: Fact-checker test on the saved sample (saves nothing)
+        if: env.MODE == 'check'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CHECK: '1'
+        run: node scripts/digest-news.mjs
       - name: Add details to older points
         if: env.MODE == 'backfill'
         env:
@@ -72,7 +79,7 @@ jobs:
           set -e
           if [ $rc -ne 0 ]; then echo "telegram rc=$rc -> GitHub issue"; node scripts/review-issue.mjs || echo "review issue failed (edition is still live)"; fi
       - name: Commit and redeploy
-        if: env.MODE != 'preview'
+        if: env.MODE != 'preview' && env.MODE != 'check'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
