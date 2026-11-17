@@ -1,8 +1,11 @@
 name: Telegram review commands
 
-# Reads the owner's replies to the nightly review message (/remove, /edit, /ok) every ~10 minutes,
-# 5:30 AM–11:20 PM IST, applies them to src/data/digest.json and redeploys.
+# Instant path: the Cloudflare Worker (cloudflare/telegram-worker.js) receives the owner's Telegram
+# message and fires repository_dispatch "telegram" -> apply, commit, deploy, then reply "done".
+# Fallback: every 10 min (5:30 AM–11:20 PM IST) poll Telegram — a no-op once the Worker webhook is set.
 on:
+  repository_dispatch:
+    types: [telegram]
   schedule:
     - cron: '*/10 0-17 * * *'
   workflow_dispatch:
@@ -11,12 +14,43 @@ permissions:
   contents: write
   actions: write
 
-concurrency:
-  group: telegram
-  cancel-in-progress: false
-
 jobs:
+  apply:
+    if: github.event_name == 'repository_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TG_MSG_ID: ${{ github.event.client_payload.message_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply the command
+        env:
+          TG_TEXT: ${{ github.event.client_payload.text }}
+        run: node scripts/telegram.mjs apply
+      - name: Commit, deploy and wait
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          [ "$(cat review-changed)" = "1" ] || { echo "No changes."; exit 0; }
+          git config user.name "news-bot"
+          git config user.email "news-bot@users.noreply.github.com"
+          git add src/data/digest.json
+          git commit -m "Current affairs review via Telegram [skip ci]"
+          for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
+          gh workflow run deploy.yml --ref main
+          sleep 8
+          RUN=$(gh run list --workflow deploy.yml --limit 1 --json databaseId --jq '.[0].databaseId')
+          gh run watch "$RUN" --exit-status --interval 10 || true
+      - name: Reply in Telegram
+        if: always()
+        run: node scripts/telegram.mjs notify
+
   poll:
+    if: github.event_name != 'repository_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

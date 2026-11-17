@@ -2,7 +2,9 @@
 //   node scripts/telegram.mjs send  — after the nightly edition: send the new points + numbered pointers
 //                                      to the owner's chat; saves the P-number map to .review/latest.json.
 //                                      Exits 3 if Telegram is not configured (caller falls back to a GitHub issue).
-//   node scripts/telegram.mjs poll  — read the owner's replies (/remove, /edit, /ok, /help), apply them to
+//   node scripts/telegram.mjs apply — instant path: one message forwarded by the Cloudflare Worker
+//                                      (env TG_TEXT, TG_MSG_ID); applies it and replies in the chat.
+//   node scripts/telegram.mjs poll  — fallback (no-op once the Worker webhook is set): read the owner's replies (/remove, /edit, /ok, /help), apply them to
 //                                      src/data/digest.json, reply in the chat. Writes review-changed (1/0).
 // Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (only this chat is obeyed).
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -66,7 +68,28 @@ if (mode === 'send') {
   console.log(`telegram: sent ${pts.length} points`);
 }
 
+if (mode === 'apply') {
+  await writeFile('review-changed', '0');
+  const text = (process.env.TG_TEXT || '').replace(/^\/(\w+)@\w+/gm, '/$1');
+  const dg = JSON.parse(await readFile(DIGEST, 'utf8'));
+  const { map = {} } = JSON.parse(await readFile(MAP, 'utf8').catch(() => '{}'));
+  const reply_to = Number(process.env.TG_MSG_ID) || undefined;
+  if (!Object.keys(map).length) { await tg('sendMessage', { chat_id: CHAT, text: 'अभी समीक्षा के लिए कोई बैच नहीं है।', reply_to_message_id: reply_to }); process.exit(0); }
+  const { reply, changed } = applyCommands(dg, map, text);
+  if (changed) await writeFile(DIGEST, JSON.stringify(dg, null, 1) + '\n');
+  await writeFile('review-changed', changed ? '1' : '0');
+  await writeFile('review-reply.txt', reply || 'कोई आदेश नहीं मिला — /help देखें।');
+  // the reply is sent after the deploy finishes (see telegram.yml), so "done" really means live
+  console.log(reply);
+}
+
+if (mode === 'notify') { // send review-reply.txt once the site is rebuilt
+  const reply = await readFile('review-reply.txt', 'utf8').catch(() => '');
+  if (reply) await tg('sendMessage', { chat_id: CHAT, text: reply.replace(/साइट कुछ मिनट में अपडेट हो जाएगी।/, '✅ साइट अपडेट हो गई।'), reply_to_message_id: Number(process.env.TG_MSG_ID) || undefined });
+}
+
 if (mode === 'poll') {
+  if ((await tg('getWebhookInfo', {})).url) { console.log('telegram: webhook (Cloudflare Worker) is set — polling not needed'); await writeFile('review-changed', '0'); process.exit(0); }
   const updates = await tg('getUpdates', { timeout: 0, allowed_updates: ['message'] });
   await writeFile('review-changed', '0');
   if (!updates.length) { console.log('telegram: no messages'); process.exit(0); }
