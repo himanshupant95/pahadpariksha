@@ -12,7 +12,7 @@
 // One-time: open https://<your-worker>.workers.dev/setup?key=<WEBHOOK_SECRET> to connect Telegram.
 
 const HELP = 'सुधार के आदेश (एक पंक्ति में एक; एक संदेश में कई भी चलेंगे):\n' +
-  '/remove P2 — पूरा बिंदु हटाएँ\n/remove P2.3 — उप-बिंदु हटाएँ\n/edit P2 नया शीर्षक\n/edit P2.3 नया पाठ\n/ok — सब ठीक है\n' +
+  '/remove P2 — पूरा बिंदु हटाएँ\n/remove P2.3 — उप-बिंदु हटाएँ\n/edit P2 नया शीर्षक\n/edit P2.3 नया पाठ\n/add P2 कब: 17 नवंबर 2026 — नया उप-बिंदु (कब/कहाँ/कौन/कितना/कारण/विवरण/संस्था)\n/ok — सब ठीक है\n' +
   'साइट लगभग 1–2 मिनट में अपडेट होती है; पूरा होने पर बॉट बताएगा।';
 
 export default {

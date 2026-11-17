@@ -1,13 +1,15 @@
-// Shared parser for review commands (/remove P2, /remove P2.3, /edit P2.3 text, /edit P2 text, /ok)
+// Shared parser for review commands (/remove P2, /remove P2.3, /edit P2.3 text, /edit P2 text, /add P2 कब: text, /ok)
 // used by the GitHub-issue flow (review-apply.mjs) and the Telegram bot (telegram.mjs).
 // map: {"P1": pointId, ...} for the batch being reviewed. Mutates dg. Returns { reply, changed, close }.
+const DKEYS = ['कब', 'कहाँ', 'कौन', 'कितना', 'कारण', 'विवरण', 'श्रेणी', 'संस्था', 'पृष्ठभूमि'];
+
 export function applyCommands(dg, map, text) {
   const byP = (p) => dg.points.find((x) => x.id === map[p.toUpperCase()]);
   const lines = (text || '').split('\n').map((l) => l.trim()).filter((l) => l.startsWith('/'));
   const done = [], bad = [];
   let close = false;
   // pointer removals are applied highest index first so "/remove P2.1" + "/remove P2.3" both hit what the owner saw
-  const removals = [];
+  const removals = [], adds = [];
   for (const l of lines) {
     let m;
     if (/^\/(ok|ठीक)\b/i.test(l)) { close = true; done.push('✅ समीक्षा पूरी — Issue बंद'); continue; }
@@ -28,6 +30,17 @@ export function applyCommands(dg, map, text) {
       } else { pt.fact = text + (/[।]$/.test(text) ? '' : '।'); done.push(`✏️ ${m[2]} का शीर्षक बदला`); }
       continue;
     }
+    // /add P2 कब: 17 नवंबर   or   /add P2 any text  (key defaults to विवरण) — appended after removals
+    if ((m = l.match(/^\/(add|जोड़ो|जोड़ें)\s+(P\d+)\s+(.+)$/i))) {
+      const pt = byP(m[2]);
+      if (!pt) { bad.push(`${l} — ${m[2]} नहीं मिला`); continue; }
+      const kv = m[3].match(new RegExp(`^(${DKEYS.join('|')})\\s*[:：-]\\s*(.+)$`));
+      const k = kv ? kv[1] : 'विवरण';
+      const v = (kv ? kv[2] : m[3]).trim().replace(/[।.]$/, '');
+      if (v.length < 3 || v.length > 300) { bad.push(`${l} — पाठ 3–300 अक्षर का हो`); continue; }
+      adds.push({ pt, p: m[2].toUpperCase(), k, v });
+      continue;
+    }
     bad.push(`${l} — आदेश समझ नहीं आया`);
   }
   removals.sort((a, b) => b.j - a.j);
@@ -40,6 +53,14 @@ export function applyCommands(dg, map, text) {
       if (!d) { bad.push(`${r.l} — ${r.p}.${r.j} नहीं मिला`); continue; }
       r.pt.details.splice(r.j - 1, 1); done.push(`🗑 ${r.p}.${r.j} हटाया: ${d.k}: ${d.v.slice(0, 60)}`);
     }
+  }
+
+  for (const a of adds) {
+    if (!dg.points.includes(a.pt)) { bad.push(`/add ${a.p} — यह बिंदु हटाया जा चुका है`); continue; }
+    a.pt.details = a.pt.details || [];
+    if (a.pt.details.length >= 8) { bad.push(`/add ${a.p} — इसमें पहले से 8 उप-बिंदु हैं`); continue; }
+    a.pt.details.push({ k: a.k, v: a.v });
+    done.push(`➕ ${a.p}.${a.pt.details.length} जोड़ा: ${a.k}: ${a.v.slice(0, 80)}`);
   }
 
   const changed = done.some((d) => !d.startsWith('✅'));

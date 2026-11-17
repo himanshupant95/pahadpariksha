@@ -37,7 +37,8 @@ async function sendLong(blocks) {
 }
 const HELP = 'सुधार के आदेश (एक पंक्ति में एक; एक संदेश में कई भी चलेंगे):\n' +
   '<code>/remove P2</code> — पूरा बिंदु हटाएँ\n<code>/remove P2.3</code> — उप-बिंदु हटाएँ\n' +
-  '<code>/edit P2 नया शीर्षक</code>\n<code>/edit P2.3 नया पाठ</code>\n<code>/ok</code> — सब ठीक है\n' +
+  '<code>/edit P2 नया शीर्षक</code>\n<code>/edit P2.3 नया पाठ</code>\n' +
+  '<code>/add P2 कब: 17 नवंबर 2026</code> — नया उप-बिंदु जोड़ें (कब/कहाँ/कौन/कितना/कारण/विवरण/संस्था; बिना शीर्षक = विवरण)\n<code>/ok</code> — सब ठीक है\n' +
   'आदेश हर ~10 मिनट में पढ़े जाते हैं; साइट उसके 2–3 मिनट बाद अपडेट होती है।';
 
 if (!TOKEN || !CHAT) { console.log('telegram: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set'); if (mode === 'poll' && TOKEN) await reportChatIds(); process.exit(mode === 'send' || mode === 'test' ? 3 : 0); }
