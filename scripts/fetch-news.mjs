@@ -139,5 +139,5 @@ for (const [url, pubName] of process.env.OFFLINE ? [] : ALL) {
 const all = [...fresh, ...items].sort((a, b) => b.published.localeCompare(a.published));
 await writeFile(DATA, JSON.stringify({ updated: new Date().toISOString(), items: all }, null, 1) + '\n');
 await writeFile('new-news.json', JSON.stringify({ firstRun, errors, count: fresh.length }));
-console.log(`news: +${fresh.length} new, ${all.length} kept, ${errors.length} feed errors`);
+console.log(`news: +${fresh.length} new, ${all.length} kept, ${errors.length} feed errors` + (errors.length ? `\n  ` + errors.join(`\n  `) : ""));
 if (!process.env.OFFLINE && errors.length === ALL.length) { console.error(errors.join('\n')); process.exit(1); }
