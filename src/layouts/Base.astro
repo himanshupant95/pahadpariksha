@@ -63,12 +63,17 @@ const enUrl = `https://pahadpariksha-in.translate.goog${path}?_x_tr_sl=hi&_x_tr_
     {allSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
     {SITE.gaId && (
       <>
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaId}`}></script>
         <script is:inline define:vars={{ gaId: SITE.gaId }}>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', gaId);
+          // Load the analytics library after the page is ready (or on first interaction) so it doesn't
+          // compete with the page itself; the queued commands above are sent once it arrives.
+          let loaded = false;
+          const load = () => { if (loaded) return; loaded = true; const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId; document.head.appendChild(s); };
+          ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach((e) => addEventListener(e, load, { once: true, passive: true }));
+          if (document.readyState === 'complete') setTimeout(load, 2500); else addEventListener('load', () => setTimeout(load, 2500), { once: true });
         </script>
       </>
     )}

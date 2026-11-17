@@ -13,7 +13,7 @@ const groups = [
   {g.items.map((d) => d.live ? (
     <li class={`sd live ${d.division === 'कुमाऊँ' ? 'ku' : 'ga'}`}>
       <a href={districtHref(d)}>
-        <span class="sd-img">{d.img && <img src={d.img} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="500" height="320" />}<b class="part">भाग {d.part}</b></span>
+        <span class="sd-img">{d.img && <img src={d.img.replace(/\/\d+px-/, '/330px-')} srcset={`${d.img.replace(/\/\d+px-/, '/250px-')} 250w, ${d.img.replace(/\/\d+px-/, '/330px-')} 330w, ${d.img.replace(/\/\d+px-/, '/500px-')} 500w`} sizes="(max-width: 640px) 46vw, 270px" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="330" height="211" />}<b class="part">भाग {d.part}</b></span>
         <span class="sd-body">
           <strong>{d.name}</strong>
           {!compact && <em>{d.hook}</em>}
