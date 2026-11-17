@@ -1,6 +1,18 @@
 {
- "updated": "2026-11-17T01:57:21.921Z",
+ "updated": "2026-11-17T04:41:35.601Z",
  "items": [
+  {
+   "id": "d8044ddeea27",
+   "title": "उत्तराखंड में चारधाम यात्रा का समापन, शीतकाल के लिए बंद हुए बदरीनाथ धाम के कपाट",
+   "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOZmp4Yy1ncUJrMXRlbWRRWTNsUjVIYktXYTFBeVd2cFZDRDZJS3A1WmlFYXBNeGIwQVozUDg3aDJ4dUVwZllzUlc3WjI3VlVMUjI4SFY4dG1ZS3FMNUZYWWIzSFFoZ2s1UGxqOUpySC14dFZxWlRuamIwdEkzck1jLUkxSHUtOElYN2lDSFNjWFhqLVRiZ1ZNbnpNaHdrUHdhaGstLTRn?oc=5",
+   "source": "News On AIR",
+   "published": "2026-11-17T01:06:16.000Z",
+   "lang": "hi",
+   "score": 2,
+   "cat": "संस्कृति",
+   "sources": [],
+   "firstSeen": "2026-11-17T04:41:32.277Z"
+  },
   {
    "id": "4ada4a8d9b1e",
    "title": "उत्तराखंड में रामायण काल की विरासत 'श्रृंग ऋषि आश्रम', इस पहल से मिलेगी नई पहचान, बनेगा नया धार्मिक पर्यटन",
@@ -272,7 +284,8 @@
    "score": 2,
    "cat": "संस्कृति",
    "sources": [
-    "The Times of India"
+    "The Times of India",
+    "Prashant News"
    ],
    "firstSeen": "2026-11-16T12:20:46.662Z"
   },
@@ -285,7 +298,9 @@
    "lang": "hi",
    "score": 2,
    "cat": "रिपोर्ट/रैंकिंग",
-   "sources": [],
+   "sources": [
+    "The Bharat Now"
+   ],
    "firstSeen": "2026-11-16T15:59:16.152Z"
   },
   {
@@ -942,7 +957,9 @@
    "lang": "hi",
    "score": 4,
    "cat": "योजना/नीति",
-   "sources": [],
+   "sources": [
+    "liveskgnews"
+   ],
    "firstSeen": "2026-11-16T12:20:45.052Z"
   },
   {
