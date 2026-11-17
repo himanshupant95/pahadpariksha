@@ -70,7 +70,7 @@ Allowed keys and where the information may come from:
 RULES:
 - If unsure, leave it out. Fewer, correct sub-points beat many. An empty list is fine and common.
 - Test each sub-point: would it make a direct MCQ about THIS point? If not, drop it.
-- Do not repeat what the POINT already says.
+- Do not repeat or reword what the POINT already says, and do not state the obvious purpose ("to stop X", "to provide Y") when the POINT already implies it. Each sub-point must add a NEW name, number, date, place or body.
 - Simple Hindi, each "v" max 22 words, no trailing full stop needed.
 
 Reply with JSON only: {"items":[{"n":1,"details":[{"k":"कारण","v":"..."}]}]}`;
@@ -93,6 +93,12 @@ async function related(q, day, lang) {
   } catch { return []; }
 }
 
+// Drop sub-points that only restate the point: share of the detail's key words already in the fact.
+const STOP = new Set('के में की को ने से और पर है हैं का लिए एक यह वह भी तो कर किया किए गया गई गए था थी थे इस इसे द्वारा तथा एवं सहित वाला वाली वाले उत्तराखंड उत्तराखण्ड प्रदेश राज्य देश सरकार बना बनी बनीं'.split(' '));
+const norm = (t) => t.toLowerCase().replace(/[^\p{L}\p{M}\p{N} ]/gu, ' ').replace(/\s+/g, ' ').trim();
+const tokens = (t) => new Set(norm(t).split(' ').filter((w) => (w.length > 2 || /^\d+$/.test(w)) && !STOP.has(w)));
+const restates = (v, fact) => { const t = tokens(v); if (!t.size) return true; const f = tokens(fact); let i = 0; for (const w of t) if (f.has(w)) i++; return i / t.size >= 0.5; };
+
 async function enrich(list) { // list: [{fact, day, q, qen, titles:[]}] → mutates .details
   if (!list.length) return 0;
   for (const p of list) {
@@ -105,7 +111,7 @@ async function enrich(list) { // list: [{fact, day, q, qen, titles:[]}] → muta
   let n = 0;
   for (const it of out.items || []) {
     const p = list[(it.n || 0) - 1]; if (!p) continue;
-    p.details = (it.details || []).filter((d) => DKEYS.includes(d.k) && d.v && String(d.v).length < 200)
+    p.details = (it.details || []).filter((d) => DKEYS.includes(d.k) && d.v && String(d.v).length < 200 && !restates(String(d.v), p.fact))
       .slice(0, 3).map((d) => ({ k: d.k, v: String(d.v).trim().replace(/[।.]$/, '') }));
     n++;
   }
