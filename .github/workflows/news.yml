@@ -19,6 +19,7 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write
 
 concurrency:
   group: news
@@ -73,3 +74,9 @@ jobs:
           git pull --rebase origin main
           git push
           if [ "$MODE" = "edition" ] || [ "$MODE" = "backfill" ]; then gh workflow run deploy.yml --ref main; fi
+      - name: Open review issue for the new points
+        if: env.MODE == 'edition'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+        run: node scripts/review-issue.mjs || echo "review issue failed (edition is still live)"

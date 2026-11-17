@@ -199,6 +199,7 @@ const pending = PREVIEW
   : news.filter((n) => !reviewed.has(n.id) && istDay(n.published) < today);
 const previewOut = [];
 let added = 0, calls = 0;
+const addedIds = [];
 const errors = [];
 if (process.env.BACKFILL) {
   const todo = dg.points.filter((p) => !p.details).slice(0, 24);
@@ -247,7 +248,7 @@ for (const day of days) {
     }
     for (const f of fresh) {
       if (PREVIEW) { previewOut.push(`${f.imp >= 3 ? '★' : '·'} [${f.cat}] ${f.fact}  #${f.tag}` + (f.details || []).map((d) => `\n     • ${d.k}: ${d.v}`).join('') + `\n     ← ${f.refs.map((r) => r.title.slice(0, 90)).join(' || ')}`); continue; }
-      dg.points.push(f); added++;
+      dg.points.push(f); added++; addedIds.push(f.id);
     }
     items.forEach((n) => reviewed.add(n.id));
     console.log(`  ${day}: ${items.length} headlines → ${kept} points`);
@@ -270,6 +271,6 @@ dg.reviewed = [...reviewed].filter((id) => live.has(id));
 dg.points.sort((a, b) => b.date.localeCompare(a.date) || b.imp - a.imp);
 dg.updated = new Date().toISOString();
 await writeFile(DIGEST, JSON.stringify(dg, null, 1) + '\n');
-await writeFile('new-digest.json', JSON.stringify({ added, calls, errors }));
+await writeFile('new-digest.json', JSON.stringify({ added, ids: addedIds, days: days.length, calls, errors }));
 console.log(`digest: ${days.length} day(s) to review, ${calls} AI calls, +${added} points, ${errors.length} errors`);
 if (errors.length) console.error(errors.join('\n'));

@@ -1,0 +1,51 @@
+name: Current-affairs review commands
+
+# The owner replies on a nightly "ca-review" issue with /remove, /edit or /ok;
+# this applies the change to src/data/digest.json, redeploys and replies on the issue.
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+concurrency:
+  group: news
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: >-
+      github.event.issue.pull_request == null &&
+      contains(github.event.issue.labels.*.name, 'ca-review') &&
+      github.event.comment.user.login == github.repository_owner &&
+      startsWith(github.event.comment.body, '/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply commands
+        env:
+          COMMENT: ${{ github.event.comment.body }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: node scripts/review-apply.mjs
+      - name: Commit, redeploy, reply
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          if [ "$(cat review-changed)" = "1" ]; then
+            git config user.name "news-bot"
+            git config user.email "news-bot@users.noreply.github.com"
+            git add src/data/digest.json
+            git commit -m "Current affairs review (issue #$ISSUE) [skip ci]"
+            git pull --rebase origin main
+            git push
+            gh workflow run deploy.yml --ref main
+          fi
+          gh issue comment "$ISSUE" --body-file review-result.md
+          if [ "$(cat review-close)" = "1" ]; then gh issue close "$ISSUE"; fi
