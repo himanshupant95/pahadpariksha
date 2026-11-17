@@ -21,9 +21,10 @@ const SOURCES = [
     name: 'UKPSC',
     url: 'https://psc.uk.gov.in/',
     selector: '.custom-marque-section .marque-size a',
-    // psc.uk.gov.in refuses connections from outside India (GitHub's US runners time out).
-    // Runs only when INDIA=1, i.e. on the self-hosted runner in an Indian data centre.
-    disabled: process.env.INDIA !== '1',
+    // psc.uk.gov.in refuses connections from outside India (GitHub's US runners time out), so it is read
+    // through our relay on Google Cloud Run in Mumbai (cloudrun/ukpsc-relay). Skipped until UKPSC_RELAY is set.
+    fetchUrl: process.env.UKPSC_RELAY ? `${process.env.UKPSC_RELAY.replace(/\/$/, '')}/fetch?path=/` : null,
+    disabled: !process.env.UKPSC_RELAY,
     // each link points at its section page — use that for the category
     categoryFromUrl: (u) => /answerkey/.test(u) ? 'उत्तर कुंजी' : /admitcard/.test(u) ? 'प्रवेश पत्र' : /result/.test(u) ? 'परिणाम'
       : /recruitment/.test(u) ? 'भर्ती/विज्ञापन' : /calendar|exam-?schedule/.test(u) ? 'परीक्षा तिथि' : null,
@@ -51,7 +52,7 @@ const clean = (t) => t.replace(/\s+/g, ' ').replace(/\bNew\b\s*$/i, '').replace(
 const idOf = (src, title, url) => createHash('sha1').update(`${src}|${title}|${url}`).digest('hex').slice(0, 12);
 
 async function scrape(src) {
-  const res = await fetch(src.url, { headers: { 'User-Agent': UA, 'Accept-Language': 'hi,en;q=0.8' }, signal: AbortSignal.timeout(30000) });
+  const res = await fetch(src.fetchUrl || src.url, { headers: { 'User-Agent': UA, 'Accept-Language': 'hi,en;q=0.8' }, signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`${src.name}: HTTP ${res.status}`);
   const $ = cheerio.load(await res.text());
   const out = [];

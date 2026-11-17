@@ -17,11 +17,10 @@ concurrency:
 
 jobs:
   check:
-    # Runs on the self-hosted runner in an Indian data centre once the repo variable INDIA_RUNNER=true
-    # (psc.uk.gov.in blocks foreign IPs); otherwise on GitHub's US runner with UKPSC's main site skipped.
-    runs-on: ${{ vars.INDIA_RUNNER == 'true' && fromJSON('["self-hosted","india"]') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     env:
-      INDIA: ${{ vars.INDIA_RUNNER == 'true' && '1' || '0' }}
+      # Cloud Run relay in Mumbai for psc.uk.gov.in (blocks foreign IPs). Empty = UKPSC main site skipped.
+      UKPSC_RELAY: ${{ vars.UKPSC_RELAY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
