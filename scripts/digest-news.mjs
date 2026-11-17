@@ -29,7 +29,7 @@ const CATS = ['योजना/नीति', 'नियुक्ति', 'प�
 const MAX_PER_DAY = 10;
 
 const SYSTEM = `You are the current-affairs editor for UKPSC and UKSSSC exams (Uttarakhand Public Service Commission and Subordinate Service Selection Commission: Lower PCS, PCS, Patwari/Lekhpal, VDO, JA etc.).
-You receive ALL news headlines about Uttarakhand from ONE day (Hindi or English), each with an id. Produce that day's exam bulletin.
+You receive ALL news headlines about Uttarakhand from ONE day (Hindi or English), each with an id; some also have a short summary (सार) from the publisher. Produce that day's exam bulletin.
 
 THE ONLY TEST: "Could a UKPSC/UKSSSC general-knowledge question plausibly be asked on this?" If not clearly yes, DROP it. Most days only 2–8 items pass; an empty list is fine. Never pad.
 
@@ -45,7 +45,7 @@ KEEP only concrete, durable facts such as:
 DROP: speeches, visions, roadmaps, "CM said/directed/reviewed", inspections, felicitation functions, small local events or awards by private bodies, routine fund sanctions, exam results/admit cards, party politics, elections, protests, crime, accidents, weather, opinion, promotions, and anything already in ALREADY PUBLISHED.
 
 STRICT RULES:
-- Use ONLY information present in the headlines. Never add names, numbers, dates or places not in the input. If a headline is vague, DROP it.
+- Use ONLY information present in the headlines and their summaries. Never add names, numbers, dates or places not in the input. If a headline is vague, DROP it.
 - Several headlines about the same event → ONE point listing all their ids.
 - Simple Hindi, one sentence, max 30 words, starting with the key subject (person/scheme/place); keep common Hindi spellings of proper nouns.
 - "imp": 3 = very likely to be asked (named scheme/award/appointment/first/ranking/designation); 2 = useful fact. Never output imp 1 — drop it instead.
@@ -60,7 +60,7 @@ Reply with JSON only: {"points":[{"ids":["..."],"fact":"...","cat":"...","imp":3
 const DKEYS = ['कब', 'कहाँ', 'कौन', 'कितना', 'कारण', 'विवरण', 'श्रेणी', 'संस्था', 'पृष्ठभूमि'];
 const ENRICH = `You write the exam pointers for Uttarakhand current-affairs points for UKPSC/UKSSSC aspirants.
 On the website each POINT is a one-line heading; when a reader clicks it, your pointers appear below it. The reader should get every exam-relevant fact here and only visit the news site out of curiosity.
-For each numbered POINT you get RELATED HEADLINES (several outlets' coverage of the same story). Give 3–5 short pointers (fewer only if the headlines truly have nothing more).
+For each numbered POINT you get RELATED HEADLINES (several outlets' coverage of the same story; some lines include the publisher's summary after —). Give 3–5 short pointers (fewer only if the headlines truly have nothing more).
 
 Allowed keys and where the information may come from:
 - "कब" (date/occasion), "कहाँ" (place/district/venue), "कौन" (person, team, partner, ministry or body involved), "कितना" (number, amount, rank, score, area, capacity), "कारण" (why it was given / what was achieved / purpose), "विवरण" (any other concrete detail) — ONLY from the POINT text or its RELATED HEADLINES. Never infer or guess these.
@@ -295,7 +295,7 @@ for (const day of days) {
   const items = pending.filter((n) => istDay(n.published) === day).sort((a, b) => a.published.localeCompare(b.published));
   const recent = dg.points.filter((p) => Math.abs(Date.parse(p.date) - Date.parse(day)) <= 7 * 864e5).map((p) => `- ${p.fact}`);
   const user = `DATE: ${day}\n\nALREADY PUBLISHED:\n${recent.join('\n') || '(none)'}\n\nHEADLINES (${items.length}):\n` +
-    items.map((n) => `[${n.id}] ${n.title} — ${n.source}`).join('\n');
+    items.map((n) => `[${n.id}] ${n.title} — ${n.source}` + (n.summary ? `\n    सार: ${n.summary}` : '')).join('\n');
   try {
     const { model, out } = await ask(user);
     calls++;
@@ -309,7 +309,7 @@ for (const day of days) {
         id: hash(p.fact), date: day, fact: p.fact.trim(), cat: p.cat, imp: Math.min(3, p.imp), tag: (p.tag || '').trim(), model,
         refs: refs.map((r) => ({ title: r.title, link: r.link, source: r.source })),
         added: new Date().toISOString(),
-        _e: { day, q: p.q, qen: p.qen, titles: refs.map((r) => r.title) },
+        _e: { day, q: p.q, qen: p.qen, titles: refs.map((r) => r.title + (r.summary ? ` — ${r.summary}` : '')) },
       });
       kept++;
     }

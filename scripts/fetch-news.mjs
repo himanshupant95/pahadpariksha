@@ -1,7 +1,8 @@
 // Uttarakhand current-affairs tracker.
 // Pulls Google News RSS (Hindi + English) for Uttarakhand, keeps exam-relevant headlines,
 // drops crime/accident noise and duplicate stories, merges into src/data/news.json.
-// Only headline + source + link are stored (no article text). Run: node scripts/fetch-news.mjs
+// Publisher feeds (Amar Ujala, Live Hindustan, TV9) also give a short RSS summary, stored as `summary`
+// (max 300 chars, used only as AI input — never shown on the site). Run: node scripts/fetch-news.mjs
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import * as cheerio from 'cheerio';
@@ -28,6 +29,13 @@ const FEEDS = [
   gn('Uttarakhand cabinet decision', 'en'),
   gn('Uttarakhand first state', 'en'),
   gn('Uttarakhand award', 'en'),
+];
+// Publishers' own Uttarakhand feeds: direct article links + a summary paragraph (checked with scripts/probe-feeds.mjs)
+const PUB_FEEDS = [
+  ['https://www.amarujala.com/rss/uttarakhand.xml', 'Amar Ujala'],
+  ['https://www.amarujala.com/rss/dehradun.xml', 'Amar Ujala'],
+  ['https://api.livehindustan.com/feeds/rss/uttarakhand/rssfeed.xml', 'Live Hindustan'],
+  ['https://www.tv9hindi.com/state/uttarakhand/feed', 'TV9 Bharatvarsh'],
 ];
 
 // Must mention Uttarakhand or a place in it
@@ -73,22 +81,26 @@ function score(title) {
   return { score: s, cat };
 }
 
-async function readFeed(url) {
+const strip = (t) => t.replace(/<!\[CDATA\[|\]\]>/g, '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').replace(/\s+/g, ' ').trim();
+async function readFeed(url, pubName = '') {
   const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url.slice(0, 90)}`);
   const $ = cheerio.load(await res.text(), { xmlMode: true });
   const out = [];
   $('item').each((_, el) => {
     const it = $(el);
-    let title = clean(it.find('title').first().text());
-    const source = clean(it.find('source').first().text()) || '';
+    let title = clean(strip(it.find('title').first().text()));
+    const source = pubName || clean(it.find('source').first().text()) || '';
     const srcUrl = it.find('source').first().attr('url') || '';
     // Google News titles end with " - Source"
     if (source && title.endsWith(` - ${source}`)) title = title.slice(0, -(source.length + 3)).trim();
-    const link = it.find('link').first().text().trim();
-    const pub = new Date(it.find('pubDate').first().text());
+    const link = strip(it.find('link').first().text());
+    const pub = new Date(strip(it.find('pubDate').first().text()));
+    let summary = pubName ? clean(strip(it.find('description').first().text())) : '';
+    if (summary === title || summary.length < 40) summary = '';
+    summary = summary.slice(0, 300);
     if (!title || !link || isNaN(pub) || SRC_BLOCK.test(srcUrl)) return;
-    out.push({ title, link, source, published: pub.toISOString(), lang: /[ऀ-ॿ]/.test(title) ? 'hi' : 'en' });
+    out.push({ title, link, source, published: pub.toISOString(), lang: /[ऀ-ॿ]/.test(title) ? 'hi' : 'en', ...(summary ? { summary } : {}) });
   });
   return out;
 }
@@ -107,15 +119,16 @@ for (const i of old.items.filter((i) => Date.parse(i.published) > cutoff).sort((
 const errors = [];
 const fresh = [];
 
-for (const url of process.env.OFFLINE ? [] : FEEDS) {
+const ALL = [...PUB_FEEDS, ...FEEDS.map((u) => [u, ''])]; // publishers first, so their summarised copy is the one kept
+for (const [url, pubName] of process.env.OFFLINE ? [] : ALL) {
   try {
-    for (const n of await readFeed(url)) {
+    for (const n of await readFeed(url, pubName)) {
       if (Date.parse(n.published) < cutoff || Date.parse(n.published) > Date.now() + 36e5) continue;
       const sc = score(n.title);
       if (!sc) continue;
       const tk = tokens(n.title);
       const dup = [...items, ...fresh].find((x) => x.id === idOf(n.title) || (Math.abs(Date.parse(x.published) - Date.parse(n.published)) < 4 * 864e5 && similar(tk, tokens(x.title))));
-      if (dup) { if (n.source && n.source !== dup.source && !dup.sources?.includes(n.source)) (dup.sources ||= []).push(n.source); continue; }
+      if (dup) { if (n.source && n.source !== dup.source && !dup.sources?.includes(n.source)) (dup.sources ||= []).push(n.source); if (n.summary && !dup.summary) dup.summary = n.summary; continue; }
       fresh.push({ id: idOf(n.title), ...n, ...sc, sources: [], firstSeen: new Date().toISOString() });
     }
   } catch (e) {
@@ -127,4 +140,4 @@ const all = [...fresh, ...items].sort((a, b) => b.published.localeCompare(a.publ
 await writeFile(DATA, JSON.stringify({ updated: new Date().toISOString(), items: all }, null, 1) + '\n');
 await writeFile('new-news.json', JSON.stringify({ firstRun, errors, count: fresh.length }));
 console.log(`news: +${fresh.length} new, ${all.length} kept, ${errors.length} feed errors`);
-if (!process.env.OFFLINE && errors.length === FEEDS.length) { console.error(errors.join('\n')); process.exit(1); }
+if (!process.env.OFFLINE && errors.length === ALL.length) { console.error(errors.join('\n')); process.exit(1); }
