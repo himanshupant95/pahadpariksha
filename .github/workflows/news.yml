@@ -14,7 +14,7 @@ on:
         description: 'collect = headlines only; edition = headlines + AI + deploy; preview = dry run; backfill = add details to older points; check = grade the sample with the fact-checker (dry)'
         default: edition
         type: choice
-        options: [edition, collect, preview, backfill, check]
+        options: [edition, collect, preview, backfill, check, probe]
 
 permissions:
   contents: write
@@ -37,7 +37,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Probe publisher feeds
+        if: env.MODE == 'probe'
+        run: node scripts/probe-feeds.mjs
       - name: Collect headlines
+        if: env.MODE != 'probe'
         run: node scripts/fetch-news.mjs
       - name: AI preview on today's headlines (saves nothing)
         if: env.MODE == 'preview'
@@ -79,7 +83,7 @@ jobs:
           set -e
           if [ $rc -ne 0 ]; then echo "telegram rc=$rc -> GitHub issue"; node scripts/review-issue.mjs || echo "review issue failed (edition is still live)"; fi
       - name: Commit and redeploy
-        if: env.MODE != 'preview' && env.MODE != 'check'
+        if: env.MODE != 'preview' && env.MODE != 'check' && env.MODE != 'probe'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
