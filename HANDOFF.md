@@ -1,0 +1,123 @@
+# pahadpariksha.in — Handoff (as of 17 Nov 2026, 10:30 AM IST)
+
+Paste this file into a new chat to continue. Owner: Himanshu (GitHub `himanshupant95`).
+
+## 1. What the project is
+- **pahadpariksha.in**: Hindi-first prep site for Uttarakhand government exams (UKSSSC/UKPSC: Lower PCS, PCS, Patwari/Lekhpal, VDO, JA etc.).
+- **Stack:** Astro static site (trailingSlash `'always'`), Pagefind search, `@astrojs/sitemap` (rebuilt on every deploy; excludes /404 and /search/), GitHub Pages.
+- **Repo:** `himanshupant95/pahadpariksha`, branch `main`.
+  - `deploy.yml` runs on push to main and on workflow_dispatch.
+  - Bot commits made with GITHUB_TOKEN don't trigger other workflows, so the bots run `gh workflow run deploy.yml`.
+- **Commit identity:** `git -c user.name="Himanshu Pant" -c user.email="himanshupant95@users.noreply.github.com" commit …`, then `git pull --rebase origin main && git push origin main`.
+- **In Claude Code sessions:**
+  - `gh` GraphQL is blocked, so use REST, e.g. `gh api -X POST repos/himanshupant95/pahadpariksha/actions/workflows/news.yml/dispatches -f ref=main -f 'inputs[mode]=preview'`.
+  - The secrets API path is blocked. The user adds secrets himself.
+
+## 2. Accounts and services (all on blog.hypehive@gmail.com)
+| Service | What | Notes |
+|---|---|---|
+| Gemini API (AI Studio) | GitHub secret `GEMINI_API_KEY` | Free tier. OpenAI-compatible endpoint `generativelanguage.googleapis.com/v1beta/openai/chat/completions`. The model is picked at run time from `/v1beta/models` (currently gemini-3.8 / 3.7 / 3.6-flash). **Google Search grounding is NOT available free** (returns 429), so we don't use it. |
+| Groq (backup AI) | GitHub secret `GROQ_API_KEY` | Free tier, tested OK. Models are picked at run time; prefers `openai/gpt-oss-120b`, then `qwen/qwen3.8-27b`. Used only if every Gemini model fails. Groq's Cloudflare check fails inside the Claude built-in browser, so make keys in normal Chrome. |
+| Google Form "Pahad Pariksha - Contact" | Site contact form | Edit id `1c6-wAayr_3FIT3TCc6VaSFRD8sDA3VpTSb1RJG6FK5Q`; email notifications on. **User to-do:** delete the TEST response; rename the Drive file "Untitled form". |
+| Google Sheet "Pahad Pariksha - Uttarakhand Current Affairs Fact Sheet" | id `1u36mKoQWDuiPKnarvEgYfV140co3qY_mmyvDvNf9y-M` | Two tabs, described below. |
+
+The sheet's two tabs:
+- **All facts:** A1 = `=IMPORTDATA("https://pahadpariksha.in/current-affairs/facts.csv?v=2")`.
+- **Month view:** B1 = `'2026-11`; A3 = `=QUERY('All facts'!A:I,"select A,C,D,E,F,G,H,I where B starts with '"&B1&"'",1)`.
+
+Rules agreed with the user:
+- Claude never types API keys or passwords. The user pastes them.
+- The user accepts terms and age checks himself.
+- Don't route around geo-blocks or scrape Google News internals. Decoding Google News article URLs was blocked as unauthorised access.
+
+## 3. Site structure (key files)
+**District series "देवभूमि दर्पण · 13 ज़िले, 13 कहानियाँ"**
+- `src/data/districts.ts` lists SERIES and DISTRICTS, parts 1–13.
+  - **Live:** Dehradun, Haridwar, Nainital.
+  - **Next:** Almora (4), Pauri (5), Tehri (6), US Nagar, Chamoli, Pithoragarh, Uttarkashi, Rudraprayag, Bageshwar, Champawat.
+  - Set `live: true` when a district page ships.
+- `src/layouts/District.astro` is the locked template:
+  - series pill and prev/next navigation
+  - grid timeline (`.yr` / `.ev`)
+  - report-error button linking to `/contact/?topic=तथ्य में त्रुटि&page=…`
+- District pages live in `src/pages/gk/districts/<slug>.astro`; quizzes in `src/data/quizzes/<slug>.json` (15 questions each); the series hub is `src/pages/gk/districts/index.astro`.
+- `src/components/SeriesGrid.astro` shows Garhwal (7) and Kumaon (6), and becomes a swipe carousel on mobile.
+- Each new district needs:
+  - Wikimedia hero image (CC licence credited) and locator SVG
+  - OSM iframe
+  - about 19–20 sections
+  - quiz JSON
+  - entries in DailyQuestion `quizUrl`, homepage `districtPages` and `gk/uttarakhand-districts`
+
+**Homepage (`src/pages/index.astro`)**
+- Updates strip: open applications, notices, current affairs.
+- Dark green series band, topics grid with DailyQuestion, latest content.
+
+**Site-wide (`src/layouts/Base.astro`)**
+- Mobile header: one swipeable nav row.
+- Script turns tables with 3+ columns into stacked cards on phones (`numfirst` for a short first column).
+
+**Contact**
+- `src/components/ContactForm.astro` posts to Google Forms `formResponse` (no-cors). It has a honeypot and prefill from `?page=` / `?topic=`.
+- `src/data/site.ts`: `contactEmail` is empty, because contact@pahadpariksha.in has no MX records.
+
+## 4. Current-affairs pipeline (the main recent work)
+**Workflow `.github/workflows/news.yml`** (permissions: contents write, actions write)
+
+| Time (IST) | Cron | What it does |
+|---|---|---|
+| 12:11 PM | `41 6 * * *` | Collect headlines only, no AI |
+| 12:05 AM | `35 18 * * *` | Daily edition, then deploy |
+| 2:17 AM | `47 20 * * *` | Safety net, a no-op if the edition already ran |
+| 4:53 AM | `23 23 * * *` | Second safety net, same |
+
+- The safety nets were added because GitHub ran the 12:05 AM job about 7 hours late on 17 Nov.
+- Manual `mode` input: `edition` | `collect` | `preview` (dry run on today's headlines, prints points, saves nothing) | `backfill` (adds sub-points to older points that lack them).
+
+**`scripts/fetch-news.mjs`** (collector)
+- 11 Google News RSS searches (hi + en, `when:2d`).
+- Filters: PLACE regex, RULES scoring, NOISE regex (politics, elections, crime etc.).
+- Dedupe: token overlap coefficient ≥ 0.5 within 4 days. Normalise Devanagari with `[^\p{L}\p{M}\p{N} ]`; without `\p{M}` the matras get stripped.
+- KEEP_DAYS 45. Writes `src/data/news.json`.
+
+**`scripts/digest-news.mjs`** (AI editor, about 2–3 AI calls a night)
+- **Stage 1:** one call per complete IST day (yesterday) with that day's headlines plus the points already published within ±7 days.
+  - The prompt applies the "UKPSC/UKSSSC GK test" with KEEP/DROP lists. Awards count only if given by a government or a nationally recognised body (no memorial, sammelan or private-trust awards).
+  - Each point: Hindi, max 30 words, imp 3 or 2, a category from CATS, a tag, plus `q`/`qen` search queries. Max 10 points a day.
+- **Stage 2 (enrich):**
+  - For each point, fetch up to 8 related titles each from hi and en Google News RSS (`q` + `after:/before:` date range).
+  - One call returns up to 3 `details` `{k,v}` per point, with k ∈ कारण, विवरण, श्रेणी, संस्था, पृष्ठभूमि.
+  - कारण/विवरण come only from headlines. पृष्ठभूमि is the model's own static GK about the same named entity; this is the riskiest part, so review it.
+- **Fallbacks:** `ask()` tries 3 Gemini models with retries on 429/5xx (20/40/60s), then Groq. If enrich fails, the point is kept without details.
+- **Output:** `src/data/digest.json` holds `{reviewed[], points[], updated}`. Each point is `{id,date,fact,cat,imp,tag,model,refs[],details?,added}`.
+
+**Display**
+- `src/lib/digest.ts`: Point and Detail types, weekOf/monthOf helpers.
+- `src/components/PointList.astro`: shows `details` as `›` sub-bullets; uses `> li` selectors so the nested list doesn't break the numbering.
+- `src/components/Compilation.astro`: weekly and monthly pages, print-to-PDF.
+- Pages: `src/pages/current-affairs/` (index, `week/[w]`, `month/[m]`, `facts.csv.ts`).
+- CSV columns: Date, Month, Category, Importance, Fact, **Details**, Keyword, Source, Link.
+
+**State on 17 Nov morning**
+- 17 points in total.
+- The 17 Nov edition added 1 point (exports ₹13,000 crore, first among hill states) via gemini-3.6-flash. Its पृष्ठभूमि line (NITI Aayog export index) is off-topic padding; review it.
+- Backfill gave 15 of 16 older points sub-points. The good ones: Tenzing Norgay award (MoYAS, since 1994), Jauljibi (Kali–Gori confluence, 1914), Gauchar (1943), Swachh Survekshan (MoHUA, 2016).
+- About 6 sub-points just restate the main fact.
+
+## 5. Next steps (in order)
+1. **Duplicate-detail filter:** in `enrich()`, drop any detail whose token overlap with the fact is ≥ about 0.6 (reuse a `similar()`-style overlap). Then strip the existing restating details from digest.json: census, police colours, Hema Negi, Kedarnath, wildlife, Lakhpati Didi, Advaita Kala "संस्था: प्रसार भारती". Also review or remove the export-index पृष्ठभूमि line.
+2. **Check visually** that sub-points render on `/current-affairs/` and a week page, on desktop and mobile, and that the sheet shows Details. The Claude built-in browser was disconnected this morning; to restore it, fully quit and reopen the desktop app, open the browser pane, and message from there.
+3. **Google-safety items** (proposed, user hasn't approved yet):
+   - `noindex` weekly and monthly pages with fewer than about 8 points.
+   - A "हम करेंट अफेयर्स कैसे बनाते हैं" methodology page (AI-assisted, sourced, error-report).
+   - Optionally a daily review summary of new points.
+   - Never one page per fact (that pattern counts as scaled content abuse).
+4. **Next district:** Almora (part 4), fully researched in the same template, then Pauri and Tehri.
+5. **Deferred:** private preview page or nightly email of new points; ImprovMX email forwarding; history page from the user's book .md (don't reproduce the UOU book text); previous papers; Telegram/WhatsApp channel; AdSense; self-hosting Wikimedia images; sitemap lastmod; UKPSC notice tracker (paused).
+
+## 6. Facts flagged earlier that still need checking on district pages
+- Haridwar population: 18,90,422 (Census 2011 final) vs 19,27,029 (provisional).
+- Nainital area: 4,251 vs 3,860 sq km.
+- Gandhi's "Mahatma" title origin is disputed.
+- Tagore at Ramgarh: 1903 or 1914.
+- Tehsil lists may be out of date.
