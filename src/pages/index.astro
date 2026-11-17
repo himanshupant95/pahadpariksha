@@ -24,11 +24,12 @@ const topics = [
   { icon: 'paper', t: 'करेंट अफेयर्स', d: 'रोज़ के बिंदु, साप्ताहिक PDF', href: '/current-affairs/' },
   { icon: 'district', t: 'सूचनाएँ', d: 'भर्ती, एडमिट कार्ड, परिणाम', href: '/notices/' },
 ];
-const soon = ['उत्तराखंड का इतिहास', 'भूगोल', 'कला-संस्कृति', 'पिछले प्रश्न पत्र'];
+const soon = ['भूगोल', 'कला-संस्कृति', 'पिछले प्रश्न पत्र'];
 const garhwal = ['देहरादून', 'हरिद्वार', 'टिहरी गढ़वाल', 'उत्तरकाशी', 'चमोली', 'रुद्रप्रयाग', 'पौड़ी गढ़वाल'];
 const districtPages: Record<string, string> = { 'देहरादून': '/gk/districts/dehradun/', 'हरिद्वार': '/gk/districts/haridwar/', 'नैनीताल': '/gk/districts/nainital/', 'अल्मोड़ा': '/gk/districts/almora/', 'पौड़ी गढ़वाल': '/gk/districts/pauri-garhwal/', 'टिहरी गढ़वाल': '/gk/districts/tehri-garhwal/' };
 const kumaon = ['नैनीताल', 'अल्मोड़ा', 'पिथौरागढ़', 'बागेश्वर', 'चंपावत', 'ऊधम सिंह नगर'];
 const latest = [
+  { href: '/history/', tag: 'उत्तराखंड का इतिहास', t: 'नई शृंखला: उत्तराखंड का इतिहास — प्रागैतिहासिक, प्राचीन और कत्यूरी काल', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Ancient_Cave_Paintings_at_Lakhudiyar%2C_Almora_District%2C_Uttarakhand_India_-_1.jpeg/500px-Ancient_Cave_Paintings_at_Lakhudiyar%2C_Almora_District%2C_Uttarakhand_India_-_1.jpeg' },
   { href: '/gk/uttarakhand-districts/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड के 13 जिले: मंडल, मुख्यालय और महत्वपूर्ण तथ्य', img: '/images/uttarakhand-hills-800.webp' },
   { href: '/gk/uttarakhand-rivers/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड की प्रमुख नदियाँ: उद्गम, संगम और पंच प्रयाग', img: '/images/river-confluence-800.webp' },
   { href: '/quiz/uttarakhand-districts-rivers/', tag: 'क्विज़', t: 'उत्तराखंड जिले और नदियाँ क्विज़ (12 प्रश्न)', img: '/images/mountain-study-800.webp' },

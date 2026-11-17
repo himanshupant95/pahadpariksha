@@ -1,0 +1,15 @@
+---
+// Wikimedia Commons image with caption + attribution (required by CC BY / BY-SA).
+// file: the Commons path as in upload.wikimedia.org/wikipedia/commons/<file>, e.g. "d/de/Some_File.jpg"
+// w: thumbnail width (use a standard size: 500 or 960); orig: use the original file (small images, SVG/PNG maps)
+interface Props { file: string; alt: string; caption: string; author: string; license: string; w?: number; orig?: boolean; narrow?: boolean; eager?: boolean }
+const { file, alt, caption, author, license, w = 960, orig = false, narrow = false, eager = false } = Astro.props;
+const name = file.split('/').pop()!;
+const base = 'https://upload.wikimedia.org/wikipedia/commons';
+const src = orig ? `${base}/${file}` : `${base}/thumb/${file}/${w}px-${name}`;
+const page = `https://commons.wikimedia.org/wiki/File:${name}`;
+---
+<figure class={`fig${narrow ? ' narrow' : ''}`}>
+  <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" referrerpolicy="no-referrer" />
+  <figcaption>{caption}<span class="cr">चित्र: <a href={page} target="_blank" rel="noopener nofollow">{author}, {license}, Wikimedia Commons</a></span></figcaption>
+</figure>

@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import { HSERIES, CHAPTERS, chapterHref } from '../../data/history';
+const done = CHAPTERS.filter((c) => c.live).length;
+const schema = {
+  '@context': 'https://schema.org', '@type': 'ItemList', name: HSERIES.name,
+  itemListElement: CHAPTERS.filter((c) => c.live).map((c) => ({ '@type': 'ListItem', position: c.part, url: `https://pahadpariksha.in${chapterHref(c)}`, name: c.title })),
+};
+---
+<Base title={`${HSERIES.name} — अध्याय-दर-अध्याय (UKSSSC/UKPSC)`} description={`${HSERIES.name}: ${HSERIES.blurb}`}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › इतिहास</nav>
+  <header class="sh">
+    <p class="kick">शृंखला · History of Uttarakhand</p>
+    <h1>{HSERIES.name} <span>{HSERIES.tagline}</span></h1>
+    <p>{HSERIES.blurb}</p>
+    <div class="prog" aria-label={`${done} of ${CHAPTERS.length} published`}><div style={`width:${(done / CHAPTERS.length) * 100}%`}></div></div>
+    <p class="pl">{done} / {CHAPTERS.length} अध्याय प्रकाशित</p>
+  </header>
+
+  <h2>सभी अध्याय</h2>
+  <ol class="chs">
+    {CHAPTERS.map((c) => c.live ? (
+      <li><a class="ch" href={chapterHref(c)}>
+        {c.img && <img src={c.img} alt="" loading="lazy" referrerpolicy="no-referrer" />}
+        <span class="in"><small>अध्याय {c.part} · {c.period}</small><strong>{c.title}</strong><span>{c.hook}</span></span>
+      </a></li>
+    ) : (
+      <li><div class="ch soon"><span class="in"><small>अध्याय {c.part} · {c.period} · जल्द</small><strong>{c.title}</strong><span>{c.hook}</span></span></div></li>
+    ))}
+  </ol>
+
+  <h2>हर अध्याय में</h2>
+  <ul class="what">
+    <li><b>मूल स्रोतों पर आधारित</b> — विश्वविद्यालयी इतिहास-ग्रंथ, अभिलेख, पुरातात्विक रिपोर्ट</li>
+    <li><b>ऐतिहासिक तथ्य, जनश्रुति और मत-भेद</b> — अलग-अलग रंगों में</li>
+    <li><b>चित्र</b> — स्थलों, सिक्कों, अभिलेखों के (Wikimedia Commons, स्रोत सहित)</li>
+    <li><b>समयरेखा, ट्रिक प्रश्न और One-liners</b> — दोहराव के लिए</li>
+    <li><b>15 प्रश्नों का क्विज़</b> — तुरंत उत्तर व व्याख्या</li>
+  </ul>
+</Base>
+
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted); margin: 4px 0 10px; }
+  .sh { background: linear-gradient(135deg, #3b1d06, #9a3412); color: #fff; border-radius: 18px; padding: 26px 24px; }
+  .sh .kick { margin: 0; color: #fdba74; font-weight: 700; font-size: .82rem; }
+  .sh h1 { color: #fff; margin: 4px 0 6px; }
+  .sh h1 span { display: block; font-size: 1.05rem; color: #fed7aa; font-weight: 600; }
+  .sh p { color: #ffedd5; margin: 0 0 8px; max-width: 760px; }
+  .prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 8px; overflow: hidden; max-width: 420px; margin-top: 12px; }
+  .prog div { height: 100%; background: #fdba74; border-radius: 8px; }
+  .sh .pl { font-size: .85rem; margin-top: 6px; }
+  .chs { list-style: none; padding: 0; display: grid; gap: 10px; }
+  .ch { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-decoration: none; color: var(--ink); }
+  a.ch:hover { border-color: var(--green-2); }
+  .ch img { width: 150px; height: 110px; object-fit: cover; display: block; }
+  .ch .in { padding: 10px 14px 10px 0; display: block; }
+  .ch.soon { grid-template-columns: 1fr; opacity: .65; }
+  .ch.soon .in { padding: 12px 14px; }
+  .ch small { display: block; color: var(--muted); font-size: .78rem; }
+  .ch strong { display: block; color: var(--green); font-size: 1.1rem; margin: 2px 0; }
+  .ch .in > span { font-size: .9rem; }
+  @media (max-width: 560px) { .ch { grid-template-columns: 100px 1fr; } .ch img { width: 100px; height: 100%; min-height: 96px; } }
+  .what { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; list-style: none; padding: 0; }
+  .what li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .92rem; }
+  .what b { color: var(--green); }
+</style>
