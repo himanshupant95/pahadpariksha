@@ -1,0 +1,10 @@
+name: Probe sites (temporary)
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scripts/probe-sites.mjs https://psc.uk.gov.in/ http://psc.uk.gov.in/ https://ukpsc.net.in/ https://www.ukpsc.net.in/ https://ukpsc.gov.in/ https://sssc.uk.gov.in/ https://ukssscrecruitment.in/ https://uk.gov.in/
