@@ -10,8 +10,8 @@ const dmy = (d: string) => d.split('-').reverse().join('/');
   {items.map((r) => (
     <li data-expires={recruitExpiry(r)}>
       <div class="r-top">
-        <span class="src">{r.source}</span>
-        <span class="advt">विज्ञापन {r.advt}</span>
+        <span class={`src ${r.source.toLowerCase()}`}>{r.source}</span>
+        {r.advt !== r.source && <span class="advt">विज्ञापन {r.advt}</span>}
         <span class="left" data-end={recruitExpiry(r)}></span>
       </div>
       <strong class="r-title">{r.title}</strong>
@@ -33,6 +33,7 @@ const dmy = (d: string) => d.split('-').reverse().join('/');
   .recruits li { background: var(--card); border: 1px solid var(--line); border-left: 5px solid #ea580c; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
   .r-top { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .78rem; }
   .recruits .src { font-weight: 700; padding: 0 8px; border-radius: 20px; color: #fff; background: var(--green-2); }
+  .recruits .src.ukpsc { background: #1d4ed8; }
   .recruits .advt { color: var(--muted); }
   .recruits .left { margin-left: auto; background: #fff7ed; color: #c2410c; font-weight: 700; padding: 0 9px; border-radius: 20px; }
   .recruits .left.urgent { background: #dc2626; color: #fff; }
