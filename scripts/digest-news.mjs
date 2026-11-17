@@ -119,9 +119,9 @@ async function enrich(list) { // list: [{fact, day, q, qen, titles:[]}] → muta
 }
 
 // Stage 3: an independent model (Groq — a different model family from the Gemini writer) checks every
-// pointer against the same headlines. Keys that must come from the news are dropped unless supported;
-// पृष्ठभूमि (static GK) is kept only if the checker is sure it is a correct, well-documented fact.
-const NEWS_KEYS = new Set(['कब', 'कहाँ', 'कौन', 'कितना', 'कारण', 'विवरण']);
+// pointer against the same headlines. Dates/numbers (कब, कितना) are dropped unless the headlines support them;
+// any other pointer may also stand as certain, well-documented GK. 'off' (padding) and 'bad' are always dropped.
+const NEWS_KEYS = new Set(['कब', 'कितना']); // dates and numbers must come from the headlines; other keys may carry certain GK
 const VERIFY = `You are a strict fact-checker for an exam-preparation website (Uttarakhand, India).
 For each numbered POINT you get the RELATED HEADLINES (the only news evidence) and its POINTERS (each with an id like 2.3 and a key).
 Judge every pointer:
