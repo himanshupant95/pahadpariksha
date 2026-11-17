@@ -16,7 +16,9 @@ const HELP = 'सुधार के आदेश (एक पंक्ति म
   'साइट लगभग 1–2 मिनट में अपडेट होती है; पूरा होने पर बॉट बताएगा।';
 
 export default {
-  async fetch(req, env) {
+  async fetch(req, env0) {
+    // values pasted into the dashboard often carry a stray space/newline — trim them all
+    const env = Object.fromEntries(Object.entries(env0).map(([k, v]) => [k, typeof v === 'string' ? v.trim() : v]));
     const url = new URL(req.url);
     const tg = (method, body) => fetch(`https://api.telegram.org/bot${env.BOT_TOKEN}/${method}`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
@@ -24,9 +26,15 @@ export default {
 
     // one-time setup: point Telegram at this Worker
     if (url.pathname === '/setup') {
-      if (url.searchParams.get('key') !== env.WEBHOOK_SECRET) return new Response('forbidden', { status: 403 });
+      const key = (url.searchParams.get('key') || '').trim();
+      const plain = { 'content-type': 'text/plain; charset=utf-8' };
+      if (!env.WEBHOOK_SECRET) return new Response('❌ WEBHOOK_SECRET सेट नहीं है (Settings → Variables and Secrets)।', { status: 403, headers: plain });
+      if (!/^[A-Za-z0-9_-]+$/.test(env.WEBHOOK_SECRET)) return new Response('❌ WEBHOOK_SECRET में केवल अंग्रेज़ी अक्षर, अंक, _ और - हो सकते हैं।', { status: 403, headers: plain });
+      if (key !== env.WEBHOOK_SECRET) return new Response(`❌ key मेल नहीं खाती — लिंक में ${key.length} अक्षर हैं, सेव किए गए WEBHOOK_SECRET में ${env.WEBHOOK_SECRET.length}।`, { status: 403, headers: plain });
+      const missing = ['BOT_TOKEN', 'CHAT_ID', 'GH_TOKEN', 'GH_REPO'].filter((k) => !env[k]);
+      if (missing.length) return new Response(`❌ ये सेटिंग्स नहीं मिलीं: ${missing.join(', ')}`, { status: 500, headers: plain });
       const r = await tg('setWebhook', { url: `${url.origin}/hook`, secret_token: env.WEBHOOK_SECRET, allowed_updates: ['message'], drop_pending_updates: true });
-      return new Response(r.ok ? '✅ Telegram webhook जुड़ गया। अब बॉट को /help भेजें।' : `❌ ${r.description}`, { headers: { 'content-type': 'text/plain; charset=utf-8' } });
+      return new Response(r.ok ? '✅ Telegram webhook जुड़ गया। अब बॉट को /help भेजें।' : `❌ Telegram: ${r.description} (BOT_TOKEN जाँचें)`, { headers: plain });
     }
 
     if (url.pathname !== '/hook' || req.method !== 'POST') return new Response('ok');
