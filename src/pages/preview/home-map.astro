@@ -209,7 +209,7 @@ const latest = [
   .btn.light:hover { background: #fef3c7; color: var(--green); }
 
   /* ---- PREVIEW: Uttarakhand map watermark ---- */
-  .home-body { position: relative; isolation: isolate; }
+  .home-body { position: relative; isolation: isolate; overflow-x: clip; }
   .home-body::before {
     content: ''; position: absolute; z-index: -1; pointer-events: none;
     left: 50%; top: 10px; width: min(1100px, 150vw); aspect-ratio: 1000 / 919; transform: translateX(-50%);
