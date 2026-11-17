@@ -2,7 +2,8 @@ name: Exam notices tracker
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # every 30 min (GitHub may delay a few minutes)
+    # every 30 min, off the busy :00/:30 marks (GitHub drops many top-of-hour scheduled runs)
+    - cron: '11,41 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -16,7 +17,11 @@ concurrency:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    # Runs on the self-hosted runner in an Indian data centre once the repo variable INDIA_RUNNER=true
+    # (psc.uk.gov.in blocks foreign IPs); otherwise on GitHub's US runner with UKPSC's main site skipped.
+    runs-on: ${{ vars.INDIA_RUNNER == 'true' && fromJSON('["self-hosted","india"]') || 'ubuntu-latest' }}
+    env:
+      INDIA: ${{ vars.INDIA_RUNNER == 'true' && '1' || '0' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

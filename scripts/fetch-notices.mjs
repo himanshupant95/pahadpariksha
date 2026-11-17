@@ -21,8 +21,13 @@ const SOURCES = [
     name: 'UKPSC',
     url: 'https://psc.uk.gov.in/',
     selector: '.custom-marque-section .marque-size a',
-    // Paused: psc.uk.gov.in times out for GitHub's (US) runners. Re-enable when the job runs from an Indian network.
-    disabled: true,
+    // psc.uk.gov.in refuses connections from outside India (GitHub's US runners time out).
+    // Runs only when INDIA=1, i.e. on the self-hosted runner in an Indian data centre.
+    disabled: process.env.INDIA !== '1',
+    // each link points at its section page — use that for the category
+    categoryFromUrl: (u) => /answerkey/.test(u) ? 'उत्तर कुंजी' : /admitcard/.test(u) ? 'प्रवेश पत्र' : /result/.test(u) ? 'परिणाम'
+      : /recruitment/.test(u) ? 'भर्ती/विज्ञापन' : /calendar|exam-?schedule/.test(u) ? 'परीक्षा तिथि' : null,
+    keep: (title, href) => !/tenders/.test(href),
   },
 ];
 
@@ -60,7 +65,7 @@ async function scrape(src) {
     const id = idOf(src.name, title, href);
     if (seen.has(id)) return;
     seen.add(id);
-    out.push({ id, source: src.name, title, url: href, category: categorize(title) });
+    out.push({ id, source: src.name, title, url: href, category: (src.categoryFromUrl && src.categoryFromUrl(href)) || categorize(title) });
   });
   if (out.length === 0) throw new Error(`${src.name}: 0 items parsed — page layout may have changed`);
   return out;
@@ -89,9 +94,33 @@ async function scrapeRecruitments() {
   return rows;
 }
 
+// ---- UKPSC application portal (ukpsc.net.in) — reachable from anywhere. It is a React app whose list of
+// admit cards / online applications (with start & end dates) is compiled into the main JS bundle.
+async function scrapeUkpscPortal() {
+  const base = 'https://ukpsc.net.in/';
+  const html = await fetch(base, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(20000) }).then((r) => {
+    if (!r.ok) throw new Error(`UKPSC portal: HTTP ${r.status}`); return r.text(); });
+  const js = html.match(/src="((?:\.?\/)?static\/js\/main\.[^"]+\.js)"/);
+  if (!js) throw new Error('UKPSC portal: main JS bundle not found — layout may have changed');
+  const bundle = await fetch(new URL(js[1], base), { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30000) }).then((r) => r.text());
+  const str = (re, chunk) => { const m = chunk.match(re); return m ? m[1].replace(/\\"/g, '"').replace(/\\\//g, '/') : null; };
+  const items = [];
+  for (const m of bundle.matchAll(/\{id:(\d+),exam_name:"((?:[^"\\]|\\.)*)"([^}]*)\}/g)) {
+    const rest = m[3];
+    const name = clean(m[2].replace(/\\"/g, '"').replace(/<[^>]*>/g, ' '));
+    const url = str(/exam_apply_url:"((?:[^"\\]|\\.)*)"/, rest) || base;
+    const start = toISO(str(/start_date_format:"([^"]*)"/, rest) || ''), end = toISO(str(/end_date_format:"([^"]*)"/, rest) || '');
+    if (name.length < 15) continue;
+    items.push({ pid: m[1], name, url, start, end });
+  }
+  if (!items.length) throw new Error('UKPSC portal: 0 items parsed — bundle format may have changed');
+  return items;
+}
+
 const existing = JSON.parse(await readFile(DATA, 'utf8'));
 // re-apply the latest category rules to everything already stored
-for (const n of existing) n.category = categorize(n.title);
+const ukpscSite = SOURCES.find((s) => s.name === 'UKPSC');
+for (const n of existing) n.category = (n.source === 'UKPSC' && n.url.startsWith('https://psc.uk.gov.in') && ukpscSite.categoryFromUrl(n.url)) || categorize(n.title);
 const known = new Set(existing.map((n) => n.id));
 const firstRun = existing.length === 0;
 const now = new Date().toISOString();
@@ -102,7 +131,10 @@ for (const src of SOURCES.filter((s) => !s.disabled)) {
   try {
     const items = await scrape(src);
     console.log(`${src.name}: ${items.length} items`);
-    for (const it of items) if (!known.has(it.id)) { fresh.push({ ...it, firstSeen: now }); known.add(it.id); }
+    // a source's first successful run stores the current list silently (no flood of alerts)
+    const host = new URL(src.url).host;
+    const seed = !existing.some((n) => n.url.includes(host));
+    for (const it of items) if (!known.has(it.id)) { (seed ? existing : fresh).push({ ...it, firstSeen: now }); known.add(it.id); }
   } catch (e) {
     const cause = e.cause ? ` (${e.cause.code || ''} ${e.cause.message || e.cause})` : '';
     console.error(`ERROR ${src.name}: ${e.message}${cause}`);
@@ -110,15 +142,37 @@ for (const src of SOURCES.filter((s) => !s.disabled)) {
   }
 }
 
+// UKPSC portal → notices (admit cards, application windows) + open applications list
+let ukpscOpen = [];
+try {
+  const portal = await scrapeUkpscPortal();
+  console.log(`UKPSC portal: ${portal.length} items`);
+  const dmy = (d) => d ? d.split('-').reverse().join('/') : '';
+  // first time this source runs: store what's already there without alerting
+  const seedPortal = !existing.some((n) => n.url.startsWith('https://ukpscnet.in'));
+  const seeded = [];
+  for (const p of portal) {
+    const title = p.start && p.end ? `${p.name} (${dmy(p.start)} – ${dmy(p.end)})` : p.name;
+    const id = idOf('UKPSC-portal', p.pid, p.name);
+    if (!known.has(id)) { (seedPortal ? seeded : fresh).push({ id, source: 'UKPSC', title, url: p.url, category: categorize(p.name), firstSeen: now }); known.add(id); }
+    if (/application|आवेदन/i.test(p.name) && !/admit card|download/i.test(p.name) && p.end)
+      ukpscOpen.push({ source: 'UKPSC', advt: `UKPSC पोर्टल #${p.pid}`, type: 'UKPSC', title: p.name, start: p.start, end: p.end, url: p.url, apply: p.url });
+  }
+  if (seeded.length) { existing.unshift(...seeded); console.log(`UKPSC portal: seeded ${seeded.length} existing items silently`); }
+} catch (e) {
+  console.error(`ERROR ${e.message}`);
+  errors.push(e.message);
+}
+
 let newAdvts = [];
 try {
   const prev = JSON.parse(await readFile(RECRUIT, 'utf8').catch(() => '[]'));
   const rec = await scrapeRecruitments();
   console.log(`UKSSSC portal: ${rec.length} advertisements`);
-  const prevKeys = new Set(prev.map((r) => r.advt));
+  const prevKeys = new Set(prev.filter((r) => r.source === 'UKSSSC').map((r) => r.advt));
   newAdvts = rec.filter((r) => !prevKeys.has(r.advt)).map((r) => ({ id: idOf('advt', r.advt, r.end), source: r.source, title: `नई भर्ती: ${r.title} (विज्ञापन ${r.advt}, अंतिम तिथि ${r.end.split('-').reverse().join('/')})`, url: r.apply, category: 'भर्ती/विज्ञापन' }));
   if (prev.length === 0) newAdvts = []; // first run: seed silently
-  await writeFile(RECRUIT, JSON.stringify(rec, null, 2) + '\n');
+  await writeFile(RECRUIT, JSON.stringify([...rec, ...ukpscOpen], null, 2) + '\n');
 } catch (e) {
   console.error(`ERROR ${e.message}`);
   errors.push(e.message);
