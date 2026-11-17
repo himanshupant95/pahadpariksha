@@ -30,6 +30,17 @@ export const weekLabel = (start: string, end: string) => { const a = d0(start), 
   return a.getUTCMonth() === b.getUTCMonth() ? `${a.getUTCDate()}–${b.getUTCDate()} ${MONTHS[b.getUTCMonth()]} ${b.getUTCFullYear()}` : `${fmtShort(start)} – ${fmtDay(end)}`; };
 export const monthLabel = (m: string) => `${MONTHS[Number(m.slice(5, 7)) - 1]} ${m.slice(0, 4)}`;
 
+/** Compilation pages with too few points look thin to Google: they get noindex and stay out of the sitemap
+ *  until they fill up (both flip back automatically on the next build). */
+export const MIN_WEEK_POINTS = 12;
+export const MIN_MONTH_POINTS = 30;
+export function thinPaths(): string[] {
+  return [
+    ...weeks().filter((w) => w.items.length < MIN_WEEK_POINTS).map((w) => `/current-affairs/week/${w.key}/`),
+    ...months().filter((m) => m.items.length < MIN_MONTH_POINTS).map((m) => `/current-affairs/month/${m.key}/`),
+  ];
+}
+
 export function weeks() {
   const map = new Map<string, { key: string; start: string; end: string; items: Point[] }>();
   for (const p of points()) { const w = weekOf(p.date); (map.get(w.key) ?? map.set(w.key, { ...w, items: [] }).get(w.key)!).items.push(p); }
