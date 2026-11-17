@@ -32,7 +32,9 @@ body += `\n---\n#### सुधारने के लिए इस Issue पर 
 
 const title = errors.length && !pts.length ? `⚠ करेंट अफेयर्स रन विफल — ${ist}` : `करेंट अफेयर्स समीक्षा — ${ist} (${pts.length} बिंदु${risky ? `, ⚠${risky}` : ''})`;
 await writeFile('review-body.md', body);
-const gh = (...a) => execFileSync('gh', a, { stdio: ['ignore', 'pipe', 'inherit'] }).toString().trim();
-try { gh('label', 'create', 'ca-review', '--color', '1f7a4d', '--description', 'Nightly current-affairs review', '--force'); } catch {}
-const url = gh('issue', 'create', '--title', title, '--body-file', 'review-body.md', '--label', 'ca-review', '--assignee', process.env.OWNER);
-console.log('review issue:', url);
+// REST API (works in Actions and where GraphQL is unavailable)
+const repo = process.env.GITHUB_REPOSITORY || process.env.GH_REPO;
+const api = (path, payload) => execFileSync('gh', ['api', '-X', 'POST', path, '--input', '-'], { input: JSON.stringify(payload), stdio: ['pipe', 'pipe', 'pipe'] }).toString();
+try { api(`repos/${repo}/labels`, { name: 'ca-review', color: '1f7a4d', description: 'Nightly current-affairs review' }); } catch {} // already exists
+const res = JSON.parse(api(`repos/${repo}/issues`, { title, body, labels: ['ca-review'], assignees: [process.env.OWNER] }));
+console.log('review issue:', res.html_url);
