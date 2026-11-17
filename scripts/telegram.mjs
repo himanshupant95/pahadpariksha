@@ -40,9 +40,16 @@ const HELP = 'सुधार के आदेश (एक पंक्ति म
   '<code>/edit P2 नया शीर्षक</code>\n<code>/edit P2.3 नया पाठ</code>\n<code>/ok</code> — सब ठीक है\n' +
   'आदेश हर ~10 मिनट में पढ़े जाते हैं; साइट उसके 2–3 मिनट बाद अपडेट होती है।';
 
-if (!TOKEN || !CHAT) { console.log('telegram: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set'); if (mode === 'poll' && TOKEN) await reportChatIds(); process.exit(mode === 'send' ? 3 : 0); }
+if (!TOKEN || !CHAT) { console.log('telegram: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set'); if (mode === 'poll' && TOKEN) await reportChatIds(); process.exit(mode === 'send' || mode === 'test' ? 3 : 0); }
 
-if (mode === 'send') {
+// test: re-send the last reviewed batch (same P-numbers as .review/latest.json) to check the setup
+if (mode === 'test') {
+  const last = JSON.parse(await readFile(MAP, 'utf8').catch(() => '{"map":{}}'));
+  await writeFile('new-digest.json', JSON.stringify({ ids: Object.values(last.map || {}), errors: [] }));
+  await tg('sendMessage', { chat_id: CHAT, text: '🧪 टेस्ट: समीक्षा बॉट जुड़ गया है। नीचे पिछले संस्करण के बिंदु उसी रूप में हैं जैसे हर रात आएँगे।' });
+}
+
+if (mode === 'send' || mode === 'test') {
   const run = JSON.parse(await readFile('new-digest.json', 'utf8').catch(() => '{}'));
   const dg = JSON.parse(await readFile(DIGEST, 'utf8'));
   const pts = (run.ids || []).map((id) => dg.points.find((p) => p.id === id)).filter(Boolean);

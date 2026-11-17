@@ -9,6 +9,11 @@ on:
   schedule:
     - cron: '*/10 0-17 * * *'
   workflow_dispatch:
+    inputs:
+      test:
+        description: 'Send a test review message (last batch) instead of polling'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -57,7 +62,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Send test review
+        if: inputs.test
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/telegram.mjs test
       - name: Read and apply replies
+        if: ${{ !inputs.test }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
