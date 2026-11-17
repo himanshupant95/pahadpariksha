@@ -56,24 +56,24 @@ STRICT RULES:
 
 Reply with JSON only: {"points":[{"ids":["..."],"fact":"...","cat":"...","imp":3,"tag":"...","q":"...","qen":"..."}]}`;
 
-// Stage 2: add the "why / which category / background" sub-points that headlines alone rarely carry.
-const DKEYS = ['कारण', 'विवरण', 'श्रेणी', 'संस्था', 'पृष्ठभूमि'];
-const ENRICH = `You add exam detail to Uttarakhand current-affairs points for UKPSC/UKSSSC aspirants.
-For each numbered POINT you get RELATED HEADLINES (other outlets' coverage of the same story). Give 0–3 short sub-points that an examiner could turn into a question.
+// Stage 2: the key pointers shown when a reader opens a point — so they need not visit the news site.
+const DKEYS = ['कब', 'कहाँ', 'कौन', 'कितना', 'कारण', 'विवरण', 'श्रेणी', 'संस्था', 'पृष्ठभूमि'];
+const ENRICH = `You write the exam pointers for Uttarakhand current-affairs points for UKPSC/UKSSSC aspirants.
+On the website each POINT is a one-line heading; when a reader clicks it, your pointers appear below it. The reader should get every exam-relevant fact here and only visit the news site out of curiosity.
+For each numbered POINT you get RELATED HEADLINES (several outlets' coverage of the same story). Give 3–5 short pointers (fewer only if the headlines truly have nothing more).
 
 Allowed keys and where the information may come from:
-- "कारण" (why it was given / what was achieved), "विवरण" (specific detail: event, place, amount, rank, category won, partner, date) — ONLY from the POINT text or its RELATED HEADLINES. Never infer or guess these.
-- "श्रेणी" (the award/medal category or type), "संस्था" (who gives/runs it: ministry, body) — from headlines, or from well-established general knowledge.
-- "पृष्ठभूमि" (one static-GK fact about the SAME award/scheme/institution/person/place NAMED in the point, e.g. when the award was instituted, what it is the highest honour for, which ministry gives it, where the institution is) — ONLY a widely documented fact you are certain of. Never about this year's event, never a guessed number or name.
-- Do NOT bring in a different index, report, scheme or body that the point does not name (e.g. don't mention an index just because the point is about a ranking). A sub-point that is merely "related" is padding — leave it out.
+- "कब" (date/occasion), "कहाँ" (place/district/venue), "कौन" (person, team, partner, ministry or body involved), "कितना" (number, amount, rank, score, area, capacity), "कारण" (why it was given / what was achieved / purpose), "विवरण" (any other concrete detail) — ONLY from the POINT text or its RELATED HEADLINES. Never infer or guess these.
+- "श्रेणी" (award/medal category or type), "संस्था" (who gives/runs it) — from headlines, or from well-established general knowledge.
+- "पृष्ठभूमि" (at most ONE static-GK fact about the SAME award/scheme/institution/person/place NAMED in the point — when instituted, highest honour of what, where located) — only a widely documented fact you are certain of. Never a different index, report or scheme that the point does not name.
 
 RULES:
-- If unsure, leave it out. Fewer, correct sub-points beat many. An empty list is fine and common.
-- Test each sub-point: would it make a direct MCQ about THIS point? If not, drop it.
-- Do not repeat or reword what the POINT already says, and do not state the obvious purpose ("to stop X", "to provide Y") when the POINT already implies it. Each sub-point must add a NEW name, number, date, place or body.
-- Simple Hindi, each "v" max 22 words, no trailing full stop needed.
+- Each pointer must add a NEW name, number, date, place or body that the POINT heading does not already contain. Never reword the heading; never state an obvious purpose.
+- Prefer facts an examiner could turn into an MCQ: names, numbers, places, firsts, ranks, the giving body.
+- If headlines conflict on a number, leave that number out.
+- Simple Hindi, each "v" max 22 words, no trailing full stop.
 
-Reply with JSON only: {"items":[{"n":1,"details":[{"k":"कारण","v":"..."}]}]}`;
+Reply with JSON only: {"items":[{"n":1,"details":[{"k":"कहाँ","v":"..."}]}]}`;
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36';
 const addDays = (d, n) => new Date(Date.parse(d) + n * 864e5).toISOString().slice(0, 10);
@@ -112,7 +112,7 @@ async function enrich(list) { // list: [{fact, day, q, qen, titles:[]}] → muta
   for (const it of out.items || []) {
     const p = list[(it.n || 0) - 1]; if (!p) continue;
     p.details = (it.details || []).filter((d) => DKEYS.includes(d.k) && d.v && String(d.v).length < 200 && !restates(String(d.v), p.fact))
-      .slice(0, 3).map((d) => ({ k: d.k, v: String(d.v).trim().replace(/[।.]$/, '') }));
+      .slice(0, 5).map((d) => ({ k: d.k, v: String(d.v).trim().replace(/[।.]$/, '') }));
     n++;
   }
   return n;
@@ -128,7 +128,7 @@ async function ask(user, system = SYSTEM) {
       const res = await fetch(`${API}/openai/chat/completions`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ model, temperature: 0.1, max_tokens: 6000, response_format: { type: 'json_object' },
+        body: JSON.stringify({ model, temperature: 0.1, max_tokens: 8000, response_format: { type: 'json_object' },
           messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }),
         signal: AbortSignal.timeout(120000),
       }).catch((e) => ({ ok: false, status: 0, text: async () => String(e) }));
@@ -151,7 +151,7 @@ async function ask(user, system = SYSTEM) {
         const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
           method: 'POST',
           headers: { Authorization: `Bearer ${GROQ}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model, temperature: 0.1, max_tokens: 6000, response_format: { type: 'json_object' },
+          body: JSON.stringify({ model, temperature: 0.1, max_tokens: 8000, response_format: { type: 'json_object' },
             messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }),
           signal: AbortSignal.timeout(120000),
         }).catch((e) => ({ ok: false, status: 0, text: async () => String(e) }));
@@ -203,9 +203,9 @@ const errors = [];
 if (process.env.BACKFILL) {
   const todo = dg.points.filter((p) => !p.details).slice(0, 24);
   let done = 0;
-  for (let i = 0; i < todo.length; i += 12) {
-    const chunk = todo.slice(i, i + 12);
-    const list = chunk.map((p) => ({ fact: p.fact, day: p.date, q: p.tag, qen: '', titles: p.refs.map((r) => r.title) }));
+  for (let i = 0; i < todo.length; i += 8) {
+    const chunk = todo.slice(i, i + 8);
+    const list = chunk.map((p) => ({ fact: p.fact, day: p.date, q: p.q || p.tag, qen: p.qen || '', titles: p.refs.map((r) => r.title) }));
     try { await enrich(list); calls++; } catch (e) { errors.push(`backfill: ${e.message}`); break; }
     chunk.forEach((p, k) => { p.details = list[k].details || []; if (p.details.length) done++; console.log(`• ${p.fact}` + p.details.map((d) => `\n   - ${d.k}: ${d.v}`).join('')); });
   }

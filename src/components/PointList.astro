@@ -1,27 +1,52 @@
 ---
 import type { Point } from '../lib/digest';
 import { fmtShort } from '../lib/digest';
-interface Props { items: Point[]; showDate?: boolean; showCat?: boolean; compact?: boolean; numbered?: boolean }
-const { items, showDate = false, showCat = true, compact = false, numbered = false } = Astro.props;
+// collapsible: heading only; click opens the key pointers, with the source at the end (current-affairs page).
+// Otherwise everything is shown expanded (homepage strip, printable weekly/monthly compilations).
+interface Props { items: Point[]; showDate?: boolean; showCat?: boolean; compact?: boolean; numbered?: boolean; collapsible?: boolean }
+const { items, showDate = false, showCat = true, compact = false, numbered = false, collapsible = false } = Astro.props;
 const Tag = numbered ? 'ol' : 'ul';
 const uniq = (refs: Point['refs']) => refs.filter((r, i, a) => a.findIndex((x) => x.source === r.source) === i);
 ---
-<Tag class={`points ${compact ? 'compact' : ''} ${numbered ? 'num' : ''}`}>
-  {items.map((p) => (
+<Tag class={`points ${compact ? 'compact' : ''} ${numbered ? 'num' : ''} ${collapsible ? 'coll' : ''}`}>
+  {items.map((p) => {
+    const srcs = uniq(p.refs);
+    const has = !!(p.details && p.details.length);
+    return (
     <li class={p.imp >= 3 ? 'imp' : undefined} data-cat={p.cat}>
-      <p class="fact">{p.fact}</p>
-      {p.details && p.details.length > 0 && (
-        <ul class="dets">{p.details.map((d) => <li><b>{d.k}:</b> {d.v}</li>)}</ul>
-      )}
-      <div class="p-meta">
-        {p.imp >= 3 && <span class="star">★ महत्वपूर्ण</span>}
-        {showCat && <span class="cat">{p.cat}</span>}
-        {p.tag && <span class="tag">#{p.tag}</span>}
-        {showDate && <span class="dt">{fmtShort(p.date)}</span>}
-        {!compact && <span class="src">स्रोत: {uniq(p.refs).slice(0, 3).map((r, i) => <>{i > 0 && ', '}<a href={r.link} target="_blank" rel="noopener nofollow">{r.source || 'समाचार'}</a></>)}{uniq(p.refs).length > 3 && ` +${uniq(p.refs).length - 3}`}</span>}
-      </div>
+      {collapsible ? (
+        <details>
+          <summary>
+            <span class="fact">{p.fact}</span>
+            <span class="p-meta">
+              {p.imp >= 3 && <span class="star">★ महत्वपूर्ण</span>}
+              {showCat && <span class="cat">{p.cat}</span>}
+              {p.tag && <span class="tag">#{p.tag}</span>}
+              {showDate && <span class="dt">{fmtShort(p.date)}</span>}
+              <span class="more">{has ? `${p.details!.length} मुख्य बिंदु` : 'स्रोत'}</span>
+            </span>
+          </summary>
+          <div class="body">
+            {has && <ul class="dets">{p.details!.map((d) => <li><b>{d.k}:</b> {d.v}</li>)}</ul>}
+            {srcs.length > 0 && (
+              <p class="readmore">पूरी ख़बर पढ़ें: {srcs.slice(0, 4).map((r, i) => <>{i > 0 && ' · '}<a href={r.link} target="_blank" rel="noopener nofollow">{r.source || 'समाचार'} ↗</a></>)}</p>
+            )}
+          </div>
+        </details>
+      ) : (<>
+        <p class="fact">{p.fact}</p>
+        {has && <ul class="dets">{p.details!.map((d) => <li><b>{d.k}:</b> {d.v}</li>)}</ul>}
+        <div class="p-meta">
+          {p.imp >= 3 && <span class="star">★ महत्वपूर्ण</span>}
+          {showCat && <span class="cat">{p.cat}</span>}
+          {p.tag && <span class="tag">#{p.tag}</span>}
+          {showDate && <span class="dt">{fmtShort(p.date)}</span>}
+          {!compact && <span class="src">स्रोत: {srcs.slice(0, 3).map((r, i) => <>{i > 0 && ', '}<a href={r.link} target="_blank" rel="noopener nofollow">{r.source || 'समाचार'}</a></>)}{srcs.length > 3 && ` +${srcs.length - 3}`}</span>}
+        </div>
+      </>)}
     </li>
-  ))}
+    );
+  })}
 </Tag>
 
 <style is:global>
@@ -36,8 +61,8 @@ const uniq = (refs: Point['refs']) => refs.filter((r, i, a) => a.findIndex((x) =
   .points.compact > li { padding: 8px 12px; margin-bottom: 6px; }
   .points.num > li, .points.num.compact > li { padding-left: 46px; }
   .points .dets { list-style: none; margin: 5px 0 2px; padding: 0; }
-  .points .dets li { background: none; border: 0; border-radius: 0; margin: 0; padding: 1px 0 1px 16px; font-size: .9rem; line-height: 1.55; color: var(--ink); position: relative; }
-  .points .dets li::before { content: '›'; position: absolute; left: 3px; top: 0; width: auto; height: auto; background: none; color: var(--accent); font-weight: 700; display: inline; }
+  .points .dets li { background: none; border: 0; border-radius: 0; margin: 0; padding: 2px 0 2px 16px; font-size: .92rem; line-height: 1.6; color: var(--ink); position: relative; }
+  .points .dets li::before { content: '›'; position: absolute; left: 3px; top: 1px; width: auto; height: auto; background: none; color: var(--accent); font-weight: 700; display: inline; }
   .points .dets b { color: var(--green); font-weight: 600; }
   .points.compact .dets li { font-size: .85rem; }
   .points .p-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .76rem; color: var(--muted); margin-top: 4px; }
@@ -45,4 +70,21 @@ const uniq = (refs: Point['refs']) => refs.filter((r, i, a) => a.findIndex((x) =
   .points .star { background: #fff7ed; color: #9a3412; padding: 0 8px; border-radius: 20px; font-weight: 700; }
   .points .tag { color: var(--green-2); }
   .points .src a { color: var(--muted); }
+  /* collapsible cards */
+  .points.coll > li { padding: 0; }
+  .points.coll summary { list-style: none; cursor: pointer; padding: 10px 40px 10px 14px; position: relative; display: block; }
+  .points.coll summary::-webkit-details-marker { display: none; }
+  .points.coll summary::after { content: '▾'; position: absolute; right: 14px; top: 10px; color: var(--green); font-size: 1.1rem; transition: transform .15s; }
+  .points.coll details[open] summary::after { transform: rotate(180deg); }
+  .points.coll summary:hover .fact { color: var(--green); }
+  .points.coll summary:focus-visible { outline: 2px solid var(--green-2); outline-offset: -2px; border-radius: 10px; }
+  .points.coll .p-meta { display: flex; }
+  .points.coll .more { margin-left: auto; color: var(--green-2); font-weight: 600; }
+  .points.coll details[open] .more { visibility: hidden; }
+  .points.coll .body { padding: 0 14px 10px; border-top: 1px dashed var(--line); margin: 0 14px; padding-left: 0; padding-right: 0; }
+  .points.coll .dets { margin-top: 8px; }
+  .points .readmore { margin: 8px 0 0; font-size: .82rem; color: var(--muted); }
+  .points .readmore a { color: var(--green-2); text-decoration: none; white-space: nowrap; }
+  .points .readmore a:hover { text-decoration: underline; }
+  @media print { .points.coll details > .body { display: block; } }
 </style>

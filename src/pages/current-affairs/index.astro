@@ -15,7 +15,7 @@ const upd = digestUpdated ? new Date(digestUpdated).toLocaleString('hi-IN', { ti
   description="उत्तराखंड करेंट अफेयर्स केवल परीक्षा-उपयोगी बिंदुओं में: योजनाएँ, नियुक्तियाँ, पुरस्कार, रैंकिंग, परियोजनाएँ। हर दिन अपडेट, साप्ताहिक व मासिक संकलन PDF के साथ — UKSSSC/UKPSC के लिए।"
 >
   <h1>उत्तराखंड करेंट अफेयर्स</h1>
-  <p>रोज़ की सैकड़ों ख़बरों में से केवल वे बिंदु जो <strong>परीक्षा में पूछे जा सकते हैं</strong> — एक पंक्ति में, स्रोत के साथ। राजनीति, अपराध और सामान्य समारोह हटा दिए जाते हैं। <strong>★</strong> वाले बिंदु सबसे महत्वपूर्ण हैं।</p>
+  <p>रोज़ की सैकड़ों ख़बरों में से केवल वे बिंदु जो <strong>परीक्षा में पूछे जा सकते हैं</strong>। <strong>किसी भी बिंदु पर क्लिक करें</strong> — उसके मुख्य तथ्य (कब, कहाँ, कौन, कितना, क्यों) यहीं खुल जाएँगे; पूरी ख़बर पढ़नी हो तो अंत में स्रोत का लिंक है। <strong>★</strong> वाले बिंदु सबसे महत्वपूर्ण हैं।</p>
   {upd && <p class="muted upd">अंतिम अपडेट: {upd} · हर रात 12 बजे पिछले दिन का संस्करण</p>}
 
   <div class="compile">
@@ -27,11 +27,12 @@ const upd = digestUpdated ? new Date(digestUpdated).toLocaleString('hi-IN', { ti
     <div class="filters">
       <button type="button" class="on" data-c="">सभी</button>
       {cats.map((c) => <button type="button" data-c={c}>{c}</button>)}
+      <button type="button" class="toggle-all" aria-pressed="false">सभी खोलें ▾</button>
     </div>
     {days.map(([d, list]) => (
       <section class="day">
         <h2>{fmtDay(d)} <small class="muted">({list.length})</small></h2>
-        <PointList items={list} />
+        <PointList items={list} collapsible />
       </section>
     ))}
   </>)}
@@ -46,7 +47,14 @@ const upd = digestUpdated ? new Date(digestUpdated).toLocaleString('hi-IN', { ti
 </Base>
 
 <script>
-  const btns = [...document.querySelectorAll<HTMLButtonElement>('.filters button')];
+  const btns = [...document.querySelectorAll<HTMLButtonElement>('.filters button[data-c]')];
+  const tog = document.querySelector<HTMLButtonElement>('.toggle-all');
+  tog?.addEventListener('click', () => {
+    const open = tog.getAttribute('aria-pressed') !== 'true';
+    document.querySelectorAll<HTMLDetailsElement>('.points.coll details').forEach((d) => { d.open = open; });
+    tog.setAttribute('aria-pressed', String(open));
+    tog.textContent = open ? 'सभी बंद करें ▴' : 'सभी खोलें ▾';
+  });
   btns.forEach((b) => b.addEventListener('click', () => {
     btns.forEach((x) => x.classList.toggle('on', x === b));
     const c = b.dataset.c;
@@ -67,6 +75,7 @@ const upd = digestUpdated ? new Date(digestUpdated).toLocaleString('hi-IN', { ti
   .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
   .filters button { font: inherit; font-size: .88rem; border: 1px solid var(--line); background: var(--card); border-radius: 20px; padding: 3px 12px; cursor: pointer; color: var(--ink); }
   .filters button.on { background: var(--green-2); color: #fff; border-color: var(--green-2); }
+  .filters .toggle-all { margin-left: auto; border-color: var(--green-2); color: var(--green-2); font-weight: 600; }
   .day h2 { font-size: 1.1rem; margin-top: 22px; }
   .arch { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
 </style>
