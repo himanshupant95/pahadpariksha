@@ -6,6 +6,8 @@ on:
   schedule:
     - cron: '41 6 * * *'   # 12:11 PM IST — collect headlines only
     - cron: '35 18 * * *'  # 12:05 AM IST — collect + AI daily edition + deploy
+    - cron: '47 20 * * *'  # 2:17 AM IST — safety net if GitHub delayed/dropped the run above (no-op if done)
+    - cron: '23 23 * * *'  # 4:53 AM IST — second safety net
   workflow_dispatch:
     inputs:
       mode:

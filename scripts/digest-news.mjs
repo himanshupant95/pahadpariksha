@@ -64,10 +64,12 @@ For each numbered POINT you get RELATED HEADLINES (other outlets' coverage of th
 Allowed keys and where the information may come from:
 - "कारण" (why it was given / what was achieved), "विवरण" (specific detail: event, place, amount, rank, category won, partner, date) — ONLY from the POINT text or its RELATED HEADLINES. Never infer or guess these.
 - "श्रेणी" (the award/medal category or type), "संस्था" (who gives/runs it: ministry, body) — from headlines, or from well-established general knowledge.
-- "पृष्ठभूमि" (one static-GK fact about the award/scheme/institution/place, e.g. when it was instituted, what it is the highest honour for, which ministry, a related state "first") — ONLY a widely documented fact you are certain of. Never about this year's event, never a guessed number or name.
+- "पृष्ठभूमि" (one static-GK fact about the SAME award/scheme/institution/person/place NAMED in the point, e.g. when the award was instituted, what it is the highest honour for, which ministry gives it, where the institution is) — ONLY a widely documented fact you are certain of. Never about this year's event, never a guessed number or name.
+- Do NOT bring in a different index, report, scheme or body that the point does not name (e.g. don't mention an index just because the point is about a ranking). A sub-point that is merely "related" is padding — leave it out.
 
 RULES:
-- If unsure, leave it out. Fewer, correct sub-points beat many. An empty list is fine.
+- If unsure, leave it out. Fewer, correct sub-points beat many. An empty list is fine and common.
+- Test each sub-point: would it make a direct MCQ about THIS point? If not, drop it.
 - Do not repeat what the POINT already says.
 - Simple Hindi, each "v" max 22 words, no trailing full stop needed.
 
