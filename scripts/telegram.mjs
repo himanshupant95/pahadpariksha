@@ -115,7 +115,10 @@ if (mode === 'poll') {
 
 // Before TELEGRAM_CHAT_ID is set: tell whoever messaged the bot their chat id (and print it in the log).
 async function reportChatIds() {
+  const me = await tg('getMe', {});
+  console.log(`bot: @${me.username} -> https://t.me/${me.username}`);
   const updates = await tg('getUpdates', { timeout: 0 });
+  if (!updates.length) console.log('no messages yet — open the bot link and press Start');
   for (const u of updates) {
     const c = u.message?.chat; if (!c) continue;
     console.log(`chat id: ${c.id} (${c.first_name || ''} @${c.username || ''})`);
