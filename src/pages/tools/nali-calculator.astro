@@ -1,0 +1,202 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../data/site';
+
+// All factors are in square yards (गज). 1 yard = 0.9144 m exactly (international yard),
+// so 1 sq yd = 0.83612736 m² exactly and every "exact" conversion below carries no rounding error.
+const M2_PER_SQYD = 0.83612736;
+type Unit = { k: string; hi: string; en: string; sqyd: number; kind: 'exact' | 'est'; note: string };
+const UNITS: Unit[] = [
+  { k: 'nali', hi: 'नाली', en: 'Nali', sqyd: 240, kind: 'exact', note: '12 × 20 गज — ट्रेल का मानक' },
+  { k: 'mutthi', hi: 'मुट्ठी', en: 'Mutthi', sqyd: 15, kind: 'exact', note: '1/16 नाली' },
+  { k: 'bisi', hi: 'बीसी', en: 'Bisi', sqyd: 4800, kind: 'exact', note: '20 नाली' },
+  { k: 'sqft', hi: 'वर्ग फुट', en: 'sq ft', sqyd: 1 / 9, kind: 'exact', note: '' },
+  { k: 'gaj', hi: 'वर्ग गज (गज)', en: 'sq yd', sqyd: 1, kind: 'exact', note: '' },
+  { k: 'm2', hi: 'वर्ग मीटर', en: 'sq m', sqyd: 1 / M2_PER_SQYD, kind: 'exact', note: '' },
+  { k: 'acre', hi: 'एकड़', en: 'Acre', sqyd: 4840, kind: 'exact', note: '' },
+  { k: 'hectare', hi: 'हेक्टेयर', en: 'Hectare', sqyd: 10000 / M2_PER_SQYD, kind: 'exact', note: 'खतौनी में रकबा इसी में' },
+  { k: 'pbigha', hi: 'पक्का बीघा', en: 'Pucca bigha', sqyd: 3025, kind: 'exact', note: 'उत्तर-पश्चिमी प्रांत का राजस्व मानक, 5/8 एकड़' },
+  { k: 'pbiswa', hi: 'पक्का बिस्वा', en: 'Pucca biswa', sqyd: 3025 / 20, kind: 'exact', note: '1/20 पक्का बीघा' },
+  { k: 'pbiswansi', hi: 'पक्का बिस्वांसी', en: 'Pucca biswansi', sqyd: 3025 / 400, kind: 'exact', note: '1/20 बिस्वा' },
+  { k: 'kbigha4', hi: 'कच्चा बीघा (पहाड़/दून)', en: 'Kachcha bigha (¼)', sqyd: 3025 / 4, kind: 'est', note: '≈ ¼ पक्का बीघा, ≈ 6,806 वर्ग फुट' },
+  { k: 'kbiswa4', hi: 'कच्चा बिस्वा (पहाड़/दून)', en: 'Kachcha biswa (¼)', sqyd: 3025 / 80, kind: 'est', note: '1/20 ऊपर वाला बीघा' },
+  { k: 'kbigha3', hi: 'कच्चा बीघा (मैदानी, ⅓)', en: 'Kachcha bigha (⅓)', sqyd: 3025 / 3, kind: 'est', note: '≈ ⅓ पक्का बीघा, 9,075 वर्ग फुट' },
+  { k: 'kbiswa3', hi: 'कच्चा बिस्वा (मैदानी, ⅓)', en: 'Kachcha biswa (⅓)', sqyd: 3025 / 60, kind: 'est', note: '1/20 ऊपर वाला बीघा' },
+];
+const byK = Object.fromEntries(UNITS.map((u) => [u.k, u]));
+const fmt = (n: number, d = 4) => n.toLocaleString('en-IN', { maximumFractionDigits: d });
+const conv = (v: number, from: string, to: string) => (v * byK[from].sqyd) / byK[to].sqyd;
+
+const naliRows = [1, 2, 3, 4, 5, 10, 15, 20, 25, 50, 100];
+const mutthiRows = [1, 2, 4, 8, 12, 16];
+
+const faqs = [
+  { q: '1 नाली में कितने वर्ग फुट होते हैं?', a: '1 नाली = 2,160 वर्ग फुट = 240 वर्ग गज = 200.6705664 वर्ग मीटर। ब्रिटिश कमिश्नर जी. डब्ल्यू. ट्रेल ने नाली को 12 × 20 गज (240 वर्ग गज) पर मानकीकृत किया था।' },
+  { q: '1 नाली में कितनी मुट्ठी होती हैं?', a: '1 नाली = 16 मुट्ठी। 1 मुट्ठी = 15 वर्ग गज = 135 वर्ग फुट = 12.5419104 वर्ग मीटर।' },
+  { q: '1 एकड़ में कितनी नाली होती हैं?', a: '1 एकड़ = 20.1667 नाली (4,840 ÷ 240)। 20 नाली की इकाई "बीसी" (4,800 वर्ग गज) एकड़ से ठीक 40 वर्ग गज छोटी है, इसलिए इसे "लगभग एक एकड़" कहा जाता है।' },
+  { q: '1 हेक्टेयर में कितनी नाली होती हैं?', a: '1 हेक्टेयर = 49.8329 नाली (लगभग 50 नाली)।' },
+  { q: 'उत्तराखंड में 1 बीघा कितना होता है?', a: 'बीघा का कोई एक सरकारी मान नहीं है। उत्तर-पश्चिमी प्रांत (जिसमें देहरादून और हरिद्वार क्षेत्र थे) के राजस्व सर्वेक्षण का मानक "पक्का बीघा" 3,025 वर्ग गज (5/8 एकड़) था। स्थानीय "कच्चा बीघा" इसका ⅓ या ¼ होता है — पहाड़ और दून में प्रचलित लगभग 6,806 वर्ग फुट वाला बीघा पक्के बीघे का ठीक ¼ है। रजिस्ट्री से पहले अपने क्षेत्र का मान पटवारी/तहसील से पुष्टि करें।' },
+  { q: 'खतौनी में रकबा किस इकाई में होता है?', a: 'उत्तराखंड भूलेख की खतौनी में रकबा हेक्टेयर में दर्ज होता है। कानूनी काम में वही आधिकारिक माप है; नाली/बीघा केवल स्थानीय व्यवहार की इकाइयाँ हैं।' },
+];
+
+const url = `${SITE.url}/tools/nali-calculator/`;
+const schema = [
+  { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'नाली कैलकुलेटर — उत्तराखंड भूमि माप', url, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any', inLanguage: 'hi-IN', offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'होम', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'उत्तराखंड GK', item: SITE.url + '/gk/' },
+    { '@type': 'ListItem', position: 3, name: 'नाली कैलकुलेटर', item: url },
+  ] },
+];
+const clientUnits = UNITS.map(({ k, hi, sqyd, kind }) => ({ k, hi, sqyd, kind }));
+---
+<Base title="नाली कैलकुलेटर — नाली, मुट्ठी, बीघा को वर्ग फुट/मीटर में बदलें (उत्तराखंड)" description="उत्तराखंड भूमि माप कैलकुलेटर: नाली, मुट्ठी, बीसी, बीघा, बिस्वा को वर्ग फुट, गज, वर्ग मीटर, एकड़ व हेक्टेयर में बदलें। 1 नाली = 2,160 वर्ग फुट = 200.67 वर्ग मीटर — गजेटियर स्रोतों से सत्यापित सटीक मान।" schema={schema}>
+  <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › नाली कैलकुलेटर</nav>
+  <h1>नाली कैलकुलेटर — उत्तराखंड भूमि माप</h1>
+  <p class="lead"><b>1 नाली = 2,160 वर्ग फुट = 240 गज = 200.67 वर्ग मीटर = 16 मुट्ठी।</b> नीचे कोई भी मान डालें — सभी इकाइयों में तुरंत बदलाव दिखेगा। <span class="k ok">सटीक</span> मान ऐतिहासिक गजेटियर और राजस्व मानकों से सत्यापित हैं; <span class="k est">अनुमानित</span> मान स्थानीय प्रचलन पर आधारित हैं और जगह-जगह बदलते हैं।</p>
+
+  <section class="calc" id="calc">
+    <div class="row">
+      <label>मान
+        <input id="val" type="number" inputmode="decimal" min="0" step="any" value="1" />
+      </label>
+      <label>इकाई
+        <select id="unit">
+          <optgroup label="पहाड़ी इकाइयाँ (सटीक)">
+            <option value="nali" selected>नाली</option><option value="mutthi">मुट्ठी</option><option value="bisi">बीसी</option>
+          </optgroup>
+          <optgroup label="आधुनिक इकाइयाँ">
+            <option value="sqft">वर्ग फुट</option><option value="gaj">वर्ग गज (गज)</option><option value="m2">वर्ग मीटर</option><option value="acre">एकड़</option><option value="hectare">हेक्टेयर</option>
+          </optgroup>
+          <optgroup label="पक्का बीघा (राजस्व मानक)">
+            <option value="pbigha">पक्का बीघा</option><option value="pbiswa">पक्का बिस्वा</option><option value="pbiswansi">पक्का बिस्वांसी</option>
+          </optgroup>
+          <optgroup label="कच्चा बीघा (अनुमानित)">
+            <option value="kbigha4">कच्चा बीघा — पहाड़/दून (¼)</option><option value="kbiswa4">कच्चा बिस्वा — पहाड़/दून (¼)</option>
+            <option value="kbigha3">कच्चा बीघा — मैदानी (⅓)</option><option value="kbiswa3">कच्चा बिस्वा — मैदानी (⅓)</option>
+          </optgroup>
+        </select>
+      </label>
+    </div>
+    <details class="nm">
+      <summary>नाली + मुट्ठी एक साथ डालें (जैसे 5 नाली 6 मुट्ठी)</summary>
+      <div class="row">
+        <label>नाली <input id="nn" type="number" inputmode="numeric" min="0" step="any" placeholder="0" /></label>
+        <label>मुट्ठी <input id="mm" type="number" inputmode="numeric" min="0" step="any" placeholder="0" /></label>
+      </div>
+    </details>
+    <p class="summary" id="summary" aria-live="polite"></p>
+    <table class="res">
+      <thead><tr><th>इकाई</th><th>मान</th><th>स्थिति</th></tr></thead>
+      <tbody id="out">
+        {UNITS.map((u) => (
+          <tr data-k={u.k} class={u.kind}>
+            <td>{u.hi}<small>{u.note}</small></td>
+            <td class="num">{fmt(conv(1, 'nali', u.k), 6)}</td>
+            <td>{u.kind === 'exact' ? <span class="k ok">सटीक</span> : <span class="k est">अनुमानित</span>}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="fine">मान 6 दशमलव तक पूर्णांकित दिखाए गए हैं। रजिस्ट्री/क़ानूनी काम में खतौनी का हेक्टेयर मान ही मान्य है।</p>
+  </section>
+
+  <h2>नाली से वर्ग फुट, गज और वर्ग मीटर — तालिका</h2>
+  <table>
+    <thead><tr><th>नाली</th><th>वर्ग फुट</th><th>गज</th><th>वर्ग मीटर</th><th>एकड़</th></tr></thead>
+    <tbody>{naliRows.map((n) => <tr><td><b>{n}</b></td><td>{fmt(n * 2160)}</td><td>{fmt(n * 240)}</td><td>{fmt(conv(n, 'nali', 'm2'), 2)}</td><td>{fmt(conv(n, 'nali', 'acre'), 4)}</td></tr>)}</tbody>
+  </table>
+
+  <h2>मुट्ठी से वर्ग फुट — तालिका</h2>
+  <table>
+    <thead><tr><th>मुट्ठी</th><th>नाली</th><th>वर्ग फुट</th><th>वर्ग मीटर</th></tr></thead>
+    <tbody>{mutthiRows.map((n) => <tr><td><b>{n}</b></td><td>{fmt(n / 16)}</td><td>{fmt(n * 135)}</td><td>{fmt(conv(n, 'mutthi', 'm2'), 2)}</td></tr>)}</tbody>
+  </table>
+
+  <h2>कौन-सा मान सटीक है और क्यों</h2>
+  <h3>नाली — 240 वर्ग गज (सटीक)</h3>
+  <p>कुमाऊँ के कमिश्नर <b>जी. डब्ल्यू. ट्रेल</b> ने नाली को <b>12 × 20 गज = 240 वर्ग गज</b> पर मानकीकृत किया। पहले नाली उतनी भूमि थी जिसमें लगभग 2 सेर गेहूँ बोया जा सके — यानी नाप बीज से तय होता था, ठीक वैसे ही जैसे कत्यूरी ताम्रपत्रों का <a href="/history/kartikeyapur-katyuri/#rajasv">द्रोणवाप</a>। यह मान <i>ब्रिटिश गढ़वाल गजेटियर</i> (1910), <i>अल्मोड़ा गजेटियर</i> (1911) और स्टोवेल के <i>मैनुअल ऑफ़ द लैंड टेन्योर्स ऑफ़ द कुमाऊँ डिवीज़न</i> में दर्ज है।</p>
+  <p>चूँकि 1 गज ठीक 0.9144 मीटर है, इसलिए <b>1 नाली = 200.6705664 वर्ग मीटर</b> — यह गणितीय रूप से सटीक है, अनुमान नहीं।</p>
+  <h3>मुट्ठी और बीसी (सटीक)</h3>
+  <p>गजेटियर नाली को 16 भागों में बाँटता है; इसी 1/16 भाग को आम बोलचाल में <b>मुट्ठी</b> कहा जाता है — 15 गज या 135 वर्ग फुट। <b>20 नाली = 1 बीसी</b> = 4,800 वर्ग गज, जो एक एकड़ (4,840 गज) से केवल 40 गज कम है।</p>
+  <h3>बीघा — पक्का (मानक) और कच्चा (अनुमानित)</h3>
+  <p>उत्तर-पश्चिमी प्रांत (आज के पश्चिमी उत्तर प्रदेश, देहरादून और हरिद्वार क्षेत्र सहित) के राजस्व सर्वेक्षणों में मानक बीघा <b>3,025 वर्ग गज = 5/8 एकड़</b> था (एच. एच. विल्सन, <i>ग्लॉसरी ऑफ़ जुडिशियल एंड रेवेन्यू टर्म्स</i>, 1855)। इसे <b>पक्का बीघा</b> कहते हैं।</p>
+  <p>स्थानीय <b>कच्चा बीघा</b> विल्सन के अनुसार कहीं पक्के बीघे का ⅓ और कहीं ¼ होता है — इसलिए इसका कोई एक सटीक मान नहीं। पहाड़ और दून घाटी में प्रचलित "लगभग 6,806 वर्ग फुट / 632 वर्ग मीटर" वाला बीघा पक्के बीघे का ठीक ¼ (756.25 गज) बैठता है; यही वह मान है जिसे लोग "1 बीघा ≈ 3 नाली" कहते हैं (असल में 3.15 नाली)।</p>
+  <div class="box-trap"><strong><span class="tag trap">सावधान</span></strong>इंटरनेट पर बीघा के 17,424 और 27,000 वर्ग फुट जैसे मान भी मिलते हैं — इनका कोई सरकारी या ऐतिहासिक स्रोत हमें नहीं मिला, इसलिए हमने इन्हें शामिल नहीं किया। उत्तराखंड सरकार की कोई वर्तमान अधिसूचना नाली या बीघा को परिभाषित नहीं करती; भूलेख में रकबा हेक्टेयर में ही दर्ज होता है।</div>
+  <div class="box-exam"><strong><span class="tag exam">परीक्षा बिंदु</span></strong>1 नाली = 16 मुट्ठी = 240 वर्ग गज = 2,160 वर्ग फुट ≈ 200 वर्ग मीटर • 20 नाली = 1 बीसी ≈ 1 एकड़ • नाली का मानकीकरण: जी. डब्ल्यू. ट्रेल • प्राचीन इकाई: द्रोणवाप (= 16 नाली, कत्यूरी ताम्रपत्र)</div>
+
+  <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+  {faqs.map((f) => <details class="faq"><summary><b>{f.q}</b></summary><p>{f.a}</p></details>)}
+
+  <h2>स्रोत</h2>
+  <ul class="src">
+    <li>H. G. Walton, <i>British Garhwal: A Gazetteer</i> (District Gazetteers of the United Provinces, Vol. XXXVI), 1910.</li>
+    <li>H. G. Walton, <i>Almora: A Gazetteer</i> (Vol. XXXV), 1911, पृ. 58 व 193.</li>
+    <li>V. A. Stowell, <i>A Manual of the Land Tenures of the Kumaun Division</i> (रामसे व बैटन की बंदोबस्त रिपोर्टों के हवाले से).</li>
+    <li>H. H. Wilson, <i>A Glossary of Judicial and Revenue Terms of British India</i>, 1855, पृ. 85 (बीघा); H. M. Elliot, <i>Supplement to the Glossary</i>, 1845.</li>
+    <li>यार्ड की परिभाषा: 1 yard = 0.9144 m (अंतरराष्ट्रीय यार्ड, 1959).</li>
+  </ul>
+  <p class="fine">इतिहास से जुड़ाव: <a href="/history/kartikeyapur-katyuri/">कत्यूरी राजवंश — द्रोणवाप, कुल्यवाप और नाली</a> • <a href="/history/">उत्तराखंड का इतिहास (शृंखला)</a></p>
+
+  <script is:inline define:vars={{ U: clientUnits }}>
+    const $ = (id) => document.getElementById(id);
+    const by = Object.fromEntries(U.map((u) => [u.k, u]));
+    const f = (n) => n.toLocaleString('en-IN', { maximumFractionDigits: n !== 0 && Math.abs(n) < 0.01 ? 8 : 6 });
+    function render(sqyd, label) {
+      for (const tr of $('out').children) {
+        const u = by[tr.dataset.k];
+        tr.children[1].textContent = f(sqyd / u.sqyd);
+      }
+      $('summary').textContent = label ? label + ' = ' + f(sqyd * 9) + ' वर्ग फुट = ' + f(sqyd * 0.83612736) + ' वर्ग मीटर' : '';
+    }
+    function fromMain() {
+      const v = parseFloat($('val').value);
+      const u = by[$('unit').value];
+      if (!(v >= 0)) return render(0, '');
+      $('nn').value = ''; $('mm').value = '';
+      render(v * u.sqyd, f(v) + ' ' + u.hi);
+    }
+    function fromNM() {
+      const n = parseFloat($('nn').value) || 0, m = parseFloat($('mm').value) || 0;
+      if (!n && !m) return fromMain();
+      render(n * 240 + m * 15, f(n) + ' नाली ' + f(m) + ' मुट्ठी');
+    }
+    $('val').addEventListener('input', fromMain);
+    $('unit').addEventListener('change', fromMain);
+    $('nn').addEventListener('input', fromNM);
+    $('mm').addEventListener('input', fromNM);
+    fromMain();
+  </script>
+</Base>
+
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted); margin-bottom: 8px; }
+  .lead { font-size: 1.02rem; }
+  .k { display: inline-block; font-size: .74rem; font-weight: 700; padding: 1px 8px; border-radius: 20px; white-space: nowrap; }
+  .k.ok { background: #dcfce7; color: #166534; }
+  .k.est { background: #fef3c7; color: #92400e; }
+  .calc { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--green-2); border-radius: 14px; padding: 14px 16px; margin: 16px 0 24px; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .row label { flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: .9rem; color: var(--muted); }
+  .row input, .row select { font: inherit; font-size: 1.1rem; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); }
+  .nm { margin: 10px 0 4px; }
+  .nm summary { cursor: pointer; color: var(--green); font-weight: 600; font-size: .92rem; }
+  .nm .row { margin-top: 8px; }
+  .summary { font-weight: 700; color: var(--green); margin: 12px 0 6px; min-height: 1.4em; }
+  .res { width: 100%; }
+  .res td small { display: block; color: var(--muted); font-size: .76rem; }
+  .res td.num { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+  .res tr.est td { background: #fffdf5; }
+  .fine { font-size: .82rem; color: var(--muted); }
+  .src li { font-size: .9rem; }
+  .box-trap, .box-exam { border-radius: 12px; padding: 10px 16px; margin: 12px 0; border-left: 5px solid; }
+  .box-trap { background: #fef2f2; border-color: #ef4444; }
+  .box-exam { background: #fffbeb; border-color: #f59e0b; }
+  .box-trap > strong, .box-exam > strong { display: block; margin-bottom: 2px; }
+  .tag { display: inline-block; font-size: .74rem; font-weight: 700; padding: 1px 8px; border-radius: 20px; }
+  .tag.trap { background: #fee2e2; color: #991b1b; }
+  .tag.exam { background: #fef3c7; color: #92400e; }
+  .faq { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 8px 0; }
+  .faq summary { cursor: pointer; }
+</style>
