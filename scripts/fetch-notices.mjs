@@ -1,58 +1,15 @@
 // Fetches latest notices from UKSSSC and UKPSC homepages, merges new ones into src/data/notices.json.
 // Writes new items to new-notices.json (for the GitHub issue alert). Run: node scripts/fetch-notices.mjs
 import { readFile, writeFile } from 'node:fs/promises';
-import { createHash } from 'node:crypto';
+import { SOURCES, SKIP, categorize, clean, idOf, toISO } from './notice-lib.mjs';
 import * as cheerio from 'cheerio';
 
 const DATA = 'src/data/notices.json';
 const MAX_ITEMS = 300;
 const UA = 'Mozilla/5.0 (compatible; PahadParikshaBot/1.0; +https://pahadpariksha.in)';
 
-const SOURCES = [
-  {
-    name: 'UKSSSC',
-    url: 'https://sssc.uk.gov.in/',
-    // news ticker + the homepage notice lists
-    selector: '.newsticker li a, .gen-list li a',
-    // drop footer "useful links" (English titles to other govt portals)
-    keep: (title, href) => /[\u0900-\u097F]/.test(title) || /\.pdf($|\?)/i.test(href),
-  },
-  {
-    name: 'UKPSC',
-    url: 'https://psc.uk.gov.in/',
-    selector: '.custom-marque-section .marque-size a',
-    // psc.uk.gov.in refuses connections from outside India (GitHub's US runners time out), so it is read
-    // through our relay on Google Cloud Run in Mumbai (cloudrun/ukpsc-relay). Skipped until UKPSC_RELAY is set.
-    fetchUrl: process.env.UKPSC_RELAY ? `${process.env.UKPSC_RELAY.replace(/\/$/, '')}/fetch?path=/` : null,
-    disabled: !process.env.UKPSC_RELAY,
-    // each link points at its section page — use that for the category
-    categoryFromUrl: (u) => /answerkey/.test(u) ? 'उत्तर कुंजी' : /admitcard/.test(u) ? 'प्रवेश पत्र' : /result/.test(u) ? 'परिणाम'
-      : /recruitment/.test(u) ? 'भर्ती/विज्ञापन' : /calendar|exam-?schedule/.test(u) ? 'परीक्षा तिथि' : null,
-    keep: (title, href) => !/tenders/.test(href),
-  },
-];
-
-const SKIP = /tender|quotation|निविदा|कोटेशन|photo gallery|फोटो/i;
-
-function categorize(t) {
-  const s = t.toLowerCase();
-  if (/admit|प्रवेश पत्र|प्रवेश-पत्र/.test(s)) return 'प्रवेश पत्र';
-  if (/answer ?key|उत्तर ?कुंजी|objection|आपत्ति/.test(s)) return 'उत्तर कुंजी';
-  if (/स्थगन|postpone|परीक्षा तिथि|exam date|calendar|कैलेंडर|परीक्षा कार्यक्रम/.test(s)) return 'परीक्षा तिथि';
-  if (/टंकण|आशुलेखन|typing|steno(graphy)? test|कौशल/.test(s)) return 'कौशल परीक्षा';
-  if (/अभिलेख|सन्निरीक्षा|document verification|डॉक्यूमेंट/.test(s)) return 'अभिलेख सत्यापन';
-  if (/result|परिणाम|merit|मेरिट|श्रेष्ठता|संस्तुति|recommendation|selected|चयनित|निरस्तीकरण/.test(s)) return 'परिणाम';
-  if (/interview|साक्षात्कार/.test(s)) return 'साक्षात्कार';
-  if (/syllabus|पाठ्यक्रम/.test(s)) return 'पाठ्यक्रम';
-  if (/ऑनलाइन आवेदन|online application|विज्ञापन|advertisement|सीधी भर्ती|fill application/.test(s)) return 'भर्ती/विज्ञापन';
-  return 'सूचना';
-}
-
-const clean = (t) => t.replace(/\s+/g, ' ').replace(/\bNew\b\s*$/i, '').replace(/हेतु क्लिक करें\s*$/, '').trim();
-const idOf = (src, title, url) => createHash('sha1').update(`${src}|${title}|${url}`).digest('hex').slice(0, 12);
-
 async function scrape(src) {
-  const res = await fetch(src.fetchUrl || src.url, { headers: { 'User-Agent': UA, 'Accept-Language': 'hi,en;q=0.8' }, signal: AbortSignal.timeout(30000) });
+  const res = await fetch(src.url, { headers: { 'User-Agent': UA, 'Accept-Language': 'hi,en;q=0.8' }, signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`${src.name}: HTTP ${res.status}`);
   const $ = cheerio.load(await res.text());
   const out = [];
@@ -74,7 +31,6 @@ async function scrape(src) {
 
 // ---- Open applications: UKSSSC application portal lists every advertisement with start/end dates ----
 const RECRUIT = 'src/data/recruitments.json';
-const toISO = (d) => { const m = d.match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/); return m ? `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}` : null; };
 async function scrapeRecruitments() {
   const url = 'https://ukssscrecruitment.in/';
   const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(20000) });
@@ -155,7 +111,7 @@ try {
   for (const p of portal) {
     const title = p.start && p.end ? `${p.name} (${dmy(p.start)} – ${dmy(p.end)})` : p.name;
     const id = idOf('UKPSC-portal', p.pid, p.name);
-    if (!known.has(id)) { (seedPortal ? seeded : fresh).push({ id, source: 'UKPSC', title, url: p.url, category: categorize(p.name), firstSeen: now }); known.add(id); }
+    if (!known.has(id)) { (seedPortal ? seeded : fresh).push({ id, source: 'UKPSC', title, url: p.url, category: categorize(p.name), firstSeen: p.start ? `${p.start}T06:00:00.000Z` : now }); known.add(id); }
     if (/application|आवेदन/i.test(p.name) && !/admit card|download/i.test(p.name) && p.end)
       ukpscOpen.push({ source: 'UKPSC', advt: `UKPSC पोर्टल #${p.pid}`, type: 'UKPSC', title: p.name, start: p.start, end: p.end, url: p.url, apply: p.url });
   }
@@ -173,7 +129,9 @@ try {
   const prevKeys = new Set(prev.filter((r) => r.source === 'UKSSSC').map((r) => r.advt));
   newAdvts = rec.filter((r) => !prevKeys.has(r.advt)).map((r) => ({ id: idOf('advt', r.advt, r.end), source: r.source, title: `नई भर्ती: ${r.title} (विज्ञापन ${r.advt}, अंतिम तिथि ${r.end.split('-').reverse().join('/')})`, url: r.apply, category: 'भर्ती/विज्ञापन' }));
   if (prev.length === 0) newAdvts = []; // first run: seed silently
-  await writeFile(RECRUIT, JSON.stringify([...rec, ...ukpscOpen], null, 2) + '\n');
+  // keep hand-imported UKPSC applications (import-ukpsc.mjs) until their last date passes
+  const manual = prev.filter((r) => r.manual && r.end >= new Date().toISOString().slice(0, 10));
+  await writeFile(RECRUIT, JSON.stringify([...rec, ...ukpscOpen, ...manual], null, 2) + '\n');
 } catch (e) {
   console.error(`ERROR ${e.message}`);
   errors.push(e.message);
