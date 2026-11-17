@@ -125,7 +125,7 @@ const NEWS_KEYS = new Set(['कब', 'कहाँ', 'कौन', 'कितन�
 const VERIFY = `You are a strict fact-checker for an exam-preparation website (Uttarakhand, India).
 For each numbered POINT you get the RELATED HEADLINES (the only news evidence) and its POINTERS (each with an id like 2.3 and a key).
 Judge every pointer:
-- "ok": the specific facts in it (names, numbers, dates, places, bodies) are stated in, or directly follow from, the headlines or the POINT text.
+- "ok": the specific facts in it (names, numbers, dates, places, bodies) are stated in, or directly follow from, the headlines or the POINT text. Check the headlines FIRST — if a headline says it, the answer is "ok", never "gk".
 - "gk": not in the headlines, but a correct, widely documented general-knowledge fact about the SAME thing the point names (e.g. when an award was instituted, which ministry gives it), and you are certain it is true.
 - "off": true or not, it is about something the point does not name, or adds nothing exam-relevant (padding, vague purpose, restating the point).
 - "bad": contradicts the headlines, looks invented/guessed, or you are not sure it is true (wrong person, year, number, body, title).
@@ -259,17 +259,16 @@ let added = 0, calls = 0;
 const addedIds = [];
 const checked = []; // pointers removed by the Stage-3 checker
 const errors = [];
-if (process.env.CHECK) { // dry run: grade the saved sample (scripts/fixtures/verify-sample.json) with the checker
-  const sample = JSON.parse(await readFile('scripts/fixtures/verify-sample.json', 'utf8'));
-  for (const p of sample) {
-    const extra = [...await related(p.tag, p.date, 'hi'), ...await related(p.tag, p.date, 'en')];
-    p.ctx = [...new Set([...p.titles, ...extra])].slice(0, 16);
+if (process.env.CHECK) { // dry run of the real pipeline on the current points: writer (enrich) → checker (verify); saves nothing
+  const pts = dg.points.slice(0, 16);
+  for (let i = 0; i < pts.length; i += 8) {
+    const list = pts.slice(i, i + 8).map((p) => ({ fact: p.fact, day: p.date, q: p.q || p.tag, qen: p.qen || '', titles: p.refs.map((r) => r.title) }));
+    await enrich(list);
+    const raw = list.map((p) => p.details.map((d) => `${d.k}: ${d.v}`));
+    const rm = await verify(list); checked.push(...rm);
+    list.forEach((p, k) => console.log(`• ${p.fact.slice(0, 80)}\n   headlines: ${p.ctx.length}\n` + raw[k].map((r) => `   ${p.details.some((d) => `${d.k}: ${d.v}` === r) ? '✓' : '✗'} ${r}`).join('\n')));
   }
-  const before = sample.reduce((n, p) => n + p.details.length, 0);
-  const rm = await verify(sample);
-  checked.push(...rm); logChecked();
-  console.log(`check: ${before} pointers → kept ${before - rm.length}, removed ${rm.length}`);
-  sample.forEach((p) => console.log(`• ${p.fact.slice(0, 70)}\n` + p.details.map((d) => `   ✓ ${d.k}: ${d.v}`).join('\n')));
+  logChecked();
   process.exit(0);
 }
 if (process.env.BACKFILL) {
