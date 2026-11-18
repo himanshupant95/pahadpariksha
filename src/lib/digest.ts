@@ -1,8 +1,10 @@
 import data from '../data/digest.json';
 
-export interface Ref { title: string; link: string; source: string }
-export interface Detail { k: string; v: string }
-export interface Point { id: string; date: string; fact: string; cat: string; imp: number; tag: string; refs: Ref[]; details?: Detail[] }
+export interface Ref { title: string; link: string; source: string; read?: string }
+/** t:'g' = linked static GK (not part of today's news) */
+export interface Detail { k: string; v: string; t?: 'g' }
+export interface Point { id: string; date: string; fact: string; cat: string; imp: number; tag: string; refs: Ref[]; details?: Detail[];
+  sum?: string; quiz?: { q: string; a: string }; depth?: 'article' | 'headlines'; unverified?: boolean }
 
 export const CAT_ORDER = ['योजना/नीति', 'प्रशासन', 'नियुक्ति', 'पुरस्कार/सम्मान', 'खेल', 'रिपोर्ट/रैंकिंग', 'परियोजना/अवसंरचना', 'अर्थव्यवस्था', 'पर्यावरण', 'संस्कृति/धर्म', 'विज्ञान/शिक्षा', 'परीक्षा/भर्ती', 'अन्य'];
 export const digestUpdated: string | undefined = (data as any).updated;

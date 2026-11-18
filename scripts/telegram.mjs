@@ -36,10 +36,12 @@ async function sendLong(blocks) {
   if (buf) await tg('sendMessage', { chat_id: CHAT, text: buf, parse_mode: 'HTML', disable_web_page_preview: true });
 }
 const HELP = 'सुधार के आदेश (एक पंक्ति में एक; एक संदेश में कई भी चलेंगे):\n' +
-  '<code>/remove P2</code> — पूरा बिंदु हटाएँ\n<code>/remove P2.3</code> — उप-बिंदु हटाएँ\n' +
-  '<code>/edit P2 नया शीर्षक</code>\n<code>/edit P2.3 नया पाठ</code>\n' +
-  '<code>/add P2 कब: 17 नवंबर 2026</code> — नया उप-बिंदु जोड़ें (कब/कहाँ/कौन/कितना/कारण/विवरण/संस्था; बिना शीर्षक = विवरण)\n<code>/ok</code> — सब ठीक है\n' +
-  'आदेश हर ~10 मिनट में पढ़े जाते हैं; साइट उसके 2–3 मिनट बाद अपडेट होती है।';
+  '<code>/remove P2</code> — पूरा बिंदु हटाएँ · <code>/remove P2.3</code> — तथ्य हटाएँ · <code>/remove P2.Q</code> — प्रश्न हटाएँ\n' +
+  '<code>/edit P2 नया शीर्षक</code> · <code>/edit P2.3 नया पाठ</code>\n' +
+  '<code>/edit P2.S …</code> — "क्या हुआ" · <code>/edit P2.Q …</code> — प्रश्न · <code>/edit P2.A …</code> — उत्तर\n' +
+  '<code>/add P2 बजट: 450 करोड़ रुपये</code> — नया तथ्य (कोलन से पहले कोई भी शीर्षक)\n' +
+  '<code>/add P2 स्थायी पिरान कलियर: हरिद्वार ज़िला</code> — 📚 स्थायी ज्ञान जोड़ें\n<code>/ok</code> — सब ठीक है\n' +
+  'आदेश तुरंत पढ़े जाते हैं; साइट 2–3 मिनट बाद अपडेट होती है।';
 
 if (!TOKEN || !CHAT) { console.log('telegram: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set'); if (mode === 'poll' && TOKEN) await reportChatIds(); process.exit(mode === 'send' || mode === 'test' ? 3 : 0); }
 
@@ -65,10 +67,14 @@ if (mode === 'send' || mode === 'test') {
     (risky ? `⚠ = पृष्ठभूमि (AI का सामान्य ज्ञान, ख़बर से नहीं) — ${risky} जाँचें\n` : '') +
     (errors.length ? `🔴 रन में त्रुटि: ${esc(errors.map((e) => e.slice(0, 160)).join(' | '))}\n` : '')];
   pts.forEach((p, i) => {
-    let b = `\n<b>P${i + 1}</b> ${p.imp >= 3 ? '★ ' : ''}<b>${esc(p.fact)}</b>\n<i>${esc(p.cat)} · #${esc(p.tag)}</i>\n`;
-    (p.details || []).forEach((d, j) => { b += `${d.k === 'पृष्ठभूमि' ? '⚠ ' : '• '}P${i + 1}.${j + 1} <b>${esc(d.k)}:</b> ${esc(d.v)}\n`; });
+    let b = `\n<b>P${i + 1}</b> ${p.imp >= 3 ? '★ ' : ''}<b>${esc(p.fact)}</b>\n<i>${esc(p.cat)} · #${esc(p.tag)}` +
+      `${p.depth ? ` · ${p.depth === 'article' ? 'पूरी ख़बर से' : 'सिर्फ़ शीर्षकों से'}` : ''}</i>\n` +
+      (p.unverified ? `🔴 जाँच नहीं हो सकी — ध्यान से देखें\n` : '') +
+      (p.sum ? `📰 P${i + 1}.S ${esc(p.sum)}\n` : '');
+    (p.details || []).forEach((d, j) => { b += `${d.t === 'g' ? '📚 ' : d.k === 'पृष्ठभूमि' ? '⚠ ' : '• '}P${i + 1}.${j + 1} <b>${esc(d.k)}:</b> ${esc(d.v)}\n`; });
+    if (p.quiz) b += `❓ P${i + 1}.Q ${esc(p.quiz.q)}\n   P${i + 1}.A → ${esc(p.quiz.a)}\n`;
     const srcs = p.refs.filter((r, k, a) => a.findIndex((x) => x.source === r.source) === k).slice(0, 2);
-    b += `स्रोत: ${srcs.map((r) => `<a href="${esc(r.link)}">${esc(r.source || 'समाचार')}</a>`).join(' · ')}\n`;
+    b += `स्रोत: ${srcs.map((r) => `<a href="${esc(r.read || r.link)}">${esc(r.source || 'समाचार')}</a>`).join(' · ')}\n`;
     blocks.push(b);
   });
   if (pts.length) blocks.push('\n' + HELP);
