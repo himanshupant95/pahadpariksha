@@ -5,7 +5,7 @@ name: Map source data (manual)
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   fetch:
     runs-on: ubuntu-latest
@@ -22,12 +22,16 @@ jobs:
             curl -sfL --retry 3 "https://s3.amazonaws.com/elevation-tiles-prod/skadi/N${lat}/${f}.gz" -o "dem/${f}.gz" && gunzip -f "dem/${f}.gz" || echo "missing $f"
           done; done
           gdalbuildvrt -q dem/all.vrt dem/*.hgt
-          gdal_translate -q -projwin 77.45 31.55 81.15 28.65 -co COMPRESS=DEFLATE -co PREDICTOR=2 -co TILED=YES dem/all.vrt out/uk-dem-srtm90.tif
+          gdal_translate -q -projwin 77.45 31.55 81.15 28.65 -tr 0.000833333333 0.000833333333 -r average -ot Int16 -co COMPRESS=DEFLATE -co PREDICTOR=2 -co TILED=YES dem/all.vrt out/uk-dem-srtm90.tif
           gdalinfo out/uk-dem-srtm90.tif | head -20
       - name: OpenStreetMap features (Overpass)
         run: node scripts/maps/overpass.mjs
-      - uses: actions/upload-artifact@v4
-        with:
-          name: uk-map-data
-          path: out/
-          retention-days: 7
+      - name: Publish to the map-data branch (not main; the site never builds from it)
+        run: |
+          ls -la out
+          cd out
+          git init -q -b map-data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -q -m "Map source data $(date -u +%F): SRTM (public domain) + OSM (ODbL, © OpenStreetMap contributors)"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" map-data
