@@ -313,21 +313,30 @@ if (process.env.CHECK) { // dry run of the real pipeline on the current points: 
   logChecked();
   process.exit(0);
 }
-if (process.env.BACKFILL) {
-  const todo = dg.points.filter((p) => !p.details).slice(0, 24);
+if (process.env.BACKFILL) { // convert old-format points to the v2 note (writer → checker); a point keeps its old notes unless the new one passes
+  const todo = dg.points.filter((p) => !p.sum).slice(0, Number(process.env.BACKFILL_N || 12));
   let done = 0;
-  for (let i = 0; i < todo.length; i += 8) {
-    const chunk = todo.slice(i, i + 8);
-    const list = chunk.map((p) => ({ fact: p.fact, day: p.date, q: p.q || p.tag, qen: p.qen || '', titles: p.refs.map((r) => r.title) }));
-    try { await enrich(list); calls++; } catch (e) { errors.push(`backfill: ${e.message}`); break; }
-    const rm = await verify(list); if (rm.length) { calls++; checked.push(...rm); }
-    chunk.forEach((p, k) => { p.details = list[k].details || []; if (p.details.length) done++; console.log(`• ${p.fact}` + p.details.map((d) => `\n   - ${d.k}: ${d.v}`).join('')); });
+  for (let i = 0; i < todo.length; i += 6) {
+    const chunk = todo.slice(i, i + 6);
+    const list = chunk.map((p) => ({ fact: p.fact, day: p.date, imp: p.imp, q: p.q || p.tag, qen: p.qen || '', urls: p.refs.map((r) => r.read || r.link), titles: p.refs.map((r) => r.title) }));
+    let model;
+    try { ({ model } = await ask('Reply with JSON only: {"ok":true}', 'Reply with JSON only.')); await enrich(list); calls++; } catch (e) { errors.push(`backfill: ${e.message}`); break; }
+    const rm = await verify(list, model); if (rm.length) checked.push(...rm);
+    chunk.forEach((p, k) => {
+      const n = list[k];
+      if (n.stale) console.log(`  (writer thinks this is old news — kept, check it): ${p.fact}`);
+      if (!n.sum || n.unverified) { console.log(`✗ kept old: ${p.fact}`); return; }
+      p.sum = n.sum; p.details = n.details || []; if (n.quiz) p.quiz = n.quiz;
+      fixPoint(p);
+      p.depth = n.art && n.art.length > 600 ? 'article' : 'headlines';
+      done++;
+      console.log(`✓ ${p.fact}\n   क्या हुआ: ${p.sum}` + p.details.map((d) => `\n   ${d.t === 'g' ? '📚' : '•'} ${d.k}: ${d.v}`).join('') + (p.quiz ? `\n   ❓ ${p.quiz.q} → ${p.quiz.a}` : ''));
+    });
   }
-  dg.updated = new Date().toISOString();
-  await writeFile(DIGEST, JSON.stringify(dg, null, 1) + '\n');
+  if (done) { dg.updated = new Date().toISOString(); await writeFile(DIGEST, JSON.stringify(dg, null, 1) + '\n'); }
   await writeFile('new-digest.json', JSON.stringify({ added: 0, enriched: done, calls, errors, checked }));
   logChecked();
-  console.log(`backfill: ${done}/${todo.length} points got details, ${calls} AI calls`);
+  console.log(`backfill: ${done}/${todo.length} points converted, ${dg.points.filter((p) => !p.sum).length} still in old format`);
   if (errors.length) console.error(errors.join('\n'));
   process.exit(0);
 }

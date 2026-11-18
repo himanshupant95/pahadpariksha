@@ -125,33 +125,6 @@
  ],
  "points": [
   {
-   "id": "379b0d9d1d",
-   "date": "2026-11-17",
-   "fact": "उत्तराखंड भारत का छठा पूर्ण साक्षर राज्य बन गया।",
-   "cat": "रिपोर्ट/रैंकिंग",
-   "imp": 3,
-   "tag": "पूर्ण साक्षर राज्य",
-   "model": "groq/openai/gpt-oss-120b",
-   "refs": [
-    {
-     "title": "उत्तराखंड बना भारत का छठा पूर्ण साक्षर राज्य, नवी मुंबई में आयोजित हुआ ‘ज्ञान गौरव सम्मान कार्यक्रम’",
-     "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNQ2ZtUW9HMW82WnY1YlBmS3E0ckJpajhNMEpTakhFbFJpdkFWSUoySkJlZkpTVE5xS2FzTGxTUHlqeFkwUHdNaExhTUNYcUlmdFpUOVpHNG9XbnV4bk1TaVZUS29CVzFHTEF2aHM0akJzYnN2QUFKMXBkeVFiQXJhRDVnUThTTDdlSEFaSzJ3?oc=5",
-     "source": "Country and Politics"
-    }
-   ],
-   "added": "2026-11-18T01:54:40.789Z",
-   "details": [
-    {
-     "k": "कहाँ",
-     "v": "नवी मुंबई"
-    },
-    {
-     "k": "संस्था",
-     "v": "ज्ञान गौरव सम्मान कार्यक्रम"
-    }
-   ]
-  },
-  {
    "id": "232fa95281",
    "date": "2026-11-17",
    "fact": "उत्तराखंड और हिमाचल प्रदेश ने किशौ बांध पर आपसी समझौता ज्ञापन (MoU) किया।",
@@ -827,5 +800,5 @@
    ]
   }
  ],
- "updated": "2026-11-18T04:34:06.431Z"
+ "updated": "2026-11-18T05:08:06.357Z"
 }
