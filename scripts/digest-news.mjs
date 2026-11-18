@@ -3,6 +3,7 @@
 // (Google Gemini API, free tier, via its OpenAI-compatible endpoint), and keeps only exam-worthy
 // facts, rewritten as one-line Hindi exam points, in src/data/digest.json.
 // Needs env GEMINI_API_KEY (GitHub secret). Run: node scripts/digest-news.mjs
+import { fixPoint } from './hindi-fix.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
@@ -317,7 +318,12 @@ for (const day of days) {
       const list = fresh.map((f) => ({ fact: f.fact, ...f._e }));
       try { await enrich(list); calls++; } catch (e) { errors.push(`${day} enrich (kept points without details): ${e.message}`); }
       const rm = await verify(list, fresh[0]?.model || ''); calls++; checked.push(...rm);
-      fresh.forEach((f, i) => { delete f._e; if (list[i].details?.length) f.details = list[i].details; });
+      fresh.forEach((f, i) => {
+        delete f._e; if (list[i].details?.length) f.details = list[i].details;
+        // repair half-Hindi/half-English words ("उत्तarakhand") and unify spellings; flag leftovers for review
+        const left = fixPoint(f);
+        if (left.length) errors.push(`जाँचें — मिश्रित-लिपि शब्द: ${[...new Set(left)].join(', ')} ("${f.fact.slice(0, 50)}…")`);
+      });
     }
     for (const f of fresh) {
       if (PREVIEW) { previewOut.push(`${f.imp >= 3 ? '★' : '·'} [${f.cat}] ${f.fact}  #${f.tag}` + (f.details || []).map((d) => `\n     • ${d.k}: ${d.v}`).join('') + `\n     ← ${f.refs.map((r) => r.title.slice(0, 90)).join(' || ')}`); continue; }
