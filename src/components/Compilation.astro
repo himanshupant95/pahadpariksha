@@ -8,7 +8,7 @@ const top = items.filter((p) => p.imp >= 3).sort((a, b) => a.date.localeCompare(
 const groups = byCategory(items);
 const tags = [...new Set(items.filter((p) => p.tag).map((p) => p.tag))];
 ---
-<div class="print-brand">पहाड़ परीक्षा · pahadpariksha.in — उत्तराखंड करेंट अफेयर्स</div>
+<div class="print-brand"><span class="notranslate" translate="no">पहाड़ परीक्षा</span> · pahadpariksha.in — उत्तराखंड करेंट अफेयर्स</div>
 <h1>उत्तराखंड करेंट अफेयर्स: {kind} संकलन <span class="sub">{label}</span></h1>
 <p class="lead">{items.length} परीक्षा-उपयोगी बिंदु, जिनमें <strong>{top.length} अति महत्वपूर्ण (★)</strong>। विषयवार क्रम में, हर बिंदु के साथ तिथि और स्रोत।</p>
 <div class="actions no-print">
@@ -42,7 +42,7 @@ const tags = [...new Set(items.filter((p) => p.tag).map((p) => p.tag))];
   {next ? <a href={next.href}>{next.label} →</a> : <span />}
 </nav>
 <p class="note">बिंदु समाचार शीर्षकों से AI सहायता द्वारा संकलित हैं और मूल स्रोत से जुड़े हैं। परीक्षा में लिखने से पहले आधिकारिक स्रोत से पुष्टि करें।</p>
-<div class="print-brand foot">© पहाड़ परीक्षा · pahadpariksha.in — मुफ़्त अध्ययन सामग्री, उत्तराखंड की परीक्षाओं के लिए</div>
+<div class="print-brand foot">© <span class="notranslate" translate="no">पहाड़ परीक्षा</span> · pahadpariksha.in — मुफ़्त अध्ययन सामग्री, उत्तराखंड की परीक्षाओं के लिए</div>
 
 <style>
   h1 .sub { display: block; font-size: 1.05rem; color: var(--muted); font-weight: 600; margin-top: 4px; }
