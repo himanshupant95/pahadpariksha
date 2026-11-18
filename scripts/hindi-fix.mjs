@@ -38,6 +38,8 @@ export function mixedWords(text) {
 export function fixPoint(p) {
   p.fact = fixHindi(p.fact);
   if (p.tag) p.tag = fixHindi(p.tag);
-  for (const d of p.details || []) d.v = fixHindi(d.v);
-  return [p.fact, p.tag, ...(p.details || []).map((d) => d.v)].flatMap(mixedWords);
+  if (p.sum) p.sum = fixHindi(p.sum);
+  for (const d of p.details || []) { d.v = fixHindi(d.v); d.k = fixHindi(d.k); }
+  if (p.quiz) { p.quiz.q = fixHindi(p.quiz.q); p.quiz.a = fixHindi(p.quiz.a); }
+  return [p.fact, p.tag, p.sum, ...(p.details || []).flatMap((d) => [d.k, d.v]), p.quiz?.q, p.quiz?.a].flatMap(mixedWords);
 }

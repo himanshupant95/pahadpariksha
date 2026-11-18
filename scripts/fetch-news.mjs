@@ -36,6 +36,12 @@ const PUB_FEEDS = [
   ['https://www.amarujala.com/rss/dehradun.xml', 'Amar Ujala'],
   ['https://api.livehindustan.com/feeds/rss/uttarakhand/rssfeed.xml', 'Live Hindustan'],
   ['https://www.tv9hindi.com/state/uttarakhand/feed', 'TV9 Bharatvarsh'],
+  // district feeds: direct article links, so the digest can read the full report (probed Nov 2026)
+  ...['haridwar', 'nainital', 'almora', 'udham-singh-nagar', 'pauri', 'tehri', 'chamoli', 'uttarkashi', 'pithoragarh',
+    'rudraprayag', 'bageshwar', 'champawat', 'roorkee', 'rishikesh'].map((c) => [`https://www.amarujala.com/rss/${c}.xml`, 'Amar Ujala']),
+  ['https://api.livehindustan.com/feeds/rss/uttarakhand/dehradun/rssfeed.xml', 'Live Hindustan'],
+  ['https://api.livehindustan.com/feeds/rss/uttarakhand/haldwani/rssfeed.xml', 'Live Hindustan'],
+  ['https://www.hindustantimes.com/feeds/rss/cities/dehradun-news/rssfeed.xml', 'Hindustan Times'],
 ];
 
 // Must mention Uttarakhand or a place in it
@@ -128,7 +134,13 @@ for (const [url, pubName] of process.env.OFFLINE ? [] : ALL) {
       if (!sc) continue;
       const tk = tokens(n.title);
       const dup = [...items, ...fresh].find((x) => x.id === idOf(n.title) || (Math.abs(Date.parse(x.published) - Date.parse(n.published)) < 4 * 864e5 && similar(tk, tokens(x.title))));
-      if (dup) { if (n.source && n.source !== dup.source && !dup.sources?.includes(n.source)) (dup.sources ||= []).push(n.source); if (n.summary && !dup.summary) dup.summary = n.summary; continue; }
+      if (dup) {
+        if (n.source && n.source !== dup.source && !dup.sources?.includes(n.source)) (dup.sources ||= []).push(n.source);
+        if (n.summary && !dup.summary) dup.summary = n.summary;
+        // keep a publisher link we can read in full when the stored copy is a Google News link
+        if (!/news\.google\.com/.test(n.link) && /news\.google\.com/.test(dup.link) && !dup.read) dup.read = n.link;
+        continue;
+      }
       fresh.push({ id: idOf(n.title), ...n, ...sc, sources: [], firstSeen: new Date().toISOString() });
     }
   } catch (e) {

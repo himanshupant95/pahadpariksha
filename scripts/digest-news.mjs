@@ -4,6 +4,7 @@
 // facts, rewritten as one-line Hindi exam points, in src/data/digest.json.
 // Needs env GEMINI_API_KEY (GitHub secret). Run: node scripts/digest-news.mjs
 import { fixPoint } from './hindi-fix.mjs';
+import { articleText, readable } from './article-text.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
@@ -43,7 +44,7 @@ KEEP only concrete, durable facts such as:
 - medals of Uttarakhand athletes at national/international events;
 - official opening/closing dates of Char Dham or other major yatras and fairs (named fair + place);
 - census/data releases; state foundation-level events with a concrete fact.
-DROP: speeches, visions, roadmaps, "CM said/directed/reviewed", inspections, felicitation functions, small local events or awards by private bodies, routine fund sanctions, exam results/admit cards, party politics, elections, protests, crime, accidents, weather, opinion, promotions, and anything already in ALREADY PUBLISHED.
+DROP: old news re-mentioned — an achievement, award or decision from earlier weeks/months that a headline only recalls (at a function, in a speech, in a felicitation) unless there is a NEW development that day; speeches, visions, roadmaps, "CM said/directed/reviewed", inspections, felicitation functions, small local events or awards by private bodies, routine fund sanctions, exam results/admit cards, party politics, elections, protests, crime, accidents, weather, opinion, promotions, and anything already in ALREADY PUBLISHED.
 
 STRICT RULES:
 - Use ONLY information present in the headlines and their summaries. Never add names, numbers, dates or places not in the input. If a headline is vague, DROP it.
@@ -57,24 +58,28 @@ STRICT RULES:
 
 Reply with JSON only: {"points":[{"ids":["..."],"fact":"...","cat":"...","imp":3,"tag":"...","q":"...","qen":"..."}]}`;
 
-// Stage 2: the key pointers shown when a reader opens a point — so they need not visit the news site.
-const DKEYS = ['कब', 'कहाँ', 'कौन', 'कितना', 'कारण', 'विवरण', 'श्रेणी', 'संस्था', 'पृष्ठभूमि'];
-const ENRICH = `You write the exam pointers for Uttarakhand current-affairs points for UKPSC/UKSSSC aspirants.
-On the website each POINT is a one-line heading; when a reader clicks it, your pointers appear below it. The reader should get every exam-relevant fact here and only visit the news site out of curiosity.
-For each numbered POINT you get RELATED HEADLINES (several outlets' coverage of the same story; some lines include the publisher's summary after —). Give 3–5 short pointers (fewer only if the headlines truly have nothing more).
+// Stage 2: what a reader sees after clicking a point — written so the aspirant needs no other source.
+// Own format (not copied from any coaching material): क्या हुआ → तथ्य (each with its own label) → स्थायी ज्ञान → अभ्यास प्रश्न.
+// Depth follows the evidence: with the full article and imp 3 → 5–8 facts; otherwise 3–4.
+const DKEYS = ['कब', 'कहाँ', 'कौन', 'कितना', 'कारण', 'विवरण', 'श्रेणी', 'संस्था', 'पृष्ठभूमि']; // legacy keys (old points, /add)
+const ENRICH = `You prepare Uttarakhand current-affairs notes for UKPSC/UKSSSC aspirants (Hindi medium, many from rural areas).
+On the website each POINT is a one-line heading; a click opens your note. The note must be complete, ABSOLUTELY ACCURATE and easy to understand.
 
-Allowed keys and where the information may come from:
-- "कब" (date/occasion), "कहाँ" (place/district/venue), "कौन" (person, team, partner, ministry or body involved), "कितना" (number, amount, rank, score, area, capacity), "कारण" (why it was given / what was achieved / purpose), "विवरण" (any other concrete detail) — ONLY from the POINT text or its RELATED HEADLINES. Never infer or guess these.
-- "श्रेणी" (award/medal category or type), "संस्था" (who gives/runs it) — from headlines, or from well-established general knowledge.
-- "पृष्ठभूमि" (at most ONE static-GK fact about the SAME award/scheme/institution/person/place NAMED in the point — when instituted, highest honour of what, where located) — only a widely documented fact you are certain of. Never a different index, report or scheme that the point does not name.
+For each numbered POINT you get: DATE, DEPTH, the ARTICLE (full news report — may be missing) and RELATED HEADLINES.
+Write:
+1. "sum" — क्या हुआ: 1–2 short sentences in simple Hindi (max 40 words) telling what happened, who did it and why it matters. Do not repeat the heading word-for-word.
+2. "facts" — exam facts, each {"l": label, "v": text}.
+   - "l": a 1–4 word Hindi label naming the aspect, chosen to fit THIS news (e.g. "योजना का उद्देश्य", "लाभार्थी", "कुल लागत", "स्थान", "क्रियान्वयन एजेंसी", "समय-सीमा", "पुरस्कार देने वाली संस्था"). Do not reuse one label twice.
+   - "v": max 25 words, one clear fact. Prefer what an examiner turns into an MCQ: names, posts, numbers, dates, places, firsts, ranks, bodies.
+   - DEPTH "full": 5–8 facts. DEPTH "short": 3–4 facts. Fewer if the sources truly hold less — never pad.
+   - ONLY from the ARTICLE, the POINT or the RELATED HEADLINES. Never guess, round or "complete" a number, name or date. If sources conflict, leave it out.
+   - Each fact must add something the heading and "sum" do not already say.
+3. "static" — 0–2 static-GK facts about the SAME place/institution/scheme/award/person the point names (where it is, which district or river, when it was set up, what the body does). Only widely documented facts you are certain of; otherwise give none. Same {"l","v"} shape.
+4. "q" — one practice question an exam could ask, answerable from your "facts", with a short answer: {"q":"...","a":"..."}. Skip if no good question.
+5. "stale": true if the ARTICLE shows the main event happened well before DATE and is only being recalled (no new development that day); else false.
 
-RULES:
-- Each pointer must add a NEW name, number, date, place or body that the POINT heading does not already contain. Never reword the heading; never state an obvious purpose.
-- Prefer facts an examiner could turn into an MCQ: names, numbers, places, firsts, ranks, the giving body.
-- If headlines conflict on a number, leave that number out.
-- Simple Hindi, each "v" max 22 words, no trailing full stop.
-
-Reply with JSON only: {"items":[{"n":1,"details":[{"k":"कहाँ","v":"..."}]}]}`;
+Simple Hindi; keep common Hindi spellings of names; write उत्तराखंड; no English words inside Hindi words; no trailing full stop in "v".
+Reply with JSON only: {"items":[{"n":1,"sum":"...","facts":[{"l":"...","v":"..."}],"static":[{"l":"...","v":"..."}],"q":{"q":"...","a":"..."},"stale":false}]}`;
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36';
 const addDays = (d, n) => new Date(Date.parse(d) + n * 864e5).toISOString().slice(0, 10);
@@ -100,58 +105,90 @@ const norm = (t) => t.toLowerCase().replace(/[^\p{L}\p{M}\p{N} ]/gu, ' ').replac
 const tokens = (t) => new Set(norm(t).split(' ').filter((w) => (w.length > 2 || /^\d+$/.test(w)) && !STOP.has(w)));
 const restates = (v, fact) => { const t = tokens(v); if (!t.size) return true; const f = tokens(fact); let i = 0; for (const w of t) if (f.has(w)) i++; return i / t.size >= 0.5; };
 
-async function enrich(list) { // list: [{fact, day, q, qen, titles:[]}] → mutates .details
+const clip = (t, n) => (t.length > n ? t.slice(0, n) + '…' : t);
+async function enrich(list) { // list: [{fact, day, q, qen, imp, titles:[], urls:[]}] → sets .sum .details .quiz .stale .art
   if (!list.length) return 0;
   for (const p of list) {
     const extra = [...await related(p.q, p.day, 'hi'), ...await related(p.qen, p.day, 'en')];
     const seen = new Set(p.titles.map((t) => t.toLowerCase()));
     p.ctx = [...p.titles, ...extra.filter((t) => !seen.has(t.toLowerCase()) && seen.add(t.toLowerCase()))].slice(0, 14);
+    // full report: the longest readable article among the point's sources
+    const texts = [];
+    for (const u of (p.urls || []).filter(readable).slice(0, 3)) texts.push(await articleText(u, 3500));
+    p.art = texts.sort((a, b) => b.length - a.length)[0] || '';
   }
-  const user = list.map((p, i) => `POINT ${i + 1}: ${p.fact}\nRELATED HEADLINES:\n${p.ctx.map((t) => '- ' + t).join('\n') || '(none)'}`).join('\n\n');
-  const { out } = await ask(user, ENRICH);
   let n = 0;
-  for (const it of out.items || []) {
-    const p = list[(it.n || 0) - 1]; if (!p) continue;
-    p.details = (it.details || []).filter((d) => DKEYS.includes(d.k) && d.v && String(d.v).length < 200 && !restates(String(d.v), p.fact))
-      .slice(0, 5).map((d) => ({ k: d.k, v: String(d.v).trim().replace(/[।.]$/, '') }));
-    n++;
+  for (let i = 0; i < list.length; i += 3) { // 3 points per call keeps the reply well inside the token limit
+    const part = list.slice(i, i + 3);
+    const user = part.map((p, k) => `POINT ${k + 1}: ${p.fact}\nDATE: ${p.day}\nDEPTH: ${p.art.length > 600 && (p.imp || 2) >= 3 ? 'full' : 'short'}\n` +
+      `ARTICLE:\n${p.art || '(not available)'}\nRELATED HEADLINES:\n${p.ctx.map((t) => '- ' + t).join('\n') || '(none)'}`).join('\n\n=====\n\n');
+    const { out } = await ask(user, ENRICH);
+    for (const it of out.items || []) {
+      const p = part[(it.n || 0) - 1]; if (!p) continue;
+      const tidy = (x) => String(x || '').trim().replace(/[।.]$/, '');
+      const lab = (x) => tidy(x).slice(0, 30);
+      const used = new Set();
+      const facts = (it.facts || []).filter((d) => d && d.l && d.v && String(d.v).length < 220 && !restates(String(d.v), p.fact))
+        .filter((d) => !used.has(lab(d.l)) && used.add(lab(d.l))).slice(0, 8).map((d) => ({ k: lab(d.l), v: tidy(d.v) }));
+      const stat = (it.static || []).filter((d) => d && d.l && d.v && String(d.v).length < 220).slice(0, 2).map((d) => ({ k: lab(d.l), v: tidy(d.v), t: 'g' }));
+      p.sum = tidy(it.sum) ? tidy(it.sum) + '।' : '';
+      p.details = [...facts, ...stat];
+      p.quiz = it.q && it.q.q && it.q.a ? { q: String(it.q.q).trim(), a: tidy(it.q.a) } : null;
+      p.stale = it.stale === true;
+      n++;
+    }
   }
   return n;
 }
 
-// Stage 3: an independent model (Groq — a different model family from the Gemini writer) checks every
-// pointer against the same headlines. Dates/numbers (कब, कितना) are dropped unless the headlines support them;
-// any other pointer may also stand as certain, well-documented GK. 'off' (padding) and 'bad' are always dropped.
-const NEWS_KEYS = new Set(['कब', 'कितना']); // dates and numbers must come from the headlines; other keys may carry certain GK
-const VERIFY = `You are a strict fact-checker for an exam-preparation website (Uttarakhand, India).
-For each numbered POINT you get the RELATED HEADLINES (the only news evidence) and its POINTERS (each with an id like 2.3 and a key).
-Judge every pointer:
-- "ok": the specific facts in it (names, numbers, dates, places, bodies) are stated in, or directly follow from, the headlines or the POINT text. Check the headlines FIRST — if a headline says it, the answer is "ok", never "gk".
-- "gk": not in the headlines, but a correct, widely documented general-knowledge fact about the SAME thing the point names (e.g. when an award was instituted, which ministry gives it), and you are certain it is true.
-- "off": true or not, it is about something the point does not name, or adds nothing exam-relevant (padding, vague purpose, restating the point).
-- "bad": contradicts the headlines, looks invented/guessed, or you are not sure it is true (wrong person, year, number, body, title).
-When unsure between "gk" and "bad", answer "bad". Be strict about names, posts and numbers.
-Reply with JSON only: {"v":[{"id":"2.3","r":"ok|gk|off|bad","why":"max 12 words"}]}`;
+// Stage 3: an independent model (Groq — a different model family from the Gemini writer) checks every line
+// of every note against the article and headlines, one point per call. Facts, the summary and the practice
+// answer must be supported by the sources ("ok"); static-GK lines may also pass as certain GK ("gk").
+// If Groq is unavailable a different Gemini model checks instead — never the model that wrote the note.
+const VERIFY = `You are a strict fact-checker for an exam-preparation website (Uttarakhand, India). Accuracy matters more than completeness.
+You get one POINT with its EVIDENCE (the full article if available, and related headlines) and the LINES written about it, each with an id:
+S = summary, F1..Fn = facts, G1..Gn = static general-knowledge facts, Q = practice question with its answer.
+Judge every line:
+- "ok": everything specific in it (names, posts, numbers, dates, places, bodies) is stated in, or directly follows from, the EVIDENCE or the POINT. Check the evidence FIRST.
+- "gk": not in the evidence, but a correct, widely documented general-knowledge fact about the SAME thing the point names, and you are certain.
+- "off": true or not, it is about something the point does not name, or is padding / vague / a restatement.
+- "bad": contradicts the evidence, adds a detail the evidence does not give (a number, date, name or place), or you are not sure.
+When unsure, answer "bad". Be strict with numbers, names and posts.
+Reply with JSON only: {"v":[{"id":"F2","r":"ok|gk|off|bad","why":"max 12 words"}]}`;
 
-async function verify(list, writer = '') { // list: [{fact, ctx|titles, details}] → filters .details; returns removed[]
-  const items = list.filter((p) => p.details?.length);
-  if (!items.length) return [];
-  const user = items.map((p, i) => `POINT ${i + 1}: ${p.fact}\nRELATED HEADLINES:\n${(p.ctx || p.titles || []).map((t) => '- ' + t).join('\n') || '(none)'}\nPOINTERS:\n` +
-    p.details.map((d, j) => `${i + 1}.${j + 1} [${d.k}] ${d.v}`).join('\n')).join('\n\n');
-  let out;
-  try {
-    out = (GROQ && !writer.startsWith('groq/') ? await askGroq(user, VERIFY) : await ask(user, VERIFY)).out; // never let a model grade itself
-  } catch (e) { console.log(`  verify skipped: ${e.message.slice(0, 160)}`); return []; }
-  const verdict = new Map((out.v || []).map((x) => [String(x.id).trim(), x]));
+const NEED_OK = (id) => id === 'S' || id === 'Q' || id.startsWith('F');
+async function verify(list, writer = '') { // filters .sum/.details/.quiz in place; returns removed[]
   const removed = [];
-  items.forEach((p, i) => {
-    p.details = p.details.filter((d, j) => {
-      const v = verdict.get(`${i + 1}.${j + 1}`); const r = v?.r || 'bad'; // no verdict = not verified
-      const keep = r === 'ok' ? true : r === 'gk' ? !NEWS_KEYS.has(d.k) : false;
-      if (!keep) removed.push({ fact: p.fact, k: d.k, v: d.v, r, why: v?.why || 'no verdict' });
-      return keep;
-    });
-  });
+  for (const p of list) {
+    const facts = (p.details || []).filter((d) => d.t !== 'g'), stat = (p.details || []).filter((d) => d.t === 'g');
+    const lines = [];
+    if (p.sum) lines.push(['S', p.sum]);
+    facts.forEach((d, j) => lines.push([`F${j + 1}`, `${d.k}: ${d.v}`]));
+    stat.forEach((d, j) => lines.push([`G${j + 1}`, `${d.k}: ${d.v}`]));
+    if (p.quiz) lines.push(['Q', `प्रश्न: ${p.quiz.q} — उत्तर: ${p.quiz.a}`]);
+    if (!lines.length) continue;
+    const user = `POINT: ${p.fact}\nEVIDENCE — ARTICLE:\n${p.art || '(not available)'}\nEVIDENCE — HEADLINES:\n${(p.ctx || p.titles || []).map((t) => '- ' + t).join('\n') || '(none)'}\n\nLINES:\n` +
+      lines.map(([id, t]) => `${id} ${t}`).join('\n');
+    let out = null;
+    if (GROQ && !writer.startsWith('groq/')) { try { out = (await askGroq(user, VERIFY)).out; } catch (e) { console.log(`  verify (groq) failed: ${e.message.slice(0, 120)}`); } }
+    if (!out) { // fallback: another model than the writer
+      const other = MODELS.filter((m) => m !== writer);
+      if (other.length) { const keep = MODELS; MODELS = other; try { out = (await ask(user, VERIFY)).out; } catch (e) { console.log(`  verify (gemini) failed: ${e.message.slice(0, 120)}`); } MODELS = keep; }
+    }
+    if (!out) { p.unverified = true; continue; } // shown as ⚠ in the owner's review
+    const verdict = new Map((out.v || []).map((x) => [String(x.id).trim().toUpperCase(), x]));
+    const pass = (id, label, text) => {
+      const v = verdict.get(id); const r = v?.r || 'bad';
+      const ok = r === 'ok' || (r === 'gk' && !NEED_OK(id));
+      if (!ok) removed.push({ fact: p.fact, k: label, v: text, r, why: v?.why || 'no verdict' });
+      return ok;
+    };
+    if (p.sum && !pass('S', 'सार', p.sum)) p.sum = '';
+    const fKeep = facts.filter((d, j) => pass(`F${j + 1}`, d.k, d.v));
+    const gKeep = stat.filter((d, j) => pass(`G${j + 1}`, d.k, d.v));
+    p.details = [...fKeep, ...gKeep];
+    if (p.quiz && !pass('Q', 'प्रश्न', `${p.quiz.q} — ${p.quiz.a}`)) p.quiz = null;
+  }
   return removed;
 }
 
@@ -261,13 +298,17 @@ const addedIds = [];
 const checked = []; // pointers removed by the Stage-3 checker
 const errors = [];
 if (process.env.CHECK) { // dry run of the real pipeline on the current points: writer (enrich) → checker (verify); saves nothing
-  const pts = dg.points.slice(0, 16);
+  const pts = dg.points.slice(0, Number(process.env.CHECK_N || 6));
   for (let i = 0; i < pts.length; i += 8) {
-    const list = pts.slice(i, i + 8).map((p) => ({ fact: p.fact, day: p.date, q: p.q || p.tag, qen: p.qen || '', titles: p.refs.map((r) => r.title) }));
+    const list = pts.slice(i, i + 8).map((p) => ({ fact: p.fact, day: p.date, imp: p.imp, q: p.q || p.tag, qen: p.qen || '', urls: p.refs.map((r) => r.read || r.link), titles: p.refs.map((r) => r.title) }));
+    const { model } = await ask('Reply with JSON only: {"ok":true}', 'Reply with JSON only.'); // writer = first available model
     await enrich(list);
-    const raw = list.map((p) => p.details.map((d) => `${d.k}: ${d.v}`));
-    const rm = await verify(list); checked.push(...rm);
-    list.forEach((p, k) => console.log(`• ${p.fact.slice(0, 80)}\n   headlines: ${p.ctx.length}\n` + raw[k].map((r) => `   ${p.details.some((d) => `${d.k}: ${d.v}` === r) ? '✓' : '✗'} ${r}`).join('\n')));
+    const before = list.map((p) => ({ sum: p.sum, d: p.details.map((d) => `${d.t === 'g' ? '📚' : '•'} ${d.k}: ${d.v}`), q: p.quiz }));
+    const rm = await verify(list, model); checked.push(...rm);
+    list.forEach((p, k) => console.log(`\n■ ${p.fact.slice(0, 90)}  [article ${p.art.length} chars${p.stale ? ', STALE' : ''}${p.unverified ? ', UNVERIFIED' : ''}]\n` +
+      `   क्या हुआ: ${before[k].sum || '-'} ${p.sum ? '✓' : '✗'}\n` +
+      before[k].d.map((r) => `   ${p.details.some((d) => `${d.t === 'g' ? '📚' : '•'} ${d.k}: ${d.v}` === r) ? '✓' : '✗'} ${r}`).join('\n') +
+      (before[k].q ? `\n   ${p.quiz ? '✓' : '✗'} प्रश्न: ${before[k].q.q} → ${before[k].q.a}` : '')));
   }
   logChecked();
   process.exit(0);
@@ -308,9 +349,9 @@ for (const day of days) {
       const refs = ids.map((id) => byId.get(id));
       fresh.push({
         id: hash(p.fact), date: day, fact: p.fact.trim(), cat: p.cat, imp: Math.min(3, p.imp), tag: (p.tag || '').trim(), model,
-        refs: refs.map((r) => ({ title: r.title, link: r.link, source: r.source })),
+        refs: refs.map((r) => ({ title: r.title, link: r.link, source: r.source, ...(r.read ? { read: r.read } : {}) })),
         added: new Date().toISOString(),
-        _e: { day, q: p.q, qen: p.qen, titles: refs.map((r) => r.title + (r.summary ? ` — ${r.summary}` : '')) },
+        _e: { day, q: p.q, qen: p.qen, imp: p.imp, urls: refs.map((r) => r.read || r.link), titles: refs.map((r) => r.title + (r.summary ? ` — ${r.summary}` : '')) },
       });
       kept++;
     }
@@ -318,15 +359,32 @@ for (const day of days) {
       const list = fresh.map((f) => ({ fact: f.fact, ...f._e }));
       try { await enrich(list); calls++; } catch (e) { errors.push(`${day} enrich (kept points without details): ${e.message}`); }
       const rm = await verify(list, fresh[0]?.model || ''); calls++; checked.push(...rm);
+      for (let i = fresh.length - 1; i >= 0; i--) if (list[i].stale) { // an old event only recalled — not current affairs
+        checked.push({ fact: fresh[i].fact, k: 'पूरा बिंदु', v: 'पुरानी घटना का दोबारा ज़िक्र', r: 'off', why: 'stale' });
+        errors.push(`पुरानी खबर हटाई: ${fresh[i].fact.slice(0, 70)}`);
+        fresh.splice(i, 1); list.splice(i, 1);
+      }
       fresh.forEach((f, i) => {
-        delete f._e; if (list[i].details?.length) f.details = list[i].details;
+        delete f._e; const L = list[i];
+        if (L.details?.length) f.details = L.details;
+        if (L.sum) f.sum = L.sum;
+        if (L.quiz) f.quiz = L.quiz;
+        f.depth = L.art?.length > 600 ? 'article' : 'headlines';
+        if (L.unverified) { f.unverified = true; errors.push(`जाँच नहीं हो सकी (AI checker unavailable): ${f.fact.slice(0, 60)}`); }
         // repair half-Hindi/half-English words ("उत्तarakhand") and unify spellings; flag leftovers for review
         const left = fixPoint(f);
         if (left.length) errors.push(`जाँचें — मिश्रित-लिपि शब्द: ${[...new Set(left)].join(', ')} ("${f.fact.slice(0, 50)}…")`);
       });
     }
     for (const f of fresh) {
-      if (PREVIEW) { previewOut.push(`${f.imp >= 3 ? '★' : '·'} [${f.cat}] ${f.fact}  #${f.tag}` + (f.details || []).map((d) => `\n     • ${d.k}: ${d.v}`).join('') + `\n     ← ${f.refs.map((r) => r.title.slice(0, 90)).join(' || ')}`); continue; }
+      if (PREVIEW) {
+        previewOut.push(`${f.imp >= 3 ? '★' : '·'} [${f.cat}] ${f.fact}  #${f.tag}  (${f.depth}${f.unverified ? ', UNVERIFIED' : ''})` +
+          (f.sum ? `\n     क्या हुआ: ${f.sum}` : '') +
+          (f.details || []).map((d) => `\n     ${d.t === 'g' ? '📚' : '•'} ${d.k}: ${d.v}`).join('') +
+          (f.quiz ? `\n     ❓ ${f.quiz.q} → ${f.quiz.a}` : '') +
+          `\n     ← ${f.refs.map((r) => `${r.source}${r.read || !/news\.google/.test(r.link) ? ' (article)' : ''}: ${r.title.slice(0, 70)}`).join(' || ')}`);
+        continue;
+      }
       dg.points.push(f); added++; addedIds.push(f.id);
     }
     items.forEach((n) => reviewed.add(n.id));
