@@ -1,0 +1,33 @@
+name: Map source data (manual)
+# One-off/occasional: downloads open map data for Uttarakhand and publishes it as a workflow artifact
+# (not committed). Elevation: NASA SRTM (public domain, via AWS Open Data terrain tiles).
+# Features: OpenStreetMap via Overpass (© OpenStreetMap contributors, ODbL).
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install GDAL
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq gdal-bin >/dev/null
+      - name: Elevation (SRTM 3 arc-second tiles)
+        run: |
+          mkdir -p out dem
+          for lat in 28 29 30 31; do for lon in 077 078 079 080 081; do
+            f="N${lat}E${lon}.hgt"
+            curl -sfL --retry 3 "https://s3.amazonaws.com/elevation-tiles-prod/skadi/N${lat}/${f}.gz" -o "dem/${f}.gz" && gunzip -f "dem/${f}.gz" || echo "missing $f"
+          done; done
+          gdalbuildvrt -q dem/all.vrt dem/*.hgt
+          gdal_translate -q -projwin 77.45 31.55 81.15 28.65 -co COMPRESS=DEFLATE -co PREDICTOR=2 -co TILED=YES dem/all.vrt out/uk-dem-srtm90.tif
+          gdalinfo out/uk-dem-srtm90.tif | head -20
+      - name: OpenStreetMap features (Overpass)
+        run: node scripts/maps/overpass.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: uk-map-data
+          path: out/
+          retention-days: 7
