@@ -25,6 +25,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: IndexNow — list new/changed pages
+        run: node scripts/indexnow.mjs prepare
+        continue-on-error: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: indexnow-urls
+          path: indexnow-urls.txt
+          if-no-files-found: ignore
+          retention-days: 3
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -38,3 +47,22 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  indexnow:
+    # after the site is live, tell IndexNow engines (Bing, Yandex, Seznam, Naver…) what changed
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: indexnow-urls
+        continue-on-error: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/indexnow.mjs submit
+        continue-on-error: true

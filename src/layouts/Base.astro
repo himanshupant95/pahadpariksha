@@ -64,8 +64,19 @@ const enUrl = `https://pahadpariksha-in.translate.goog${path}?_x_tr_sl=hi&_x_tr_
     {SITE.gaId && (
       <>
         <script is:inline define:vars={{ gaId: SITE.gaId }}>
+          // Owner opt-out: open any page once with ?notrack=1 on your own browser/phone and analytics stays off
+          // there for good (undo with ?track=1). Keeps the owner's visits out of GA on any network/IP.
+          let off = false;
+          try {
+            const q = new URLSearchParams(location.search);
+            if (q.has('notrack')) localStorage.setItem('pp_notrack', '1');
+            if (q.has('track')) localStorage.removeItem('pp_notrack');
+            off = localStorage.getItem('pp_notrack') === '1';
+          } catch (e) {}
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          if (off) { window['ga-disable-' + gaId] = true; } else {
           gtag('js', new Date());
           gtag('config', gaId);
           // Load the analytics library after the page is ready (or on first interaction) so it doesn't
@@ -74,6 +85,7 @@ const enUrl = `https://pahadpariksha-in.translate.goog${path}?_x_tr_sl=hi&_x_tr_
           const load = () => { if (loaded) return; loaded = true; const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId; document.head.appendChild(s); };
           ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach((e) => addEventListener(e, load, { once: true, passive: true }));
           if (document.readyState === 'complete') setTimeout(load, 2500); else addEventListener('load', () => setTimeout(load, 2500), { once: true });
+          }
         </script>
       </>
     )}
