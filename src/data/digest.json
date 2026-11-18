@@ -72,9 +72,182 @@
   "a15e8ef671cf",
   "ecb2acaf94c7",
   "d29a4ecbe602",
-  "c0a221f66f08"
+  "c0a221f66f08",
+  "4822524ea5a4",
+  "981da3555bd3",
+  "1ad7922f1e8e",
+  "7066d2544859",
+  "bb0c40c278be",
+  "494ff9746e98",
+  "fb704ea37339",
+  "56cf51261fe0",
+  "19ded89f2836",
+  "7597e9706407",
+  "dd1ce3274285",
+  "42e50085d87f",
+  "9a61454c8dbb",
+  "9dd166a5a21d",
+  "95e96c01c0b1",
+  "d01b64b3a2ea",
+  "4ada4a8d9b1e",
+  "d8044ddeea27",
+  "b9887f1c5a56",
+  "775e9a8f4856",
+  "5a9f895d5b79",
+  "5dd6168ee537",
+  "08ad1c46566f",
+  "478852a0e6bb",
+  "2e6448be1fe4",
+  "ba440c55d45d",
+  "de7be335738f",
+  "46121afcf034",
+  "dd8e78bac94c",
+  "09327f99b6ea",
+  "fe75e2e5d4ee",
+  "46505dbd186a",
+  "c9edc564b883",
+  "0a29863ab042",
+  "209c09c1aca9",
+  "fc399ca5a6a5",
+  "d39dbd26649a",
+  "71dba4db4a1b",
+  "52542ed17d35",
+  "319fa0011313",
+  "a80590f55994",
+  "545dd6cb663b",
+  "efd9b9a96ad8",
+  "8e1aa6c2f638",
+  "36c0a6ba099b",
+  "2af9a406709f",
+  "0f86f2e62a3c",
+  "195e0b67d2ea"
  ],
  "points": [
+  {
+   "id": "379b0d9d1d",
+   "date": "2026-11-17",
+   "fact": "उत्तarakhand भारत का छठा पूर्ण साक्षर राज्य बन गया।",
+   "cat": "रिपोर्ट/रैंकिंग",
+   "imp": 3,
+   "tag": "पूर्ण साक्षर राज्य",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "उत्तराखंड बना भारत का छठा पूर्ण साक्षर राज्य, नवी मुंबई में आयोजित हुआ ‘ज्ञान गौरव सम्मान कार्यक्रम’",
+     "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNQ2ZtUW9HMW82WnY1YlBmS3E0ckJpajhNMEpTakhFbFJpdkFWSUoySkJlZkpTVE5xS2FzTGxTUHlqeFkwUHdNaExhTUNYcUlmdFpUOVpHNG9XbnV4bk1TaVZUS29CVzFHTEF2aHM0akJzYnN2QUFKMXBkeVFiQXJhRDVnUThTTDdlSEFaSzJ3?oc=5",
+     "source": "Country and Politics"
+    }
+   ],
+   "added": "2026-11-18T01:54:40.789Z",
+   "details": [
+    {
+     "k": "कहाँ",
+     "v": "नवी मुंबई"
+    },
+    {
+     "k": "संस्था",
+     "v": "ज्ञान गौरव सम्मान कार्यक्रम"
+    }
+   ]
+  },
+  {
+   "id": "232fa95281",
+   "date": "2026-11-17",
+   "fact": "उत्तarakhand और हिमाचल प्रदेश ने किशौ बांध पर आपसी समझौता ज्ञापन (MoU) किया।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "किशौ बांध MoU",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Uttarakhand-Himachal MoU on Kishau dam to help address Delhi’s water concerns: CM Pushkar Singh Dhami",
+     "link": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQOHlCTVo4MlRVX3JrUEVzaXBabE1ISEJWZFhSeTRNZ2RLZzFLZ1BEcWlrOFBJZ1N4clJHQ0dNbGJzWVpaVm5pc0FYbWZVV0MtTVFtV3FPZEpKRjF5ZWRLZlc4emc5aS1PN0RSakNLTWluc3l0RlZ1X3p0Z3NTMjlZUEdnTnBXNk9OQVlSZ2c2WFZzb1hlaHJ6S1RXUXVVa0gtTTBBck4xRmFwQnBPTVBZT1daV2w0X0xjZHVqc1FwLV8zOGpjY0dISnFHWWdKWmJUZjdXOG5PcnVaUVNpbXh1bGpmZEtFc3B6WnfSAe8BQVVfeXFMUHhYM1JzTWc1Q2RJdXotckhoa1JGVXBmdE1heUx3QWNGRXJ3TXRvdnFGZHN0UkVvMXRILVlfTk5HV0pnRXJtTS1HT2IxLU9WTXJ5RWR6R3E2cFJpSTFTTm54ZFhvLTQ2aUFnVURXdHgyR2dRY2tuSEV2djhkWV9GQmZla1F2a29yMkw1N3pPQmFEZGNTTGM5YzJaODJmMHd4NUF6b1ViOXhSYjNBTFAxQzZQNnRFbE5CWEp1UHRMaW5yRjVCYUxpaUJTSU5VWmFmTWNZcnBFSld4ZjRjNzRCSlZTSWRtMVlxTW42OEVGUmM?oc=5",
+     "source": "Moneycontrol.com"
+    }
+   ],
+   "added": "2026-11-18T01:54:40.789Z",
+   "details": [
+    {
+     "k": "कौन",
+     "v": "CM पुष्कर सिंह धामी"
+    },
+    {
+     "k": "कहाँ",
+     "v": "दिल्ली"
+    },
+    {
+     "k": "विवरण",
+     "v": "दिल्ली के जल चिंताओं को दूर करने हेतु"
+    }
+   ]
+  },
+  {
+   "id": "d30aa7715b",
+   "date": "2026-11-17",
+   "fact": "उत्तarakhand में तीन महीने के लिए 'स्टाम्प वाद निस्तारण योजना' लागू की गई।",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "स्टाम्प वाद निस्तारण",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "उत्तराखंड में तीन महीने के लिए लागू हुई स्टाम्प वाद निस्तारण योजना",
+     "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPbi1RNTBuY0xpc3lLY1JOTFNGLUVaTHVJRV9MU1FsTTE2N0s0SG9RRmNfYXNQeWpzVHhTYV9LbW5pQlo1MjA4UXN1cXF3T21UZXVnaGdWeWJNY1RQUWx3TnluVGdNVUhQV3RjUUxMUGM4elVfaWFjQU9HZXZrZzdYbWFtN1BUTnBockt3Y1J2NkktR04xcnZrY2R6Q3hsOVYtZ1dGdGFJUzhrWDVyanYtNm9oNXBSTl8xc3k5Z3dNTzQzWkg1bWp2OFpuWHpQM0JfNkHSAdcBQVVfeXFMTkVad3RfNFZJVWFINzJucUR6SWllbmQ2ejFkRnI4VmgwLVlxT1BuOENrRHNPZjlveUpHVEdjQUJwc0VyTzJuY0J2V2x3Q1J1OUx4QlBrSHp3R3ppQzJLdDlwT0laYnNTUmxRVTI2dzJGXy1hYnlSeW5iaWFHdmJheTJ2ZTZqaXdUSGJGb3Z5T2hMTjBENVdrS0dKWVlHRU52elMtMG05N2g1S1dSUWdjSTFuZ2tVRXNUazFuY0J5WWhvZXprV3dMTzRZX2lrQWRqTkp0RmctaUU?oc=5",
+     "source": "Janta Se Rishta"
+    }
+   ],
+   "added": "2026-11-18T01:54:40.789Z",
+   "details": [
+    {
+     "k": "कहाँ",
+     "v": "हरिद्वार"
+    },
+    {
+     "k": "विवरण",
+     "v": "एकमुश्त समाधान योजना"
+    }
+   ]
+  },
+  {
+   "id": "f3e0aaeb93",
+   "date": "2026-11-17",
+   "fact": "उत्तarakhand की इंजीनियरिंग निर्यात मूल्य 461 मिलियन डॉलर रहा।",
+   "cat": "अर्थव्यवस्था",
+   "imp": 2,
+   "tag": "इंजीनियरिंग निर्यात",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "इंजीनियरिंग एक्सपोर्ट में उत्तराखंड की कितनी हिस्सेदारी? 461 मिलियन डॉलर के निर्यात के बीच पहाड़ों में निवेश की कितनी संभावना, जानें",
+     "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNEp4bHhsUGRkNnM3dFVVR0E5YmY0TmwzWWFySVdCZE5fN0pGNE1UcXJZV01LRkhCNy12MEczYTQtdHBCeFRJUC1pSmRGY09GVWdSSXVmZEV4UUZnZE9talpZRzBFWGJtdkp0Y1VGd2E4UFF1U2VUN1A0ZzlXV19rX0RhMThjUjVyYzFBU2xpTXJtdkhXbFFFcmlOWnhUYkdyU0JJMUJMM0hiWVJ3RXY1SnVfYXdkMUpNSERaaGVNLVBFNDJvYm5uM2o0d0pQZ9IB0wFBVV95cUxNQV8yd0g1MGJMZ0VFUkpmWnZhbHN2aWhiMzJodXZCTlpxcFMxdWYxMzVxclRnNTdUZXpGTENPb29EdmI5aURKNV9fUFNKX0taYnB4d1ZwZWNnT01zZjFQTnl1blpGTTdvMDRrOUQ1NDRFU3FlSEcxdWd0MGg3ck1WRTZ0Mlk1MVF3U1dxaW9aYlVpQmFVU2x6bV9qMzVFaFRYMUl3WW81QVFDdG5JLUZnSVprY2xUbG5TTWVxcEd4RFVFZkU4dFZDeDlsNWRzTDJJdzFJ?oc=5",
+     "source": "ETV Bharat"
+    }
+   ],
+   "added": "2026-11-18T01:54:40.789Z"
+  },
+  {
+   "id": "78906671b5",
+   "date": "2026-11-17",
+   "fact": "उत्तarakhand के चमोली में 30 विकास परियोजनाएँ, कुल लागत लगभग 150 करोड़ रुपये, शुरू की गईं।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 2,
+   "tag": "30 विकास परियोजनाएँ",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "From motor roads to classrooms: Uttarakhand CM Pushkar Singh Dhami launches 30 development projects worth nearly Rs 150 crore in Chamoli",
+     "link": "https://news.google.com/rss/articles/CBMixgJBVV95cUxPUnRYT0JLMlVuT3ZJM3VFdkFVRncxMjBYTUlTNWFCNkVteFYxSHp3MG94Y0hHTndPR0M0RzN0SGRMbXJlVlZwRGw2SFNON2xFdmNTRWVtUDl2OW9tZHUwWk5rVTRuV0xQZ1RscTROQjF4NVZ0Q3ZRcVdmMEVQbzJfREhleEVSNkJrUWs0cnowdnVMbWcxUndTREdtM0dhQVplTFZ5RnRkUXRZeDdMUVU1aWd5SmRERHl4U0daaHJ0TmdicXVlMmJobmdjMVUtTzBSa2RGdUZPUkVNaXl1WmNVdWtMY21vdEE2WUpvT1ZxdXVfOG1PTnVLUXhIOTZCaVFXTEJxY2NHLTJQam5oczNOYW9DcWR6NlFZWXprRmtLdDFzamxfd25oeU9TbVdGOUFiSmM1QXMyV0JBaGFMUEFUb3ByWFF2Zw?oc=5",
+     "source": "The Times of India"
+    }
+   ],
+   "added": "2026-11-18T01:54:40.789Z",
+   "details": [
+    {
+     "k": "कौन",
+     "v": "CM पुष्कर सिंह धामी"
+    }
+   ]
+  },
   {
    "id": "0eb720e81a",
    "date": "2026-11-16",
@@ -188,6 +361,45 @@
    ],
    "added": "2026-11-17T02:06:27.218Z",
    "details": []
+  },
+  {
+   "id": "da0e603a58",
+   "date": "2026-11-16",
+   "fact": "आसन रामसर साइट उत्तराखंड में अंतरराष्ट्रीय महत्व का Ramsar स्थल है।",
+   "cat": "पर्यावरण",
+   "imp": 3,
+   "tag": "आसन रामसर",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Dehradun News: आसन रामसर साइट पर पर्यटकों की लापरवाही से संकट में जैव विविधता",
+     "link": "https://www.amarujala.com/dehradun/biodiversity-at-asan-ramsar-site-under-threat-due-to-tourist-vikas-nagar-news-c-39-1-vkn1004-138562-2026-11-16",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-18T01:39:44.894Z",
+   "details": [
+    {
+     "k": "कितना",
+     "v": "394 प्रजातियों की पक्षी गिनती दर्ज"
+    },
+    {
+     "k": "कब",
+     "v": "2026 में आयोजित पक्षी गिनती"
+    },
+    {
+     "k": "कहाँ",
+     "v": "विकासनगर में पक्षी गिनती शुरू"
+    },
+    {
+     "k": "कौन",
+     "v": "कई पर्यावरणीय संगठनों ने भाग लिया"
+    },
+    {
+     "k": "विवरण",
+     "v": "दुर्लभ पलाश फिश ईगल देखी गई"
+    }
+   ]
   },
   {
    "id": "9c8d6d59f2",
@@ -334,6 +546,33 @@
     {
      "k": "पृष्ठभूमि",
      "v": "उत्तराखंड गौरव सम्मान की शुरुआत वर्ष 2021 में राज्य सरकार द्वारा की गई थी"
+    }
+   ]
+  },
+  {
+   "id": "b5f11ba63f",
+   "date": "2026-11-15",
+   "fact": "ऑल वेदर रोड पर प्रत्येक 40 किमी पर 20 नए ट्रॉमा सेंटर स्थापित होंगे।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "ट्रॉमा सेंटर",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "उत्तराखंड में ऑल वेदर रोड पर बनेंगे 20 नए ट्रॉमा सेंटर, हर 40 KM पर मिलेगी इलाज की सुविधा",
+     "link": "https://www.livehindustan.com/uttarakhand/20-new-trauma-centres-every-40-km-to-be-built-on-all-weather-road-in-uttarakhand-201794722680132.html",
+     "source": "Live Hindustan"
+    }
+   ],
+   "added": "2026-11-18T01:22:24.087Z",
+   "details": [
+    {
+     "k": "कौन",
+     "v": "केंद्र सरकार और राज्य सरकार"
+    },
+    {
+     "k": "कारण",
+     "v": "सड़क दुर्घटना के घायलों को त्वरित इलाज देने के उद्देश्य से"
     }
    ]
   },
@@ -587,5 +826,5 @@
    ]
   }
  ],
- "updated": "2026-11-17T05:56:56.299Z"
+ "updated": "2026-11-18T02:07:39.110Z"
 }
