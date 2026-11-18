@@ -88,7 +88,7 @@ def osm_polys(fn, name_filter=None):
             pass
     return out
 
-RIV_HI = [('Yamuna', 'यमुना'), ('Tons', 'टौंस'), ('Bhagirathi', 'भागीरथी'), ('Bhilangna', 'भिलंगना'), ('Bhillangana', 'भिलंगना'), ('Bhilangana', 'भिलंगना'), ('Alaknanda', 'अलकनंदा'),
+RIV_HI = [('Yamuna', 'यमुना'), ('Tons', 'टोंस'), ('Bhagirathi', 'भागीरथी'), ('Bhilangna', 'भिलंगना'), ('Bhillangana', 'भिलंगना'), ('Bhilangana', 'भिलंगना'), ('Alaknanda', 'अलकनंदा'),
           ('Mandakini', 'मंदाकिनी'), ('Pindar', 'पिंडर'), ('Nandakini', 'नंदाकिनी'), ('Dhauliganga', 'धौलीगंगा'), ('Dhauli Ganga', 'धौलीगंगा'),
           ('Ganges', 'गंगा'), ('Ramganga', 'रामगंगा'), ('Kosi', 'कोसी'), ('Sarju', 'सरयू'), ('Goriganga', 'गोरी गंगा'), ('Gori Ganga', 'गोरी गंगा'),
           ('Mahakali', 'काली'), ('Kali', 'काली'), ('Kuthi Yankti', 'कुटी यांग्ती'), ('Darma Yankti', 'धौली (दारमा)'),
@@ -159,7 +159,7 @@ def lab_on(name_hi, lon, lat, size=15, color='#0b4f8a', geoms=None, disp=None):
     mx, my = fr.xy(*g.interpolate(s).coords[0])
     L.append(f'<g transform="translate({mx:.1f},{my:.1f}) rotate({ang:.1f})">' + text(0, -4, disp or name_hi, size, 600, color, halo='#ffffff', halo_w=3.5, extra='font-style="italic"') + '</g>')
 
-for args in [('यमुना', 78.12, 30.66), ('टौंस', 77.88, 30.93), ('भागीरथी', 78.62, 30.86), ('भिलंगना', 78.70, 30.50), ('अलकनंदा', 79.43, 30.43),
+for args in [('यमुना', 78.12, 30.66), ('टोंस', 77.88, 30.93), ('भागीरथी', 78.62, 30.86), ('भिलंगना', 78.70, 30.50), ('अलकनंदा', 79.43, 30.43),
              ('मंदाकिनी', 79.03, 30.47), ('पिंडर', 79.55, 30.07), ('नंदाकिनी', 79.47, 30.27), ('धौलीगंगा', 79.75, 30.62), ('गंगा', 78.22, 30.03),
              ('कोसी', 79.36, 29.52), ('सरयू', 79.88, 29.70), ('गोरी गंगा', 80.25, 30.08), ('काली', 80.68, 29.78),
              ('नयार', 78.95, 29.98), ('काली', 80.95, 30.08)]:
@@ -170,15 +170,19 @@ lab_on('रामगंगा', 80.05, 29.92, size=14, disp='रामगंग�
 def ll_pt(lon, lat): return fr.ll(lon, lat)
 
 # glacier labels
-for nm, hi, lon, lat in (('Gangotri Glacier', 'गंगोत्री हिमनद', 79.00, 30.96), ('Satopanth Glacier', 'सतोपंथ हिमनद', 79.40, 30.81),
-                         ('Milam Glacier', 'मिलम हिमनद', 80.07, 30.55), ('Pindar Glacier', 'पिंडारी हिमनद', 79.95, 30.17)):
+for nm, hi, lon, lat in (('Gangotri Glacier', 'गंगोत्री हिमनद', 79.13, 30.86), ('Satopanth Glacier', 'सतोपंथ हिमनद', 79.36, 30.77),
+                         ('Milam Glacier', 'मिलम हिमनद', 80.07, 30.55), ('Pindar Glacier', 'पिंडारी हिमनद', 79.99, 30.25)):
     if not [g for t, g in glaciers if t.get('name') == nm]: print('glacier miss', nm)
     x, y = ll_pt(lon, lat)
+    if nm == 'Gangotri Glacier':  # crowded peak cluster → label outside with a leader line
+        tx, ty = ll_pt(78.86, 31.02)
+        L.append(f'<path d="M{tx+42:.1f},{ty+4:.1f} L{x:.1f},{y:.1f}" stroke="#0e5a8a" stroke-width="1.2" fill="none"/><circle cx="{x:.1f}" cy="{y:.1f}" r="2.2" fill="#0e5a8a"/>')
+        x, y = tx, ty
     L.append(text(x, y, hi, 12, 600, '#0e5a8a', halo='#ffffff', halo_w=3, extra='font-style="italic"'))
 
 # lakes
 for (lon, lat), t, anc, ox, oy in (((78.44, 30.40), 'टिहरी झील', 'end', -10, 0), ((79.46, 29.39), 'नैनी झील', 'start', 8, 4),
-                                   ((79.75, 28.97), 'नानक सागर', 'start', 8, 4)):
+                                   ((79.86, 28.97), 'नानक सागर', 'start', 10, 4)):
     x, y = ll_pt(lon, lat)
     L.append(text(x + ox, y + oy, t, 12, 600, '#0b4f8a', anchor=anc, halo='#ffffff', halo_w=3))
 
@@ -202,7 +206,7 @@ for nm, lon, lat, anc in (('माणा दर्रा', 79.42, 31.07, 'end'),
     L.append(text(x + ox, y + 4, nm, 12, 700, '#111827', anchor=anc, halo='#ffffff', halo_w=3))
 
 # Panch Prayag
-for nm, lon, lat, anc, ox, oy in (('देवप्रयाग', 78.598, 30.146, 'end', -8, 4), ('रुद्रप्रयाग', 78.981, 30.287, 'end', -8, -6), ('कर्णप्रयाग', 79.223, 30.262, 'start', 8, 12),
+for nm, lon, lat, anc, ox, oy in (('देवप्रयाग', 78.5986, 30.1461, 'end', -8, 4), ('रुद्रप्रयाग', 78.981, 30.287, 'end', -8, -6), ('कर्णप्रयाग', 79.2171, 30.2596, 'start', 8, 12),
                                   ('नंदप्रयाग', 79.326, 30.333, 'start', 8, 4), ('विष्णुप्रयाग', 79.567, 30.562, 'start', 8, 4)):
     x, y = ll_pt(lon, lat)
     L.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.2" fill="#facc15" stroke="#1d4ed8" stroke-width="2"/>')

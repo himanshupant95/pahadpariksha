@@ -17,7 +17,7 @@ HI = {  # census name → (Hindi, HQ Hindi, division, HQ OSM name(s))
     'Garhwal': ('पौड़ी गढ़वाल', 'पौड़ी', 'G', ['Pauri']),
     'Hardwar': ('हरिद्वार', 'हरिद्वार', 'G', ['Haridwar', 'Haridwār', 'Hardwar']),
     'Pithoragarh': ('पिथौरागढ़', 'पिथौरागढ़', 'K', ['Pithoragarh']),
-    'Bageshwar': ('बागेश्वर', 'बागेश्वर', 'K', ['Bageshwar']),
+    'Bageshwar': ('बागेश्वर', 'बागेश्वर', 'K', ['Bageshwar', 'Bāgeshwar']),
     'Almora': ('अल्मोड़ा', 'अल्मोड़ा', 'K', ['Almora']),
     'Champawat': ('चंपावत', 'चंपावत', 'K', ['Champawat']),
     'Nainital': ('नैनीताल', 'नैनीताल', 'K', ['Nainital']),
@@ -85,7 +85,7 @@ b.append(f'<path d="{fr.path(intl)}" fill="none" stroke="#b91c1c" stroke-width="
 
 # neighbour labels (lon, lat)
 for (lon, lat), t, sz in (((77.72, 31.25), 'हिमाचल प्रदेश', 22), ((78.25, 29.12), 'उत्तर प्रदेश', 22), ((80.75, 29.35), 'नेपाल', 24),
-                          ((80.30, 31.10), 'तिब्बत (चीन)', 24), ((77.55, 30.08), 'हरियाणा', 15)):
+                          ((80.30, 31.10), 'तिब्बत (चीन)', 24), ((77.44, 30.26), 'हरियाणा', 15)):
     x, y = fr.ll(lon, lat)
     if 0 < x < W and 0 < y < H:
         b.append(text(x, y, t, sz, 600, '#8a8170', halo='#f2efe8', extra='letter-spacing="2"'))
