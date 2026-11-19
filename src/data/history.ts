@@ -1,7 +1,7 @@
 // "उत्तराखंड का इतिहास" — chapter series. Order = part number. Set `live: true` when a chapter ships.
 export const HSERIES = {
   name: 'उत्तराखंड का इतिहास',
-  tagline: 'पाषाण युग से राज्य निर्माण तक, अध्याय-दर-अध्याय',
+  tagline: 'पाषाण युग से टिहरी के विलय (1949) तक, अध्याय-दर-अध्याय',
   blurb: 'शैलचित्रों से लेकर राज्य आंदोलन तक — विश्वविद्यालयी इतिहास-ग्रंथों, पुरातात्विक रिपोर्टों और अभिलेखों पर आधारित, परीक्षा बिंदुओं, समयरेखा, चित्रों और क्विज़ के साथ।',
   href: '/history/',
 };
@@ -21,9 +21,12 @@ export const CHAPTERS: Chapter[] = [
     img: thumb('8/8c/Champawat_town.jpg') },
   { part: 5, slug: 'parmar-dynasty', title: 'गढ़वाल का परमार (पंवार) वंश', period: '688/888 – 1804 ई.', hook: '52 गढ़, अजयपाल, श्रीनगर राजधानी, रानी कर्णावती, खुड़बुड़ा', live: true,
     img: thumb('e/e1/Chandpur_Garhi_Ruins.jpg') },
-  { part: 6, slug: 'gorkha-rule', title: 'गोरखा शासन', period: '1790 – 1815 ई.', hook: 'खुड़बुड़ा का युद्ध, गोरख्याणी, सुगौली संधि' },
-  { part: 7, slug: 'british-rule', title: 'ब्रिटिश कुमाऊँ-गढ़वाल व टिहरी रियासत', period: '1815 – 1947 ई.', hook: 'नॉन-रेगुलेशन प्रशासन, वन कानून, टिहरी के राजा' },
-  { part: 8, slug: 'freedom-struggle', title: 'स्वतंत्रता संग्राम व जन आंदोलन', period: '1857 – 1949 ई.', hook: 'कुली बेगार, पेशावर कांड, तिलाड़ी, सल्ट, श्रीदेव सुमन' },
+  { part: 6, slug: 'gorkha-rule', title: 'उत्तराखंड में गोरखा शासन', period: '1790 – 1815 ई.', hook: 'गोरख्याणी, सुब्बा व दिव्य-न्याय, खुड़बुड़ा, खलंगा युद्ध, अल्मोड़ा का पतन और सुगौली संधि', live: true,
+    img: thumb('a/a0/Kalinga_War_memorial%2C_Dehradun.jpg') },
+  { part: 7, slug: 'british-rule', title: 'ब्रिटिश कुमाऊँ-गढ़वाल व टिहरी रियासत', period: '1815 – 1949 ई.', hook: 'गार्डनर-ट्रेल-रैमजे, अस्सी साला बंदोबस्त, पटवारी, वन नीति, गढ़वाल राइफल्स, टिहरी के राजा', live: true,
+    img: thumb('e/e3/Royal_Palace_of_Narendra_Nagar%2C_Uttarakhand_WTK20150913-DSC00029.jpg') },
+  { part: 8, slug: 'freedom-struggle', title: 'स्वतंत्रता संग्राम व जन आंदोलन', period: '1857 – 1949 ई.', hook: 'कालू महरा, कुली बेगार, पेशावर कांड, तिलाड़ी, सल्ट-सालम, श्रीदेव सुमन, टिहरी का विलय', live: true,
+    img: thumb('e/eb/Kausani%2C_Uttarakhand_263639%2C_India_-_panoramio.jpg') },
 ];
 
 export const chapterHref = (c: Chapter) => `/history/${c.slug}/`;

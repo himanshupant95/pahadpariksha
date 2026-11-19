@@ -127,3 +127,9 @@ Rules agreed with the user:
 - Title/description name the latest date daily. Schema: CollectionPage (+ItemList of days), BreadcrumbList, FAQPage. Sitemap `lastmod`/`changefreq: daily` for this URL (astro.config.mjs).
 - Share/hero image: `scripts/og-current-affairs.mjs` runs before `astro build`, writes `public/og/current-affairs-<date>.jpg` (gitignored). Rendered by sharp/librsvg with the committed fonts in `scripts/fonts/` (fonts.conf) — falls back to og-default.jpg if rendering fails.
 - Monthly PDF button removed (owner will publish a hand-made month-end PDF); weekly PDF stays.
+
+## History series complete (19 Nov 2026)
+- Chapters 6–8 live: /history/gorkha-rule/, /history/british-rule/, /history/freedom-struggle/ (quizzes history-gorkha/-british/-freedom.json, wired in DailyQuestion). Series tagline now "पाषाण युग से टिहरी के विलय (1949) तक".
+- Source book = UOU "उत्तराखण्ड का राजनीतिक इतिहास" (OCR .md, chapters 4–9 + appendices) used as reference only; text is original. Cross-checked with Allahabad HC Kumaun justice history, dehradun.nic.in, India Code (Dehra Dun Act 1871), tehri.nic.in, gov.uk (Darwan Singh Negi), indianculture.gov.in.
+- Book errors flagged on pages: Sri Dev Suman death 1945 (correct 25 Jul 1944); Deghat 18 Aug (common 19 Aug); "recruitment clause in Sugauli" (not in treaty text).
+- Possible next: a chapter 9 on post-1949 / Uttarakhand state movement (1994 Rampur Tiraha, Khatima, Mussoorie; state 9 Nov 2000) to match "राज्य निर्माण तक".
