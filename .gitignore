@@ -6,3 +6,6 @@ new-news.json
 new-digest.json
 indexnow-urls.txt
 public/og/
+
+scripts/maps/out/
+scripts/maps/__pycache__/

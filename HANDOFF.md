@@ -139,3 +139,11 @@ Rules agreed with the user:
 - Flagged conflicts on page: Act assent 25 Aug 2000 (India Code) vs 28 Aug; Sriyantra Tapu 10 Nov 1995 (enwiki says 1994); Kaushik samiti "Jan 1993" impossible (UP under President's rule); SRC 1955 did not recommend a hill state (Panikkar's note = "Agra State").
 - Current as of Nov 2026: CM Dhami; Governor Dr. Dhal Singh Bisen (oath 19 Oct 2026). Update when these change.
 - Commons long filenames (>~160 chars) use ".../500px-thumbnail.jpg" thumbs — Figure.astro can't build those; use inline <figure>.
+
+## Geography series — hub + chapters 1–5 live (19 Nov 2026)
+- Hub `/geography/` (src/pages/geography/index.astro): chapters grouped by UNITS, interactive Atlas, glossary, FAQ, CollectionPage/ItemList + Breadcrumb schema. Data: `src/data/geography.ts` (18 chapters; set `live: true` + `img` when a chapter ships).
+- Chapters: location-extent-boundaries, himalaya-formation-geology, physiographic-divisions, rivers-drainage, glaciers. Layout `src/layouts/GeographyChapter.astro`; components in `src/components/geo/` (GeoMap, Atlas, ChapterEnd, MapPractice, diagrams/*). Styles `src/styles/geo.css`. Quizzes geo-*.json (10 each, wired in DailyQuestion) — all are self-written UKPSC-level PRACTICE questions, never claimed as PYQs.
+- Maps are our own (scripts/maps/README.md). Commons photos licence-checked via the Commons API: Panchachuli (e/e0), Kamet (c/c6), Ranikhet panorama (2/20 — NOT 4/4d), terrace farming (6/64, CC BY-SA 3.0), Mana (b/b3), Devprayag (e/ee), Gaumukh (6/63), Neelkanth/Satopanth (4/4f), Valley of Flowers (7/7f).
+- Flagged on pages: glacier count 968 (Raina & Srivastava 2008) vs 1,290 (WIHG, Jun 2025); seismic code IS 1893:2016 in force (2025 Zone VI code withdrawn 3 Mar 2026); collision ~50 Ma (range 55–45); Nanda Devi "2nd highest in India" only excluding K2; pass heights vary by source (omitted); Panch Prayag elevations are SRTM confluence minima, not town heights; Chamoli 2021 = rock-ice avalanche, not GLOF.
+- Time-sensitive lines to refresh: Tehri complex 2,400 MW (PSP full Apr 2026); Lipulekh trade resumed 1 Aug 2026; Lakhwar/Kishau/Pancheshwar/Jamrani statuses.
+- Next: chapters 6–18 (climate onward). Owner prefers staggered publishing.

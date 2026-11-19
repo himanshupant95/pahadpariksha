@@ -1,0 +1,52 @@
+---
+// Interactive layered map: loads /maps/geo/atlas-layers.svg on demand and lets the reader toggle layers.
+interface Props { id?: string; preset?: string[] }
+const { id = 'atlas', preset = ['relief', 'districts', 'rivers', 'bounds', 'peaks', 'prayag', 'towns'] } = Astro.props;
+const layers = [
+  ['relief', 'ऊँचाई (रिलीफ़)'], ['districts', 'ज़िले'], ['rivers', 'नदियाँ'], ['glaciers', 'हिमनद'], ['peaks', 'प्रमुख चोटियाँ'],
+  ['passes', 'दर्रे'], ['prayag', 'पंच प्रयाग'], ['towns', 'प्रमुख नगर'], ['protected', 'राष्ट्रीय उद्यान/अभयारण्य'],
+];
+const systems = [['yam', 'यमुना–टोंस', '#7c3aed'], ['bha', 'भागीरथी', '#0284c7'], ['ala', 'अलकनंदा', '#059669'], ['gan', 'गंगा', '#1d4ed8'], ['ram', 'रामगंगा–कोसी', '#d97706'], ['kal', 'काली–सरयू', '#dc2626']];
+---
+<div class="atlas" id={id} data-preset={preset.join(',')}>
+  <div class="atlas-ctl" role="group" aria-label="मानचित्र की परतें">
+    <p class="atlas-h">परतें चुनें:</p>
+    {layers.map(([k, l]) => (<label><input type="checkbox" data-layer={k} checked={preset.includes(k)} /> {l}</label>))}
+    <p class="atlas-h">नदी तंत्र (हाइलाइट):</p>
+    {systems.map(([k, l, c]) => (<button type="button" class="sysbtn" data-sys={k} style={`--c:${c}`}>{l}</button>))}
+    <button type="button" class="sysbtn all" data-sys="">सभी</button>
+  </div>
+  <div class="atlas-map" aria-live="polite"><p class="muted">मानचित्र लोड हो रहा है…</p></div>
+  <p class="atlas-cr">मानचित्र: पहाड़ परीक्षा · सीमाएँ: जनगणना 2011 / भारतीय सर्वेक्षण विभाग (DataMeet, CC BY 4.0) · © OpenStreetMap contributors (ODbL) · ऊँचाई: NASA SRTM · <a href="/maps/geo/atlas-layers.svg" target="_blank" rel="noopener">SVG खोलें</a></p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.atlas').forEach((box) => {
+    const holder = box.querySelector<HTMLElement>('.atlas-map')!;
+    const load = async () => {
+      try {
+        const svg = await fetch('/maps/geo/atlas-layers.svg').then((r) => r.text());
+        holder.innerHTML = svg;
+        const apply = () => box.querySelectorAll<HTMLInputElement>('input[data-layer]').forEach((i) => {
+          const g = holder.querySelector<SVGGElement>('#L-' + i.dataset.layer);
+          if (g) g.style.display = i.checked ? '' : 'none';
+        });
+        box.querySelectorAll('input[data-layer]').forEach((i) => i.addEventListener('change', apply));
+        apply();
+        box.querySelectorAll<HTMLButtonElement>('.sysbtn').forEach((b) => b.addEventListener('click', () => {
+          const s = b.dataset.sys;
+          const rl = box.querySelector<HTMLInputElement>('input[data-layer="rivers"]'); if (rl && !rl.checked) { rl.checked = true; apply(); }
+          holder.querySelectorAll<SVGPathElement>('.riv').forEach((p) => {
+            const on = !s || p.classList.contains('riv-' + s);
+            p.style.opacity = on ? '1' : '.12'; p.style.strokeWidth = s && on ? '3.4' : '';
+          });
+          box.querySelectorAll('.sysbtn').forEach((x) => x.classList.toggle('on', x === b && !!s));
+        }));
+      } catch { holder.innerHTML = '<p class="muted">मानचित्र लोड नहीं हो सका — <a href="/maps/geo/atlas-layers.svg">यहाँ खोलें</a>.</p>'; }
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((e) => { if (e[0].isIntersecting) { io.disconnect(); load(); } }, { rootMargin: '400px' });
+      io.observe(box);
+    } else load();
+  });
+</script>

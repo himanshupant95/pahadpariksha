@@ -1,0 +1,30 @@
+---
+// End-of-chapter block: what you learned, facts to remember, beginner Qs (reveal), analytical Qs (with hints), map practice (slot), related links.
+interface QA { q: string; a: string }
+interface Props { learned: string[]; remember: string[]; beginner: QA[]; analytical: QA[]; related: { href: string; label: string }[] }
+const { learned, remember, beginner, analytical, related } = Astro.props;
+---
+<section id="seekha" class="ch-end">
+  <h2>इस अध्याय में आपने क्या सीखा</h2>
+  <ul class="learned">{learned.map((l) => <li set:html={l} />)}</ul>
+
+  <h3>याद रखने योग्य तथ्य</h3>
+  <ol class="remember">{remember.map((l) => <li set:html={l} />)}</ol>
+</section>
+
+<section id="shuruaati-prashn">
+  <h2>पाँच शुरुआती प्रश्न <small class="muted">(उत्तर देखने के लिए टैप करें)</small></h2>
+  {beginner.map((x, i) => (<details class="qa"><summary><b>{i + 1}.</b> {x.q}</summary><p set:html={x.a} /></details>))}
+</section>
+
+<slot name="practice" />
+
+<section id="vishleshan">
+  <h2>दो विश्लेषणात्मक प्रश्न <small class="muted">(मुख्य परीक्षा शैली)</small></h2>
+  {analytical.map((x, i) => (<div class="anq"><p class="anq-q"><b>प्रश्न {i + 1}.</b> {x.q}</p><details><summary>उत्तर की रूपरेखा देखें</summary><div set:html={x.a} /></details></div>))}
+</section>
+
+<nav class="related" aria-label="संबंधित पेज">
+  <h2>संबंधित अध्याय और पेज</h2>
+  <ul>{related.map((r) => <li><a href={r.href}>{r.label}</a></li>)}</ul>
+</nav>

@@ -1,0 +1,21 @@
+---
+// Blank-map exercise: numbered map + per-number answer reveal.
+interface Props { name: string; w: number; h: number; title: string; answers: string[]; alt: string }
+const { name, w, h, title, answers, alt } = Astro.props;
+---
+<section id="map-abhyas" class="mp">
+  <h2>मानचित्र अभ्यास: {title}</h2>
+  <p>पहले खुद पहचानिए, फिर संख्या पर टैप करके उत्तर देखिए।</p>
+  <figure class="fig gmap">
+    <a href={`/maps/geo/${name}.webp`} target="_blank" rel="noopener"><img src={`/maps/geo/${name}.webp`} srcset={`/maps/geo/${name}-800.webp 800w, /maps/geo/${name}.webp ${w}w`} sizes="(max-width: 860px) 100vw, 760px" width={w} height={h} alt={alt} loading="lazy" decoding="async" /></a>
+    <figcaption>प्रिंट करके भी अभ्यास कर सकते हैं (मानचित्र पर टैप करें → सेव/प्रिंट)।<span class="cr">मानचित्र: पहाड़ परीक्षा · सीमाएँ: DataMeet (CC BY 4.0) · © OpenStreetMap contributors (ODbL)</span></figcaption>
+  </figure>
+  <ol class="mp-ans">{answers.map((a, i) => (<li><details><summary>{i + 1}</summary><span>{a}</span></details></li>))}</ol>
+  <button type="button" class="mp-all">सभी उत्तर दिखाएँ</button>
+</section>
+<script>
+  document.querySelectorAll('.mp-all').forEach((b) => b.addEventListener('click', () => {
+    const d = b.parentElement!.querySelectorAll('details'); const open = !d[0]?.open;
+    d.forEach((x) => (x.open = open)); b.textContent = open ? 'सभी उत्तर छिपाएँ' : 'सभी उत्तर दिखाएँ';
+  }));
+</script>

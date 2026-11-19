@@ -1,0 +1,12 @@
+---
+// Self-made map (public/maps/geo/<name>.webp + -800.webp). Tap to open the HD version.
+interface Props { name: string; alt: string; caption: string; source?: string; w: number; h: number; narrow?: boolean; eager?: boolean }
+const { name, alt, caption, source = 'मानचित्र: पहाड़ परीक्षा · सीमाएँ: जनगणना 2011 / भारतीय सर्वेक्षण विभाग (DataMeet, CC BY 4.0) · © OpenStreetMap contributors (ODbL) · ऊँचाई: NASA SRTM', w, h, narrow = false, eager = false } = Astro.props;
+const big = `/maps/geo/${name}.webp`;
+---
+<figure class={`fig gmap${narrow ? ' narrow' : ''}`}>
+  <a href={big} target="_blank" rel="noopener" aria-label={`${alt} — बड़ा देखें`}>
+    <img src={big} srcset={`/maps/geo/${name}-800.webp 800w, ${big} ${w}w`} sizes="(max-width: 860px) 100vw, 760px" width={w} height={h} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  </a>
+  <figcaption>{caption} <span class="zoom">🔍 बड़ा देखने के लिए टैप करें</span><span class="cr">{source}</span></figcaption>
+</figure>

@@ -1,0 +1,112 @@
+---
+// Geography-chapter template (series "उत्तराखंड का भूगोल"), modelled on HistoryChapter: hero, sticky TOC,
+// fact box, tags, chapter navigation. Content goes in the slot.
+import Base from './Base.astro';
+import '../styles/longform.css';
+import '../styles/geo.css';
+import { SITE } from '../data/site';
+import { GSERIES as HSERIES, GCHAPTERS as CHAPTERS, gHref as chapterHref } from '../data/geography';
+
+interface Toc { id: string; label: string }
+interface Fact { k: string; v: string }
+interface Props {
+  name: string; nameEn: string; slug: string; sub: string;
+  title: string; description: string; image?: string; imageAlt?: string;
+  heroSrcset?: string; heroCredit?: { text: string; url?: string }; heroContain?: boolean;
+  published: string; updated?: string; toc: Toc[]; facts: Fact[];
+  faq?: { q: string; a: string }[]; sources: { label: string; url?: string }[];
+}
+const p = Astro.props;
+const me = CHAPTERS.find((d) => d.slug === p.slug);
+const liveList = CHAPTERS.filter((d) => d.live);
+const idx = liveList.findIndex((d) => d.slug === p.slug);
+const prevD = idx > 0 ? liveList[idx - 1] : undefined;
+const nextD = idx >= 0 && idx < liveList.length - 1 ? liveList[idx + 1] : undefined;
+const nextSoon = CHAPTERS.find((d) => !d.live);
+const updated = p.updated ?? p.published;
+const url = new URL(Astro.url.pathname, SITE.url).href;
+const enUrl = `https://pahadpariksha-in.translate.goog${Astro.url.pathname}?_x_tr_sl=hi&_x_tr_tl=en&_x_tr_hl=en`;
+const fmt = (d: string) => new Date(d).toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+const schema: Record<string, unknown>[] = [
+  { '@context': 'https://schema.org', '@type': 'Article', headline: p.title, description: p.description, inLanguage: 'hi-IN',
+    datePublished: p.published, dateModified: updated, mainEntityOfPage: url,
+    ...(p.image ? { image: new URL(p.image, SITE.url).href } : {}),
+    about: { '@type': 'Thing', name: `Geography of Uttarakhand — ${p.nameEn}`, alternateName: p.name },
+    isPartOf: { '@type': 'CreativeWorkSeries', name: 'Uttarakhand Geography (उत्तराखंड का भूगोल)', url: SITE.url + HSERIES.href },
+    author: { '@type': 'Person', name: SITE.author.nameEn, url: SITE.url + SITE.author.url },
+    publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: SITE.url + '/logo.png' } } },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'होम', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'उत्तराखंड GK', item: SITE.url + '/gk/' },
+    { '@type': 'ListItem', position: 3, name: 'भूगोल', item: SITE.url + HSERIES.href },
+    { '@type': 'ListItem', position: 4, name: p.name, item: url } ] },
+];
+if (p.faq?.length) schema.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: p.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
+---
+<Base title={p.title} description={p.description} ogType="article" schema={schema} image={p.image}>
+  <nav class="crumbs" aria-label="ब्रेडक्रम्ब"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › <a href={HSERIES.href}>भूगोल</a> › <span>{p.name}</span></nav>
+
+  <header class="d-hero">
+    {p.image && <img class={p.heroContain ? 'contain' : undefined} src={p.image} srcset={p.heroSrcset ?? (p.image.endsWith('.webp') ? `${p.image.replace(/\.webp$/, '-800.webp')} 800w, ${p.image} 1200w` : undefined)} sizes="(max-width: 1040px) 100vw, 1040px" alt={p.imageAlt ?? ''} width="1200" height="630" fetchpriority="high" referrerpolicy="no-referrer" />}
+    <div class="d-hero-in">
+      <p class="d-kicker">{me ? <a class="series-pill" href={HSERIES.href}>{HSERIES.name} · अध्याय {me.part}</a> : null} </p>
+      <h1>{p.name}</h1>
+      <p class="d-sub">{p.sub}</p>
+      <p class="d-meta">लेखक: <a href={SITE.author.url}>{SITE.author.name}</a> · अपडेट: <time datetime={updated}>{fmt(updated)}</time></p>
+      <a class="en-btn" href={enUrl} rel="nofollow noopener" target="_blank" lang="en">🌐 Read this page in English</a>
+    </div>
+    {p.heroCredit && <p class="d-credit">चित्र: {p.heroCredit.url ? <a href={p.heroCredit.url} target="_blank" rel="noopener nofollow">{p.heroCredit.text}</a> : p.heroCredit.text}</p>}
+  </header>
+
+  <div class="d-grid">
+    <aside class="d-toc" aria-label="इस पेज पर">
+      <details open id="toc-details">
+        <summary>इस पेज पर</summary>
+        <ol>{p.toc.map((t) => <li><a href={`#${t.id}`}>{t.label}</a></li>)}</ol>
+      </details>
+    </aside>
+
+    <article class="d-body">
+      <section class="d-facts" id="at-a-glance">
+        <h2>एक नज़र में</h2>
+        <dl>{p.facts.map((f) => <div><dt>{f.k}</dt><dd set:html={f.v} /></div>)}</dl>
+      </section>
+
+      <div class="legend">
+        <span class="tag hist">वैज्ञानिक तथ्य</span>
+        <span class="tag myth">मत-भेद / अनुमान / अभी शोध जारी</span>
+        <span class="tag exam">परीक्षा बिंदु</span>
+        <span class="tag trap">सावधान: ट्रिक प्रश्न</span>
+      </div>
+
+      <slot />
+
+      {p.faq && p.faq.length > 0 && (
+        <section id="faq">
+          <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+          {p.faq.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+        </section>
+      )}
+
+      <nav class="series-nav" aria-label={HSERIES.name}>
+        <p class="sn-title"><a href={HSERIES.href}>{HSERIES.name}</a> — {HSERIES.tagline}</p>
+        <div class="sn-row">
+          {prevD ? <a class="sn prev" href={chapterHref(prevD)}><small>← पिछला अध्याय {prevD.part}</small><strong>{prevD.title}</strong></a> : <span />}
+          {nextD ? <a class="sn next" href={chapterHref(nextD)}><small>अगला अध्याय {nextD.part} →</small><strong>{nextD.title}</strong></a>
+            : nextSoon ? <span class="sn next soon"><small>अगला अध्याय {nextSoon.part} · जल्द</small><strong>{nextSoon.title}</strong></span> : <span />}
+        </div>
+      </nav>
+
+      <section id="sources" class="d-sources">
+        <h2>स्रोत</h2>
+        <ul>{p.sources.map((s) => <li>{s.url ? <a href={s.url} target="_blank" rel="noopener nofollow">{s.label}</a> : s.label}</li>)}</ul>
+        <p class="report"><a class="report-btn" href={`/contact/?topic=${encodeURIComponent('तथ्य में त्रुटि')}&page=${encodeURIComponent(`${p.name} — https://pahadpariksha.in/geography/${p.slug}/`)}`}>⚠ त्रुटि की सूचना दें</a> <span class="muted">कोई तथ्य गलत लगे तो स्रोत सहित बताएँ — हम हर सूचना जाँचकर पेज अपडेट करते हैं।</span></p>
+      </section>
+    </article>
+  </div>
+</Base>
+
+<script>
+  // collapse the contents list on phones so the article starts sooner
+  if (window.matchMedia('(max-width: 860px)').matches) document.getElementById('toc-details')?.removeAttribute('open');
+</script>

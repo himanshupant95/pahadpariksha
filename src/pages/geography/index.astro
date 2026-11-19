@@ -1,0 +1,131 @@
+---
+import Base from '../../layouts/Base.astro';
+import Atlas from '../../components/geo/Atlas.astro';
+import '../../styles/geo.css';
+import { GSERIES, GCHAPTERS, UNITS, gHref } from '../../data/geography';
+
+const done = GCHAPTERS.filter((c) => c.live).length;
+const url = 'https://pahadpariksha.in/geography/';
+const schema = [
+  {
+    '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${GSERIES.name} (Uttarakhand Geography)`, url, inLanguage: 'hi',
+    about: { '@type': 'Place', name: 'Uttarakhand' },
+    mainEntity: { '@type': 'ItemList', itemListElement: GCHAPTERS.filter((c) => c.live).map((c) => ({ '@type': 'ListItem', position: c.part, url: `https://pahadpariksha.in${gHref(c)}`, name: c.title })) },
+  },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'होम', item: 'https://pahadpariksha.in/' },
+    { '@type': 'ListItem', position: 2, name: 'उत्तराखंड GK', item: 'https://pahadpariksha.in/gk/' },
+    { '@type': 'ListItem', position: 3, name: 'भूगोल', item: url },
+  ] },
+];
+
+const glossary: [string, string][] = [
+  ['भाबर', 'शिवालिक की तलहटी की कंकड़-पत्थर पट्टी जहाँ नदियाँ भूमिगत होती हैं'],
+  ['तराई', 'भाबर के दक्षिण की नम, दलदली, उपजाऊ पट्टी'],
+  ['दून', 'शिवालिक और लघु हिमालय के बीच की चौड़ी अनुदैर्ध्य घाटी'],
+  ['बुग्याल', 'वृक्ष-रेखा से ऊपर के ऊँचे घास के मैदान'],
+  ['प्रयाग', 'दो नदियों का संगम'],
+  ['गाड़ / गधेरा', 'छोटी पहाड़ी नदी या नाला'],
+  ['MBT', 'मुख्य सीमांत क्षेप — शिवालिक और लघु हिमालय की सीमा'],
+  ['MCT', 'मुख्य केंद्रीय क्षेप — लघु और वृहत हिमालय की सीमा (मुनस्यारी थ्रस्ट)'],
+  ['HFT', 'हिमालयी अग्र क्षेप — शिवालिक की दक्षिणी सीमा, आज सक्रिय'],
+  ['टेथिस', 'भारत और एशिया के बीच का प्राचीन महासागर'],
+  ['स्नाउट', 'हिमनद का निचला सिरा जहाँ से नदी निकलती है (जैसे गोमुख)'],
+  ['मोरेन', 'हिमनद द्वारा छोड़ा गया चट्टानी मलबा'],
+  ['सर्क', 'पर्वत-ढाल पर कटोरे जैसा गड्ढा जहाँ हिमनद जन्म लेता है'],
+  ['GLOF', 'हिमनदीय झील के अचानक फटने से आई बाढ़'],
+  ['वृष्टि-छाया', 'ऊँची श्रेणी के पीछे का कम वर्षा वाला क्षेत्र'],
+  ['जल-विभाजक', 'दो नदी-बेसिनों को अलग करने वाली ऊँची रेखा'],
+  ['दर्रा', 'पर्वत-श्रेणी पार करने का निचला मार्ग'],
+  ['पूर्ववर्ती नदी', 'पहाड़ उठने से पहले की नदी जो उठते पहाड़ को काटती रही'],
+];
+
+const faq = [
+  { q: 'उत्तराखंड भूगोल की तैयारी कहाँ से शुरू करें?', a: 'अध्याय 1 (स्थिति-विस्तार) से क्रम में पढ़ें — हर अध्याय पिछले पर आधारित है। हर अध्याय के अंत के "याद रखें" बिंदु, मानचित्र अभ्यास और 10 MCQ दोहराव के लिए हैं।' },
+  { q: 'क्या ये प्रश्न पिछले वर्षों के हैं?', a: 'नहीं। सभी क्विज़ प्रश्न UKPSC/UKSSSC स्तर के अभ्यास प्रश्न हैं जो हमने बनाए हैं; किसी पिछले प्रश्न-पत्र का दावा नहीं किया गया है।' },
+  { q: 'मानचित्र किस आधार पर बने हैं?', a: 'ज़िला/राज्य सीमाएँ भारतीय सर्वेक्षण विभाग-जनगणना 2011 आधारित DataMeet आँकड़ों (CC BY 4.0) से, नदियाँ-हिमनद OpenStreetMap (ODbL) से और ऊँचाई NASA SRTM से। ये शैक्षिक मानचित्र हैं; आधिकारिक सीमा के लिए भारतीय सर्वेक्षण विभाग के मानचित्र देखें।' },
+];
+---
+<Base title="उत्तराखंड का भूगोल (Uttarakhand Geography) — अध्याय-दर-अध्याय, मानचित्रों सहित | UKPSC" description={`Uttarakhand Geography in Hindi — ${GSERIES.blurb}`}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › भूगोल</nav>
+  <header class="sh">
+    <p class="kick">शृंखला · Uttarakhand Geography</p>
+    <h1>{GSERIES.name} <span>{GSERIES.tagline}</span></h1>
+    <p>{GSERIES.blurb}</p>
+    <div class="prog" aria-label={`${done} of ${GCHAPTERS.length} published`}><div style={`width:${(done / GCHAPTERS.length) * 100}%`}></div></div>
+    <p class="pl">{done} / {GCHAPTERS.length} अध्याय प्रकाशित · नए अध्याय क्रम से जुड़ रहे हैं</p>
+  </header>
+
+  {UNITS.map((u) => {
+    const list = GCHAPTERS.filter((c) => c.unit === u.id);
+    return list.length > 0 && (
+      <section>
+        <h2 class="unit-h">{u.name}</h2>
+        <ol class="chs">
+          {list.map((c) => c.live ? (
+            <li><a class="ch" href={gHref(c)}>
+              {c.img && <img src={c.img} alt="" loading="lazy" />}
+              <span class="in"><small>अध्याय {c.part}</small><strong>{c.title}</strong><span>{c.hook}</span></span>
+            </a></li>
+          ) : (
+            <li><div class="ch soon"><span class="in"><small>अध्याय {c.part} · जल्द</small><strong>{c.title}</strong><span>{c.hook}</span></span></div></li>
+          ))}
+        </ol>
+      </section>
+    );
+  })}
+
+  <section id="atlas">
+    <h2>इंटरैक्टिव मानचित्र: उत्तराखंड एक नज़र में</h2>
+    <p>परतें चालू-बंद कीजिए — ऊँचाई, ज़िले, नदियाँ, हिमनद, चोटियाँ, दर्रे, पंच प्रयाग, संरक्षित क्षेत्र। नदी-तंत्र के बटन से एक तंत्र अलग करके देखिए।</p>
+    <Atlas id="atlas-hub" />
+  </section>
+
+  <h2>हर अध्याय में</h2>
+  <ul class="what">
+    <li><b>शुरुआत से</b> — क्या, कहाँ, कैसे बना, क्यों, प्रभाव, परीक्षा-महत्व</li>
+    <li><b>अपने बनाए मानचित्र</b> — वास्तविक आँकड़ों (SRTM, OSM, Survey of India) से, स्रोत सहित</li>
+    <li><b>तथ्य, अनुमान और मत-भेद</b> — अलग रंगों में; बदलते आँकड़ों के साथ तारीख़</li>
+    <li><b>मानचित्र अभ्यास</b> — रिक्त मानचित्र, टैप करके उत्तर</li>
+    <li><b>10 MCQ + 2 विश्लेषणात्मक प्रश्न</b> — व्याख्या व उत्तर-संकेत सहित (अभ्यास प्रश्न)</li>
+  </ul>
+
+  <section id="shabdavali">
+    <h2>भूगोल शब्दावली (Glossary)</h2>
+    <div class="gl">{glossary.map(([t, d]) => (<div><b>{t}</b> — {d}</div>))}</div>
+  </section>
+
+  <section id="faq">
+    <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+    {faq.map((f) => (<details class="qa"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+
+  <p class="muted">संबंधित: <a href="/history/">उत्तराखंड का इतिहास (शृंखला)</a> · <a href="/gk/uttarakhand-maps/">उत्तराखंड के मानचित्र (HD/PDF)</a> · <a href="/gk/uttarakhand-rivers/">प्रमुख नदियाँ (त्वरित)</a></p>
+</Base>
+
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted); margin: 4px 0 10px; }
+  .sh { background: linear-gradient(135deg, #052e16, #0f766e); color: #fff; border-radius: 18px; padding: 26px 24px; }
+  .sh .kick { margin: 0; color: #86efac; font-weight: 700; font-size: .82rem; }
+  .sh h1 { color: #fff; margin: 4px 0 6px; }
+  .sh h1 span { display: block; font-size: 1.05rem; color: #bbf7d0; font-weight: 600; }
+  .sh p { color: #dcfce7; margin: 0 0 8px; max-width: 760px; }
+  .prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 8px; overflow: hidden; max-width: 420px; margin-top: 12px; }
+  .prog div { height: 100%; background: #86efac; border-radius: 8px; }
+  .sh .pl { font-size: .85rem; margin-top: 6px; }
+  .chs { list-style: none; padding: 0; display: grid; gap: 10px; }
+  .ch { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-decoration: none; color: var(--ink); }
+  a.ch:hover { border-color: var(--green-2); }
+  .ch img { width: 150px; height: 110px; object-fit: cover; display: block; background: #f1f5f9; }
+  .ch .in { padding: 10px 14px 10px 0; display: block; }
+  .ch.soon { grid-template-columns: 1fr; opacity: .65; }
+  .ch.soon .in { padding: 12px 14px; }
+  .ch small { display: block; color: var(--muted); font-size: .78rem; }
+  .ch strong { display: block; color: var(--green); font-size: 1.1rem; margin: 2px 0; }
+  .ch .in > span { font-size: .9rem; }
+  @media (max-width: 560px) { .ch { grid-template-columns: 100px 1fr; } .ch img { width: 100px; height: 100%; min-height: 96px; } }
+  .what { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; list-style: none; padding: 0; }
+  .what li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .92rem; }
+  .what b { color: var(--green); }
+</style>
