@@ -11,10 +11,14 @@ const tags = [...new Set(items.filter((p) => p.tag).map((p) => p.tag))];
 <div class="print-brand"><span class="notranslate" translate="no">पहाड़ परीक्षा</span> · pahadpariksha.in — उत्तराखंड करेंट अफेयर्स</div>
 <h1>उत्तराखंड करेंट अफेयर्स: {kind} संकलन <span class="sub">{label}</span></h1>
 <p class="lead">{items.length} परीक्षा-उपयोगी बिंदु, जिनमें <strong>{top.length} अति महत्वपूर्ण (★)</strong>। विषयवार क्रम में, हर बिंदु के साथ तिथि और स्रोत।</p>
+{kind === 'मासिक' ? (
+<p class="muted no-print">इस महीने की सुव्यवस्थित PDF महीने के अंत में जारी की जाएगी।</p>
+) : (
 <div class="actions no-print">
   <button type="button" class="pdf-btn" onclick="window.print()">⬇ PDF डाउनलोड / प्रिंट करें</button>
   <small class="muted">बटन दबाकर "Save as PDF" चुनें — फ़ोन पर भी काम करता है।</small>
 </div>
+)}
 
 {items.length === 0 ? <p class="muted">इस अवधि के बिंदु अभी उपलब्ध नहीं।</p> : (<>
   {top.length > 0 && (<section>

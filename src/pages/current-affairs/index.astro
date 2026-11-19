@@ -11,8 +11,8 @@ const cats = [...new Set(days.flatMap(([, l]) => l.map((p) => p.cat)))];
 const upd = digestUpdated ? new Date(digestUpdated).toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
 ---
 <Base
-  title="उत्तराखंड करेंट अफेयर्स — रोज़ के परीक्षा बिंदु, साप्ताहिक व मासिक PDF"
-  description="उत्तराखंड करेंट अफेयर्स केवल परीक्षा-उपयोगी बिंदुओं में: योजनाएँ, नियुक्तियाँ, पुरस्कार, रैंकिंग, परियोजनाएँ। हर दिन अपडेट, साप्ताहिक व मासिक संकलन PDF के साथ — UKSSSC/UKPSC के लिए।"
+  title="उत्तराखंड करेंट अफेयर्स — रोज़ के परीक्षा बिंदु, साप्ताहिक PDF व मासिक संकलन"
+  description="उत्तराखंड करेंट अफेयर्स केवल परीक्षा-उपयोगी बिंदुओं में: योजनाएँ, नियुक्तियाँ, पुरस्कार, रैंकिंग, परियोजनाएँ। हर दिन अपडेट, साप्ताहिक PDF और मासिक संकलन के साथ — UKSSSC/UKPSC के लिए।"
 >
   <h1>उत्तराखंड करेंट अफेयर्स</h1>
   <p>रोज़ की सैकड़ों ख़बरों में से केवल वे बिंदु जो <strong>परीक्षा में पूछे जा सकते हैं</strong>। <strong>किसी भी बिंदु पर क्लिक करें</strong> — उसके मुख्य तथ्य (कब, कहाँ, कौन, कितना, क्यों) यहीं खुल जाएँगे; पूरी ख़बर पढ़नी हो तो अंत में स्रोत का लिंक है। <strong>★</strong> वाले बिंदु सबसे महत्वपूर्ण हैं।</p>
@@ -20,7 +20,7 @@ const upd = digestUpdated ? new Date(digestUpdated).toLocaleString('hi-IN', { ti
 
   <div class="compile">
     {ws[0] && <a class="big" href={`/current-affairs/week/${ws[0].key}/`}><strong>इस सप्ताह का संकलन</strong><span>{weekLabel(ws[0].start, ws[0].end)} · {ws[0].items.length} बिंदु · PDF</span></a>}
-    {ms[0] && <a class="big" href={`/current-affairs/month/${ms[0].key}/`}><strong>{monthLabel(ms[0].key)} — मासिक संकलन</strong><span>{ms[0].items.length} बिंदु · PDF</span></a>}
+    {ms[0] && <a class="big" href={`/current-affairs/month/${ms[0].key}/`}><strong>{monthLabel(ms[0].key)} — मासिक संकलन</strong><span>{ms[0].items.length} बिंदु</span></a>}
   </div>
 
   {days.length === 0 ? <p class="muted">बिंदु जल्द यहाँ दिखेंगे।</p> : (<>
