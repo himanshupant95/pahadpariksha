@@ -1,7 +1,7 @@
 // "उत्तराखंड का इतिहास" — chapter series. Order = part number. Set `live: true` when a chapter ships.
 export const HSERIES = {
   name: 'उत्तराखंड का इतिहास',
-  tagline: 'पाषाण युग से टिहरी के विलय (1949) तक, अध्याय-दर-अध्याय',
+  tagline: 'पाषाण युग से राज्य निर्माण (2000) और आज तक, अध्याय-दर-अध्याय',
   blurb: 'शैलचित्रों से लेकर राज्य आंदोलन तक — विश्वविद्यालयी इतिहास-ग्रंथों, पुरातात्विक रिपोर्टों और अभिलेखों पर आधारित, परीक्षा बिंदुओं, समयरेखा, चित्रों और क्विज़ के साथ।',
   href: '/history/',
 };
@@ -27,6 +27,8 @@ export const CHAPTERS: Chapter[] = [
     img: thumb('e/e3/Royal_Palace_of_Narendra_Nagar%2C_Uttarakhand_WTK20150913-DSC00029.jpg') },
   { part: 8, slug: 'freedom-struggle', title: 'स्वतंत्रता संग्राम व जन आंदोलन', period: '1857 – 1949 ई.', hook: 'कालू महरा, कुली बेगार, पेशावर कांड, तिलाड़ी, सल्ट-सालम, श्रीदेव सुमन, टिहरी का विलय', live: true,
     img: thumb('e/eb/Kausani%2C_Uttarakhand_263639%2C_India_-_panoramio.jpg') },
+  { part: 9, slug: 'statehood-movement', title: 'राज्य आंदोलन और राज्य निर्माण', period: '1938 – 2026', hook: 'उक्रांद, कौशिक समिति, खटीमा-मसूरी-रामपुर तिराहा, 9 नवंबर 2000, गैरसैंण, मुख्यमंत्री, UCC, रजत जयंती', live: true,
+    img: thumb('e/e1/Bhararisain-Vidhan-sabha-Uttarakhand.jpg') },
 ];
 
 export const chapterHref = (c: Chapter) => `/history/${c.slug}/`;

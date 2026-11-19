@@ -133,3 +133,9 @@ Rules agreed with the user:
 - Source book = UOU "उत्तराखण्ड का राजनीतिक इतिहास" (OCR .md, chapters 4–9 + appendices) used as reference only; text is original. Cross-checked with Allahabad HC Kumaun justice history, dehradun.nic.in, India Code (Dehra Dun Act 1871), tehri.nic.in, gov.uk (Darwan Singh Negi), indianculture.gov.in.
 - Book errors flagged on pages: Sri Dev Suman death 1945 (correct 25 Jul 1944); Deghat 18 Aug (common 19 Aug); "recruitment clause in Sugauli" (not in treaty text).
 - Possible next: a chapter 9 on post-1949 / Uttarakhand state movement (1994 Rampur Tiraha, Khatima, Mussoorie; state 9 Nov 2000) to match "राज्य निर्माण तक".
+
+## History chapter 9 live (19 Nov 2026)
+- /history/statehood-movement/ — "राज्य आंदोलन और राज्य निर्माण" (1938–2026): early demands, UKD, Kaushik samiti, 1994 kands, Act 2000, capital question, CM/governor/election tables, laws 2000–2026, disasters, silver jubilee; quiz history-statehood.json (wired in DailyQuestion). Series tagline now "पाषाण युग से राज्य निर्माण (2000) और आज तक".
+- Flagged conflicts on page: Act assent 25 Aug 2000 (India Code) vs 28 Aug; Sriyantra Tapu 10 Nov 1995 (enwiki says 1994); Kaushik samiti "Jan 1993" impossible (UP under President's rule); SRC 1955 did not recommend a hill state (Panikkar's note = "Agra State").
+- Current as of Nov 2026: CM Dhami; Governor Dr. Dhal Singh Bisen (oath 19 Oct 2026). Update when these change.
+- Commons long filenames (>~160 chars) use ".../500px-thumbnail.jpg" thumbs — Figure.astro can't build those; use inline <figure>.
