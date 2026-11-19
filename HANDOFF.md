@@ -33,8 +33,8 @@ Rules agreed with the user:
 ## 3. Site structure (key files)
 **District series "देवभूमि दर्पण · 13 ज़िले, 13 कहानियाँ"**
 - `src/data/districts.ts` lists SERIES and DISTRICTS, parts 1–13.
-  - **Live:** Dehradun, Haridwar, Nainital.
-  - **Next:** Almora (4), Pauri (5), Tehri (6), US Nagar, Chamoli, Pithoragarh, Uttarkashi, Rudraprayag, Bageshwar, Champawat.
+  - **Live:** all 13 (series complete 19 Nov 2026; parts 11–13 Rudraprayag, Bageshwar, Champawat).
+  - Parts 11–13 use our own illustrated heroes (`scripts/district-hero.mjs` → `public/images/districts/`), because Wikimedia couldn't be checked from the session; swap in a CC photo later if wanted (update `image`, `heroCredit`, and `img` in districts.ts).
   - Set `live: true` when a district page ships.
 - `src/layouts/District.astro` is the locked template:
   - series pill and prev/next navigation

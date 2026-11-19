@@ -16,7 +16,7 @@ const schema = {
     <h1>{SERIES.name} <span>{SERIES.tagline}</span></h1>
     <p>{SERIES.blurb}</p>
     <div class="prog" aria-label={`${done} of 13 published`}><div style={`width:${(done / 13) * 100}%`}></div></div>
-    <p class="pl">{done} / 13 भाग प्रकाशित · हर नए भाग की सूचना होमपेज पर</p>
+    <p class="pl">{done === 13 ? 'सभी 13 भाग प्रकाशित — शृंखला पूर्ण' : `${done} / 13 भाग प्रकाशित · हर नए भाग की सूचना होमपेज पर`}</p>
   </header>
 
   <h2>गढ़वाल और कुमाऊँ — सभी 13 भाग</h2>
