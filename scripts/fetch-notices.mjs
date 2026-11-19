@@ -83,6 +83,7 @@ const firstRun = existing.length === 0;
 const now = new Date().toISOString();
 const fresh = [];
 const errors = [];
+let srcErrors = 0; // only the main commission sites count towards a hard failure
 
 for (const src of SOURCES.filter((s) => !s.disabled)) {
   try {
@@ -96,6 +97,7 @@ for (const src of SOURCES.filter((s) => !s.disabled)) {
     const cause = e.cause ? ` (${e.cause.code || ''} ${e.cause.message || e.cause})` : '';
     console.error(`ERROR ${src.name}: ${e.message}${cause}`);
     errors.push(`${src.name}: ${e.message}${cause}`);
+    srcErrors++;
   }
 }
 
@@ -142,4 +144,6 @@ const merged = [...fresh, ...existing].slice(0, MAX_ITEMS);
 await writeFile(DATA, JSON.stringify(merged, null, 2) + '\n');
 await writeFile('new-notices.json', JSON.stringify({ firstRun, items: fresh, errors }, null, 2));
 console.log(`new: ${fresh.length}${firstRun ? ' (first run — seeding, no alert)' : ''}; errors: ${errors.length}`);
-if (errors.length && errors.length === SOURCES.filter((s) => !s.disabled).length) process.exit(1);
+// fail the run only if every main site failed; a side-portal outage (e.g. ukpsc.net.in) must not block the
+// UKSSSC updates from being committed — it is still reported through the tracker-error issue
+if (srcErrors && srcErrors === SOURCES.filter((s) => !s.disabled).length) process.exit(1);
