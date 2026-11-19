@@ -216,16 +216,17 @@ async function askGroq(user, system) {
 const istDay = (iso) => new Date(iso).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
 const hash = (s) => createHash('sha1').update(s).digest('hex').slice(0, 10);
 
+let geminiDown = false; // set once Gemini times out or runs out of quota: the rest of the run goes straight to Groq
 async function ask(user, system = SYSTEM) {
   let lastErr;
-  for (const model of MODELS) {
+  for (const model of (geminiDown ? [] : MODELS)) {
     for (let attempt = 0; attempt < 3; attempt++) {
       const res = await fetch(`${API}/openai/chat/completions`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({ model, temperature: 0.1, max_tokens: 8000, response_format: { type: 'json_object' },
           messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }),
-        signal: AbortSignal.timeout(120000),
+        signal: AbortSignal.timeout(75000),
       }).catch((e) => ({ ok: false, status: 0, text: async () => String(e) }));
       if (res.ok) {
         const raw = await res.text();
@@ -234,10 +235,13 @@ async function ask(user, system = SYSTEM) {
         const m = txt.match(/\{[\s\S]*\}/);
         try { return { model, out: JSON.parse(m ? m[0] : txt) }; } catch { lastErr = `${model}: bad content: ${txt.slice(0, 200)}`; continue; }
       }
-      lastErr = `${model}: HTTP ${res.status} ${(await res.text()).slice(0, 200)}`;
+      const body = (await res.text()).slice(0, 200);
+      lastErr = `${model}: HTTP ${res.status} ${body}`;
+      if (res.status === 0 || (res.status === 429 && /quota/i.test(body))) { geminiDown = !!GROQ; break; } // timeout or daily quota gone: retrying only burns minutes
       if (res.status === 429 || res.status >= 500) await new Promise((r) => setTimeout(r, 20000 * (attempt + 1)));
       else break; // 4xx other than 429 → try next model
     }
+    if (geminiDown) { console.log(`  Gemini unavailable (${lastErr.slice(0, 100)}) — Groq only for the rest of this run`); break; }
   }
   // Backup AI: Groq free tier (OpenAI-compatible), used only when every Gemini model failed.
   if (GROQ) {
@@ -340,7 +344,11 @@ if (process.env.BACKFILL) { // convert old-format points to the v2 note (writer 
   if (errors.length) console.error(errors.join('\n'));
   process.exit(0);
 }
-const days = [...new Set(pending.map((n) => istDay(n.published)))].sort();
+// Headlines Google indexed late for days long gone: mark reviewed without AI (a 3-week-old story is not today's current affairs).
+const OLDEST = addDays(today, -3);
+const late = pending.filter((n) => istDay(n.published) < OLDEST);
+if (late.length) { late.forEach((n) => reviewed.add(n.id)); console.log(`skipped ${late.length} late headline(s) older than ${OLDEST}`); }
+const days = [...new Set(pending.filter((n) => istDay(n.published) >= OLDEST).map((n) => istDay(n.published)))].sort();
 
 for (const day of days) {
   const items = pending.filter((n) => istDay(n.published) === day).sort((a, b) => a.published.localeCompare(b.published));

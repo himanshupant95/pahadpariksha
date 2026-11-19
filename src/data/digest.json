@@ -121,194 +121,586 @@
   "2af9a406709f",
   "0f86f2e62a3c",
   "195e0b67d2ea",
-  "5e9caae8b8c5"
+  "5e9caae8b8c5",
+  "a29885e7f443",
+  "322feee8f5a3",
+  "c79800405ba5",
+  "057bfaa468c1",
+  "896afda7ec6e",
+  "2afc041a7258",
+  "ae2525c6d187",
+  "672d92824c48",
+  "c87c5aa06316",
+  "7ed43d3b7a4e",
+  "3714acd03520",
+  "99eeb8ede986",
+  "7e687f1e8d42",
+  "e936809d603d",
+  "a2abc02e7622",
+  "2d1815f901ad",
+  "9d6aabd92b17",
+  "45847778fda1",
+  "f6f934dc0269",
+  "f926590e0d52",
+  "4017d656938f",
+  "a841eb5704bf",
+  "f585fde249dd",
+  "79e5a88fac6a",
+  "30b9b7c94e9f",
+  "689011be4468",
+  "81b6c58c55b1",
+  "ac964785c5b4",
+  "c390bafd2a63",
+  "9d73259527dc",
+  "1c7e06efe71b",
+  "594043822023",
+  "39d59eb288e5",
+  "87f1f497f403",
+  "f17c2b01d6d5",
+  "532b7e2b6c34",
+  "62272a5c000a",
+  "209970f6bb81",
+  "68535460a631",
+  "3baa1aac28ae",
+  "89d99e8e1c66",
+  "389fd9a37dce",
+  "943b193a4c7b",
+  "f5c361e59777",
+  "2212723aa7ef",
+  "4cd43d40d245",
+  "6fa9156148ee",
+  "f35d7d6f3313",
+  "c40bd5ceb57c",
+  "e7e921caf21e",
+  "a9db300dfd1d",
+  "5136bddcd0ac",
+  "5e1555c3eaa4",
+  "42130f80a158",
+  "718c97d19d0c",
+  "745e514b4e7d",
+  "8bc23e9318f9",
+  "3d7dd26d3b45",
+  "1ba1a13e5ab2",
+  "24388d827035",
+  "bed79b588d5d",
+  "da72f6efd055",
+  "b870d607d660",
+  "503a55ba654b",
+  "3b384e13e887",
+  "de7191787d31",
+  "6824fc72f40a",
+  "bb055ab880cf",
+  "064033c76e86",
+  "fd76812d47a2",
+  "d7a835f12a8c",
+  "36f77e9a638e",
+  "574cde77a9e0",
+  "cc0884747929",
+  "2ba24da0c5d9",
+  "412389283f4e",
+  "8bf51099e5e2",
+  "40f6c98e3d84",
+  "e192c8c6b16f",
+  "e670fac389ab",
+  "c9d36cf8d8c4",
+  "29281787a8b6",
+  "375b2429bdc9",
+  "5f156b478e1d",
+  "4623f4e3c0d4",
+  "72427c389c94",
+  "987b858bd891",
+  "b3986d714807",
+  "a929273cb904",
+  "0a92f828ddac",
+  "6f1b44f10221",
+  "375510aaeda6",
+  "11bfd5c7d4c7",
+  "103e30f40051",
+  "d221d90485ab",
+  "f66ff0710807",
+  "6728c2d683c6",
+  "baf4db478f25"
  ],
  "points": [
   {
-   "date": "2026-11-16",
-   "cat": "योजना/नीति",
+   "id": "abb54485df",
+   "date": "2026-11-18",
+   "fact": "उत्तर प्रदेश और उत्तराखंड के बीच राज्य गठन से लंबित परिसंपत्ति बंटवारे में ₹20,000 करोड़ से अधिक मूल्य के विवादों का निस्तारण हुआ; शेष मामले आपसी सहमति से सुलझाने पर सहमति बनी।",
+   "cat": "प्रशासन",
    "imp": 3,
-   "tag": "बैणी-भुली योजना",
-   "fact": "मुख्यमंत्री धामी ने 'बैणी-भुली योजना' की घोषणा की, जिससे स्वयं सहायता समूहों से जुड़ी 5 लाख से अधिक महिलाओं को प्रोत्साहन राशि मिलेगी।",
-   "sum": "मुख्यमंत्री पुष्कर सिंह धामी ने चमोली के पीपलकोटी में 'बैणी-भुली योजना' की घोषणा की। इसके तहत स्वयं सहायता समूहों की 5 लाख से अधिक महिलाओं को आर्थिक प्रोत्साहन मिलेगा और पहली किस्त दिसंबर में जारी होगी।",
+   "tag": "UP-उत्तराखंड परिसंपत्ति बंटवारा",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "अच्छी खबर: यूपी-उत्तराखंड के बीच 20 हजार करोड़ से अधिक की परिसंपत्तियों का विवाद सुलझा, कई मामलों पर सहमति",
+     "link": "https://www.amarujala.com/dehradun/uttar-pradesh-and-uttarakhand-assets-dispute-worth-over-rs-20000-crore-resolved-2026-11-18",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/dehradun/uttar-pradesh-and-uttarakhand-assets-dispute-worth-over-rs-20000-crore-resolved-2026-11-18"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
    "details": [
     {
-     "k": "योजना",
-     "v": "बैणी-भुली योजना"
+     "k": "बैठक स्थल",
+     "v": "लखनऊ (धामी–योगी मुलाकात, 18 नवंबर 2026)"
     },
     {
-     "k": "लाभार्थी",
-     "v": "स्वयं सहायता समूहों से जुड़ी 5 लाख से अधिक महिलाएँ"
+     "k": "निस्तारित विवाद",
+     "v": "₹20,000 करोड़ से अधिक की परिसंपत्तियाँ"
     },
     {
-     "k": "पहली किस्त",
-     "v": "दिसंबर 2026"
+     "k": "हस्तांतरित होने वाली भूमि",
+     "v": "कुल 659.5 हेक्टेयर — हरिद्वार 615, चंपावत 32, ऊधमसिंह नगर 12.5 हेक्टेयर"
     },
     {
-     "k": "घोषणा स्थल",
-     "v": "पीपलकोटी, चमोली"
+     "k": "सरकारी भवन",
+     "v": "609 (429 आवासीय, 180 गैर-आवासीय)"
     },
     {
-     "k": "'बैणी-भुली' का अर्थ",
-     "v": "गढ़वाली/कुमाऊँनी में बहन (बड़ी-छोटी बहन)",
+     "k": "राज्य गठन",
+     "v": "9 नवंबर 2000 — उत्तर प्रदेश पुनर्गठन अधिनियम, 2000 के तहत",
      "t": "g"
     }
    ],
+   "sum": "मुख्यमंत्री पुष्कर सिंह धामी और सिंचाई मंत्री सतपाल महाराज ने लखनऊ में उत्तर प्रदेश के मुख्यमंत्री योगी आदित्यनाथ से मुलाकात कर परिसंपत्ति बंटवारे के लंबित मामलों पर चर्चा की। अब तक ₹20,000 करोड़ से अधिक के विवाद सुलझ चुके हैं; भूमि और भवनों के अंतिम हस्तांतरण के शासनादेश जारी होने बाकी हैं।",
    "quiz": {
-    "q": "'बैणी-भुली योजना' से लगभग कितनी महिलाओं को लाभ मिलेगा?",
-    "a": "5 लाख से अधिक"
+    "q": "UP–उत्तराखंड परिसंपत्ति बंटवारे में हस्तांतरित होने वाली सर्वाधिक भूमि (615 हेक्टेयर) किस ज़िले की है?",
+    "a": "हरिद्वार"
    },
-   "refs": [
-    {
-     "title": "Baini bhuli yojana : धामी सरकार का बड़ा तोहफा, 5 लाख महिलाओं के खाते में आएगी आर्थिक मदद",
-     "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQVWJEZ3lBTkFrRkIxYkpMbDdfSk5qYkxCN0xFamtHUHFVTzVoa1ZDUEFvVkZOLWhWMHkzMDZOYUdYTDVBWDF6bjB0dnlTaV85N0FCemV2VHQ1cFN1Tlg3b1hLYmxBMWlNUWdGSWlxNkcwWjJ4cXY2U0VCakR2VnA3UEhuUkdxQ3FVVnRYMU5WcFlLX2VjR1dodFM2MXFBbHBQTmM3c0JDZ0RSX2RrNTY1UVdFSUVJaWQ3elVUa09ObWFPUFl3SEpvZkgtUHBaWWg2SEo1eWprTTd3RjRIN21fMXhiZ1k4VkVL?oc=5",
-     "source": "Devbhoomi Darshan"
-    },
-    {
-     "title": "Uttarakhand’s Baeni-Bhuli scheme to cover over 5 lakh women, first payout in December",
-     "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPYW96SmNDWWs1R0s4NE85M3dXUkZ3UVlQVjRPMktyZzQxRW0tQXZ4Y3FOdUx6SHFLNk05QWRSZXRyZ1JsbXF2MXBYcERldUZEdEd4R1dNREEzeTlzbTh1NkpwSzgxRmU2eHJENzhjTVJWWWFHYm5LQnpRUFduaEFUVHV5V1JiOTFNOUJhMkt0Z2pnRFFzTERxOG54blNfTHVEX1dHaElIRHRqbEh2NzZoV3lYNVdnRUM2Z0tOcjNkbkNOaS1KNUIxVjk0Z3dCOTQ?oc=5",
-     "source": "Livemint"
-    },
-    {
-     "title": "उत्तराखंड की 5 लाख महिलाओं को तोहफा, बैणी-भुली योजना की पहली किस्त दिसंबर में होगी जारी",
-     "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNcTRuZDA3b3FvMmZjd0FBWEhaTjBsV2ctN2Y0Y2tla3FBWHN5SXpoM2U2U3oteXlVOGtfcWxpLTNLcndPNkdGVi1vcXRfUVpRZHFwajJaSkJzaEVBajY5cWhzaUtRdlItVGR6QkxSRVlhbEJ2ekhtbUExR3lOS0poNzVjUXV1cTRjS0s3eEJjX0pPcGFucFFrQ3VNcTh0MzB0WVZBLVR5QXM1aENBemUyaS1YZ19OVDVVQWhuOEQwME96bnNNM3VIQ0NJQl9XTlpoZ21JaDh2NNIB3AFBVV95cUxOdXZQZFpzUVB3eWlPSEJSeGlManViaUxucFFkbm9hTkpDYTB5ZC02bnk1RTc4OHhXTW1kQnNJaTNucU9TSHp1MHAwbHJ4bDg2QmJ3NW1ubnFVNjViem5zR2JFSmFLa2tFd0U1STVxZXliX1F4QnZJTHluNUw0d3ZTVFh3YnBfbzluUk5jWE9ONzVtQmo4TWRoWjRKYmlCSk1IcnBWSFRhQTdJOTcwTDJ1VWhySmZGYVBiejl6RGFHczM2Tjk1NGFtMm8zdjJwYnh6cy1EUW81Q2prUXNp?oc=5",
-     "source": "AajTak"
-    },
-    {
-     "title": "उत्तराखंड की महिलाओं को मिलेगा आर्थिक संबल, CM पुष्कर सिंह धामी ने बैणी-भुली योजना को लेकर किया बड़ा ऐलान",
-     "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQem9GUVZJaGhqY1lud0lneTE3cHVNLTgzMmJoR282ZjBrQ2d3N1FaZHRTbEJqQmtCSFliMU5wakxMWVBVT25NWGlXSUQ5UGdqZk1ZbFRXTmJMaGhGTkZXWktXUXFwU2J3Vm9NdFlrWGZuZHZuNVIwTk1VSzlnc3pMRUdaOTVpYmN0MTVhNXVUNHFnaElxV1pRY0Vzb19TZm1lcE10S1U0SXNPM1YwMC1QQUNKSnlla0VwcUx5MVp1UWjSAcABQVVfeXFMUHpvRlFWSWhoamNZbndJZ3kxN3B1TS04MzJiaEdvNmYwa0NndzdRWmR0U2xCakJrQkhZYjFOcGpMTFlQVU9uTVhpV0lEOVBnamZNWWxUV05iTGhoRk5GV1pLV1FxcFNid1ZvTXRZa1hmbmR2bjVSME5NVUs5Z3N6TEVHWjk1aWJjdDE1YTV1VDRxZ2hJcVdaUWNFc29fU2ZtZXBNdEtVNElzTzNWMDAtUEFDSkp5ZWtFcHFMeTFadVFo?oc=5",
-     "source": "Navbharat Live"
-    }
-   ],
-   "depth": "headlines",
-   "id": "5b9c0240f5"
+   "depth": "article"
   },
   {
-   "date": "2026-11-16",
+   "id": "097cdb2d50",
+   "date": "2026-11-18",
+   "fact": "UJVN लिमिटेड की तीन जल विद्युत परियोजनाओं — तांकुल (12 MW), सिरकारी भ्योल रुपसियाबगड़ (120 MW) और त्यूणी-प्लासू (72 MW) — को केंद्रीय पर्यावरण, वन एवं जलवायु परिवर्तन मंत्रालय से अंतिम वन स्वीकृति मिली।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "UJVNL जल विद्युत परियोजनाएँ",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड: तीन जल विद्युत परियोजनाओं को मिली स्वीकृति, भारी मांग के समय मिलेगी बड़ी राहत",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-three-hydropower-projects-get-approval-will-provide-significant-relief-during-periods-of-high-dem-2026-11-18",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/dehradun/uttarakhand-three-hydropower-projects-get-approval-will-provide-significant-relief-during-periods-of-high-dem-2026-11-18"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "तांकुल (12 MW)",
+     "v": "धारचूला, पिथौरागढ़ — काली की सहायक सिमखोलागाड़ पर, रन-ऑफ-द-रिवर; 4-4 MW की 3 इकाइयाँ; PIB अनुमोदन भी"
+    },
+    {
+     "k": "सिरकारी भ्योल रुपसियाबगड़ (120 MW)",
+     "v": "मुनस्यारी, पिथौरागढ़ — गोरी नदी पर; ~52.91 करोड़ यूनिट/वर्ष"
+    },
+    {
+     "k": "त्यूणी-प्लासू (72 MW)",
+     "v": "देहरादून — टोंस नदी पर"
+    },
+    {
+     "k": "UJVNL के MD",
+     "v": "अजय कुमार सिंह"
+    },
+    {
+     "k": "गोरी नदी",
+     "v": "मिलम ग्लेशियर से निकलकर जौलजीबी में काली नदी से मिलती है",
+     "t": "g"
+    }
+   ],
+   "sum": "यूजेवीएन लिमिटेड की तीन जल विद्युत परियोजनाओं को केंद्रीय पर्यावरण, वन एवं जलवायु परिवर्तन मंत्रालय से अंतिम वन स्वीकृति मिली। तांकुल परियोजना को सार्वजनिक निवेश बोर्ड (PIB) का अनुमोदन भी मिला है।",
+   "quiz": {
+    "q": "120 MW की सिरकारी भ्योल रुपसियाबगड़ जल विद्युत परियोजना किस नदी पर है?",
+    "a": "गोरी नदी (मुनस्यारी, पिथौरागढ़)"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "f3f6ea197b",
+   "date": "2026-11-18",
+   "fact": "उत्तराखंड सेतु आयोग ने 2050 तक राज्य को विकसित अर्थव्यवस्था बनाने का लक्ष्य रखा; GSDP ₹3.48 लाख करोड़ से बढ़ाकर ₹28.48 लाख करोड़ करने का प्रस्ताव।",
+   "cat": "अर्थव्यवस्था",
+   "imp": 3,
+   "tag": "सेतु आयोग विज़न 2050",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड: प्रदेश को पेपरलेस-कैशलेस अर्थव्यवस्था बनाने की तैयारी, सेतु आयोग ने वर्ष 2050 तक का रखा है लक्ष्य",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-targets-28-48-lakh-crore-economy-by-2050-plans-paperless-and-cashless-governance-2026-11-18",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/dehradun/uttarakhand-targets-28-48-lakh-crore-economy-by-2050-plans-paperless-and-cashless-governance-2026-11-18"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "GSDP लक्ष्य",
+     "v": "₹3.48 लाख करोड़ → ₹28.48 लाख करोड़ (2050)"
+    },
+    {
+     "k": "प्रति व्यक्ति आय लक्ष्य",
+     "v": "₹2.94 लाख → ₹20.4 लाख"
+    },
+    {
+     "k": "रोज़गार",
+     "v": "MSME से 22.11 लाख नए रोज़गार; 4.5 लाख लखपति दीदियाँ"
+    },
+    {
+     "k": "पर्यटन",
+     "v": "घरेलू 2.5 गुना, अंतरराष्ट्रीय 10 गुना वृद्धि"
+    },
+    {
+     "k": "पर्यावरण",
+     "v": "10,500 जलस्रोत, 5,000 धाराएँ और 56 नदियों का पुनर्जीवन"
+    },
+    {
+     "k": "ऊर्जा",
+     "v": "22,000 MW क्षमता"
+    },
+    {
+     "k": "सेतु आयोग",
+     "v": "State Institution for Empowering and Transforming उत्तराखंड — राज्य योजना आयोग के स्थान पर बना नीति थिंक-टैंक",
+     "t": "g"
+    }
+   ],
+   "sum": "उत्तराखंड सेतु आयोग की नई रिपोर्ट में 2050 तक राज्य को विकसित अर्थव्यवस्था बनाने का रोडमैप है। इसमें सरकारी सेवाओं को पेपरलेस, फेसलेस और कैशलेस बनाने, रोज़गार सृजन, पर्यटन विस्तार और जलस्रोतों के पुनर्जीवन के लक्ष्य शामिल हैं।",
+   "quiz": {
+    "q": "सेतु आयोग ने 2050 तक उत्तराखंड का GSDP कितना करने का लक्ष्य रखा है?",
+    "a": "₹28.48 लाख करोड़"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "3f1a8aaabb",
+   "date": "2026-11-18",
+   "fact": "पद्मश्री भू-भौतिकविद् प्रो. विजय प्रसाद डिमरी (CSIR-NGRI हैदराबाद के पूर्व निदेशक) को उत्तराखंड गौरव सम्मान 2026 मिला।",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 3,
+   "tag": "प्रो. वी.पी. डिमरी",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "IIT ISM Pride: भू-विज्ञान के दिग्गज और पद्मश्री प्रो वीपी डिमरी को मिला 'उत्तराखंड गौरव सम्मान'",
+     "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQd3N6M0tMVThxMWEyY3lPZTVLQlJITWdocFM2M0pWYkVPUzRzSnFWdXZGeHE0MzFwNFJGdVZFSjl0UndBWkE1RDlicEZJRDdjNnBSUGU1WVQ5c2NFd0VSQkZpbnJ6el9Hc3g3OE9fWTJQdjRzQXdjRVluWWxMVDhTZFprajlnY3QzYTZNSndUNG1oY1hRUTdmZ250S2FORHRqU2RRY180ZnM0dEFMSlctZTlfdV8xUVo0cklV?oc=5",
+     "source": "Prabhat Khabar"
+    },
+    {
+     "title": "CSIR-NGRI's former Director Prof Dimri recognised for contributions to geophysical research",
+     "link": "https://www.thehansindia.com/hans/young-hans/csir-ngris-former-director-prof-dimri-recognised-for-contributions-to-geophysical-research-1142827",
+     "source": "The Hans India"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "सम्मानित",
+     "v": "पद्मश्री प्रो. (डॉ.) विजय प्रसाद डिमरी"
+    },
+    {
+     "k": "पद",
+     "v": "पूर्व निदेशक, CSIR-NGRI, हैदराबाद"
+    },
+    {
+     "k": "अन्य सम्मान (2026)",
+     "v": "यूरोपियन जियोसाइंसेज यूनियन (EGU) का क्रिस्टियान ह्यूजेन्स मेडल"
+    },
+    {
+     "k": "शोध क्षेत्र",
+     "v": "फ्रैक्टल मॉडलिंग, इनवर्स थ्योरी, गुरुत्व व चुंबकीय विसंगतियाँ"
+    },
+    {
+     "k": "उत्तराखंड गौरव सम्मान",
+     "v": "2021 में शुरू; उत्तराखंड रत्न के साथ राज्य के दो सर्वोच्च नागरिक सम्मानों में से एक",
+     "t": "g"
+    }
+   ],
+   "sum": "प्रख्यात भू-भौतिकविद् और CSIR-राष्ट्रीय भूभौतिकीय अनुसंधान संस्थान (NGRI), हैदराबाद के पूर्व निदेशक पद्मश्री प्रो. विजय प्रसाद डिमरी को विज्ञान और समाज में योगदान के लिए उत्तराखंड गौरव सम्मान 2026 दिया गया।",
+   "quiz": {
+    "q": "उत्तराखंड गौरव सम्मान 2026 पाने वाले प्रो. वी.पी. डिमरी किस संस्थान के पूर्व निदेशक हैं?",
+    "a": "CSIR-NGRI, हैदराबाद"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "4d3f15a50c",
+   "date": "2026-11-18",
+   "fact": "NHPC के टनकपुर पावर स्टेशन (बनबसा, चंपावत) को रन-ऑफ-रिवर श्रेणी में वर्ष 2025-26 का सर्वश्रेष्ठ पावर स्टेशन घोषित किया गया।",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 2,
+   "tag": "टनकपुर पावर स्टेशन",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Champawat News: टनकपुर पावर स्टेशन को मिला सर्वश्रेष्ठ पावर स्टेशन का पुरस्कार",
+     "link": "https://www.amarujala.com/uttarakhand/champawat/tanakpur-power-station-receives-the-best-power-station-award-champawat-news-c-229-1-alm1003-146899-2026-11-18",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "Champawat News: टनकपुर पावर स्टेशन को मिला सर्वश्रेष्ठ पावर स्टेशन का पुरस्कार",
+     "link": "https://www.amarujala.com/uttarakhand/champawat/tanakpur-power-station-receives-the-best-power-station-award-champawat-news-c-229-1-alm1003-146899-2026-11-18",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/uttarakhand/champawat/tanakpur-power-station-receives-the-best-power-station-award-champawat-news-c-229-1-alm1003-146899-2026-11-18"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "पावर स्टेशन",
+     "v": "टनकपुर पावर स्टेशन, बनबसा (चंपावत) — NHPC"
+    },
+    {
+     "k": "श्रेणी",
+     "v": "रन-ऑफ-रिवर (RoR), वर्ष 2025-26"
+    },
+    {
+     "k": "अवसर",
+     "v": "NHPC का 52वाँ स्थापना दिवस, फरीदाबाद"
+    },
+    {
+     "k": "नदी",
+     "v": "शारदा (काली) नदी",
+     "t": "g"
+    }
+   ],
+   "sum": "एनएचपीसी के 52वें स्थापना दिवस पर फरीदाबाद मुख्यालय में टनकपुर पावर स्टेशन को रन-ऑफ-रिवर (RoR) श्रेणी में 2025-26 के सर्वश्रेष्ठ पावर स्टेशन का पुरस्कार दिया गया।",
+   "quiz": {
+    "q": "NHPC का टनकपुर पावर स्टेशन किस ज़िले में है?",
+    "a": "चंपावत (बनबसा)"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "6f720bd44d",
+   "date": "2026-11-18",
+   "fact": "नगर पंचायत लालकुआं (नैनीताल) कूड़ा प्रबंधन मॉडल के लिए केंद्र के 'अर्बन लर्नाथॉन 2.0' में 'अन्य नगरीय निकाय' श्रेणी की राष्ट्रीय विजेता बनी।",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 2,
+   "tag": "लालकुआं — अर्बन लर्नाथॉन 2.0",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Nainital News: कूड़ा प्रबंधन के मॉडल ने लालकुआं को दिलाया राष्ट्रीय सम्मान",
+     "link": "https://www.amarujala.com/uttarakhand/nainital/waste-management-model-earns-lalkuan-national-recognition-haldwani-news-c-418-1-ntl1014-11937-2026-11-18",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "Nainital News: कूड़ा प्रबंधन के मॉडल ने लालकुआं को दिलाया राष्ट्रीय सम्मान",
+     "link": "https://www.amarujala.com/uttarakhand/nainital/waste-management-model-earns-lalkuan-national-recognition-haldwani-news-c-418-1-ntl1014-11937-2026-11-18",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/uttarakhand/nainital/waste-management-model-earns-lalkuan-national-recognition-haldwani-news-c-418-1-ntl1014-11937-2026-11-18"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "आयोजक",
+     "v": "आवासन एवं शहरी कार्य मंत्रालय और राष्ट्रीय शहरी कार्य संस्थान (NIUA)"
+    },
+    {
+     "k": "श्रेणी",
+     "v": "अन्य नगरीय निकाय — राष्ट्रीय विजेता"
+    },
+    {
+     "k": "मॉडल",
+     "v": "'गुलमोहर' पुरुष स्वयं सहायता समूह द्वारा घर-घर कूड़ा संग्रह व प्रबंधन"
+    },
+    {
+     "k": "पुरस्कार समारोह",
+     "v": "'पर्वत मंथन' सम्मेलन, देहरादून"
+    }
+   ],
+   "sum": "आवासन एवं शहरी कार्य मंत्रालय और राष्ट्रीय शहरी कार्य संस्थान (NIUA) के 'अर्बन लर्नाथॉन 2.0' में लालकुआं राष्ट्रीय विजेता रहा। देहरादून में 'पर्वत मंथन' सम्मेलन में केंद्रीय राज्य मंत्री तोखन साहू ने पुरस्कार दिया।",
+   "quiz": {
+    "q": "'अर्बन लर्नाथॉन 2.0' में उत्तराखंड की कौन-सी नगर पंचायत राष्ट्रीय विजेता बनी?",
+    "a": "लालकुआं (नैनीताल)"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "883867c247",
+   "date": "2026-11-18",
+   "fact": "11 पर्वतीय राज्यों में सड़क दुर्घटनाओं की संख्या में उत्तराखंड चौथे और दुर्घटनाओं में मौतों के मामले में असम के बाद दूसरे स्थान पर है।",
+   "cat": "रिपोर्ट/रैंकिंग",
+   "imp": 2,
+   "tag": "सड़क दुर्घटनाएँ",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "चिंताजनक: पर्वतीय राज्यों में सड़क हादसों के मामले में उत्तराखंड चौथे स्थान पर, अगस्त तक हो चुकी 1480 घटनाएं",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-ranks-fourth-in-road-accidents-among-mountain-states-second-in-fatalities-2026-11-18",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/dehradun/uttarakhand-ranks-fourth-in-road-accidents-among-mountain-states-second-in-fatalities-2026-11-18"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "दुर्घटनाएँ (उत्तराखंड)",
+     "v": "2023 में 1,691; 2024 में 1,747"
+    },
+    {
+     "k": "मौतें (उत्तराखंड)",
+     "v": "2023 में 1,054; 2024 में 1,090"
+    },
+    {
+     "k": "सर्वाधिक दुर्घटनाएँ",
+     "v": "असम (2024 में 7,848)"
+    },
+    {
+     "k": "सबसे कम",
+     "v": "मिज़ोरम (2024 में 108)"
+    },
+    {
+     "k": "जनवरी–अगस्त 2026",
+     "v": "1,480 दुर्घटनाएँ, 884 मौतें"
+    }
+   ],
+   "sum": "पर्वतीय राज्यों के आँकड़ों में सड़क हादसों में उत्तराखंड चौथे और मौतों में दूसरे स्थान पर है। राज्य में जनवरी–अगस्त 2026 में 1,480 सड़क दुर्घटनाएँ हुईं, जो 2025 की इसी अवधि (1,289) से अधिक हैं।",
+   "quiz": {
+    "q": "पर्वतीय राज्यों में सड़क दुर्घटनाओं में मौतों के मामले में उत्तराखंड किस स्थान पर है?",
+    "a": "दूसरे (असम के बाद)"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "36ceffeb9a",
+   "date": "2026-11-18",
+   "fact": "गंगोत्री धाम से 5,000 लीटर गंगाजल लेकर श्रीगंगा कलश यात्रा नेपाल के पशुपतिनाथ मंदिर के लिए हरिद्वार से रवाना हुई।",
    "cat": "संस्कृति/धर्म",
    "imp": 2,
-   "tag": "मद्महेश्वर",
-   "fact": "द्वितीय केदार मद्महेश्वर मंदिर के कपाट शीतकाल के लिए बंद हुए।",
-   "sum": "पंचकेदारों में द्वितीय केदार मद्महेश्वर के कपाट शीतकाल के लिए बंद कर दिए गए। शीतकाल में भगवान मद्महेश्वर की पूजा ऊखीमठ के ओंकारेश्वर मंदिर में होगी।",
-   "details": [
-    {
-     "k": "मंदिर",
-     "v": "मद्महेश्वर (द्वितीय केदार), रुद्रप्रयाग ज़िला"
-    },
-    {
-     "k": "शीतकालीन गद्दीस्थल",
-     "v": "ओंकारेश्वर मंदिर, ऊखीमठ"
-    },
-    {
-     "k": "पंचकेदार",
-     "v": "केदारनाथ, मद्महेश्वर, तुंगनाथ, रुद्रनाथ, कल्पेश्वर",
-     "t": "g"
-    },
-    {
-     "k": "मद्महेश्वर में पूजा",
-     "v": "शिव के नाभि भाग की",
-     "t": "g"
-    }
-   ],
-   "quiz": {
-    "q": "शीतकाल में मद्महेश्वर की पूजा कहाँ होती है?",
-    "a": "ओंकारेश्वर मंदिर, ऊखीमठ"
-   },
+   "tag": "गंगा कलश यात्रा",
+   "model": "editor",
    "refs": [
     {
-     "title": "रुद्रप्रयाग: द्वितीय केदार मद्महेश्वर के कपाट बंद, 19 को शीतकालीन गद्दीस्थल ओंकारेश्वर मंदिर पहुंचेगी डोली",
-     "link": "https://www.amarujala.com/uttarakhand/rudraprayag/madhyamaheshwar-temple-doors-closed-for-winter-lord-utsav-doli-to-reach-ukhimath-on-november-19-2026-11-16",
-     "source": "Amar Ujala"
-    },
-    {
-     "title": "उत्तराखंड न्यूज बुलेटिन: सीएम ने की स्व-गणना, मद्महेश्वर के कपाट बंद, देखें बड़ी खबरें",
-     "link": "https://www.amarujala.com/video/dehradun/uttarakhand-news-bulletincm-conducts-self-enumeration-portals-of-madmaheshwar-closed-2026-11-16",
-     "source": "Amar Ujala"
+     "title": "हरिद्वार: पशुपतिनाथ धाम के लिए गंगा कलश यात्रा रवाना, गंगोत्री से लाए पांच हजार लीटर जल, हुआ भव्य स्वागत",
+     "link": "https://www.amarujala.com/uttarakhand/haridwar/haridwar-ganga-kalash-yatra-departs-for-pashupatinath-dham-5000-liters-of-water-brought-from-gangotri-receives-2026-11-18",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/uttarakhand/haridwar/haridwar-ganga-kalash-yatra-departs-for-pashupatinath-dham-5000-liters-of-water-brought-from-gangotri-receives-2026-11-18"
     }
    ],
-   "depth": "headlines",
-   "id": "bc1ff14fc5"
-  },
-  {
-   "date": "2026-11-13",
-   "cat": "प्रशासन",
-   "imp": 2,
-   "tag": "मतदाता सूची",
-   "fact": "SIR के बाद चलाए गए 27 दिन के विशेष अभियान में उत्तराखंड में 1.19 लाख नए मतदाता जुड़े।",
-   "sum": "मतदाता सूची के विशेष गहन पुनरीक्षण (SIR) के बाद छूटे पात्र लोगों को जोड़ने के लिए 27 दिन का विशेष अभियान चलाया गया। इसमें राज्य में 1.19 लाख नए मतदाता जुड़े।",
+   "added": "2026-11-19T02:30:32.539Z",
    "details": [
     {
-     "k": "नए मतदाता",
-     "v": "1.19 लाख"
+     "k": "जल",
+     "v": "गंगोत्री से 5,000 लीटर गंगाजल"
     },
     {
-     "k": "अभियान",
-     "v": "SIR के बाद 27 दिन का विशेष अभियान"
+     "k": "गंतव्य",
+     "v": "पशुपतिनाथ मंदिर, काठमांडू (नेपाल)"
     },
     {
-     "k": "SIR के बाद अंतिम सूची",
-     "v": "लगभग 71.58 लाख मतदाता (3 अक्टूबर 2026 को जारी)"
+     "k": "नेतृत्व",
+     "v": "गंगोत्री धाम के रावल शिवप्रकाश महाराज"
     },
     {
-     "k": "SIR",
-     "v": "Special Intensive Revision; भारत निर्वाचन आयोग द्वारा मतदाता सूची का गहन पुनरीक्षण",
+     "k": "मान्यता",
+     "v": "केदारनाथ में शिव के पृष्ठ भाग और पशुपतिनाथ में अग्र भाग (मुख) की पूजा",
      "t": "g"
     }
    ],
+   "sum": "गंगोत्री के रावल शिवप्रकाश महाराज के नेतृत्व में गंगा कलश यात्रा उत्तरकाशी, टिहरी होते हुए हरिद्वार पहुँची और नेपाल के लिए रवाना हुई। गंगोत्री के कपाट बंद होने के बाद हर वर्ष काठमांडू के पशुपतिनाथ में गंगाजल से जलाभिषेक की परंपरा है।",
    "quiz": {
-    "q": "SIR के बाद चले विशेष अभियान में उत्तराखंड में कितने नए मतदाता जुड़े?",
-    "a": "1.19 लाख"
+    "q": "गंगा कलश यात्रा गंगोत्री का जल किस मंदिर तक ले जाती है?",
+    "a": "पशुपतिनाथ, काठमांडू (नेपाल)"
    },
-   "refs": [
-    {
-     "title": "उत्तराखंड में SIR के बाद चलाए गए 27 दिन के विशेष अभियान से जुड़े 1.19 लाख नए मतदाता, अभी भी है नाम शामिल कराने का मौका",
-     "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPTlpvcEhtdEtuSDEzVEZJeDdHXzIzSnpqY0xCN3hvR1RhaXRIWklBb0NXSWZuLXZPczlXelFlNjRRV3ZVbEk4NGxDa2k5V2ZEQTNsY25pZTU4M1V5YUh2SDF4NFJwTUNkVEMyclR0emsycDJIS0dHUGw5OUh1LTVaZlU5TkNZRFBjMWZaLU0xcW1TbGdONDhOVzlNbFdBVXRvaUtCZjB5X3NMRXZycHRQMGFn?oc=5",
-     "source": "Jagran"
-    }
-   ],
-   "depth": "headlines",
-   "id": "9fdc748dc1"
+   "depth": "article"
   },
   {
-   "date": "2026-11-15",
+   "id": "4a92eca3a4",
+   "date": "2026-11-18",
+   "fact": "अल्मोड़ा की अधिवक्ता स्निग्धा तिवारी ने तुर्किये के अंताल्या में हुए संयुक्त राष्ट्र जलवायु सम्मेलन COP-31 में हिमालय के पर्यावरणीय मुद्दे उठाए।",
    "cat": "पर्यावरण",
    "imp": 2,
-   "tag": "राजाजी टाइगर रिज़र्व",
-   "fact": "हरिद्वार में राजाजी टाइगर रिज़र्व पर्यटकों के लिए खुला; जून तक सफ़ारी हो सकेगी।",
-   "sum": "राजाजी टाइगर रिज़र्व के हरिद्वार क्षेत्र को पर्यटकों के लिए खोल दिया गया है। पर्यटक यहाँ जून तक भ्रमण कर सकेंगे।",
-   "details": [
-    {
-     "k": "क्षेत्र",
-     "v": "राजाजी टाइगर रिज़र्व, हरिद्वार"
-    },
-    {
-     "k": "पर्यटन सत्र",
-     "v": "जून तक"
-    },
-    {
-     "k": "राजाजी राष्ट्रीय उद्यान",
-     "v": "1983 में बना; नाम सी. राजगोपालाचारी (राजाजी) के नाम पर",
-     "t": "g"
-    },
-    {
-     "k": "टाइगर रिज़र्व का दर्जा",
-     "v": "2015 में",
-     "t": "g"
-    }
-   ],
-   "quiz": {
-    "q": "राजाजी राष्ट्रीय उद्यान का नाम किसके नाम पर रखा गया है?",
-    "a": "सी. राजगोपालाचारी (राजाजी)"
-   },
+   "tag": "COP-31 — स्निग्धा तिवारी",
+   "model": "editor",
    "refs": [
     {
-     "title": "Uttarakhand: Rajaji Tiger Reserve at Haridwar opens for tourists till June",
-     "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOYWw5UXNFQUkxQjc0SGF6MFRCRV9renN2Z29rZEV1cDZqNDlyY25tMF9ENG5fN2lLSkVwNDZrb194VTBtWmtXWXhkTEJGc3dpaXBockx4QnBtWkh0ZFpFU3gtTnBkUndMdEJCVmtNQ21rV0Q1YjBuSW1fWUlOQzlxOGJVUmdyWXY5Q1FXdzJqOWU4X0M4aEl6a01KdHF4Q2pH?oc=5",
-     "source": "News On AIR"
+     "title": "Almora News: कॉप-31 में स्निग्धा तिवारी ने उठाए हिमालय के पर्यावरणीय मुद्दे",
+     "link": "https://www.amarujala.com/uttarakhand/almora/snigdha-tiwari-raised-environmental-issues-concerning-the-himalayas-at-cop-31-almora-news-c-232-1-alm1019-151153-2026-11-18",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "Almora News: कॉप-31 में स्निग्धा तिवारी ने उठाए हिमालय के पर्यावरणीय मुद्दे",
+     "link": "https://www.amarujala.com/uttarakhand/almora/snigdha-tiwari-raised-environmental-issues-concerning-the-himalayas-at-cop-31-almora-news-c-232-1-alm1019-151153-2026-11-18",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/uttarakhand/almora/snigdha-tiwari-raised-environmental-issues-concerning-the-himalayas-at-cop-31-almora-news-c-232-1-alm1019-151153-2026-11-18"
     }
    ],
-   "depth": "headlines",
-   "id": "92a3a9e0c3"
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "सम्मेलन",
+     "v": "COP-31 (UNFCCC), अंताल्या, तुर्किये"
+    },
+    {
+     "k": "वक्ता",
+     "v": "स्निग्धा तिवारी, अधिवक्ता, अल्मोड़ा"
+    },
+    {
+     "k": "मुद्दे",
+     "v": "हिमालय संरक्षण, जल विद्युत परियोजनाओं का प्रभाव, जलवायु न्याय"
+    },
+    {
+     "k": "COP",
+     "v": "Conference of the Parties — UNFCCC की वार्षिक बैठक",
+     "t": "g"
+    }
+   ],
+   "sum": "वैश्विक हरित दलों के प्रतिनिधिमंडल की ओर से शामिल स्निग्धा तिवारी ने COP-31 के विशेष सत्र में हिमालयी क्षेत्रों के संरक्षण, उच्च हिमालय में जल विद्युत परियोजनाओं के प्रभाव और स्थानीय समुदायों के अधिकारों पर विचार रखे।",
+   "quiz": {
+    "q": "COP-31 जलवायु सम्मेलन किस शहर में हुआ?",
+    "a": "अंताल्या (तुर्किये)"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "2d830123b2",
+   "date": "2026-11-18",
+   "fact": "चमोली में 31 मिनट के भीतर दो भूकंप आए — पहला 4.1 और दूसरा 2.8 तीव्रता का।",
+   "cat": "पर्यावरण",
+   "imp": 2,
+   "tag": "चमोली भूकंप",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड में 31 मिनट के अंदर दो बार कांपी धरती: चमोली में पहला भूकंप 4.1 और दूसरा 2.8 तीव्रता का; 5 दिन पह...",
+     "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQdEZqOWdrdUYwN0xOVzlKcFBib0JLNWZ5MGZiaURDYUxHUVUzdWFmcnJfVW9SVC1DemJPWEJRTy1zcEFCV2tLRDBLXzNMV2hyVG9pMERBZHNYWGdVUmFZc2QzT2VONm1lWTlkUFFjLXoyWnFxd3BzT2tjcVJIcWhHZWMtTjF6QVJJZS1KMlEwQnRjRGROanZYU1AtNVNlTGJNMGNyRjg1OFNCWVE2Mmg5NGlyQmdNTlRGYmttbHFzcG5rNEpWbmtzNVRuNXJLZ9IB0wFBVV95cUxPXzdKUEpRUlh1M3hnQ0tTUG00NkJBTzNmdU1TMUxfNFV6d2NEZWVKS2dwVjhzd0ltUjFCcnBaMFl0T0N0Q3lYRGVpNHRuOHY5SERHcmk5Wmk5V08tajRxM3lPSmdyeFBUZmQyOEFVVnBuYmN3R1FLRW5VeWIxVXlmS1dyeUo1aG50M051eEllc0IxXzZyVjFwY3RzSUQ3djd5LXRFYXRxQmtkdk9OMWNaalRrQWhraU5ZV2FXYnR1MFZFNlBrZVJMNDBGTENzbEVicVZF?oc=5",
+     "source": "Dainik Bhaskar"
+    },
+    {
+     "title": "Uttarakhand experiences two earthquakes within 31 minutes: First tremor of magnitude 4.1 and second of 2.8 ...",
+     "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNWTR6a0cxQWo4eGt3QUJ4N05vRzd2MnJaRGY2SmRSS3JLcndnMmdURUZ6LUZzLTVOdnJDVkJIQTlBSFJxd0dLYmdxT25FWW8wY21uQVFwbHFLRVhGZ3NJckp3QTFucXRVRkRkX3pwQkZKYWRncUxhMHJXX3BpNTVfTnBtM3NuWWo5U04tQWhPTk9ZRG9JTEtSSFIzcWRYMjhpcVlUNG1ZUEw2ZmNoVnBoY0xJMUJqRURHbGlPYTl6Y9IBxAFBVV95cUxNVlM1bk1fMS1oUXBrbTM3YmlJYktJQUJ4Y1FPNzhIZC13MzN4aHRJWG5jczJzRHVzSElNdDhWanhZTU04UmxhcGVCYzRmZzNJNU11d0dGZjZCVFIzdWFqckVBSGJWZDFLd2pUdUI4MEtzckRTM09FWGlkYzN4SGhfaHpnTjMxV0hYMU1vcGdiVG9kalVNLUZ4Yml2NnJVMFJBTUwzX3NYLVA5VDBrM3QwNnN1ZkNIUWNWQ0JJeUhCWF9FaDcx?oc=5",
+     "source": "Bhaskar English"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "स्थान",
+     "v": "चमोली ज़िला"
+    },
+    {
+     "k": "तीव्रता",
+     "v": "4.1 और 2.8 (31 मिनट के अंतर पर)"
+    },
+    {
+     "k": "भूकंपीय क्षेत्र",
+     "v": "उत्तराखंड के अधिकांश पर्वतीय ज़िले उच्च भूकंपीय जोखिम (ज़ोन IV–V) में",
+     "t": "g"
+    },
+    {
+     "k": "आँकड़े देने वाली संस्था",
+     "v": "राष्ट्रीय भूकंप विज्ञान केंद्र (NCS), नई दिल्ली",
+     "t": "g"
+    }
+   ],
+   "sum": "चमोली ज़िले में 31 मिनट के अंतराल पर दो बार भूकंप के झटके महसूस हुए; पहले की तीव्रता 4.1 और दूसरे की 2.8 मापी गई।",
+   "quiz": {
+    "q": "18 नवंबर 2026 को चमोली में आए पहले भूकंप की तीव्रता कितनी थी?",
+    "a": "4.1"
+   },
+   "depth": "headlines"
   },
   {
    "id": "d30aa7715b",
@@ -435,6 +827,111 @@
     "a": "लगभग 150 करोड़ रुपये"
    },
    "depth": "headlines"
+  },
+  {
+   "id": "1dc90ee4f0",
+   "date": "2026-11-17",
+   "fact": "उत्तराखंड में हर वर्ष 28 नवंबर को आपदा प्रबंधन दिवस मनाया जाएगा; इस बार राज्य से तहसील स्तर तक ~300 स्थानों पर एक साथ मॉक ड्रिल होगी।",
+   "cat": "प्रशासन",
+   "imp": 2,
+   "tag": "आपदा प्रबंधन दिवस",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड: 28 नवंबर को मानाया जाएगा आपदा प्रबंधन दिवस, राज्य से तहसील स्तर तक 300 स्थानों पर होगी मॉकड्रिल",
+     "link": "https://www.amarujala.com/dehradun/disaster-management-day-in-uttarakhand-to-be-observed-on-november-28-mock-drills-to-be-held-at-300-locations-2026-11-17",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/dehradun/disaster-management-day-in-uttarakhand-to-be-observed-on-november-28-mock-drills-to-be-held-at-300-locations-2026-11-17"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "तिथि",
+     "v": "हर वर्ष 28 नवंबर"
+    },
+    {
+     "k": "मॉक ड्रिल",
+     "v": "राज्य से तहसील स्तर तक ~300 स्थान"
+    },
+    {
+     "k": "कार्यक्रम अवधि",
+     "v": "25–28 नवंबर 2026"
+    },
+    {
+     "k": "नोडल संस्था",
+     "v": "उत्तराखंड राज्य आपदा प्रबंधन प्राधिकरण (USDMA)"
+    },
+    {
+     "k": "सचिव, आपदा प्रबंधन",
+     "v": "विनोद कुमार सुमन"
+    }
+   ],
+   "sum": "मुख्यमंत्री धामी की घोषणा के अनुसार हर वर्ष 28 नवंबर को आपदा प्रबंधन दिवस मनाया जाएगा। इस वर्ष 25 से 28 नवंबर तक कार्यक्रम होंगे और 28 नवंबर को लगभग 300 स्थानों पर राज्य स्तरीय मॉक ड्रिल होगी।",
+   "quiz": {
+    "q": "उत्तराखंड में आपदा प्रबंधन दिवस किस तिथि को मनाया जाएगा?",
+    "a": "28 नवंबर"
+   },
+   "depth": "article"
+  },
+  {
+   "date": "2026-11-16",
+   "cat": "योजना/नीति",
+   "imp": 3,
+   "tag": "बैणी-भुली योजना",
+   "fact": "मुख्यमंत्री धामी ने 'बैणी-भुली योजना' की घोषणा की, जिससे स्वयं सहायता समूहों से जुड़ी 5 लाख से अधिक महिलाओं को प्रोत्साहन राशि मिलेगी।",
+   "sum": "मुख्यमंत्री पुष्कर सिंह धामी ने चमोली के पीपलकोटी में 'बैणी-भुली योजना' की घोषणा की। इसके तहत स्वयं सहायता समूहों की 5 लाख से अधिक महिलाओं को आर्थिक प्रोत्साहन मिलेगा और पहली किस्त दिसंबर में जारी होगी।",
+   "details": [
+    {
+     "k": "योजना",
+     "v": "बैणी-भुली योजना"
+    },
+    {
+     "k": "लाभार्थी",
+     "v": "स्वयं सहायता समूहों से जुड़ी 5 लाख से अधिक महिलाएँ"
+    },
+    {
+     "k": "पहली किस्त",
+     "v": "दिसंबर 2026"
+    },
+    {
+     "k": "घोषणा स्थल",
+     "v": "पीपलकोटी, चमोली"
+    },
+    {
+     "k": "'बैणी-भुली' का अर्थ",
+     "v": "गढ़वाली/कुमाऊँनी में बहन (बड़ी-छोटी बहन)",
+     "t": "g"
+    }
+   ],
+   "quiz": {
+    "q": "'बैणी-भुली योजना' से लगभग कितनी महिलाओं को लाभ मिलेगा?",
+    "a": "5 लाख से अधिक"
+   },
+   "refs": [
+    {
+     "title": "Baini bhuli yojana : धामी सरकार का बड़ा तोहफा, 5 लाख महिलाओं के खाते में आएगी आर्थिक मदद",
+     "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQVWJEZ3lBTkFrRkIxYkpMbDdfSk5qYkxCN0xFamtHUHFVTzVoa1ZDUEFvVkZOLWhWMHkzMDZOYUdYTDVBWDF6bjB0dnlTaV85N0FCemV2VHQ1cFN1Tlg3b1hLYmxBMWlNUWdGSWlxNkcwWjJ4cXY2U0VCakR2VnA3UEhuUkdxQ3FVVnRYMU5WcFlLX2VjR1dodFM2MXFBbHBQTmM3c0JDZ0RSX2RrNTY1UVdFSUVJaWQ3elVUa09ObWFPUFl3SEpvZkgtUHBaWWg2SEo1eWprTTd3RjRIN21fMXhiZ1k4VkVL?oc=5",
+     "source": "Devbhoomi Darshan"
+    },
+    {
+     "title": "Uttarakhand’s Baeni-Bhuli scheme to cover over 5 lakh women, first payout in December",
+     "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPYW96SmNDWWs1R0s4NE85M3dXUkZ3UVlQVjRPMktyZzQxRW0tQXZ4Y3FOdUx6SHFLNk05QWRSZXRyZ1JsbXF2MXBYcERldUZEdEd4R1dNREEzeTlzbTh1NkpwSzgxRmU2eHJENzhjTVJWWWFHYm5LQnpRUFduaEFUVHV5V1JiOTFNOUJhMkt0Z2pnRFFzTERxOG54blNfTHVEX1dHaElIRHRqbEh2NzZoV3lYNVdnRUM2Z0tOcjNkbkNOaS1KNUIxVjk0Z3dCOTQ?oc=5",
+     "source": "Livemint"
+    },
+    {
+     "title": "उत्तराखंड की 5 लाख महिलाओं को तोहफा, बैणी-भुली योजना की पहली किस्त दिसंबर में होगी जारी",
+     "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNcTRuZDA3b3FvMmZjd0FBWEhaTjBsV2ctN2Y0Y2tla3FBWHN5SXpoM2U2U3oteXlVOGtfcWxpLTNLcndPNkdGVi1vcXRfUVpRZHFwajJaSkJzaEVBajY5cWhzaUtRdlItVGR6QkxSRVlhbEJ2ekhtbUExR3lOS0poNzVjUXV1cTRjS0s3eEJjX0pPcGFucFFrQ3VNcTh0MzB0WVZBLVR5QXM1aENBemUyaS1YZ19OVDVVQWhuOEQwME96bnNNM3VIQ0NJQl9XTlpoZ21JaDh2NNIB3AFBVV95cUxOdXZQZFpzUVB3eWlPSEJSeGlManViaUxucFFkbm9hTkpDYTB5ZC02bnk1RTc4OHhXTW1kQnNJaTNucU9TSHp1MHAwbHJ4bDg2QmJ3NW1ubnFVNjViem5zR2JFSmFLa2tFd0U1STVxZXliX1F4QnZJTHluNUw0d3ZTVFh3YnBfbzluUk5jWE9ONzVtQmo4TWRoWjRKYmlCSk1IcnBWSFRhQTdJOTcwTDJ1VWhySmZGYVBiejl6RGFHczM2Tjk1NGFtMm8zdjJwYnh6cy1EUW81Q2prUXNp?oc=5",
+     "source": "AajTak"
+    },
+    {
+     "title": "उत्तराखंड की महिलाओं को मिलेगा आर्थिक संबल, CM पुष्कर सिंह धामी ने बैणी-भुली योजना को लेकर किया बड़ा ऐलान",
+     "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQem9GUVZJaGhqY1lud0lneTE3cHVNLTgzMmJoR282ZjBrQ2d3N1FaZHRTbEJqQmtCSFliMU5wakxMWVBVT25NWGlXSUQ5UGdqZk1ZbFRXTmJMaGhGTkZXWktXUXFwU2J3Vm9NdFlrWGZuZHZuNVIwTk1VSzlnc3pMRUdaOTVpYmN0MTVhNXVUNHFnaElxV1pRY0Vzb19TZm1lcE10S1U0SXNPM1YwMC1QQUNKSnlla0VwcUx5MVp1UWjSAcABQVVfeXFMUHpvRlFWSWhoamNZbndJZ3kxN3B1TS04MzJiaEdvNmYwa0NndzdRWmR0U2xCakJrQkhZYjFOcGpMTFlQVU9uTVhpV0lEOVBnamZNWWxUV05iTGhoRk5GV1pLV1FxcFNid1ZvTXRZa1hmbmR2bjVSME5NVUs5Z3N6TEVHWjk1aWJjdDE1YTV1VDRxZ2hJcVdaUWNFc29fU2ZtZXBNdEtVNElzTzNWMDAtUEFDSkp5ZWtFcHFMeTFadVFo?oc=5",
+     "source": "Navbharat Live"
+    }
+   ],
+   "depth": "headlines",
+   "id": "5b9c0240f5"
   },
   {
    "id": "0eb720e81a",
@@ -693,6 +1190,52 @@
     "a": "आसन कंज़र्वेशन रिज़र्व (देहरादून)"
    },
    "depth": "headlines"
+  },
+  {
+   "date": "2026-11-16",
+   "cat": "संस्कृति/धर्म",
+   "imp": 2,
+   "tag": "मद्महेश्वर",
+   "fact": "द्वितीय केदार मद्महेश्वर मंदिर के कपाट शीतकाल के लिए बंद हुए।",
+   "sum": "पंचकेदारों में द्वितीय केदार मद्महेश्वर के कपाट शीतकाल के लिए बंद कर दिए गए। शीतकाल में भगवान मद्महेश्वर की पूजा ऊखीमठ के ओंकारेश्वर मंदिर में होगी।",
+   "details": [
+    {
+     "k": "मंदिर",
+     "v": "मद्महेश्वर (द्वितीय केदार), रुद्रप्रयाग ज़िला"
+    },
+    {
+     "k": "शीतकालीन गद्दीस्थल",
+     "v": "ओंकारेश्वर मंदिर, ऊखीमठ"
+    },
+    {
+     "k": "पंचकेदार",
+     "v": "केदारनाथ, मद्महेश्वर, तुंगनाथ, रुद्रनाथ, कल्पेश्वर",
+     "t": "g"
+    },
+    {
+     "k": "मद्महेश्वर में पूजा",
+     "v": "शिव के नाभि भाग की",
+     "t": "g"
+    }
+   ],
+   "quiz": {
+    "q": "शीतकाल में मद्महेश्वर की पूजा कहाँ होती है?",
+    "a": "ओंकारेश्वर मंदिर, ऊखीमठ"
+   },
+   "refs": [
+    {
+     "title": "रुद्रप्रयाग: द्वितीय केदार मद्महेश्वर के कपाट बंद, 19 को शीतकालीन गद्दीस्थल ओंकारेश्वर मंदिर पहुंचेगी डोली",
+     "link": "https://www.amarujala.com/uttarakhand/rudraprayag/madhyamaheshwar-temple-doors-closed-for-winter-lord-utsav-doli-to-reach-ukhimath-on-november-19-2026-11-16",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "उत्तराखंड न्यूज बुलेटिन: सीएम ने की स्व-गणना, मद्महेश्वर के कपाट बंद, देखें बड़ी खबरें",
+     "link": "https://www.amarujala.com/video/dehradun/uttarakhand-news-bulletincm-conducts-self-enumeration-portals-of-madmaheshwar-closed-2026-11-16",
+     "source": "Amar Ujala"
+    }
+   ],
+   "depth": "headlines",
+   "id": "bc1ff14fc5"
   },
   {
    "id": "9c8d6d59f2",
@@ -966,6 +1509,47 @@
     "a": "20"
    },
    "depth": "headlines"
+  },
+  {
+   "date": "2026-11-15",
+   "cat": "पर्यावरण",
+   "imp": 2,
+   "tag": "राजाजी टाइगर रिज़र्व",
+   "fact": "हरिद्वार में राजाजी टाइगर रिज़र्व पर्यटकों के लिए खुला; जून तक सफ़ारी हो सकेगी।",
+   "sum": "राजाजी टाइगर रिज़र्व के हरिद्वार क्षेत्र को पर्यटकों के लिए खोल दिया गया है। पर्यटक यहाँ जून तक भ्रमण कर सकेंगे।",
+   "details": [
+    {
+     "k": "क्षेत्र",
+     "v": "राजाजी टाइगर रिज़र्व, हरिद्वार"
+    },
+    {
+     "k": "पर्यटन सत्र",
+     "v": "जून तक"
+    },
+    {
+     "k": "राजाजी राष्ट्रीय उद्यान",
+     "v": "1983 में बना; नाम सी. राजगोपालाचारी (राजाजी) के नाम पर",
+     "t": "g"
+    },
+    {
+     "k": "टाइगर रिज़र्व का दर्जा",
+     "v": "2015 में",
+     "t": "g"
+    }
+   ],
+   "quiz": {
+    "q": "राजाजी राष्ट्रीय उद्यान का नाम किसके नाम पर रखा गया है?",
+    "a": "सी. राजगोपालाचारी (राजाजी)"
+   },
+   "refs": [
+    {
+     "title": "Uttarakhand: Rajaji Tiger Reserve at Haridwar opens for tourists till June",
+     "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOYWw5UXNFQUkxQjc0SGF6MFRCRV9renN2Z29rZEV1cDZqNDlyY25tMF9ENG5fN2lLSkVwNDZrb194VTBtWmtXWXhkTEJGc3dpaXBockx4QnBtWkh0ZFpFU3gtTnBkUndMdEJCVmtNQ21rV0Q1YjBuSW1fWUlOQzlxOGJVUmdyWXY5Q1FXdzJqOWU4X0M4aEl6a01KdHF4Q2pH?oc=5",
+     "source": "News On AIR"
+    }
+   ],
+   "depth": "headlines",
+   "id": "92a3a9e0c3"
   },
   {
    "id": "b7ac40d73b",
@@ -1277,6 +1861,46 @@
    "depth": "article"
   },
   {
+   "date": "2026-11-13",
+   "cat": "प्रशासन",
+   "imp": 2,
+   "tag": "मतदाता सूची",
+   "fact": "SIR के बाद चलाए गए 27 दिन के विशेष अभियान में उत्तराखंड में 1.19 लाख नए मतदाता जुड़े।",
+   "sum": "मतदाता सूची के विशेष गहन पुनरीक्षण (SIR) के बाद छूटे पात्र लोगों को जोड़ने के लिए 27 दिन का विशेष अभियान चलाया गया। इसमें राज्य में 1.19 लाख नए मतदाता जुड़े।",
+   "details": [
+    {
+     "k": "नए मतदाता",
+     "v": "1.19 लाख"
+    },
+    {
+     "k": "अभियान",
+     "v": "SIR के बाद 27 दिन का विशेष अभियान"
+    },
+    {
+     "k": "SIR के बाद अंतिम सूची",
+     "v": "लगभग 71.58 लाख मतदाता (3 अक्टूबर 2026 को जारी)"
+    },
+    {
+     "k": "SIR",
+     "v": "Special Intensive Revision; भारत निर्वाचन आयोग द्वारा मतदाता सूची का गहन पुनरीक्षण",
+     "t": "g"
+    }
+   ],
+   "quiz": {
+    "q": "SIR के बाद चले विशेष अभियान में उत्तराखंड में कितने नए मतदाता जुड़े?",
+    "a": "1.19 लाख"
+   },
+   "refs": [
+    {
+     "title": "उत्तराखंड में SIR के बाद चलाए गए 27 दिन के विशेष अभियान से जुड़े 1.19 लाख नए मतदाता, अभी भी है नाम शामिल कराने का मौका",
+     "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPTlpvcEhtdEtuSDEzVEZJeDdHXzIzSnpqY0xCN3hvR1RhaXRIWklBb0NXSWZuLXZPczlXelFlNjRRV3ZVbEk4NGxDa2k5V2ZEQTNsY25pZTU4M1V5YUh2SDF4NFJwTUNkVEMyclR0emsycDJIS0dHUGw5OUh1LTVaZlU5TkNZRFBjMWZaLU0xcW1TbGdONDhOVzlNbFdBVXRvaUtCZjB5X3NMRXZycHRQMGFn?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "depth": "headlines",
+   "id": "9fdc748dc1"
+  },
+  {
    "id": "e375c049b9",
    "date": "2026-11-13",
    "fact": "उत्तराखंड के स्वच्छ सर्वेक्षण में काशीपुर और रुद्रपुर ने पहला स्थान प्राप्त किया।",
@@ -1319,5 +1943,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-18T05:32:11.473756Z"
+ "updated": "2026-11-19T02:30:32.539Z"
 }
