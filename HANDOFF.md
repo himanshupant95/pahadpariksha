@@ -34,7 +34,7 @@ Rules agreed with the user:
 **District series "देवभूमि दर्पण · 13 ज़िले, 13 कहानियाँ"**
 - `src/data/districts.ts` lists SERIES and DISTRICTS, parts 1–13.
   - **Live:** all 13 (series complete 19 Nov 2026; parts 11–13 Rudraprayag, Bageshwar, Champawat).
-  - Parts 11–13 use our own illustrated heroes (`scripts/district-hero.mjs` → `public/images/districts/`), because Wikimedia couldn't be checked from the session; swap in a CC photo later if wanted (update `image`, `heroCredit`, and `img` in districts.ts).
+  - Parts 11–13 heroes: Kedarnath (Naresh Balakrishnan, CC BY-SA 4.0), Baijnath (SAMARTH052000, CC BY-SA 4.0), Baleshwar panorama (Pranavspn, CC BY-SA 3.0); Champawat series card uses Baleshwarmahadev.jpg (PD).
   - Set `live: true` when a district page ships.
 - `src/layouts/District.astro` is the locked template:
   - series pill and prev/next navigation

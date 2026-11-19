@@ -22,9 +22,9 @@ export const DISTRICTS: SeriesDistrict[] = [
   { part: 8, slug: 'chamoli', name: 'चमोली', nameEn: 'Chamoli', division: 'गढ़वाल', hq: 'गोपेश्वर', hook: 'बद्रीनाथ, फूलों की घाटी, चिपको', live: true, img: wm('1/1a', 'Badrinath_Temple.jpg') },
   { part: 9, slug: 'pithoragarh', name: 'पिथौरागढ़', nameEn: 'Pithoragarh', division: 'कुमाऊँ', hq: 'पिथौरागढ़', hook: 'सोर घाटी, धारचूला, कैलाश मार्ग', live: true, img: wm('d/de', 'Panchachuli_peaks.jpg') },
   { part: 10, slug: 'uttarkashi', name: 'उत्तरकाशी', nameEn: 'Uttarkashi', division: 'गढ़वाल', hq: 'उत्तरकाशी', hook: 'गंगोत्री-यमुनोत्री, सबसे बड़ा ज़िला', live: true, img: wm('0/04', 'Gangotri_temple.jpg') },
-  { part: 11, slug: 'rudraprayag', name: 'रुद्रप्रयाग', nameEn: 'Rudraprayag', division: 'गढ़वाल', hq: 'रुद्रप्रयाग', hook: 'केदारनाथ, अलकनंदा-मंदाकिनी संगम', live: true, img: '/images/districts/500px-rudraprayag.webp' },
-  { part: 12, slug: 'bageshwar', name: 'बागेश्वर', nameEn: 'Bageshwar', division: 'कुमाऊँ', hq: 'बागेश्वर', hook: 'बागनाथ, उत्तरायणी, कुली बेगार आंदोलन', live: true, img: '/images/districts/500px-bageshwar.webp' },
-  { part: 13, slug: 'champawat', name: 'चंपावत', nameEn: 'Champawat', division: 'कुमाऊँ', hq: 'चंपावत', hook: 'चंद वंश की पहली राजधानी, देवीधुरा बग्वाल', live: true, img: '/images/districts/500px-champawat.webp' },
+  { part: 11, slug: 'rudraprayag', name: 'रुद्रप्रयाग', nameEn: 'Rudraprayag', division: 'गढ़वाल', hq: 'रुद्रप्रयाग', hook: 'केदारनाथ, अलकनंदा-मंदाकिनी संगम', live: true, img: wm('b/b6', 'Kedarnath_Temple_-_OCT_2014.jpg') },
+  { part: 12, slug: 'bageshwar', name: 'बागेश्वर', nameEn: 'Bageshwar', division: 'कुमाऊँ', hq: 'बागेश्वर', hook: 'बागनाथ, उत्तरायणी, कुली बेगार आंदोलन', live: true, img: wm('8/8c', 'Baijnath_Temple_Complex-Bageshwar_district-_uttarakhand-DSC001.jpg') },
+  { part: 13, slug: 'champawat', name: 'चंपावत', nameEn: 'Champawat', division: 'कुमाऊँ', hq: 'चंपावत', hook: 'चंद वंश की पहली राजधानी, देवीधुरा बग्वाल', live: true, img: wm('1/12', 'Baleshwarmahadev.jpg') },
 ];
 
 export const liveCount = () => DISTRICTS.filter((d) => d.live).length;

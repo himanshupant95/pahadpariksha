@@ -20,6 +20,7 @@ const toc = [
   { id: 'aapda', label: 'आपदाएँ: 1991 से धराली तक' },
   { id: 'vyaktitva', label: 'प्रमुख व्यक्तित्व' },
   { id: 'arthvyavastha', label: 'अर्थव्यवस्था' },
+  { id: 'jalvidyut', label: 'जलविद्युत, बाँध व प्रमुख परियोजनाएँ' },
   { id: 'pariksha', label: 'परीक्षा बिंदु (One-liners)' },
   { id: 'quiz', label: 'क्विज़ (15 प्रश्न)' },
   { id: 'faq', label: 'FAQ' },
@@ -51,6 +52,9 @@ const faq = [
 ];
 
 const sources = [
+  { label: 'CEA — उत्तराखंड के चालू जलविद्युत स्टेशन (31 जुलाई 2026)', url: 'https://cea.nic.in/wp-content/uploads/hpi/2026/07/In_Operation_HEPsas_on_31.07.2026-1.pdf' },
+  { label: 'SJVN — नैटवाड़ मोरी हाइड्रो पावर स्टेशन', url: 'https://sjvn.nic.in/en/node/190' },
+  { label: 'Drishti — सिल्क्यारा सुरंग ब्रेकथ्रू (17 अप्रैल 2025)', url: 'https://www.drishtiias.com/state-pcs-current-affairs/silkyara-tunnel-in-uttarakhand' },
   { label: 'जिला प्रशासन उत्तरकाशी (uttarkashi.nic.in) — इतिहास', url: 'https://uttarkashi.nic.in/history/' },
   { label: 'भारत की जनगणना 2011 — उत्तराखंड के जिलों के आँकड़े', url: 'https://census2011.co.in/census/state/districtlist/uttarakhand.html' },
   { label: 'Wikipedia — Uttarkashi district; 1991 Uttarkashi earthquake; Uttarakhand tunnel rescue; Gangotri National Park; Nehru Institute of Mountaineering', url: 'https://en.wikipedia.org/wiki/Uttarkashi_district' },
@@ -287,6 +291,31 @@ const img = (w: number) => `https://thumb.wikimedia.org/wikipedia/commons/thumb/
     <li><b>जलविद्युत:</b> मनेरी-भाली परियोजनाएँ।</li>
     <li><b>परिवहन:</b> चारधाम ऑल वेदर रोड, सिल्क्यारा सुरंग (यमुनोत्री की दूरी घटाएगी), चिन्यालीसौड़ हवाई पट्टी।</li>
   </ul>
+</section>
+
+<section id="jalvidyut">
+  <h2>जलविद्युत, बाँध व प्रमुख परियोजनाएँ <small class="muted">(स्थिति: नवंबर 2026)</small></h2>
+  <p>भागीरथी (गंगा) के उद्गम क्षेत्र में होने के कारण उत्तरकाशी की परियोजनाएँ "अविरल गंगा" बनाम विकास की राष्ट्रीय बहस का केंद्र रही हैं।</p>
+  <table>
+    <thead><tr><th>परियोजना</th><th>नदी / स्थान</th><th>क्षमता / मुख्य तथ्य</th><th>महत्व</th></tr></thead>
+    <tbody>
+      <tr><td><b>मनेरी भाली चरण-I (तिलोथ)</b></td><td>भागीरथी — मनेरी बाँध</td><td>90 MW (3 × 30); 1984</td><td>राज्य की शुरुआती बड़ी भागीरथी परियोजना (UJVNL)।</td></tr>
+      <tr><td><b>मनेरी भाली चरण-II (धरासू)</b></td><td>भागीरथी — जोशियाड़ा बैराज (उत्तरकाशी) → 16 किमी सुरंग → धरासू</td><td>304 MW (4 × 76); 2008</td><td>UJVNL की सबसे बड़ी परियोजना; निर्माण 1979 से, 1990-2002 तक रुका रहा।</td></tr>
+      <tr><td><b>नैटवाड़ मोरी जलविद्युत</b></td><td>टोंस — नैटवाड़ (मोरी)</td><td>60 MW (2 × 30), SJVN; दिसंबर 2023 में पूर्ण चालू</td><td>SJVN की उत्तराखंड में पहली परियोजना।</td></tr>
+      <tr><td><b>लोहारीनाग-पाला (रद्द)</b></td><td>भागीरथी — गंगोत्री के नीचे</td><td>600 MW, NTPC</td><td><b>2010</b> में रद्द — जी.डी. अग्रवाल के अनशन व अविरल गंगा आंदोलन के बाद; पाला-मनेरी, भैरोंघाटी भी छोड़ी गईं।</td></tr>
+      <tr><td><b>भागीरथी इको-सेंसिटिव ज़ोन</b></td><td>गोमुख से उत्तरकाशी तक (~100 किमी)</td><td>दिसंबर 2012 में अधिसूचित</td><td>इस क्षेत्र में बड़े बाँध/जलविद्युत पर रोक।</td></tr>
+      <tr><td><b>सिल्क्यारा-बड़कोट सुरंग</b></td><td>NH-134 (धरासू-यमुनोत्री), चारधाम महामार्ग</td><td>4.531 किमी; ब्रेकथ्रू <b>16 अप्रैल 2025</b></td><td>नवंबर 2023 में 41 मज़दूर 17 दिन फँसे; सुरंग का नाम <b>बाबा बौखनाग</b> पर; गंगोत्री-यमुनोत्री दूरी ~25 किमी कम।</td></tr>
+    </tbody>
+  </table>
+  <div class="box-exam"><strong><span class="tag exam">परीक्षा बिंदु</span></strong>
+    <ul>
+      <li>मनेरी भाली-II — 304 MW, धरासू, 2008; मनेरी भाली-I — 90 MW, तिलोथ, 1984।</li>
+      <li>नैटवाड़ मोरी — टोंस, 60 MW, SJVN, 2023।</li>
+      <li>लोहारीनाग-पाला (600 MW) — 2010 में रद्द।</li>
+      <li>सिल्क्यारा सुरंग — 4.531 किमी, ब्रेकथ्रू 16 अप्रैल 2025, नाम बाबा बौखनाग।</li>
+    </ul>
+  </div>
+  <div class="box-trap"><strong><span class="tag trap">सावधान</span></strong><b>नैटवाड़ मोरी</b> टोंस (यमुना की सहायक) पर है, भागीरथी पर नहीं — उत्तरकाशी जिला दोनों नदी घाटियों (भागीरथी व यमुना-टोंस) में फैला है।</div>
 </section>
 
 <section id="pariksha">

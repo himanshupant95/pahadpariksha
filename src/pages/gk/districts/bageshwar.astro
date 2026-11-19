@@ -18,6 +18,7 @@ const toc = [
   { id: 'sthal', label: 'धार्मिक, ऐतिहासिक व पर्यटन स्थल' },
   { id: 'vyaktitva', label: 'प्रमुख व्यक्तित्व' },
   { id: 'arthvyavastha', label: 'अर्थव्यवस्था व खनिज' },
+  { id: 'jalvidyut', label: 'जलविद्युत, बाँध व प्रमुख परियोजनाएँ' },
   { id: 'pariksha', label: 'परीक्षा बिंदु (One-liners)' },
   { id: 'quiz', label: 'क्विज़ (15 प्रश्न)' },
   { id: 'faq', label: 'FAQ' },
@@ -49,20 +50,25 @@ const faq = [
 ];
 
 const sources = [
+  { label: 'ThePrint (PTI) — टनकपुर-बागेश्वर रेल पर रेल मंत्री का लोकसभा उत्तर (20 अगस्त 2025)', url: 'https://theprint.in/india/proposed-tanakpur-bageshwar-rail-project-in-ukhand-has-low-traffic-projections-vaishnaw-in-lok-sabha/2725229' },
+  { label: 'Drishti — बागेश्वर में सोपस्टोन खनन (22 नवंबर 2025)', url: 'https://www.drishtiias.com/state-pcs-current-affairs/soapstone-mining-in-bageshwar/print_manually' },
   { label: 'जिला प्रशासन बागेश्वर (bageshwar.nic.in) — मंदिर व परिचय', url: 'https://bageshwar.nic.in/temples' },
   { label: 'भारत की जनगणना 2011 — बागेश्वर जिला', url: 'https://census2011.co.in/census/district/581-bageshwar.html' },
   { label: 'Incredible India — Anasakti Ashram, Kausani (1929, 14 दिन)', url: 'https://incredibleindia.gov.in/en/uttarakhand/kausani/anasakti-ashram' },
   { label: 'Wikipedia — Coolie-Begar movement; Bagnath Temple; Baijnath Temple Complex', url: 'https://en.wikipedia.org/wiki/Coolie-Begar_movement' },
+  { label: 'मुख्य चित्र: बैजनाथ मंदिर समूह — SAMARTH052000, CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Baijnath_Temple_Complex-Bageshwar_district-_uttarakhand-DSC001.jpg' },
   { label: 'मानचित्र: Wikimedia Commons (Bageshwar district.svg — GDibyendu); OpenStreetMap contributors', url: 'https://commons.wikimedia.org/wiki/File:Bageshwar_district.svg' },
 ];
+const img = (w: number) => `https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Baijnath_Temple_Complex-Bageshwar_district-_uttarakhand-DSC001.jpg/${w}px-Baijnath_Temple_Complex-Bageshwar_district-_uttarakhand-DSC001.jpg`;
 ---
 <District
   name="बागेश्वर" nameEn="Bageshwar" slug="bageshwar" division="कुमाऊँ"
   title="बागेश्वर जिला: बागनाथ, उत्तरायणी, कुली बेगार आंदोलन, कौसानी, बैजनाथ, पिंडारी व परीक्षा बिंदु"
   description="बागेश्वर जिले का संपूर्ण सामान्य ज्ञान — 15 सितंबर 1997 गठन (अल्मोड़ा से), सरयू-गोमती संगम व बागनाथ, कत्यूरी राजधानी कार्तिकेयपुर (बैजनाथ), 14 जनवरी 1921 कुली बेगार आंदोलन, कौसानी में गांधी (1929) व सुमित्रानंदन पंत, पिंडारी-कफनी-सुंदरढूंगा ग्लेशियर, उत्तरायणी मेला और 15 प्रश्नों का क्विज़।"
-  image="/images/districts/bageshwar.webp"
-  imageAlt="बागेश्वर जिले का चित्र — दो नदियों के संगम पर मंदिर और पीछे हिमालय"
-  heroCredit={{ text: 'चित्रांकन: पहाड़ परीक्षा' }}
+  image={img(1280)}
+  heroSrcset={`${img(960)} 960w, ${img(1280)} 1280w`}
+  imageAlt="गोमती तट पर बैजनाथ (कत्यूरी राजधानी कार्तिकेयपुर) का प्राचीन पत्थर का मंदिर समूह"
+  heroCredit={{ text: 'बैजनाथ मंदिर समूह — SAMARTH052000, CC BY-SA 4.0, Wikimedia Commons', url: 'https://commons.wikimedia.org/wiki/File:Baijnath_Temple_Complex-Bageshwar_district-_uttarakhand-DSC001.jpg' }}
   published="2026-11-19" toc={toc} facts={facts} faq={faq} sources={sources}
 >
 
@@ -267,6 +273,26 @@ const sources = [
     <li><b>शिल्प:</b> तांबे के बर्तन, ऊनी कंबल-दन्न, रिंगाल उत्पाद।</li>
     <li><b>परिवहन:</b> निकटतम रेलवे स्टेशन काठगोदाम/टनकपुर; बागेश्वर-टनकपुर रेल लाइन सर्वेक्षण (लंबे समय से माँग)।</li>
   </ul>
+</section>
+
+<section id="jalvidyut">
+  <h2>जलविद्युत, बाँध व प्रमुख परियोजनाएँ <small class="muted">(स्थिति: नवंबर 2026)</small></h2>
+  <p>बागेश्वर में बड़ी जलविद्युत परियोजना नहीं है; परीक्षा की दृष्टि से यहाँ <b>खनन (सोपस्टोन/मैग्नेसाइट)</b> और <b>प्रस्तावित रेल</b> सबसे महत्वपूर्ण हैं।</p>
+  <table>
+    <thead><tr><th>परियोजना</th><th>नदी / स्थान</th><th>क्षमता / मुख्य तथ्य</th><th>महत्व</th></tr></thead>
+    <tbody>
+      <tr><td><b>टनकपुर-बागेश्वर रेल लाइन (प्रस्तावित)</b></td><td>टनकपुर (चंपावत) → बागेश्वर</td><td>~170 किमी; अनुमानित लागत ₹48,692 करोड़; सर्वे व DPR पूर्ण (अगस्त 2025)</td><td>कुमाऊँ के पहाड़ों तक पहली रेल; रेल मंत्री के अनुसार यातायात अनुमान कम; कर्णप्रयाग-बागेश्वर लिंक की माँग।</td></tr>
+      <tr><td><b>सोपस्टोन (खड़िया) खनन</b></td><td>कांडा, कपकोट, विजयपुर क्षेत्र</td><td>राज्य के सबसे समृद्ध टैल्क भंडार</td><td><b>6 जनवरी 2025</b> — हाईकोर्ट ने घरों में दरारों के बाद जिले में खनन रोका; कांडा के कालिका मंदिर में दरारें; नवंबर 2025 में सुप्रीम कोर्ट ने वैध पट्टों पर खनन की अनुमति दी।</td></tr>
+      <tr><td><b>मैग्नेसाइट खनन</b></td><td>झिरौली क्षेत्र</td><td>अल्मोड़ा मैग्नेसाइट लिमिटेड</td><td>जिले का पारंपरिक खनिज उद्योग।</td></tr>
+    </tbody>
+  </table>
+  <div class="box-exam"><strong><span class="tag exam">परीक्षा बिंदु</span></strong>
+    <ul>
+      <li>टनकपुर-बागेश्वर रेल — ~170 किमी, DPR तैयार, लागत ~₹48,692 करोड़।</li>
+      <li>बागेश्वर सोपस्टोन खनन — उच्च न्यायालय द्वारा रोक 6 जनवरी 2025 (कांडा क्षेत्र में भू-धँसाव)।</li>
+    </ul>
+  </div>
+  <div class="box-trap"><strong><span class="tag trap">सावधान</span></strong>खड़िया = <b>सोपस्टोन/टैल्क</b> (स्टीटाइट) — इसे चूना पत्थर या जिप्सम न समझें।</div>
 </section>
 
 <section id="pariksha">

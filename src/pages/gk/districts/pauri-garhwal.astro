@@ -19,6 +19,7 @@ const toc = [
   { id: 'andolan', label: 'स्वतंत्रता संग्राम' },
   { id: 'vyaktitva', label: 'प्रमुख व्यक्तित्व' },
   { id: 'arthvyavastha', label: 'अर्थव्यवस्था व परियोजनाएँ' },
+  { id: 'jalvidyut', label: 'जलविद्युत, बाँध व प्रमुख परियोजनाएँ' },
   { id: 'pariksha', label: 'परीक्षा बिंदु (One-liners)' },
   { id: 'quiz', label: 'क्विज़ (15 प्रश्न)' },
   { id: 'faq', label: 'FAQ' },
@@ -50,6 +51,9 @@ const faq = [
 ];
 
 const sources = [
+  { label: 'BHEL — 330 MW श्रीनगर HEP की चारों इकाइयाँ चालू (11 जून 2015)', url: 'https://www.bhel.com/bhel-commissions-all-4-hydro-sets-825-mw-each-330-mw-hydro-power-station-just-60-days' },
+  { label: 'सिंचाई विभाग उत्तराखंड — कालागढ़ (रामगंगा) बाँध', url: 'https://uttarakhandirrigation.com/kalagarh' },
+  { label: 'Drishti — ऋषिकेश-कर्णप्रयाग रेल व T-8 सुरंग (18 अप्रैल 2025)', url: 'https://www.drishtiias.com/state-pcs-current-affairs/rishikesh-karnaprayag-rail-link-project' },
   { label: 'जिला प्रशासन पौड़ी गढ़वाल — इतिहास (pauri.nic.in)', url: 'https://pauri.nic.in/history/' },
   { label: 'भारत की जनगणना 2011 — जिला आँकड़े (पौड़ी गढ़वाल)', url: 'https://www.census2011.co.in/census/state/districtlist/uttarakhand.html' },
   { label: 'हेमवती नंदन बहुगुणा गढ़वाल विश्वविद्यालय', url: 'https://www.hnbgu.ac.in/' },
@@ -328,6 +332,27 @@ const img = (w: number) => `https://thumb.wikimedia.org/wikipedia/commons/thumb/
     <li><b>कृषि:</b> मंडुवा, झंगोरा, गहत; सीढ़ीदार खेत — पलायन से "बंजर" खेतों की समस्या।</li>
     <li><b>मनीऑर्डर अर्थव्यवस्था</b> — सेना व बाहर काम करने वालों की आय पर निर्भरता।</li>
   </ul>
+</section>
+
+<section id="jalvidyut">
+  <h2>जलविद्युत, बाँध व प्रमुख परियोजनाएँ <small class="muted">(स्थिति: नवंबर 2026)</small></h2>
+  <p>पौड़ी जिले में अलकनंदा और पश्चिमी रामगंगा पर दो बड़ी जलविद्युत परियोजनाएँ हैं, और ऋषिकेश-कर्णप्रयाग रेल लाइन का बड़ा भाग इसी क्षेत्र से गुज़रता है।</p>
+  <table>
+    <thead><tr><th>परियोजना</th><th>नदी / स्थान</th><th>क्षमता / मुख्य तथ्य</th><th>महत्व</th></tr></thead>
+    <tbody>
+      <tr><td><b>श्रीनगर जलविद्युत परियोजना</b></td><td>अलकनंदा — श्रीनगर के पास (गौरशाली)</td><td>330 MW (4 × 82.5); सभी इकाइयाँ <b>अप्रैल-जून 2015</b> में चालू</td><td>निजी क्षेत्र (GVK — अलकनंदा हाइड्रो पावर कं.); धारी देवी मूर्ति स्थानांतरण (जून 2013) विवाद।</td></tr>
+      <tr><td><b>रामगंगा बाँध (कालागढ़ बाँध)</b></td><td>पश्चिमी रामगंगा — कालागढ़, कॉर्बेट के भीतर</td><td>128 मी. मिट्टी-पत्थर बाँध; 198 MW (3 × 66); बाँध 1974 में पूर्ण</td><td>UP के पश्चिमी भाग में सिंचाई व बाढ़ नियंत्रण; जलाशय कॉर्बेट के वन्यजीवों का जल स्रोत।</td></tr>
+      <tr><td><b>ऋषिकेश-कर्णप्रयाग रेल लाइन</b></td><td>अलकनंदा घाटी — देवप्रयाग से श्रीनगर क्षेत्र</td><td>125 किमी; <b>सुरंग T-8 (14.57 किमी) — देवप्रयाग-जनासू, भारत की सबसे लंबी परिवहन सुरंग</b>; ब्रेकथ्रू 16 अप्रैल 2025</td><td>रेल विकास निगम (RVNL); TBM "शक्ति" से खुदाई।</td></tr>
+    </tbody>
+  </table>
+  <div class="box-exam"><strong><span class="tag exam">परीक्षा बिंदु</span></strong>
+    <ul>
+      <li>श्रीनगर HEP — अलकनंदा, 330 MW, 2015।</li>
+      <li>रामगंगा (कालागढ़) बाँध — 128 मी., 198 MW, पौड़ी जिला (कॉर्बेट क्षेत्र)।</li>
+      <li>T-8 सुरंग (14.57 किमी) — देवप्रयाग-जनासू; भारत की सबसे लंबी परिवहन सुरंग।</li>
+    </ul>
+  </div>
+  <div class="box-trap"><strong><span class="tag trap">सावधान</span></strong><b>श्रीनगर (गढ़वाल)</b> की 330 MW परियोजना को जम्मू-कश्मीर के श्रीनगर से न जोड़ें। कालागढ़ बाँध <b>पश्चिमी रामगंगा</b> पर है, पूर्वी पर नहीं।</div>
 </section>
 
 <section id="pariksha">

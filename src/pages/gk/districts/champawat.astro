@@ -15,7 +15,7 @@ const toc = [
   { id: 'samaj', label: 'समाज, बोली व परंपराएँ' },
   { id: 'mele', label: 'मेले व त्योहार' },
   { id: 'sthal', label: 'धार्मिक, ऐतिहासिक व पर्यटन स्थल' },
-  { id: 'pariyojana', label: 'संस्थान व परियोजनाएँ' },
+  { id: 'pariyojana', label: 'जलविद्युत, बाँध व प्रमुख परियोजनाएँ' },
   { id: 'vyaktitva', label: 'प्रमुख व्यक्तित्व व घटनाएँ' },
   { id: 'arthvyavastha', label: 'अर्थव्यवस्था' },
   { id: 'pariksha', label: 'परीक्षा बिंदु (One-liners)' },
@@ -49,20 +49,25 @@ const faq = [
 ];
 
 const sources = [
+  { label: 'NHPC — टनकपुर पावर स्टेशन (94.2 MW, डीरेट)', url: 'https://www.nhpcindia.com/welcome/project/2' },
+  { label: 'Kathmandu Post — पंचेश्वर परियोजना (5,040 MW, 315 मी.; अगस्त 2026)', url: 'https://kathmandupost.com/national/2026/08/07/nepal-india-seek-breakthrough-in-stalled-pancheshwar-project' },
   { label: 'जिला प्रशासन चंपावत (champawat.gov.in / champawat.nic.in) — परिचय, प्रशासनिक ढाँचा', url: 'https://champawat.nic.in/administrative-setup/' },
   { label: 'भारत की जनगणना 2011 — चंपावत जिला', url: 'https://www.census2011.co.in/census/district/583-champawat.html' },
-  { label: 'NHPC — टनकपुर पावर स्टेशन (120 MW, 1992)', url: 'https://www.nhpcindia.com/welcome/project_detail/8/2' },
+  { label: 'NHPC — टनकपुर पावर स्टेशन (मूल 120 MW, 1992-93)', url: 'https://www.nhpcindia.com/welcome/project_detail/8/2' },
   { label: 'Wikipedia — Advaita Ashrama; Kalu Singh Mahara; Baleshwar Temple; Champawat Tiger', url: 'https://en.wikipedia.org/wiki/Advaita_Ashrama' },
+  { label: 'मुख्य चित्र: बालेश्वर मंदिर, चंपावत — Pranavspn, CC BY-SA 3.0', url: 'https://commons.wikimedia.org/wiki/File:Baleshwar_temple%2C_champawat.JPG' },
   { label: 'मानचित्र: Wikimedia Commons (Champawat district.svg — GDibyendu); OpenStreetMap contributors', url: 'https://commons.wikimedia.org/wiki/File:Champawat_district.svg' },
 ];
+const img = (w: number) => `https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Baleshwar_temple%2C_champawat.JPG/${w}px-Baleshwar_temple%2C_champawat.JPG`;
 ---
 <District
   name="चंपावत" nameEn="Champawat" slug="champawat" division="कुमाऊँ"
   title="चंपावत जिला: चंद वंश की राजधानी, देवीधुरा बग्वाल, पूर्णागिरि, मायावती आश्रम व परीक्षा बिंदु"
   description="चंपावत जिले का संपूर्ण सामान्य ज्ञान — 15 सितंबर 1997 गठन (पिथौरागढ़ से), राज्य का सबसे छोटा जिला, काली कुमाऊँ व चंद राजधानी, बालेश्वर मंदिर, एक हथिया नौला, देवीधुरा बग्वाल, पूर्णागिरि, मायावती अद्वैत आश्रम (1899), कालू महरा (1857), टनकपुर-बनबसा, पंचेश्वर और 15 प्रश्नों का क्विज़।"
-  image="/images/districts/champawat.webp"
-  imageAlt="चंपावत जिले का चित्र — पहाड़ी पर पत्थर का प्राचीन मंदिर और नीचे बहती काली नदी"
-  heroCredit={{ text: 'चित्रांकन: पहाड़ परीक्षा' }}
+  image={img(1280)}
+  heroSrcset={`${img(1280)} 1280w, ${img(3840)} 3840w`}
+  imageAlt="चंपावत के चंद कालीन बालेश्वर मंदिर समूह का विस्तृत दृश्य"
+  heroCredit={{ text: 'बालेश्वर मंदिर, चंपावत — Pranavspn, CC BY-SA 3.0, Wikimedia Commons', url: 'https://commons.wikimedia.org/wiki/File:Baleshwar_temple%2C_champawat.JPG' }}
   published="2026-11-19" toc={toc} facts={facts} faq={faq} sources={sources}
 >
 
@@ -100,7 +105,7 @@ const sources = [
     <li><span class="yr">1907</span><span class="ev">कॉर्बेट ने चंपावत की बाघिन मारी।</span></li>
     <li><span class="yr">1928</span><span class="ev">बनबसा में शारदा बैराज (शारदा नहर)।</span></li>
     <li><span class="yr">1972</span><span class="ev">अल्मोड़ा से पिथौरागढ़ जिले में।</span></li>
-    <li><span class="yr">1992</span><span class="ev">NHPC टनकपुर पावर स्टेशन (120 MW) चालू।</span></li>
+    <li><span class="yr">1992</span><span class="ev">NHPC टनकपुर पावर स्टेशन (मूल 120 MW; अब 94.2 MW) चालू।</span></li>
     <li><span class="yr">1996</span><span class="ev">भारत-नेपाल महाकाली संधि (शारदा बैराज, टनकपुर, पंचेश्वर)।</span></li>
     <li><span class="yr">1997</span><span class="ev">चंपावत जिला बना (15 सितंबर)।</span></li>
     <li><span class="yr">2013</span><span class="ev">उच्च न्यायालय — बग्वाल में पत्थरों पर रोक।</span></li>
@@ -132,7 +137,7 @@ const sources = [
     <thead><tr><th>नदी / संगम</th><th>मुख्य तथ्य</th></tr></thead>
     <tbody>
       <tr><td><b>काली (शारदा / महाकाली)</b></td><td>भारत-नेपाल सीमा; <b>पंचेश्वर</b> तक "काली", उसके बाद मैदान में "शारदा"; नेपाल में "महाकाली"।</td></tr>
-      <tr><td><b>पंचेश्वर</b></td><td><b>काली + सरयू</b> का संगम; पंचेश्वर महादेव मंदिर; प्रस्तावित भारत-नेपाल पंचेश्वर बहुउद्देशीय बाँध (लगभग 5,600 MW)।</td></tr>
+      <tr><td><b>पंचेश्वर</b></td><td><b>काली + सरयू</b> का संगम; पंचेश्वर महादेव मंदिर; प्रस्तावित भारत-नेपाल पंचेश्वर बहुउद्देशीय बाँध (5,040 MW प्रस्तावित)।</td></tr>
       <tr><td><b>लोहावती</b></td><td>लोहाघाट नगर इसी के तट पर; आगे काली में।</td></tr>
       <tr><td><b>लधिया</b></td><td>दक्षिणी पहाड़ियों से; चूका के पास काली में।</td></tr>
     </tbody>
@@ -233,17 +238,27 @@ const sources = [
 </section>
 
 <section id="pariyojana">
-  <h2>संस्थान व परियोजनाएँ</h2>
+  <h2>जलविद्युत, बाँध व प्रमुख परियोजनाएँ <small class="muted">(स्थिति: नवंबर 2026)</small></h2>
+  <p>चंपावत की परियोजनाएँ <b>भारत-नेपाल संबंधों</b> का हिस्सा हैं — शारदा (महाकाली) नदी दोनों देशों की सीमा बनाती है।</p>
   <table>
-    <thead><tr><th>नाम</th><th>मुख्य तथ्य</th></tr></thead>
+    <thead><tr><th>परियोजना</th><th>नदी / स्थान</th><th>क्षमता / मुख्य तथ्य</th><th>महत्व</th></tr></thead>
     <tbody>
-      <tr><td><b>टनकपुर पावर स्टेशन (NHPC)</b></td><td>बनबसा; शारदा नदी पर रन-ऑफ-द-रिवर; <b>120 MW</b> (3 × 40 MW); 1992 में चालू; नवंबर 2026 में NHPC का "सर्वश्रेष्ठ पावर स्टेशन (RoR, 2025-26)" पुरस्कार।</td></tr>
-      <tr><td><b>शारदा बैराज, बनबसा</b></td><td>1928 — <b>शारदा नहर</b> (उत्तर भारत की लंबी सिंचाई नहरों में) का उद्गम।</td></tr>
-      <tr><td><b>पंचेश्वर बहुउद्देशीय परियोजना</b></td><td>काली नदी पर भारत-नेपाल प्रस्तावित बाँध (~5,600 MW); <b>महाकाली संधि (1996)</b> के अंतर्गत; अभी निर्णय लंबित।</td></tr>
-      <tr><td><b>टनकपुर रेलवे स्टेशन</b></td><td>जिले का रेलहेड; टनकपुर-बागेश्वर रेल लाइन की माँग/सर्वे।</td></tr>
-      <tr><td><b>KVK लोहाघाट</b></td><td>गोविंद बल्लभ पंत कृषि विश्वविद्यालय (पंतनगर) का कृषि विज्ञान केंद्र।</td></tr>
+      <tr><td><b>टनकपुर पावर स्टेशन (NHPC)</b></td><td>शारदा — टनकपुर बैराज (नगर से 2 किमी दक्षिण)</td><td>मूल 120 MW (3 × 40); 1992-93 में चालू; अब <b>94.2 MW</b> (डीरेट)</td><td>शारदा घाटी की पहली जलविद्युत परियोजना; महाकाली संधि के तहत नेपाल को बिजली; नवंबर 2026 में NHPC का "सर्वश्रेष्ठ पावर स्टेशन (RoR, 2025-26)" पुरस्कार।</td></tr>
+      <tr><td><b>शारदा बैराज, बनबसा</b></td><td>शारदा</td><td><b>1928</b></td><td><b>शारदा नहर</b> (उत्तर भारत की लंबी सिंचाई नहरों में) का उद्गम; बाईं ओर की नहर नेपाल के लिए।</td></tr>
+      <tr><td><b>पंचेश्वर बहुउद्देशीय परियोजना</b></td><td>काली (महाकाली) — काली-सरयू संगम, पंचेश्वर</td><td><b>5,040 MW</b>; ~315 मी. ऊँचा बाँध (दुनिया के सबसे ऊँचे बाँधों में); दोनों देशों में बराबर क्षमता के बिजलीघर; रूपालीगाड़ में री-रेगुलेटिंग बाँध</td><td><b>महाकाली संधि (फ़रवरी 1996)</b> — PM देउबा (नेपाल) व नरसिम्हा राव (भारत); DPR पर सहमति अब तक लंबित।</td></tr>
+      <tr><td><b>भारत-नेपाल लिंक नहर</b></td><td>टनकपुर बैराज से</td><td>नेपाल को सिंचाई जल</td><td>महाकाली संधि के प्रावधानों का क्रियान्वयन।</td></tr>
+      <tr><td><b>टनकपुर-बागेश्वर रेल (प्रस्तावित)</b></td><td>टनकपुर → बागेश्वर</td><td>~170 किमी; DPR तैयार</td><td>टनकपुर — जिले का रेलहेड; कुमाऊँ के पहाड़ों तक रेल की योजना।</td></tr>
+      <tr><td><b>KVK लोहाघाट</b></td><td>लोहाघाट</td><td>कृषि विज्ञान केंद्र</td><td>गो.ब. पंत कृषि विश्वविद्यालय (पंतनगर) से संबद्ध।</td></tr>
     </tbody>
   </table>
+  <div class="box-exam"><strong><span class="tag exam">परीक्षा बिंदु</span></strong>
+    <ul>
+      <li>पंचेश्वर — 5,040 MW, ~315 मी., महाकाली संधि 1996।</li>
+      <li>टनकपुर (NHPC) — 1992-93; मूल 120 MW, अब 94.2 MW।</li>
+      <li>शारदा बैराज, बनबसा — 1928।</li>
+    </ul>
+  </div>
+  <div class="box-trap"><strong><span class="tag trap">सावधान</span></strong>पंचेश्वर बाँध <b>प्रस्तावित</b> है, बना नहीं है। और <b>टनकपुर बैराज</b> (बिजली) व <b>बनबसा का शारदा बैराज</b> (1928, सिंचाई) दो अलग संरचनाएँ हैं — दोनों के बीच ~6 किमी।</div>
 </section>
 
 <section id="vyaktitva">
@@ -283,7 +298,7 @@ const sources = [
     <li>कालू महरा — 1857, उत्तराखंड के प्रथम स्वतंत्रता सेनानी।</li>
     <li>चंपावत की बाघिन — कॉर्बेट, 1907 (~436 मौतें)।</li>
     <li>पंचेश्वर — काली + सरयू संगम; प्रस्तावित भारत-नेपाल बाँध।</li>
-    <li>टनकपुर पावर स्टेशन (NHPC) — 120 MW, 1992, बनबसा।</li>
+    <li>टनकपुर पावर स्टेशन (NHPC) — 1992-93; मूल 120 MW, अब 94.2 MW।</li>
     <li>शारदा बैराज, बनबसा — 1928, शारदा नहर।</li>
     <li>रीठा साहिब — गुरु नानक; नानकमत्ता (ऊधम सिंह नगर) से भ्रमित न हों।</li>
     <li>4 विकासखंड — चंपावत, लोहाघाट, पाटी, बाराकोट; 2 विधानसभा — चंपावत, लोहाघाट; लोकसभा अल्मोड़ा (SC); वाहन कोड UK-03।</li>

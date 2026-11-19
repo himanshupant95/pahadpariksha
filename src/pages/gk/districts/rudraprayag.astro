@@ -16,7 +16,7 @@ const toc = [
   { id: 'samaj', label: 'समाज, बोली व परंपराएँ' },
   { id: 'mele', label: 'मेले व त्योहार' },
   { id: 'sthal', label: 'धार्मिक, ऐतिहासिक व पर्यटन स्थल' },
-  { id: 'pariyojana', label: 'संस्थान व परियोजनाएँ' },
+  { id: 'pariyojana', label: 'जलविद्युत, बाँध व प्रमुख परियोजनाएँ' },
   { id: 'aapda', label: 'केदारनाथ आपदा 2013 व पुनर्निर्माण' },
   { id: 'vyaktitva', label: 'प्रमुख व्यक्तित्व व घटनाएँ' },
   { id: 'arthvyavastha', label: 'अर्थव्यवस्था' },
@@ -51,20 +51,24 @@ const faq = [
 ];
 
 const sources = [
+  { label: 'CEA — सिंगोली-भटवाड़ी (99 MW) इकाइयों का चालू होना', url: 'https://cea.nic.in/wp-content/uploads/hydro/2021/01/hydro_commissioned.pdf' },
   { label: 'जिला प्रशासन रुद्रप्रयाग (rudraprayag.gov.in) — जिले का गठन (16 सितंबर 1997)', url: 'https://rudraprayag.gov.in/page/7' },
   { label: 'भारत की जनगणना 2011 — रुद्रप्रयाग जिला', url: 'https://www.census2011.co.in/census/district/576-rudraprayag.html' },
   { label: 'PIB / केंद्रीय मंत्रिमंडल — सोनप्रयाग-केदारनाथ रोपवे (5 मार्च 2025)', url: 'https://www.drishtiias.com/state-pcs-current-affairs/ropeway-projects-approved-in-uttarakhand/print_manually' },
   { label: 'Wikipedia — Rudraprayag district; Kedarnath Temple; Leopard of Rudraprayag', url: 'https://en.wikipedia.org/wiki/Leopard_of_Rudraprayag' },
+  { label: 'मुख्य चित्र: केदारनाथ मंदिर — Naresh Balakrishnan, CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Kedarnath_Temple_-_OCT_2014.jpg' },
   { label: 'मानचित्र: Wikimedia Commons (Rudraprayag district.svg — GDibyendu); OpenStreetMap contributors', url: 'https://commons.wikimedia.org/wiki/File:Rudraprayag_district.svg' },
 ];
+const img = (w: number) => `https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Kedarnath_Temple_-_OCT_2014.jpg/${w}px-Kedarnath_Temple_-_OCT_2014.jpg`;
 ---
 <District
   name="रुद्रप्रयाग" nameEn="Rudraprayag" slug="rudraprayag" division="गढ़वाल"
   title="रुद्रप्रयाग जिला: केदारनाथ, पंच केदार, अलकनंदा-मंदाकिनी संगम, 2013 आपदा व परीक्षा बिंदु"
   description="रुद्रप्रयाग जिले का संपूर्ण सामान्य ज्ञान — 16 सितंबर 1997 गठन (चमोली, टिहरी, पौड़ी के भागों से), रुद्रप्रयाग संगम, केदारनाथ व पंच केदार, तुंगनाथ, त्रियुगीनारायण, ऊखीमठ, 2013 केदारनाथ आपदा, कॉर्बेट और रुद्रप्रयाग का आदमखोर गुलदार, चंद्रकुंवर बर्त्वाल और 15 प्रश्नों का क्विज़।"
-  image="/images/districts/rudraprayag.webp"
-  imageAlt="रुद्रप्रयाग जिले का चित्र — बर्फ़ीली चोटियों के नीचे मंदिर और दो नदियों का संगम"
-  heroCredit={{ text: 'चित्रांकन: पहाड़ परीक्षा' }}
+  image={img(1280)}
+  heroSrcset={`${img(960)} 960w, ${img(1280)} 1280w`}
+  imageAlt="केदारनाथ मंदिर और पीछे बर्फ़ से ढकी केदारनाथ श्रेणी"
+  heroCredit={{ text: 'केदारनाथ मंदिर — Naresh Balakrishnan, CC BY-SA 4.0, Wikimedia Commons', url: 'https://commons.wikimedia.org/wiki/File:Kedarnath_Temple_-_OCT_2014.jpg' }}
   published="2026-11-19" toc={toc} facts={facts} faq={faq} sources={sources}
 >
 
@@ -256,17 +260,27 @@ const sources = [
 </section>
 
 <section id="pariyojana">
-  <h2>संस्थान व परियोजनाएँ</h2>
+  <h2>जलविद्युत, बाँध व प्रमुख परियोजनाएँ <small class="muted">(स्थिति: नवंबर 2026)</small></h2>
+  <p>मंदाकिनी घाटी की जलविद्युत परियोजनाएँ और केदारनाथ तक पहुँच की परियोजनाएँ — दोनों 2013 की आपदा के बाद की बहस से जुड़ी हैं।</p>
   <table>
-    <thead><tr><th>नाम</th><th>मुख्य तथ्य</th></tr></thead>
+    <thead><tr><th>परियोजना</th><th>नदी / स्थान</th><th>क्षमता / मुख्य तथ्य</th><th>महत्व</th></tr></thead>
     <tbody>
-      <tr><td><b>सोनप्रयाग-केदारनाथ रोपवे</b></td><td>12.9 किमी; केंद्रीय मंत्रिमंडल (CCEA) की स्वीकृति <b>5 मार्च 2025</b>; राष्ट्रीय रोपवे विकास कार्यक्रम <b>"पर्वतमाला परियोजना"</b>; लागत लगभग ₹4,081 करोड़; 3S (ट्राई-केबल) तकनीक; यात्रा 8-9 घंटे से घटकर लगभग 36 मिनट।</td></tr>
-      <tr><td><b>ऋषिकेश-कर्णप्रयाग रेल लाइन</b></td><td>रुद्रप्रयाग जिले से होकर — अधिकांश भाग सुरंगों में (निर्माणाधीन)।</td></tr>
-      <tr><td><b>केदारपुरी पुनर्निर्माण</b></td><td>2013 के बाद मास्टर प्लान — मंदाकिनी-सरस्वती तट पर घाट, सुरक्षा दीवार, शंकराचार्य समाधि।</td></tr>
-      <tr><td><b>चारधाम सड़क (ऑल वेदर रोड)</b></td><td>रुद्रप्रयाग-गौरीकुंड मार्ग (NH-107) का चौड़ीकरण।</td></tr>
-      <tr><td><b>सिंगोली-भटवाड़ी जलविद्युत</b></td><td>मंदाकिनी पर (99 MW)।</td></tr>
+      <tr><td><b>सोनप्रयाग-केदारनाथ रोपवे</b></td><td>सोनप्रयाग → गौरीकुंड → केदारनाथ</td><td>12.9 किमी; ₹4,081.28 करोड़; CCEA स्वीकृति <b>5 मार्च 2025</b>; 3S (ट्राई-केबल) तकनीक</td><td>पर्वतमाला परियोजना; यात्रा 8-9 घंटे से घटकर ~36 मिनट; DBFOT मोड।</td></tr>
+      <tr><td><b>सिंगोली-भटवाड़ी जलविद्युत</b></td><td>मंदाकिनी</td><td>99 MW (3 × 33); नवंबर-दिसंबर 2020 में चालू</td><td>L&T द्वारा निर्मित (2008 से); 2013 आपदा से देरी।</td></tr>
+      <tr><td><b>फाटा-ब्यूंग जलविद्युत</b></td><td>मंदाकिनी — फाटा</td><td>76 MW (2 × 38), निजी (लैंको) — अधूरी</td><td>2013 की आपदा में क्षति; लंबे समय से लंबित।</td></tr>
+      <tr><td><b>ऋषिकेश-कर्णप्रयाग रेल लाइन</b></td><td>रुद्रप्रयाग जिला (घोलतीर, तिलणी आदि)</td><td>125 किमी; अधिकांश भाग सुरंगों में</td><td>केदारनाथ व बद्रीनाथ यात्रा; लक्ष्य 2026-29 के बीच संचालन।</td></tr>
+      <tr><td><b>केदारपुरी पुनर्निर्माण</b></td><td>केदारनाथ धाम</td><td>2013 के बाद मास्टर प्लान</td><td>घाट, सुरक्षा दीवार, आदि शंकराचार्य समाधि (2021)।</td></tr>
+      <tr><td><b>चारधाम सड़क (ऑल वेदर रोड)</b></td><td>रुद्रप्रयाग-गौरीकुंड (NH-107)</td><td>चौड़ीकरण</td><td>यात्रा मार्ग की सुरक्षा; भूस्खलन क्षेत्रों का उपचार।</td></tr>
     </tbody>
   </table>
+  <div class="box-exam"><strong><span class="tag exam">परीक्षा बिंदु</span></strong>
+    <ul>
+      <li>केदारनाथ रोपवे — 12.9 किमी, ₹4,081 करोड़, 5 मार्च 2025।</li>
+      <li>सिंगोली-भटवाड़ी — मंदाकिनी, 99 MW, 2020।</li>
+      <li>फाटा-ब्यूंग — मंदाकिनी, 76 MW (अधूरी)।</li>
+    </ul>
+  </div>
+  <div class="box-trap"><strong><span class="tag trap">सावधान</span></strong>केदारनाथ रोपवे <b>सोनप्रयाग</b> से शुरू होता है (गौरीकुंड बीच का पड़ाव); हेमकुंड रोपवे <b>गोविंदघाट</b> (चमोली) से — दोनों एक ही दिन (5 मार्च 2025) स्वीकृत हुए।</div>
 </section>
 
 <section id="aapda">
