@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { thinPaths } from './src/lib/digest.ts';
+import { thinPaths, digestUpdated } from './src/lib/digest.ts';
 
 const THIN = new Set(thinPaths().map((p) => `https://pahadpariksha.in${p}`));
 
@@ -11,6 +11,8 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/404') && !page.includes('/search/') && !THIN.has(page),
+      // the daily current-affairs page changes every night: tell crawlers when
+      serialize: (item) => (item.url === 'https://pahadpariksha.in/current-affairs/' && digestUpdated ? { ...item, lastmod: digestUpdated, changefreq: 'daily' } : item),
     }),
   ],
 });

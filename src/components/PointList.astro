@@ -3,8 +3,9 @@ import type { Point } from '../lib/digest';
 import { fmtShort } from '../lib/digest';
 // collapsible: heading only; click opens the key pointers, with the source at the end (current-affairs page).
 // Otherwise everything is shown expanded (homepage strip, printable weekly/monthly compilations).
-interface Props { items: Point[]; showDate?: boolean; showCat?: boolean; compact?: boolean; numbered?: boolean; collapsible?: boolean }
-const { items, showDate = false, showCat = true, compact = false, numbered = false, collapsible = false } = Astro.props;
+// open: collapsible cards start opened (today's edition on /current-affairs/, so its text is visible at once)
+interface Props { items: Point[]; showDate?: boolean; showCat?: boolean; compact?: boolean; numbered?: boolean; collapsible?: boolean; open?: boolean }
+const { items, showDate = false, showCat = true, compact = false, numbered = false, collapsible = false, open = false } = Astro.props;
 const Tag = numbered ? 'ol' : 'ul';
 const uniq = (refs: Point['refs']) => refs.filter((r, i, a) => a.findIndex((x) => x.source === r.source) === i);
 // readable publisher link first (Google News redirect links only as fallback)
@@ -19,9 +20,9 @@ const gk = (p: Point) => (p.details || []).filter((d) => d.t === 'g');
     const v2 = !!p.sum;
     const F = facts(p), G = gk(p);
     return (
-    <li class={p.imp >= 3 ? 'imp' : undefined} data-cat={p.cat}>
+    <li class={p.imp >= 3 ? 'imp' : undefined} data-cat={p.cat} id={collapsible ? `p-${p.id}` : undefined}>
       {collapsible ? (
-        <details>
+        <details open={open}>
           <summary>
             <span class="fact">{p.fact}</span>
             <span class="p-meta">

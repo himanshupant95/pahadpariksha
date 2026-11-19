@@ -5,8 +5,9 @@ import DailyQuestion from '../components/DailyQuestion.astro';
 import NoticeList from '../components/NoticeList.astro';
 import RecruitmentList from '../components/RecruitmentList.astro';
 import PointList from '../components/PointList.astro';
-import { points } from '../lib/digest';
+import { points, dayAnchor, fmtDay } from '../lib/digest';
 const news5 = points().slice(0, 4);
+const caDay = news5[0]?.date;
 import SeriesGrid from '../components/SeriesGrid.astro';
 import { SERIES, liveCount } from '../data/districts';
 const done = liveCount();
@@ -21,7 +22,7 @@ const topics = [
   { icon: 'river', t: 'नदियाँ', d: 'उद्गम, संगम, पंच प्रयाग', href: '/gk/uttarakhand-rivers/' },
   { icon: 'quiz', t: 'क्विज़', d: 'टॉपिक-वाइज MCQ अभ्यास', href: '/quiz/' },
   { icon: 'exam', t: 'परीक्षाएँ', d: 'UKSSSC व UKPSC भर्तियाँ', href: '/exams/' },
-  { icon: 'paper', t: 'करेंट अफेयर्स', d: 'रोज़ के बिंदु, साप्ताहिक PDF', href: '/current-affairs/' },
+  { icon: 'paper', t: 'करेंट अफेयर्स', d: 'रोज़ का संस्करण, तथ्य व क्विज़', href: '/current-affairs/' },
   { icon: 'district', t: 'सूचनाएँ', d: 'भर्ती, एडमिट कार्ड, परिणाम', href: '/notices/' },
 ];
 const soon = ['भूगोल', 'कला-संस्कृति', 'पिछले प्रश्न पत्र'];
@@ -69,7 +70,7 @@ const latest = [
       <NoticeList items={latest5} compact />
     </div>
     <div class="up-col">
-      <div class="ln-head"><h2>करेंट अफेयर्स</h2><a href="/current-affairs/">सभी →</a></div>
+      <div class="ln-head"><h2>करेंट अफेयर्स</h2><a href={caDay ? `/current-affairs/#${dayAnchor(caDay)}` : '/current-affairs/'}>{caDay ? `${fmtDay(caDay).replace(/ \d{4}$/, '')} के सभी →` : 'सभी →'}</a></div>
       {news5.length ? <PointList items={news5} compact showCat={false} /> : <p class="muted">जल्द।</p>}
     </div>
   </section>

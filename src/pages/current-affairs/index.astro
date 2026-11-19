@@ -1,57 +1,183 @@
 ---
+// Daily Uttarakhand current affairs — ONE page for every day's edition (newest first), rolling 30-day window.
+// Older days live on in the weekly/monthly compilations linked at the bottom.
 import Base from '../../layouts/Base.astro';
 import PointList from '../../components/PointList.astro';
-import { points, byDay, weeks, months, weekLabel, monthLabel, fmtDay, digestUpdated } from '../../lib/digest';
+import { SITE } from '../../data/site';
+import { recentDays, weeks, months, weekLabel, monthLabel, fmtDay, fmtDayEn, weekdayHi, dayAnchor, digestUpdated, weekOf, CA_WINDOW_DAYS } from '../../lib/digest';
 
-const all = points();
-const days = byDay(all).slice(0, 10);
+const days = recentDays();
+const [latest, latestItems = []] = days[0] ?? [];
 const ws = weeks().slice(0, 8);
 const ms = months().slice(0, 12);
 const cats = [...new Set(days.flatMap(([, l]) => l.map((p) => p.cat)))];
-const upd = digestUpdated ? new Date(digestUpdated).toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
----
-<Base
-  title="उत्तराखंड करेंट अफेयर्स — रोज़ के परीक्षा बिंदु, साप्ताहिक PDF व मासिक संकलन"
-  description="उत्तराखंड करेंट अफेयर्स केवल परीक्षा-उपयोगी बिंदुओं में: योजनाएँ, नियुक्तियाँ, पुरस्कार, रैंकिंग, परियोजनाएँ। हर दिन अपडेट, साप्ताहिक PDF और मासिक संकलन के साथ — UKSSSC/UKPSC के लिए।"
->
-  <h1>उत्तराखंड करेंट अफेयर्स</h1>
-  <p>रोज़ की सैकड़ों ख़बरों में से केवल वे बिंदु जो <strong>परीक्षा में पूछे जा सकते हैं</strong>। <strong>किसी भी बिंदु पर क्लिक करें</strong> — उसके मुख्य तथ्य (कब, कहाँ, कौन, कितना, क्यों) यहीं खुल जाएँगे; पूरी ख़बर पढ़नी हो तो अंत में स्रोत का लिंक है। <strong>★</strong> वाले बिंदु सबसे महत्वपूर्ण हैं।</p>
-  {upd && <p class="muted upd">अंतिम अपडेट: {upd} · हर रात 12 बजे पिछले दिन का संस्करण</p>}
+const totalPoints = days.reduce((n, [, l]) => n + l.length, 0);
+const todayQuiz = latestItems.filter((p) => p.quiz);
+const starN = latestItems.filter((p) => p.imp >= 3).length;
+const topTags = latestItems.slice().sort((a, b) => b.imp - a.imp).map((p) => p.tag).filter(Boolean).slice(0, 3);
 
-  <div class="compile">
-    {ws[0] && <a class="big" href={`/current-affairs/week/${ws[0].key}/`}><strong>इस सप्ताह का संकलन</strong><span>{weekLabel(ws[0].start, ws[0].end)} · {ws[0].items.length} बिंदु · PDF</span></a>}
-    {ms[0] && <a class="big" href={`/current-affairs/month/${ms[0].key}/`}><strong>{monthLabel(ms[0].key)} — मासिक संकलन</strong><span>{ms[0].items.length} बिंदु</span></a>}
-  </div>
+const url = new URL('/current-affairs/', SITE.url).href;
+const updIso = digestUpdated ?? (latest ? `${latest}T18:30:00Z` : undefined);
+const upd = updIso ? new Date(updIso).toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) : '';
+const image = latest ? `/og/current-affairs-${latest}.jpg` : undefined;
+
+const title = latest
+  ? `उत्तराखंड करेंट अफेयर्स ${fmtDay(latest)} (Daily) | Uttarakhand Current Affairs Today`
+  : 'उत्तराखंड करेंट अफेयर्स (Daily) | Uttarakhand Current Affairs Today';
+const description = latest
+  ? `${fmtDay(latest)} के उत्तराखंड करेंट अफेयर्स: ${topTags.join(', ')} समेत ${latestItems.length} परीक्षा-उपयोगी बिंदु। हर दिन नया संस्करण — तथ्य, स्थायी GK और क्विज़ के साथ, UKSSSC व UKPSC के लिए।`
+  : 'उत्तराखंड करेंट अफेयर्स हिंदी में — रोज़ के परीक्षा-उपयोगी बिंदु, तथ्य, स्थायी GK और क्विज़, UKSSSC व UKPSC के लिए।';
+
+const faq = [
+  { q: 'उत्तराखंड करेंट अफेयर्स कितनी बार अपडेट होते हैं?', a: 'हर दिन। आधी रात के बाद पिछले दिन का नया संस्करण इस पेज पर सबसे ऊपर जुड़ता है; पिछले 30 दिन के संस्करण नीचे तिथिवार रहते हैं।' },
+  { q: 'ये करेंट अफेयर्स किन परीक्षाओं के लिए उपयोगी हैं?', a: 'UKSSSC (VDO, पटवारी/लेखपाल, कनिष्ठ सहायक, स्नातक स्तरीय, पुलिस आदि) और UKPSC (PCS, लोअर PCS, RO/ARO, समीक्षा अधिकारी आदि) की उत्तराखंड सामान्य ज्ञान खंड की तैयारी के लिए।' },
+  { q: 'बिंदु कैसे चुने जाते हैं?', a: 'उत्तराखंड से जुड़ी दिनभर की ख़बरों में से केवल वही तथ्य रखे जाते हैं जिन पर परीक्षा में प्रश्न बन सकता है — योजनाएँ, नियुक्तियाँ, पुरस्कार, रैंकिंग, परियोजनाएँ, संस्कृति आदि। हर बिंदु के अंत में मूल ख़बर का स्रोत दिया है।' },
+  { q: '30 दिन से पुराने करेंट अफेयर्स कहाँ मिलेंगे?', a: 'नीचे दिए साप्ताहिक और मासिक संकलन में — वहाँ हर बिंदु विषयवार क्रम में उपलब्ध है।' },
+];
+
+const crumbs = [{ name: 'होम', href: '/' }, { name: 'करेंट अफेयर्स', href: '/current-affairs/' }];
+const schema: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    headline: latest ? `उत्तराखंड करेंट अफेयर्स ${fmtDay(latest)}` : 'उत्तराखंड करेंट अफेयर्स',
+    alternativeHeadline: latest ? `Uttarakhand Current Affairs ${fmtDayEn(latest)}` : 'Uttarakhand Current Affairs',
+    description,
+    url,
+    inLanguage: 'hi-IN',
+    ...(days.length ? { datePublished: `${days[days.length - 1][0]}T18:30:00Z` } : {}),
+    ...(updIso ? { dateModified: updIso } : {}),
+    ...(image ? { primaryImageOfPage: { '@type': 'ImageObject', url: new URL(image, SITE.url).href, width: 1200, height: 630 }, image: new URL(image, SITE.url).href } : {}),
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url + '/' },
+    about: ['Uttarakhand current affairs', 'UKSSSC', 'UKPSC'],
+    author: { '@type': 'Person', name: SITE.author.nameEn, url: SITE.url + SITE.author.url },
+    publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: SITE.url + '/logo.png' } },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListOrder: 'https://schema.org/ItemListOrderDescending',
+      numberOfItems: days.length,
+      itemListElement: days.map(([d, l], i) => ({
+        '@type': 'ListItem', position: i + 1, url: `${url}#${dayAnchor(d)}`,
+        name: `उत्तराखंड करेंट अफेयर्स ${fmtDay(d)} (${l.length} बिंदु)`,
+      })),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, SITE.url).href })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+
+const shareText = latest ? `उत्तराखंड करेंट अफेयर्स ${fmtDay(latest)} — ${latestItems.length} परीक्षा बिंदु, तथ्य व क्विज़ (UKSSSC/UKPSC):` : 'उत्तराखंड करेंट अफेयर्स (UKSSSC/UKPSC):';
+const wa = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${url}`)}`;
+const tg = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+const short = (d: string) => fmtDay(d).replace(/ \d{4}$/, '');
+---
+<Base {title} {description} ogType="article" {schema} {image}>
+  <nav class="crumbs" aria-label="ब्रेडक्रम्ब"><a href="/">होम</a> › <span aria-current="page">करेंट अफेयर्स</span></nav>
+
+  <header class="ca-head">
+    <p class="kick"><span class="live">● दैनिक</span> Daily Uttarakhand Current Affairs · UKSSSC · UKPSC</p>
+    <h1>उत्तराखंड करेंट अफेयर्स</h1>
+    {latest && <p class="edition">आज का संस्करण: <strong>{fmtDay(latest)}</strong> ({weekdayHi(latest)}) <span class="en">· Uttarakhand Current Affairs {fmtDayEn(latest)}</span></p>}
+    <p class="intro">रोज़ की सैकड़ों ख़बरों में से केवल वे बिंदु जो <strong>UKSSSC और UKPSC परीक्षा में पूछे जा सकते हैं</strong> — हर बिंदु के साथ <strong>क्या हुआ</strong>, <strong>परीक्षा के तथ्य</strong>, <strong>जुड़ा स्थायी GK</strong> और <strong>अभ्यास प्रश्न</strong>। आज का संस्करण पूरा खुला है; पिछले दिनों के बिंदु पर क्लिक करते ही उसके तथ्य खुल जाते हैं। <strong>★</strong> वाले बिंदु सबसे महत्वपूर्ण हैं।</p>
+    <div class="meta-row">
+      {upd && <span class="muted">अंतिम अपडेट: <time datetime={updIso}>{upd}</time> · हर रात नया संस्करण</span>}
+      <span class="share">
+        <a class="sh wa" href={wa} target="_blank" rel="noopener">WhatsApp पर भेजें</a>
+        <a class="sh tg" href={tg} target="_blank" rel="noopener">Telegram</a>
+        <button type="button" class="sh cp" data-url={url}>लिंक कॉपी</button>
+      </span>
+    </div>
+  </header>
+
+  {latest && (
+    <figure class="ca-hero">
+      <img src={image} width="1200" height="630" fetchpriority="high" decoding="async"
+        alt={`उत्तराखंड करेंट अफेयर्स ${fmtDay(latest)}: ${latestItems.length} परीक्षा बिंदु — ${topTags.join(', ')}`} />
+    </figure>
+  )}
+
+  {latest && (
+    <ul class="stats" aria-label="आज के संस्करण का सार">
+      <li><b>{latestItems.length}</b><span>आज के बिंदु</span></li>
+      <li><b>{starN}</b><span>अति महत्वपूर्ण ★</span></li>
+      <li><b>{todayQuiz.length}</b><span>अभ्यास प्रश्न</span></li>
+      <li><b>{totalPoints}</b><span>पिछले {days.length} दिन में</span></li>
+    </ul>
+  )}
 
   {days.length === 0 ? <p class="muted">बिंदु जल्द यहाँ दिखेंगे।</p> : (<>
+    <nav class="datebar" aria-label="तिथि चुनें">
+      {days.map(([d, l], i) => <a href={`#${dayAnchor(d)}`} class={i === 0 ? 'on' : undefined}>{i === 0 ? 'आज · ' : ''}{short(d)} <small>({l.length})</small></a>)}
+    </nav>
+
     <div class="filters">
-      <button type="button" class="on" data-c="">सभी</button>
+      <button type="button" class="on" data-c="">सभी विषय</button>
       {cats.map((c) => <button type="button" data-c={c}>{c}</button>)}
       <button type="button" class="toggle-all" aria-pressed="false">सभी खोलें ▾</button>
     </div>
-    {days.map(([d, list]) => (
-      <section class="day">
-        <h2>{fmtDay(d)} <small class="muted">({list.length})</small></h2>
-        <PointList items={list} collapsible />
+
+    {days.map(([d, list], i) => (
+      <section class={`day ${i === 0 ? 'today' : ''}`} id={dayAnchor(d)}>
+        <h2>
+          <a href={`#${dayAnchor(d)}`} class="anc">{fmtDay(d)} करेंट अफेयर्स</a>
+          {i === 0 && <span class="new">नवीनतम</span>}
+          <small class="muted"> · {weekdayHi(d)} · {list.length} बिंदु</small>
+        </h2>
+        {i === 0 && (
+          <div class="glance">
+            <h3>एक नज़र में — {fmtDay(d)}</h3>
+            <ol>{list.map((p) => <li><a href={`#p-${p.id}`}>{p.fact}</a>{p.imp >= 3 && <span class="st"> ★</span>}</li>)}</ol>
+          </div>
+        )}
+        <PointList items={list} collapsible open={i === 0} />
+        {i === 0 && todayQuiz.length > 0 && (
+          <div class="dquiz">
+            <h3>आज का क्विज़: {fmtDay(d)} ({todayQuiz.length} प्रश्न)</h3>
+            <p class="muted">पहले स्वयं उत्तर सोचें, फिर "उत्तर देखें" दबाएँ।</p>
+            <ol>{todayQuiz.map((p) => <li><p class="q">{p.quiz!.q}</p><details><summary>उत्तर देखें</summary><p class="a">{p.quiz!.a}</p></details></li>)}</ol>
+          </div>
+        )}
+        {i === 0 && (
+          <p class="wk">इस सप्ताह के सभी बिंदु एक साथ: <a href={`/current-affairs/week/${weekOf(d).key}/`}>साप्ताहिक संकलन ({weekLabel(weekOf(d).start, weekOf(d).end)}) →</a></p>
+        )}
       </section>
     ))}
   </>)}
 
-  <h2>संग्रह (Archive)</h2>
+  <h2 id="archive">पुराने करेंट अफेयर्स (संग्रह)</h2>
+  <p class="muted">यह पेज पिछले {CA_WINDOW_DAYS} दिन के संस्करण दिखाता है। इससे पुराने बिंदु साप्ताहिक और मासिक संकलन में विषयवार उपलब्ध हैं।</p>
   <div class="arch">
-    <div><h3>साप्ताहिक</h3><ul>{ws.map((w) => <li><a href={`/current-affairs/week/${w.key}/`}>{weekLabel(w.start, w.end)}</a> <small class="muted">({w.items.length})</small></li>)}</ul></div>
-    <div><h3>मासिक</h3><ul>{ms.map((m) => <li><a href={`/current-affairs/month/${m.key}/`}>{monthLabel(m.key)}</a> <small class="muted">({m.items.length})</small></li>)}</ul></div>
+    <div><h3>साप्ताहिक संकलन</h3><ul>{ws.map((w) => <li><a href={`/current-affairs/week/${w.key}/`}>{weekLabel(w.start, w.end)}</a> <small class="muted">({w.items.length})</small></li>)}</ul></div>
+    <div><h3>मासिक संकलन</h3><ul>{ms.map((m) => <li><a href={`/current-affairs/month/${m.key}/`}>{monthLabel(m.key)}</a> <small class="muted">({m.items.length})</small></li>)}</ul></div>
   </div>
 
-  <div class="note">बिंदु देशभर के समाचार शीर्षकों (Google News के माध्यम से) से AI सहायता द्वारा चुने और संक्षेपित किए जाते हैं; हर बिंदु मूल ख़बर से जुड़ा है। परीक्षा में लिखने से पहले आधिकारिक स्रोत (सरकारी विज्ञप्ति/PIB) से पुष्टि करें।</div>
+  <h2 id="faq">अक्सर पूछे जाने वाले प्रश्न</h2>
+  <div class="faq">
+    {faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+  </div>
+
+  <div class="note">बिंदु देशभर के समाचार स्रोतों से चुने और संक्षेपित किए जाते हैं; हर बिंदु मूल ख़बर से जुड़ा है। परीक्षा में लिखने से पहले आधिकारिक स्रोत (सरकारी विज्ञप्ति/PIB) से पुष्टि करें। कोई त्रुटि दिखे तो <a href="/contact/?topic=करेंट अफेयर्स में त्रुटि&page=/current-affairs/">हमें बताएँ</a>।</div>
 </Base>
 
 <script>
+  // the site header is sticky on desktop only: keep the date bar just below it
+  const hdr = document.querySelector<HTMLElement>('.site-header');
+  const setHdr = () => document.documentElement.style.setProperty('--hdr', hdr && getComputedStyle(hdr).position === 'sticky' ? `${hdr.offsetHeight}px` : '0px');
+  setHdr(); addEventListener('resize', setHdr);
   const btns = [...document.querySelectorAll<HTMLButtonElement>('.filters button[data-c]')];
   const tog = document.querySelector<HTMLButtonElement>('.toggle-all');
   tog?.addEventListener('click', () => {
     const open = tog.getAttribute('aria-pressed') !== 'true';
-    document.querySelectorAll<HTMLDetailsElement>('.points.coll details').forEach((d) => { d.open = open; });
+    document.querySelectorAll<HTMLDetailsElement>('.points.coll details').forEach((d) => { if (!d.classList.contains('ans')) d.open = open; });
     tog.setAttribute('aria-pressed', String(open));
     tog.textContent = open ? 'सभी बंद करें ▴' : 'सभी खोलें ▾';
   });
@@ -60,22 +186,92 @@ const upd = digestUpdated ? new Date(digestUpdated).toLocaleString('hi-IN', { ti
     const c = b.dataset.c;
     document.querySelectorAll<HTMLElement>('.day').forEach((sec) => {
       let shown = 0;
-      sec.querySelectorAll<HTMLElement>('li[data-cat]').forEach((li) => { li.hidden = !!c && li.dataset.cat !== c; if (!li.hidden) shown++; });
+      sec.querySelectorAll<HTMLElement>('.points > li[data-cat]').forEach((li) => { li.hidden = !!c && li.dataset.cat !== c; if (!li.hidden) shown++; });
       sec.hidden = shown === 0;
     });
   }));
+  // a link to one point (#p-…) or one day opens it
+  const openHash = () => {
+    const el = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    const det = el?.querySelector('details');
+    if (det && el!.id.startsWith('p-')) det.open = true;
+  };
+  openHash(); addEventListener('hashchange', openHash);
+  // highlight the day in view on the date bar
+  const chips = new Map([...document.querySelectorAll<HTMLAnchorElement>('.datebar a')].map((a) => [a.getAttribute('href')!.slice(1), a]));
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    chips.forEach((a, id) => a.classList.toggle('on', id === e.target.id));
+    chips.get(e.target.id)?.scrollIntoView({ block: 'nearest', inline: 'center' });
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('.day').forEach((s) => io.observe(s));
+  document.querySelector<HTMLButtonElement>('.sh.cp')?.addEventListener('click', async (e) => {
+    const b = e.currentTarget as HTMLButtonElement;
+    try { await navigator.clipboard.writeText(b.dataset.url!); b.textContent = 'कॉपी हो गया ✓'; } catch { prompt('लिंक कॉपी करें:', b.dataset.url); }
+  });
 </script>
 
 <style>
-  .upd { font-size: .85rem; margin-top: -6px; }
-  .compile { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 12px 0; }
-  .compile .big { display: block; text-decoration: none; background: linear-gradient(135deg, var(--green), var(--green-2)); color: #fff; border-radius: 12px; padding: 14px 16px; }
-  .compile .big strong { display: block; font-size: 1.05rem; }
-  .compile .big span { font-size: .85rem; opacity: .9; }
-  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
-  .filters button { font: inherit; font-size: .88rem; border: 1px solid var(--line); background: var(--card); border-radius: 20px; padding: 3px 12px; cursor: pointer; color: var(--ink); }
+  .crumbs { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+  .ca-head .kick { margin: 8px 0 0; font-size: .82rem; color: var(--muted); font-weight: 600; letter-spacing: .01em; }
+  .ca-head .live { color: #b91c1c; margin-right: 4px; }
+  .ca-head h1 { margin-bottom: .1em; }
+  .edition { margin: 0 0 8px; font-size: 1.08rem; }
+  .edition strong { color: var(--accent); }
+  .edition .en { color: var(--muted); font-size: .88rem; }
+  .intro { line-height: 1.75; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; font-size: .85rem; }
+  .share { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sh { font: inherit; font-size: .82rem; font-weight: 600; border-radius: 20px; padding: 4px 12px; text-decoration: none; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+  .sh.wa { background: #16a34a; border-color: #16a34a; color: #fff; }
+  .sh.tg { background: #0284c7; border-color: #0284c7; color: #fff; }
+  .sh:hover { filter: brightness(.95); color: inherit; }
+  .sh.wa:hover, .sh.tg:hover { color: #fff; }
+  .ca-hero { margin: 14px 0 10px; }
+  .ca-hero img { width: 100%; height: auto; border-radius: 14px; display: block; box-shadow: 0 4px 18px rgba(20, 83, 45, .18); }
+  .stats { list-style: none; padding: 0; margin: 10px 0 4px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .stats li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; text-align: center; }
+  .stats b { display: block; font-size: 1.35rem; color: var(--green); line-height: 1.2; }
+  .stats span { font-size: .78rem; color: var(--muted); }
+  .datebar { position: sticky; top: var(--hdr, 0px); z-index: 3; display: flex; gap: 6px; overflow-x: auto; padding: 8px 2px; margin: 10px 0 2px; background: var(--bg); scrollbar-width: thin; }
+  .datebar a { flex: 0 0 auto; text-decoration: none; font-size: .85rem; font-weight: 600; border: 1px solid var(--line); background: var(--card); color: var(--green-2); border-radius: 20px; padding: 4px 12px; white-space: nowrap; }
+  .datebar a small { color: var(--muted); font-weight: 400; }
+  .datebar a.on { background: var(--green); border-color: var(--green); color: #fff; }
+  .datebar a.on small { color: #d1fae5; }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px; }
+  .filters button { font: inherit; font-size: .85rem; border: 1px solid var(--line); background: var(--card); border-radius: 20px; padding: 3px 12px; cursor: pointer; color: var(--ink); }
   .filters button.on { background: var(--green-2); color: #fff; border-color: var(--green-2); }
   .filters .toggle-all { margin-left: auto; border-color: var(--green-2); color: var(--green-2); font-weight: 600; }
-  .day h2 { font-size: 1.1rem; margin-top: 22px; }
+  .day { scroll-margin-top: calc(var(--hdr, 0px) + 56px); }
+  .day h2 { font-size: 1.15rem; margin-top: 26px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
+  .day h2 .anc { color: var(--green); text-decoration: none; }
+  .day h2 .anc:hover { text-decoration: underline; }
+  .day h2 small { font-size: .82rem; font-weight: 400; }
+  .new { background: var(--accent); color: #fff; font-size: .72rem; font-weight: 700; border-radius: 20px; padding: 1px 9px; }
+  .today h2 { font-size: 1.35rem; }
+  .glance { background: var(--green-soft); border-radius: 12px; padding: 10px 14px 6px; margin: 6px 0 12px; }
+  .glance h3 { margin: 2px 0 6px; font-size: 1rem; color: var(--green); }
+  .glance ol { margin: 0; padding-left: 22px; }
+  .glance li { margin: 0 0 6px; line-height: 1.55; font-size: .93rem; }
+  .glance a { color: var(--ink); text-decoration: none; }
+  .glance a:hover { color: var(--green-2); text-decoration: underline; }
+  .glance .st { color: var(--accent); font-weight: 700; }
+  :global(.points > li[id]) { scroll-margin-top: calc(var(--hdr, 0px) + 60px); }
+  .dquiz { border: 2px solid var(--green-soft); border-radius: 12px; padding: 10px 16px 8px; margin: 14px 0 6px; background: var(--card); }
+  .dquiz h3 { margin: 4px 0 2px; color: var(--green); font-size: 1.05rem; }
+  .dquiz ol { padding-left: 22px; margin: 8px 0 0; }
+  .dquiz li { margin-bottom: 10px; }
+  .dquiz .q { margin: 0; font-weight: 600; line-height: 1.55; }
+  .dquiz summary { cursor: pointer; color: var(--green-2); font-size: .85rem; font-weight: 600; }
+  .dquiz .a { margin: 4px 0 0; color: var(--accent); font-weight: 600; }
+  .wk { font-size: .92rem; margin: 10px 0 0; }
   .arch { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; margin-bottom: 8px; }
+  .faq summary { cursor: pointer; font-weight: 600; }
+  .faq p { margin: 6px 0 2px; line-height: 1.7; }
+  @media (max-width: 640px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .meta-row { flex-direction: column; align-items: flex-start; }
+    .filters .toggle-all { margin-left: 0; }
+  }
 </style>

@@ -121,3 +121,9 @@ Rules agreed with the user:
 - Gandhi's "Mahatma" title origin is disputed.
 - Tagore at Ramgarh: 1903 or 1914.
 - Tehsil lists may be out of date.
+
+## Daily current-affairs page (19 Nov 2026)
+- `/current-affairs/` is THE daily page (no per-day pages, by owner's choice): newest edition on top, fully open; earlier days below as `#18-november-2026`-style sections; rolling window `CA_WINDOW_DAYS = 30` (src/lib/digest.ts), older days live in weekly/monthly compilations.
+- Title/description name the latest date daily. Schema: CollectionPage (+ItemList of days), BreadcrumbList, FAQPage. Sitemap `lastmod`/`changefreq: daily` for this URL (astro.config.mjs).
+- Share/hero image: `scripts/og-current-affairs.mjs` runs before `astro build`, writes `public/og/current-affairs-<date>.jpg` (gitignored). Rendered by sharp/librsvg with the committed fonts in `scripts/fonts/` (fonts.conf) — falls back to og-default.jpg if rendering fails.
+- Monthly PDF button removed (owner will publish a hand-made month-end PDF); weekly PDF stays.

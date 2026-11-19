@@ -64,3 +64,21 @@ export function byDay(items: Point[]) {
   for (const p of items) (map.get(p.date) ?? map.set(p.date, []).get(p.date)!).push(p);
   return [...map.entries()].sort((a, b) => b[0].localeCompare(a[0]));
 }
+
+/* ---- daily current-affairs page ---- */
+/** The daily page keeps this many days; older points live on in the weekly/monthly compilations. */
+export const CA_WINDOW_DAYS = 30;
+const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const WEEKDAYS = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
+export const fmtDayEn = (s: string) => { const d = d0(s); return `${d.getUTCDate()} ${MONTHS_EN[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
+export const weekdayHi = (s: string) => WEEKDAYS[d0(s).getUTCDay()];
+/** Stable section id for a day on /current-affairs/, e.g. 18-november-2026 */
+export const dayAnchor = (s: string) => fmtDayEn(s).toLowerCase().replace(/ /g, '-');
+export const addDaysStr = (s: string, n: number) => ymd(new Date(+d0(s) + n * 864e5));
+/** Newest-first days inside the page window: [date, points][] */
+export function recentDays() {
+  const days = byDay(points());
+  if (!days.length) return days;
+  const cutoff = addDaysStr(days[0][0], -(CA_WINDOW_DAYS - 1));
+  return days.filter(([d]) => d >= cutoff);
+}
