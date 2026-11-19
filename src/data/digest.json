@@ -219,7 +219,16 @@
   "d221d90485ab",
   "f66ff0710807",
   "6728c2d683c6",
-  "baf4db478f25"
+  "baf4db478f25",
+  "eaea9090e18a",
+  "12bea6b440ec",
+  "4fbb11cd54bd",
+  "68290d88e9f7",
+  "7e2dd9869120",
+  "d9e40ad4838e",
+  "7c6507e6a496",
+  "49f101cae1ce",
+  "19e87898ae41"
  ],
  "points": [
   {
@@ -700,6 +709,37 @@
     "q": "18 नवंबर 2026 को चमोली में आए पहले भूकंप की तीव्रता कितनी थी?",
     "a": "4.1"
    },
+   "depth": "headlines"
+  },
+  {
+   "id": "7b7fb4cda3",
+   "date": "2026-11-18",
+   "fact": "उत्तराखंड में देशभर के एडवेंचर स्पोर्ट्स का नया राष्ट्रीय केंद्र स्थापित किया जाएगा।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 2,
+   "tag": "एडवेंचर स्पोर्ट्स केंद्र",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "देशभर के एडवेंचर स्पोर्ट्स का नया केंद्र बनेगा उत्तराखंड, 'वन्यजीवों के घर' पर होगा राष्ट्रीय स्तर पर महामंथन",
+     "link": "https://news.google.com/rss/articles/CBMihgJBVV95cUxPWXRvem5aSkhjNy14aWQ3TWlJbXI5UE9ZT1BWeG1HTERCcENCWHB1SnhkVF80MElSMkVWNVhfQ3lvcnM0UkppS1JqVFFUY2dhZDdrcmpkck94VEsyNTBlSk05WnpzMkNILTRZTlJBRUZJNjAyaE9seXN3d2I4dXpqRjZqLUxmZ0hpaEFqWkNZMWo3NXdXOU9rMnpiUzJvU2ZxdG9OZnFYRUhRMUUxZ0J3VGppUS1PVm5BaURrWnJoVHRGV0JCWGhlVi03TGRnMVlfeGprZl9jR3FhbVI2X3U0a1ZzdDN3UmkzajA0ZTJhTWI0aVJDNndxbjQtWW1JYWVadkI1ZG5B0gGLAkFVX3lxTE41T1BNUDVIdWNHRlI4cDlwYnJGdmRSM0JCZHoyMWlVc1JYOThGSkgyaUw5T1ZvQkJNV3JRYjZLUnJkZDdtYUo2b1NXUlowdFU2ajh4WUhJVjBDUy1MSW5rR0l6UktkeEVGNkswWHNreVp3UV9hbEdfYXJKQnJpaFdrdUUxeGdOa3FIQ3NTTUwwV3pqZGhHNjF6SXJBd1pOM1dVaURIU3VxVzFkZ2Zkc2lZWElpZ3J4cHo4dEwzeldVZFNPYmduemRjWnhvOVM2SUxzS3hXN2hINVh4T3VFOHVfcnU3eTZ4bS1RaDlTYTJhSGtNVTZfemFFQi1nWkVkR3pkQjFjQ1lsRmpXOA?oc=5",
+     "source": "ETV Bharat"
+    }
+   ],
+   "added": "2026-11-19T06:49:17.279Z",
+   "details": [
+    {
+     "k": "राजधानी",
+     "v": "देहरादून",
+     "t": "g"
+    },
+    {
+     "k": "राज्य गठन वर्ष",
+     "v": "2000",
+     "t": "g"
+    }
+   ],
+   "sum": "उत्तराखंड में देश के सभी एडवेंचर खेलों के लिए एक राष्ट्रीय केंद्र बनाना तय हुआ है, जिससे खेलों का विकास और प्रशिक्षण एक ही जगह पर होगा।",
    "depth": "headlines"
   },
   {
@@ -1943,5 +1983,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-19T02:30:32.539Z"
+ "updated": "2026-11-19T06:49:45.694Z"
 }
