@@ -50,7 +50,9 @@ STRICT RULES:
 - Use ONLY information present in the headlines and their summaries. Never add names, numbers, dates or places not in the input. If a headline is vague, DROP it.
 - Several headlines about the same event → ONE point listing all their ids.
 - Simple Hindi, one sentence, max 30 words, starting with the key subject (person/scheme/place); keep common Hindi spellings of proper nouns.
-- "imp": 3 = very likely to be asked (named scheme/award/appointment/first/ranking/designation); 2 = useful fact. Never output imp 1 — drop it instead.
+- "imp": 3 = very likely to be asked (named scheme/award/appointment/first/ranking/designation); 2 = useful fact. Never output imp 1 — drop it instead. At most 3 points a day may have imp 3.
+- A feature/promotional story about an existing scheme or law ("X से युवाओं को लाभ", "कानून से पारदर्शिता बढ़ी") or a statistic without the name of the survey/report behind it is NOT news — DROP it.
+- An MoU/agreement "to be signed" is not "signed": say exactly what happened.
 - "cat": exactly one of: ${CATS.join(', ')}.
 - "tag": 1–3 word Hindi revision keyword (e.g. "तेनजिंग नोर्गे पुरस्कार").
 - At most ${MAX_PER_DAY} points, most important first.
@@ -75,7 +77,8 @@ Write:
    - ONLY from the ARTICLE, the POINT or the RELATED HEADLINES. Never guess, round or "complete" a number, name or date. If sources conflict, leave it out.
    - Each fact must add something the heading and "sum" do not already say.
 3. "static" — 0–2 static-GK facts about the SAME place/institution/scheme/award/person the point names (where it is, which district or river, when it was set up, what the body does). Only widely documented facts you are certain of; otherwise give none. Same {"l","v"} shape.
-4. "q" — one practice question an exam could ask, answerable from your "facts", with a short answer: {"q":"...","a":"..."}. Skip if no good question.
+   NEVER give generic facts about Uttarakhand itself (capital, formation date/year, "Himalayan state", location in India, number of districts) or vague lines like "X is a major pilgrimage site" — an empty list is better.
+4. "q" — one practice question an exam could ask, with a short answer: {"q":"...","a":"..."}. The answer MUST be stated word-for-word in your "facts" or "sum" — never ask about something (who granted, which body, when) that your facts do not state. Skip if no good question.
 5. "stale": true if the ARTICLE shows the main event happened well before DATE and is only being recalled (no new development that day); else false.
 
 Simple Hindi; keep common Hindi spellings of names; write उत्तराखंड; no English words inside Hindi words; no trailing full stop in "v".
@@ -106,6 +109,10 @@ const tokens = (t) => new Set(norm(t).split(' ').filter((w) => (w.length > 2 || 
 const restates = (v, fact) => { const t = tokens(v); if (!t.size) return true; const f = tokens(fact); let i = 0; for (const w of t) if (f.has(w)) i++; return i / t.size >= 0.5; };
 
 const clip = (t, n) => (t.length > n ? t.slice(0, n) + '…' : t);
+// Static-GK padding seen in real editions ("राजधानी: देहरादून", "राज्य गठन वर्ष: 2000", "हिमालयी राज्य, उत्तर भारत में स्थित").
+const GENERIC = /राजधानी[^।]*देहरादून|राज्य (?:का )?गठन|गठन वर्ष|स्थापना वर्ष: ?2000|हिमालयी राज्य|उत्तर भारत में स्थित|उत्तराखंड का स्थान|प्रमुख तीर्थस्थल है|ज़िलों की संख्या|जिलों की संख्या/;
+// A practice answer must be stated in the note itself (else the question tests something the page never says).
+const grounded = (a, text) => { const t = tokens(a); if (!t.size) return false; const f = tokens(text); let i = 0; for (const w of t) if (f.has(w)) i++; return i / t.size >= 0.6; };
 async function enrich(list) { // list: [{fact, day, q, qen, imp, titles:[], urls:[]}] → sets .sum .details .quiz .stale .art
   if (!list.length) return 0;
   for (const p of list) {
@@ -130,7 +137,7 @@ async function enrich(list) { // list: [{fact, day, q, qen, imp, titles:[], urls
       const used = new Set();
       const facts = (it.facts || []).filter((d) => d && d.l && d.v && String(d.v).length < 220 && !restates(String(d.v), p.fact))
         .filter((d) => !used.has(lab(d.l)) && used.add(lab(d.l))).slice(0, 8).map((d) => ({ k: lab(d.l), v: tidy(d.v) }));
-      const stat = (it.static || []).filter((d) => d && d.l && d.v && String(d.v).length < 220).slice(0, 2).map((d) => ({ k: lab(d.l), v: tidy(d.v), t: 'g' }));
+      const stat = (it.static || []).filter((d) => d && d.l && d.v && String(d.v).length < 220 && !GENERIC.test(`${d.l} ${d.v}`)).slice(0, 2).map((d) => ({ k: lab(d.l), v: tidy(d.v), t: 'g' }));
       p.sum = tidy(it.sum) ? tidy(it.sum) + '।' : '';
       p.details = [...facts, ...stat];
       p.quiz = it.q && it.q.q && it.q.a ? { q: String(it.q.q).trim(), a: tidy(it.q.a) } : null;
@@ -385,13 +392,31 @@ for (const day of days) {
         delete f._e; const L = list[i];
         if (L.details?.length) f.details = L.details;
         if (L.sum) f.sum = L.sum;
-        if (L.quiz) f.quiz = L.quiz;
+        if (L.quiz) {
+          const noteText = [f.fact, L.sum || '', ...(L.details || []).map((d) => `${d.k} ${d.v}`)].join(' ');
+          if (grounded(L.quiz.a, noteText)) f.quiz = L.quiz;
+          else errors.push(`प्रश्न हटाया (उत्तर नोट में नहीं): ${L.quiz.q} → ${L.quiz.a}`);
+        }
+        // thin notes can't carry a ★
+        if ((L.details || []).filter((d) => d.t !== 'g').length < 2) f.imp = 2;
         f.depth = L.art?.length > 600 ? 'article' : 'headlines';
         if (L.unverified) { f.unverified = true; errors.push(`जाँच नहीं हो सकी (AI checker unavailable): ${f.fact.slice(0, 60)}`); }
         // repair half-Hindi/half-English words ("उत्तarakhand") and unify spellings; flag leftovers for review
         const left = fixPoint(f);
         if (left.length) errors.push(`जाँचें — मिश्रित-लिपि शब्द: ${[...new Set(left)].join(', ')} ("${f.fact.slice(0, 50)}…")`);
       });
+      // a point with no exam fact left after checking is just a headline — drop it
+      for (let i = fresh.length - 1; i >= 0; i--) {
+        // only when the note was actually written (if the AI step failed, points stay without details as before)
+        if (list[i].details && !(fresh[i].details || []).some((d) => d.t !== 'g')) {
+          checked.push({ fact: fresh[i].fact, k: 'पूरा बिंदु', v: 'कोई जाँचा हुआ तथ्य नहीं बचा', r: 'off', why: 'no facts' });
+          errors.push(`बिना तथ्य का बिंदु हटाया: ${fresh[i].fact.slice(0, 70)}`);
+          fresh.splice(i, 1); list.splice(i, 1);
+        }
+      }
+      // at most 3 ★ a day (already sorted by imp, so the model's top picks keep theirs)
+      let stars = 0;
+      for (const f of fresh) if (f.imp >= 3 && ++stars > 3) f.imp = 2;
     }
     for (const f of fresh) {
       if (PREVIEW) {

@@ -292,251 +292,383 @@
   {
    "id": "1b9c8967f4",
    "date": "2026-11-19",
-   "fact": "पंतनगर हवाई अड्डा विस्तार को पर्यावरणीय मंजूरी मिली।",
+   "fact": "पंतनगर हवाई अड्डे के रनवे विस्तार (1,372 मी. से 3,000 मी.) को राज्य पर्यावरण प्रभाव आकलन प्राधिकरण (SEIAA) से पर्यावरणीय स्वीकृति मिली।",
    "cat": "परियोजना/अवसंरचना",
    "imp": 3,
-   "tag": "पंतनगर विस्तार",
-   "model": "groq/openai/gpt-oss-120b",
+   "tag": "पंतनगर एयरपोर्ट विस्तार",
+   "model": "editor",
    "refs": [
     {
-     "title": "Uttarakhand: Pantnagar airport expansion gets environmental clearance | Hindustan Times",
-     "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPS0cxdTVHamdGaDVXajYzd1FPTGgzVEtHUzV4OE83dTEyUlR6LXBKUXNmZmZuQ1l3bUFmc0JSajNvb0JJTW51WHlrdE5IV1BkaEUwWGJxTlFqZ3lMLWIzVjRPZUJmWV9kekR6SWtLWjBBcFdlVFNxQ3BydWhhTHdoSzNYbjZJcTY4eXpVSi1sQ0VVaVhDVUhaWUtyNWk3NV84NGxKMG5COVk1djJOa1BKU0JYVjJvVHJSTXhVLXJ6RFN5dmtCbVZnbWxHUmExODjSAdQBQVVfeXFMTWdzLVlGcVZEMGh3WEd3Vkx2WUNUUGpxRVdBVldHaU8tcVBnVFBrMjhTRXlNdGtGR1JzaTV6bmI2MGdjQ1hEMXIzZHZMelJWb01VR1IzdmlGZ0E2ZGc2WC04QWlVLWlRak9jNkdMYndMRWpBN1lkSzEtWXNKNV9ieGFGX0FGdXVrUmpFWUJ6M1FHMjhrTkVvTHc1ck9xeDBYa2c5eHRRbV9seHZqTVYyUmNyMDM3ejMtUHp5N0NjdkZNMlVrbFFSMkhFNzdnUUtoT3psVGE?oc=5",
-     "source": "Hindustan Times"
+     "title": "Uttarakhand: Pantnagar airport expansion gets environmental clearance (PTI)",
+     "link": "https://theprint.in/india/uttarakhand-pantnagar-airport-expansion-gets-environmental-clearance/3102604/",
+     "source": "ThePrint (PTI)",
+     "read": "https://theprint.in/india/uttarakhand-pantnagar-airport-expansion-gets-environmental-clearance/3102604/"
+    },
+    {
+     "title": "कुमाऊं के विकास को लगेगी नई उड़ान, ₹375.33 करोड़ से होगा पंतनगर एयरपोर्ट का विस्तार",
+     "link": "https://www.etvbharat.com/hi/state/pantnagar-airport-expansion-gets-environmental-clearance-uts26111900432",
+     "source": "ETV Bharat",
+     "read": "https://www.etvbharat.com/hi/state/pantnagar-airport-expansion-gets-environmental-clearance-uts26111900432"
+    },
+    {
+     "title": "पंतनगर एयरपोर्ट विस्तार को पर्यावरणीय मंजूरी मिली",
+     "link": "https://panchjanya.com/2026/11/19/499394/bharat/uttarakhand/pantnagar-airport-expansion-receives-environmental-clearance-will-feature-a-larger-runway-and-modern-facilities/",
+     "source": "Panchjanya",
+     "read": "https://panchjanya.com/2026/11/19/499394/bharat/uttarakhand/pantnagar-airport-expansion-receives-environmental-clearance-will-feature-a-larger-runway-and-modern-facilities/"
     }
    ],
    "added": "2026-11-20T00:50:12.681Z",
    "details": [
     {
-     "k": "रनवे लंबाई",
-     "v": "नया रनवे 3,000 मीटर लंबा होगा"
+     "k": "स्वीकृति देने वाली संस्था",
+     "v": "SEIAA उत्तराखंड, जिसकी अध्यक्षता मुख्य सचिव करते हैं"
     },
     {
-     "k": "कुल लागत",
-     "v": "परियोजना की लागत लगभग 375.33 करोड़ रुपये है"
+     "k": "संस्तुति",
+     "v": "राज्य स्तरीय विशेषज्ञ मूल्यांकन समिति (SEAC) ने 7 अक्टूबर और 3 नवंबर 2026 की बैठकों में परीक्षण किया"
     },
     {
-     "k": "प्राधिकरण",
-     "v": "SEIAA उत्तराखंड में पर्यावरणीय मंजूरी देने वाली प्रमुख संस्था है",
+     "k": "रनवे",
+     "v": "1,372 मीटर से बढ़कर 3,000 मीटर (1,628 मीटर की वृद्धि)"
+    },
+    {
+     "k": "अनुमानित लागत",
+     "v": "₹375.33 करोड़"
+    },
+    {
+     "k": "कुल क्षेत्रफल",
+     "v": "लगभग 321.48 हेक्टेयर — 109.017 हेक्टेयर मौजूदा और 212.46 हेक्टेयर अतिरिक्त गैर-वन भूमि"
+    },
+    {
+     "k": "परियोजना प्रस्तावक",
+     "v": "भारतीय विमानपत्तन प्राधिकरण (AAI); प्रस्ताव 29 जून 2026 को PARIVESH पोर्टल पर"
+    },
+    {
+     "k": "जन सुनवाई",
+     "v": "10 मार्च 2026 को उत्तराखंड प्रदूषण नियंत्रण बोर्ड ने कराई"
+    },
+    {
+     "k": "पंतनगर हवाई अड्डा",
+     "v": "ऊधम सिंह नगर ज़िले में; IATA कोड PGH",
      "t": "g"
     }
    ],
-   "sum": "पंतनगर हवाई अड्डे के विस्तार को पर्यावरणीय मंजूरी मिली, जिससे 3 km लंबा नया रनवे बनाकर बड़े विमानों को लैंड करने की सुविधा होगी।",
+   "sum": "ऊधम सिंह नगर ज़िले के पंतनगर एयरपोर्ट के विस्तार की सबसे बड़ी बाधा दूर हुई। विशेषज्ञ समिति की संस्तुति पर SEIAA ने स्वीकृति दी; लंबे रनवे पर कुमाऊँ में बड़े विमान उतर सकेंगे।",
    "quiz": {
-    "q": "पंतनगर हवाई अड्डे के विस्तार के लिए पर्यावरणीय मंजूरी किस संस्था ने दी?",
-    "a": "SEIAA"
+    "q": "पंतनगर हवाई अड्डे के विस्तार को पर्यावरणीय स्वीकृति किस संस्था ने दी?",
+    "a": "SEIAA उत्तराखंड (अध्यक्ष: मुख्य सचिव)"
    },
-   "depth": "headlines"
+   "depth": "article"
   },
   {
-   "id": "8cfb5e7aa8",
+   "id": "825ce780cc",
    "date": "2026-11-19",
-   "fact": "देहरादून चिड़ियाघर में सफेद बाघ तेजस के बाड़े का लोकार्पण किया गया।",
-   "cat": "पर्यावरण",
+   "fact": "हरिद्वार कुंभ 2027 मकर संक्रांति (14 जनवरी) से चैत्र पूर्णिमा (20 अप्रैल 2027) तक चलेगा; गंगा तटों पर कुंभ नगरी की तैयारी तेज़।",
+   "cat": "संस्कृति/धर्म",
    "imp": 3,
-   "tag": "तेजस बाघ",
-   "model": "groq/openai/gpt-oss-120b",
+   "tag": "हरिद्वार कुंभ 2027",
+   "model": "editor",
    "refs": [
     {
-     "title": "देहरादून: चिड़ियाघर में तेजस की एंट्री, बच्चों के लिए बना आकर्षण, मुख्यमंत्री धामी ने किया बाड़े का लोकार्पण",
-     "link": "https://www.amarujala.com/dehradun/white-tiger-tejas-arrives-at-dehradun-zoo-cm-dhami-opens-new-enclosure-college-students-to-get-free-entry-2026-11-19",
-     "source": "Amar Ujala"
+     "title": "हरिद्वार कुंभ 2027: आस्था, संस्कृति और आध्यात्मिक चेतना का विराट संगम; मकर संक्रांति से शुरू होकर चैत्र पूर्णिमा तक चलेगा महापर्व - haridwar kumbh 2027 dates preparations spiritual event",
+     "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNb3o5RUhqelllTzRIZHZXRkdBYXFHNGlRb0QyNTlLUFdBdE14VWVzTVpsd08zU1JTeUdHTW80bndKNnJhWVdYV05KS3RuNjAyU3QyMkc3cGdCN1dqZUV1elYxMkhkWVQ1Tkg5ZUgzUEw2RzlGTENmWTZoTFkyZ0wzWGtQRlBxM2xGMkxfYVBlNWlMU19mMU9yN09CaUljUzNNYzZkQXZvSHpOMzRSOXR5bzVB?oc=5",
+     "source": "Jagran"
     },
     {
-     "title": "चमकदार नीली आंखें और काली धारियां, उत्तराखंड को मिला पहला व्हाइट टाइगर 'तेजस', कहां कर सकेंगे दीदार?",
-     "link": "https://www.livehindustan.com/uttarakhand/dehradun/bright-blue-eyes-and-black-stripes-uttarakhand-gets-its-first-white-tiger-tejas-201795079380560.html",
-     "source": "Live Hindustan"
+     "title": "हरिद्वार: गंगा के तटों पर आकार लेने लगी कुंभ नगरी, मेलाधिकारी ने किया निरीक्षण",
+     "link": "https://www.amarujala.com/video/uttarakhand/haridwar/video-harathavara-gaga-ka-tata-para-aakara-lna-lga-kabha-nagara-malthhakara-na-kaya-narakashhanae-2026-11-19",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/video/uttarakhand/haridwar/video-harathavara-gaga-ka-tata-para-aakara-lna-lga-kabha-nagara-malthhakara-na-kaya-narakashhanae-2026-11-19"
     },
     {
-     "title": "Dhami inaugurates white tiger enclosure at Dehradun Zoo",
-     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNNlhUWk94TEk2aS1hYnFOLUxzckV3d1ZKOElYU2Vsa0tBb3RHYnNELWxzOW1FdmJpS3VwUjllMUVNclI2MHJzTkl5Uk5BQmVYWG04OU1Ia1BXdjdPVUhOcmw3NUhaamdCUHBUOHZLd3NVbmpQYnEwUHd6OG9SMVNXUjd6MnIyZUhmdV90Z1pYN3J1ZDZxZ1JhYmd6X2tRN3JqdG94Z001VmM?oc=5",
-     "source": "Awaz The Voice"
+     "title": "हरिद्वार: 2027 कुंभ स्नान महत्वपूर्ण तिथियों की मुख्यमंत्री ने घोषणा की",
+     "link": "https://uttarakhandmorningpost.com/haridwar-2027-kumbh-snan-important-dates-announced-by-chief-minister",
+     "source": "Uttarakhand Morning Post",
+     "read": "https://uttarakhandmorningpost.com/haridwar-2027-kumbh-snan-important-dates-announced-by-chief-minister"
     }
    ],
    "added": "2026-11-20T00:50:12.682Z",
    "details": [
     {
-     "k": "लोकार्पणकर्ता",
-     "v": "मुख्यमंत्री पुष्कर सिंह धामी ने बाड़े का लोकार्पण किया"
+     "k": "अवधि",
+     "v": "14 जनवरी (मकर संक्रांति) से 20 अप्रैल 2027 (चैत्र पूर्णिमा) तक"
     },
     {
-     "k": "स्थान",
-     "v": "देहरादून के मालसी स्थित चिड़ियाघर में बाड़ा स्थापित हुआ"
+     "k": "प्रमुख स्नान",
+     "v": "कुल 10"
     },
     {
-     "k": "पर्यटक संख्या",
-     "v": "चिड़ियाघर में हर साल लगभग 8.50 लाख पर्यटक आते हैं"
+     "k": "अमृत स्नान",
+     "v": "6 मार्च (महाशिवरात्रि), 8 मार्च (फाल्गुन अमावस्या) और 14 अप्रैल (मेष संक्रांति)"
     },
     {
-     "k": "आय",
-     "v": "पर्यटक से सालाना सात करोड़ रुपये से अधिक की आय होती है"
+     "k": "मेलाधिकारी",
+     "v": "सोनिका सिंह"
     },
     {
-     "k": "कॉलेज छात्रों की सुविधा",
-     "v": "अब कॉलेज छात्रों को चिड़ियाघर में निशुल्क प्रवेश मिलेगा"
+     "k": "नाम",
+     "v": "मेला प्रशासन इसे अर्धकुंभ भी कहता है; राज्य सरकार 'कुंभ 2027' नाम से आयोजन कर रही है"
+    },
+    {
+     "k": "हरिद्वार का पिछला कुंभ",
+     "v": "2021",
+     "t": "g"
     }
    ],
-   "sum": "मुख्यमंत्री पुष्कर सिंह धामी ने देहरादून के मालसी स्थित चिड़ियाघर में सफेद बाघ तेजस के बाड़े का लोकार्पण किया, जिससे राज्य में पहला सफेद बाघ दर्शकों के सामने आया।",
+   "sum": "19 नवंबर को मेलाधिकारी सोनिका सिंह ने कुंभ क्षेत्र में घाटों और दो नए पुलों के निर्माण का निरीक्षण किया। मेले में कुल 10 प्रमुख स्नान होंगे।",
    "quiz": {
-    "q": "देहरादून चिड़ियाघर में सफेद बाघ तेजस के बाड़े का लोकार्पण किसने किया?",
-    "a": "मुख्यमंत्री पुष्कर सिंह धामी"
+    "q": "हरिद्वार कुंभ 2027 का पहला अमृत स्नान किस पर्व पर होगा?",
+    "a": "महाशिवरात्रि (6 मार्च 2027)"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "ffc95b5df8",
+   "date": "2026-11-19",
+   "fact": "भूस्खलन प्रबंधन में सहयोग पर उत्तराखंड और ओडिशा सहमत; दोनों राज्यों के आपदा प्रबंधन प्राधिकरणों (USDMA–OSDMA) के बीच जल्द MoU होगा।",
+   "cat": "प्रशासन",
+   "imp": 3,
+   "tag": "उत्तराखंड–ओडिशा भूस्खलन सहयोग",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "Uttarakhand, Odisha agree to collaborate on landslide mitigation (PTI)",
+     "link": "https://theprint.in/india/uttarakhand-odisha-agree-to-collaborate-on-landslide-mitigation-exchange-of-expertise/3102356/",
+     "source": "ThePrint (PTI)",
+     "read": "https://theprint.in/india/uttarakhand-odisha-agree-to-collaborate-on-landslide-mitigation-exchange-of-expertise/3102356/"
+    },
+    {
+     "title": "U'khand & Odisha to collaborate on landslide management, USDMA-OSDMA MoU soon",
+     "link": "https://garhwalpost.in/ukhand-odisha-to-collaborate-on-landslide-management-usdma-osdma-mou-soon/",
+     "source": "Garhwal Post",
+     "read": "https://garhwalpost.in/ukhand-odisha-to-collaborate-on-landslide-management-usdma-osdma-mou-soon/"
+    },
+    {
+     "title": "Odisha, Uttarakhand to join hands to tackle landslide threat",
+     "link": "https://www.uniindia.com/east-india/disaster-odisha-uttarakhand-mou-landslide-threat/250888",
+     "source": "UNI",
+     "read": "https://www.uniindia.com/east-india/disaster-odisha-uttarakhand-mou-landslide-threat/250888"
+    },
+    {
+     "title": "Odisha & Uttarakhand to Sign MoU for Advanced Landslide Management",
+     "link": "https://pragativadi.com/odisha-uttarakhand-to-sign-mou-for-advanced-landslide-management/",
+     "source": "Pragativadi",
+     "read": "https://pragativadi.com/odisha-uttarakhand-to-sign-mou-for-advanced-landslide-management/"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "सहमति किनके बीच",
+     "v": "उत्तराखंड के आपदा प्रबंधन सचिव विनोद कुमार सुमन और OSDMA के सलाहकार डॉ. कमल लोचन मिश्र (18 नवंबर, देहरादून)"
+    },
+    {
+     "k": "MoU की स्थिति",
+     "v": "अभी हस्ताक्षर नहीं हुए; जल्द होंगे"
+    },
+    {
+     "k": "पृष्ठभूमि",
+     "v": "अक्टूबर में चक्रवात 'अर्णब' से ओडिशा में भूस्खलन, कम से कम 10 मौतें"
+    },
+    {
+     "k": "सहयोग के क्षेत्र",
+     "v": "भूस्खलन जोखिम आकलन, निगरानी, पूर्व चेतावनी प्रणाली, GIS/उपग्रह मानचित्रण और शमन"
+    },
+    {
+     "k": "ओडिशा में लक्ष्य क्षेत्र",
+     "v": "दक्षिणी पहाड़ी ज़िले"
+    }
+   ],
+   "quiz": {
+    "q": "भूस्खलन प्रबंधन में सहयोग के लिए उत्तराखंड के साथ किस राज्य का MoU प्रस्तावित है?",
+    "a": "ओडिशा"
+   },
+   "depth": "article",
+   "sum": "चक्रवात 'अर्णब' से ओडिशा में हुए भूस्खलनों के बाद OSDMA का विशेषज्ञ दल देहरादून में USDMA पहुँचा। दोनों राज्य भूस्खलन जोखिम आकलन, निगरानी और पूर्व चेतावनी में विशेषज्ञता व तकनीक साझा करेंगे।"
+  },
+  {
+   "id": "8cfb5e7aa8",
+   "date": "2026-11-19",
+   "fact": "उत्तराखंड का पहला सफेद बाघ 'तेजस' देहरादून चिड़ियाघर (मालसी) पहुँचा; मुख्यमंत्री धामी ने इसके बाड़े का लोकार्पण किया।",
+   "cat": "पर्यावरण",
+   "imp": 2,
+   "tag": "सफेद बाघ तेजस",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "देहरादून: चिड़ियाघर में तेजस की एंट्री, मुख्यमंत्री धामी ने किया बाड़े का लोकार्पण",
+     "link": "https://www.amarujala.com/dehradun/white-tiger-tejas-arrives-at-dehradun-zoo-cm-dhami-opens-new-enclosure-college-students-to-get-free-entry-2026-11-19",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/dehradun/white-tiger-tejas-arrives-at-dehradun-zoo-cm-dhami-opens-new-enclosure-college-students-to-get-free-entry-2026-11-19"
+    },
+    {
+     "title": "उत्तराखंड को मिला पहला व्हाइट टाइगर 'तेजस', कहां कर सकेंगे दीदार?",
+     "link": "https://www.livehindustan.com/uttarakhand/dehradun/bright-blue-eyes-and-black-stripes-uttarakhand-gets-its-first-white-tiger-tejas-201795079380560.html",
+     "source": "Live Hindustan",
+     "read": "https://www.livehindustan.com/uttarakhand/dehradun/bright-blue-eyes-and-black-stripes-uttarakhand-gets-its-first-white-tiger-tejas-201795079380560.html"
+    },
+    {
+     "title": "Uttarakhand To Get 1st White Tigers At Dehradun Zoo",
+     "link": "https://curlytales.com/uttarakhand-to-get-st-white-tigers-at-dehradun-zoo-wildlife-safari-also-planned/",
+     "source": "Curly Tales",
+     "read": "https://curlytales.com/uttarakhand-to-get-st-white-tigers-at-dehradun-zoo-wildlife-safari-also-planned/"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "स्थान",
+     "v": "देहरादून चिड़ियाघर, मालसी"
+    },
+    {
+     "k": "कहाँ से आया",
+     "v": "ग्वालियर (मध्य प्रदेश) के चिड़ियाघर से पशु-विनिमय के तहत; बदले में देहरादून से एक सामान्य बाघ ग्वालियर भेजा गया"
+    },
+    {
+     "k": "नई घोषणा",
+     "v": "कॉलेज छात्रों को चिड़ियाघर में निःशुल्क प्रवेश"
+    },
+    {
+     "k": "सफेद बाघ",
+     "v": "अलग प्रजाति नहीं, बंगाल बाघ का ही रूप; सफेद रंग एक अप्रभावी (recessive) जीन के कारण",
+     "t": "g"
+    }
+   ],
+   "sum": "मुख्यमंत्री पुष्कर सिंह धामी ने 19 नवंबर को देहरादून चिड़ियाघर में सफेद बाघ तेजस के बाड़े का लोकार्पण किया। उत्तराखंड के किसी चिड़ियाघर में पहली बार सफेद बाघ लाया गया है।",
+   "quiz": {
+    "q": "उत्तराखंड का पहला सफेद बाघ 'तेजस' किस चिड़ियाघर में रखा गया है?",
+    "a": "देहरादून चिड़ियाघर (मालसी)"
    },
    "depth": "article"
   },
   {
    "id": "555c8b0514",
    "date": "2026-11-19",
-   "fact": "मुख्यमंत्री युवा भविष्य निर्माण योजना से मुफ्त कोचिंग प्रदान की जा रही है।",
+   "fact": "मुख्यमंत्री युवा भविष्य निर्माण योजना-2026: उत्तराखंड के विश्वविद्यालयों और सरकारी/सहायता प्राप्त महाविद्यालयों के छात्रों को प्रतियोगी परीक्षाओं की निःशुल्क ऑनलाइन कोचिंग।",
    "cat": "योजना/नीति",
-   "imp": 3,
-   "tag": "युवा भविष्य निर्माण",
-   "model": "groq/openai/gpt-oss-120b",
+   "imp": 2,
+   "tag": "युवा भविष्य निर्माण योजना",
+   "model": "editor",
    "refs": [
     {
      "title": "आर्थिक तंगी अब नहीं बनेगी बाधा: 'मुख्यमंत्री युवा भविष्य निर्माण योजना' से मुफ्त कोचिंग पाकर भविष्य संवार रहे उत्तराखंड के युवा - uttarakhand free coaching mukhyamantri yuva bhavishya nirman yojana",
      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOVURfZ2IwZnVCTDNxWlU0ZFdpSnlnV2V0aW9kMlFLeDhQcmVtSUdnSUNsVzV3b2lxLWtpR2lVdkhLRmM5aDdGNm5lREswdUlrOGdxWlkyVzRFNnNrUW5UVkpOMWZwckI4SThUOVJ5MTNXNFdNUW5FV0xNdFN4WW94bGJ1cHpMNVJna3Rjbjl4SEozUkg1aDdIeW0wWkE2U1dpTFR2RWJtUWxkRmJNb2lSSEJnd2MxNFJ1SW9qcGt1OU9wWEdlN25DNTRn?oc=5",
      "source": "Jagran"
+    },
+    {
+     "title": "मुख्यमंत्री युवा भविष्य निर्माण योजना: दून विश्वविद्यालय में प्रतियोगी परीक्षाओं की निशुल्क क्लास",
+     "link": "https://www.amarujala.com/dehradun/free-classes-for-competitive-exams-to-be-held-at-doon-university-dehradun-news-c-5-drn1008-1082614-2026-10-05",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/dehradun/free-classes-for-competitive-exams-to-be-held-at-doon-university-dehradun-news-c-5-drn1008-1082614-2026-10-05"
+    },
+    {
+     "title": "Uttarakhand CM Dhami Approves Free Online Coaching Scheme For Youth",
+     "link": "https://www.freepressjournal.in/india/uttarakhand-cm-dhami-approves-free-online-coaching-scheme-for-youth-preparing-for-competitive-exams",
+     "source": "Free Press Journal",
+     "read": "https://www.freepressjournal.in/india/uttarakhand-cm-dhami-approves-free-online-coaching-scheme-for-youth-preparing-for-competitive-exams"
     }
    ],
    "added": "2026-11-20T00:50:12.682Z",
    "details": [
     {
-     "k": "लाभार्थी वर्ग",
-     "v": "आर्थिक रूप से कमजोर युवा"
+     "k": "शुभारंभ",
+     "v": "मुख्यमंत्री पुष्कर सिंह धामी ने 7 सितंबर 2026 को किया"
     },
     {
-     "k": "उद्देश्य",
-     "v": "आर्थिक तंगी को दूर कर युवाओं को रोजगार योग्य बनाना"
+     "k": "कोचिंग का स्वरूप",
+     "v": "निःशुल्क, ऑनलाइन"
     },
     {
-     "k": "राज्य की राजधानी",
-     "v": "उत्तराखंड की राजधानी देहरादून है",
-     "t": "g"
+     "k": "पात्र छात्र",
+     "v": "राज्य के विश्वविद्यालयों तथा सरकारी/सहायता प्राप्त महाविद्यालयों में पढ़ने वाले"
+    },
+    {
+     "k": "शामिल परीक्षाएँ",
+     "v": "UPSC, राज्य लोक सेवा आयोग, SSC, बैंकिंग, रेलवे, CDS आदि"
     }
    ],
-   "sum": "मुख्यमंत्री युवा भविष्य निर्माण योजना के तहत आर्थिक रूप से कमजोर युवाओं को प्रतियोगी परीक्षाओं की मुफ्त कोचिंग दी जा रही है।",
+   "sum": "19 नवंबर की रिपोर्टों में योजना की प्रगति बताई गई: आर्थिक रूप से कमजोर और दूरस्थ पर्वतीय क्षेत्रों के छात्र इसके तहत मुफ्त ऑनलाइन कोचिंग से प्रतियोगी परीक्षाओं की तैयारी कर रहे हैं।",
    "quiz": {
-    "q": "मुख्यमंत्री युवा भविष्य निर्माण योजना के तहत कौन सी सुविधा मुफ्त में प्रदान की जा रही है?",
-    "a": "प्रतियोगी परीक्षाओं की कोचिंग"
+    "q": "मुख्यमंत्री युवा भविष्य निर्माण योजना के तहत छात्रों को क्या सुविधा दी जाती है?",
+    "a": "प्रतियोगी परीक्षाओं की निःशुल्क ऑनलाइन कोचिंग"
    },
-   "depth": "headlines"
-  },
-  {
-   "id": "825ce780cc",
-   "date": "2026-11-19",
-   "fact": "हरिद्वार कुंभ 2027 का आयोजन मकर संक्रांति से चैत्र पूर्णिमा तक होगा।",
-   "cat": "संस्कृति/धर्म",
-   "imp": 3,
-   "tag": "हरिद्वार कुंभ 2027",
-   "model": "groq/openai/gpt-oss-120b",
-   "refs": [
-    {
-     "title": "हरिद्वार कुंभ 2027: आस्था, संस्कृति और आध्यात्मिक चेतना का विराट संगम; मकर संक्रांति से शुरू होकर चैत्र पूर्णिमा तक चलेगा महापर्व - haridwar kumbh 2027 dates preparations spiritual event",
-     "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNb3o5RUhqelllTzRIZHZXRkdBYXFHNGlRb0QyNTlLUFdBdE14VWVzTVpsd08zU1JTeUdHTW80bndKNnJhWVdYV05KS3RuNjAyU3QyMkc3cGdCN1dqZUV1elYxMkhkWVQ1Tkg5ZUgzUEw2RzlGTENmWTZoTFkyZ0wzWGtQRlBxM2xGMkxfYVBlNWlMU19mMU9yN09CaUljUzNNYzZkQXZvSHpOMzRSOXR5bzVB?oc=5",
-     "source": "Jagran"
-    }
-   ],
-   "added": "2026-11-20T00:50:12.682Z",
-   "details": [
-    {
-     "k": "मुख्य स्नान तिथि",
-     "v": "15 मार्च को देव डोलियां द्वारा अमृत स्नान"
-    },
-    {
-     "k": "तैयारी कार्य",
-     "v": "मेलाधिकारी सोनिका ने दो नए पुलों सहित घाटों के निर्माण की जांच की"
-    },
-    {
-     "k": "हरिद्वार का महत्व",
-     "v": "गंगा किनारे स्थित प्रमुख तीर्थस्थल है",
-     "t": "g"
-    }
-   ],
-   "sum": "हरिद्वार में 2027 का कुंभ मकर संक्रांति से शुरू होकर चैत्र पूर्णिमा तक चलेगा, जिससे तीर्थयात्रियों को आध्यात्मिक स्नान का अवसर मिलेगा।",
-   "quiz": {
-    "q": "हरिद्वार कुंभ 2027 की अवधि कब से कब तक है?",
-    "a": "मकर संक्रांति से चैत्र पूर्णिमा तक"
-   },
-   "depth": "headlines"
-  },
-  {
-   "id": "ffc95b5df8",
-   "date": "2026-11-19",
-   "fact": "ओडिशा और उत्तराखंड ने उन्नत लैंडस्लाइड प्रबंधन के लिए MoU पर हस्ताक्षर किए।",
-   "cat": "परियोजना/अवसंरचना",
-   "imp": 3,
-   "tag": "लैंडस्लाइड MoU",
-   "model": "groq/openai/gpt-oss-120b",
-   "refs": [
-    {
-     "title": "Odisha & Uttarakhand to Sign MoU for Advanced Landslide Management",
-     "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQaU54eG12T2tyaDI3Ukx5dXNDbGp1d21nSktxVWtoTExadjBwa3ZnN1U5b1RfRXNmbHVjc0hEYV9wOUNRZ3Nuc0xJS1hjblBfWTl1ajNXbFNrTTQzaWU2U05IeHBsUFhzaHRxclBhX1dILVlNWjdWTWFfNjJpR2VpLU1vaHhXZUtubkQwYkNlZW9XUVk?oc=5",
-     "source": "Pragativadi"
-    }
-   ],
-   "added": "2026-11-20T00:50:12.682Z",
-   "details": [
-    {
-     "k": "सहयोगी एजेंसियां",
-     "v": "उत्तराखंड आपदा प्रबंधन प्राधिकरण (USDMA) और ओडिशा आपदा प्रबंधन प्राधिकरण (OSDMA)"
-    },
-    {
-     "k": "पृष्ठभूमि कारण",
-     "v": "चक्रवात के बाद ओडिशा में भूस्खलन खतरा बढ़ा"
-    },
-    {
-     "k": "USDMA की स्थापना",
-     "v": "उत्तराखंड आपदा प्रबंधन प्राधिकरण 2012 में स्थापित हुआ",
-     "t": "g"
-    }
-   ],
-   "quiz": {
-    "q": "उत्तarakंड और ओडिशा के MoU में कौन-सी दो एजेंसियां सहयोग करेंगी?",
-    "a": "उत्तराखंड आपदा प्रबंधन प्राधिकरण (USDMA) और ओडिशा आपदा प्रबंधन प्राधिकरण (OSDMA)"
-   },
-   "depth": "headlines"
+   "depth": "article"
   },
   {
    "id": "c6a2293ffd",
    "date": "2026-11-19",
-   "fact": "सरकारी संपत्तियों के जीवनकाल प्रबंधन योजना के लिए 18,153 करोड़ रुपये का बजट निर्धारित।",
-   "cat": "योजना/नीति",
-   "imp": 3,
-   "tag": "संपत्ति जीवनकाल योजना",
-   "model": "groq/openai/gpt-oss-120b",
+   "fact": "सार्वजनिक परिसंपत्ति प्रबंधन पर दूसरी अंतरराष्ट्रीय पीयर लर्निंग कार्यशाला देहरादून में शुरू; आयोजन सेतु आयोग ने संयुक्त राष्ट्र (UN DESA) के सहयोग से किया।",
+   "cat": "प्रशासन",
+   "imp": 2,
+   "tag": "सार्वजनिक परिसंपत्ति प्रबंधन कार्यशाला",
+   "model": "editor",
    "refs": [
     {
-     "title": "उत्तराखंड में सरकारी संपत्तियों का बनेगा लाइफटाइम मैनेजमेंट प्लान: सिर्फ निर्माण नहीं रखरखाव पर भी फोकस 18,153 करोड़ के बजट से इंफ्रास्ट्रक्चर को लंबे समय तक सुरक्षित रखने की तैयारी",
-     "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE15WHVvRHRWVTRpdHNxN2NPM2RCRlFSLVpPVzhjY2EtUFB3OEYzeGpYM0JURS1ZSUtxc0ZOVXFMLTVoZzZlSzY5NHE2WUFRajViNF90RWJCYzlmT285aHAwVmJMbXl1ZnVVWWlRN3pn?oc=5",
-     "source": "Head Topics"
+     "title": "देहरादून में अंतरराष्ट्रीय कार्यशाला, सार्वजनिक परिसंपत्तियों के प्रबंधन पर मंथन",
+     "link": "https://newstrack.com/uttarakhand/dehradun-global-workshop-public-asset-management-uttarakhand-649298",
+     "source": "Newstrack",
+     "read": "https://newstrack.com/uttarakhand/dehradun-global-workshop-public-asset-management-uttarakhand-649298"
+    },
+    {
+     "title": "सार्वजनिक परिसंपत्तियों के बेहतर प्रबंधन एवं सतत विकास पर वैश्विक अनुभवों का आदान-प्रदान",
+     "link": "https://newsheight.com/big-breaking-%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95-%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B8%E0%A4%82%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AF/",
+     "source": "News Height",
+     "read": "https://newsheight.com/big-breaking-%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95-%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B8%E0%A4%82%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AF/"
+    },
+    {
+     "title": "उत्तराखंड बजट विश्लेषण 2026-27",
+     "link": "https://hi.prsindia.org/budgets/states/%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%B0%E0%A4%BE%E0%A4%96%E0%A4%82%E0%A4%A1-%E0%A4%AC%E0%A4%9C%E0%A4%9F-%E0%A4%B5%E0%A4%BF%E0%A4%B6%E0%A5%8D%E0%A4%B2%E0%A5%87%E0%A4%B7%E0%A4%A3-2026-27",
+     "source": "PRS India",
+     "read": "https://hi.prsindia.org/budgets/states/%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%B0%E0%A4%BE%E0%A4%96%E0%A4%82%E0%A4%A1-%E0%A4%AC%E0%A4%9C%E0%A4%9F-%E0%A4%B5%E0%A4%BF%E0%A4%B6%E0%A5%8D%E0%A4%B2%E0%A5%87%E0%A4%B7%E0%A4%A3-2026-27"
     }
    ],
    "added": "2026-11-20T00:50:12.682Z",
    "details": [
     {
-     "k": "ध्यान केंद्रित क्षेत्र",
-     "v": "निर्माण के साथ रखरखाव पर भी फोकस"
+     "k": "अवधि व स्थान",
+     "v": "19–21 नवंबर 2026, देहरादून"
     },
     {
-     "k": "उत्तराखंड का स्थान",
-     "v": "हिमालयी राज्य, उत्तर भारत में स्थित",
+     "k": "आयोजक",
+     "v": "सेतु आयोग, उत्तराखंड; सहयोग: संयुक्त राष्ट्र आर्थिक एवं सामाजिक कार्य विभाग (UN DESA)"
+    },
+    {
+     "k": "मुख्य अतिथि",
+     "v": "प्रमुख सचिव (नियोजन) डॉ. आर. मीनाक्षी सुंदरम"
+    },
+    {
+     "k": "भाग लेने वाले देश",
+     "v": "नेपाल, श्रीलंका, भूटान, केन्या, घाना आदि"
+    },
+    {
+     "k": "पहली कार्यशाला",
+     "v": "13–17 अक्टूबर 2025, देहरादून; इसमें विभागों ने 6 एसेट मैनेजमेंट एक्शन प्लान (AMAP) बनाए"
+    },
+    {
+     "k": "राज्य का पूंजीगत परिव्यय 2026-27",
+     "v": "लगभग ₹18,153 करोड़ — 2025-26 के संशोधित अनुमान से 22% अधिक"
+    },
+    {
+     "k": "UK-GAMS",
+     "v": "उत्तराखंड गवर्नमेंट एसेट मैनेजमेंट सिस्टम — AI और उपग्रह डेटा से सरकारी परिसंपत्तियों की डिजिटल निगरानी; 2025 में प्रधानमंत्री पुरस्कार से सम्मानित",
      "t": "g"
     }
    ],
-   "sum": "उत्तराखंड सरकार ने सरकारी संपत्तियों के जीवनकाल प्रबंधन योजना के लिए 18,153 करोड़ रुपये का बजट निर्धारित किया, जिससे निर्माण और रखरखाव दोनों पर ध्यान दिया जाएगा।",
+   "sum": "तीन दिवसीय कार्यशाला में भारतीय राज्यों और एशिया-अफ्रीका के देशों के अधिकारी व विशेषज्ञ इस पर अनुभव साझा कर रहे हैं कि सरकारी भवन, सड़क जैसी परिसंपत्तियों का निर्माण के बाद रखरखाव कैसे हो।",
    "quiz": {
-    "q": "सरकारी संपत्तियों के जीवनकाल प्रबंधन योजना के लिए निर्धारित बजट कितना है?",
-    "a": "18,153 करोड़ रुपये"
+    "q": "देहरादून में सार्वजनिक परिसंपत्ति प्रबंधन पर अंतरराष्ट्रीय कार्यशाला राज्य की किस संस्था ने आयोजित की?",
+    "a": "सेतु आयोग (UN DESA के सहयोग से)"
    },
-   "depth": "headlines"
+   "depth": "article"
   },
   {
    "id": "8173a2600e",
    "date": "2026-11-19",
-   "fact": "उत्तराखंड में भागीरथी‑गंगा पर 18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप शुरू हुई।",
+   "fact": "18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप देवप्रयाग में भागीरथी–गंगा पर शुरू; देशभर की रिकॉर्ड 17 टीमें शामिल।",
    "cat": "खेल",
    "imp": 2,
-   "tag": "राष्ट्रीय राफ्टिंग",
-   "model": "groq/openai/gpt-oss-120b",
+   "tag": "राष्ट्रीय राफ्टिंग चैंपियनशिप",
+   "model": "editor",
    "refs": [
     {
      "title": "Pauri News: भागीरथी-गंगा की लहरों पर शुरू हुई 18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप",
@@ -547,82 +679,99 @@
    "added": "2026-11-20T00:50:12.682Z",
    "details": [
     {
-     "k": "शुभारंभकर्ता",
-     "v": "यूनाइटेड राफ्टिंग के बोर्ड ऑफ डायरेक्टर्स और एशिया के अध्यक्ष शौकत सिकंद"
+     "k": "स्थान",
+     "v": "देवप्रयाग"
     },
     {
-     "k": "प्रतियोगिताओं की संख्या",
-     "v": "स्प्रिंट, 300 मीटर, सलालम और आरएक्स (RX) श्रेणियों में"
+     "k": "शुभारंभ",
+     "v": "शौकत सिकंदर — यूनाइटेड राफ्टिंग के बोर्ड ऑफ़ डायरेक्टर्स के सदस्य और एशिया अध्यक्ष"
     },
     {
-     "k": "विजेता का लाभ",
-     "v": "विजेता टीम अगले वर्ष की अंतरराष्ट्रीय प्रतियोगिताओं में भारत का प्रतिनिधित्व करेगी"
+     "k": "स्पर्धाएँ",
+     "v": "स्प्रिंट, 300 मीटर, स्लालम और RX; पुरुष, महिला व मिश्रित वर्ग"
+    },
+    {
+     "k": "प्रमुख टीमें",
+     "v": "भारतीय सेना, ITBP, पंजाब, अरुणाचल प्रदेश, लद्दाख, जम्मू-कश्मीर, कर्नाटक"
+    },
+    {
+     "k": "विजेताओं के अगले आयोजन",
+     "v": "एशियन चैंपियनशिप (अरुणाचल प्रदेश), विश्व चैंपियनशिप (तुर्किये), विश्व कप (केन्या)"
+    },
+    {
+     "k": "देवप्रयाग",
+     "v": "टिहरी गढ़वाल ज़िले में भागीरथी और अलकनंदा का संगम, यहीं से नदी गंगा कहलाती है; पंच प्रयागों में अंतिम",
+     "t": "g"
     }
    ],
-   "sum": "देवप्रयाग में भागीरथी-गंगा संगम पर 18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप का शुभारंभ हुआ। देशभर की 17 टीमें तीन दिवसीय प्रतियोगिता में हिस्सा ले रही हैं।",
+   "sum": "तीन दिवसीय प्रतियोगिता के पहले दिन (19 नवंबर) 300 मीटर स्प्रिंट हुई। विजेता टीमें अगले वर्ष अंतरराष्ट्रीय प्रतियोगिताओं में भारत का प्रतिनिधित्व करेंगी।",
    "quiz": {
-    "q": "18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप का शुभारंभ किसने किया?",
-    "a": "शौकत सिकंद"
+    "q": "18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप उत्तराखंड के किस संगम-स्थल पर हो रही है?",
+    "a": "देवप्रयाग"
    },
    "depth": "article"
   },
   {
-   "id": "f56ba0122c",
+   "id": "f80b9b8e4a",
    "date": "2026-11-19",
-   "fact": "उत्तराखंड के ग्रामीणों में केवल 8.7% को लोन योजनाओं की जानकारी है।",
-   "cat": "रिपोर्ट/रैंकिंग",
+   "fact": "STEM में बालिकाओं-महिलाओं की भागीदारी बढ़ाने के लिए IIT रुड़की और वीर माधो सिंह भंडारी उत्तराखंड प्रौद्योगिकी विश्वविद्यालय मिलकर श्वेत पत्र तैयार करेंगे।",
+   "cat": "विज्ञान/शिक्षा",
    "imp": 2,
-   "tag": "ग्रामीण लोन जानकारी",
-   "model": "groq/openai/gpt-oss-120b",
+   "tag": "STEM में महिलाएँ",
+   "model": "editor",
    "refs": [
     {
-     "title": "उत्तराखंड में कितने प्रतिशत ग्रामीणों के पास हैं बैंक खाते? केवल 8.7% लोगों को ही लोन योजनाओं की जानकारी",
-     "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQVVJVdFJGZzJkM1NpTS1LY2lISE5iTnNlNVRHaTlvQnVwN0ZhcUhTcVlqR2lMeXRKcGZwWUZhSkctdm9OWUNGbnd4SDNDaE1od1RubXQzMHJYRkNQeEpJNEJVTHlZVDdqZjZ0TmRhb09wMDcxdklXRHdzVlIwLUZVWUFkYjV0X193VW5KM3o5VDlLT3o2VVBmMDlfNENNQndVTHdCUFlvMkxvNHV3bEJ5SEpCUWg?oc=5",
+     "title": "राज्यपाल ने वीर माधो सिंह भण्डारी उत्तराखण्ड प्रौद्योगिकी विश्वविद्यालय में ‘स्टेम में महिला सहभागिता एवं सशक्तीकरण’ कार्यशाला का उद्घाटन किया",
+     "link": "https://samvadjanhvi.com/uttarakhand-governor-dr-dhal-singh-bisen-inaugurated-a-workshop-on-the-theme-womens-participation-and-empowerment-in-stem-held-at-veer-madho-singh-bhandari-uttarakhand-technical-university/",
+     "source": "Samvad Janhvi",
+     "read": "https://samvadjanhvi.com/uttarakhand-governor-dr-dhal-singh-bisen-inaugurated-a-workshop-on-the-theme-womens-participation-and-empowerment-in-stem-held-at-veer-madho-singh-bhandari-uttarakhand-technical-university/"
+    },
+    {
+     "title": "विज्ञान और तकनीक में बेटियों की राह आसान करने को बनेगा श्वेत पत्र",
+     "link": "https://dandakaranyasamachar.com/145411/",
+     "source": "Dandakaranya Samachar",
+     "read": "https://dandakaranyasamachar.com/145411/"
+    },
+    {
+     "title": "उत्तराखंड में विज्ञान और तकनीक में बेटियों की भागीदारी बढ़ाने के लिए बनेगी नीतिः राज्यपाल डॉ. ढाल सिंह बिसेन",
+     "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPX2hSTHViaHdOQjdDWHlQRDJSbjFnSl8ydG1Fa0c0NHg5UkhkUk1iRU5mRWxlZEI2YU1ITHNBMzFiMkhGSEY2eUczUThtajdtTEVCWlU5c3ItVWM0X1FqeGZnNjhBTkRWbHdMZmhkQkJoMDBrcEw0WlZOTzY3ajd2YWY1WDFkeXlmcGdhR3kxSzNmWDFhbExvdHFpM05jYTdWWGlMY0k1RTk2eGpYeVlxUDA4LWJXak9YbEYtVHZFbC00UQ?oc=5",
      "source": "Jagran"
     }
    ],
-   "added": "2026-11-20T00:50:12.682Z",
+   "added": "2026-11-20T04:57:37.000Z",
    "details": [
     {
-     "k": "प्रभावित वर्ग",
-     "v": "उत्तराखंड के ग्रामीण क्षेत्रों के निवासी"
-    }
-   ],
-   "sum": "उत्तराखंड के ग्रामीण क्षेत्रों में केवल 8.7% लोगों को सरकारी लोन योजनाओं के बारे में जानकारी है। यह आंकड़ा वित्तीय साक्षरता की कमी को दर्शाता है।",
-   "quiz": {
-    "q": "उत्तराखंड के ग्रामीणों में लोन योजनाओं की जानकारी कितने प्रतिशत लोगों को है?",
-    "a": "8.7%"
-   },
-   "depth": "headlines"
-  },
-  {
-   "id": "ba8875a7fe",
-   "date": "2026-11-19",
-   "fact": "उत्तराखंड में नकल विरोधी कानून से भर्ती परीक्षाओं में पारदर्शिता बढ़ी।",
-   "cat": "योजना/नीति",
-   "imp": 2,
-   "tag": "नकल विरोधी कानून",
-   "model": "groq/openai/gpt-oss-120b",
-   "refs": [
+     "k": "उद्घाटनकर्ता",
+     "v": "राज्यपाल डॉ. ढाल सिंह बिसेन (19 नवंबर 2026)"
+    },
     {
-     "title": "माफियाओं पर कसा शिकंजा, योग्यता को मिला सम्मान: उत्तराखंड के नकल विरोधी कानून से भर्ती परीक्षाओं में बढ़ी पारदर्शिता - uttarakhand anticopying law boosts exam transparency",
-     "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPVmVuQ19JZklvRnNGbG95Z2NlZTlBV0N6T0JLTDBTb0VwSmloT3NBWkFhNWIxamVzVExkVW9MYlRSVWVKTDB1RWU0Ukxxak95ZUp2c2V2SDBNeXNWeXF4Y2ZGS3ZJU0dCNjRwQWZER29mXzN3MEZSMDcyTlNuY1FOT05QTGxMWUV0Nlpnalp6d2F3OTJjQldhLTlXbGx6SkNSRmVoNl9GYUJ6cHA5Y3l3VUx5bzFTUQ?oc=5",
-     "source": "Jagran"
-    }
-   ],
-   "added": "2026-11-20T00:50:12.682Z",
-   "details": [
+     "k": "कार्यशाला का विषय",
+     "v": "'स्टेम (STEM) में महिला सहभागिता एवं सशक्तीकरण'"
+    },
     {
-     "k": "लक्षित वर्ग",
-     "v": "परीक्षाओं में नकल करने वाले माफियाओं पर कड़ा शिकंजा कसा गया"
+     "k": "श्वेत पत्र में क्या होगा",
+     "v": "महिलाओं के सामने आने वाली चुनौतियों का आकलन; शिक्षा, शोध, नवाचार और रोज़गार में भागीदारी बढ़ाने के सुझाव"
+    },
+    {
+     "k": "आगे क्या",
+     "v": "सुझावों के आधार पर राज्य सरकार नीतिगत पहल करेगी"
+    },
+    {
+     "k": "STEM",
+     "v": "विज्ञान, प्रौद्योगिकी, अभियांत्रिकी एवं गणित"
+    },
+    {
+     "k": "माधो सिंह भंडारी",
+     "v": "गढ़वाल के सेनापति; मलेथा की गूल (सिंचाई नहर) बनाने के लिए प्रसिद्ध",
+     "t": "g"
     }
    ],
-   "sum": "उत्तराखंड में लागू नकल विरोधी कानून के कारण भर्ती परीक्षाओं में पारदर्शिता में वृद्धि हुई है। इससे नकल करने वाले माफियाओं पर कड़ी कार्रवाई की जा रही है।",
+   "sum": "राज्यपाल डॉ. ढाल सिंह बिसेन ने वीर माधो सिंह भंडारी उत्तराखंड प्रौद्योगिकी विश्वविद्यालय में 'STEM में महिला सहभागिता एवं सशक्तीकरण' कार्यशाला का उद्घाटन किया। कहा कि बालिकाओं की विज्ञान में रुचि विद्यालय स्तर से विकसित हो।",
    "quiz": {
-    "q": "उत्तराखंड के नकल विरोधी कानून से किस क्षेत्र में पारदर्शिता बढ़ी है?",
-    "a": "भर्ती परीक्षाओं में"
+    "q": "STEM में महिलाओं की भागीदारी पर श्वेत पत्र IIT रुड़की के साथ कौन-सा विश्वविद्यालय तैयार करेगा?",
+    "a": "वीर माधो सिंह भंडारी उत्तराखंड प्रौद्योगिकी विश्वविद्यालय"
    },
-   "depth": "headlines"
+   "depth": "article"
   },
   {
    "id": "abb54485df",
@@ -719,61 +868,6 @@
    "depth": "article"
   },
   {
-   "id": "f3f6ea197b",
-   "date": "2026-11-18",
-   "fact": "उत्तराखंड सेतु आयोग ने 2050 तक राज्य को विकसित अर्थव्यवस्था बनाने का लक्ष्य रखा; GSDP ₹3.48 लाख करोड़ से बढ़ाकर ₹28.48 लाख करोड़ करने का प्रस्ताव।",
-   "cat": "अर्थव्यवस्था",
-   "imp": 3,
-   "tag": "सेतु आयोग विज़न 2050",
-   "model": "editor",
-   "refs": [
-    {
-     "title": "उत्तराखंड: प्रदेश को पेपरलेस-कैशलेस अर्थव्यवस्था बनाने की तैयारी, सेतु आयोग ने वर्ष 2050 तक का रखा है लक्ष्य",
-     "link": "https://www.amarujala.com/dehradun/uttarakhand-targets-28-48-lakh-crore-economy-by-2050-plans-paperless-and-cashless-governance-2026-11-18",
-     "source": "Amar Ujala",
-     "read": "https://www.amarujala.com/dehradun/uttarakhand-targets-28-48-lakh-crore-economy-by-2050-plans-paperless-and-cashless-governance-2026-11-18"
-    }
-   ],
-   "added": "2026-11-19T02:30:32.539Z",
-   "details": [
-    {
-     "k": "GSDP लक्ष्य",
-     "v": "₹3.48 लाख करोड़ → ₹28.48 लाख करोड़ (2050)"
-    },
-    {
-     "k": "प्रति व्यक्ति आय लक्ष्य",
-     "v": "₹2.94 लाख → ₹20.4 लाख"
-    },
-    {
-     "k": "रोज़गार",
-     "v": "MSME से 22.11 लाख नए रोज़गार; 4.5 लाख लखपति दीदियाँ"
-    },
-    {
-     "k": "पर्यटन",
-     "v": "घरेलू 2.5 गुना, अंतरराष्ट्रीय 10 गुना वृद्धि"
-    },
-    {
-     "k": "पर्यावरण",
-     "v": "10,500 जलस्रोत, 5,000 धाराएँ और 56 नदियों का पुनर्जीवन"
-    },
-    {
-     "k": "ऊर्जा",
-     "v": "22,000 MW क्षमता"
-    },
-    {
-     "k": "सेतु आयोग",
-     "v": "State Institution for Empowering and Transforming उत्तराखंड — राज्य योजना आयोग के स्थान पर बना नीति थिंक-टैंक",
-     "t": "g"
-    }
-   ],
-   "sum": "उत्तराखंड सेतु आयोग की नई रिपोर्ट में 2050 तक राज्य को विकसित अर्थव्यवस्था बनाने का रोडमैप है। इसमें सरकारी सेवाओं को पेपरलेस, फेसलेस और कैशलेस बनाने, रोज़गार सृजन, पर्यटन विस्तार और जलस्रोतों के पुनर्जीवन के लक्ष्य शामिल हैं।",
-   "quiz": {
-    "q": "सेतु आयोग ने 2050 तक उत्तराखंड का GSDP कितना करने का लक्ष्य रखा है?",
-    "a": "₹28.48 लाख करोड़"
-   },
-   "depth": "article"
-  },
-  {
    "id": "3f1a8aaabb",
    "date": "2026-11-18",
    "fact": "पद्मश्री भू-भौतिकविद् प्रो. विजय प्रसाद डिमरी (CSIR-NGRI हैदराबाद के पूर्व निदेशक) को उत्तराखंड गौरव सम्मान 2026 मिला।",
@@ -821,6 +915,61 @@
    "quiz": {
     "q": "उत्तराखंड गौरव सम्मान 2026 पाने वाले प्रो. वी.पी. डिमरी किस संस्थान के पूर्व निदेशक हैं?",
     "a": "CSIR-NGRI, हैदराबाद"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "f3f6ea197b",
+   "date": "2026-11-18",
+   "fact": "उत्तराखंड सेतु आयोग ने 2050 तक राज्य को विकसित अर्थव्यवस्था बनाने का लक्ष्य रखा; GSDP ₹3.48 लाख करोड़ से बढ़ाकर ₹28.48 लाख करोड़ करने का प्रस्ताव।",
+   "cat": "अर्थव्यवस्था",
+   "imp": 2,
+   "tag": "सेतु आयोग विज़न 2050",
+   "model": "editor",
+   "refs": [
+    {
+     "title": "उत्तराखंड: प्रदेश को पेपरलेस-कैशलेस अर्थव्यवस्था बनाने की तैयारी, सेतु आयोग ने वर्ष 2050 तक का रखा है लक्ष्य",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-targets-28-48-lakh-crore-economy-by-2050-plans-paperless-and-cashless-governance-2026-11-18",
+     "source": "Amar Ujala",
+     "read": "https://www.amarujala.com/dehradun/uttarakhand-targets-28-48-lakh-crore-economy-by-2050-plans-paperless-and-cashless-governance-2026-11-18"
+    }
+   ],
+   "added": "2026-11-19T02:30:32.539Z",
+   "details": [
+    {
+     "k": "GSDP लक्ष्य",
+     "v": "₹3.48 लाख करोड़ → ₹28.48 लाख करोड़ (2050)"
+    },
+    {
+     "k": "प्रति व्यक्ति आय लक्ष्य",
+     "v": "₹2.94 लाख → ₹20.4 लाख"
+    },
+    {
+     "k": "रोज़गार",
+     "v": "MSME से 22.11 लाख नए रोज़गार; 4.5 लाख लखपति दीदियाँ"
+    },
+    {
+     "k": "पर्यटन",
+     "v": "घरेलू 2.5 गुना, अंतरराष्ट्रीय 10 गुना वृद्धि"
+    },
+    {
+     "k": "पर्यावरण",
+     "v": "10,500 जलस्रोत, 5,000 धाराएँ और 56 नदियों का पुनर्जीवन"
+    },
+    {
+     "k": "ऊर्जा",
+     "v": "22,000 MW क्षमता"
+    },
+    {
+     "k": "सेतु आयोग",
+     "v": "State Institution for Empowering and Transforming उत्तराखंड — राज्य योजना आयोग के स्थान पर बना नीति थिंक-टैंक",
+     "t": "g"
+    }
+   ],
+   "sum": "उत्तराखंड सेतु आयोग की नई रिपोर्ट में 2050 तक राज्य को विकसित अर्थव्यवस्था बनाने का रोडमैप है। इसमें सरकारी सेवाओं को पेपरलेस, फेसलेस और कैशलेस बनाने, रोज़गार सृजन, पर्यटन विस्तार और जलस्रोतों के पुनर्जीवन के लक्ष्य शामिल हैं।",
+   "quiz": {
+    "q": "सेतु आयोग ने 2050 तक उत्तराखंड का GSDP कितना करने का लक्ष्य रखा है?",
+    "a": "₹28.48 लाख करोड़"
    },
    "depth": "article"
   },
@@ -1107,33 +1256,49 @@
   {
    "id": "7b7fb4cda3",
    "date": "2026-11-18",
-   "fact": "उत्तराखंड में देशभर के एडवेंचर स्पोर्ट्स का नया राष्ट्रीय केंद्र स्थापित किया जाएगा।",
-   "cat": "परियोजना/अवसंरचना",
+   "fact": "एडवेंचर टूर ऑपरेटर्स एसोसिएशन ऑफ़ इंडिया (ATOAI) का 18वाँ वार्षिक सम्मेलन 13–16 दिसंबर 2026 को जिम कॉर्बेट (रामनगर) में होगा।",
+   "cat": "अन्य",
    "imp": 2,
-   "tag": "एडवेंचर स्पोर्ट्स केंद्र",
-   "model": "groq/openai/gpt-oss-120b",
+   "tag": "ATOAI सम्मेलन",
+   "model": "editor",
    "refs": [
     {
      "title": "देशभर के एडवेंचर स्पोर्ट्स का नया केंद्र बनेगा उत्तराखंड, 'वन्यजीवों के घर' पर होगा राष्ट्रीय स्तर पर महामंथन",
-     "link": "https://news.google.com/rss/articles/CBMihgJBVV95cUxPWXRvem5aSkhjNy14aWQ3TWlJbXI5UE9ZT1BWeG1HTERCcENCWHB1SnhkVF80MElSMkVWNVhfQ3lvcnM0UkppS1JqVFFUY2dhZDdrcmpkck94VEsyNTBlSk05WnpzMkNILTRZTlJBRUZJNjAyaE9seXN3d2I4dXpqRjZqLUxmZ0hpaEFqWkNZMWo3NXdXOU9rMnpiUzJvU2ZxdG9OZnFYRUhRMUUxZ0J3VGppUS1PVm5BaURrWnJoVHRGV0JCWGhlVi03TGRnMVlfeGprZl9jR3FhbVI2X3U0a1ZzdDN3UmkzajA0ZTJhTWI0aVJDNndxbjQtWW1JYWVadkI1ZG5B0gGLAkFVX3lxTE41T1BNUDVIdWNHRlI4cDlwYnJGdmRSM0JCZHoyMWlVc1JYOThGSkgyaUw5T1ZvQkJNV3JRYjZLUnJkZDdtYUo2b1NXUlowdFU2ajh4WUhJVjBDUy1MSW5rR0l6UktkeEVGNkswWHNreVp3UV9hbEdfYXJKQnJpaFdrdUUxeGdOa3FIQ3NTTUwwV3pqZGhHNjF6SXJBd1pOM1dVaURIU3VxVzFkZ2Zkc2lZWElpZ3J4cHo4dEwzeldVZFNPYmduemRjWnhvOVM2SUxzS3hXN2hINVh4T3VFOHVfcnU3eTZ4bS1RaDlTYTJhSGtNVTZfemFFQi1nWkVkR3pkQjFjQ1lsRmpXOA?oc=5",
-     "source": "ETV Bharat"
+     "link": "https://www.etvbharat.com/hi/bharat/18th-annual-convention-of-adventure-tour-operators-association-of-india-to-be-held-in-uttarakhand-from-13th-to-16th-december-utn26111802993",
+     "source": "ETV Bharat",
+     "read": "https://www.etvbharat.com/hi/bharat/18th-annual-convention-of-adventure-tour-operators-association-of-india-to-be-held-in-uttarakhand-from-13th-to-16th-december-utn26111802993"
     }
    ],
    "added": "2026-11-19T06:49:17.279Z",
    "details": [
     {
-     "k": "राजधानी",
-     "v": "देहरादून",
-     "t": "g"
+     "k": "आयोजक",
+     "v": "ATOAI (स्थापना 1994)"
     },
     {
-     "k": "राज्य गठन वर्ष",
-     "v": "2000",
+     "k": "स्थान व तिथि",
+     "v": "जिम कॉर्बेट, रामनगर — 13 से 16 दिसंबर 2026"
+    },
+    {
+     "k": "थीम",
+     "v": "'बाउंडलेस एडवेंचर्स'"
+    },
+    {
+     "k": "उत्तराखंड में पिछली मेज़बानी",
+     "v": "7वाँ सम्मेलन देहरादून (2009) और 11वाँ शिवपुरी-ऋषिकेश (2014)"
+    },
+    {
+     "k": "जिम कॉर्बेट राष्ट्रीय उद्यान",
+     "v": "1936 में हेली नेशनल पार्क नाम से बना — भारत का पहला राष्ट्रीय उद्यान",
      "t": "g"
     }
    ],
-   "sum": "उत्तराखंड में देश के सभी एडवेंचर खेलों के लिए एक राष्ट्रीय केंद्र बनाना तय हुआ है, जिससे खेलों का विकास और प्रशिक्षण एक ही जगह पर होगा।",
-   "depth": "headlines"
+   "sum": "उत्तराखंड तीसरी बार इस राष्ट्रीय सम्मेलन की मेज़बानी करेगा। थीम 'बाउंडलेस एडवेंचर्स' है — लक्ष्य भारत को साल भर का एडवेंचर टूरिज़्म गंतव्य बनाना।",
+   "depth": "article",
+   "quiz": {
+    "q": "ATOAI का 18वाँ वार्षिक सम्मेलन उत्तराखंड में कहाँ होगा?",
+    "a": "जिम कॉर्बेट (रामनगर)"
+   }
   },
   {
    "id": "d30aa7715b",
@@ -1464,7 +1629,7 @@
    "date": "2026-11-16",
    "fact": "स्वाति आले 600 किमी की BRM साइकिल राइड पूरी कर उत्तराखंड की पहली महिला 'सुपर रैंडोन्योर' बनीं।",
    "cat": "खेल",
-   "imp": 3,
+   "imp": 2,
    "tag": "सुपर रैंडोन्योर",
    "model": "editor",
    "refs": [
@@ -1509,46 +1674,52 @@
   {
    "id": "9e3212530c",
    "date": "2026-11-16",
-   "fact": "उत्तराखंड में देश की पहली स्किल डेवलपमेंट पॉलिसी (Skill Development Policy) तैयार की जा रही है।",
+   "fact": "उत्तराखंड की राज्य स्किल डेवलपमेंट पॉलिसी लगभग तैयार; इसमें कौशल प्रतियोगिताओं में राष्ट्रीय/अंतरराष्ट्रीय पदक जीतने वाले युवाओं को पुरस्कार राशि का प्रावधान होगा।",
    "cat": "योजना/नीति",
-   "imp": 3,
+   "imp": 2,
    "tag": "स्किल डेवलपमेंट पॉलिसी",
-   "model": "gemini-3.6-flash",
+   "model": "editor",
    "refs": [
     {
      "title": "उत्तराखंड में तैयार हो रहा देश का पहला स्किल डेवलपमेंट पॉलिसी, 35 युवाओं को सौंपा गया नियुक्ति पत्र",
      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQUVBWYWlNTjY2RlN6MXJnYTcwYy1nbE1UcTNzRmlVeVRfS3M0VDZiakhkYkRUX09pd2N4ZldlMko4Rnd3VmU5QWViVzlha25GbmdxWHU0aFBLUmd0dWlfNVlhYVJNVWlsYXJ4REl5VlJkZlhEelRxQm4zSHVZNFV4b3pwQnJ6LTgyS0ZpUjV1a2JSdjQ1cFowQl9EMlJJcjFIVnd0dmJHUEFkVEY4Tkt2YUhRMWRyWHp0SE5tdFBkONIBxAFBVV95cUxQdU5BMlBWRmhicGF5cEJTeHdFVkM2NWo2ekd0b3A3LVZQd2lpdkFlWlQySzRXWWlEZG1JQzdhWGgzdF9hWlJheC0tSVR4eXFvQVBLLTY3WGdobVRfeGRfamlxZWYwZnU4aWx0VEhVbmZtdmVxTWdMSkJhZlBtNGdjR0FQRG5QWW5rZXI5M3h5QWZtalpoLUNFUHFTcklsQlVvYTZ1aDNTNWR2TEFfLUNETnlZMzBpLVZtdG8tMDNBbDc1RlF2?oc=5",
      "source": "ETV Bharat"
+    },
+    {
+     "title": "उत्तराखंड में तैयार हो रहा देश का पहला स्किल डेवलपमेंट पॉलिसी, 35 युवाओं को सौंपा गया नियुक्ति पत्र",
+     "link": "https://www.etvbharat.com/hi/bharat/country-first-skill-development-policy-is-being-prepared-in-uttarakhand-utn26111606312",
+     "source": "ETV Bharat",
+     "read": "https://www.etvbharat.com/hi/bharat/country-first-skill-development-policy-is-being-prepared-in-uttarakhand-utn26111606312"
     }
    ],
    "added": "2026-11-16T15:36:42.979Z",
    "details": [
     {
-     "k": "नीति",
-     "v": "राज्य स्किल डेवलपमेंट पॉलिसी"
-    },
-    {
      "k": "स्थिति",
-     "v": "तैयार की जा रही है (अभी लागू नहीं)"
+     "v": "लगभग तैयार, अभी लागू नहीं"
     },
     {
-     "k": "उद्देश्य",
-     "v": "प्रशिक्षण को उद्योग और रोज़गार की माँग के अनुरूप बनाना"
+     "k": "नया प्रावधान",
+     "v": "राष्ट्रीय/अंतरराष्ट्रीय स्तर पर पदक जीतने वाले युवाओं को पुरस्कार राशि"
+    },
+    {
+     "k": "दावा",
+     "v": "रिपोर्ट में इसे देश की पहली ऐसी नीति बताया गया है — आधिकारिक पुष्टि बाकी"
     }
    ],
-   "sum": "उत्तराखंड में स्किल डेवलपमेंट पॉलिसी तैयार की जा रही है, जिसे देश की पहली ऐसी नीति बताया गया है। इसका उद्देश्य युवाओं के प्रशिक्षण को रोज़गार की ज़रूरतों से जोड़ना है।",
+   "sum": "16 नवंबर को 35 युवाओं को नियुक्ति पत्र देने के कार्यक्रम में बताया गया कि नीति लगभग तैयार है। अभी पदक विजेताओं को पुरस्कार राशि की कोई तय व्यवस्था नहीं है, घोषणा के आधार पर दी जाती है।",
    "quiz": {
-    "q": "किस राज्य में देश की पहली स्किल डेवलपमेंट पॉलिसी तैयार की जा रही है?",
-    "a": "उत्तराखंड"
+    "q": "उत्तराखंड की प्रस्तावित स्किल डेवलपमेंट पॉलिसी में किन्हें पुरस्कार राशि का प्रावधान होगा?",
+    "a": "राष्ट्रीय/अंतरराष्ट्रीय स्तर पर पदक जीतने वाले युवाओं को"
    },
-   "depth": "headlines"
+   "depth": "article"
   },
   {
    "id": "b6267ce0d3",
    "date": "2026-11-16",
    "fact": "उत्तराखंड का निर्यात ₹13,000 करोड़ के पार पहुँचने के साथ राज्य ने पर्वतीय राज्यों में पहला स्थान हासिल किया है।",
    "cat": "रिपोर्ट/रैंकिंग",
-   "imp": 3,
+   "imp": 2,
    "tag": "निर्यात रैंकिंग",
    "model": "gemini-3.6-flash",
    "refs": [
@@ -1567,11 +1738,6 @@
     {
      "k": "स्थान",
      "v": "पर्वतीय राज्यों में पहला"
-    },
-    {
-     "k": "नीति आयोग निर्यात तैयारी सूचकांक (EPI) 2024",
-     "v": "उत्तराखंड छोटे राज्यों की श्रेणी में शीर्ष पर",
-     "t": "g"
     }
    ],
    "sum": "उत्तराखंड का निर्यात ₹13,000 करोड़ के पार पहुँच गया है। इसके साथ राज्य पर्वतीय राज्यों में पहले स्थान पर है।",
@@ -1586,7 +1752,7 @@
    "date": "2026-11-16",
    "fact": "आसन रामसर साइट पर पर्यटकों की लापरवाही से जैव-विविधता पर ख़तरा बढ़ा है।",
    "cat": "पर्यावरण",
-   "imp": 3,
+   "imp": 2,
    "tag": "आसन रामसर",
    "model": "groq/openai/gpt-oss-120b",
    "refs": [
@@ -2376,5 +2542,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-20T04:05:41.627Z"
+ "updated": "2026-11-20T04:57:37.000Z"
 }
