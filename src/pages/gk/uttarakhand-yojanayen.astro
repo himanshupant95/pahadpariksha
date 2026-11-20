@@ -1,0 +1,271 @@
+---
+import Base from '../../layouts/Base.astro';
+import Quiz from '../../components/Quiz.astro';
+import '../../styles/longform.css';
+import questions from '../../data/quizzes/uttarakhand-yojanayen.json';
+import { SCHEMES, SECTORS, STATUS, ERAS, sorted, type Sector } from '../../data/schemes';
+
+const list = sorted();
+const progs = list.filter((s) => s.sector !== 'law');
+const laws = list.filter((s) => s.sector === 'law');
+const count = (k: Sector) => list.filter((s) => s.sector === k).length;
+const url = 'https://pahadpariksha.in/gk/uttarakhand-yojanayen/';
+const updated = '20 नवंबर 2026';
+
+const faq = [
+  { q: 'उत्तराखंड की पहली स्वरोजगार योजना कौन-सी है?', a: 'वीर चंद्र सिंह गढ़वाली पर्यटन स्वरोजगार योजना — 1 जून 2002 को पर्यटन क्षेत्र में स्वरोजगार के लिए शुरू हुई।' },
+  { q: 'अटल आयुष्मान उत्तराखंड योजना में कितना लाभ मिलता है?', a: '25 दिसंबर 2018 से राज्य के सभी परिवारों को प्रति वर्ष ₹5 लाख तक कैशलेस इलाज। सार्वभौमिक स्वास्थ्य कवरेज देने वाला यह देश का पहला राज्य बताया गया।' },
+  { q: 'नंदा गौरा योजना में कुल कितनी राशि मिलती है?', a: 'जन्म पर ₹11,000 और 12वीं उत्तीर्ण करने पर ₹51,000 — कुल ₹62,000, पात्र परिवार की पहली दो बालिकाओं को।' },
+  { q: 'उत्तराखंड में समान नागरिक संहिता कब लागू हुई?', a: '27 जनवरी 2025 से। विधेयक 7 फ़रवरी 2024 को पारित हुआ और 11 मार्च 2024 को राष्ट्रपति की स्वीकृति मिली।' },
+  { q: 'क्या इस पृष्ठ की सभी योजनाएँ आज भी चालू हैं?', a: 'नहीं। हर योजना पर स्थिति-चिह्न है: "चालू" (2025–26/2026–27 के स्रोत में उल्लिखित), "विलय/नए रूप में", या "ऐतिहासिक — वर्तमान स्थिति अपुष्ट"। आवेदन से पहले संबंधित विभाग की वेबसाइट पर नवीनतम शासनादेश अवश्य देखें।' },
+];
+
+const schema = [
+  { '@context': 'https://schema.org', '@type': 'Article', headline: 'उत्तराखंड सरकार की प्रमुख योजनाएँ (2000–2026)', inLanguage: 'hi', dateModified: '2026-11-20', author: { '@type': 'Organization', name: 'पहाड़ परीक्षा' }, mainEntityOfPage: url },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'उत्तराखंड की प्रमुख योजनाएँ', itemListElement: list.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: `${url}#${s.id}` })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'होम', item: 'https://pahadpariksha.in/' },
+    { '@type': 'ListItem', position: 2, name: 'उत्तराखंड GK', item: 'https://pahadpariksha.in/gk/' },
+    { '@type': 'ListItem', position: 3, name: 'प्रमुख योजनाएँ', item: url },
+  ] },
+];
+
+const oneLiners = [
+  ['राज्य की पहली स्वरोजगार योजना', 'वीर चंद्र सिंह गढ़वाली पर्यटन स्वरोजगार (1 जून 2002)'],
+  ['सार्वभौमिक स्वास्थ्य कवरेज', 'अटल आयुष्मान उत्तराखंड — 25 दिसंबर 2018, ₹5 लाख/परिवार/वर्ष'],
+  ['बालिका: जन्म + 12वीं', 'नंदा गौरा — ₹11,000 + ₹51,000 = ₹62,000'],
+  ['कोविड में लौटे प्रवासियों हेतु', 'मुख्यमंत्री स्वरोजगार योजना — 9 मई 2020 (अब MSY 2.0)'],
+  ['25 kW सौर संयंत्र, 25 वर्ष बिजली ख़रीद', 'मुख्यमंत्री सौर स्वरोजगार — 8 अक्टूबर 2020'],
+  ['कोविड अनाथ बच्चे: ₹3,000/माह + 5% आरक्षण', 'मुख्यमंत्री वात्सल्य — 2 अगस्त 2021'],
+  ['पशुओं का चारा घर तक (अमित शाह ने शुरू की)', 'मुख्यमंत्री घस्यारी कल्याण — 30 अक्टूबर 2021'],
+  ['अंत्योदय: साल में 3 सिलेंडर मुफ़्त', 'मुख्यमंत्री अंत्योदय निःशुल्क गैस रिफ़िल — शुभारंभ 12 फ़रवरी 2023 (पौड़ी)'],
+  ['नकल माफ़िया पर आजीवन कारावास, ₹10 करोड़', 'नकल-विरोधी अधिनियम 2023 (अध्यादेश 10 फ़रवरी 2023)'],
+  ['एकीकृत ब्रांड', 'हाउस ऑफ़ हिमालयाज़ — दिसंबर 2023, ग्लोबल इन्वेस्टर्स समिट'],
+  ['पिरूल ₹50/किग्रा', 'पिरूल लाओ, पैसे पाओ (2024)'],
+  ['समान नागरिक संहिता लागू', '27 जनवरी 2025 — स्वतंत्र भारत में पहला राज्य'],
+  ['11 ज़िलों में बाहरी लोगों को कृषि भूमि नहीं', 'भू-कानून संशोधन — विधानसभा 21 फ़रवरी 2025'],
+  ['एकल महिलाओं को 75% अनुदान (₹2 लाख तक परियोजना)', 'मुख्यमंत्री एकल महिला स्वरोजगार (2025)'],
+];
+---
+<Base title="उत्तराखंड सरकार की प्रमुख योजनाएँ 2000–2026: पूरी सूची, लाभ, पात्रता (UKSSSC/UKPSC)" description="उत्तराखंड राज्य गठन (2000) से 2026 तक की प्रमुख सरकारी योजनाएँ और कानून — शुरू होने की तिथि, मुख्यमंत्री, विभाग, उद्देश्य, पात्रता, लाभ राशि और वर्तमान स्थिति। नंदा गौरा, अटल आयुष्मान, MSY 2.0, घस्यारी, UCC, भू-कानून, नकल-विरोधी कानून सहित। फ़िल्टर, समयरेखा व 15 प्रश्नों का क्विज़।" schema={schema}>
+  <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › प्रमुख योजनाएँ</nav>
+
+  <header class="yh">
+    <p class="kick">उत्तराखंड GK · Government Schemes of Uttarakhand</p>
+    <h1>उत्तराखंड सरकार की प्रमुख योजनाएँ <span>राज्य गठन (2000) से 2026 तक — सरल भाषा में, पूरी जानकारी</span></h1>
+    <p>हर योजना एक कार्ड में: <b>कब शुरू हुई, किसने शुरू की, किसके लिए, क्या लाभ, आज की स्थिति</b> — और स्रोत। नीचे विषय या मुख्यमंत्री-काल चुनकर छाँटिए, या नाम से खोजिए।</p>
+    <div class="stats">
+      <div><b>{progs.length}</b><span>प्रमुख योजनाएँ</span></div>
+      <div><b>{laws.length}</b><span>कानून व नीतियाँ</span></div>
+      <div><b>26</b><span>वर्ष (2000–2026)</span></div>
+      <div><b>{list.filter((s) => s.status === 'active').length}</b><span>2025–26 स्रोतों में चालू</span></div>
+    </div>
+    <p class="upd">अंतिम अद्यतन: {updated}</p>
+  </header>
+
+  <div class="box-exam"><strong><span class="tag exam">इस पृष्ठ का उपयोग कैसे करें</span></strong>
+    <ul class="how">
+      <li><b>राशियाँ और सीमाएँ बदलती रहती हैं</b> — यहाँ लिखी राशि उस स्रोत/वर्ष की है जो कार्ड में दिया है। आवेदन से पहले विभाग का नवीनतम शासनादेश देखें।</li>
+      <li><b>स्थिति-चिह्न:</b> <span class="st st-a">चालू</span> = 2025–26/2026–27 के स्रोत में उल्लेख · <span class="st st-m">विलय</span> = नई योजना में समाहित · <span class="st st-h">ऐतिहासिक</span> = वर्तमान स्थिति हमने सत्यापित नहीं की।</li>
+      <li>जहाँ स्रोतों में <b>तिथि या राशि पर मत-भेद</b> है, कार्ड के नोट में स्पष्ट लिखा है।</li>
+    </ul>
+  </div>
+
+  <section id="khojen" class="flt" aria-label="योजनाएँ छाँटें">
+    <input type="search" id="q" placeholder="योजना का नाम, लाभ या विभाग खोजें… (जैसे: बालिका, सब्सिडी, 2021)" aria-label="योजना खोजें" />
+    <div class="chips" role="group" aria-label="विषय">
+      <button type="button" class="chip on" data-sec="">सभी ({list.length})</button>
+      {Object.entries(SECTORS).map(([k, v]) => count(k as Sector) > 0 && (
+        <button type="button" class="chip" data-sec={k} style={`--c:${v.color}`}>{v.icon} {v.label} ({count(k as Sector)})</button>
+      ))}
+    </div>
+    <div class="sel">
+      <label>मुख्यमंत्री-काल:
+        <select id="era">
+          <option value="">सभी</option>
+          {ERAS.map((e) => <option value={`${e.from}-${e.to}`}>{e.from}–{e.to} · {e.cm}</option>)}
+        </select>
+      </label>
+      <label>स्थिति:
+        <select id="st">
+          <option value="">सभी</option>
+          {Object.entries(STATUS).map(([k, v]) => <option value={k}>{v.label}</option>)}
+        </select>
+      </label>
+      <span id="cnt" class="cnt" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <section id="yojanayen">
+    <h2>योजनाएँ व कानून — कार्ड</h2>
+    <div class="cards">
+      {list.map((s) => {
+        const sec = SECTORS[s.sector];
+        return (
+          <article class="card" id={s.id} data-sec={s.sector} data-year={s.year} data-st={s.status}
+            data-text={`${s.name} ${s.en ?? ''} ${s.aim} ${s.who} ${s.benefit} ${s.dept} ${s.cm} ${s.year} ${s.when}`.toLowerCase()} style={`--c:${sec.color}`}>
+            <div class="ch">
+              <span class="yr">{s.year}</span>
+              <div>
+                <h3>{s.name}</h3>
+                {s.en && <p class="en">{s.en}</p>}
+                <p class="meta"><span class="sec">{sec.icon} {sec.label}</span><span class={`st ${STATUS[s.status].cls}`}>{STATUS[s.status].label}</span></p>
+              </div>
+            </div>
+            <p class="aim">{s.aim}</p>
+            <dl class="kv2">
+              <dt>📅 कब</dt><dd>{s.when}</dd>
+              <dt>👤 मुख्यमंत्री</dt><dd>{s.cm}</dd>
+              <dt>🏛️ विभाग</dt><dd>{s.dept}</dd>
+              <dt>🎯 किसके लिए</dt><dd>{s.who}</dd>
+              <dt>💰 क्या लाभ</dt><dd class="ben">{s.benefit}</dd>
+            </dl>
+            {s.note && <p class="note"><b>ध्यान दें:</b> {s.note}</p>}
+            <details class="src"><summary>स्रोत ({s.src.length})</summary>
+              <ul>{s.src.map((x) => <li>{x.u ? <a href={x.u} target="_blank" rel="noopener nofollow">{x.t}</a> : x.t}</li>)}</ul>
+            </details>
+          </article>
+        );
+      })}
+    </div>
+    <p id="none" class="muted" hidden>इस खोज/फ़िल्टर से कोई योजना नहीं मिली — फ़िल्टर बदलकर देखें।</p>
+  </section>
+
+  <section id="samayrekha">
+    <h2>समयरेखा: किस मुख्यमंत्री के काल में कौन-सी योजना</h2>
+    <ol class="tl">
+      {ERAS.map((e) => {
+        const items = list.filter((s) => s.year >= e.from && (s.year < e.to || (e.to === 2026 && s.year <= 2026)) && !(e.id === 'e5' && s.year === 2021 && s.cm.includes('धामी')) && !(e.id === 'e6' && s.year === 2021 && !s.cm.includes('धामी')));
+        return (
+          <li>
+            <p class="tl-h"><b>{e.from}–{e.to === 2026 ? 'वर्तमान' : e.to}</b> · {e.cm}</p>
+            {items.length ? <ul>{items.map((s) => <li><a href={`#${s.id}`}>{s.name}</a> <span class="muted">({s.when.split(';')[0]})</span></li>)}</ul> : <p class="muted">इस अवधि (अंतरिम सरकार, नवंबर 2000–मार्च 2002) की कोई प्रमुख दीर्घकालिक योजना इस सूची में नहीं — राज्य की प्रशासनिक नींव रखने का काल।</p>}
+          </li>
+        );
+      })}
+    </ol>
+    <p class="muted">काल-विभाजन स्थूल है: 2021 में त्रिवेंद्र सिंह रावत (मार्च 2021 तक), तीरथ सिंह रावत (मार्च–जुलाई 2021) और पुष्कर सिंह धामी (4 जुलाई 2021 से) — तीनों रहे। मुख्यमंत्रियों की पूरी सूची: <a href="/history/statehood-movement/">इतिहास अध्याय 9</a>।</p>
+  </section>
+
+  <section id="yaad-rakhen">
+    <h2>परीक्षा के लिए वन-लाइनर</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>संकेत / प्रश्न</th><th>उत्तर</th></tr></thead>
+      <tbody>{oneLiners.map(([a, b]) => <tr><td>{a}</td><td><b>{b}</b></td></tr>)}</tbody>
+    </table></div>
+  </section>
+
+  <section id="naam">
+    <h2>योजनाओं के नाम किनके नाम पर?</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>नाम</th><th>कौन थे</th><th>योजना</th></tr></thead>
+      <tbody>
+        <tr><td>वीर चंद्र सिंह गढ़वाली</td><td>पेशावर कांड (1930) में निहत्थे पठानों पर गोली चलाने से इनकार करने वाले गढ़वाली सैनिक</td><td>पर्यटन स्वरोजगार योजना</td></tr>
+        <tr><td>गौरा देवी</td><td>चिपको आंदोलन (रैणी, 1974) की नायिका</td><td>गौरा देवी कन्याधन; नंदा गौरा</td></tr>
+        <tr><td>तीलू रौतेली</td><td>गढ़वाल की 17वीं सदी की वीरांगना</td><td>तीलू रौतेली पेंशन (व पुरस्कार)</td></tr>
+        <tr><td>नंदा देवी</td><td>उत्तराखंड की आराध्य देवी (राजजात यात्रा)</td><td>नंदा देवी कन्या; नंदा गौरा</td></tr>
+        <tr><td>अटल बिहारी वाजपेयी</td><td>पूर्व प्रधानमंत्री — उनके कार्यकाल में राज्य बना</td><td>अटल आयुष्मान, अटल उत्कृष्ट विद्यालय, अटल खाद्यान्न</td></tr>
+        <tr><td>माधो सिंह भंडारी</td><td>मलेथा की गूल बनाने वाले गढ़वाल के सेनापति</td><td>माधो सिंह भंडारी सहकारी सामूहिक खेती योजना (2023)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted">व्यक्तित्वों का विस्तार: <a href="/history/">उत्तराखंड का इतिहास</a>।</p>
+  </section>
+
+  <section id="quiz">
+    <h2>क्विज़: उत्तराखंड की योजनाएँ (15 प्रश्न)</h2>
+    <p>UKSSSC/UKPSC स्तर के अभ्यास प्रश्न — पिछले वर्षों के प्रश्न नहीं। हर उत्तर के साथ व्याख्या।</p>
+    <Quiz id="uttarakhand-yojanayen" title="उत्तराखंड की प्रमुख योजनाएँ" questions={questions} />
+  </section>
+
+  <section id="faq">
+    <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+    {faq.map((f) => (<details class="qa"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+
+  <section id="srot">
+    <h2>स्रोत व पद्धति</h2>
+    <p>हर कार्ड में उसके स्रोत दिए हैं — प्राथमिकता क्रम: सरकारी पोर्टल/PIB/अधिनियम पाठ → प्रमुख समाचार एजेंसियाँ → परीक्षा-समाचार संकलन (Drishti आदि)। विभागवार 2026-27 स्थिति के लिए <a href="https://www.impriindia.com/insights/policy-update/uttarakhand-department-wise-scheme/" target="_blank" rel="noopener nofollow">IMPRI का संकलन</a> देखा गया, जहाँ उसके वर्ष अन्य स्रोतों से टकराए, वहाँ कार्ड में नोट है। केंद्र सरकार की योजनाएँ (PM-JAY, PM किसान, जल जीवन मिशन आदि) इस पृष्ठ में नहीं हैं — यह केवल <b>राज्य सरकार</b> की योजनाओं का संकलन है। कोई त्रुटि दिखे तो <a href="/contact/">हमें बताइए</a>।</p>
+  </section>
+
+  <p class="muted">संबंधित: <a href="/history/statehood-movement/">राज्य आंदोलन और 2000 के बाद का उत्तराखंड</a> · <a href="/geography/">उत्तराखंड का भूगोल</a> · <a href="/current-affairs/">करेंट अफेयर्स</a></p>
+</Base>
+
+<script>
+  const q = document.getElementById('q') as HTMLInputElement;
+  const era = document.getElementById('era') as HTMLSelectElement;
+  const st = document.getElementById('st') as HTMLSelectElement;
+  const cnt = document.getElementById('cnt')!;
+  const none = document.getElementById('none')!;
+  const cards = [...document.querySelectorAll<HTMLElement>('.card')];
+  let sec = '';
+  const apply = () => {
+    const t = q.value.trim().toLowerCase();
+    const [a, b] = era.value ? era.value.split('-').map(Number) : [0, 9999];
+    let n = 0;
+    cards.forEach((c) => {
+      const y = +c.dataset.year!;
+      const ok = (!sec || c.dataset.sec === sec) && (!st.value || c.dataset.st === st.value) && y >= a && y <= b && (!t || c.dataset.text!.includes(t));
+      c.hidden = !ok; if (ok) n++;
+    });
+    cnt.textContent = `${n} परिणाम`;
+    none.hidden = n > 0;
+  };
+  document.querySelectorAll<HTMLButtonElement>('.chip').forEach((btn) => btn.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach((x) => x.classList.remove('on'));
+    btn.classList.add('on'); sec = btn.dataset.sec || ''; apply();
+  }));
+  [q, era, st].forEach((el) => el.addEventListener('input', apply));
+  apply();
+</script>
+
+<style>
+  .yh { background: linear-gradient(135deg, #1e1b4b, #0f766e); color: #fff; border-radius: 18px; padding: 24px; }
+  .yh .kick { margin: 0; color: #a7f3d0; font-weight: 700; font-size: .82rem; }
+  .yh h1 { color: #fff; margin: 4px 0 8px; }
+  .yh h1 span { display: block; font-size: 1.05rem; color: #ccfbf1; font-weight: 600; }
+  .yh p { color: #ecfeff; max-width: 780px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-top: 14px; }
+  .stats div { background: rgba(255,255,255,.12); border-radius: 12px; padding: 10px 12px; }
+  .stats b { display: block; font-size: 1.6rem; color: #fde68a; line-height: 1.1; }
+  .stats span { font-size: .85rem; }
+  .yh .upd { font-size: .8rem; opacity: .85; margin: 10px 0 0; }
+  .how { margin: 4px 0 0; padding-left: 18px; font-size: .92rem; }
+  .flt { background: var(--bg, #fff); padding: 10px 0; border-bottom: 1px solid var(--line); margin: 18px 0 8px; }
+  .flt input { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font-size: 1rem; font-family: inherit; }
+  .chips { display: flex; gap: 6px; overflow-x: auto; padding: 8px 0 4px; scrollbar-width: thin; }
+  .chip { flex: 0 0 auto; border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 5px 11px; font-size: .85rem; cursor: pointer; font-family: inherit; color: var(--ink); }
+  .chip.on { background: var(--c, #0f766e); border-color: var(--c, #0f766e); color: #fff; }
+  .sel { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: .88rem; }
+  .sel select { font-family: inherit; padding: 4px 6px; border-radius: 8px; border: 1px solid var(--line); max-width: 260px; }
+  .cnt { margin-left: auto; color: var(--muted); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--c); border-radius: 14px; padding: 14px 16px; scroll-margin-top: 140px; }
+  .card:target { box-shadow: 0 0 0 3px var(--c); }
+  .ch { display: flex; gap: 12px; align-items: flex-start; }
+  .yr { flex: 0 0 auto; background: var(--c); color: #fff; font-weight: 800; border-radius: 10px; padding: 6px 8px; font-size: .95rem; }
+  .card h3 { margin: 0; font-size: 1.08rem; line-height: 1.35; color: var(--ink); }
+  .en { margin: 2px 0 0; font-size: .75rem; color: var(--muted); }
+  .meta { margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .sec { font-size: .75rem; color: var(--c); font-weight: 700; }
+  .st { font-size: .72rem; font-weight: 700; border-radius: 999px; padding: 1px 8px; }
+  .st-a { background: #dcfce7; color: #166534; } .st-m { background: #e0e7ff; color: #3730a3; } .st-h { background: #f1f5f9; color: #475569; } .st-l { background: #fef3c7; color: #92400e; }
+  .aim { margin: 10px 0 8px; font-weight: 600; }
+  .kv2 { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin: 0; font-size: .9rem; }
+  .kv2 dt { color: var(--muted); white-space: nowrap; }
+  .kv2 dd { margin: 0; }
+  .kv2 .ben { background: #f0fdf4; border-radius: 8px; padding: 4px 8px; }
+  .note { font-size: .84rem; background: #fdf4ff; border-left: 4px solid #c026d3; border-radius: 8px; padding: 6px 10px; margin: 10px 0 0; }
+  .src { margin-top: 8px; font-size: .8rem; }
+  .src summary { cursor: pointer; color: var(--muted); }
+  .src ul { margin: 4px 0 0; padding-left: 18px; }
+  .tl { list-style: none; padding: 0; border-left: 3px solid var(--line); margin-left: 6px; }
+  .tl > li { position: relative; padding: 0 0 14px 18px; }
+  .tl > li::before { content: ''; position: absolute; left: -9px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: #0f766e; border: 3px solid #fff; }
+  .tl-h { margin: 0 0 4px; }
+  .tl ul { margin: 0; padding-left: 18px; }
+  details.qa { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 6px 0; background: var(--card); }
+  details.qa summary { cursor: pointer; font-weight: 600; }
+  @media (min-width: 760px) { .flt { position: sticky; top: 0; z-index: 5; } }
+  @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } .cnt { margin-left: 0; } }
+</style>

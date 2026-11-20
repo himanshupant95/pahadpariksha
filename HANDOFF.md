@@ -155,3 +155,9 @@ Rules agreed with the user:
 - Key data: IMD "Climate of Uttarakhand" (annual normal 1,326.1 mm; monsoon ~78%; records 47.4°C Roorkee 22.5.1978, −15.1°C Joshimath 15.1.1974; 495.3 mm Haridwar 18.9.1880). ISFR 2023 forest cover 24,304 km², tree cover 1,231; RFA 38,000 (ISFR 2021). Tigers 560 (AITE 2022), snow leopard 124 (SPAI Jan 2024), elephants 1,792 (SAIEE Oct 2025, not comparable to 2,026).
 - Flagged: 71% RFA vs 45.4% forest cover; Dharali 2025 "cloudburst" unconfirmed by IMD; monsoon share 78% vs 79%; PA areas vary by source.
 - Refresh when new: ISFR 2025, AITE 2026, Ramsar count, new conservation reserves.
+
+## Schemes page live (20 Nov 2026)
+- /gk/uttarakhand-yojanayen/ — 38 entries (33 state schemes + 5 laws) from src/data/schemes.ts (fields: year, when, cm, dept, sector, aim, who, benefit, status, note, src[]). Client-side filters (sector chips, CM era, status, search), CM-era timeline, one-liners, eponyms table, 15-Q quiz (uttarakhand-yojanayen.json, wired in DailyQuestion), FAQ + ItemList/FAQ schema.
+- Status meaning: active = cited 2025–26/2026–27 source; merged; historic = current status not verified; law.
+- Flagged conflicts: Gaura Devi Kanyadhan 2006-07 vs 2015; Ghasyari 2019 (IMPRI) vs launch 30 Oct 2021 (PIB); Apple Mission 2016 (IMPRI) vs first apple policy 2023; homestay hill cap ₹10 lakh vs ₹15 lakh reports; women horizontal reservation % not primary-verified.
+- Add new schemes by appending to SCHEMES; refresh "updated" date in the page.
