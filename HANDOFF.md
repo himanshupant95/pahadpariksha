@@ -147,3 +147,11 @@ Rules agreed with the user:
 - Flagged on pages: glacier count 968 (Raina & Srivastava 2008) vs 1,290 (WIHG, Jun 2025); seismic code IS 1893:2016 in force (2025 Zone VI code withdrawn 3 Mar 2026); collision ~50 Ma (range 55–45); Nanda Devi "2nd highest in India" only excluding K2; pass heights vary by source (omitted); Panch Prayag elevations are SRTM confluence minima, not town heights; Chamoli 2021 = rock-ice avalanche, not GLOF.
 - Time-sensitive lines to refresh: Tehri complex 2,400 MW (PSP full Apr 2026); Lipulekh trade resumed 1 Aug 2026; Lakhwar/Kishau/Pancheshwar/Jamrani statuses.
 - Next: chapters 6–18 (climate onward). Owner prefers staggered publishing.
+
+## Geography Part III live — chapters 6–8 (20 Nov 2026)
+- /geography/climate/, /geography/soils-vegetation/, /geography/biodiversity-protected-areas/ (quizzes geo-climate, geo-soils-vegetation, geo-biodiversity; wired in DailyQuestion).
+- New maps (scripts/maps/geo_ch678.py): g06-district-rainfall (IMD district normals 1961–2010), g06-altitude-zones, g07-vegetation-belts (SRTM bands — "potential", not actual cover), g08-protected-areas (OSM polygons; Nandhaur + 4 conservation reserves as approximate points because OSM lacks them).
+- New diagrams: MonsoonWD, Orographic, AltitudeTemp, VegZonation, FaunaZones.
+- Key data: IMD "Climate of Uttarakhand" (annual normal 1,326.1 mm; monsoon ~78%; records 47.4°C Roorkee 22.5.1978, −15.1°C Joshimath 15.1.1974; 495.3 mm Haridwar 18.9.1880). ISFR 2023 forest cover 24,304 km², tree cover 1,231; RFA 38,000 (ISFR 2021). Tigers 560 (AITE 2022), snow leopard 124 (SPAI Jan 2024), elephants 1,792 (SAIEE Oct 2025, not comparable to 2,026).
+- Flagged: 71% RFA vs 45.4% forest cover; Dharali 2025 "cloudburst" unconfirmed by IMD; monsoon share 78% vs 79%; PA areas vary by source.
+- Refresh when new: ISFR 2025, AITE 2026, Ramsar count, new conservation reserves.
