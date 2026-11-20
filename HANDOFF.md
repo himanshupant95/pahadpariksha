@@ -161,3 +161,8 @@ Rules agreed with the user:
 - Status meaning: active = cited 2025–26/2026–27 source; merged; historic = current status not verified; law.
 - Flagged conflicts: Gaura Devi Kanyadhan 2006-07 vs 2015; Ghasyari 2019 (IMPRI) vs launch 30 Oct 2021 (PIB); Apple Mission 2016 (IMPRI) vs first apple policy 2023; homestay hill cap ₹10 lakh vs ₹15 lakh reports; women horizontal reservation % not primary-verified.
 - Add new schemes by appending to SCHEMES; refresh "updated" date in the page.
+
+### Schemes page — central programmes (20 Nov 2026)
+- `src/data/schemes.ts` now also exports `CENTRAL` (14 entries, `scope: 'central'`, `ut` = Uttarakhand-specific exam facts) + `sortedCentral()`. New sectors `infra`, `water`; new status `build` (निर्माणाधीन).
+- Cards rendered by `src/components/SchemeCard.astro` (card CSS lives there, scoped). Page has राज्य/केंद्र scope toggle, separate #kendra section with quick table, central one-liners; timeline stays state-only.
+- Quiz now 25 Qs. Flagged conflicts: R–K rail cost/deadline (₹24.6k→₹37k cr; 2026→2028→2029), Silkyara cost ₹853 vs ₹1,384 cr, Char Dham 825/889/900+ km, D–D expressway corridor 12/14 km, JJM denominators, Jamrani central share ₹1,557.18 vs ₹1,730 cr, VVP-II district split sums to 41.

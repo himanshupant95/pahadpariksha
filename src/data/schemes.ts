@@ -2,12 +2,16 @@
 // status: active = 2025–26/2026–27 के आधिकारिक/विश्वसनीय स्रोत में चालू बताई गई; merged = किसी नई योजना में विलय;
 // historic = ऐतिहासिक/मूल रूप — वर्तमान स्थिति हमने अलग से सत्यापित नहीं की; law = कानून/नीति.
 
-export type Sector = 'women' | 'self' | 'tourism' | 'agri' | 'health' | 'edu' | 'social' | 'food' | 'forest' | 'rural' | 'law';
-export type Status = 'active' | 'merged' | 'historic' | 'law';
+export type Sector = 'women' | 'self' | 'tourism' | 'agri' | 'health' | 'edu' | 'social' | 'food' | 'forest' | 'rural' | 'infra' | 'water' | 'law';
+export type Status = 'active' | 'build' | 'merged' | 'historic' | 'law';
 
 export interface Scheme {
   id: string; name: string; en?: string; year: number; when: string; cm: string; dept: string; sector: Sector;
   aim: string; who: string; benefit: string; status: Status; note?: string; src: { t: string; u?: string }[];
+  /** 'central' = केंद्र सरकार की योजना/परियोजना जिसका उत्तराखंड पर बड़ा असर; न हो तो राज्य सरकार की */
+  scope?: 'central';
+  /** केंद्रीय योजना: उत्तराखंड-विशिष्ट तथ्य (परीक्षा में यही पूछे जाते हैं) */
+  ut?: string;
 }
 
 export const SECTORS: Record<Sector, { label: string; icon: string; color: string }> = {
@@ -21,11 +25,14 @@ export const SECTORS: Record<Sector, { label: string; icon: string; color: strin
   food: { label: 'खाद्य व ईंधन', icon: '🍚', color: '#ca8a04' },
   forest: { label: 'वन व पर्यावरण', icon: '🌲', color: '#15803d' },
   rural: { label: 'ग्रामीण विकास व आजीविका', icon: '🏡', color: '#0d9488' },
+  infra: { label: 'सड़क, रेल, रोपवे', icon: '🛤️', color: '#b45309' },
+  water: { label: 'जल, नदी व बाँध', icon: '💧', color: '#0369a1' },
   law: { label: 'प्रमुख कानून व नीतियाँ', icon: '⚖️', color: '#475569' },
 };
 
 export const STATUS: Record<Status, { label: string; cls: string }> = {
   active: { label: 'चालू (2025–26 स्रोत)', cls: 'st-a' },
+  build: { label: 'निर्माणाधीन / स्वीकृत परियोजना', cls: 'st-b' },
   merged: { label: 'विलय / नए रूप में', cls: 'st-m' },
   historic: { label: 'ऐतिहासिक — वर्तमान स्थिति अपुष्ट', cls: 'st-h' },
   law: { label: 'कानून / नीति', cls: 'st-l' },
@@ -248,3 +255,123 @@ export const SCHEMES: Scheme[] = [
 ];
 
 export const sorted = () => [...SCHEMES].sort((a, b) => a.year - b.year);
+
+// ================= केंद्र सरकार की योजनाएँ/परियोजनाएँ — उत्तराखंड पर बड़ा असर =================
+// सत्यापन: नवंबर 2026. "ut" में केवल उत्तराखंड-विशिष्ट आँकड़े; जहाँ स्रोत टकराते हैं, note में दोनों।
+const PIBJ = (t: string, u: string) => ({ t, u });
+
+export const CENTRAL: Scheme[] = [
+  { id: 'c-pmgsy', scope: 'central', name: 'प्रधानमंत्री ग्राम सड़क योजना (PMGSY)', en: 'Pradhan Mantri Gram Sadak Yojana', year: 2000, when: '25 दिसंबर 2000', cm: 'केंद्र — प्रधानमंत्री अटल बिहारी वाजपेयी', dept: 'ग्रामीण विकास मंत्रालय', sector: 'infra',
+    aim: 'सड़क-विहीन ग्रामीण बसावटों को बारहमासी (all-weather) सड़क से जोड़ना।',
+    who: 'असंबद्ध ग्रामीण बसावटें — पर्वतीय राज्यों में कम आबादी वाली बसावटें भी पात्र।',
+    benefit: 'केंद्र-प्रायोजित ग्रामीण सड़क व पुल निर्माण; चरण I–III के बाद अब PMGSY-IV।',
+    ut: 'PMGSY-III में 212 सड़कें (2,288 किमी) व 9 पुल स्वीकृत। 2024-25 में 814 किमी सड़क बनी, ₹933 करोड़ व्यय (लक्ष्य ₹900 करोड़)। PMGSY-IV में 1,490 सड़क-विहीन बसावटें चिह्नित, पहले चरण में लगभग 8,500 किमी का सर्वे; ₹1,706.94 करोड़ से 1,228 किमी सड़कें (309 बसावटें) स्वीकृत।',
+    status: 'active', note: 'PMGSY-IV सर्वे लंबाई पर स्रोतों में 8,500 किमी व 8,750 किमी दोनों आँकड़े हैं।',
+    src: [PIBJ('Indian Masterminds — PMGSY-III: 212 सड़कें, 2,288 किमी (संसद उत्तर)', 'https://indianmasterminds.com/news/uttarakhand-sanctioned-212-roads-under-pmgsy-iii-confirms-rural-development-ministry-details-inside-132532/'), PIBJ('Garhwal Post — 2024-25 में ₹933 करोड़ व्यय, PMGSY-IV सर्वे', 'https://garhwalpost.in/?p=80733'), PIBJ('Indian Masterminds — PMGSY-IV: ₹1,706.94 करोड़, 1,228.2 किमी, 309 बसावटें', 'https://indianmasterminds.com/news/uttarakhand-65-crore-crop-insurance-farmers-agriculture-initiatives-172731/')] },
+
+  { id: 'c-namamigange', scope: 'central', name: 'नमामि गंगे कार्यक्रम', en: 'Namami Gange Programme (NMCG)', year: 2014, when: '2014 (फ़्लैगशिप कार्यक्रम); मिशन-II 2026 तक', cm: 'केंद्र — प्रधानमंत्री नरेंद्र मोदी', dept: 'जल शक्ति मंत्रालय — राष्ट्रीय स्वच्छ गंगा मिशन (NMCG)', sector: 'water',
+    aim: 'गंगा व सहायक नदियों का प्रदूषण-नियंत्रण, संरक्षण व पुनर्जीवन — सीवेज उपचार, घाट-शवदाह गृह, वनीकरण, जैव-विविधता।',
+    who: 'गंगा बेसिन के राज्य; उत्तराखंड में 16–17 गंगा-तट नगर।',
+    benefit: 'सीवेज ट्रीटमेंट प्लांट (STP), नालों का इंटरसेप्शन-डायवर्जन, घाट, शवदाह गृह, नदी-तट वनीकरण। नमामि गंगे मिशन-II: ₹22,500 करोड़ (2026 तक)।',
+    ut: '29 सितंबर 2020 को प्रधानमंत्री ने उत्तराखंड की 6 बड़ी परियोजनाएँ लोकार्पित कीं — जगजीतपुर, हरिद्वार में 68 MLD STP (नया) व 27 MLD का उन्नयन; सराय (हरिद्वार) 18 MLD; लक्कड़घाट (ऋषिकेश) 26 MLD; मुनि की रेती में चंद्रेश्वर नगर 7.5 MLD — देश का पहला 4-मंज़िला STP; चोरपानी 5 MLD; बद्रीनाथ में 1 MLD व 0.01 MLD। हरिद्वार–ऋषिकेश क्षेत्र गंगा में जाने वाले अपशिष्ट जल का लगभग 80% देता है। राज्यसभा (फ़रवरी 2025): उत्तराखंड में प्रदूषण-निवारण की 42 परियोजनाएँ स्वीकृत, 36 पूर्ण; घाट व शवदाह गृह 21 स्वीकृत, 13 पूर्ण।',
+    status: 'active', note: 'CAG रिपोर्ट संख्या 2 (2025) ने उत्तराखंड में अनुपचारित सीवेज का गंगा में जाना, STP का कम उपयोग और अनटैप्ड नाले जैसी कमियाँ बताईं — "उपलब्धि बनाम ऑडिट" प्रश्न में दोनों पक्ष याद रखें। 2020 में "सभी 30 STP परियोजनाएँ पूर्ण" (PIB) और 2025 में "42 में से 36" — दोनों अलग-अलग गिनती (केवल STP बनाम सभी प्रदूषण-निवारण कार्य) हैं।',
+    src: [PIBJ('narendramodi.in — 29 सितंबर 2020 की 6 मेगा परियोजनाएँ', 'https://www.narendramodi.in/prime-minister-shri-narendra-modi-shall-inaugurate-six-mega-projects-in-uttarakhand-under-the-namami-gange-mission-at-11-am-on-29th-september-'), PIBJ('Drishti IAS (29 सितंबर 2020) — 30 STP, 80% अपशिष्ट भार', 'https://www.drishtiias.com/daily-updates/daily-news-analysis/six-mega-projects-in-uttarakhand-namami-gange-mission/print_manually'), PIBJ('राज्यसभा अतारांकित प्रश्न 716 (10.02.2025) — राज्यवार परियोजनाएँ', 'https://rsdebate.nic.in/bitstream/123456789/758436/1/PQ_267_10022025_U716_p278_p281.pdf'), PIBJ('CAG — Report No. 2 of 2025, Namami Gange (Uttarakhand)', 'https://cag.gov.in/webroot/uploads/download_audit_report/2025/Report-No.-2-of-2025_Namami-Gange_UK_English-(04-07-2025)-069b020170bd314.74984302.pdf')] },
+
+  { id: 'c-prashad', scope: 'central', name: 'प्रसाद (PRASHAD) व स्वदेश दर्शन', en: 'PRASHAD · Swadesh Darshan / SD 2.0', year: 2015, when: 'केदारनाथ परियोजना 2015-16; बद्रीनाथ 2018-19; गंगोत्री-यमुनोत्री 2021-22', cm: 'केंद्र — प्रधानमंत्री नरेंद्र मोदी', dept: 'पर्यटन मंत्रालय', sector: 'tourism',
+    aim: 'तीर्थ-स्थलों (PRASHAD) और थीम-आधारित पर्यटन सर्किट (स्वदेश दर्शन) में बुनियादी सुविधाएँ।',
+    who: 'चयनित तीर्थ/पर्यटन स्थल; राज्य पर्यटन विभाग क्रियान्वयन करता है।',
+    benefit: 'केंद्रीय अनुदान से यात्री-सुविधा, मार्ग, शौचालय, पार्किंग, सौंदर्यीकरण आदि।',
+    ut: 'PRASHAD में 3 परियोजनाएँ: (1) केदारनाथ का एकीकृत विकास — 2015-16, ₹34.77 करोड़; (2) बद्रीनाथ धाम में तीर्थ-सुविधा — 2018-19, ₹56.15 करोड़; (3) गंगोत्री व यमुनोत्री धाम — 2021-22, ₹54.36 करोड़। स्वदेश दर्शन: उत्तराखंड हेरिटेज सर्किट (कटारमल–जागेश्वर–बैजनाथ–देवीधुरा) 2016-17, ₹76.32 करोड़। स्वदेश दर्शन 2.0 (2023-24): गुंजी में "रूरल टूरिज़्म क्लस्टर एक्सपीरियंस" ₹32.20 करोड़ व "टी गार्डन एक्सपीरियंस" ₹11.21 करोड़।',
+    status: 'active', note: 'SASCI (राज्यों को पूँजी निवेश हेतु विशेष सहायता) के तहत "आइकॉनिक सिटी ऋषिकेश: राफ़्टिंग बेस स्टेशन" ₹100 करोड़ — यह PRASHAD नहीं है, भ्रमित न हों।',
+    src: [PIBJ('राज्यसभा प्रश्न 940 (27.07.2023) — PRASHAD व स्वदेश दर्शन सूची', 'https://rsdebate.nic.in/bitstream/123456789/741941/1/PQ_260_27072023_U940_p386_p387.pdf'), PIBJ('पर्यटन मंत्रालय — लोकसभा प्रश्न 1254 (05.12.2024), SD 2.0', 'https://tourism.gov.in/sites/default/files/2024-12/usq.1254%20for%2005.12.2024.pdf'), PIBJ('पर्यटन मंत्रालय — प्रश्न 3906 (24.03.2025), SASCI ऋषिकेश', 'https://tourism.gov.in/sites/default/files/2025-03/usq.3906%20for%2024.03.2025.pdf')] },
+
+  { id: 'c-rkrail', scope: 'central', name: 'ऋषिकेश–कर्णप्रयाग रेल परियोजना', en: 'Rishikesh–Karnaprayag New BG Rail Line', year: 2016, when: '2016 में स्वीकृत; निर्माणाधीन', cm: 'केंद्र — प्रधानमंत्री नरेंद्र मोदी', dept: 'रेल मंत्रालय — रेल विकास निगम लि. (RVNL)', sector: 'infra',
+    aim: 'गढ़वाल के पहाड़ी ज़िलों को पहली बार ब्रॉड-गेज रेल से जोड़ना — चारधाम यात्रा, पर्यटन, रणनीतिक पहुँच।',
+    who: 'देहरादून, टिहरी, पौड़ी, रुद्रप्रयाग, चमोली — 5 ज़िले।',
+    benefit: '125 किमी लाइन, 12 स्टेशन (योग नगरी ऋषिकेश से कर्णप्रयाग/सेवई), लगभग 83% मार्ग सुरंग में; 16 मुख्य सुरंगें (~104 किमी) + 12 एस्केप सुरंगें (~98 किमी) = लगभग 213 किमी सुरंग-खुदाई; 19 बड़े पुल।',
+    ut: 'सुरंग-8 (देवप्रयाग–जनासू) 14.58 किमी — देश की सबसे लंबी परिवहन सुरंग; TBM से खोदी गई। सितंबर 2026 तक 213 में से लगभग 206 किमी सुरंग-खुदाई पूरी, कुल प्रगति लगभग 78%; 11 सितंबर 2026 को एस्केप सुरंग-1 (10.847 किमी, परियोजना की दूसरी सबसे लंबी) का ब्रेकथ्रू — 41वाँ ब्रेकथ्रू।',
+    status: 'build', note: 'समय-सीमा व लागत बार-बार बदली: पहले दिसंबर 2026, फिर 2028 (रेलवे बोर्ड, अप्रैल 2026), और सितंबर 2026 की रिपोर्टों में दिसंबर 2029 तथा लगभग ₹37,000 करोड़ (पहले ~₹24,600 करोड़ बताई गई)। सुरंगों की संख्या भी स्रोतों में 16/17/28 लिखी मिलती है — 16 मुख्य + 12 एस्केप = 28 सुरंगें, यही संगति है।',
+    src: [PIBJ('ThePrint/PTI (13 अप्रैल 2026) — 2028 लक्ष्य, 14.58 किमी सुरंग', 'https://theprint.in/india/rvnl-to-complete-rishikesh-karnaprayag-project-by-2028-chairman-railway-board/2903857'), PIBJ('Swarajya (9 सितंबर 2026) — 206/213 किमी, 78% प्रगति, दिसंबर 2029', 'https://swarajyamag.com/infrastructure/rishikesh-karnaprayag-rail-line-in-uttarakhand-nearly-206-km-of-213-km-tunnel-excavation-complete-40-of-46-breakthroughs-achieved'), PIBJ('GKToday — 41वाँ ब्रेकथ्रू, ₹37,000 करोड़', 'https://www.gktoday.in/rishikesh-karnaprayag-rail-project-completes-41st-tunnel-breakthrough/'), PIBJ('NewKerala/ANI (22 अक्टूबर 2026) — 12 स्टेशन, 83% सुरंग, 19 पुल', 'https://www.newkerala.com/news/a/rishikesh-karnaprayag-rail-line-uttarakhands-lifeline-future-ashwini-vaishnaw-125.htm')] },
+
+  { id: 'c-chardham', scope: 'central', name: 'चारधाम सड़क परियोजना (ऑल-वेदर रोड)', en: 'Char Dham Pariyojana / Chardham Mahamarg', year: 2016, when: 'शिलान्यास 27 दिसंबर 2016, देहरादून', cm: 'केंद्र — प्रधानमंत्री नरेंद्र मोदी', dept: 'सड़क परिवहन एवं राजमार्ग मंत्रालय (NHIDCL, BRO, राज्य PWD)', sector: 'infra',
+    aim: 'यमुनोत्री, गंगोत्री, केदारनाथ, बद्रीनाथ तक बारहमासी चौड़ी सड़क; चीन सीमा तक सेना की तेज़ आवाजाही।',
+    who: 'चारधाम यात्री, सीमांत क्षेत्र, सेना।',
+    benefit: 'लगभग 825 किमी राष्ट्रीय राजमार्गों का चौड़ीकरण (53 पैकेज), भूस्खलन-उपचार, सुरंगें, बाईपास; लागत लगभग ₹12,000 करोड़।',
+    ut: 'प्रधानमंत्री ने शिलान्यास के समय इसे 2013 की आपदा के मृतकों को श्रद्धांजलि बताया। 100 किमी से छोटे 53 पैकेजों में बाँटने पर पर्यावरण-प्रभाव आकलन (EIA) से बचने की आलोचना हुई; मामला सर्वोच्च न्यायालय तक गया और रक्षा-आवश्यकता को देखते हुए डबल-लेन चौड़ाई की अनुमति मिली। केंद्र ने न्यायालय को लगभग 75% काम पूरा होने की जानकारी दी। सिलक्यारा सुरंग इसी परियोजना का हिस्सा है (अलग कार्ड)।',
+    status: 'build', note: 'कुल लंबाई स्रोतों में 825 किमी (मंत्रालय/अधिकांश रिपोर्ट), लगभग 889 किमी और "900 किमी से अधिक" — तीनों मिलते हैं; परीक्षा में विकल्प देखकर 825 किमी (53 पैकेज) सबसे सुरक्षित। सर्वोच्च न्यायालय के निर्णय (दिसंबर 2021) की तिथि हमने प्राथमिक आदेश से नहीं मिलाई।',
+    src: [PIBJ('Swarajya (अगस्त 2024) — ₹12,000 करोड़, 825 किमी, शिलान्यास दिसंबर 2016', 'https://swarajyamag.com/infrastructure/char-dham-connectivity-silkyara-tunnel-nears-major-breakthrough-after-last-years-severe-setback'), PIBJ('Construction World — 53 पैकेज, 825 किमी', 'https://www.constructionworld.in/transport-infrastructure/highways-and-roads-infrastructure/construction-of-291-km-out-of-825-km-complete-in-char-dham-project/38012'), PIBJ('Construction World — "75% पूर्ण", SC में केंद्र; EIA आलोचना', 'https://www.constructionworld.in/transport-infrastructure/highways-and-roads-infrastructure/char-dham-road-project-75-complete;-centre-informs-sc/63743')] },
+
+  { id: 'c-silkyara', scope: 'central', name: 'सिलक्यारा–बड़कोट सुरंग (बाबा बौखनाग सुरंग)', en: 'Silkyara Bend–Barkot Tunnel, NH-134', year: 2023, when: 'हादसा 12 नवंबर 2023; ब्रेकथ्रू 16 अप्रैल 2025', cm: 'केंद्र — सड़क परिवहन मंत्रालय (NHIDCL)', dept: 'सड़क परिवहन एवं राजमार्ग मंत्रालय — NHIDCL', sector: 'infra',
+    aim: 'यमुनोत्री व गंगोत्री धाम के बीच दूरी घटाना — चारधाम परियोजना की दो-लेन, दो-दिशा सुरंग (उत्तरकाशी ज़िला)।',
+    who: 'चारधाम यात्री, उत्तरकाशी ज़िला।',
+    benefit: '4.531 किमी सुरंग; गंगोत्री–यमुनोत्री की दूरी लगभग 26 किमी कम।',
+    ut: '12 नवंबर 2023 (दीपावली) को सुरंग का हिस्सा धँसने से 41 श्रमिक फँसे; 17 दिन के बहु-एजेंसी अभियान के बाद 28 नवंबर 2023 को सभी 41 सुरक्षित निकाले गए — अंतिम चरण में "रैट-होल माइनर्स" ने हाथ से खुदाई की। 16 अप्रैल 2025 को दोनों छोर मिले (ब्रेकथ्रू); मुख्यमंत्री ने इसे स्थानीय देवता बाबा बौखनाग के नाम पर रखने की घोषणा की और सुरंग-मुख पर बौखनाग मंदिर का उद्घाटन हुआ।',
+    status: 'build', note: 'लागत पर मत-भेद: लगभग ₹853 करोड़ (मुख्यमंत्री/Tribune) बनाम ₹1,384 करोड़ (Drishti)। दूरी में कमी 26 किमी (अधिकांश) बनाम 25 किमी (Drishti)।',
+    src: [PIBJ('Tribune — ब्रेकथ्रू, ₹853 करोड़, 26 किमी, बौखनाग नाम', 'https://www.tribuneindia.com/news/uttarakhand/silkyara-tunnel-achieves-breakthrough-cm-dhami-says-it-will-be-renamed-after-baba-baukhnag'), PIBJ('Tribune — 12 नवंबर 2023 हादसा, 17 दिन, रैट-होल माइनर्स', 'https://www.tribuneindia.com/news/india/after-2023-setback-silkyara-tunnel-breakthrough-achieved'), PIBJ('Drishti IAS (17 अप्रैल 2025) — 4.53 किमी, ₹1,384 करोड़', 'https://www.drishtiias.com/state-pcs-current-affairs/silkyara-tunnel-in-uttarakhand/print_manually')] },
+
+  { id: 'c-pmjay', scope: 'central', name: 'आयुष्मान भारत — प्रधानमंत्री जन आरोग्य योजना (AB PM-JAY)', en: 'Ayushman Bharat PM-JAY', year: 2018, when: '23 सितंबर 2018 (राष्ट्रीय शुभारंभ)', cm: 'केंद्र — प्रधानमंत्री नरेंद्र मोदी', dept: 'स्वास्थ्य एवं परिवार कल्याण मंत्रालय — राष्ट्रीय स्वास्थ्य प्राधिकरण; राज्य स्वास्थ्य प्राधिकरण (SHA) उत्तराखंड', sector: 'health',
+    aim: 'गरीब व वंचित परिवारों को गंभीर बीमारी में कैशलेस अस्पताल उपचार — विश्व की सबसे बड़ी सरकारी स्वास्थ्य-आश्वासन योजना।',
+    who: 'SECC-2011 आधारित पात्र परिवार (बाद में विस्तार)।',
+    benefit: '₹5 लाख प्रति परिवार प्रति वर्ष, सूचीबद्ध सरकारी/निजी अस्पतालों में कैशलेस; लागत केंद्र-राज्य साझा।',
+    ut: 'उत्तराखंड में PM-JAY के तहत 5.37 लाख परिवार चिह्नित थे; राज्य ने अटल आयुष्मान उत्तराखंड योजना (25 दिसंबर 2018) से शेष लगभग 18 लाख परिवार जोड़कर सभी ~23 लाख परिवारों को यही ₹5 लाख कवर दिया। तत्कालीन मुख्यमंत्री के अनुसार देश का पहला आयुष्मान गोल्डन कार्ड रुद्रप्रयाग की तारा देवी को मिला।',
+    status: 'active', note: '"पहला गोल्डन कार्ड तारा देवी (रुद्रप्रयाग)" — यह तत्कालीन मुख्यमंत्री त्रिवेंद्र सिंह रावत का सार्वजनिक कथन (2019) है; राष्ट्रीय स्वास्थ्य प्राधिकरण का प्राथमिक अभिलेख हमने नहीं देखा। राज्य की योजना का कार्ड: ऊपर "अटल आयुष्मान उत्तराखंड"।',
+    src: [PIBJ('Daily Pioneer (2018) — 5.37 लाख परिवार, सभी परिवार शामिल', 'https://www.dailypioneer.com/2018/state-editions/joint-secretary-reviews-ayushman-bharat-yojana-progress.html'), PIBJ('Daily Pioneer (2019) — तारा देवी, रुद्रप्रयाग; 23 लाख परिवार', 'https://www.dailypioneer.com/2019/state-editions/cm-launches-aauy-in-rudraprayag-district.html'), PIBJ('राज्य स्वास्थ्य प्राधिकरण उत्तराखंड — योजना परिचय', 'https://sha.uk.gov.in/Home/AboutScheme.html')] },
+
+  { id: 'c-adp', scope: 'central', name: 'आकांक्षी ज़िला कार्यक्रम (ADP)', en: 'Aspirational Districts Programme — NITI Aayog', year: 2018, when: 'जनवरी 2018', cm: 'केंद्र — प्रधानमंत्री नरेंद्र मोदी', dept: 'नीति आयोग (राज्य व ज़िला प्रशासन के साथ)', sector: 'rural',
+    aim: 'देश के सबसे पिछड़े ज़िलों में स्वास्थ्य-पोषण, शिक्षा, कृषि-जल, वित्तीय समावेशन-कौशल और बुनियादी ढाँचे के संकेतकों में तेज़ सुधार — 3C: Convergence, Collaboration, Competition।',
+    who: 'देश के 112 आकांक्षी ज़िले (शुरुआत में 115/117 चिह्नित)।',
+    benefit: 'मासिक "डेल्टा रैंकिंग"; अच्छे प्रदर्शन पर अतिरिक्त आवंटन।',
+    ut: 'उत्तराखंड के 2 आकांक्षी ज़िले: हरिद्वार और ऊधम सिंह नगर। मार्च 2018 की बेसलाइन रैंकिंग में ऊधम सिंह नगर 6वें (46.36%) और हरिद्वार 24वें (40.05%) स्थान पर। नीति आयोग ने हरिद्वार को (बुनियादी ढाँचा थीम में प्रथम) सर्वश्रेष्ठ आकांक्षी ज़िला घोषित किया — ₹3 करोड़ अतिरिक्त। राज्य में आकांक्षी ब्लॉक कार्यक्रम के तहत गदरपुर, मोरी, स्याल्दे ब्लॉक पुरस्कृत।',
+    status: 'active', note: 'ध्यान दें — दोनों आकांक्षी ज़िले मैदानी हैं, पर्वतीय नहीं; यह चयन संकेतकों (स्वास्थ्य, शिक्षा आदि) पर आधारित है, भौगोलिक कठिनाई पर नहीं।',
+    src: [PIBJ('नीति आयोग — 112 आकांक्षी ज़िलों की सूची', 'https://www.niti.gov.in/sites/default/files/2023-07/List-of-112-Aspirational-Districts%20%281%29.pdf'), PIBJ('नीति आयोग — बेसलाइन रैंकिंग मार्च 2018', 'https://niti.gov.in/sites/default/files/2018-12/AspirationalDistrictsBaselineRankingMarch2018.pdf'), PIBJ('GKToday — हरिद्वार सर्वश्रेष्ठ आकांक्षी ज़िला', 'https://www.gktoday.in/haridwar-best-aspirational-district/'), PIBJ('Garhwal Post — ज़िले व ब्लॉक सम्मानित', 'https://garhwalpost.in/?p=96582')] },
+
+  { id: 'c-lakhwar', scope: 'central', name: 'लखवाड़ बहुउद्देशीय परियोजना (यमुना)', en: 'Lakhwar Multipurpose Project — National Project', year: 2018, when: 'छह राज्यों का MoU 28 अगस्त 2018', cm: 'केंद्र — जल संसाधन मंत्री नितिन गडकरी के समक्ष MoU', dept: 'जल शक्ति मंत्रालय; क्रियान्वयन: उत्तराखंड जल विद्युत निगम (UJVNL)', sector: 'water',
+    aim: 'ऊपरी यमुना बेसिन में भंडारण से छह राज्यों को सूखे मौसम में पानी, सिंचाई व बिजली।',
+    who: 'उत्तराखंड, उत्तर प्रदेश, हिमाचल प्रदेश, हरियाणा, राजस्थान, दिल्ली।',
+    benefit: 'लोहारी गाँव (देहरादून) के पास यमुना पर 204 मीटर ऊँचा बाँध; 300 MW बिजली; 33,780 हेक्टेयर सिंचाई; 78.83 MCM पेयजल/औद्योगिक जल।',
+    ut: 'जल-घटक का 90% केंद्र, 10% छह राज्य (1994 के यमुना जल-बँटवारा MoU के अनुपात में)। बिजली-घटक की पूरी लागत उत्तराखंड देगा और पूरी 300 MW बिजली उत्तराखंड को मिलेगी। काम 1987 में शुरू हुआ था, 1992 में लगभग 35% प्रगति पर रुका। 2018 लागत ₹3,966.51 करोड़; संशोधित ₹5,747.17 करोड़ (2018 मूल्य-स्तर)। ऊपरी यमुना की अन्य परियोजनाएँ: व्यासी (देहरादून, 120 MW), किशाऊ (660 MW), रेणुकाजी (हिमाचल)।',
+    status: 'build', note: 'कुछ समाचारों में क्षमता 330 MW लिखी है — PIB के अनुसार 300 MW सही। पूर्णता-वर्ष स्रोतों में अलग-अलग है, इसलिए यहाँ नहीं लिखा।',
+    src: [PIBJ('PIB (27 अगस्त 2018) — ₹3,966.51 करोड़, 300 MW, 90:10', 'https://pib.gov.in/PressReleasePage.aspx?PRID=1544027'), PIBJ('PIB (28 अगस्त 2018) — 33,780 हे., 78.83 MCM', 'https://pib.gov.in/PressReleasePage.aspx?PRID=1544111'), PIBJ('Free Press Journal — UP अंश, संशोधित लागत ₹5,747.17 करोड़', 'https://www.freepressjournal.in/amp/uttar-pradesh/up-cabinet-approves-356-crore-share-for-lakhwar-multipurpose-water-project'), PIBJ('Wikipedia — निर्माण इतिहास (1987, 1992)', 'https://en.wikipedia.org/wiki/Lakhwar_Dam')] },
+
+  { id: 'c-jjm', scope: 'central', name: 'जल जीवन मिशन — हर घर जल', en: 'Jal Jeevan Mission (JJM)', year: 2019, when: '15 अगस्त 2019', cm: 'केंद्र — प्रधानमंत्री नरेंद्र मोदी', dept: 'जल शक्ति मंत्रालय (पेयजल एवं स्वच्छता विभाग); राज्य में पेयजल विभाग/जल संस्थान', sector: 'water',
+    aim: 'हर ग्रामीण घर में क्रियाशील नल कनेक्शन (FHTC) से नियमित, पर्याप्त, सुरक्षित पेयजल।',
+    who: 'सभी ग्रामीण परिवार।',
+    benefit: 'घर-घर नल कनेक्शन व ग्राम-स्तरीय जलापूर्ति योजनाएँ; पर्वतीय/हिमालयी राज्यों में केंद्र:राज्य हिस्सा 90:10।',
+    ut: 'शुरुआत (15.08.2019) पर उत्तराखंड के केवल 1.30 लाख ग्रामीण घरों में नल था। अगस्त 2026 की समीक्षा: 14.48 लाख में से 14.20 लाख ग्रामीण घरों को नल कनेक्शन (~98%); 16,555 में से 15,540 योजनाएँ पूर्ण (92.46%); 14,979 में से 9,796 गाँवों में आपूर्ति सत्यापित। मई 2026 में उत्तराखंड, कर्नाटक व त्रिपुरा ने केंद्र से सुधार-आधारित (JJM 2.0) MoU किए।',
+    status: 'active', note: 'कुल ग्रामीण घरों का आधार स्रोत के अनुसार बदलता है — राज्यसभा (06.02.2025): 14.51 लाख में से 14.10 लाख (97.24%); PIB (दिसंबर 2025): 14.49 लाख में 14.15 लाख (97.68%); 2026: 14.48 लाख में 14.20 लाख (~98%)। "कनेक्शन" और "सत्यापित आपूर्ति" अलग बातें हैं।',
+    src: [PIBJ('राज्यसभा प्रश्न 721 (10.02.2025) — 1.30 लाख से 14.10 लाख', 'https://rsdebate.nic.in/bitstream/123456789/758441/1/PQ_267_10022025_U721_p292_p292.pdf'), PIBJ('ThePrint/PTI (1 मई 2026) — 14.20/14.48 लाख, MoU', 'https://theprint.in/india/uttarakhand-karnataka-and-tripura-cross-85-tap-coverage-centre-signs-reform-linked-mous/2919464/'), PIBJ('NewKerala (13 अगस्त 2026) — मुख्यमंत्री समीक्षा, 92.46%', 'https://www.newkerala.com/news/a/uttarakhand-cm-dhami-directs-officials-ensure-100-per-793.htm'), PIBJ('News Arena — 9,796/14,979 गाँव सत्यापित', 'https://newsarenaindia.com/states/uttarakhand-cm-dhami-pushes-for-full-har-ghar-jal-coverage/84467')] },
+
+  { id: 'c-vvp', scope: 'central', name: 'वाइब्रेंट विलेजेज़ प्रोग्राम (VVP-I व VVP-II)', en: 'Vibrant Villages Programme', year: 2023, when: 'VVP-I स्वीकृत 15 फ़रवरी 2023; VVP-II 2025', cm: 'केंद्र — प्रधानमंत्री नरेंद्र मोदी', dept: 'गृह मंत्रालय; राज्य में ग्राम्य विकास विभाग', sector: 'rural',
+    aim: 'सीमांत गाँवों में सड़क, बिजली, संचार, पर्यटन व आजीविका देकर पलायन रोकना और उन्हें "देश का पहला गाँव" बनाना।',
+    who: 'उत्तरी सीमा (चीन) व अन्य स्थल-सीमाओं से लगे चिह्नित गाँव।',
+    benefit: 'VVP-I: 4 राज्य + 1 केंद्र-शासित प्रदेश के 19 ज़िलों के 46 ब्लॉकों के 2,967 गाँव (केंद्र-प्रायोजित, 2022-23 से 2025-26); प्राथमिकता में 662 गाँव। VVP-II: शेष स्थल-सीमाओं के लिए 100% केंद्र-वित्तपोषित।',
+    ut: 'VVP-I में उत्तराखंड के 51 गाँव (चीन सीमा): पिथौरागढ़ 27 (धारचूला 17, मुनस्यारी 8, कनालीछीना 2), चमोली 14 (जोशीमठ), उत्तरकाशी 10 (भटवाड़ी)। प्रथम चरण में 184 योजनाएँ (₹186.16 करोड़) शुरू; राज्य ने ₹520.15 करोड़ की कार्य-योजना भेजी। VVP-II में नेपाल सीमा के 40 गाँव (चंपावत, पिथौरागढ़, ऊधम सिंह नगर के 6 ब्लॉक) — कुल 91 सीमांत गाँव। 10 गाँव "मॉडल पर्यटन गाँव" बनेंगे: जादुंग, बगोरी (उत्तरकाशी); माणा, नीति (चमोली); गुंजी, गर्ब्यांग, नपलचू, नाभी, रकांग, कुटी (पिथौरागढ़)। प्रधानमंत्री ने अक्टूबर 2022 में माणा को "देश का अंतिम नहीं, पहला गाँव" कहा।',
+    status: 'active', note: 'VVP-II के 40 गाँवों का ज़िलावार बँटवारा एक स्रोत (Garhwal Post) में चंपावत 11, पिथौरागढ़ 24, ऊधम सिंह नगर 6 लिखा है — जोड़ 41 होता है, इसलिए ज़िलावार संख्या अपुष्ट मानें; कुल 40 पर स्रोत एकमत हैं।',
+    src: [PIBJ('ग्राम्य विकास विभाग उत्तराखंड — VVP के 51 गाँव (ब्लॉकवार)', 'https://ukrd.uk.gov.in/?p=892'), PIBJ('लोकसभा प्रश्न 4360 (19.08.2025) — राज्यवार गाँव', 'https://eparlib.sansad.in/bitstream/123456789/2996106/1/AU4360_83PREz.pdf'), PIBJ('ThePrint/PTI (11 जून 2025) — VVP 2.0 में 40 गाँव', 'https://theprint.in/india/40-uttarakhand-villages-bordering-nepal-to-be-revitalised-under-vibrant-village-2-0/2654288'), PIBJ('Garhwal Post — 91 गाँव, ज़िलावार', 'https://garhwalpost.in/?p=94605'), PIBJ('Indian Masterminds — 10 मॉडल पर्यटन गाँव', 'https://indianmasterminds.com/news/uttarakhand-govt-to-develop-10-border-villages-as-model-tourist-hubs-under-vibrant-village-program-details-inside-126642/')] },
+
+  { id: 'c-jamrani', scope: 'central', name: 'जमरानी बाँध बहुउद्देशीय परियोजना', en: 'Jamrani Dam Multipurpose Project — PMKSY-AIBP', year: 2023, when: 'CCEA स्वीकृति 25 अक्टूबर 2023', cm: 'केंद्र — CCEA (अध्यक्ष: प्रधानमंत्री नरेंद्र मोदी)', dept: 'जल शक्ति मंत्रालय — प्रधानमंत्री कृषि सिंचाई योजना-त्वरित सिंचाई लाभ कार्यक्रम (PMKSY-AIBP); राज्य सिंचाई विभाग', sector: 'water',
+    aim: 'हल्द्वानी क्षेत्र का पेयजल संकट दूर करना, उत्तराखंड व उत्तर प्रदेश के तराई क्षेत्र में सिंचाई, जलविद्युत।',
+    who: 'नैनीताल ज़िला (हल्द्वानी व आसपास), ऊधम सिंह नगर; उत्तर प्रदेश के रामपुर-बरेली क्षेत्र।',
+    benefit: 'जमरानी गाँव के पास गौला (गोला) नदी पर बाँध — गौला रामगंगा की सहायक; मौजूदा गौला बैराज को जल; 14 MW बिजली; हल्द्वानी को 42.70 MCM पेयजल (10.65 लाख आबादी)।',
+    ut: 'कुल लागत ₹2,584.10 करोड़, केंद्रीय सहायता ₹1,557.18 करोड़; शेष कार्यों में केंद्र:राज्य 90:10; पूर्णता मार्च 2028। PMKSY 2.0 (2021-22 से) के AIBP घटक में शामिल होने वाली 7वीं परियोजना। परियोजना 1975 से लंबित थी।',
+    status: 'build', note: 'केंद्रीय राशि पर मत-भेद: PIB/CCEA ₹1,557.18 करोड़; मुख्यमंत्री के बयान में ₹1,730 करोड़। परीक्षा के लिए PIB का आँकड़ा लें।',
+    src: [PIBJ('TaxTMI (PIB प्रति) — CCEA 25.10.2023, ₹2,584.10/₹1,557.18 करोड़', 'https://www.taxtmi.com/news?id=26934'), PIBJ('ThePrint — 14 MW, 42.70 MCM, 10.65 लाख', 'https://theprint.in/economy/cabinet-approves-inclusion-of-jamrani-dam-multipurpose-project-under-pmksy-aibp/1818986'), PIBJ('Organiser — मुख्यमंत्री: 1975 से लंबित, ₹1,730 करोड़', 'https://organiser.org/2023/10/28/203772/bharat/uttarakhand/uttarakhand-centre-has-given-nod-for-jamrani-dam-project-says-chief-minister-pushkar-singh-dhami/')] },
+
+  { id: 'c-parvatmala', scope: 'central', name: 'पर्वतमाला: केदारनाथ व हेमकुंड साहिब रोपवे', en: 'National Ropeways Development Programme — Parvatmala Pariyojana', year: 2025, when: 'CCEA स्वीकृति 5 मार्च 2025', cm: 'केंद्र — CCEA (अध्यक्ष: प्रधानमंत्री नरेंद्र मोदी)', dept: 'सड़क परिवहन एवं राजमार्ग मंत्रालय — नेशनल हाईवेज़ लॉजिस्टिक्स मैनेजमेंट लि. (NHLML)', sector: 'infra',
+    aim: 'कठिन पैदल मार्ग वाले ऊँचे तीर्थों तक बारहमासी, तेज़ और पर्यावरण-अनुकूल पहुँच।',
+    who: 'केदारनाथ व हेमकुंड साहिब यात्री; फूलों की घाटी (UNESCO विश्व धरोहर) के पर्यटक।',
+    benefit: 'दोनों रोपवे DBFOT (डिज़ाइन, बिल्ड, फ़ाइनेंस, ऑपरेट, ट्रांसफ़र) मोड में; कुल लागत लगभग ₹6,811 करोड़।',
+    ut: 'सोनप्रयाग–केदारनाथ: 12.9 किमी, ₹4,081.28 करोड़, ट्राई-केबल डिटैचेबल गोंडोला (3S) तकनीक; एक तरफ़ की यात्रा 8–9 घंटे से घटकर लगभग 36 मिनट; गौरीकुंड से 16 किमी चढ़ाई का विकल्प। गोविंदघाट–हेमकुंड साहिब: 12.4 किमी, ₹2,730.13 करोड़; गोविंदघाट–घांघरिया 10.55 किमी मोनोकेबल (MDG) + घांघरिया–हेमकुंड 1.85 किमी 3S; क्षमता 1,100 यात्री/घंटा/दिशा (11,000 प्रतिदिन); 21 किमी की कठिन चढ़ाई का विकल्प। निर्माण-अवधि लगभग 6 वर्ष।',
+    status: 'build', note: 'पारिस्थितिक प्रभाव (उच्च हिमालय, भूस्खलन-संवेदनशील क्षेत्र) पर विशेषज्ञों ने चिंता जताई है — मुख्य परीक्षा के "विकास बनाम पर्यावरण" प्रश्न हेतु उपयोगी।',
+    src: [PIBJ('PIB संकलन (मार्च 2025) — दोनों रोपवे, लंबाई, लागत, तकनीक', 'https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/mar/doc2025311518501.pdf'), PIBJ('Business Today (5 मार्च 2025) — ₹6,811 करोड़, DBFOT', 'https://www.businesstoday.in/latest/economy/story/cabinet-approves-sonprayag-kedarnath-govindghat-hemkund-sahib-ji-ropeway-projects-for-rs-6811-crore-466796-2025-03-05'), PIBJ('Tribune — 36 मिनट, ~6 वर्ष, पर्यावरण चिंता', 'https://www.tribuneindia.com/news/india/centre-clears-ropeway-projects-for-kedarnath-hemkund-sahib')] },
+
+  { id: 'c-ddexpressway', scope: 'central', name: 'दिल्ली–देहरादून आर्थिक गलियारा (एक्सप्रेसवे)', en: 'Delhi–Dehradun Economic Corridor', year: 2026, when: 'लोकार्पण 14 अप्रैल 2026, देहरादून', cm: 'केंद्र — प्रधानमंत्री नरेंद्र मोदी', dept: 'सड़क परिवहन एवं राजमार्ग मंत्रालय — NHAI', sector: 'infra',
+    aim: 'दिल्ली से देहरादून व हरिद्वार की तेज़, सिग्नल-मुक्त पहुँच; पर्यटन व उद्योग को बल।',
+    who: 'दिल्ली, उत्तर प्रदेश (बागपत, शामली, सहारनपुर) और उत्तराखंड के यात्री व व्यापार।',
+    benefit: 'लगभग 210 किमी, छह-लेन, एक्सेस-नियंत्रित; लागत ₹11,868.6 करोड़ (लगभग ₹12,000 करोड़); यात्रा-समय 6 घंटे से अधिक से घटकर लगभग 2.5 घंटे; हरिद्वार के लिए स्पर।',
+    ut: 'राजाजी राष्ट्रीय उद्यान से गुज़रता लगभग 12 किमी लंबा एलिवेटेड वन्यजीव गलियारा — सरकार के अनुसार एशिया के सबसे लंबे में से एक; हाथियों के लिए दो लगभग 200 मीटर के अंडरपास व छह अन्य पशु-मार्ग। गणेशपुर–देहरादून खंड पर डाट काली के पास सुरंग। प्रधानमंत्री ने लोकार्पण से पहले डाट काली मंदिर में दर्शन किए।',
+    status: 'active', note: 'लंबाई 210/212/213 किमी — तीनों आँकड़े आधिकारिक बयानों में मिलते हैं। वन्यजीव गलियारा 12 किमी (प्रधानमंत्री, अधिकांश स्रोत) बनाम 14 किमी (Wikipedia) बनाम "10.97 किमी पशु-अंडरपास" (Construction World) — परीक्षा में 12 किमी लें।',
+    src: [PIBJ('PM India — लोकार्पण भाषण, ~12 किमी वन्यजीव गलियारा', 'https://www.pmindia.gov.in/en/news_updates/pm-inaugurates-delhi-dehradun-economic-corridor/'), PIBJ('Swarajya (14 अप्रैल 2026) — 210 किमी, ₹11,868.6 करोड़', 'https://swarajyamag.com/amp/story/news-brief/delhidehradun-expressway-opens-210-km-corridor-cuts-travel-time-to-25-hours-features-wildlife-corridor-and-smart-traffic-systems'), PIBJ('IBTimes/IANS — हाथी अंडरपास, 6 पशु-मार्ग', 'https://www.ibtimes.co.in/delhidehradun-expressway-cut-travel-time-2-5-hours-boost-connectivity-pm-modi-inaugurates-901069')] },
+];
+
+export const sortedCentral = () => [...CENTRAL].sort((a, b) => a.year - b.year);

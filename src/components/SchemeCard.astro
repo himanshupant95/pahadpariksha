@@ -1,0 +1,62 @@
+---
+import { SECTORS, STATUS, type Scheme } from '../data/schemes';
+interface Props { s: Scheme }
+const { s } = Astro.props;
+const sec = SECTORS[s.sector];
+const central = s.scope === 'central';
+const text = `${s.name} ${s.en ?? ''} ${s.aim} ${s.who} ${s.benefit} ${s.ut ?? ''} ${s.dept} ${s.cm} ${s.year} ${s.when} ${central ? 'केंद्र central' : 'राज्य'}`.toLowerCase();
+---
+<article class={`card${central ? ' kc' : ''}`} id={s.id} data-sec={s.sector} data-year={s.year} data-st={s.status} data-scope={central ? 'central' : 'state'}
+  data-text={text} style={`--c:${sec.color}`}>
+  <div class="ch">
+    <span class="yr">{s.year}</span>
+    <div>
+      <h3>{s.name}</h3>
+      {s.en && <p class="en">{s.en}</p>}
+      <p class="meta">
+        {central && <span class="kb">🇮🇳 केंद्र</span>}
+        <span class="sec">{sec.icon} {sec.label}</span><span class={`st ${STATUS[s.status].cls}`}>{STATUS[s.status].label}</span>
+      </p>
+    </div>
+  </div>
+  <p class="aim">{s.aim}</p>
+  <dl class="kv2">
+    <dt>📅 कब</dt><dd>{s.when}</dd>
+    <dt>{central ? '🏛️ सरकार' : '👤 मुख्यमंत्री'}</dt><dd>{s.cm}</dd>
+    <dt>{central ? '🗂️ मंत्रालय' : '🏛️ विभाग'}</dt><dd>{s.dept}</dd>
+    <dt>🎯 किसके लिए</dt><dd>{s.who}</dd>
+    <dt>{central ? '⚙️ क्या है' : '💰 क्या लाभ'}</dt><dd class={central ? '' : 'ben'}>{s.benefit}</dd>
+  </dl>
+  {s.ut && <div class="ut"><b>📍 उत्तराखंड में — परीक्षा के तथ्य</b><p>{s.ut}</p></div>}
+  {s.note && <p class="note"><b>ध्यान दें:</b> {s.note}</p>}
+  <details class="src"><summary>स्रोत ({s.src.length})</summary>
+    <ul>{s.src.map((x) => <li>{x.u ? <a href={x.u} target="_blank" rel="noopener nofollow">{x.t}</a> : x.t}</li>)}</ul>
+  </details>
+</article>
+
+<style>
+  .card { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--c); border-radius: 14px; padding: 14px 16px; scroll-margin-top: 140px; }
+  .card:target { box-shadow: 0 0 0 3px var(--c); }
+  .ch { display: flex; gap: 12px; align-items: flex-start; }
+  .yr { flex: 0 0 auto; background: var(--c); color: #fff; font-weight: 800; border-radius: 10px; padding: 6px 8px; font-size: .95rem; }
+  .card h3 { margin: 0; font-size: 1.08rem; line-height: 1.35; color: var(--ink); }
+  .en { margin: 2px 0 0; font-size: .75rem; color: var(--muted); }
+  .meta { margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .sec { font-size: .75rem; color: var(--c); font-weight: 700; }
+  .kb { font-size: .72rem; font-weight: 800; background: #1e3a8a; color: #fff; border-radius: 999px; padding: 1px 8px; }
+  .card.kc { background: linear-gradient(180deg, #f8fafc, var(--card) 120px); }
+  .ut { background: #fefce8; border: 1px solid #fde68a; border-radius: 10px; padding: 8px 10px; margin: 10px 0 0; font-size: .9rem; }
+  .ut b { color: #854d0e; font-size: .85rem; }
+  .ut p { margin: 4px 0 0; }
+  .aim { margin: 10px 0 8px; font-weight: 600; }
+  .kv2 { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin: 0; font-size: .9rem; }
+  .kv2 dt { color: var(--muted); white-space: nowrap; }
+  .kv2 dd { margin: 0; }
+  .kv2 .ben { background: #f0fdf4; border-radius: 8px; padding: 4px 8px; }
+  .note { font-size: .84rem; background: #fdf4ff; border-left: 4px solid #c026d3; border-radius: 8px; padding: 6px 10px; margin: 10px 0 0; }
+  .src { margin-top: 8px; font-size: .8rem; }
+  .src summary { cursor: pointer; color: var(--muted); }
+  .src ul { margin: 4px 0 0; padding-left: 18px; }
+  .st { font-size: .72rem; font-weight: 700; border-radius: 999px; padding: 1px 8px; }
+  .st-a { background: #dcfce7; color: #166534; } .st-m { background: #e0e7ff; color: #3730a3; } .st-h { background: #f1f5f9; color: #475569; } .st-l { background: #fef3c7; color: #92400e; } .st-b { background: #ffedd5; color: #9a3412; }
+</style>
