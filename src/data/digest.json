@@ -228,9 +228,395 @@
   "d9e40ad4838e",
   "7c6507e6a496",
   "49f101cae1ce",
-  "19e87898ae41"
+  "19e87898ae41",
+  "b8a4d8c06971",
+  "4167735b17a5",
+  "f43d1ab3c9bf",
+  "0d16e8978544",
+  "14aa031d0b74",
+  "8a23922ef077",
+  "3acbe974e2ce",
+  "9032f5f41a48",
+  "ba6dc16e4a3c",
+  "6db1371261e9",
+  "2042c4a78659",
+  "9c836033e8e5",
+  "3929719ea688",
+  "12f5a6b927d8",
+  "f88c44786b2c",
+  "dfedfd483bc8",
+  "800ec17cfeaf",
+  "bbad0a87c30d",
+  "85a019756815",
+  "c900c626d12c",
+  "683cb2e2f677",
+  "7b4da693c50e",
+  "383d9b3c977f",
+  "a85817fc1934",
+  "eeaa6a4d3c4d",
+  "3ce54e3182ff",
+  "fbf127b30518",
+  "dca2ef97b75a",
+  "1b0e09df3617",
+  "c60d4470dbdb",
+  "e2dfc128f992",
+  "003e90f976be",
+  "9e02d0a6174a",
+  "a5cddd658d40",
+  "613faca010e7",
+  "14828450e4e2",
+  "0e5e8ba85c16",
+  "45b818b9dcac",
+  "7b1f46b5b5eb",
+  "4944515463b4",
+  "5d1e61c11048",
+  "3bd7a86e405c",
+  "788b530eeed9",
+  "3a9803b9b3e6",
+  "3ff365f43912",
+  "6b371e450663",
+  "6a2ebca9593e",
+  "a525273018fd",
+  "b3eb99d9df45",
+  "45b32263363d",
+  "718e68aec0b9"
  ],
  "points": [
+  {
+   "id": "1b9c8967f4",
+   "date": "2026-11-19",
+   "fact": "पंतनगर हवाई अड्डा विस्तार को पर्यावरणीय मंजूरी मिली।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "पंतनगर विस्तार",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Uttarakhand: Pantnagar airport expansion gets environmental clearance | Hindustan Times",
+     "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPS0cxdTVHamdGaDVXajYzd1FPTGgzVEtHUzV4OE83dTEyUlR6LXBKUXNmZmZuQ1l3bUFmc0JSajNvb0JJTW51WHlrdE5IV1BkaEUwWGJxTlFqZ3lMLWIzVjRPZUJmWV9kekR6SWtLWjBBcFdlVFNxQ3BydWhhTHdoSzNYbjZJcTY4eXpVSi1sQ0VVaVhDVUhaWUtyNWk3NV84NGxKMG5COVk1djJOa1BKU0JYVjJvVHJSTXhVLXJ6RFN5dmtCbVZnbWxHUmExODjSAdQBQVVfeXFMTWdzLVlGcVZEMGh3WEd3Vkx2WUNUUGpxRVdBVldHaU8tcVBnVFBrMjhTRXlNdGtGR1JzaTV6bmI2MGdjQ1hEMXIzZHZMelJWb01VR1IzdmlGZ0E2ZGc2WC04QWlVLWlRak9jNkdMYndMRWpBN1lkSzEtWXNKNV9ieGFGX0FGdXVrUmpFWUJ6M1FHMjhrTkVvTHc1ck9xeDBYa2c5eHRRbV9seHZqTVYyUmNyMDM3ejMtUHp5N0NjdkZNMlVrbFFSMkhFNzdnUUtoT3psVGE?oc=5",
+     "source": "Hindustan Times"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.681Z",
+   "details": [
+    {
+     "k": "रनवे लंबाई",
+     "v": "नया रनवे 3,000 मीटर लंबा होगा"
+    },
+    {
+     "k": "कुल लागत",
+     "v": "परियोजना की लागत लगभग 375.33 करोड़ रुपये है"
+    },
+    {
+     "k": "प्राधिकरण",
+     "v": "SEIAA उत्तराखंड में पर्यावरणीय मंजूरी देने वाली प्रमुख संस्था है",
+     "t": "g"
+    }
+   ],
+   "sum": "पंतनगर हवाई अड्डे के विस्तार को पर्यावरणीय मंजूरी मिली, जिससे 3 km लंबा नया रनवे बनाकर बड़े विमानों को लैंड करने की सुविधा होगी।",
+   "quiz": {
+    "q": "पंतनगर हवाई अड्डे के विस्तार के लिए पर्यावरणीय मंजूरी किस संस्था ने दी?",
+    "a": "SEIAA"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "8cfb5e7aa8",
+   "date": "2026-11-19",
+   "fact": "देहरादून चिड़ियाघर में सफेद बाघ तेजस के बाड़े का लोकार्पण किया गया।",
+   "cat": "पर्यावरण",
+   "imp": 3,
+   "tag": "तेजस बाघ",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "देहरादून: चिड़ियाघर में तेजस की एंट्री, बच्चों के लिए बना आकर्षण, मुख्यमंत्री धामी ने किया बाड़े का लोकार्पण",
+     "link": "https://www.amarujala.com/dehradun/white-tiger-tejas-arrives-at-dehradun-zoo-cm-dhami-opens-new-enclosure-college-students-to-get-free-entry-2026-11-19",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "चमकदार नीली आंखें और काली धारियां, उत्तराखंड को मिला पहला व्हाइट टाइगर 'तेजस', कहां कर सकेंगे दीदार?",
+     "link": "https://www.livehindustan.com/uttarakhand/dehradun/bright-blue-eyes-and-black-stripes-uttarakhand-gets-its-first-white-tiger-tejas-201795079380560.html",
+     "source": "Live Hindustan"
+    },
+    {
+     "title": "Dhami inaugurates white tiger enclosure at Dehradun Zoo",
+     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNNlhUWk94TEk2aS1hYnFOLUxzckV3d1ZKOElYU2Vsa0tBb3RHYnNELWxzOW1FdmJpS3VwUjllMUVNclI2MHJzTkl5Uk5BQmVYWG04OU1Ia1BXdjdPVUhOcmw3NUhaamdCUHBUOHZLd3NVbmpQYnEwUHd6OG9SMVNXUjd6MnIyZUhmdV90Z1pYN3J1ZDZxZ1JhYmd6X2tRN3JqdG94Z001VmM?oc=5",
+     "source": "Awaz The Voice"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "लोकार्पणकर्ता",
+     "v": "मुख्यमंत्री पुष्कर सिंह धामी ने बाड़े का लोकार्पण किया"
+    },
+    {
+     "k": "स्थान",
+     "v": "देहरादून के मालसी स्थित चिड़ियाघर में बाड़ा स्थापित हुआ"
+    },
+    {
+     "k": "पर्यटक संख्या",
+     "v": "चिड़ियाघर में हर साल लगभग 8.50 लाख पर्यटक आते हैं"
+    },
+    {
+     "k": "आय",
+     "v": "पर्यटक से सालाना सात करोड़ रुपये से अधिक की आय होती है"
+    },
+    {
+     "k": "कॉलेज छात्रों की सुविधा",
+     "v": "अब कॉलेज छात्रों को चिड़ियाघर में निशुल्क प्रवेश मिलेगा"
+    }
+   ],
+   "sum": "मुख्यमंत्री पुष्कर सिंह धामी ने देहरादून के मालसी स्थित चिड़ियाघर में सफेद बाघ तेजस के बाड़े का लोकार्पण किया, जिससे राज्य में पहला सफेद बाघ दर्शकों के सामने आया।",
+   "quiz": {
+    "q": "देहरादून चिड़ियाघर में सफेद बाघ तेजस के बाड़े का लोकार्पण किसने किया?",
+    "a": "मुख्यमंत्री पुष्कर सिंह धामी"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "555c8b0514",
+   "date": "2026-11-19",
+   "fact": "मुख्यमंत्री युवा भविष्य निर्माण योजना से मुफ्त कोचिंग प्रदान की जा रही है।",
+   "cat": "योजना/नीति",
+   "imp": 3,
+   "tag": "युवा भविष्य निर्माण",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "आर्थिक तंगी अब नहीं बनेगी बाधा: 'मुख्यमंत्री युवा भविष्य निर्माण योजना' से मुफ्त कोचिंग पाकर भविष्य संवार रहे उत्तराखंड के युवा - uttarakhand free coaching mukhyamantri yuva bhavishya nirman yojana",
+     "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOVURfZ2IwZnVCTDNxWlU0ZFdpSnlnV2V0aW9kMlFLeDhQcmVtSUdnSUNsVzV3b2lxLWtpR2lVdkhLRmM5aDdGNm5lREswdUlrOGdxWlkyVzRFNnNrUW5UVkpOMWZwckI4SThUOVJ5MTNXNFdNUW5FV0xNdFN4WW94bGJ1cHpMNVJna3Rjbjl4SEozUkg1aDdIeW0wWkE2U1dpTFR2RWJtUWxkRmJNb2lSSEJnd2MxNFJ1SW9qcGt1OU9wWEdlN25DNTRn?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "लाभार्थी वर्ग",
+     "v": "आर्थिक रूप से कमजोर युवा"
+    },
+    {
+     "k": "उद्देश्य",
+     "v": "आर्थिक तंगी को दूर कर युवाओं को रोजगार योग्य बनाना"
+    },
+    {
+     "k": "राज्य की राजधानी",
+     "v": "उत्तराखंड की राजधानी देहरादून है",
+     "t": "g"
+    }
+   ],
+   "sum": "मुख्यमंत्री युवा भविष्य निर्माण योजना के तहत आर्थिक रूप से कमजोर युवाओं को प्रतियोगी परीक्षाओं की मुफ्त कोचिंग दी जा रही है।",
+   "quiz": {
+    "q": "मुख्यमंत्री युवा भविष्य निर्माण योजना के तहत कौन सी सुविधा मुफ्त में प्रदान की जा रही है?",
+    "a": "प्रतियोगी परीक्षाओं की कोचिंग"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "825ce780cc",
+   "date": "2026-11-19",
+   "fact": "हरिद्वार कुंभ 2027 का आयोजन मकर संक्रांति से चैत्र पूर्णिमा तक होगा।",
+   "cat": "संस्कृति/धर्म",
+   "imp": 3,
+   "tag": "हरिद्वार कुंभ 2027",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "हरिद्वार कुंभ 2027: आस्था, संस्कृति और आध्यात्मिक चेतना का विराट संगम; मकर संक्रांति से शुरू होकर चैत्र पूर्णिमा तक चलेगा महापर्व - haridwar kumbh 2027 dates preparations spiritual event",
+     "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNb3o5RUhqelllTzRIZHZXRkdBYXFHNGlRb0QyNTlLUFdBdE14VWVzTVpsd08zU1JTeUdHTW80bndKNnJhWVdYV05KS3RuNjAyU3QyMkc3cGdCN1dqZUV1elYxMkhkWVQ1Tkg5ZUgzUEw2RzlGTENmWTZoTFkyZ0wzWGtQRlBxM2xGMkxfYVBlNWlMU19mMU9yN09CaUljUzNNYzZkQXZvSHpOMzRSOXR5bzVB?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "मुख्य स्नान तिथि",
+     "v": "15 मार्च को देव डोलियां द्वारा अमृत स्नान"
+    },
+    {
+     "k": "तैयारी कार्य",
+     "v": "मेलाधिकारी सोनिका ने दो नए पुलों सहित घाटों के निर्माण की जांच की"
+    },
+    {
+     "k": "हरिद्वार का महत्व",
+     "v": "गंगा किनारे स्थित प्रमुख तीर्थस्थल है",
+     "t": "g"
+    }
+   ],
+   "sum": "हरिद्वार में 2027 का कुंभ मकर संक्रांति से शुरू होकर चैत्र पूर्णिमा तक चलेगा, जिससे तीर्थयात्रियों को आध्यात्मिक स्नान का अवसर मिलेगा।",
+   "quiz": {
+    "q": "हरिद्वार कुंभ 2027 की अवधि कब से कब तक है?",
+    "a": "मकर संक्रांति से चैत्र पूर्णिमा तक"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "ffc95b5df8",
+   "date": "2026-11-19",
+   "fact": "ओडिशा और उत्तराखंड ने उन्नत लैंडस्लाइड प्रबंधन के लिए MoU पर हस्ताक्षर किए।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "लैंडस्लाइड MoU",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Odisha & Uttarakhand to Sign MoU for Advanced Landslide Management",
+     "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQaU54eG12T2tyaDI3Ukx5dXNDbGp1d21nSktxVWtoTExadjBwa3ZnN1U5b1RfRXNmbHVjc0hEYV9wOUNRZ3Nuc0xJS1hjblBfWTl1ajNXbFNrTTQzaWU2U05IeHBsUFhzaHRxclBhX1dILVlNWjdWTWFfNjJpR2VpLU1vaHhXZUtubkQwYkNlZW9XUVk?oc=5",
+     "source": "Pragativadi"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "सहयोगी एजेंसियां",
+     "v": "उत्तराखंड आपदा प्रबंधन प्राधिकरण (USDMA) और ओडिशा आपदा प्रबंधन प्राधिकरण (OSDMA)"
+    },
+    {
+     "k": "पृष्ठभूमि कारण",
+     "v": "चक्रवात के बाद ओडिशा में भूस्खलन खतरा बढ़ा"
+    },
+    {
+     "k": "USDMA की स्थापना",
+     "v": "उत्तराखंड आपदा प्रबंधन प्राधिकरण 2012 में स्थापित हुआ",
+     "t": "g"
+    }
+   ],
+   "quiz": {
+    "q": "उत्तarakंड और ओडिशा के MoU में कौन-सी दो एजेंसियां सहयोग करेंगी?",
+    "a": "उत्तराखंड आपदा प्रबंधन प्राधिकरण (USDMA) और ओडिशा आपदा प्रबंधन प्राधिकरण (OSDMA)"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "c6a2293ffd",
+   "date": "2026-11-19",
+   "fact": "सरकारी संपत्तियों के जीवनकाल प्रबंधन योजना के लिए 18,153 करोड़ रुपये का बजट निर्धारित।",
+   "cat": "योजना/नीति",
+   "imp": 3,
+   "tag": "संपत्ति जीवनकाल योजना",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "उत्तराखंड में सरकारी संपत्तियों का बनेगा लाइफटाइम मैनेजमेंट प्लान: सिर्फ निर्माण नहीं रखरखाव पर भी फोकस 18,153 करोड़ के बजट से इंफ्रास्ट्रक्चर को लंबे समय तक सुरक्षित रखने की तैयारी",
+     "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE15WHVvRHRWVTRpdHNxN2NPM2RCRlFSLVpPVzhjY2EtUFB3OEYzeGpYM0JURS1ZSUtxc0ZOVXFMLTVoZzZlSzY5NHE2WUFRajViNF90RWJCYzlmT285aHAwVmJMbXl1ZnVVWWlRN3pn?oc=5",
+     "source": "Head Topics"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "ध्यान केंद्रित क्षेत्र",
+     "v": "निर्माण के साथ रखरखाव पर भी फोकस"
+    },
+    {
+     "k": "उत्तराखंड का स्थान",
+     "v": "हिमालयी राज्य, उत्तर भारत में स्थित",
+     "t": "g"
+    }
+   ],
+   "sum": "उत्तराखंड सरकार ने सरकारी संपत्तियों के जीवनकाल प्रबंधन योजना के लिए 18,153 करोड़ रुपये का बजट निर्धारित किया, जिससे निर्माण और रखरखाव दोनों पर ध्यान दिया जाएगा।",
+   "quiz": {
+    "q": "सरकारी संपत्तियों के जीवनकाल प्रबंधन योजना के लिए निर्धारित बजट कितना है?",
+    "a": "18,153 करोड़ रुपये"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "8173a2600e",
+   "date": "2026-11-19",
+   "fact": "उत्तराखंड में भागीरथी‑गंगा पर 18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप शुरू हुई।",
+   "cat": "खेल",
+   "imp": 2,
+   "tag": "राष्ट्रीय राफ्टिंग",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Pauri News: भागीरथी-गंगा की लहरों पर शुरू हुई 18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप",
+     "link": "https://www.amarujala.com/uttarakhand/pauri/18th-national-rafting-championship-begins-on-the-waves-of-the-bhagirathi-ganga-shrinagar-news-c-53-1-sdrn1038-128734-2026-11-19",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "शुभारंभकर्ता",
+     "v": "यूनाइटेड राफ्टिंग के बोर्ड ऑफ डायरेक्टर्स और एशिया के अध्यक्ष शौकत सिकंद"
+    },
+    {
+     "k": "प्रतियोगिताओं की संख्या",
+     "v": "स्प्रिंट, 300 मीटर, सलालम और आरएक्स (RX) श्रेणियों में"
+    },
+    {
+     "k": "विजेता का लाभ",
+     "v": "विजेता टीम अगले वर्ष की अंतरराष्ट्रीय प्रतियोगिताओं में भारत का प्रतिनिधित्व करेगी"
+    }
+   ],
+   "sum": "देवप्रयाग में भागीरथी-गंगा संगम पर 18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप का शुभारंभ हुआ। देशभर की 17 टीमें तीन दिवसीय प्रतियोगिता में हिस्सा ले रही हैं।",
+   "quiz": {
+    "q": "18वीं राष्ट्रीय राफ्टिंग चैंपियनशिप का शुभारंभ किसने किया?",
+    "a": "शौकत सिकंद"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "f56ba0122c",
+   "date": "2026-11-19",
+   "fact": "उत्तराखंड के ग्रामीणों में केवल 8.7% को लोन योजनाओं की जानकारी है।",
+   "cat": "रिपोर्ट/रैंकिंग",
+   "imp": 2,
+   "tag": "ग्रामीण लोन जानकारी",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "उत्तराखंड में कितने प्रतिशत ग्रामीणों के पास हैं बैंक खाते? केवल 8.7% लोगों को ही लोन योजनाओं की जानकारी",
+     "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQVVJVdFJGZzJkM1NpTS1LY2lISE5iTnNlNVRHaTlvQnVwN0ZhcUhTcVlqR2lMeXRKcGZwWUZhSkctdm9OWUNGbnd4SDNDaE1od1RubXQzMHJYRkNQeEpJNEJVTHlZVDdqZjZ0TmRhb09wMDcxdklXRHdzVlIwLUZVWUFkYjV0X193VW5KM3o5VDlLT3o2VVBmMDlfNENNQndVTHdCUFlvMkxvNHV3bEJ5SEpCUWg?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "प्रभावित वर्ग",
+     "v": "उत्तराखंड के ग्रामीण क्षेत्रों के निवासी"
+    }
+   ],
+   "sum": "उत्तराखंड के ग्रामीण क्षेत्रों में केवल 8.7% लोगों को सरकारी लोन योजनाओं के बारे में जानकारी है। यह आंकड़ा वित्तीय साक्षरता की कमी को दर्शाता है।",
+   "quiz": {
+    "q": "उत्तराखंड के ग्रामीणों में लोन योजनाओं की जानकारी कितने प्रतिशत लोगों को है?",
+    "a": "8.7%"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "ba8875a7fe",
+   "date": "2026-11-19",
+   "fact": "उत्तराखंड में नकल विरोधी कानून से भर्ती परीक्षाओं में पारदर्शिता बढ़ी।",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "नकल विरोधी कानून",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "माफियाओं पर कसा शिकंजा, योग्यता को मिला सम्मान: उत्तराखंड के नकल विरोधी कानून से भर्ती परीक्षाओं में बढ़ी पारदर्शिता - uttarakhand anticopying law boosts exam transparency",
+     "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPVmVuQ19JZklvRnNGbG95Z2NlZTlBV0N6T0JLTDBTb0VwSmloT3NBWkFhNWIxamVzVExkVW9MYlRSVWVKTDB1RWU0Ukxxak95ZUp2c2V2SDBNeXNWeXF4Y2ZGS3ZJU0dCNjRwQWZER29mXzN3MEZSMDcyTlNuY1FOT05QTGxMWUV0Nlpnalp6d2F3OTJjQldhLTlXbGx6SkNSRmVoNl9GYUJ6cHA5Y3l3VUx5bzFTUQ?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-20T00:50:12.682Z",
+   "details": [
+    {
+     "k": "लक्षित वर्ग",
+     "v": "परीक्षाओं में नकल करने वाले माफियाओं पर कड़ा शिकंजा कसा गया"
+    }
+   ],
+   "sum": "उत्तराखंड में लागू नकल विरोधी कानून के कारण भर्ती परीक्षाओं में पारदर्शिता में वृद्धि हुई है। इससे नकल करने वाले माफियाओं पर कड़ी कार्रवाई की जा रही है।",
+   "quiz": {
+    "q": "उत्तराखंड के नकल विरोधी कानून से किस क्षेत्र में पारदर्शिता बढ़ी है?",
+    "a": "भर्ती परीक्षाओं में"
+   },
+   "depth": "headlines"
+  },
   {
    "id": "abb54485df",
    "date": "2026-11-18",
@@ -1983,5 +2369,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-19T06:49:45.694Z"
+ "updated": "2026-11-20T00:54:36.467Z"
 }
