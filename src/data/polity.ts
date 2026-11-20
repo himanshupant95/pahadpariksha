@@ -41,7 +41,7 @@ export const HISTORY_LINKS = [
 ];
 
 export const PCHAPTERS: PChapter[] = [
-  { part: 1, unit: 'I', slug: 'state-formation-constitutional-process', title: 'राज्य बनने की संवैधानिक प्रक्रिया', hook: 'अनुच्छेद 2, 3 और 4, पहली और चौथी अनुसूची, उत्तर प्रदेश पुनर्गठन अधिनियम 2000 की हर ज़रूरी धारा, और 2007 में नाम बदलना', arts: 'अनुच्छेद 1–4' },
+  { part: 1, unit: 'I', slug: 'state-formation-constitutional-process', title: 'राज्य बनने की संवैधानिक प्रक्रिया', hook: 'अनुच्छेद 2, 3 और 4, पहली और चौथी अनुसूची, उत्तर प्रदेश पुनर्गठन अधिनियम 2000 की हर ज़रूरी धारा, और 2007 में नाम बदलना', arts: 'अनुच्छेद 1–4', live: true, img: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Glimpses_of_the_new_Parliament_Building%2C_in_New_Delhi_%282%29.jpg' },
   { part: 2, unit: 'I', slug: 'political-evolution', title: 'राजाओं के शासन से लोकतंत्र तक: संस्थाएँ कैसे बदलीं', hook: 'कत्यूरी, चंद और परमार शासन, ब्रिटिश कमिश्नरी और टिहरी रियासत की तुलना आज की संस्थाओं से (इतिहास शृंखला पर आधारित)', arts: 'पृष्ठभूमि' },
   { part: 3, unit: 'II', slug: 'governor', title: 'राज्यपाल', hook: 'नियुक्ति, कार्यकाल, शक्तियाँ, अपने विवेक से लिए जाने वाले फ़ैसले, अध्यादेश, विधेयकों पर मंज़ूरी, और 2016 का राष्ट्रपति शासन', arts: 'अनुच्छेद 153–162, 200, 201, 213, 361' },
   { part: 4, unit: 'II', slug: 'chief-minister-council-of-ministers', title: 'मुख्यमंत्री, मंत्रिपरिषद और महाधिवक्ता', hook: 'मंत्रिपरिषद की साझा ज़िम्मेदारी, उत्तराखंड में ज़्यादा से ज़्यादा 12 मंत्री क्यों, और 6 महीने का नियम (2021–22 के उदाहरण)', arts: 'अनुच्छेद 163–167, 177' },
