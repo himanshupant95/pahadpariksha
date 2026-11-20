@@ -1,0 +1,310 @@
+---
+import Base from '../../layouts/Base.astro';
+import Quiz from '../../components/Quiz.astro';
+import ArticleExplorer from '../../components/polity/ArticleExplorer.astro';
+import StateFormation from '../../components/polity/diagrams/StateFormation.astro';
+import GovCM from '../../components/polity/diagrams/GovCM.astro';
+import BillFlow from '../../components/polity/diagrams/BillFlow.astro';
+import LocalTiers from '../../components/polity/diagrams/LocalTiers.astro';
+import AdminHierarchy from '../../components/polity/diagrams/AdminHierarchy.astro';
+import ThreeLists from '../../components/polity/diagrams/ThreeLists.astro';
+import '../../styles/longform.css';
+import '../../styles/polity.css';
+import questions from '../../data/quizzes/polity-hub.json';
+import { PSERIES, PUNITS, PCHAPTERS, HISTORY_LINKS, DASH, OFFICE, TIMELINE, CONFLICTS, TRAPS, GLOSSARY, SOURCES, GAPS, FAQ, VERIFIED_ON, pHref } from '../../data/polity';
+import { ARTICLES } from '../../data/polity-articles';
+
+const url = 'https://pahadpariksha.in/polity/';
+const fmt = (d: string) => new Date(d).toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+const live = PCHAPTERS.filter((c) => c.live);
+const schema: Record<string, unknown>[] = [
+  { '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${PSERIES.name} (Uttarakhand Polity)`, url, inLanguage: 'hi-IN', dateModified: VERIFIED_ON,
+    about: [{ '@type': 'Thing', name: 'Government and politics of Uttarakhand' }, { '@type': 'Legislation', name: 'Constitution of India' }],
+    ...(live.length ? { mainEntity: { '@type': 'ItemList', itemListElement: live.map((c) => ({ '@type': 'ListItem', position: c.part, url: `https://pahadpariksha.in${pHref(c)}`, name: c.title })) } } : {}) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'होम', item: 'https://pahadpariksha.in/' },
+    { '@type': 'ListItem', position: 2, name: 'उत्तराखंड GK', item: 'https://pahadpariksha.in/gk/' },
+    { '@type': 'ListItem', position: 3, name: 'राजव्यवस्था', item: url } ] },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+const jump = [
+  ['dashboard', 'एक नज़र में'], ['roadmap', 'अध्ययन-मार्ग'], ['nirman', 'राज्य कैसे बना'], ['aarekh', 'शासन के आरेख'],
+  ['explorer', 'अनुच्छेद एक्सप्लोरर'], ['pravdhan', 'अनुच्छेद-खंड-परंतुक'], ['tulna', 'परीक्षा तुलनाएँ'], ['samayrekha', 'समयरेखा'],
+  ['saavdhan', 'ट्रिक प्रश्न'], ['matbhed', 'मत-भेद'], ['quiz', 'क्विज़'], ['shabdavali', 'शब्दावली'], ['satyapan', 'सत्यापन व स्रोत'], ['faq', 'FAQ'],
+];
+const kinds = ['संवैधानिक', 'वैधानिक', 'प्रशासनिक', 'न्यायिक', 'समसामयिक'];
+const mustCount = ARTICLES.filter((a) => a.lvl === 'must').length;
+---
+<Base title="उत्तराखंड राजव्यवस्था (Uttarakhand Polity) — संविधान, राज्यपाल, विधानसभा, पंचायत, अनुच्छेद एक्सप्लोरर | UKPSC" description="Uttarakhand Polity in Hindi — राज्य निर्माण (अनु. 3, UP पुनर्गठन अधिनियम 2000), राज्यपाल, मुख्यमंत्री, 70 सदस्यीय विधानसभा, उच्च न्यायालय, पंचायत-नगर निकाय, UCC; खोजने योग्य अनुच्छेद एक्सप्लोरर, आरेख, क्विज़ — प्राथमिक स्रोतों से।" schema={schema}>
+  <nav class="crumbs" aria-label="ब्रेडक्रम्ब"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › राजव्यवस्था</nav>
+
+  <header class="pl-hero">
+    <p class="kick">शृंखला · Uttarakhand Polity</p>
+    <h1>{PSERIES.name} <span>{PSERIES.tagline}</span></h1>
+    <p>{PSERIES.blurb}</p>
+    <p class="ver">✔ सामग्री सत्यापित: <time datetime={VERIFIED_ON}>{fmt(VERIFIED_ON)}</time> तक · हर बदलने योग्य तथ्य के साथ स्रोत और तथ्य-प्रकार</p>
+    <div class="row">
+      <a class="pl-start" href="#roadmap">पढ़ाई शुरू करें ↓</a>
+      <div class="pl-prog" id="pl-prog">आपकी प्रगति: <b id="pl-prog-n">0</b> / {ARTICLES.length} प्रावधान पढ़े<div class="bar"><div id="pl-prog-bar"></div></div></div>
+    </div>
+  </header>
+
+  <nav class="chips" aria-label="इस पेज पर" style="margin:12px 0">
+    {jump.map(([id, t]) => <a class="chip" href={`#${id}`} style="text-decoration:none">{t}</a>)}
+  </nav>
+
+  <div class="legend" aria-label="तथ्य-प्रकार">
+    {kinds.map((k) => <span class={`kind k-${k}`}>{k} तथ्य</span>)}
+    <span class="tag myth">मत-भेद</span><span class="tag trap">ट्रिक प्रश्न</span>
+  </div>
+
+  <section id="dashboard">
+    <h2>एक नज़र में: उत्तराखंड की राजव्यवस्था</h2>
+    <dl class="dash">
+      {DASH.map((f) => (
+        <div><dt>{f.k} <span class={`kind k-${f.kind}`}>{f.kind}</span></dt><dd set:html={f.v} /><a class="src" href={f.src.u} target="_blank" rel="noopener nofollow">स्रोत: {f.src.t} ↗</a></div>
+      ))}
+    </dl>
+    <div class="office">
+      <h3>वर्तमान पदधारी <span class="kind k-समसामयिक">समसामयिक</span></h3>
+      <p class="muted" style="margin:0 0 6px;font-size:.85rem">ऐतिहासिक तथ्यों से अलग रखा गया है। जाँच की तिथि: {fmt(VERIFIED_ON)} — पद बदलते ही यह तालिका अपडेट होगी।</p>
+      <table>
+        <thead><tr><th>पद</th><th>पदधारी</th><th>कब से / टिप्पणी</th><th>स्रोत</th></tr></thead>
+        <tbody>{OFFICE.map((o) => <tr><td>{o.post}</td><td><b>{o.name}</b>{o.note && <span class="tag myth"> {o.note}</span>}</td><td>{o.since}</td><td><a href={o.src.u} target="_blank" rel="noopener nofollow">{o.src.t}</a></td></tr>)}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <h2>अध्ययन-मार्ग: शून्य से उन्नत तक</h2>
+    <ol class="road">
+      <li><b>शून्य से</b>संस्था क्या है, किसलिए है — बिना क़ानूनी शब्दजाल</li>
+      <li><b>संस्था की समझ</b>कौन नियंत्रित करता है, शक्तियाँ, सीमाएँ</li>
+      <li><b>संवैधानिक आधार</b>अनुच्छेद, खंड, कानून, निर्णय</li>
+      <li><b>उत्तराखंड में</b>राज्य के वास्तविक उदाहरण और तिथियाँ</li>
+      <li><b>परीक्षा-तैयारी</b>MCQ, कथन, अभिकथन-कारण, मुख्य परीक्षा प्रश्न</li>
+      <li><b>दोहराव</b>तालिकाएँ, आरेख, समयरेखा, ट्रिक प्रश्न</li>
+    </ol>
+    <p>हर अध्याय इसी छह-स्तरीय क्रम में लिखा जाएगा। शुरुआत के लिए सुझाव: नीचे के आरेख देखें, फिर एक्सप्लोरर में <b>"ज़रूर जानें"</b> ({mustCount} प्रावधान) पक्के करें।</p>
+
+    {PUNITS.map((u) => {
+      if (u.id === '0') return (
+        <section>
+          <h3 class="unit-h">{u.name}</h3>
+          <p class="muted" style="margin-top:0">राजनीतिक विकास का इतिहास (प्राचीन-मध्यकालीन शासन, ब्रिटिश कुमाऊँ, टिहरी रियासत, जन-आंदोलन, राज्य आंदोलन) हमारी इतिहास शृंखला में विस्तार से है — यहाँ दोहराया नहीं गया।</p>
+          <ul class="hist-links">{HISTORY_LINKS.map((h) => <li><a href={h.href}><b>{h.t}</b><span>{h.d}</span></a></li>)}</ul>
+        </section>
+      );
+      const list = PCHAPTERS.filter((c) => c.unit === u.id);
+      return (
+        <section>
+          <h3 class="unit-h">{u.name}</h3>
+          <ol class="chs">
+            {list.map((c) => c.live ? (
+              <li><a class="pch" href={pHref(c)}><small>अध्याय {c.part}</small><strong>{c.title}</strong><span>{c.hook}</span><br /><span class="arts">{c.arts}</span></a></li>
+            ) : (
+              <li><div class="pch soon"><small>अध्याय {c.part} · जल्द</small><strong>{c.title}</strong><span>{c.hook}</span><br /><span class="arts">{c.arts}</span></div></li>
+            ))}
+          </ol>
+        </section>
+      );
+    })}
+  </section>
+
+  <section id="nirman">
+    <h2>राज्य कैसे बना: संवैधानिक प्रक्रिया</h2>
+    <p>उत्तराखंड किसी आंदोलन की घोषणा से नहीं, <b>संसद के एक कानून</b> से बना — यही परीक्षा का मूल बिंदु है। आंदोलन ने माँग बनाई (देखें <a href="/history/statehood-movement/">राज्य आंदोलन अध्याय</a>), पर राज्य का जन्म अनुच्छेद 3 की प्रक्रिया से हुआ।</p>
+    <StateFormation />
+    <h3>उत्तर प्रदेश पुनर्गठन अधिनियम, 2000 — परीक्षा-उपयोगी धाराएँ</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>धारा</th><th>क्या कहती है</th></tr></thead>
+        <tbody>
+          <tr><td>3</td><td>13 ज़िलों से "उत्तरांचल" राज्य का गठन</td></tr>
+          <tr><td>7, 8</td><td>चौथी अनुसूची: उत्तरांचल को राज्यसभा की 3 सीटें (UP 34 → 31); मौजूदा सदस्यों का बँटवारा</td></tr>
+          <tr><td>9, 11</td><td>लोकसभा: UP 80, उत्तरांचल 5</td></tr>
+          <tr><td>12</td><td>विधानसभा: UP 403, उत्तरांचल 70</td></tr>
+          <tr><td>14</td><td>अस्थायी विधानसभा: 22 विधायक + UP विधान परिषद के 9 सदस्य</td></tr>
+          <tr><td>16</td><td>अस्थायी विधानसभा अपना अध्यक्ष-उपाध्यक्ष चुनेगी; तब तक राज्यपाल किसी सदस्य को अध्यक्ष के कर्तव्य सौंपेंगे</td></tr>
+          <tr><td>22</td><td>निर्वाचन आयोग द्वारा परिसीमन और SC/ST सीटों का निर्धारण; एकल-सदस्यीय क्षेत्र</td></tr>
+          <tr><td>26, 28</td><td>उत्तरांचल उच्च न्यायालय; मुख्य पीठ राष्ट्रपति के अधिसूचित आदेश से; क्षेत्राधिकार इलाहाबाद उच्च न्यायालय वाला</td></tr>
+          <tr><td>78</td><td>पुराना लोक सेवा आयोग UP का बना रहा — उत्तरांचल ने 2001 में अपना आयोग (अनु. 315) बनाया</td></tr>
+          <tr><td>79, 80</td><td>गंगा व ऊपरी यमुना की परियोजनाओं के अधिकार-दायित्व; "गंगा प्रबंधन बोर्ड" का प्रावधान</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:.85rem">धाराओं का सार अधिनियम के पाठ से (India Code; Indian Kanoon/CaseMine पर उपलब्ध पाठ से मिलान)।</p>
+  </section>
+
+  <section id="aarekh">
+    <h2>शासन के आरेख</h2>
+    <h3>राज्यपाल, मुख्यमंत्री और मंत्रिपरिषद</h3>
+    <GovCM />
+    <h3>उत्तराखंड में विधेयक से अधिनियम</h3>
+    <BillFlow />
+    <h3>स्थानीय स्वशासन का ढाँचा</h3>
+    <LocalTiers />
+    <h3>सचिवालय से गाँव तक प्रशासन</h3>
+    <AdminHierarchy />
+    <h3>केंद्र-राज्य: तीन सूचियाँ, उत्तराखंड के उदाहरण</h3>
+    <ThreeLists />
+  </section>
+
+  <section id="explorer">
+    <h2>उत्तराखंड संवैधानिक अनुच्छेद एक्सप्लोरर</h2>
+    <p>{ARTICLES.length} प्रावधान — हर एक का सरल अर्थ, खंड-दर-खंड व्याख्या, <b>उत्तराखंड में प्रयोग</b>, संशोधन, न्यायिक निर्णय और परीक्षा-जाल। संख्या या शब्द से खोजें, विषय/स्तर/परीक्षा से छाँटें, और "पढ़ लिया" चिह्नित करते जाएँ (प्रगति इसी ब्राउज़र में सहेजी जाती है)। व्याख्याएँ हमारी अपनी भाषा में हैं — शब्दशः पाठ के लिए हर कार्ड पर <b>मूल पाठ</b> का आधिकारिक लिंक है।</p>
+    <ArticleExplorer />
+  </section>
+
+  <section id="pravdhan">
+    <h2>अनुच्छेद, खंड, उप-खंड, परंतुक, स्पष्टीकरण — फ़र्क़ समझें</h2>
+    <p>प्रश्न अक्सर "अनु. 164(1A)" या "अनु. 3 का परंतुक" पूछते हैं। अनुच्छेद 3 को उदाहरण मानकर संरचना देखिए:</p>
+    <div class="anat">
+      <span class="p"><span class="lb a">अनुच्छेद</span><b>अनु. 3</b> — नए राज्यों का निर्माण…</span>
+      <span class="p" style="--d:1"><span class="lb sc">उप-खंड</span>(a) किसी राज्य से क्षेत्र अलग करके नया राज्य ← उत्तराखंड</span>
+      <span class="p" style="--d:1"><span class="lb sc">उप-खंड</span>(e) किसी राज्य का नाम बदलना ← उत्तरांचल → उत्तराखंड</span>
+      <span class="p" style="--d:1"><span class="lb pv">परंतुक</span>"परंतु…" — राष्ट्रपति की सिफ़ारिश और राज्य विधानमंडल की राय</span>
+      <span class="p" style="--d:1"><span class="lb ex">स्पष्टीकरण</span>I और II — "राज्य" शब्द का दायरा (18वाँ संशोधन, 1966 से)</span>
+      <span class="p"><span class="lb c">खंड</span>क्रमांकित भाग, जैसे <b>164(4)</b> — छह माह का नियम; <b>189(3)</b> — गणपूर्ति</span>
+      <span class="p"><span class="lb sh">अनुसूची</span>संविधान के अंत की तालिकाएँ — पहली (राज्य), चौथी (राज्यसभा सीटें), सातवीं (सूचियाँ), दसवीं (दल-बदल)…</span>
+      <span class="p"><span class="lb am">संशोधन</span>अनु. 368 के अधीन बदलाव — जैसे 91वाँ (2003) ने 164(1A) जोड़ा; पर अनु. 3-4 के कानून संशोधन नहीं माने जाते</span>
+    </div>
+  </section>
+
+  <section id="tulna">
+    <h2>परीक्षा तुलनाएँ</h2>
+    <h3>अनुच्छेद 32 बनाम अनुच्छेद 226</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>आधार</th><th>अनु. 32 (सर्वोच्च न्यायालय)</th><th>अनु. 226 (उच्च न्यायालय, जैसे नैनीताल)</th></tr></thead>
+      <tbody>
+        <tr><td>प्रयोजन</td><td>केवल मौलिक अधिकार</td><td>मौलिक अधिकार और "किसी अन्य प्रयोजन" (क़ानूनी अधिकार भी)</td></tr>
+        <tr><td>स्वरूप</td><td>स्वयं एक मौलिक अधिकार</td><td>संवैधानिक अधिकार/विवेकाधीन शक्ति</td></tr>
+        <tr><td>क्षेत्र</td><td>पूरे भारत में</td><td>अपने राज्यक्षेत्र में (वाद-कारण आंशिक रूप से भी वहाँ उत्पन्न हो तो)</td></tr>
+        <tr><td>आपातकाल</td><td>अनु. 359 के अधीन निलंबित हो सकता है</td><td>मौलिक अधिकार वाला भाग निलंबित, पर अन्य प्रयोजन चलता रहता है</td></tr>
+        <tr><td>उत्तराखंड उदाहरण</td><td>—</td><td>2016 राष्ट्रपति शासन को चुनौती; गंगा-यमुना PIL (2017); लोकायुक्त PIL</td></tr>
+      </tbody>
+    </table></div>
+    <h3>पंचायती राज बनाम नगरीय निकाय</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>आधार</th><th>पंचायती राज</th><th>नगरीय निकाय</th></tr></thead>
+      <tbody>
+        <tr><td>संशोधन / भाग</td><td>73वाँ (1992) · भाग IX · अनु. 243–243O</td><td>74वाँ (1992) · भाग IXA · अनु. 243P–243ZG</td></tr>
+        <tr><td>अनुसूची</td><td>ग्यारहवीं — 29 विषय</td><td>बारहवीं — 18 विषय</td></tr>
+        <tr><td>स्तर</td><td>ग्राम, क्षेत्र, ज़िला पंचायत</td><td>नगर पंचायत, नगर पालिका परिषद, नगर निगम</td></tr>
+        <tr><td>उत्तराखंड कानून</td><td>उत्तराखंड पंचायती राज अधिनियम, 2016</td><td>UP काल के नगरपालिका/नगर निगम अधिनियम (राज्य में संशोधनों सहित लागू)</td></tr>
+        <tr><td>अध्यक्ष का चुनाव</td><td>प्रधान प्रत्यक्ष; प्रमुख व ज़िला पंचायत अध्यक्ष अप्रत्यक्ष</td><td>महापौर/अध्यक्ष प्रत्यक्ष</td></tr>
+        <tr><td>साझा संस्थाएँ</td><td colspan="2">राज्य निर्वाचन आयोग · राज्य वित्त आयोग · ज़िला योजना समिति</td></tr>
+      </tbody>
+    </table></div>
+    <h3>भारत निर्वाचन आयोग बनाम राज्य निर्वाचन आयोग</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>आधार</th><th>भारत निर्वाचन आयोग</th><th>राज्य निर्वाचन आयोग, उत्तराखंड</th></tr></thead>
+      <tbody>
+        <tr><td>अनुच्छेद</td><td>324</td><td>243K, 243ZA</td></tr>
+        <tr><td>चुनाव</td><td>लोकसभा, राज्यसभा, विधानसभा, राष्ट्रपति, उपराष्ट्रपति</td><td>पंचायत (तीनों स्तर), नगर निकाय, ज़िला योजना समिति के सदस्य</td></tr>
+        <tr><td>नियुक्ति</td><td>राष्ट्रपति</td><td>राज्यपाल</td></tr>
+        <tr><td>हटाना</td><td>मुख्य निर्वाचन आयुक्त — SC न्यायाधीश की रीति से</td><td>HC न्यायाधीश की रीति से</td></tr>
+        <tr><td>राज्य में अधिकारी</td><td>मुख्य निर्वाचन अधिकारी (CEO), उत्तराखंड</td><td>राज्य निर्वाचन आयुक्त</td></tr>
+      </tbody>
+    </table></div>
+    <h3>संवैधानिक बनाम सांविधिक संस्थाएँ (उत्तराखंड)</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>संस्था</th><th>आधार</th><th>प्रकार</th></tr></thead>
+      <tbody>
+        <tr><td>उत्तराखंड लोक सेवा आयोग (2001)</td><td>अनु. 315</td><td><span class="kind k-संवैधानिक">संवैधानिक</span></td></tr>
+        <tr><td>राज्य निर्वाचन आयोग (2001)</td><td>अनु. 243K</td><td><span class="kind k-संवैधानिक">संवैधानिक</span></td></tr>
+        <tr><td>राज्य वित्त आयोग (हर 5 वर्ष)</td><td>अनु. 243I</td><td><span class="kind k-संवैधानिक">संवैधानिक</span></td></tr>
+        <tr><td>महाधिवक्ता</td><td>अनु. 165</td><td><span class="kind k-संवैधानिक">संवैधानिक पद</span></td></tr>
+        <tr><td>राज्य सूचना आयोग</td><td>सूचना का अधिकार अधिनियम, 2005</td><td><span class="kind k-वैधानिक">सांविधिक</span></td></tr>
+        <tr><td>उत्तराखंड लोकायुक्त</td><td>उत्तराखंड लोकायुक्त अधिनियम, 2014 (नियुक्ति लंबित)</td><td><span class="kind k-वैधानिक">सांविधिक</span></td></tr>
+        <tr><td>राज्य मानवाधिकार आयोग (2013)</td><td>मानव अधिकार संरक्षण अधिनियम, 1993</td><td><span class="kind k-वैधानिक">सांविधिक</span></td></tr>
+        <tr><td>राज्य महिला आयोग</td><td>उत्तराखंड राज्य महिला आयोग अधिनियम, 2005</td><td><span class="kind k-वैधानिक">सांविधिक</span></td></tr>
+        <tr><td>राज्य बाल अधिकार संरक्षण आयोग</td><td>बाल अधिकार संरक्षण आयोग अधिनियम, 2005</td><td><span class="kind k-वैधानिक">सांविधिक</span></td></tr>
+        <tr><td>राज्य आपदा प्रबंधन प्राधिकरण</td><td>आपदा प्रबंधन अधिनियम, 2005</td><td><span class="kind k-वैधानिक">सांविधिक</span></td></tr>
+        <tr><td>राज्य विधिक सेवा प्राधिकरण</td><td>विधिक सेवा प्राधिकरण अधिनियम, 1987 (अनु. 39A की भावना)</td><td><span class="kind k-वैधानिक">सांविधिक</span></td></tr>
+        <tr><td>सेवा का अधिकार आयोग (2014)</td><td>उत्तराखंड सेवा का अधिकार अधिनियम, 2011</td><td><span class="kind k-वैधानिक">सांविधिक</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="box-trap"><strong><span class="tag trap">सावधान</span></strong>संविधान में उल्लेख ≠ हर बार संवैधानिक निकाय। अनु. 39A विधिक सहायता का निर्देश है, पर विधिक सेवा प्राधिकरण 1987 के कानून से बना — इसलिए सांविधिक।</div>
+  </section>
+
+  <section id="samayrekha">
+    <h2>संवैधानिक-राजनीतिक समयरेखा (1950–2026)</h2>
+    <div class="tl-ctl chips" role="group" aria-label="समयरेखा छाँटें">
+      <button type="button" class="chip" data-tk="" aria-pressed="true">सभी</button>
+      {kinds.map((k) => <button type="button" class="chip" data-tk={k} aria-pressed="false">{k}</button>)}
+    </div>
+    <ul class="tl" id="tl">
+      {TIMELINE.map((t) => <li data-k={t.kind}><span class="d">{t.d}</span>{t.e} <span class={`kind k-${t.kind}`}>{t.kind}</span></li>)}
+    </ul>
+  </section>
+
+  <section id="saavdhan">
+    <h2>ट्रिक प्रश्न: जहाँ अभ्यर्थी अंक गँवाते हैं</h2>
+    <ol>{TRAPS.map((t) => <li set:html={t} />)}</ol>
+  </section>
+
+  <section id="matbhed">
+    <h2>स्रोतों में मत-भेद (एक जगह)</h2>
+    <p>जहाँ स्रोत अलग-अलग बात कहते हैं, हम चुपचाप एक नहीं चुनते — दोनों पक्ष और हमारा आधार नीचे है।</p>
+    <div class="table-wrap"><table class="conf">
+      <thead><tr><th>विषय</th><th>पक्ष 1</th><th>पक्ष 2</th><th>परीक्षा में क्या लिखें</th></tr></thead>
+      <tbody>{CONFLICTS.map((c) => <tr><td>{c.topic}</td><td set:html={c.a} /><td set:html={c.b} /><td set:html={c.take} /></tr>)}</tbody>
+    </table></div>
+  </section>
+
+  <section id="quiz">
+    <h2>अभ्यास क्विज़ (15 प्रश्न)</h2>
+    <p class="muted">ये हमारे बनाए UKPSC/UKSSSC/UPSC-स्तर के <b>अभ्यास प्रश्न</b> हैं, पिछले वर्षों के प्रश्न नहीं। हर व्याख्या में कठिनाई-स्तर, परीक्षा, गलत विकल्पों का कारण और स्रोत दिया है।</p>
+    <Quiz id="polity-hub" title="उत्तराखंड राजव्यवस्था — अभ्यास क्विज़" questions={questions} />
+  </section>
+
+  <section id="shabdavali">
+    <h2>विधिक-राजनीतिक शब्दावली (हिंदी–English)</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>हिंदी</th><th>English</th><th>अर्थ</th></tr></thead>
+      <tbody>{GLOSSARY.map(([h, e, d]) => <tr><td><b>{h}</b></td><td lang="en">{e}</td><td>{d}</td></tr>)}</tbody>
+    </table></div>
+  </section>
+
+  <section id="satyapan">
+    <h2>सत्यापन, शोध-अंतराल और स्रोत</h2>
+    <p>हर तथ्य पर उसका प्रकार लिखा है — <b>संवैधानिक</b> (संविधान का प्रावधान), <b>वैधानिक</b> (अधिनियम/नियम), <b>प्रशासनिक</b> (सरकारी व्यवस्था), <b>न्यायिक</b> (निर्णय) या <b>समसामयिक</b> (बदल सकने वाली वर्तमान स्थिति)। समसामयिक तथ्य <time datetime={VERIFIED_ON}>{fmt(VERIFIED_ON)}</time> को जाँचे गए।</p>
+    <div class="gap-box">
+      <h3>अभी सत्यापन बाकी (अनुमान नहीं लगाया गया)</h3>
+      <ul>{GAPS.map((g) => <li>{g}</li>)}</ul>
+    </div>
+    <h3>स्रोत-रजिस्टर</h3>
+    <p class="muted" style="font-size:.85rem"><span class="tierlbl t1">स्तर 1</span> संविधान, अधिनियम, सरकारी/न्यायालय वेबसाइट · <span class="tierlbl t2">स्तर 2</span> विधिक डेटाबेस व शोध · <span class="tierlbl t3">स्तर 3</span> प्रतिष्ठित समाचार — केवल संदर्भ के लिए</p>
+    <ul class="src-list">{SOURCES.map((s) => <li><span class={`tierlbl t${s.tier}`}>स्तर {s.tier}</span><a href={s.u} target="_blank" rel="noopener nofollow">{s.t}</a></li>)}</ul>
+    <p class="report"><a class="report-btn" href={`/contact/?topic=${encodeURIComponent('तथ्य में त्रुटि')}&page=${encodeURIComponent(`उत्तराखंड राजव्यवस्था — ${url}`)}`}>⚠ त्रुटि की सूचना दें</a> <span class="muted">कोई तथ्य गलत लगे तो स्रोत सहित बताएँ — हम हर सूचना जाँचकर पेज अपडेट करते हैं।</span></p>
+  </section>
+
+  <section id="faq">
+    <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+    {FAQ.map((f) => (<details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+  </section>
+
+  <p class="muted">संबंधित: <a href="/history/">उत्तराखंड का इतिहास (शृंखला)</a> · <a href="/geography/">उत्तराखंड का भूगोल (शृंखला)</a> · <a href="/gk/uttarakhand-yojanayen/">उत्तराखंड की योजनाएँ</a> · <a href="/gk/uttarakhand-districts/">13 ज़िले</a></p>
+</Base>
+
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted); margin: 4px 0 10px; }
+  .unit-h { margin-top: 1.2em; color: #3730a3; }
+</style>
+
+<script>
+  // hero progress mirrors the explorer's "पढ़ लिया" count
+  document.addEventListener('polity-progress', (e) => {
+    const { done, total } = (e as CustomEvent<{ done: number; total: number }>).detail;
+    const n = document.getElementById('pl-prog-n'); const bar = document.getElementById('pl-prog-bar');
+    if (n) n.textContent = String(done);
+    if (bar) bar.style.width = `${total ? (done / total) * 100 : 0}%`;
+  });
+  // timeline filter by fact-kind
+  const btns = document.querySelectorAll<HTMLButtonElement>('[data-tk]');
+  btns.forEach((b) => b.addEventListener('click', () => {
+    btns.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+    document.querySelectorAll<HTMLLIElement>('#tl li').forEach((li) => { li.hidden = !!b.dataset.tk && li.dataset.k !== b.dataset.tk; });
+  }));
+</script>

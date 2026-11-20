@@ -1,0 +1,148 @@
+---
+// Searchable, filterable Constitutional Article Explorer. All cards are rendered at build time (readable without JS,
+// indexed by Pagefind); the script only filters, toggles beginner/advanced and remembers "पढ़ लिया" per browser.
+import { ARTICLES, GROUPS, LEVELS, isMains, type Art } from '../../data/polity-articles';
+
+const OFFICIAL = 'https://legislative.gov.in/constitution-of-india';
+const SCH: Record<string, string> = { 'अनुसूची 1': 'sch-1', 'अनुसूची 4': 'sch-4', 'सातवीं अनुसूची': 'sch-7', 'दसवीं अनुसूची': 'sch-10', 'ग्यारहवीं अनुसूची': 'sch-11', 'बारहवीं अनुसूची': 'sch-12' };
+const aid = (n: string) => 'art-' + (SCH[n] ?? n.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''));
+const ids = new Set(ARTICLES.map((a) => aid(a.n)));
+const label = (n: string) => (/^\d/.test(n) ? `अनु. ${n}` : n);
+const hay = (a: Art) => [a.n, a.h, a.en, a.s, a.uk ?? '', (a.cl ?? []).join(' '), a.trap ?? '', a.jud ?? ''].join(' ').replace(/<[^>]+>/g, '').toLowerCase();
+const counts = Object.fromEntries(Object.keys(LEVELS).map((k) => [k, ARTICLES.filter((a) => (k === 'mains' ? isMains(a) : a.lvl === k)).length]));
+---
+<div class="explorer" id="explorer-app" data-total={ARTICLES.length}>
+  <div class="ex-ctl" role="search">
+    <label for="ex-q" class="sr">अनुच्छेद खोजें</label>
+    <input id="ex-q" type="search" placeholder="अनुच्छेद संख्या या शब्द खोजें — जैसे 164, राज्यपाल, गणपूर्ति, UCC, pardon…" autocomplete="off" />
+    <div class="chips" role="group" aria-label="विषय-समूह">
+      <button type="button" class="chip" data-f="g" data-v="" aria-pressed="true">सभी विषय</button>
+      {Object.entries(GROUPS).map(([k, v]) => <button type="button" class="chip" data-f="g" data-v={k} aria-pressed="false">{v}</button>)}
+    </div>
+    <div class="chips" role="group" aria-label="महत्व-स्तर">
+      <button type="button" class="chip" data-f="l" data-v="" aria-pressed="true">हर स्तर</button>
+      {Object.entries(LEVELS).map(([k, v]) => <button type="button" class="chip" data-f="l" data-v={k} aria-pressed="false">{v} ({counts[k]})</button>)}
+    </div>
+    <div class="chips" role="group" aria-label="परीक्षा">
+      <button type="button" class="chip" data-f="x" data-v="" aria-pressed="true">हर परीक्षा</button>
+      {['UKPSC', 'UKSSSC', 'UPSC'].map((x) => <button type="button" class="chip" data-f="x" data-v={x} aria-pressed="false">{x}</button>)}
+    </div>
+    <div class="ex-meta">
+      <span aria-live="polite"><b id="ex-count">{ARTICLES.length}</b> / {ARTICLES.length} प्रावधान · पढ़े: <b id="ex-done">0</b></span>
+      <span class="ex-opts">
+        <label><input type="checkbox" id="ex-beg" /> शुरुआती दृश्य (सरल)</label>
+        <label><input type="checkbox" id="ex-unread" /> केवल अपठित</label>
+        <button type="button" class="chip" id="ex-open">सब खोलें</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="ex-list" id="ex-list">
+    {ARTICLES.map((a) => (
+      <details class="ex-card" id={aid(a.n)} data-g={a.g} data-l={isMains(a) && a.lvl !== 'mains' ? `${a.lvl} mains` : a.lvl} data-x={a.ex.join(' ')} data-q={hay(a)}>
+        <summary>
+          <span class="num">{label(a.n)}</span>
+          <span class="hd">{a.h}<small lang="en">{a.en} · भाग {a.part}</small></span>
+          <span class={`lv ${a.lvl}`}>{LEVELS[a.lvl]}</span>{isMains(a) && a.lvl !== 'mains' && <span class="lv mains">मुख्य</span>}
+        </summary>
+        <div class="ex-body">
+          <h4>सरल भाषा में</h4>
+          <p set:html={a.s} />
+          {a.cl && (<div class="adv-only"><h4>खंड-दर-खंड</h4><ul>{a.cl.map((c) => <li set:html={c} />)}</ul></div>)}
+          {a.uk && (<><h4>उत्तराखंड में</h4><p class="ukb" set:html={a.uk} /></>)}
+          {a.amd && (<div class="adv-only"><h4>संशोधन</h4><p set:html={a.amd} /></div>)}
+          {a.jud && (<div class="adv-only"><h4>न्यायिक व्याख्या</h4><p set:html={a.jud} /></div>)}
+          {a.trap && (<><h4>परीक्षा-जाल</h4><p class="trp" set:html={a.trap} /></>)}
+          <div class="ex-foot">
+            <span class="exams">{a.ex.map((x) => <span>{x}</span>)}</span>
+            <span class="muted">समूह: {GROUPS[a.g]}</span>
+            {a.rel && (<span class="rel">संबंधित: {a.rel.map((r) => ids.has(aid(r)) ? <a href={`#${aid(r)}`} data-jump>{label(r)}</a> : <span>{label(r)} </span>)}</span>)}
+            <a href={OFFICIAL} target="_blank" rel="noopener nofollow">मूल पाठ ↗</a>
+            <label><input type="checkbox" class="ex-mark" data-id={aid(a.n)} /> पढ़ लिया</label>
+          </div>
+        </div>
+      </details>
+    ))}
+    <p class="ex-empty" id="ex-empty" hidden>कोई प्रावधान नहीं मिला — खोज-शब्द या फ़िल्टर बदलकर देखें।</p>
+  </div>
+</div>
+
+<style>
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+
+<script>
+  const app = document.getElementById('explorer-app');
+  if (app) {
+    const KEY = 'pp-polity-read-v1';
+    const load = (): Set<string> => { try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch { return new Set(); } };
+    const save = (s: Set<string>) => { try { localStorage.setItem(KEY, JSON.stringify([...s])); } catch { /* storage unavailable */ } };
+    const read = load();
+    const cards = Array.from(app.querySelectorAll<HTMLDetailsElement>('.ex-card'));
+    const q = app.querySelector<HTMLInputElement>('#ex-q')!;
+    const unread = app.querySelector<HTMLInputElement>('#ex-unread')!;
+    const beg = app.querySelector<HTMLInputElement>('#ex-beg')!;
+    const state: Record<string, string> = { g: '', l: '', x: '' };
+    const total = cards.length;
+
+    const syncDone = () => {
+      cards.forEach((c) => c.classList.toggle('done', read.has(c.id)));
+      app.querySelectorAll<HTMLInputElement>('.ex-mark').forEach((m) => { m.checked = read.has(m.dataset.id!); });
+      const n = cards.filter((c) => read.has(c.id)).length;
+      document.getElementById('ex-done')!.textContent = String(n);
+      document.dispatchEvent(new CustomEvent('polity-progress', { detail: { done: n, total } }));
+    };
+    const apply = () => {
+      const t = q.value.trim().toLowerCase();
+      let shown = 0;
+      cards.forEach((c) => {
+        const ok = (!state.g || c.dataset.g === state.g) && (!state.l || (c.dataset.l || '').split(' ').includes(state.l))
+          && (!state.x || (c.dataset.x || '').split(' ').includes(state.x))
+          && (!t || (c.dataset.q || '').includes(t) || c.id === 'art-' + t.replace(/[^a-z0-9]+/g, '-'))
+          && (!unread.checked || !read.has(c.id));
+        c.hidden = !ok; if (ok) shown++;
+      });
+      document.getElementById('ex-count')!.textContent = String(shown);
+      document.getElementById('ex-empty')!.hidden = shown > 0;
+    };
+    app.querySelectorAll<HTMLButtonElement>('.chip[data-f]').forEach((b) => b.addEventListener('click', () => {
+      const f = b.dataset.f!;
+      state[f] = b.dataset.v!;
+      app.querySelectorAll<HTMLButtonElement>(`.chip[data-f="${f}"]`).forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      apply();
+    }));
+    q.addEventListener('input', apply);
+    unread.addEventListener('change', apply);
+    beg.addEventListener('change', () => { app.classList.toggle('beginner', beg.checked); try { localStorage.setItem('pp-polity-beg', beg.checked ? '1' : ''); } catch { /* */ } });
+    try { if (localStorage.getItem('pp-polity-beg')) { beg.checked = true; app.classList.add('beginner'); } } catch { /* */ }
+    const openBtn = app.querySelector<HTMLButtonElement>('#ex-open')!;
+    openBtn.addEventListener('click', () => {
+      const open = openBtn.dataset.open !== '1';
+      cards.forEach((c) => { if (!c.hidden) c.open = open; });
+      openBtn.dataset.open = open ? '1' : '';
+      openBtn.textContent = open ? 'सब बंद करें' : 'सब खोलें';
+    });
+    app.addEventListener('change', (e) => {
+      const m = e.target as HTMLInputElement;
+      if (!m.classList.contains('ex-mark')) return;
+      if (m.checked) read.add(m.dataset.id!); else read.delete(m.dataset.id!);
+      save(read); syncDone(); if (unread.checked) apply();
+    });
+    // jump links to related articles: clear filters if the target is hidden, then open it
+    app.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[data-jump]');
+      if (!a) return;
+      const target = document.querySelector<HTMLDetailsElement>(a.getAttribute('href')!);
+      if (target) { if (target.hidden) { q.value = ''; state.g = state.l = state.x = ''; unread.checked = false; app.querySelectorAll<HTMLButtonElement>('.chip[data-f]').forEach((o) => o.setAttribute('aria-pressed', String(o.dataset.v === ''))); apply(); } target.open = true; }
+    });
+    // open the card when arriving via #art-… link
+    const openHash = () => { const el = location.hash && document.querySelector<HTMLDetailsElement>(location.hash); if (el && el.classList.contains('ex-card')) { el.open = true; } };
+    window.addEventListener('hashchange', openHash); openHash();
+    // keep the sticky filter bar under the sticky site header
+    const hdr = document.querySelector<HTMLElement>('.site-header');
+    const ctl = app.querySelector<HTMLElement>('.ex-ctl')!;
+    const fix = () => { ctl.style.top = (hdr ? hdr.offsetHeight : 0) + 'px'; };
+    fix(); window.addEventListener('resize', fix);
+    syncDone(); apply();
+  }
+</script>

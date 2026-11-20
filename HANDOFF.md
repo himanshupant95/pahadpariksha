@@ -166,3 +166,10 @@ Rules agreed with the user:
 - `src/data/schemes.ts` now also exports `CENTRAL` (14 entries, `scope: 'central'`, `ut` = Uttarakhand-specific exam facts) + `sortedCentral()`. New sectors `infra`, `water`; new status `build` (निर्माणाधीन).
 - Cards rendered by `src/components/SchemeCard.astro` (card CSS lives there, scoped). Page has राज्य/केंद्र scope toggle, separate #kendra section with quick table, central one-liners; timeline stays state-only.
 - Quiz now 25 Qs. Flagged conflicts: R–K rail cost/deadline (₹24.6k→₹37k cr; 2026→2028→2029), Silkyara cost ₹853 vs ₹1,384 cr, Char Dham 825/889/900+ km, D–D expressway corridor 12/14 km, JJM denominators, Jamrani central share ₹1,557.18 vs ₹1,730 cr, VVP-II district split sums to 41.
+
+## Polity series — hub live (20 Nov 2026)
+- Hub `/polity/` (src/pages/polity/index.astro), built to the owner's "Pahad Pariksha — Uttarakhand Polity Learning Hub" brief. Data: `src/data/polity.ts` (17 planned chapters in 6 units — none live yet; set `live: true` + `img` when one ships), `src/data/polity-articles.ts` (160 provisions for the Article Explorer). Components: `src/components/polity/ArticleExplorer.astro` + `diagrams/*` (StateFormation, GovCM, BillFlow, LocalTiers, AdminHierarchy, ThreeLists). Styles `src/styles/polity.css`. Quiz `polity-hub.json` (15, practice questions — never PYQs).
+- Module 1 (history) is NOT duplicated: hub links to the history series chapters (HISTORY_LINKS).
+- Levels: must/pre/adv/bg are exclusive; "मुख्य हेतु" is an overlay tag (`MAINS` set in polity-articles.ts).
+- Every changeable fact carries kind + source; `VERIFIED_ON` and `OFFICE` (Governor, CM, Speaker, LoP, CJ, SEC, 6th SFC) must be refreshed when an office-holder changes. Open research gaps are listed on the page (`GAPS`): Services Tribunal parent act, Deputy Speaker vacancy, UCC assent date (11 vs 12 Mar 2024), 2008 delimitation table, real PYQs.
+- Next: chapter 1 "राज्य निर्माण की संवैधानिक प्रक्रिया" (/polity/state-formation-constitutional-process/), then Governor, CM & CoM, Assembly… staggered.

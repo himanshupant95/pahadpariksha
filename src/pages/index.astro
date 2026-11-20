@@ -20,6 +20,7 @@ import { SITE } from '../data/site';
 const topics = [
   { icon: 'district', t: 'जिले', d: '13 जिले, मुख्यालय, सीमाएँ', href: '/gk/uttarakhand-districts/' },
   { icon: 'river', t: 'भूगोल', d: 'मानचित्रों सहित अध्याय-दर-अध्याय', href: '/geography/' },
+  { icon: 'shield', t: 'राजव्यवस्था', d: 'संविधान, राज्यपाल, विधानसभा, पंचायत', href: '/polity/' },
   { icon: 'river', t: 'नदियाँ', d: 'उद्गम, संगम, पंच प्रयाग', href: '/gk/uttarakhand-rivers/' },
   { icon: 'quiz', t: 'क्विज़', d: 'टॉपिक-वाइज MCQ अभ्यास', href: '/quiz/' },
   { icon: 'exam', t: 'परीक्षाएँ', d: 'UKSSSC व UKPSC भर्तियाँ', href: '/exams/' },
@@ -31,6 +32,7 @@ const garhwal = ['देहरादून', 'हरिद्वार', 'टि
 const districtPages: Record<string, string> = { 'देहरादून': '/gk/districts/dehradun/', 'हरिद्वार': '/gk/districts/haridwar/', 'नैनीताल': '/gk/districts/nainital/', 'अल्मोड़ा': '/gk/districts/almora/', 'पौड़ी गढ़वाल': '/gk/districts/pauri-garhwal/', 'टिहरी गढ़वाल': '/gk/districts/tehri-garhwal/', 'ऊधम सिंह नगर': '/gk/districts/udham-singh-nagar/', 'चमोली': '/gk/districts/chamoli/', 'पिथौरागढ़': '/gk/districts/pithoragarh/', 'उत्तरकाशी': '/gk/districts/uttarkashi/', 'रुद्रप्रयाग': '/gk/districts/rudraprayag/', 'बागेश्वर': '/gk/districts/bageshwar/', 'चंपावत': '/gk/districts/champawat/' };
 const kumaon = ['नैनीताल', 'अल्मोड़ा', 'पिथौरागढ़', 'बागेश्वर', 'चंपावत', 'ऊधम सिंह नगर'];
 const latest = [
+  { href: '/polity/', tag: 'उत्तराखंड राजव्यवस्था', t: 'नई शृंखला: उत्तराखंड राजव्यवस्था — राज्य निर्माण, राज्यपाल, विधानसभा, पंचायत; अनुच्छेद एक्सप्लोरर व आरेख', img: '/maps/uttarakhand-political-800.webp' },
   { href: '/gk/uttarakhand-yojanayen/', tag: 'उत्तराखंड GK', t: 'नया: उत्तराखंड सरकार की प्रमुख योजनाएँ 2000–2026 — लाभ, पात्रता, स्थिति', img: '/images/uttarakhand-hills-thumb.webp' },
   { href: '/geography/', tag: 'उत्तराखंड का भूगोल', t: 'नई शृंखला: उत्तराखंड का भूगोल — स्थिति, हिमालय, भौतिक विभाग, नदियाँ, हिमनद (मानचित्रों सहित)', img: '/maps/geo/g04-river-systems-800.webp' },
   { href: '/history/', tag: 'उत्तराखंड का इतिहास', t: 'नई शृंखला: उत्तराखंड का इतिहास — प्रागैतिहासिक, प्राचीन और कत्यूरी काल', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Ancient_Cave_Paintings_at_Lakhudiyar%2C_Almora_District%2C_Uttarakhand_India_-_1.jpeg/250px-Ancient_Cave_Paintings_at_Lakhudiyar%2C_Almora_District%2C_Uttarakhand_India_-_1.jpeg' },

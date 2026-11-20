@@ -5,6 +5,7 @@ import { SITE } from '../data/site';
 import { DISTRICTS, SERIES, districtHref } from '../data/districts';
 import { CHAPTERS, HSERIES, chapterHref } from '../data/history';
 import { GCHAPTERS, GSERIES, gHref } from '../data/geography';
+import { PCHAPTERS, PSERIES, pHref } from '../data/polity';
 
 const u = (path: string) => `${SITE.url}${path}`;
 const link = (title: string, path: string, note = '') => `- [${title}](${u(path)})${note ? `: ${note}` : ''}`;
@@ -41,6 +42,10 @@ export const GET: APIRoute = () => {
     `## ${GSERIES.name}`,
     link(`${GSERIES.name} (series hub)`, '/geography/'),
     ...GCHAPTERS.filter((c) => c.live).map((c) => link(`${c.part}. ${c.title}`, gHref(c), c.hook)),
+    '',
+    `## ${PSERIES.name} (${PSERIES.nameEn})`,
+    link(`${PSERIES.name} (series hub)`, PSERIES.href, 'Uttarakhand polity from primary sources: state formation under Article 3, Governor, Council of Ministers, Legislative Assembly, High Court, Panchayati Raj, ULBs, UCC; searchable article explorer'),
+    ...PCHAPTERS.filter((c) => c.live).map((c) => link(`${c.part}. ${c.title}`, pHref(c), c.hook)),
     '',
     '## Uttarakhand GK',
     link('उत्तराखंड सामान्य ज्ञान', '/gk/'),
