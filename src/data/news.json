@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T00:48:45.454Z",
+ "updated": "2026-11-20T01:55:22.179Z",
  "items": [
   {
    "id": "dc3bdc95b2fb",
@@ -48,7 +48,9 @@
    "lang": "hi",
    "score": 2,
    "cat": "योजना/नीति",
-   "sources": [],
+   "sources": [
+    "Jagran"
+   ],
    "firstSeen": "2026-11-20T00:48:42.386Z"
   },
   {
@@ -60,7 +62,10 @@
    "lang": "en",
    "score": 2,
    "cat": "रिपोर्ट/रैंकिंग",
-   "sources": [],
+   "sources": [
+    "The New Indian Express",
+    "The Statesman"
+   ],
    "firstSeen": "2026-11-20T00:48:44.202Z"
   },
   {
@@ -86,6 +91,18 @@
    "cat": "योजना/नीति",
    "sources": [],
    "firstSeen": "2026-11-20T00:48:42.697Z"
+  },
+  {
+   "id": "ed62f4d4e322",
+   "title": "Nainital Latest News 19 November 2026, नैनीताल :एटीएम में महिला का कार्ड लेकर भागे युवक, अग्निशमन कर्मियों ने जीते पदक, हिमालयन एमटीबी का स्वागत, बौद्धिक संपदा अधिकारों पर व्याख्यान, परीक्षाओं",
+   "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1zZXJnVzJFeEliS1RNT2s5b3FoQTlOM3BuS2owOWpDeGw5STl6S1dqR3lmV2lUMWxLQjNPbVE3NjhEN0o0cjF6TzA0NlRjaURJbG43RXlHZUg3N3NCUDVUVWg0Y2pYMjVUcFJnVE9kc2R0dTBHR2M0S3cxbkFLdw?oc=5",
+   "source": "Navin Samachar",
+   "published": "2026-11-19T16:07:11.000Z",
+   "lang": "hi",
+   "score": 5,
+   "cat": "पुरस्कार/खेल",
+   "sources": [],
+   "firstSeen": "2026-11-20T01:55:18.769Z"
   },
   {
    "id": "b3eb99d9df45",
@@ -234,6 +251,18 @@
    "firstSeen": "2026-11-19T16:02:52.718Z"
   },
   {
+   "id": "b45d7b120cad",
+   "title": "Dehradun News: कैंट की बदलेगी तस्वीर! CM धामी ने 23 परियोजनाओं का किया लोकार्पण-शिलान्यास",
+   "link": "https://news.google.com/rss/articles/CBMijwJBVV95cUxPYzdJNG5oQngybndldURYaWctWUdHZzJ5eFYtY1Zfc2F5YVRQZzdYczAxOGRtQWd1WnRkM3Y1ZmJxWk4yX09qR2VlYXdVV0w2d0U2QmwxT3VuSDl1czBaV1luRF93NFduZTFjbFVzWnZBMVNYNGtUNmk5LVJnbV9INktNeThUWVQxR2JFeDBKdjgzYml2UnhQN0lpRi0zcjJza1piTXJKUzJSRF80S3FGeV9PRVF1N1JVVWpWSHB4R0JTRWVtQlloTl9BR0haUmVwZ2lGQjFKOFpydzNWblBXb3ZYbTZ0bkhPYWFfX29rU0JaYUJHYWhEeFowWnV2WWhTVG12dzlabnZtOFJwd1lV0gGPAkFVX3lxTE9jN0k0bmhCeDJud2V1RFhpZy1ZR0dnMnl4Vi1jVl9zYXlhVFBnN1hzMDE4ZG1BZ3VadGQzdjVmYnFaTjJfT2pHZWVhd1VXTDZ3RTZCbDFPdW5IOXVzMFpXWW5EX3c0V25lMWNsVXNadkExU1g0a1Q2aTktUmdtX0g2S015OFRZVDFHYkV4MEp2ODNiaXZSeFA3SWlGLTNyMnNrWmJNckpTMlJEXzRLcUZ5X09FUXU3UlVValZIcHhHQlNFZW1CWWhOX0FHSFpSZXBnaUZCMUo4WnJ3M1ZuUFdvdlhtNnRuSE9hYV9fb2tTQlphQkdhaER4WjBadXZZaFNUbXZ3OVpudm04UnB3WVU?oc=5",
+   "source": "Asianet News Hindi",
+   "published": "2026-11-19T10:42:32.000Z",
+   "lang": "hi",
+   "score": 4,
+   "cat": "योजना/नीति",
+   "sources": [],
+   "firstSeen": "2026-11-20T01:55:18.758Z"
+  },
+  {
    "id": "0e5e8ba85c16",
    "title": "उत्तराखंड में विज्ञान और तकनीक में बेटियों की भागीदारी बढ़ाने के लिए बनेगी नीतिः राज्यपाल डॉ. ढाल सिंह बिसेन",
    "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPX2hSTHViaHdOQjdDWHlQRDJSbjFnSl8ydG1Fa0c0NHg5UkhkUk1iRU5mRWxlZEI2YU1ITHNBMzFiMkhGSEY2eUczUThtajdtTEVCWlU5c3ItVWM0X1FqeGZnNjhBTkRWbHdMZmhkQkJoMDBrcEw0WlZOTzY3ajd2YWY1WDFkeXlmcGdhR3kxSzNmWDFhbExvdHFpM05jYTdWWGlMY0k1RTk2eGpYeVlxUDA4LWJXak9YbEYtVHZFbC00UQ?oc=5",
@@ -284,7 +313,8 @@
    "score": 5,
    "cat": "योजना/नीति",
    "sources": [
-    "Amar Ujala"
+    "Amar Ujala",
+    "News 127"
    ],
    "firstSeen": "2026-11-19T16:02:52.361Z",
    "read": "https://www.amarujala.com/dehradun/a-gift-of-4844-crore-for-the-cantt-assembly-constituency-dehradun-news-c-5-1-drn1080-1116230-2026-11-20"
@@ -592,7 +622,9 @@
    "lang": "hi",
    "score": 2,
    "cat": "संस्कृति",
-   "sources": [],
+   "sources": [
+    "Naya Bharat Live"
+   ],
    "firstSeen": "2026-11-19T06:49:11.476Z"
   },
   {
@@ -713,6 +745,18 @@
     "ET TravelWorld"
    ],
    "firstSeen": "2026-11-19T06:49:12.793Z"
+  },
+  {
+   "id": "a94b628a71e2",
+   "title": "रिपोर्ट:लक्ष्मण बिष्ट : चंपावत में 19 नवंबर को होगा वृहद किसान ऋण मेला-2026",
+   "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNSTNiV0M2aDlJczhNbTZOaG1Eb3hPWWFIWHlwZTB4Zm00R2NyMW1fbm1QdVRfTm5YdlpNd1JQNFlFWW1IRmNNb3RFQ2ROTnQxU1phVmFKSTJFZFl0Mk81bktkVmt4Q3JsQVkzazNMUUwyZWlhMC1KdC0yQkdHUmJwS2RkNmItLXBOQ2ZMLUd3T0U3M180SWpTeTRWVGpSS3pBY1JCbVZVVFdQMmh2b1E?oc=5",
+   "source": "Kali Kumaun Khabar",
+   "published": "2026-11-18T18:54:00.000Z",
+   "lang": "hi",
+   "score": 3,
+   "cat": "संस्कृति",
+   "sources": [],
+   "firstSeen": "2026-11-20T01:55:18.779Z"
   },
   {
    "id": "19e87898ae41",
@@ -889,6 +933,18 @@
    "cat": "योजना/नीति",
    "sources": [],
    "firstSeen": "2026-11-18T15:57:42.338Z"
+  },
+  {
+   "id": "828f1af92d53",
+   "title": "Uttarakhand Development Projects: उत्तराखंड में ₹17.75 करोड़ के विकास कार्य मंजूर, 250 हैंडपंप और सड़कों का होगा निर्माण",
+   "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQRlk5OTMteUVYd0I0dFBDN0l0aGtGMnlUWVpsQlpqYUMwVXNadWUwM1JZc0lfaFZ3UmxUMkpyWmVKcE5MdzFmOW1oQXVtWW10bmVsM2xkNlFxcnhTY0hISzk4WTZnOE9ZdjY3YjJ0eDhkRGpOTFlENXgxZlhSM1NHTGFMaU93UHRLV2hwYWVhak0wdEFFaTZ1cEJQTFpLQQ?oc=5",
+   "source": "The Bharat Now",
+   "published": "2026-11-18T11:09:40.000Z",
+   "lang": "hi",
+   "score": 2,
+   "cat": "परियोजना",
+   "sources": [],
+   "firstSeen": "2026-11-20T01:55:18.773Z"
   },
   {
    "id": "99eeb8ede986",
@@ -1586,7 +1642,9 @@
    "lang": "hi",
    "score": 2,
    "cat": "संस्कृति",
-   "sources": [],
+   "sources": [
+    "ABC News -"
+   ],
    "firstSeen": "2026-11-17T16:28:22.002Z"
   },
   {
