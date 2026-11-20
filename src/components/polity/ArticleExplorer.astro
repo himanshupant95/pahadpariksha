@@ -14,7 +14,7 @@ const counts = Object.fromEntries(Object.keys(LEVELS).map((k) => [k, ARTICLES.fi
 <div class="explorer" id="explorer-app" data-total={ARTICLES.length}>
   <div class="ex-ctl" role="search">
     <label for="ex-q" class="sr">अनुच्छेद खोजें</label>
-    <input id="ex-q" type="search" placeholder="अनुच्छेद संख्या या शब्द खोजें — जैसे 164, राज्यपाल, गणपूर्ति, UCC, pardon…" autocomplete="off" />
+    <input id="ex-q" type="search" placeholder="अनुच्छेद का नंबर या कोई शब्द लिखें, जैसे 164, राज्यपाल, कोरम, UCC" autocomplete="off" />
     <div class="chips" role="group" aria-label="विषय-समूह">
       <button type="button" class="chip" data-f="g" data-v="" aria-pressed="true">सभी विषय</button>
       {Object.entries(GROUPS).map(([k, v]) => <button type="button" class="chip" data-f="g" data-v={k} aria-pressed="false">{v}</button>)}
@@ -28,9 +28,9 @@ const counts = Object.fromEntries(Object.keys(LEVELS).map((k) => [k, ARTICLES.fi
       {['UKPSC', 'UKSSSC', 'UPSC'].map((x) => <button type="button" class="chip" data-f="x" data-v={x} aria-pressed="false">{x}</button>)}
     </div>
     <div class="ex-meta">
-      <span aria-live="polite"><b id="ex-count">{ARTICLES.length}</b> / {ARTICLES.length} प्रावधान · पढ़े: <b id="ex-done">0</b></span>
+      <span aria-live="polite"><b id="ex-count">{ARTICLES.length}</b> / {ARTICLES.length} अनुच्छेद · पढ़े: <b id="ex-done">0</b></span>
       <span class="ex-opts">
-        <label><input type="checkbox" id="ex-beg" /> शुरुआती दृश्य (सरल)</label>
+        <label><input type="checkbox" id="ex-beg" /> सिर्फ़ आसान बातें दिखाएँ</label>
         <label><input type="checkbox" id="ex-unread" /> केवल अपठित</label>
         <button type="button" class="chip" id="ex-open">सब खोलें</button>
       </span>
@@ -46,13 +46,13 @@ const counts = Object.fromEntries(Object.keys(LEVELS).map((k) => [k, ARTICLES.fi
           <span class={`lv ${a.lvl}`}>{LEVELS[a.lvl]}</span>{isMains(a) && a.lvl !== 'mains' && <span class="lv mains">मुख्य</span>}
         </summary>
         <div class="ex-body">
-          <h4>सरल भाषा में</h4>
+          <h4>आसान भाषा में</h4>
           <p set:html={a.s} />
           {a.cl && (<div class="adv-only"><h4>खंड-दर-खंड</h4><ul>{a.cl.map((c) => <li set:html={c} />)}</ul></div>)}
-          {a.uk && (<><h4>उत्तराखंड में</h4><p class="ukb" set:html={a.uk} /></>)}
+          {a.uk && (<><h4>उत्तराखंड में उदाहरण</h4><p class="ukb" set:html={a.uk} /></>)}
           {a.amd && (<div class="adv-only"><h4>संशोधन</h4><p set:html={a.amd} /></div>)}
-          {a.jud && (<div class="adv-only"><h4>न्यायिक व्याख्या</h4><p set:html={a.jud} /></div>)}
-          {a.trap && (<><h4>परीक्षा-जाल</h4><p class="trp" set:html={a.trap} /></>)}
+          {a.jud && (<div class="adv-only"><h4>अदालत के फ़ैसले</h4><p set:html={a.jud} /></div>)}
+          {a.trap && (<><h4>परीक्षा में ध्यान दें</h4><p class="trp" set:html={a.trap} /></>)}
           <div class="ex-foot">
             <span class="exams">{a.ex.map((x) => <span>{x}</span>)}</span>
             <span class="muted">समूह: {GROUPS[a.g]}</span>
@@ -63,7 +63,7 @@ const counts = Object.fromEntries(Object.keys(LEVELS).map((k) => [k, ARTICLES.fi
         </div>
       </details>
     ))}
-    <p class="ex-empty" id="ex-empty" hidden>कोई प्रावधान नहीं मिला — खोज-शब्द या फ़िल्टर बदलकर देखें।</p>
+    <p class="ex-empty" id="ex-empty" hidden>कुछ नहीं मिला। कोई दूसरा शब्द या फ़िल्टर आज़माएँ।</p>
   </div>
 </div>
 
