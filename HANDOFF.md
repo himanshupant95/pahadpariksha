@@ -223,3 +223,7 @@ Rules agreed with the user:
 - Titles trimmed to ~60 chars (+ " | पहाड़ परीक्षा"). Keep new titles short.
 - Geography chapter 11 card points to the economy page until that chapter exists (GChapter.see). Remaining syllabus topics map to geography chapters 9, 10, 12–15.
 - Style gap: district (≈60 semicolons/dashes per 1000 words), history (≈35–50) and geography (≈30–40) pages are in older note style; polity/new pages ≈3–7. Rewrite in batches, districts first.
+
+## Telegram channel (21 Nov 2026)
+- Public channel **t.me/pahadpariksha** ("Pahad Pariksha | UKPSC UKSSSC"), created from the owner's account. Auto-delete turned OFF (account default was 1 day). Welcome post with 5 facts published.
+- Site: `.tg-join` strip at the end of every indexable page (Base.astro), footer link, `sameAs` in Organization schema (Base + about).
