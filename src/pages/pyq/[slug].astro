@@ -28,7 +28,7 @@ const faq = [
       <li><b>परीक्षा:</b> {p.title}</li>
       <li><b>प्रश्नपत्र:</b> {p.paper}; परीक्षा तिथि {p.examDate}</li>
       <li><b>उत्तर:</b> UKPSC की <a href={p.keyUrl} rel="nofollow noopener" target="_blank">{p.keyType}</a>, {p.keyDate} (प्रश्न-पुस्तिका कोड {p.code}, सीरीज़ {p.series})। {deleted > 0 && <span>आयोग द्वारा हटाए गए प्रश्न: {deleted}।</span>}</li>
-      <li>यहाँ केवल <b>उत्तराखंड से जुड़े {p.questions.length} प्रश्न</b> हैं, मूल प्रश्न-क्रमांक के साथ। प्रश्न हिंदी में सरल रूप में लिखे गए हैं; विवाद होने पर आयोग का मूल अंग्रेज़ी रूपांतर मान्य होता है।</li>
+      <li>यहाँ केवल <b>उत्तराखंड से जुड़े {p.questions.length} प्रश्न</b> हैं, 1 से {p.questions.length} तक क्रम में; हर प्रश्न के साथ मूल प्रश्नपत्र का क्रमांक भी दिया है। प्रश्न हिंदी में सरल रूप में लिखे गए हैं; विवाद होने पर आयोग का मूल अंग्रेज़ी रूपांतर मान्य होता है।</li>
     </ul>
   </div>
 
@@ -36,9 +36,9 @@ const faq = [
   <p class="small">पहले ख़ुद उत्तर सोचें, फिर "उत्तर देखें" पर क्लिक करें।</p>
 
   <ol class="pyq">
-    {p.questions.map((q) => (
-      <li id={`q${q.n}`}>
-        <p class="qn"><span class="num">प्रश्न {q.n}</span> <span class="tag">{q.t}</span></p>
+    {p.questions.map((q, i) => (
+      <li id={`q${i + 1}`}>
+        <p class="qn"><span class="num">प्रश्न {i + 1}</span> <span class="tag">{q.t}</span> <span class="orig">मूल प्रश्नपत्र में क्र. {q.n}</span></p>
         <p class="qq">{q.q}</p>
         {q.st && <ul class="st">{q.st.map(([k, v]) => <li><b>{k}</b> {v}</li>)}</ul>}
         {q.m && (
@@ -73,6 +73,7 @@ const faq = [
   ol.pyq > li { border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 16px; margin: 12px 0; background: #fff; }
   .qn { margin: 0 0 4px; font-size: .85rem; }
   .qn .num { font-weight: 700; color: #14532d; }
+  .qn .orig { float: right; color: #94a3b8; font-size: .8rem; }
   .qn .tag { background: #f1f5f9; border-radius: 999px; padding: 1px 8px; margin-left: 6px; color: #475569; }
   .qq { margin: 4px 0; font-weight: 600; }
   .st { list-style: none; margin: 6px 0; padding: 8px 12px; background: #f8fafc; border-left: 3px solid #86efac; border-radius: 8px; }
