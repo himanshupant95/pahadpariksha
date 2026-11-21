@@ -201,3 +201,9 @@ Rules agreed with the user:
 ## Interlinking (21 Nov 2026)
 - `src/data/related.ts` + `src/components/RelatedLinks.astro` → "आगे पढ़ें" block injected in Base.astro for mapped paths. When adding a new page, add its label to `L` and a mapping in `M`.
 - `src/data/quiz-index.ts` holds QUIZ_URL (used by DailyQuestion) and QUIZ_GROUPS (used by /quiz/ hub). New quiz → add to both.
+
+## LSS-2026 syllabus gap chapters (21 Nov 2026)
+- Home page section "पाठ्यक्रम के 7 नए अध्याय" (`syllabus` array in src/pages/index.astro). Add `links` to a card when its chapter ships.
+- Live: 1 land-revenue-system (new polity part 14; later parts renumbered), 2 = legislative-assembly + judiciary + special-laws.
+- Soon: 3 economy, 4 agriculture/horticulture, 5 disasters & environmental movements, 6 population & migration, 7 culture part 2.
+- HC CJ in OFFICE now acting CJ Manoj Kumar Tiwari (from 9 Oct 2026). Update when a regular CJ is appointed.
