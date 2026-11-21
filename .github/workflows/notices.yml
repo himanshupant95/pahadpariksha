@@ -32,6 +32,8 @@ jobs:
       - name: Commit, alert and redeploy if anything is new
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ vars.TELEGRAM_CHANNEL || '@pahadpariksha' }}
         run: |
           COUNT=$(node -e "const d=require('./new-notices.json');console.log(d.items.length)")
           FIRST=$(node -e "const d=require('./new-notices.json');console.log(d.firstRun)")
@@ -54,5 +56,6 @@ jobs:
             BODY=$(node -e "const d=require('./new-notices.json');console.log(d.items.map(i=>'- **'+i.source+'** · '+i.category+' — ['+i.title+']('+i.url+')').join('\n')+'\n\nसाइट पर: https://pahadpariksha.in/notices/')")
             gh label create notice --color 0e8a16 --force >/dev/null 2>&1 || true
             gh issue create --label notice --title "🔔 $COUNT नई सूचना ($(TZ=Asia/Kolkata date '+%d %b %H:%M'))" --body "$BODY"
+            TELEGRAM_BOT_TOKEN="$TG_TOKEN" node scripts/channel.mjs notices || echo "channel post failed (non-fatal)"
           fi
           gh workflow run deploy.yml --ref main

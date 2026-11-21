@@ -1,0 +1,46 @@
+name: Telegram channel autopost
+
+# Public channel t.me/pahadpariksha, posted by the existing review bot (must be a channel admin).
+# Morning: latest current-affairs edition (+ Sunday weekly, 1st/2nd monthly compilation).
+# Evening: one practice question as a Telegram quiz poll.
+# Second cron of each pair is a safety net: channel-state.json makes repeats a no-op.
+on:
+  schedule:
+    - cron: '37 2 * * *'   # 8:07 AM IST
+    - cron: '13 4 * * *'   # 9:43 AM IST (safety net)
+    - cron: '43 12 * * *'  # 6:13 PM IST
+    - cron: '19 14 * * *'  # 7:49 PM IST (safety net)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'daily | quiz | weekly | monthly | auto'
+        default: auto
+
+permissions:
+  contents: write
+
+concurrency:
+  group: channel
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Post
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ vars.TELEGRAM_CHANNEL || '@pahadpariksha' }}
+        run: node scripts/channel.mjs "${{ inputs.mode || 'auto' }}"
+      - name: Save what was posted
+        run: |
+          [ "$(cat channel-changed 2>/dev/null)" = "1" ] || { echo "Nothing posted."; exit 0; }
+          git config user.name "channel-bot"
+          git config user.email "channel-bot@users.noreply.github.com"
+          git add src/data/channel-state.json
+          git commit -m "Telegram channel post state [skip ci]"
+          for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
