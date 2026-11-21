@@ -40,6 +40,14 @@ const faq = [
       <li id={`q${q.n}`}>
         <p class="qn"><span class="num">प्रश्न {q.n}</span> <span class="tag">{q.t}</span></p>
         <p class="qq">{q.q}</p>
+        {q.st && <ul class="st">{q.st.map(([k, v]) => <li><b>{k}</b> {v}</li>)}</ul>}
+        {q.m && (
+          <table class="mt">
+            <thead><tr><th>सूची-I ({q.m.h[0]})</th><th>सूची-II ({q.m.h[1]})</th></tr></thead>
+            <tbody>{q.m.a.map((x, i) => <tr><td>{x}</td><td>{q.m!.b[i] ?? ''}</td></tr>)}</tbody>
+          </table>
+        )}
+        {q.tail && <p class="qq">{q.tail}</p>}
         <ol class="opts" type="a">{q.o.map((o) => <li>{o}</li>)}</ol>
         <details>
           <summary>उत्तर देखें</summary>
@@ -67,6 +75,10 @@ const faq = [
   .qn .num { font-weight: 700; color: #14532d; }
   .qn .tag { background: #f1f5f9; border-radius: 999px; padding: 1px 8px; margin-left: 6px; color: #475569; }
   .qq { margin: 4px 0; font-weight: 600; }
+  .st { list-style: none; margin: 6px 0; padding: 8px 12px; background: #f8fafc; border-left: 3px solid #86efac; border-radius: 8px; }
+  .st li { margin: 4px 0; }
+  table.mt { margin: 6px 0 8px; font-size: .95rem; }
+  table.mt th { background: #f0fdf4; }
   .opts { margin: 4px 0 8px 1.2em; padding: 0; }
   .opts li { margin: 2px 0; }
   details summary { cursor: pointer; color: #166534; font-weight: 600; }

@@ -1,5 +1,5 @@
 // Previous-year question bank (Uttarakhand-related questions only), answers from UKPSC's official keys.
-export interface PyqQ { n: number; t: string; q: string; o: string[]; a: number | null; e: string; link?: string }
+export interface PyqQ { n: number; t: string; q: string; o: string[]; a: number | null; e: string; link?: string; st?: string[][]; tail?: string; m?: { h: string[]; a: string[]; b: string[] } }
 export interface PyqPaper {
   slug: string; title: string; short: string; paper: string; examDate: string; code: string; series: string;
   keyType: string; keyDate: string; keyUrl: string; order?: number; questions: PyqQ[];
