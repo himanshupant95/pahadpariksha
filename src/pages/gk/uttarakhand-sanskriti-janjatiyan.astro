@@ -1,0 +1,249 @@
+---
+import Article from '../../layouts/Article.astro';
+import Quiz from '../../components/Quiz.astro';
+import questions from '../../data/quizzes/sanskriti-janjatiyan.json';
+
+const CHECKED = '21 नवंबर 2026';
+
+const tribes = [
+  { n: 'थारू', pop: '91,342', pct: '31.29%', where: 'तराई: ऊधम सिंह नगर (खटीमा, सितारगंज, नानकमत्ता) और चंपावत के कुछ हिस्से', id: 'धान, गेहूँ, गन्ने की खेती; टोकरी और बुनाई का काम। पर्व: माघी, बरना, हरियाली' },
+  { n: 'जौनसारी', pop: '88,664', pct: '30.37%', where: 'जौनसार-बावर: देहरादून ज़िले के चकराता, कालसी, त्यूणी (टोंस और यमुना के बीच) और टिहरी के कुछ हिस्से', id: 'सीढ़ीदार खेती, पशुपालन। पर्व: बिस्सू, बूढ़ी दिवाली, माघ मेला (मरोज)। सयाणा-खुमड़ी पंचायत' },
+  { n: 'बुक्सा (भोक्सा)', pop: '54,037', pct: '18.51%', where: 'तराई-भाबर: ऊधम सिंह नगर, नैनीताल, हरिद्वार और देहरादून के कुछ भाग', id: 'खेती, पशुपालन, बाँस की टोकरी। राज्य के दो PVTG में से एक' },
+  { n: 'भोटिया', pop: '39,106', pct: '13.39%', where: 'ऊँची सीमांत घाटियाँ: पिथौरागढ़ (दारमा, ब्यांस, चौदांस), चमोली (नीति, माणा), उत्तरकाशी (नेलांग, जादुंग)', id: 'भेड़-बकरी पालन, ऊनी बुनाई (दन, थुलमा); 1962 के युद्ध से पहले तिब्बत से नमक-ऊन का व्यापार' },
+  { n: 'राजी (वनरावत)', pop: '690', pct: '0.24%', where: 'पिथौरागढ़ (धारचूला, डीडीहाट) और चंपावत', id: 'पहले जंगल से भोजन जुटाना और लकड़ी के बर्तन बनाना; अब खेती-मज़दूरी। राजी भाषा तिब्बती-बर्मी परिवार की है और संकट में है। PVTG' },
+];
+
+const districts = [
+  ['ऊधम सिंह नगर', '1,23,037', '7.49%', 'थारू (89,399), बुक्सा (27,609)'],
+  ['देहरादून', '1,11,663', '6.58%', 'जौनसारी (86,516), बुक्सा (17,684)'],
+  ['पिथौरागढ़', '19,535', '4.04%', 'भोटिया (18,115), राजी (382)'],
+  ['चमोली', '12,260', '3.14%', 'भोटिया (10,219)'],
+  ['नैनीताल', '7,495', '0.79%', 'बुक्सा (3,694), भोटिया (2,271)'],
+  ['हरिद्वार', '6,323', '0.33%', 'बुक्सा (3,600)'],
+  ['उत्तरकाशी', '3,521', '1.06%', 'भोटिया (2,061), जौनसारी (1,089)'],
+  ['पौड़ी गढ़वाल', '2,215', '0.32%', 'बुक्सा (1,416)'],
+  ['बागेश्वर', '1,982', '0.76%', 'भोटिया (1,553)'],
+  ['चंपावत', '1,339', '0.52%', 'थारू (720), भोटिया (295), राजी (127)'],
+  ['अल्मोड़ा', '1,281', '0.21%', 'भोटिया (939)'],
+  ['टिहरी गढ़वाल', '875', '0.14%', 'जौनसारी (313)'],
+  ['रुद्रप्रयाग', '386', '0.16%', 'भोटिया (134)'],
+];
+
+const fairs = [
+  { n: 'उत्तरायणी मेला', where: 'बागेश्वर (सरयू-गोमती संगम) और पूरा कुमाऊँ', when: 'मकर संक्रांति, जनवरी का दूसरा सप्ताह', note: '1921 में इसी मेले में कुली बेगार के रजिस्टर सरयू में बहाए गए।', link: '/gk/districts/bageshwar/' },
+  { n: 'माघ मेला', where: 'उत्तरकाशी (भागीरथी तट)', when: 'जनवरी (मकर संक्रांति से)', note: 'गंगा स्नान और धार्मिक अनुष्ठान; अब पर्यटन उत्सव भी।', link: '/gk/districts/uttarkashi/' },
+  { n: 'बग्वाल मेला', where: 'देवीधुरा, चंपावत (माँ बाराही मंदिर)', when: 'रक्षाबंधन', note: 'चार खामों (दलों) के बीच प्रतीकात्मक युद्ध; अब पत्थरों की जगह फल-फूल। जुलाई 2022 में राजकीय मेला घोषित।', link: '/gk/districts/champawat/' },
+  { n: 'जौलजीबी मेला', where: 'जौलजीबी, पिथौरागढ़ (काली-गोरी संगम)', when: 'नवंबर (14 नवंबर से)', note: 'भारत-नेपाल का व्यापारिक मेला; 1871 में अस्कोट के राजवार पुष्कर पाल ने शुरू किया।', link: '/gk/districts/pithoragarh/' },
+  { n: 'नंदा देवी राजजात', where: 'नौटी (चमोली) से होमकुंड तक, लगभग 280 किमी', when: 'लगभग हर 12 साल पर, भाद्रपद में', note: 'पिछली राजजात 2014 में हुई। 2026 वाली यात्रा को राजजात समिति ने जनवरी 2026 में 2027 तक टाल दिया।', link: '/gk/districts/chamoli/' },
+  { n: 'रम्माण', where: 'सलूड़-डुंग्रा गाँव, चमोली', when: 'अप्रैल के अंत में (बैसाख)', note: 'भूमियाल देवता के लिए मुखौटा नृत्य-नाट्य; 2009 में UNESCO सूची में।', link: '/gk/districts/chamoli/' },
+  { n: 'कुंभ मेला', where: 'हरिद्वार (चार कुंभ स्थलों में एक)', when: 'हर 12 साल; बीच में अर्धकुंभ', note: '2017 में UNESCO की अमूर्त सांस्कृतिक धरोहर सूची में।', link: '/gk/districts/haridwar/' },
+];
+
+const dances = [
+  ['छोलिया', 'कुमाऊँ', 'तलवार-ढाल लेकर जोड़ों में नकली युद्ध; मूल रूप से बारात के साथ। ढोल-दमाऊँ, तुरही, रणसिंगा बजते हैं। केवल पुरुष।'],
+  ['झोड़ा', 'कुमाऊँ', 'स्त्री-पुरुष हाथ पकड़कर घेरे में गाते-नाचते हैं; मेलों और वसंत में।'],
+  ['चाँचरी (चांचरी)', 'कुमाऊँ, ख़ासकर दानपुर (बागेश्वर)', 'झोड़ा से मिलता-जुलता घेरा नृत्य।'],
+  ['लांगवीर नृत्य', 'गढ़वाल (टिहरी क्षेत्र)', 'ज़मीन में गड़े लंबे बाँस के ऊपर पुरुष नर्तक करतब दिखाता है; नीचे ढोल-दमाऊँ।'],
+  ['पांडव नृत्य', 'गढ़वाल', 'महाभारत की कथाओं पर आधारित नृत्य-नाट्य; कई दिन चलता है।'],
+  ['बराड़ा नाटी', 'जौनसार-बावर (चकराता)', 'स्त्री-पुरुष दोनों रंगीन पारंपरिक पोशाक में त्योहारों पर नाचते हैं।'],
+  ['थड़्या, चौंफला', 'गढ़वाल', 'आँगन (थड़ा) में घेरे में होने वाले स्त्रियों के नृत्य-गीत।'],
+];
+
+const gi2021 = ['तेजपत्ता', 'बासमती चावल (साझा)', 'ऐपण कला', 'मुनस्यारी का सफ़ेद राजमा', 'रिंगाल शिल्प', 'थुलमा', 'भोटिया दन', 'च्यूरा तेल', 'ताँबे के उत्पाद (अल्मोड़ा)'];
+const gi2023 = ['चौलाई (रामदाना)', 'झंगोरा', 'मंडुआ', 'लाल चावल', 'अल्मोड़ा की लखौरी मिर्च', 'बेरीनाग चाय', 'बुरांश शरबत', 'रामनगर (नैनीताल) की लीची', 'रामगढ़ का आड़ू', 'माल्टा', 'पहाड़ी तोर', 'गहत', 'काला भट्ट', 'बिच्छूबूटी (कंडाली) फ़ैब्रिक', 'नैनीताल की मोमबत्ती', 'रंगवाली पिछौड़ा', 'चमोली के रम्माण मुखौटे', 'लिखाई (काष्ठ नक्काशी)'];
+
+const faq = [
+  { q: 'उत्तराखंड में कितनी अनुसूचित जनजातियाँ हैं?', a: 'पाँच: थारू, जौनसारी, बुक्सा, भोटिया और राजी। ये 1967 के अनुसूचित जनजाति (उत्तर प्रदेश) आदेश से अनुसूचित हैं, और राज्य बनने के बाद भी यही सूची लागू है। जनगणना 2011 में इनकी कुल आबादी 2,91,903 थी, यानी राज्य की आबादी का 2.89%।' },
+  { q: 'उत्तराखंड की सबसे बड़ी जनजाति थारू है या जौनसारी?', a: 'जनगणना 2011 के अनुसार थारू (91,342) सबसे बड़ी है और जौनसारी (88,664) दूसरे स्थान पर। राज्य जनजाति कल्याण विभाग की वेबसाइट जौनसारी को "सबसे बड़ा समुदाय" लिखती है, पर गिनती के आधार पर परीक्षा में थारू ही सही उत्तर है।' },
+  { q: 'उत्तराखंड के PVTG कौन-से हैं?', a: 'दो: राजी (वनरावत) और बुक्सा। प्रधानमंत्री जनमन अभियान में राज्य के 15 विकासखंडों के 121 गाँव इनके लिए शामिल हैं।' },
+  { q: 'उत्तराखंड की कौन-सी परंपराएँ UNESCO सूची में हैं?', a: 'अमूर्त सांस्कृतिक धरोहर में दो: रम्माण (2009) और कुंभ मेला (2017, हरिद्वार चार स्थलों में से एक)। फूलों की घाटी और नंदा देवी राष्ट्रीय उद्यान "प्राकृतिक" विश्व धरोहर हैं, जो अलग सूची है।' },
+  { q: 'उत्तराखंड के कितने उत्पादों को GI टैग मिला है?', a: 'दिसंबर 2023 तक 27: पहले 9 (ज़्यादातर सितंबर 2021 में) और फिर एक ही कार्यक्रम में 18। किसी एक राज्य को एक दिन में इतने GI प्रमाणपत्र पहली बार मिले।' },
+];
+---
+<Article
+  title="उत्तराखंड की जनजातियाँ और लोक-संस्कृति: मेले, पर्व, नृत्य, लोक-देवता, GI टैग"
+  description="उत्तराखंड की 5 अनुसूचित जनजातियाँ (जनगणना 2011 के आँकड़े, ज़िलेवार तालिका, PVTG), प्रमुख मेले, पर्व, लोक नृत्य, लोक-देवता, ऐपण, कोटी बनाल, UNESCO सूची और सभी 27 GI उत्पाद — आसान हिंदी में, सरकारी स्रोतों के साथ, अभ्यास क्विज़ सहित।"
+  breadcrumbs={[{ name: 'उत्तराखंड GK', href: '/gk/' }]}
+  published="2026-11-21"
+  hideHero={true}
+  faq={faq}
+>
+  <div class="keypoints">
+    <h2>एक नज़र में</h2>
+    <ul>
+      <li><strong>5 अनुसूचित जनजातियाँ:</strong> थारू, जौनसारी, बुक्सा, भोटिया, राजी। कुल 2,91,903 लोग (2.89%), जनगणना 2011।</li>
+      <li><strong>सबसे बड़ी:</strong> थारू। <strong>सबसे छोटी:</strong> राजी (690)। <strong>PVTG:</strong> राजी और बुक्सा।</li>
+      <li><strong>UNESCO (अमूर्त धरोहर):</strong> रम्माण 2009, कुंभ मेला 2017।</li>
+      <li><strong>GI उत्पाद:</strong> 27 (दिसंबर 2023 तक)।</li>
+      <li>तथ्यों के आगे स्रोत की संख्या [1], [2]… दी है; पूरी सूची पेज के अंत में है। जाँच: {CHECKED}।</li>
+    </ul>
+  </div>
+
+  <h2 id="janjati">1. उत्तराखंड की पाँच अनुसूचित जनजातियाँ</h2>
+  <p>"अनुसूचित जनजाति" वे समुदाय हैं जिन्हें राष्ट्रपति के आदेश से संविधान के अनुच्छेद 342 के तहत सूची में रखा जाता है। उत्तराखंड में ऐसे पाँच समुदाय हैं। ये 1967 के आदेश से (तब उत्तर प्रदेश में) अनुसूचित हुए थे और राज्य बनने के बाद भी यही सूची चल रही है [1]। जनगणना 2011 में इनकी कुल आबादी <strong>2,91,903</strong> थी, जो राज्य की आबादी का <strong>2.89%</strong> है [2]।</p>
+  <table>
+    <thead><tr><th>जनजाति</th><th>आबादी (2011)</th><th>हिस्सा</th><th>कहाँ रहती है</th><th>पहचान</th></tr></thead>
+    <tbody>
+      {tribes.map((t) => <tr><td><b>{t.n}</b></td><td>{t.pop}</td><td>{t.pct}</td><td>{t.where}</td><td>{t.id}</td></tr>)}
+    </tbody>
+  </table>
+  <p class="small">आबादी: जनगणना 2011, तालिका A-11 [2][3]। "कहाँ रहती है" और "पहचान": राज्य जनजाति कल्याण विभाग [4]। पाँचों का जोड़ 2,73,839 है; कुल 2,91,903 से जो अंतर है, वह जनगणना की उन प्रविष्टियों का है जिनमें जनजाति का अलग नाम दर्ज नहीं हुआ।</p>
+
+  <div class="box-trap">
+    <strong>परीक्षा का जाल</strong>
+    राज्य जनजाति कल्याण विभाग की वेबसाइट जौनसारी को "सबसे बड़ा जनजातीय समुदाय" लिखती है [4]। पर जनगणना 2011 की गिनती में <b>थारू (91,342)</b> जौनसारी (88,664) से आगे हैं [3]। प्रश्न "सबसे बड़ी जनजाति" का हो तो उत्तर <b>थारू</b> है। इसी तरह <b>खरवार, स्वांगला</b> जैसे नाम विकल्प में आएँ तो याद रखें कि उत्तराखंड की सूची में केवल ऊपर के पाँच नाम हैं।
+  </div>
+
+  <h3 id="pvtg">विशेष रूप से कमज़ोर जनजातीय समूह (PVTG)</h3>
+  <p>जो जनजातियाँ अब भी बहुत पिछड़ी हैं (खेती से पहले की तकनीक, कम साक्षरता, घटती या स्थिर आबादी), उन्हें केंद्र सरकार PVTG मानती है। देश में ऐसे 75 समूह हैं [5]। उत्तराखंड में दो हैं: <strong>राजी</strong> (वनरावत) और <strong>बुक्सा</strong> (भोक्सा) [6]। इनके लिए चल रहे <strong>प्रधानमंत्री जनमन</strong> अभियान में राज्य के 15 विकासखंडों के 121 गाँव और 13,573 परिवार शामिल हैं [7]।</p>
+
+  <h3 id="zile">ज़िलेवार जनजातीय आबादी (जनगणना 2011)</h3>
+  <table>
+    <thead><tr><th>ज़िला</th><th>अ.ज.जा. आबादी</th><th>ज़िले में हिस्सा</th><th>मुख्य जनजातियाँ</th></tr></thead>
+    <tbody>{districts.map((d) => <tr><td>{d[0]}</td><td>{d[1]}</td><td>{d[2]}</td><td>{d[3]}</td></tr>)}</tbody>
+  </table>
+  <p class="small">स्रोत: जनगणना 2011, तालिका A-11 परिशिष्ट [3]। याद रखें: <b>संख्या और प्रतिशत, दोनों में सबसे ऊपर ऊधम सिंह नगर</b>; दूसरे पर देहरादून। सबसे कम हिस्सा टिहरी गढ़वाल (0.14%) और रुद्रप्रयाग (0.16%) में।</p>
+
+  <h3 id="sanstha">जनजातीय समाज की पारंपरिक संस्थाएँ</h3>
+  <ul>
+    <li><strong>जौनसार-बावर:</strong> गाँव का मुखिया <b>सयाणा</b> कहलाता है और पंचायत <b>खुमड़ी</b> (खुमरी)। अंग्रेज़ों ने सयाणाचारी व्यवस्था को कानूनी अधिकार देकर लगान वसूली में इस्तेमाल किया। आज़ादी के बाद सयाणाचारी कानूनी रूप से ख़त्म हुई, पर सामाजिक रूप से अब भी चलती है [8]।</li>
+    <li><strong>जौनसारी पर्व:</strong> बिस्सू, बूढ़ी दिवाली (मुख्य दिवाली के लगभग एक महीने बाद), माघ मेला (मरोज) [4]। आराध्य देव <b>महासू देवता</b> (मुख्य मंदिर हनोल)। विस्तार: <a href="/gk/districts/dehradun/">देहरादून ज़िला पेज</a>।</li>
+    <li><strong>भोटिया:</strong> 1962 के भारत-चीन युद्ध तक तिब्बत से नमक, ऊन और अनाज का व्यापार इनकी आजीविका था [4]। इनके ऊनी <b>दन</b> और <b>थुलमा</b> को GI टैग मिला है (आगे देखें)।</li>
+    <li><strong>राजी:</strong> राज्य की सबसे छोटी जनजाति। विवाद सुलझाने के लिए इनकी अपनी जनजातीय परिषद होती है [4]।</li>
+  </ul>
+
+  <h2 id="bhasha">2. भाषाएँ और बोलियाँ</h2>
+  <ul>
+    <li><strong>राजभाषा:</strong> हिंदी; <strong>दूसरी राजभाषा:</strong> संस्कृत (2010 से)। विस्तार: <a href="/polity/">राजव्यवस्था हब</a>।</li>
+    <li><strong>गढ़वाली:</strong> जनगणना 2011 में देश भर में 24,82,089 लोगों ने इसे मातृभाषा बताया [9]। गढ़वाल मंडल के ज़िलों में बोली जाती है।</li>
+    <li><strong>कुमाऊँनी:</strong> कुमाऊँ मंडल की मुख्य बोली; जनगणना 2011 में लगभग 20 लाख बोलने वाले [32]।</li>
+    <li><strong>जौनसारी:</strong> 1,36,779 बोलने वाले (2011) [10]। यह पश्चिमी पहाड़ी समूह की बोली है, जबकि गढ़वाली और कुमाऊँनी मध्य पहाड़ी समूह की।</li>
+    <li><strong>राजी</strong> तिब्बती-बर्मी परिवार की है और बहुत कम लोग इसे बोलते हैं, इसलिए संकटग्रस्त है [4]।</li>
+  </ul>
+
+  <h2 id="parv">3. प्रमुख पर्व</h2>
+  <p>पहाड़ में लगभग हर संक्रांति (महीने का पहला दिन) कोई न कोई पर्व होता है।</p>
+  <table>
+    <thead><tr><th>पर्व</th><th>कब</th><th>क्या ख़ास है</th></tr></thead>
+    <tbody>
+      <tr><td><b>हरेला</b></td><td>श्रावण संक्रांति (कर्क संक्रांति), आम तौर पर 16 जुलाई</td><td>दस दिन पहले बोए अनाज के हरे अंकुर (हरेला) काटे जाते हैं। सरकार इस दिन पूरे राज्य में पौधारोपण कराती है; 2020 में इसे सार्वजनिक अवकाश बनाने का निर्णय हुआ [11]। 2025 में "हरेला का त्योहार मनाओ, धरती माँ का ऋण चुकाओ" अभियान में 8.13 लाख से ज़्यादा पौधे लगे [12]।</td></tr>
+      <tr><td><b>घुघुतिया</b></td><td>मकर संक्रांति (जनवरी)</td><td>कुमाऊँ में आटे-गुड़ के "घुघुते" बनते हैं और बच्चे कौवों को बुलाते हैं। इसी दिन उत्तरायणी मेला [13]।</td></tr>
+      <tr><td><b>फूलदेई</b></td><td>चैत्र संक्रांति (मार्च)</td><td>बच्चे घरों की देहरी पर फूल डालते हैं; वसंत का स्वागत।</td></tr>
+      <tr><td><b>घी संक्रांति (ओलगिया)</b></td><td>भाद्रपद संक्रांति (अगस्त)</td><td>घी खाने और भेंट (ओलग) देने की परंपरा।</td></tr>
+      <tr><td><b>खतड़ुआ</b></td><td>आश्विन संक्रांति (सितंबर)</td><td>पशुओं की रक्षा का पर्व; मशाल जलाई जाती है।</td></tr>
+      <tr><td><b>बूढ़ी दिवाली</b></td><td>मुख्य दिवाली के लगभग एक माह बाद</td><td>जौनसार-बावर का पर्व [4]।</td></tr>
+    </tbody>
+  </table>
+  <p class="small">फूलदेई, घी संक्रांति और खतड़ुआ का विवरण हमारे <a href="/gk/districts/almora/">अल्मोड़ा</a> और <a href="/gk/districts/bageshwar/">बागेश्वर</a> ज़िला पेजों पर भी है।</p>
+
+  <h2 id="mele">4. प्रमुख मेले</h2>
+  <table>
+    <thead><tr><th>मेला</th><th>कहाँ</th><th>कब</th><th>याद रखने की बात</th></tr></thead>
+    <tbody>{fairs.map((f) => <tr><td><b><a href={f.link}>{f.n}</a></b></td><td>{f.where}</td><td>{f.when}</td><td>{f.note}</td></tr>)}</tbody>
+  </table>
+  <p class="small">स्रोत: उत्तरायणी, माघ मेला [13]; बग्वाल [14][15]; जौलजीबी [16][17]; राजजात [18]; रम्माण [19]; कुंभ [20]।</p>
+
+  <h2 id="nritya">5. लोक नृत्य</h2>
+  <table>
+    <thead><tr><th>नृत्य</th><th>क्षेत्र</th><th>कैसा होता है</th></tr></thead>
+    <tbody>{dances.map((d) => <tr><td><b>{d[0]}</b></td><td>{d[1]}</td><td>{d[2]}</td></tr>)}</tbody>
+  </table>
+  <p class="small">लोक नृत्यों पर सरकारी दस्तावेज़ कम हैं, इसलिए यहाँ भरोसेमंद संदर्भ लिए गए हैं [21][22][23]। याद रखने का आसान तरीका: <b>तलवार = छोलिया (कुमाऊँ)</b>, <b>बाँस का खंभा = लांगवीर (गढ़वाल)</b>, <b>जौनसार = बराड़ा नाटी</b>, <b>महाभारत = पांडव नृत्य</b>।</p>
+
+  <h2 id="devta">6. लोक-देवता</h2>
+  <ul>
+    <li><strong>गोलू (ग्वेल) देवता:</strong> कुमाऊँ के "न्याय के देवता"। सबसे प्रसिद्ध मंदिर <b>चितई</b> (अल्मोड़ा से लगभग 8 किमी) है, जहाँ लोग अर्ज़ियाँ लिखकर टाँगते हैं और मन्नत पूरी होने पर घंटियाँ चढ़ाते हैं [24]।</li>
+    <li><strong>भूमियाल (भूमिया) देवता:</strong> गाँव की सीमा और खेतों के रक्षक देवता। रम्माण उत्सव इन्हीं के सम्मान में होता है [19]।</li>
+    <li><strong>महासू देवता:</strong> जौनसार-बावर के आराध्य; मुख्य मंदिर हनोल।</li>
+    <li><strong>नंदा देवी:</strong> पूरे उत्तराखंड की आराध्य। अल्मोड़ा की नंदा देवी प्रतिमा का इतिहास <a href="/history/chand-dynasty/#pariksha-history-chand">चंद राजवंश अध्याय</a> में है।</li>
+    <li><strong>जागर:</strong> ढोल-दमाऊँ और हुड़के के साथ गाकर देवता का आह्वान करने की परंपरा; गाने वाला "जगरिया" कहलाता है।</li>
+  </ul>
+
+  <h2 id="kala">7. लोक-कला, शिल्प और GI टैग</h2>
+  <h3>ऐपण</h3>
+  <p>कुमाऊँ की रस्मी लोक-कला। लाल गेरू से लिपी ज़मीन या दीवार पर चावल के घोल (<b>बिस्वार</b>) से उँगलियों से आकृतियाँ बनाई जाती हैं। जन्म, विवाह, पूजा और त्योहार, हर अवसर की अलग ऐपण होती है। "उत्तराखंड ऐपण" का GI पंजीकरण <b>14 सितंबर 2021</b> को हुआ (प्रमाणपत्र संख्या 389) [25]।</p>
+
+  <h3>उत्तराखंड के 27 GI उत्पाद</h3>
+  <p><strong>पहले 9</strong> (इनमें से ज़्यादातर का पंजीकरण सितंबर 2021 में हुआ, जैसे थुलमा 14.09.2021 [26]):</p>
+  <p class="chips">{gi2021.map((x) => <span>{x}</span>)}</p>
+  <p><strong>फिर 18 एक साथ</strong> (दिसंबर 2023): किसी एक राज्य को एक दिन में इतने GI प्रमाणपत्र पहली बार मिले [27][28]:</p>
+  <p class="chips">{gi2023.map((x) => <span>{x}</span>)}</p>
+  <p class="small">ध्यान दें: <b>रम्माण</b> दो सूचियों में है। उत्सव UNESCO की अमूर्त धरोहर सूची में है (2009), और रम्माण के <b>मुखौटे</b> GI उत्पाद हैं (2023)। <b>रंगवाली पिछौड़ा</b> का GI प्रमाणपत्र 08.11.2023 का है [29]।</p>
+
+  <h2 id="sthapatya">8. पारंपरिक स्थापत्य: कोटी बनाल</h2>
+  <p>उत्तरकाशी ज़िले के <b>राजगढ़ी क्षेत्र</b> (यमुना घाटी) में कई मंज़िल वाले पुराने घर मिलते हैं, जिनकी शैली को <b>कोटी बनाल</b> कहा जाता है। राज्य के आपदा प्रबंधन विभाग के वैज्ञानिकों पीयूष रौतेला और गिरीश चंद्र जोशी के अध्ययन के अनुसार यह भूकंप-रोधी शैली लगभग 1,000 साल पहले विकसित हो चुकी थी [30]।</p>
+  <ul>
+    <li>पत्थर भरे ऊँचे चबूतरे पर सरल आयताकार नक्शा।</li>
+    <li>दीवारों में हर कुछ ऊँचाई पर लकड़ी की धरनियाँ, जो इमारत को लचीला बनाती हैं।</li>
+    <li>छोटे दरवाज़े-खिड़कियाँ, स्थानीय पत्थर और लकड़ी।</li>
+    <li>ये इमारतें 1720 के कुमाऊँ और 1803 के गढ़वाल भूकंप में भी बची रहीं [31]।</li>
+  </ul>
+
+  <h2 id="milan">9. दोहराने के लिए मिलान-तालिका</h2>
+  <table>
+    <thead><tr><th>यह</th><th>इससे जोड़ें</th></tr></thead>
+    <tbody>
+      <tr><td>सयाणा, खुमड़ी</td><td>जौनसार-बावर की पंचायत</td></tr>
+      <tr><td>दारमा, ब्यांस, चौदांस, नीति, माणा, नेलांग</td><td>भोटिया की घाटियाँ</td></tr>
+      <tr><td>खटीमा, सितारगंज, नानकमत्ता</td><td>थारू</td></tr>
+      <tr><td>धारचूला, डीडीहाट</td><td>राजी (वनरावत)</td></tr>
+      <tr><td>सलूड़-डुंग्रा</td><td>रम्माण (भूमियाल देवता)</td></tr>
+      <tr><td>देवीधुरा, माँ बाराही, रक्षाबंधन</td><td>बग्वाल</td></tr>
+      <tr><td>काली-गोरी संगम, नवंबर</td><td>जौलजीबी मेला</td></tr>
+      <tr><td>सरयू-गोमती संगम, मकर संक्रांति</td><td>उत्तरायणी (बागेश्वर)</td></tr>
+      <tr><td>नौटी से होमकुंड</td><td>नंदा देवी राजजात</td></tr>
+      <tr><td>चितई, घंटियाँ, अर्ज़ियाँ</td><td>गोलू देवता</td></tr>
+      <tr><td>बिस्वार, गेरू</td><td>ऐपण</td></tr>
+      <tr><td>राजगढ़ी (उत्तरकाशी)</td><td>कोटी बनाल</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="quiz">10. अभ्यास क्विज़ (15 प्रश्न)</h2>
+  <p>ये प्रश्न इसी पेज से बनाए गए अभ्यास प्रश्न हैं, पिछले वर्षों के प्रश्न नहीं।</p>
+  <Quiz id="sanskriti-janjatiyan" title="जनजातियाँ और लोक-संस्कृति क्विज़" questions={questions} />
+
+  <h2 id="srot">स्रोत</h2>
+  <ol class="sources">
+    <li>राजव्यवस्था हब, अनुच्छेद 342 कार्ड: संविधान (अनुसूचित जनजातियाँ) (उत्तर प्रदेश) आदेश, 1967 — <a href="/polity/">pahadpariksha.in/polity</a></li>
+    <li>Census of India 2011 — A-11: State PCA for individual Scheduled Tribes, Uttarakhand — <a href="https://censusindia.gov.in/nada/index.php/catalog/42946" rel="nofollow noopener" target="_blank">censusindia.gov.in</a></li>
+    <li>Census 2011 A-11 Appendix (district-wise ST population), संकलित तालिका — <a href="https://censusindia.gov.in/nada/index.php/catalog/43006" rel="nofollow noopener" target="_blank">censusindia.gov.in</a>; <a href="https://en.wikipedia.org/wiki/List_of_Scheduled_Tribes_in_Uttarakhand" rel="nofollow noopener" target="_blank">Wikipedia संकलन</a></li>
+    <li>जनजाति कल्याण विभाग, उत्तराखंड — Scheduled Tribe List — <a href="https://tribalwelfare.uk.gov.in/page/scheduled-tribe-list" rel="nofollow noopener" target="_blank">tribalwelfare.uk.gov.in</a></li>
+    <li>जनजातीय कार्य मंत्रालय, राज्यसभा प्रश्न 2213 (19.03.2025) — 75 PVTG — <a href="https://rsdebate.nic.in/bitstream/123456789/757589/1/PQ_267_19032025_U2213_p412_p421.pdf" rel="nofollow noopener" target="_blank">rsdebate.nic.in</a></li>
+    <li>जनजाति कल्याण विभाग, उत्तराखंड — PVTG List — <a href="https://tribalwelfare.uk.gov.in/page/pvgt-list" rel="nofollow noopener" target="_blank">tribalwelfare.uk.gov.in</a></li>
+    <li>जनजाति कल्याण विभाग, उत्तराखंड — PM-JANMAN — <a href="https://tribalwelfare.uk.gov.in/page/pm-janman" rel="nofollow noopener" target="_blank">tribalwelfare.uk.gov.in</a></li>
+    <li>K. Kumari (2024), "Traditional Panchayats in Jaunsar-Bawar", ShodhKosh 5(5) — <a href="https://granthaalayahpublication.org/Arts-Journal/ShodhKosh/article/view/3914" rel="nofollow noopener" target="_blank">doi 10.29121/shodhkosh.v5.i5.2024.3914</a></li>
+    <li>UNESCO World Atlas of Languages — Garhwali (Census 2011: 24,82,089) — <a href="https://ar.wal.unesco.org/countries/india/languages/garhwali" rel="nofollow noopener" target="_blank">wal.unesco.org</a></li>
+    <li>UNESCO World Atlas of Languages — Jaunsari (1,36,779) — <a href="https://ar.wal.unesco.org/en/countries/india/languages/jaunsari" rel="nofollow noopener" target="_blank">wal.unesco.org</a></li>
+    <li>हरेला अवकाश निर्णय (2020) — <a href="https://www.officeholidays.com/amp/holidays/india/uttarakhand/harela" rel="nofollow noopener" target="_blank">officeholidays.com</a>; लोक भवन प्रेस नोट 16.07.2026 — <a href="https://governoruk.gov.in/?p=61835" rel="nofollow noopener" target="_blank">governoruk.gov.in</a></li>
+    <li>Drishti — हरेला 2025 पौधारोपण रिकॉर्ड — <a href="https://www.drishtiias.com/statepcs/24-07-2025/uttarakhand" rel="nofollow noopener" target="_blank">drishtiias.com</a></li>
+    <li>उत्तराखंड पर्यटन विकास परिषद — Events (माघ मेला, उत्तरायणी, घुघुतिया) — <a href="https://uttarakhandtourism.gov.in/events" rel="nofollow noopener" target="_blank">uttarakhandtourism.gov.in</a></li>
+    <li>कुमाऊँ मंडल (सरकारी पोर्टल) — Bagwal (Devidhura Fair) — <a href="https://kumaon.gov.in/pages/display/85-bagwal" rel="nofollow noopener" target="_blank">kumaon.gov.in</a></li>
+    <li>ThePrint/PTI — बग्वाल फल-फूल से (28.08.2026); Drishti — राजकीय मेला (11.07.2022) — <a href="https://theprint.in/india/uttarakhand-bagwal-fair-held-with-fruits-and-flowers-on-raksha-bandhan/3027918/" rel="nofollow noopener" target="_blank">theprint.in</a>, <a href="https://www.drishtiias.com/state-pcs-current-affairs/maa-varahi-bagwal-mela-declared-as-state-fair/print_manually" rel="nofollow noopener" target="_blank">drishtiias.com</a></li>
+    <li>भारत सरकार, Utsav पोर्टल — Jauljibi Mela — <a href="https://utsav.gov.in/view-event/jauljibi-mela-1" rel="nofollow noopener" target="_blank">utsav.gov.in</a></li>
+    <li>The Tribune — जौलजीबी 1871, पुष्कर पाल — <a href="https://www.tribuneindia.com/news/archive/uttarakhand/jauljibi-trade-was-a-religious-fair-earlier-157836" rel="nofollow noopener" target="_blank">tribuneindia.com</a></li>
+    <li>PTI/Devdiscourse — राजजात 2027 तक स्थगित (18.01.2026) — <a href="https://www.devdiscourse.com/article/entertainment/3774204-nanda-devi-raj-jat-yatra-postponed-unfavorable-weather-delays-sacred-journey" rel="nofollow noopener" target="_blank">devdiscourse.com</a></li>
+    <li>UNESCO — Ramman (2009) — <a href="https://ich.unesco.org/en/RL/ramman-religious-festival-and-ritual-theatre-of-the-garhwal-himalayas-india-00281" rel="nofollow noopener" target="_blank">ich.unesco.org</a></li>
+    <li>UNESCO — Kumbh Mela (2017) — <a href="https://ich.unesco.org/en/RL/kumbh-mela-01258" rel="nofollow noopener" target="_blank">ich.unesco.org</a></li>
+    <li>People's Archive of Rural India — Choliya — <a href="https://ruralindiaonline.org/article/drums-bagpipes-and-choliya-dance" rel="nofollow noopener" target="_blank">ruralindiaonline.org</a></li>
+    <li>Vajiram & Ravi — Folk Dances of Uttarakhand — <a href="https://vajiramandravi.com/current-affairs/folk-dances-of-uttarakhand/" rel="nofollow noopener" target="_blank">vajiramandravi.com</a></li>
+    <li>GKToday — State-wise folk dances — <a href="https://www.gktoday.in/state-wise-folk-and-classical-dance-forms-of-india/" rel="nofollow noopener" target="_blank">gktoday.in</a></li>
+    <li>कुमाऊँ मंडल (सरकारी पोर्टल) — Chitai Golu Temple — <a href="https://kumaon.gov.in/places-centres/chitai-golu-temple-almora/" rel="nofollow noopener" target="_blank">kumaon.gov.in</a></li>
+    <li>Monica & Tiwari (2025), ShodhKosh 6(2) — ऐपण GI: आवेदन 648, प्रमाणपत्र 389, 14.09.2021 — <a href="https://www.granthaalayahpublication.org/Arts-Journal/ShodhKosh/article/view/9136" rel="nofollow noopener" target="_blank">granthaalayahpublication.org</a></li>
+    <li>भारतीय बौद्धिक संपदा कार्यालय — Uttarakhand Thulma (आवेदन 654) — <a href="https://search.ipindia.gov.in/GIRPublic/Application/Details/654" rel="nofollow noopener" target="_blank">ipindia.gov.in</a></li>
+    <li>Drishti — 18 उत्पादों को GI, कुल 27 — <a href="https://www.drishtiias.com/state-pcs-current-affairs/uttarakhand-is-the-state-in-the-country-to-get-maximum-18-tags-in-a-single-day/print_manually" rel="nofollow noopener" target="_blank">drishtiias.com</a></li>
+    <li>The Daily Pioneer — 18 GI प्रमाणपत्र वितरण — <a href="https://www.dailypioneer.com/2023/state-editions/18-more-products-of-u---khand-receive-gi-tag-certification.html" rel="nofollow noopener" target="_blank">dailypioneer.com</a></li>
+    <li>भारतीय बौद्धिक संपदा कार्यालय — Rangwali Pichhoda of Kumaon (आवेदन 874) — <a href="https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/874" rel="nofollow noopener" target="_blank">ipindia.gov.in</a></li>
+    <li>Rautela & Joshi (2008), "Earthquake-safe Koti Banal architecture of Uttarakhand", Current Science 95(4) — <a href="https://karmayog.org/wp-content/uploads/10392/24310.pdf" rel="nofollow noopener" target="_blank">PDF</a></li>
+    <li>The Tribune — 1,000 साल पुरानी कोटी बनाल संरचनाएँ — <a href="https://www.tribuneindia.com/news/archive/nation/1-000-yr-old-uttarkashi-structure-is-quake-proof-73775" rel="nofollow noopener" target="_blank">tribuneindia.com</a></li>
+    <li>Wikipedia — Kumaoni language (Census 2011) — <a href="https://en.wikipedia.org/wiki/Kumaoni_language" rel="nofollow noopener" target="_blank">wikipedia.org</a></li>
+  </ol>
+</Article>
+
+<style>
+  .small { font-size: .9rem; color: #475569; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips span { background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 999px; padding: 2px 10px; font-size: .9rem; }
+  .sources { font-size: .85rem; line-height: 1.6; }
+  .box-trap { background: #fef2f2; border-left: 5px solid #ef4444; border-radius: 12px; padding: 10px 16px; margin: 12px 0; }
+  .box-trap > strong:first-child { display: block; margin-bottom: 2px; }
+</style>
