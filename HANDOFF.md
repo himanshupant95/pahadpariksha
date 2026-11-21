@@ -228,3 +228,10 @@ Rules agreed with the user:
 - Public channel **t.me/pahadpariksha** ("Pahad Pariksha | UKPSC UKSSSC"), created from the owner's account. Auto-delete turned OFF (account default was 1 day). Welcome post with 5 facts published.
 - Site: `.tg-join` strip at the end of every indexable page (Base.astro), footer link, `sameAs` in Organization schema (Base + about).
 - **Autoposting** (`scripts/channel.mjs`, `.github/workflows/channel.yml`): the existing review bot @pahadpariksha_review_bot is a channel admin (Post + Edit only), same TELEGRAM_BOT_TOKEN secret. 8:07 AM IST latest edition (top 8 points + one Q with spoiler answer), Sunday weekly compilation, 1st–2nd monthly compilation (only if the page is live), 6:13 PM IST one quiz-poll from the chapter quiz bank (rotates through every question once before repeating). Safety-net crons at 9:43 AM / 7:49 PM; `src/data/channel-state.json` prevents repeats. New official notices are posted from notices.yml (`channel.mjs notices`). Override channel with repo variable TELEGRAM_CHANNEL. `DRY=1 node scripts/channel.mjs <mode>` previews.
+
+## Weekly quiz contest (Telegram)
+- Discussion group "Pahad Pariksha | Quiz Contest & Chat" (id -1003760260207, linked to the channel; auto-delete off; bot admin with Pin only).
+- `scripts/contest.mjs` + `.github/workflows/contest.yml`: Sunday 10:07 AM IST posts the next unplayed set from `src/data/contests/<subject>-<n>.json` (20 own practice questions, options shuffled) as NON-anonymous quiz polls; 9:07 PM IST closes them, ranks (score, then earliest finish), posts top 10 in group + channel, appends `src/data/contest-results.json`.
+- Answers come from the Cloudflare Worker: `poll_answer` updates stored in KV binding `CONTEST` (60 days); GitHub reads them via `/contest?key=sha256(BOT_TOKEN+':contest')`. Worker URL lives in `src/data/contests/config.json`.
+- Test: Actions → Weekly quiz contest → mode `selftest`, test ✓ → 3 polls in the owner chat, 4 min, result.
+- Add a new set every week (subject rotation: इतिहास, भूगोल, राजव्यवस्था, ज़िले, संस्कृति, अर्थव्यवस्था, करेंट).

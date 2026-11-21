@@ -1,0 +1,56 @@
+name: Weekly quiz contest
+
+# Sunday 10:07 AM IST: 20 quiz polls in the discussion group. Sunday 9:07 PM IST: close and announce winners.
+# Answers are recorded by the Cloudflare Worker (cloudflare/telegram-worker.js, KV binding CONTEST).
+# Second cron of each pair is a safety net; src/data/contest-state.json makes repeats a no-op.
+on:
+  schedule:
+    - cron: '37 4 * * 0'   # Sun 10:07 AM IST start
+    - cron: '13 6 * * 0'   # Sun 11:43 AM IST start (safety net)
+    - cron: '37 15 * * 0'  # Sun 9:07 PM IST results
+    - cron: '19 17 * * 0'  # Sun 10:49 PM IST results (safety net)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'check | selftest | start | finish'
+        default: check
+      test:
+        description: 'Send to the owner chat only (no state saved)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contest
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Contest
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.test && '1' || '' }}
+        run: |
+          MODE="${{ inputs.mode }}"
+          if [ -z "$MODE" ]; then
+            H=$(TZ=Asia/Kolkata date +%H)
+            if [ "$H" -lt 15 ]; then MODE=start; else MODE=finish; fi
+          fi
+          node scripts/contest.mjs "$MODE"
+      - name: Save state
+        run: |
+          [ "$(cat contest-changed 2>/dev/null)" = "1" ] || { echo "Nothing to save."; exit 0; }
+          git config user.name "contest-bot"
+          git config user.email "contest-bot@users.noreply.github.com"
+          git add src/data/contest-state.json src/data/contest-results.json 2>/dev/null || true
+          git commit -m "Quiz contest state [skip ci]"
+          for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done

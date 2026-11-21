@@ -9,7 +9,13 @@
 //   GH_TOKEN        GitHub fine-grained token: repo pahadpariksha, Contents: Read and write — secret
 //   WEBHOOK_SECRET  any long random text (protects the webhook and /setup)        — secret
 //   GH_REPO         himanshupant95/pahadpariksha                                 — variable
+//   CONTEST         KV namespace binding (Settings → Bindings → KV namespace)    — stores quiz-contest answers
 // One-time: open https://<your-worker>.workers.dev/setup?key=<WEBHOOK_SECRET> to connect Telegram.
+//
+// Quiz contest (scripts/contest.mjs): the bot posts non-anonymous quiz polls in the discussion group;
+// Telegram sends each answer here as a poll_answer update and it is kept in KV (60 days).
+// GET /contest?key=<sha256(BOT_TOKEN + ':contest')>&polls=<id,id,…> returns the answers; &ensure=1 first
+// makes sure the webhook also receives poll_answer updates (no manual /setup needed after this change).
 
 const HELP = 'सुधार के आदेश (एक पंक्ति में एक; एक संदेश में कई भी चलेंगे):\n' +
   '/remove P2 — पूरा बिंदु हटाएँ\n/remove P2.3 — तथ्य हटाएँ\n/remove P2.Q — प्रश्न हटाएँ\n/edit P2 नया शीर्षक\n/edit P2.3 नया पाठ\n' +
@@ -24,6 +30,36 @@ export default {
     const tg = (method, body) => fetch(`https://api.telegram.org/bot${env.BOT_TOKEN}/${method}`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
     }).then((r) => r.json());
+    const UPDATES = ['message', 'poll_answer'];
+
+    // quiz contest: read stored answers (called by GitHub Actions)
+    if (url.pathname === '/contest') {
+      const json = (o, status = 200) => new Response(JSON.stringify(o), { status, headers: { 'content-type': 'application/json' } });
+      const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`${env.BOT_TOKEN}:contest`));
+      const want = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+      if (url.searchParams.get('key') !== want) return json({ ok: false, error: 'bad key' }, 403);
+      if (!env.CONTEST) return json({ ok: false, error: 'KV binding CONTEST missing' }, 500);
+      if (url.searchParams.get('ensure')) {
+        const info = await tg('getWebhookInfo', {});
+        const have = info.result?.allowed_updates || [];
+        if (info.result?.url && !UPDATES.every((u) => have.includes(u))) {
+          const r = await tg('setWebhook', { url: info.result.url, secret_token: env.WEBHOOK_SECRET, allowed_updates: UPDATES });
+          if (!r.ok) return json({ ok: false, error: `setWebhook: ${r.description}` }, 500);
+        }
+        if (!info.result?.url) return json({ ok: false, error: 'webhook not set — open /setup first' }, 500);
+      }
+      const answers = {};
+      for (const poll of (url.searchParams.get('polls') || '').split(',').filter(Boolean)) {
+        answers[poll] = [];
+        let cursor;
+        do {
+          const page = await env.CONTEST.list({ prefix: `a:${poll}:`, cursor });
+          for (const k of page.keys) answers[poll].push({ uid: k.name.split(':')[2], ...(k.metadata || {}) });
+          cursor = page.list_complete ? undefined : page.cursor;
+        } while (cursor);
+      }
+      return json({ ok: true, answers });
+    }
 
     // one-time setup: point Telegram at this Worker
     if (url.pathname === '/setup') {
@@ -34,7 +70,7 @@ export default {
       if (key !== env.WEBHOOK_SECRET) return new Response(`❌ key मेल नहीं खाती — लिंक में ${key.length} अक्षर हैं, सेव किए गए WEBHOOK_SECRET में ${env.WEBHOOK_SECRET.length}।`, { status: 403, headers: plain });
       const missing = ['BOT_TOKEN', 'CHAT_ID', 'GH_TOKEN', 'GH_REPO'].filter((k) => !env[k]);
       if (missing.length) return new Response(`❌ ये सेटिंग्स नहीं मिलीं: ${missing.join(', ')}`, { status: 500, headers: plain });
-      const r = await tg('setWebhook', { url: `${url.origin}/hook`, secret_token: env.WEBHOOK_SECRET, allowed_updates: ['message'], drop_pending_updates: true });
+      const r = await tg('setWebhook', { url: `${url.origin}/hook`, secret_token: env.WEBHOOK_SECRET, allowed_updates: UPDATES, drop_pending_updates: true });
       return new Response(r.ok ? '✅ Telegram webhook जुड़ गया। अब बॉट को /help भेजें।' : `❌ Telegram: ${r.description} (BOT_TOKEN जाँचें)`, { headers: plain });
     }
 
@@ -42,8 +78,19 @@ export default {
     if (req.headers.get('X-Telegram-Bot-Api-Secret-Token') !== env.WEBHOOK_SECRET) return new Response('forbidden', { status: 403 });
 
     const update = await req.json().catch(() => ({}));
+    const pa = update.poll_answer;
+    if (pa?.user && env.CONTEST) {
+      const key = `a:${pa.poll_id}:${pa.user.id}`;
+      if (!pa.option_ids?.length) await env.CONTEST.delete(key);
+      else {
+        const n = [pa.user.first_name, pa.user.last_name].filter(Boolean).join(' ').slice(0, 60);
+        await env.CONTEST.put(key, '', { expirationTtl: 60 * 864e2, metadata: { o: pa.option_ids, t: Date.now(), n, u: pa.user.username || '' } });
+      }
+      return new Response('ok');
+    }
     const m = update.message;
     if (!m?.text) return new Response('ok');
+    if (m.chat.type !== 'private') return new Response('ok'); // group/channel messages: stay silent
     if (String(m.chat.id) !== String(env.CHAT_ID)) {
       await tg('sendMessage', { chat_id: m.chat.id, text: `यह निजी बॉट है। (आपकी Chat ID: ${m.chat.id})` });
       return new Response('ok');
