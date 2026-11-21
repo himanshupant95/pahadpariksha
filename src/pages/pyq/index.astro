@@ -33,3 +33,8 @@ const topics = Object.entries(byTopic).sort((a, b) => b[1] - a[1]);
   <p class="chips">{topics.map(([t, n]) => <span>{t} ({n})</span>)}</p>
   <p>इतिहास और भूगोल से सबसे ज़्यादा प्रश्न आते हैं, पर पिछले एक साल के राज्य के करेंट अफेयर्स (बजट, सूचकांक, पुरस्कार, आयोजन) भी हर पेपर में हैं। इनके लिए देखें: <a href="/gk/uttarakhand-varsh-2025-26/">उत्तराखंड वर्ष 2025–26</a>, <a href="/gk/uttarakhand-tulnatmak-talikayen/">ज़िलों की तुलना</a> और <a href="/gk/uttarakhand-sanskriti-janjatiyan/">संस्कृति और जनजातियाँ</a>।</p>
 </Article>
+
+<style>
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips span { background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 999px; padding: 2px 10px; font-size: .9rem; }
+</style>
