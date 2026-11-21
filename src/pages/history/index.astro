@@ -7,7 +7,7 @@ const schema = {
   itemListElement: CHAPTERS.filter((c) => c.live).map((c) => ({ '@type': 'ListItem', position: c.part, url: `https://pahadpariksha.in${chapterHref(c)}`, name: c.title })),
 };
 ---
-<Base title={`${HSERIES.name} — अध्याय-दर-अध्याय (UKSSSC/UKPSC)`} description="उत्तराखंड का इतिहास हिंदी में, 9 अध्याय: प्रागैतिहासिक काल, कत्यूरी, चंद, परमार, गोरखा, ब्रिटिश शासन, स्वतंत्रता संग्राम और राज्य आंदोलन। क्विज़ सहित।">
+<Base title="उत्तराखंड का इतिहास: 9 अध्याय, शैलचित्रों से राज्य आंदोलन तक" description="उत्तराखंड का इतिहास हिंदी में, 9 अध्याय: प्रागैतिहासिक काल, कत्यूरी, चंद, परमार, गोरखा, ब्रिटिश शासन, स्वतंत्रता संग्राम और राज्य आंदोलन। क्विज़ सहित।">
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
   <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › इतिहास</nav>
   <header class="sh">

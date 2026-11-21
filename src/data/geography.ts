@@ -7,7 +7,7 @@ export const GSERIES = {
   href: '/geography/',
 };
 
-export interface GChapter { part: number; slug: string; title: string; unit: string; hook: string; live?: boolean; img?: string }
+export interface GChapter { part: number; slug: string; title: string; unit: string; hook: string; live?: boolean; img?: string; see?: [string, string] }
 
 export const UNITS = [
   { id: 'I', name: 'भाग I — भौगोलिक आधार' },
@@ -29,7 +29,7 @@ export const GCHAPTERS: GChapter[] = [
   { part: 8, slug: 'biodiversity-protected-areas', unit: 'III', title: 'जैव विविधता और संरक्षित क्षेत्र', hook: 'कॉर्बेट, राजाजी, नंदा देवी, फूलों की घाटी, गंगोत्री, अभयारण्य', live: true, img: '/maps/geo/g08-protected-areas-800.webp' },
   { part: 9, slug: 'population-settlement', unit: 'IV', title: 'जनसंख्या और बस्तियाँ', hook: 'जनसंख्या वितरण, पलायन, घोस्ट विलेज, नगरीकरण' },
   { part: 10, slug: 'agriculture-land-use', unit: 'IV', title: 'कृषि और भूमि उपयोग', hook: 'सीढ़ीदार खेती, मोटे अनाज, बागवानी, तराई-भाबर की खेती' },
-  { part: 11, slug: 'resources-industries', unit: 'IV', title: 'संसाधन, उद्योग और परिवहन', hook: 'वन, जल, खनिज, जलविद्युत, पर्यटन, औद्योगिक पट्टी' },
+  { part: 11, slug: 'resources-industries', unit: 'IV', title: 'संसाधन, उद्योग और परिवहन', hook: 'वन, जल, खनिज, जलविद्युत, पर्यटन, औद्योगिक पट्टी', see: ['/gk/uttarakhand-arthvyavastha/', 'तब तक पढ़ें: उत्तराखंड की अर्थव्यवस्था'] },
   { part: 12, slug: 'landslides', unit: 'V', title: 'भूस्खलन और ढाल अस्थिरता', hook: 'भूगर्भीय कारण, सड़क निर्माण, वर्षा, जोशीमठ' },
   { part: 13, slug: 'earthquakes', unit: 'V', title: 'भूकंप और भूकंपीय संवेदनशीलता', hook: 'MHT, भूकंपीय क्षेत्र, 1803, 1991, 1999 के भूकंप' },
   { part: 14, slug: 'floods-cloudbursts-glof', unit: 'V', title: 'बाढ़, बादल फटना और GLOF', hook: 'केदारनाथ 2013, चमोली 2021, धराली 2025' },

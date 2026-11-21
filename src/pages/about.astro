@@ -11,7 +11,7 @@ const chapters = 9 + 8 + polityLive;
 const schema = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: `${SITE.name} के बारे में`, url: SITE.url + '/about/',
   mainEntity: { '@type': 'Organization', name: SITE.nameEn, alternateName: SITE.name, url: SITE.url, founder: { '@type': 'Person', name: SITE.author.nameEn, url: SITE.url + SITE.author.url } } }];
 ---
-<Base title="हमारे बारे में: पहाड़ परीक्षा कौन चलाता है और सामग्री कैसे बनती है" description="पहाड़ परीक्षा उत्तराखंड की प्रतियोगी परीक्षाओं के लिए मुफ़्त हिंदी वेबसाइट है। जानिए इसे कौन चलाता है, सामग्री कैसे जाँची जाती है और गलती कैसे ठीक होती है।" schema={schema}>
+<Base title="हमारे बारे में: पहाड़ परीक्षा कौन चलाता है" description="पहाड़ परीक्षा उत्तराखंड की प्रतियोगी परीक्षाओं के लिए मुफ़्त हिंदी वेबसाइट है। जानिए इसे कौन चलाता है, सामग्री कैसे जाँची जाती है और गलती कैसे ठीक होती है।" schema={schema}>
   <nav class="crumbs"><a href="/">होम</a> › हमारे बारे में</nav>
   <h1>हमारे बारे में</h1>
   <p class="lead"><strong>{SITE.name}</strong> उत्तराखंड की सरकारी भर्ती परीक्षाओं (UKSSSC और UKPSC) की तैयारी के लिए एक <b>स्वतंत्र और पूरी तरह मुफ़्त</b> हिंदी वेबसाइट है। इसका किसी आयोग या सरकारी विभाग से कोई संबंध नहीं है।</p>

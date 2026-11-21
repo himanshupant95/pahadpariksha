@@ -46,7 +46,7 @@ const faq = [
   { q: 'मानचित्र किस आधार पर बने हैं?', a: 'ज़िला/राज्य सीमाएँ भारतीय सर्वेक्षण विभाग-जनगणना 2011 आधारित DataMeet आँकड़ों (CC BY 4.0) से, नदियाँ-हिमनद OpenStreetMap (ODbL) से और ऊँचाई NASA SRTM से। ये शैक्षिक मानचित्र हैं; आधिकारिक सीमा के लिए भारतीय सर्वेक्षण विभाग के मानचित्र देखें।' },
 ];
 ---
-<Base title="उत्तराखंड का भूगोल (Uttarakhand Geography) — अध्याय-दर-अध्याय, मानचित्रों सहित | UKPSC" description="उत्तराखंड का भूगोल हिंदी में, 8 अध्याय: स्थिति, हिमालय, भौतिक विभाग, नदियाँ, हिमनद, जलवायु, मिट्टी-वन और जैव विविधता। मानचित्र और क्विज़ सहित।">
+<Base title="उत्तराखंड का भूगोल: 8 अध्याय, मानचित्रों सहित" description="उत्तराखंड का भूगोल हिंदी में, 8 अध्याय: स्थिति, हिमालय, भौतिक विभाग, नदियाँ, हिमनद, जलवायु, मिट्टी-वन और जैव विविधता। मानचित्र और क्विज़ सहित।">
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
   <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › भूगोल</nav>
   <header class="sh">
@@ -69,7 +69,7 @@ const faq = [
               <span class="in"><small>अध्याय {c.part}</small><strong>{c.title}</strong><span>{c.hook}</span></span>
             </a></li>
           ) : (
-            <li><div class="ch soon"><span class="in"><small>अध्याय {c.part} · जल्द</small><strong>{c.title}</strong><span>{c.hook}</span></span></div></li>
+            <li><div class="ch soon"><span class="in"><small>अध्याय {c.part} · जल्द</small><strong>{c.title}</strong><span>{c.hook}</span>{c.see && <a class="see" href={c.see[0]}>{c.see[1]} →</a>}</span></div></li>
           ))}
         </ol>
       </section>
@@ -121,6 +121,7 @@ const faq = [
   .ch .in { padding: 10px 14px 10px 0; display: block; }
   .ch.soon { grid-template-columns: 1fr; opacity: .65; }
   .ch.soon .in { padding: 12px 14px; }
+  .ch.soon .see { display: inline-block; margin-top: 6px; font-weight: 700; font-size: .88rem; }
   .ch small { display: block; color: var(--muted); font-size: .78rem; }
   .ch strong { display: block; color: var(--green); font-size: 1.1rem; margin: 2px 0; }
   .ch .in > span { font-size: .9rem; }

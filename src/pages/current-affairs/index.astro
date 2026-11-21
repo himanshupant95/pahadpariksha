@@ -22,7 +22,7 @@ const upd = updIso ? new Date(updIso).toLocaleString('hi-IN', { timeZone: 'Asia/
 const image = latest ? `/og/current-affairs-${latest}.jpg` : undefined;
 
 const title = latest
-  ? `उत्तराखंड करेंट अफेयर्स ${fmtDay(latest)} (Daily) | Uttarakhand Current Affairs Today`
+  ? `उत्तराखंड करेंट अफेयर्स ${fmtDay(latest)} | Uttarakhand Current Affairs`
   : 'उत्तराखंड करेंट अफेयर्स (Daily) | Uttarakhand Current Affairs Today';
 const description = latest
   ? `${fmtDay(latest)} के उत्तराखंड करेंट अफेयर्स: ${topTags.slice(0, 3).join(', ')} समेत ${latestItems.length} परीक्षा बिंदु, तथ्य और क्विज़।`

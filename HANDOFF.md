@@ -217,3 +217,9 @@ Rules agreed with the user:
 - /gk/uttarakhand-arthvyavastha/ (Article layout): ES 2025-26 + PRS budget 2026-27 numbers, industry, energy, tourism 2025, agri, minerals, institutes, Indo-Tibet trade, GI table (GI_LIST, 29 items).
 - GI count is now 29 (Bedu + Badri cow ghee certificates 5 Nov 2025, GI Registry apps 1188/1390). Culture page and its quiz updated to match. Update GI_LIST when new GIs are registered.
 - Home syllabus card 3 is live. Refresh numbers after the 2027-28 budget / ES 2026-27.
+
+## Images and audit (21 Nov 2026)
+- Wikimedia images are self-hosted at build time: scripts/localize-images.mjs (CI only; cache .cache/wm via actions/cache in deploy.yml). Rewrites dist HTML to https://pahadpariksha.in/img/wm/... Base.astro has a client fallback (retry smaller size, then hide broken img). Keep using Commons URLs in source; never hotlink-only.
+- Titles trimmed to ~60 chars (+ " | पहाड़ परीक्षा"). Keep new titles short.
+- Geography chapter 11 card points to the economy page until that chapter exists (GChapter.see). Remaining syllabus topics map to geography chapters 9, 10, 12–15.
+- Style gap: district (≈60 semicolons/dashes per 1000 words), history (≈35–50) and geography (≈30–40) pages are in older note style; polity/new pages ≈3–7. Rewrite in batches, districts first.

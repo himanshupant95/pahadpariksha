@@ -25,7 +25,7 @@ const schema = {
   itemListElement: DISTRICTS.filter((d) => d.live).map((d) => ({ '@type': 'ListItem', position: d.part, url: `https://pahadpariksha.in${districtHref(d)}`, name: `${d.name} ज़िला` })),
 };
 ---
-<Base title={`${SERIES.name}: उत्तराखंड के 13 ज़िलों की संपूर्ण शृंखला (${SERIES.tagline})`} description="उत्तराखंड के 13 ज़िले: मंडल, मुख्यालय, सीमाएँ, गठन वर्ष और हर ज़िले का पूरा पेज (इतिहास, भूगोल, मेले, जनगणना, क्विज़)। UKSSSC और UKPSC के लिए।">
+<Base title="उत्तराखंड के 13 ज़िले: देवभूमि दर्पण शृंखला" description="उत्तराखंड के 13 ज़िले: मंडल, मुख्यालय, सीमाएँ, गठन वर्ष और हर ज़िले का पूरा पेज (इतिहास, भूगोल, मेले, जनगणना, क्विज़)। UKSSSC और UKPSC के लिए।">
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › {SERIES.name}</nav>
@@ -88,6 +88,13 @@ const schema = {
 
   <h2>सवाल-जवाब</h2>
   {faq.map((f) => <details class="fq"><summary>{f.q}</summary><p>{f.a}</p></details>)}
+
+  <h2>स्रोत</h2>
+  <ul class="small-src">
+    <li>भारत की जनगणना 2011: ज़िलावार प्राथमिक जनगणना सार (क्षेत्रफल, जनसंख्या, जनघनत्व) — <a href="https://censusindia.gov.in/" rel="nofollow noopener" target="_blank">censusindia.gov.in</a></li>
+    <li>उत्तराखंड सरकार: ज़िलों की आधिकारिक वेबसाइटें (मुख्यालय, गठन) — <a href="https://uk.gov.in/" rel="nofollow noopener" target="_blank">uk.gov.in</a></li>
+    <li>हर ज़िले के विस्तृत स्रोत उसके अपने पेज पर नीचे दिए गए हैं।</li>
+  </ul>
 </Base>
 
 <style>
@@ -108,4 +115,5 @@ const schema = {
   .tip { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 10px; padding: 8px 12px; margin: 10px 0; font-size: .94rem; }
   .fq { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 6px 0; background: var(--card); }
   .fq summary { cursor: pointer; font-weight: 600; }
+  .small-src { font-size: .85rem; line-height: 1.6; }
 </style>
