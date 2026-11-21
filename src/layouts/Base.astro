@@ -170,10 +170,26 @@ const enUrl = `https://pahadpariksha-in.translate.goog${path}?_x_tr_sl=hi&_x_tr_
       var cur = document.querySelector('.site-header nav a[aria-current="page"]');
       if (cur && window.innerWidth <= 640) cur.scrollIntoView({ inline: 'center', block: 'nearest' });
     </script>
+    <script is:inline>
+      // Image safety net: if a (hotlinked) Wikimedia image fails, retry once at a smaller, usually cached size;
+      // if that also fails, hide the broken box but keep the caption/credit.
+      document.addEventListener('error', function (e) {
+        var i = e.target;
+        if (!i || i.tagName !== 'IMG') return;
+        if (!i.dataset.retry && /wikimedia\.org/.test(i.currentSrc || i.src)) {
+          i.dataset.retry = '1';
+          i.removeAttribute('srcset');
+          i.src = (i.currentSrc || i.src).replace('://thumb.', '://upload.').replace(/\/(?:1280|1920|3840)px-/, '/960px-');
+        } else {
+          i.classList.add('img-failed');
+        }
+      }, true);
+    </script>
   </body>
 </html>
 
 <style is:global>
+  img.img-failed { display: none; }
   :root {
     --green: #14532d; --green-2: #166534; --green-soft: #ecfdf3; --ink: #1c1917; --muted: #57534e;
     --line: #e7e5e4; --bg: #fafaf9; --card: #fff; --accent: #c2410c; --radius: 12px;

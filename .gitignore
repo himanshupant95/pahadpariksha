@@ -9,3 +9,4 @@ public/og/
 
 scripts/maps/out/
 scripts/maps/__pycache__/
+.cache/
