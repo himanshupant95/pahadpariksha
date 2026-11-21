@@ -1,0 +1,32 @@
+---
+// Shows one group from src/data/exam-facts.ts: facts that recent UKPSC papers asked and the page did not yet cover.
+import { byId, CHECKED_ON } from '../data/exam-facts';
+interface Props { group: string; heading?: string; intro?: boolean }
+const { group, heading, intro = true } = Astro.props;
+const g = byId(group);
+if (!g) throw new Error(`ExamFacts: unknown group "${group}"`);
+---
+<section class="exam-facts" id={`pariksha-${g.id}`}>
+  <h2>{heading ?? `हाल की परीक्षाओं से जुड़े अतिरिक्त तथ्य: ${g.title}`}</h2>
+  {intro && <p class="ef-note">हमने UKPSC के हाल के प्रश्न-पत्रों (2025–26) के उत्तराखंड-प्रश्नों को इस पाठ से मिलाया। जो बातें ऊपर नहीं थीं, वे यहाँ स्रोत के साथ जोड़ी गई हैं। जाँच: {CHECKED_ON}।</p>}
+  <ol>
+    {g.facts.map((f) => (
+      <li>
+        <span set:html={f.t} />
+        {f.trap && <span class="ef-trap"><b>ध्यान दें:</b> {f.trap}</span>}
+        <span class="ef-src">स्रोत: {f.src.map((s, i) => <>{i > 0 && ', '}<a href={s.u} target="_blank" rel="noopener nofollow">{s.t}</a></>)}</span>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .exam-facts { background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid #0f766e; border-radius: 12px; padding: 8px 18px 6px; margin: 1.6em 0; }
+  .exam-facts h2 { margin-top: .5em; font-size: 1.2rem; border: 0; }
+  .ef-note { font-size: .92rem; color: #475569; margin: .3em 0 .6em; }
+  .exam-facts ol { padding-left: 1.3em; }
+  .exam-facts li { margin: .55em 0; line-height: 1.7; }
+  .ef-trap { display: block; background: #fef2f2; border-left: 3px solid #ef4444; border-radius: 6px; padding: 4px 10px; margin: 4px 0; font-size: .93rem; }
+  .ef-src { display: block; font-size: .82rem; color: #64748b; margin-top: 2px; }
+  .ef-src a { color: #0f766e; }
+</style>

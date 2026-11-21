@@ -1,4 +1,5 @@
 ---
+import ExamFacts from '../../components/ExamFacts.astro';
 import GeographyChapter from '../../layouts/GeographyChapter.astro';
 import GeoMap from '../../components/geo/GeoMap.astro';
 import Atlas from '../../components/geo/Atlas.astro';
@@ -23,6 +24,7 @@ const toc = [
   { id: 'sansthan', label: 'संस्थान व संरक्षण प्रयास' },
   { id: 'seekha', label: 'सारांश व याद रखें' },
   { id: 'map-abhyas-pa', label: 'मानचित्र अभ्यास' },
+  { id: 'pariksha-geo-biodiversity', label: 'हाल की परीक्षाओं से अतिरिक्त तथ्य' },
   { id: 'quiz', label: 'क्विज़ (10 MCQ)' },
   { id: 'faq', label: 'FAQ' },
 ];
@@ -69,7 +71,7 @@ const img = (w: number) => `https://upload.wikimedia.org/wikipedia/commons/thumb
   image={img(960)} heroSrcset={`${img(500)} 500w, ${img(960)} 960w, ${img(1280)} 1280w`}
   imageAlt="चोपता (रुद्रप्रयाग) में हिमालयी मोनाल — इंद्रधनुषी नीले-हरे-तांबई पंखों वाला नर पक्षी"
   heroCredit={{ text: 'हिमालयी मोनाल (राज्य पक्षी), चोपता — Anjan Kumar Kundu, CC BY 4.0, Wikimedia Commons', url: 'https://commons.wikimedia.org/wiki/File:Himalayan_Monal,_Chopta,_Uttarakhand.jpg' }}
-  published="2026-11-20" toc={toc} facts={facts} faq={faq} sources={sources}
+  published="2026-11-20" updated="2026-11-21" toc={toc} facts={facts} faq={faq} sources={sources}
 >
 
 <p class="pull">कॉर्बेट के साल वनों में बाघ और गंगोत्री की चट्टानों पर हिम तेंदुआ — दोनों एक ही राज्य में, केवल 250 किमी के अंतर पर। यही ऊँचाई की विविधता उत्तराखंड की जैव विविधता का रहस्य है।</p>
@@ -279,6 +281,8 @@ const img = (w: number) => `https://upload.wikimedia.org/wikipedia/commons/thumb
     <details class="qa"><summary>4. आसन संरक्षण आरक्षित किस नदी-संगम पर है?</summary><p>आसन और यमुना के संगम पर (देहरादून ज़िले का पश्चिमी छोर, हिमाचल सीमा के पास)।</p></details>
   </section>
 </ChapterEnd>
+
+<ExamFacts group="geo-biodiversity" />
 
 <section id="quiz">
   <h2>क्विज़: जैव विविधता और संरक्षित क्षेत्र (10 प्रश्न)</h2>

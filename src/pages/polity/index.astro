@@ -1,4 +1,5 @@
 ---
+import ExamFacts from '../../components/ExamFacts.astro';
 import Base from '../../layouts/Base.astro';
 import Quiz from '../../components/Quiz.astro';
 import ArticleExplorer from '../../components/polity/ArticleExplorer.astro';
@@ -253,6 +254,8 @@ const mustCount = ARTICLES.filter((a) => a.lvl === 'must').length;
       <tbody>{CONFLICTS.map((c) => <tr><td>{c.topic}</td><td set:html={c.a} /><td set:html={c.b} /><td set:html={c.take} /></tr>)}</tbody>
     </table></div>
   </section>
+
+  <ExamFacts group="polity-firsts" />
 
   <section id="quiz">
     <h2>अभ्यास क्विज़ (15 प्रश्न)</h2>

@@ -1,4 +1,5 @@
 ---
+import ExamFacts from '../../components/ExamFacts.astro';
 import HistoryChapter from '../../layouts/HistoryChapter.astro';
 import Quiz from '../../components/Quiz.astro';
 import questions from '../../data/quizzes/history-freedom.json';
@@ -17,6 +18,7 @@ const toc = [
   { id: 'vyaktitva', label: 'प्रमुख व्यक्तित्व' },
   { id: 'samayrekha', label: 'समयरेखा' },
   { id: 'pariksha', label: 'परीक्षा बिंदु (One-liners)' },
+  { id: 'pariksha-history-freedom', label: 'हाल की परीक्षाओं से अतिरिक्त तथ्य' },
   { id: 'quiz', label: 'क्विज़ (15 प्रश्न)' },
   { id: 'faq', label: 'FAQ' },
 ];
@@ -63,7 +65,7 @@ const img = (w: number) => `https://upload.wikimedia.org/wikipedia/commons/thumb
   heroSrcset={`${img(960)} 960w, ${img(1280)} 1280w`}
   imageAlt="कौसानी से हिमालय की चोटियों और घाटी का दृश्य"
   heroCredit={{ text: 'कौसानी — जहाँ 1929 में गांधी जी ने अनासक्ति योग लिखा — sushanta mohanta, CC BY 3.0, Wikimedia Commons', url: 'https://commons.wikimedia.org/wiki/File:Kausani,_Uttarakhand_263639,_India_-_panoramio.jpg' }}
-  published="2026-11-19" toc={toc} facts={facts} faq={faq} sources={sources}
+  published="2026-11-19" updated="2026-11-21" toc={toc} facts={facts} faq={faq} sources={sources}
 >
 
 <section id="1857">
@@ -293,6 +295,8 @@ const img = (w: number) => `https://upload.wikimedia.org/wikipedia/commons/thumb
     <li>टिहरी रियासत का विलय — 1 अगस्त 1949।</li>
   </ol>
 </section>
+
+<ExamFacts group="history-freedom" />
 
 <section id="quiz">
   <h2>स्वतंत्रता संग्राम क्विज़ (15 प्रश्न)</h2>
