@@ -27,7 +27,7 @@ const topics = [
   { icon: 'quiz', t: 'क्विज़', d: 'सभी अध्यायों के MCQ एक जगह', href: '/quiz/' },
   { icon: 'paper', t: 'करेंट अफेयर्स', d: 'रोज़ का संस्करण, तथ्य व क्विज़', href: '/current-affairs/' },
 ];
-// LSS-2026 syllabus gaps (Uttarakhand units 7–10). live: link list; otherwise "जल्द आ रहा है".
+// LSS-2026 Uttarakhand section (units 7–10). live: link list; otherwise "जल्द आ रहा है".
 const syllabus = [
   { n: 1, t: 'भूमि व्यवस्था और राजस्व प्रशासन', d: 'थोकदारी, बेनाप, नजूल, नयाबाद, सिविल-सोयम वन, वन पंचायत, ज़मींदारी उन्मूलन, राजस्व पुलिस, भू-कानून 2025', unit: 'इकाई 9', links: [['/polity/land-revenue-system/', 'अध्याय पढ़ें']] },
   { n: 2, t: 'राज्य की राजव्यवस्था', d: 'विधानसभा, उच्च न्यायालय, लोकायुक्त, अधिकरण, सेवा का अधिकार, आरक्षण के कानून, UCC', unit: 'इकाई 9', links: [['/polity/legislative-assembly/', 'विधानसभा'], ['/polity/judiciary/', 'न्यायपालिका'], ['/polity/special-laws/', 'ख़ास कानून']] },
@@ -112,20 +112,20 @@ const latest = [
   <section class="syl" aria-labelledby="syl-h">
     <div class="syl-head">
       <div>
-        <p class="kick">लोअर PCS 2026 पाठ्यक्रम · उत्तराखंड</p>
-        <h2 id="syl-h">पाठ्यक्रम के 7 नए अध्याय</h2>
-        <p>UKPSC के LSS-2026 विज्ञापन का पाठ्यक्रम पढ़कर हमने देखा कि उत्तराखंड के कौन-से विषय अभी तक हमारी साइट पर नहीं थे। ये सात अध्याय उसी कमी को भरेंगे, एक-एक करके।</p>
+        <p class="kick">UKPSC लोअर PCS 2026 · उत्तराखंड विशेष</p>
+        <h2 id="syl-h">लोअर PCS 2026: उत्तराखंड खंड की पूरी तैयारी</h2>
+        <p>सम्मिलित राज्य (सिविल) अवर अधीनस्थ सेवा परीक्षा 2026 के उत्तराखंड खंड (इकाई 7 से 10) के मुख्य विषय। हर अध्याय सरल भाषा में, आधिकारिक स्रोतों और अभ्यास क्विज़ के साथ।</p>
       </div>
-      <div class="syl-prog"><b>{liveSyl} / 7</b><span>प्रकाशित</span><div class="bar"><div style={`width:${(liveSyl / 7) * 100}%`}></div></div></div>
+      <div class="syl-prog"><b>{liveSyl} / 7</b><span>अध्याय उपलब्ध</span><div class="bar"><div style={`width:${(liveSyl / 7) * 100}%`}></div></div></div>
     </div>
     <ol class="syl-grid">
       {syllabus.map((x) => (
         <li class={x.links ? 'live' : 'soon'}>
           <span class="no">{x.n}</span>
-          <small>{x.unit} · {x.links ? 'नया' : 'जल्द आ रहा है'}</small>
+          <small>{x.unit} · {x.links ? 'उपलब्ध' : 'जल्द आ रहा है'}</small>
           <strong>{x.t}</strong>
           <p>{x.d}</p>
-          {x.links ? <span class="go">{x.links.map(([h, l]) => <a href={h}>{l} →</a>)}</span> : <span class="wait">तैयार हो रहा है</span>}
+          {x.links ? <span class="go">{x.links.map(([h, l]) => <a href={h}>{l} →</a>)}</span> : <span class="wait">जल्द उपलब्ध</span>}
         </li>
       ))}
     </ol>
