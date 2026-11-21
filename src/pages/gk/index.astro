@@ -1,41 +1,173 @@
 ---
 import Base from '../../layouts/Base.astro';
-const topics = [
-  { href: '/gk/districts/', t: '★ देवभूमि दर्पण — 13 ज़िले, 13 कहानियाँ', d: 'हर ज़िले का संपूर्ण परीक्षा-दर्पण: इतिहास, भूगोल, मेले, संस्थान, क्विज़। शृंखला देखें।' },
-  { href: '/gk/uttarakhand-yojanayen/', t: '★ उत्तराखंड सरकार की प्रमुख योजनाएँ (2000–2026)', d: 'हर योजना: कब, किसने, किसके लिए, कितना लाभ, आज की स्थिति — फ़िल्टर, समयरेखा, वन-लाइनर और क्विज़।' },
-  { href: '/geography/', t: '★ उत्तराखंड का भूगोल — अध्याय-दर-अध्याय', d: 'स्थिति-विस्तार, हिमालय का निर्माण, भौतिक विभाग, नदियाँ, हिमनद — अपने मानचित्रों, इंटरैक्टिव एटलस और क्विज़ के साथ।' },
-  { href: '/polity/', t: '★ उत्तराखंड राजव्यवस्था (Polity) — संविधान से शासन तक', d: 'राज्य कैसे बना, राज्यपाल और सरकार, 70 सीटों की विधानसभा, उच्च न्यायालय, पंचायत और नगर निकाय, UCC। आसान भाषा में, अनुच्छेद एक्सप्लोरर, चित्रों और क्विज़ के साथ।' },
-  { href: '/history/', t: '★ उत्तराखंड का इतिहास — अध्याय-दर-अध्याय', d: 'प्रागैतिहासिक काल, प्राचीन उत्तराखंड, कत्यूरी राजवंश — चित्रों, समयरेखा व क्विज़ के साथ।' },
-  { href: '/pyq/', t: '★ पिछले वर्षों के प्रश्न (UKPSC 2025–26)', d: '8 प्रश्नपत्रों के उत्तराखंड से जुड़े 279 प्रश्न, आयोग की आधिकारिक उत्तर कुंजी से उत्तर और सरल व्याख्या सहित।' },
-  { href: '/gk/uttarakhand-varsh-2025-26/', t: '★ उत्तराखंड वर्ष 2025–26', d: 'आर्थिक सर्वेक्षण 2025-26, बजट 2026-27 व अनुपूरक बजट, NITI सूचकांक, UCC, अल्पसंख्यक शिक्षा अधिनियम, पूर्ण साक्षर राज्य, नए राज्यपाल, कुंभ 2027 की तिथियाँ — क्विज़ सहित।' },
-  { href: '/gk/uttarakhand-tulnatmak-talikayen/', t: '★ ज़िलों की तुलना और रैंक तालिकाएँ', d: '13 ज़िले एक तालिका में: क्षेत्रफल, जनसंख्या, घनत्व, लिंगानुपात, साक्षरता, वृद्धि (जनगणना 2011) और वन आवरण (ISFR 2023)। क्रम वाले प्रश्नों की ट्रिक, मिलान-तालिकाएँ, क्विज़।' },
-  { href: '/gk/uttarakhand-sanskriti-janjatiyan/', t: '★ जनजातियाँ और लोक-संस्कृति', d: '5 जनजातियाँ (जनगणना 2011, ज़िलेवार), PVTG, मेले, पर्व, लोक नृत्य, लोक-देवता, ऐपण, कोटी बनाल, UNESCO और सभी 27 GI उत्पाद — क्विज़ सहित।' },
-  { href: '/gk/uttarakhand-pariksha-tathya/', t: '★ उत्तराखंड GK अपडेट: 2025–26 के परीक्षा-तथ्य', d: 'बजट 2026-27, एरोमा पार्क, HRDI गोपेश्वर, गोट वैली, पाणी राखो, जीवन जोशी और जाल वाले प्रश्न — हर तथ्य स्रोत के साथ।' },
-  { href: '/tools/nali-calculator/', t: '★ नाली कैलकुलेटर — उत्तराखंड भूमि माप', d: 'नाली, मुट्ठी, बीसी, बीघा को वर्ग फुट, गज, मीटर, एकड़ व हेक्टेयर में बदलें — गजेटियर से सत्यापित मान।' },
-  { href: '/gk/uttarakhand-districts/', t: 'उत्तराखंड के 13 जिले', d: 'मंडल, मुख्यालय, सीमाएँ, गठन वर्ष।' },
-  { href: '/gk/uttarakhand-maps/', t: 'उत्तराखंड का मानचित्र (राजनीतिक व भौतिक)', d: 'जिले, मंडल, नदियाँ, चोटियाँ, दर्रे — HD व PDF मुफ़्त।' },
-  { href: '/gk/uttarakhand-rivers/', t: 'उत्तराखंड की प्रमुख नदियाँ', d: 'उद्गम, संगम, पंच प्रयाग।' },
-  { href: '/gk/districts/dehradun/', t: 'देहरादून — देवभूमि दर्पण भाग 1', d: 'इतिहास, भूगोल, जौनसार, मेले, संस्थान, 20 प्रश्न।' },
-  { href: '/gk/districts/haridwar/', t: 'हरिद्वार — देवभूमि दर्पण भाग 2', d: 'कुंभ, गंग नहर, रुड़की, गुरुकुल कांगड़ी, झिलमिल झील, 15 प्रश्न।' },
-  { href: '/gk/districts/nainital/', t: 'नैनीताल — देवभूमि दर्पण भाग 3', d: 'झीलें, 1880 भूस्खलन, कॉर्बेट, ARIES, कैंची धाम, 15 प्रश्न।' },
-  { href: '/gk/districts/almora/', t: 'अल्मोड़ा — देवभूमि दर्पण भाग 4', d: 'चंद राजधानी, जागेश्वर, कटारमल, सल्ट-खुमाड़, सर्वाधिक लिंगानुपात, 15 प्रश्न।' },
-  { href: '/gk/districts/pauri-garhwal/', t: 'पौड़ी गढ़वाल — देवभूमि दर्पण भाग 5', d: 'मंडल मुख्यालय, कण्वाश्रम, लैंसडाउन, पेशावर कांड, 7 जिलों से सीमा, 15 प्रश्न।' },
-  { href: '/gk/districts/tehri-garhwal/', t: 'टिहरी गढ़वाल — देवभूमि दर्पण भाग 6', d: 'टिहरी रियासत, श्रीदेव सुमन, 260.5 मी. बाँध, देवप्रयाग, मौण मेला, 15 प्रश्न।' },
-  { href: '/gk/districts/udham-singh-nagar/', t: 'ऊधम सिंह नगर — देवभूमि दर्पण भाग 7', d: 'गोविषाण-काशीपुर, चौरासी माल, थारू-बुक्सा, पंतनगर (1960), खटीमा गोलीकांड, 15 प्रश्न।' },
-  { href: '/gk/districts/chamoli/', t: 'चमोली — देवभूमि दर्पण भाग 8', d: 'बद्रीनाथ, फूलों की घाटी, नंदा राजजात, रैणी चिपको, गैरसैंण, ज्योतिर्मठ, 15 प्रश्न।' },
-  { href: '/gk/districts/pithoragarh/', t: 'पिथौरागढ़ — देवभूमि दर्पण भाग 9', d: 'चीन-नेपाल सीमा, लिपुलेख व कैलाश यात्रा, शौका घाटियाँ, हिलजात्रा, जौलजीबी, 15 प्रश्न।' },
-  { href: '/gk/districts/uttarkashi/', t: 'उत्तरकाशी — देवभूमि दर्पण भाग 10', d: 'बाड़ाहाट, गंगोत्री-यमुनोत्री, तिलाड़ी कांड, NIM, सिल्क्यारा, धराली आपदा, 15 प्रश्न।' },
-  { href: '/gk/districts/rudraprayag/', t: 'रुद्रप्रयाग — देवभूमि दर्पण भाग 11', d: 'केदारनाथ व पंच केदार, अलकनंदा-मंदाकिनी संगम, 2013 आपदा, कॉर्बेट का गुलदार, 15 प्रश्न।' },
-  { href: '/gk/districts/bageshwar/', t: 'बागेश्वर — देवभूमि दर्पण भाग 12', d: 'बागनाथ, कत्यूरी बैजनाथ, कुली बेगार (1921), कौसानी में गांधी व पंत, पिंडारी, 15 प्रश्न।' },
-  { href: '/gk/districts/champawat/', t: 'चंपावत — देवभूमि दर्पण भाग 13', d: 'चंद राजधानी, देवीधुरा बग्वाल, पूर्णागिरि, मायावती आश्रम, कालू महरा, टनकपुर, 15 प्रश्न।' },
+import { DISTRICTS, districtHref } from '../../data/districts';
+import { TOTAL as PYQ_TOTAL } from '../../data/pyq';
+
+const quizCount = Object.keys(import.meta.glob('../../data/quizzes/*.json')).length;
+
+const subjects = [
+  {
+    href: '/history/', icon: '🏯', t: 'इतिहास', tone: 'amber',
+    d: 'पाषाण युग से टिहरी के विलय और राज्य निर्माण तक',
+    ch: [
+      ['/history/prehistoric-uttarakhand/', 'प्रागैतिहासिक काल'], ['/history/ancient-uttarakhand/', 'प्राचीन उत्तराखंड'],
+      ['/history/kartikeyapur-katyuri/', 'कत्यूरी राजवंश'], ['/history/chand-dynasty/', 'चंद राजवंश'],
+      ['/history/parmar-dynasty/', 'परमार (पंवार) राजवंश'], ['/history/gorkha-rule/', 'गोरखा शासन'],
+      ['/history/british-rule/', 'ब्रिटिश काल'], ['/history/freedom-struggle/', 'स्वतंत्रता संग्राम'],
+      ['/history/statehood-movement/', 'राज्य आंदोलन'],
+    ],
+  },
+  {
+    href: '/geography/', icon: '🏔️', t: 'भूगोल', tone: 'teal',
+    d: 'अपने मानचित्रों, एटलस और क्विज़ के साथ',
+    ch: [
+      ['/geography/location-extent-boundaries/', 'स्थिति और विस्तार'], ['/geography/himalaya-formation-geology/', 'हिमालय का निर्माण'],
+      ['/geography/physiographic-divisions/', 'भौतिक विभाजन'], ['/geography/rivers-drainage/', 'नदियाँ और अपवाह'],
+      ['/geography/glaciers/', 'हिमनद'], ['/geography/climate/', 'जलवायु'],
+      ['/geography/soils-vegetation/', 'मृदा और वनस्पति'], ['/geography/biodiversity-protected-areas/', 'जैव विविधता, संरक्षित क्षेत्र'],
+    ],
+  },
+  {
+    href: '/polity/', icon: '🏛️', t: 'राजव्यवस्था', tone: 'indigo',
+    d: 'राज्य गठन से विधानसभा, उच्च न्यायालय, पंचायत और UCC तक',
+    ch: [
+      ['/polity/', 'राजव्यवस्था: पूरा अध्याय'], ['/polity/state-formation-constitutional-process/', 'राज्य गठन की संवैधानिक प्रक्रिया'],
+      ['/polity/political-evolution/', 'राजनीतिक विकास'],
+    ],
+  },
 ];
-const soon = ['इतिहास: चंद व परमार वंश, गोरखा शासन, ब्रिटिश काल', 'उत्तराखंड राज्य आंदोलन', 'हिमनद, दर्रे और झीलें', 'लोक नृत्य, मेले और त्योहार', 'राष्ट्रीय उद्यान और वन्यजीव अभयारण्य', 'उत्तराखंड की प्रमुख योजनाएँ'];
+
+const special = [
+  { href: '/gk/uttarakhand-sanskriti-janjatiyan/', icon: '🪔', t: 'जनजातियाँ और लोक-संस्कृति', d: '5 जनजातियाँ, मेले, पर्व, लोक नृत्य, लोक-देवता, ऐपण, सभी 27 GI उत्पाद' },
+  { href: '/gk/uttarakhand-tulnatmak-talikayen/', icon: '📊', t: 'ज़िलों की तुलना और रैंक', d: 'जनगणना 2011 व वन आवरण की तालिकाएँ, क्रम वाले प्रश्नों की ट्रिक' },
+  { href: '/gk/uttarakhand-yojanayen/', icon: '📜', t: 'सरकारी योजनाएँ (2000–2026)', d: 'कब, किसने, किसके लिए, कितना लाभ; फ़िल्टर और समयरेखा' },
+  { href: '/gk/uttarakhand-rivers/', icon: '🌊', t: 'प्रमुख नदियाँ', d: 'उद्गम, संगम और पंच प्रयाग एक नज़र में' },
+  { href: '/gk/uttarakhand-districts/', icon: '🗂️', t: '13 ज़िले: एक तालिका', d: 'मंडल, मुख्यालय, सीमाएँ, गठन वर्ष' },
+  { href: '/gk/uttarakhand-maps/', icon: '🗺️', t: 'मानचित्र (HD व PDF)', d: 'राजनीतिक और भौतिक मानचित्र, मुफ़्त डाउनलोड' },
+];
+
+const updates = [
+  { href: '/gk/uttarakhand-varsh-2025-26/', icon: '📅', t: 'उत्तराखंड वर्ष 2025–26', d: 'आर्थिक सर्वेक्षण, बजट, सूचकांक, नए कानून, कुंभ 2027' },
+  { href: '/gk/uttarakhand-pariksha-tathya/', icon: '📌', t: '2025–26 के परीक्षा-तथ्य', d: 'हाल के पेपरों में आए नए तथ्य, स्रोत सहित' },
+  { href: '/current-affairs/', icon: '📰', t: 'रोज़ के करेंट अफेयर्स', d: 'हर दिन उत्तराखंड के परीक्षा-उपयोगी बिंदु और क्विज़' },
+];
+
+const practice = [
+  { href: '/pyq/', icon: '📝', t: 'पिछले वर्षों के प्रश्न', d: `UKPSC 2025–26 के ${PYQ_TOTAL} उत्तराखंड प्रश्न, आधिकारिक उत्तर कुंजी से` },
+  { href: '/quiz/', icon: '✅', t: 'अभ्यास क्विज़', d: `${quizCount} विषयवार क्विज़, हर अध्याय के अंत में भी` },
+  { href: '/tools/nali-calculator/', icon: '📐', t: 'नाली कैलकुलेटर', d: 'नाली, मुट्ठी, बीसी, बीघा को एकड़, हेक्टेयर में बदलें' },
+];
+
+const garhwal = DISTRICTS.filter((d) => d.division === 'गढ़वाल');
+const kumaon = DISTRICTS.filter((d) => d.division === 'कुमाऊँ');
+const stats = [
+  ['13', 'ज़िलों के पूरे पेज'], ['20', 'अध्याय (इतिहास, भूगोल, राजव्यवस्था)'], [String(PYQ_TOTAL), 'पिछले वर्षों के प्रश्न'], [String(quizCount), 'क्विज़'],
+];
+const jump = [['#mukhya', 'मुख्य विषय'], ['#zile', 'ज़िले'], ['#vishesh', 'विशेष विषय'], ['#update', 'ताज़ा अपडेट'], ['#abhyas', 'अभ्यास']];
 ---
-<Base title="उत्तराखंड सामान्य ज्ञान (Uttarakhand GK) हिंदी में" description="UKSSSC और UKPSC के लिए उत्तराखंड सामान्य ज्ञान — जिले, नदियाँ, इतिहास, भूगोल, संस्कृति और योजनाएँ। टॉपिक-वाइज नोट्स और क्विज़।">
-  <h1>उत्तराखंड सामान्य ज्ञान (Uttarakhand GK)</h1>
-  <p>UKSSSC और UKPSC की लगभग हर परीक्षा में उत्तराखंड GK से अच्छी संख्या में प्रश्न आते हैं। यहाँ हर टॉपिक को परीक्षा के नज़रिए से — तथ्य, ट्रिक और क्विज़ के साथ — तैयार किया गया है।</p>
-  <h2>उपलब्ध टॉपिक</h2>
-  <div class="cards">{topics.map((x) => <a class="card" href={x.href}><h3>{x.t}</h3><p>{x.d}</p></a>)}</div>
-  <h2>जल्द आने वाले टॉपिक</h2>
-  <ul>{soon.map((s) => <li>{s}</li>)}</ul>
+<Base title="उत्तराखंड सामान्य ज्ञान (Uttarakhand GK) हिंदी में" description="UKSSSC और UKPSC के लिए उत्तराखंड सामान्य ज्ञान: इतिहास, भूगोल, राजव्यवस्था, 13 ज़िले, संस्कृति, योजनाएँ, करेंट अपडेट और पिछले वर्षों के प्रश्न। अध्याय-वार नोट्स और क्विज़।">
+  <section class="hero">
+    <h1>उत्तराखंड सामान्य ज्ञान</h1>
+    <p>UKSSSC और UKPSC की लगभग हर परीक्षा में उत्तराखंड से अच्छी संख्या में प्रश्न आते हैं। यहाँ सब कुछ विषय के हिसाब से एक जगह है: पहले मुख्य विषय पढ़ें, फिर ज़िले, और अंत में पिछले वर्षों के प्रश्नों से अभ्यास करें।</p>
+    <div class="stats">{stats.map(([n, l]) => <div><b>{n}</b><span>{l}</span></div>)}</div>
+  </section>
+
+  <nav class="jump" aria-label="इस पेज पर">{jump.map(([h, l]) => <a href={h}>{l}</a>)}</nav>
+
+  <h2 id="mukhya" class="sec">📚 मुख्य विषय</h2>
+  <div class="subjects">
+    {subjects.map((s) => (
+      <div class={`subject ${s.tone}`}>
+        <a class="subject-head" href={s.href}>
+          <span class="ic">{s.icon}</span>
+          <span><b>{s.t}</b><small>{s.d}</small></span>
+        </a>
+        <ol>{s.ch.map(([h, l]) => <li><a href={h}>{l}</a></li>)}</ol>
+        <a class="more" href={s.href}>पूरा विषय देखें →</a>
+      </div>
+    ))}
+  </div>
+
+  <h2 id="zile" class="sec">🏞️ देवभूमि दर्पण: 13 ज़िले, 13 कहानियाँ</h2>
+  <p class="lead">हर ज़िले का पूरा परीक्षा-दर्पण: इतिहास, भूगोल, मेले, संस्थान, ट्रिक प्रश्न और क्विज़। <a href="/gk/districts/">पूरी शृंखला →</a></p>
+  <div class="divisions">
+    {[['गढ़वाल मंडल', garhwal], ['कुमाऊँ मंडल', kumaon]].map(([name, list]) => (
+      <div class="division">
+        <h3>{name as string} <small>({(list as typeof DISTRICTS).length} ज़िले)</small></h3>
+        <ul>
+          {(list as typeof DISTRICTS).map((d) => (
+            <li><a href={districtHref(d)}><span class="part">{d.part}</span><span class="dn"><b>{d.name}</b><small>{d.hook}</small></span></a></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <h2 id="vishesh" class="sec">⭐ विशेष विषय</h2>
+  <div class="tiles">{special.map((x) => <a class="tile" href={x.href}><span class="ic">{x.icon}</span><span><b>{x.t}</b><small>{x.d}</small></span></a>)}</div>
+
+  <h2 id="update" class="sec">🆕 ताज़ा अपडेट</h2>
+  <div class="tiles">{updates.map((x) => <a class="tile hot" href={x.href}><span class="ic">{x.icon}</span><span><b>{x.t}</b><small>{x.d}</small></span></a>)}</div>
+
+  <h2 id="abhyas" class="sec">🎯 अभ्यास और औज़ार</h2>
+  <div class="tiles">{practice.map((x) => <a class="tile" href={x.href}><span class="ic">{x.icon}</span><span><b>{x.t}</b><small>{x.d}</small></span></a>)}</div>
 </Base>
+
+<style>
+  .hero { background: linear-gradient(135deg, #14532d, #166534 55%, #0f766e); color: #ecfdf5; border-radius: 18px; padding: 26px 24px 20px; margin: 8px 0 14px; }
+  .hero h1 { color: #fff; margin: 0 0 8px; }
+  .hero p { margin: 0 0 16px; max-width: 760px; color: #d1fae5; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .stats div { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 12px; padding: 10px 12px; }
+  .stats b { display: block; font-size: 1.5rem; color: #fff; line-height: 1.1; }
+  .stats span { font-size: .82rem; color: #d1fae5; }
+
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; position: sticky; top: 0; z-index: 2; background: var(--bg); padding: 8px 0; }
+  .jump a { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; text-decoration: none; color: var(--green); font-size: .92rem; }
+  .jump a:hover { border-color: var(--green-2); background: var(--green-soft); }
+
+  h2.sec { margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--green-soft); scroll-margin-top: 60px; }
+  .lead { margin: -4px 0 12px; color: var(--muted); }
+
+  .subjects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .subject { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+  .subject-head { display: flex; gap: 12px; align-items: center; padding: 14px 16px; text-decoration: none; color: inherit; }
+  .subject-head .ic { font-size: 1.9rem; }
+  .subject-head b { display: block; font-size: 1.2rem; }
+  .subject-head small { color: var(--muted); font-size: .85rem; }
+  .subject.amber .subject-head { background: #fffbeb; } .subject.amber b { color: #92400e; }
+  .subject.teal .subject-head { background: #f0fdfa; } .subject.teal b { color: #115e59; }
+  .subject.indigo .subject-head { background: #eef2ff; } .subject.indigo b { color: #3730a3; }
+  .subject ol { margin: 8px 0 4px; padding: 0 16px 0 2.2em; flex: 1; }
+  .subject ol li { margin: 3px 0; font-size: .95rem; }
+  .subject ol a { text-decoration: none; color: var(--ink); }
+  .subject ol a:hover { color: var(--green-2); text-decoration: underline; }
+  .subject .more { padding: 8px 16px 12px; font-size: .9rem; font-weight: 600; text-decoration: none; color: var(--green-2); }
+
+  .divisions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .division { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; }
+  .division h3 { margin: 2px 0 8px; color: var(--green); font-size: 1.05rem; }
+  .division h3 small { color: var(--muted); font-weight: 400; }
+  .division ul { list-style: none; margin: 0; padding: 0; }
+  .division li a { display: flex; gap: 10px; align-items: flex-start; padding: 7px 6px; border-radius: 10px; text-decoration: none; color: inherit; }
+  .division li a:hover { background: var(--green-soft); }
+  .part { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--green); color: #fff; font-size: .8rem; display: grid; place-items: center; margin-top: 2px; }
+  .dn b { display: block; color: var(--ink); }
+  .dn small { color: var(--muted); font-size: .84rem; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .tile { display: flex; gap: 12px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px; text-decoration: none; color: inherit; transition: transform .15s, border-color .15s, box-shadow .15s; }
+  .tile:hover, .subject:hover, .division:hover { border-color: var(--green-2); }
+  .tile:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(20,83,45,.08); }
+  .tile .ic { font-size: 1.6rem; line-height: 1; }
+  .tile b { display: block; color: var(--green); margin-bottom: 2px; }
+  .tile small { color: var(--muted); font-size: .88rem; }
+  .tile.hot { background: linear-gradient(180deg, #fff, #fff7ed); border-color: #fed7aa; }
+  .tile.hot b { color: #9a3412; }
+
+  @media (max-width: 860px) {
+    .subjects { grid-template-columns: 1fr; }
+    .divisions { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
