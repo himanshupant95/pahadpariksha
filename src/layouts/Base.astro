@@ -1,5 +1,6 @@
 ---
 import { SITE, NAV } from '../data/site';
+import RelatedLinks from '../components/RelatedLinks.astro';
 
 interface Props {
   title: string;
@@ -113,6 +114,7 @@ const enUrl = `https://pahadpariksha-in.translate.goog${path}?_x_tr_sl=hi&_x_tr_
 
     <main id="main" class="wrap" data-pagefind-body={noindex ? undefined : true}>
       <slot />
+      <RelatedLinks path={path} />
     </main>
 
     <footer class="site-footer">

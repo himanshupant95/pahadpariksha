@@ -1,10 +1,55 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { QUIZ_URL, QUIZ_GROUPS } from '../../data/quiz-index';
+import { TOTAL as PYQ_TOTAL } from '../../data/pyq';
+const files = import.meta.glob('../../data/quizzes/*.json', { eager: true }) as Record<string, { default: any[] }>;
+const count: Record<string, number> = {};
+for (const [p, m] of Object.entries(files)) count[p.split('/').pop()!.replace('.json', '')] = m.default.length;
+const groups = QUIZ_GROUPS.map((g) => ({ ...g, items: g.items.filter(([s]) => QUIZ_URL[s] && count[s]) }));
+const totalQ = Object.values(count).reduce((a, b) => a + b, 0);
+const totalQuiz = groups.reduce((a, g) => a + g.items.length, 0);
 ---
-<Base title="उत्तराखंड GK क्विज़ — मुफ्त MCQ प्रैक्टिस" description="उत्तराखंड सामान्य ज्ञान पर टॉपिक-वाइज मुफ्त ऑनलाइन क्विज़, तुरंत उत्तर और व्याख्या के साथ। UKSSSC, UKPSC परीक्षा अभ्यास।">
+<Base title="उत्तराखंड GK क्विज़ — सभी टॉपिक की मुफ्त MCQ प्रैक्टिस" description={`उत्तराखंड इतिहास, भूगोल, राजव्यवस्था, सभी 13 जिलों और करेंट पर ${totalQuiz} मुफ्त क्विज़ (${totalQ} प्रश्न), तुरंत उत्तर और व्याख्या के साथ।`}>
+  <nav class="crumbs" aria-label="breadcrumb"><a href="/">होम</a> › <span>क्विज़</span></nav>
   <h1>उत्तराखंड GK क्विज़</h1>
-  <p>हर क्विज़ में तुरंत उत्तर और व्याख्या मिलती है। नियमित अभ्यास से तथ्य लंबे समय तक याद रहते हैं।</p>
-  <div class="cards">
-    <a class="card" href="/quiz/uttarakhand-districts-rivers/"><h3>जिले और नदियाँ</h3><p>12 प्रश्न · आसान–मध्यम</p></a>
+  <p class="lead">हर अध्याय के अंत में एक क्विज़ है। यहाँ सारे क्विज़ एक जगह हैं। उत्तर चुनते ही सही जवाब और छोटी व्याख्या दिखती है।</p>
+  <div class="qstats">
+    <div><b>{totalQuiz}</b><span>क्विज़</span></div>
+    <div><b>{totalQ}</b><span>प्रश्न</span></div>
+    <div><b>{PYQ_TOTAL}</b><span>असली PYQ</span></div>
   </div>
+  <p class="note">ये क्विज़ हमने अध्यायों से खुद बनाए हैं, ये पिछले वर्षों के प्रश्न नहीं हैं। आयोग के असली प्रश्न आधिकारिक उत्तर-कुंजी के साथ <a href="/pyq/">पिछले प्रश्नपत्र</a> पेज पर हैं।</p>
+  <nav class="qjump" aria-label="विषय">{groups.map((g) => <a href={`#${g.id}`}>{g.title} ({g.items.length})</a>)}</nav>
+  {groups.map((g) => (
+    <section>
+      <h2 id={g.id} class="qsec">{g.title}</h2>
+      <ul class="qgrid">
+        {g.items.map(([s, label]) => (
+          <li><a href={QUIZ_URL[s]}><span>{label}</span><small>{count[s]} प्रश्न</small></a></li>
+        ))}
+      </ul>
+    </section>
+  ))}
+  <h2 class="qsec">और अभ्यास</h2>
+  <ul class="qgrid">
+    <li><a href="/pyq/"><span>पिछले प्रश्नपत्र (आधिकारिक कुंजी)</span><small>{PYQ_TOTAL} प्रश्न</small></a></li>
+    <li><a href="/current-affairs/"><span>रोज़ का करेंट अफेयर्स</span><small>हर पॉइंट के साथ 1 प्रश्न</small></a></li>
+    <li><a href="/gk/"><span>उत्तराखंड GK हब</span><small>सभी अध्याय</small></a></li>
+  </ul>
 </Base>
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted, #666); margin: 10px 0; }
+  .lead { font-size: 1.05rem; }
+  .qstats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+  .qstats div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px; text-align: center; }
+  .qstats b { display: block; font-size: 1.5rem; color: var(--accent, #0f766e); }
+  .qstats span { font-size: .85rem; }
+  .note { background: #fff8e6; border-left: 4px solid #e0a100; padding: 8px 12px; border-radius: 8px; font-size: .92rem; }
+  .qjump { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .qjump a { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; text-decoration: none; font-size: .9rem; background: var(--card); }
+  .qsec { scroll-margin-top: 130px; margin-top: 26px; }
+  .qgrid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .qgrid a { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; text-decoration: none; color: var(--ink); height: 100%; box-sizing: border-box; }
+  .qgrid a:hover { border-color: var(--accent, #0f766e); }
+  .qgrid small { white-space: nowrap; color: var(--muted, #666); font-size: .8rem; }
+</style>

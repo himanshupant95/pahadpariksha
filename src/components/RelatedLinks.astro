@@ -1,0 +1,18 @@
+---
+import { relatedFor } from '../data/related';
+const { path } = Astro.props;
+const links = relatedFor(path);
+---
+{links.length > 0 && (
+  <aside class="related" aria-label="संबंधित पेज">
+    <h2>आगे पढ़ें</h2>
+    <ul>{links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+  </aside>
+)}
+<style>
+  .related { margin: 34px 0 10px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+  .related h2 { margin: 0 0 10px; font-size: 1.1rem; }
+  .related ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .related a { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; text-decoration: none; font-size: .92rem; }
+  .related a:hover { border-color: var(--accent, #0f766e); }
+</style>
