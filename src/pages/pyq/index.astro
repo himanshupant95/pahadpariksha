@@ -1,0 +1,35 @@
+---
+import Article from '../../layouts/Article.astro';
+import { PAPERS, TOTAL } from '../../data/pyq';
+
+const byTopic: Record<string, number> = {};
+PAPERS.forEach((p) => p.questions.forEach((q) => { byTopic[q.t] = (byTopic[q.t] ?? 0) + 1; }));
+const topics = Object.entries(byTopic).sort((a, b) => b[1] - a[1]);
+---
+<Article
+  title="UKPSC पिछले वर्षों के प्रश्न: उत्तराखंड GK (आधिकारिक उत्तर कुंजी सहित)"
+  description={`UKPSC की हाल की परीक्षाओं (2025–26) के उत्तराखंड से जुड़े ${TOTAL} प्रश्न, आयोग की आधिकारिक/संशोधित उत्तर कुंजी से उत्तर और सरल हिंदी व्याख्या के साथ।`}
+  published="2026-11-21"
+  hideHero={true}
+>
+  <div class="keypoints">
+    <h2>यह प्रश्न-बैंक कैसे बना</h2>
+    <ul>
+      <li>UKPSC की हाल की परीक्षाओं के प्रश्नपत्रों से <b>केवल उत्तराखंड से जुड़े प्रश्न</b> चुने गए हैं: इतिहास, भूगोल, राजव्यवस्था, अर्थव्यवस्था, संस्कृति और राज्य के करेंट अफेयर्स।</li>
+      <li>हर उत्तर आयोग की वेबसाइट (psc.uk.gov.in) पर जारी <b>आधिकारिक उत्तर कुंजी</b> से है। जहाँ संशोधित (Amended) कुंजी आ चुकी है, वहाँ वही ली गई है; हर पेज पर कुंजी की PDF का सीधा लिंक है।</li>
+      <li>व्याख्या हमारी है और साथ में हमारे विस्तृत अध्याय का लिंक है, ताकि एक प्रश्न से पूरा विषय पक्का हो जाए।</li>
+    </ul>
+  </div>
+
+  <h2 id="prashnapatra">प्रश्नपत्र ({PAPERS.length}, कुल {TOTAL} प्रश्न)</h2>
+  <table>
+    <thead><tr><th>परीक्षा</th><th>तिथि</th><th>उत्तराखंड प्रश्न</th><th>उत्तर कुंजी</th></tr></thead>
+    <tbody>
+      {PAPERS.map((p) => <tr><td><a href={`/pyq/${p.slug}/`}>{p.short}</a></td><td>{p.examDate}</td><td>{p.questions.length}</td><td>{p.keyType.split(' (')[0]}, {p.keyDate}</td></tr>)}
+    </tbody>
+  </table>
+
+  <h2 id="vishay">किस विषय से कितने प्रश्न</h2>
+  <p class="chips">{topics.map(([t, n]) => <span>{t} ({n})</span>)}</p>
+  <p>इतिहास और भूगोल से सबसे ज़्यादा प्रश्न आते हैं, पर पिछले एक साल के राज्य के करेंट अफेयर्स (बजट, सूचकांक, पुरस्कार, आयोजन) भी हर पेपर में हैं। इनके लिए देखें: <a href="/gk/uttarakhand-varsh-2025-26/">उत्तराखंड वर्ष 2025–26</a>, <a href="/gk/uttarakhand-tulnatmak-talikayen/">ज़िलों की तुलना</a> और <a href="/gk/uttarakhand-sanskriti-janjatiyan/">संस्कृति और जनजातियाँ</a>।</p>
+</Article>

@@ -191,3 +191,9 @@ Rules agreed with the user:
 ## Year in Review 2025–26 (21 Nov 2026)
 - New: /gk/uttarakhand-varsh-2025-26/ — economy (Eco Survey 2025-26, NCAER), Budget 2026-27 (₹1,11,703.21 cr; suppl. 27 Oct 2026 → ₹1,19,547.39 cr), indices (SDG 2023-24, FHI 2026, full literacy 6th state), UCC + amendment 2026, Minority Education Act 2025, timeline Jan 2025–Nov 2026, Governor Dhal Singh Bisen (19 Oct 2026), Kumbh 2027 dates, Char Dham. Quiz `varsh-2025-26` (15 Qs). Linked from /gk/ and /current-affairs/.
 - Refresh this page when: next Economic Survey / Budget (Feb–Mar 2027), Kumbh starts, assembly elections 2027, new SDG index.
+
+## PYQ bank (21 Nov 2026)
+- New: /pyq/ index + /pyq/[slug]/ (data: src/data/pyq/*.json, loader src/data/pyq.ts). 8 UKPSC papers from the user's uploaded merged PDF, Uttarakhand questions only (279). Every answer cross-checked programmatically against the official key (series A) — 0 mismatches.
+- Code → exam: SDJ Upper PCS pre 2025 P-I (key 1385921111); XYA AG office RO/ARO 2024 (956306142); RGS SEC RO 2024 pre (736704039); GSI ACF/FRO 2025 (39397394); SDP DSO main 2025 P-I (8275244); HCA HC ARO 2025 (345848352, PROVISIONAL — swap to amended key when UKPSC publishes it); KOT SEC RO main 2024 (285809332); APK APS main 2024 (1072485139). All at psc.uk.gov.in/public/uploads/answerkey/<id>.pdf.
+- Not included: GSP (PCS 2025 GAT, no UK content), VPS/LPS (PCS 2012, no key online).
+- Question text is our Hindi rendering; explanations note where the commission's answer differs from common books (e.g. largest district, longest river = Kali per APK key).
