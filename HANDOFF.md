@@ -187,3 +187,7 @@ Rules agreed with the user:
 - New: /gk/uttarakhand-tulnatmak-talikayen/ (Census 2011 district table, ISFR 2023 district forest table, rank summary, match-lists, quiz `tulnatmak-talikayen`).
 - Largest-district consistency: site now follows Census 2011 (Chamoli 8,030 > Uttarkashi 8,016; 13 districts sum to 53,483). Removed the unsourced "7,692 / pre-Rudraprayag" claim from chamoli/uttarkashi pages; districts.ts hook and districts-rivers quiz Q now use "lowest density" for Uttarkashi. Exam advice: both options present → Chamoli; only Uttarkashi → Uttarkashi.
 - ISFR 2023 Pauri total printed as 3,560.55 is an FSI typo; class sum 3,360.55 used (state total then matches 24,303.83).
+
+## Year in Review 2025–26 (21 Nov 2026)
+- New: /gk/uttarakhand-varsh-2025-26/ — economy (Eco Survey 2025-26, NCAER), Budget 2026-27 (₹1,11,703.21 cr; suppl. 27 Oct 2026 → ₹1,19,547.39 cr), indices (SDG 2023-24, FHI 2026, full literacy 6th state), UCC + amendment 2026, Minority Education Act 2025, timeline Jan 2025–Nov 2026, Governor Dhal Singh Bisen (19 Oct 2026), Kumbh 2027 dates, Char Dham. Quiz `varsh-2025-26` (15 Qs). Linked from /gk/ and /current-affairs/.
+- Refresh this page when: next Economic Survey / Budget (Feb–Mar 2027), Kumbh starts, assembly elections 2027, new SDG index.

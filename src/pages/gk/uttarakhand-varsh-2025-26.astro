@@ -1,0 +1,194 @@
+---
+import Article from '../../layouts/Article.astro';
+import Quiz from '../../components/Quiz.astro';
+import questions from '../../data/quizzes/varsh-2025-26.json';
+
+const CHECKED = '21 नवंबर 2026';
+
+// [date, what happened, source numbers]
+const timeline: [string, string, string][] = [
+  ['23 जनवरी 2025', 'नगर निकाय चुनाव (मतगणना 25 जनवरी)।', '18'],
+  ['27 जनवरी 2025', '<b>समान नागरिक संहिता (UCC) लागू।</b> स्वतंत्र भारत में ऐसा करने वाला पहला राज्य। यह दिन अब "UCC दिवस" के रूप में मनाया जाता है।', '9'],
+  ['28 जनवरी–14 फ़रवरी 2025', '<b>38वें राष्ट्रीय खेल</b>, पहली बार उत्तराखंड में। उद्घाटन देहरादून (राजीव गांधी अंतरराष्ट्रीय क्रिकेट स्टेडियम) में प्रधानमंत्री ने किया, समापन हल्द्वानी में। शुभंकर "मौली" (मोनाल)।', '11,12'],
+  ['24 और 28 जुलाई 2025', '<b>त्रिस्तरीय पंचायत चुनाव</b>, हरिद्वार को छोड़कर 12 ज़िलों में, दो चरणों में। मतदान लगभग 69.16%, परिणाम 31 जुलाई।', '13'],
+  ['5 अगस्त 2025', '<b>धराली आपदा</b> (उत्तरकाशी, हर्षिल क्षेत्र): खीर गंगा (खीर गाड) में अचानक आई बाढ़ और मलबे से गंगोत्री मार्ग का यह पड़ाव तबाह हुआ।', '14'],
+  ['अक्टूबर 2025', '<b>उत्तराखंड अल्पसंख्यक शिक्षा विधेयक 2025</b> को राज्यपाल की स्वीकृति। मदरसा बोर्ड समाप्त करने वाला पहला राज्य।', '10'],
+  ['9 नवंबर 2025', '<b>राज्य स्थापना की रजत जयंती (25 वर्ष)।</b> FRI देहरादून में प्रधानमंत्री ने ₹8,000 करोड़ से अधिक की परियोजनाओं का लोकार्पण-शिलान्यास किया, स्मारक डाक टिकट जारी किया और फ़सल बीमा के ₹62 करोड़ लगभग 28,000 किसानों को भेजे।', '15'],
+  ['28 नवंबर 2025', 'हरिद्वार में गंगा तट पर 13 अखाड़ों के संतों के साथ बैठक में <b>कुंभ 2027 की स्नान तिथियाँ</b> घोषित।', '16'],
+  ['जनवरी 2026', 'श्री नंदा देवी राजजात 2026 को 2027 तक स्थगित करने का निर्णय।', '19'],
+  ['25 जनवरी 2026', '<b>पद्म पुरस्कार 2026:</b> पूर्व मुख्यमंत्री भगत सिंह कोश्यारी को पद्म भूषण (सार्वजनिक कार्य)।', '17'],
+  ['26–27 जनवरी 2026', 'UCC का एक वर्ष पूरा। <b>UCC (संशोधन) अध्यादेश 2026</b> (अनुच्छेद 213) तुरंत लागू; बाद में इसे संशोधन अधिनियम 2026 का रूप मिला।', '9'],
+  ['5 मार्च 2026', '<b>आर्थिक सर्वेक्षण 2025-26</b> जारी (NCAER के सहयोग से)।', '1,2'],
+  ['9 मार्च 2026', '<b>बजट 2026-27</b> (₹1,11,703.21 करोड़) भराड़ीसैंण (गैरसैंण) में पेश। पहली बार बजट सत्र के पहले ही दिन, राज्यपाल के अभिभाषण के बाद।', '3,4'],
+  ['11 मार्च 2026', 'NITI आयोग का <b>राजकोषीय स्वास्थ्य सूचकांक 2026</b>: पूर्वोत्तर व हिमालयी राज्यों में उत्तराखंड दूसरा।', '6'],
+  ['1 जुलाई 2026', 'मदरसा शिक्षा बोर्ड अधिनियम 2016 और 2019 की मदरसा मान्यता नियमावली समाप्त; नया अल्पसंख्यक शिक्षा प्राधिकरण।', '10'],
+  ['8 जुलाई 2026', '<b>उत्तराखंड देश का छठा "पूर्ण साक्षर राज्य"</b> (ULLAS कार्यक्रम)। मंत्रिमंडल ने 19 जून को प्रस्ताव पास किया, राज्यपाल ने 8 जुलाई को स्वीकृति दी।', '7'],
+  ['4 अक्टूबर 2026', 'बनबसा (चंपावत) में मंत्रिमंडल बैठक: FRBM (संशोधन) विधेयक 2026 और 1873 के नहर-अपवाह अधिनियम की जगह नया सिंचाई एवं अपवाह विधेयक 2026 मंज़ूर।', '20'],
+  ['19 अक्टूबर 2026', '<b>डॉ. ढाल सिंह बिसेन</b> ने 9वें राज्यपाल के रूप में लोक भवन, देहरादून में शपथ ली (नियुक्ति 12 अक्टूबर)।', '8'],
+  ['27 अक्टूबर 2026', 'गैरसैंण सत्र में ₹7,844.18 करोड़ का <b>अनुपूरक बजट</b>; 2026-27 का कुल बजट ₹1,19,547.39 करोड़।', '5'],
+];
+const srcNums = (s: string) => s.split(',').map((x) => `[${x}]`).join('');
+
+const faq = [
+  { q: 'उत्तराखंड का 2026-27 का बजट कितना है?', a: 'मूल बजट ₹1,11,703.21 करोड़ (9 मार्च 2026)। 27 अक्टूबर 2026 को ₹7,844.18 करोड़ के अनुपूरक बजट के बाद कुल ₹1,19,547.39 करोड़।' },
+  { q: 'उत्तराखंड का वर्तमान राज्यपाल कौन है?', a: 'डॉ. ढाल सिंह बिसेन, जिन्होंने 19 अक्टूबर 2026 को 9वें राज्यपाल के रूप में शपथ ली। उनसे पहले लेफ्टिनेंट जनरल गुरमीत सिंह (से.नि.) 15 सितंबर 2021 से 19 अक्टूबर 2026 तक राज्यपाल रहे।' },
+  { q: 'उत्तराखंड पूर्ण साक्षर राज्य कब बना?', a: '8 जुलाई 2026 को राज्यपाल की स्वीकृति के साथ, ULLAS कार्यक्रम के तहत देश का छठा पूर्ण साक्षर राज्य। मानक: 15 वर्ष से ऊपर की आबादी में कम से कम 95% साक्षरता।' },
+];
+---
+<Article
+  title="उत्तराखंड वर्ष 2025–26: अर्थव्यवस्था, बजट, सूचकांक और प्रमुख घटनाएँ"
+  description="उत्तराखंड करेंट अफेयर्स 2025–26 एक जगह: आर्थिक सर्वेक्षण 2025-26, बजट 2026-27 और अनुपूरक बजट, NITI आयोग सूचकांक, UCC, अल्पसंख्यक शिक्षा अधिनियम, पूर्ण साक्षर राज्य, नए राज्यपाल, राष्ट्रीय खेल, रजत जयंती और कुंभ 2027 — आधिकारिक स्रोतों सहित, क्विज़ के साथ।"
+  breadcrumbs={[{ name: 'उत्तराखंड GK', href: '/gk/' }]}
+  published="2026-11-21"
+  hideHero={true}
+  faq={faq}
+>
+  <div class="keypoints">
+    <h2>यह पेज क्यों</h2>
+    <ul>
+      <li>UKPSC और UKSSSC के पेपरों में पिछले 12–18 महीनों की राज्य से जुड़ी घटनाएँ लगभग हर बार पूछी जाती हैं। रोज़ की ख़बरें <a href="/current-affairs/">करेंट अफेयर्स</a> पेज पर हैं; यहाँ जनवरी 2025 से नवंबर 2026 तक की <b>सबसे ज़रूरी बातें</b> छाँटकर रखी गई हैं।</li>
+      <li>आँकड़े पहले सरकारी स्रोतों (बजट दस्तावेज़, NITI आयोग, आकाशवाणी, PIB) से, फिर PRS जैसे भरोसेमंद विश्लेषण से लिए गए हैं। जहाँ केवल समाचार स्रोत मिले, वहाँ यह लिखा है।</li>
+      <li>जाँच: {CHECKED}। नई घटनाएँ जुड़ने पर यह पेज अपडेट होगा।</li>
+    </ul>
+  </div>
+
+  <h2 id="arthvyavastha">1. अर्थव्यवस्था: आर्थिक सर्वेक्षण 2025-26</h2>
+  <p>राज्य का आर्थिक सर्वेक्षण 2025-26 मार्च 2026 में बजट सत्र से पहले जारी हुआ। इस बार इसे <b>NCAER</b> (राष्ट्रीय व्यावहारिक आर्थिक अनुसंधान परिषद) के साथ मिलकर तैयार किया गया [1][2]।</p>
+  <table>
+    <thead><tr><th>संकेतक</th><th>आँकड़ा</th><th>तुलना</th></tr></thead>
+    <tbody>
+      <tr><td>GSDP (2024-25, वर्तमान मूल्य)</td><td><b>₹3,81,889 करोड़</b> (लगभग ₹3.82 लाख करोड़)</td><td>2021-22 में ₹2.54 लाख करोड़, यानी लगभग डेढ़ गुना [1]</td></tr>
+      <tr><td>प्रति व्यक्ति आय (2024-25)</td><td><b>₹2,73,921</b></td><td>2021-22 में ₹1,94,670 [1]</td></tr>
+      <tr><td>आर्थिक वृद्धि दर (2024-25)</td><td><b>7.23%</b></td><td>2026-27 के लिए अनुमान 8.2% [1]</td></tr>
+      <tr><td>बहुआयामी गरीबी (MPI)</td><td><b>6.92%</b> (2024-25)</td><td>2021-22 में 9.7% [1]</td></tr>
+      <tr><td>अर्थव्यवस्था में हिस्सा</td><td>कृषि लगभग 10%, उद्योग/विनिर्माण 41%, सेवा 49%</td><td>वर्तमान मूल्यों पर [4]</td></tr>
+      <tr><td>GSDP अनुमान 2026-27</td><td><b>₹4,27,716 करोड़</b></td><td>2025-26 से 12% अधिक (बजट अनुमान) [4]</td></tr>
+    </tbody>
+  </table>
+  <div class="box-trap">
+    <strong>ध्यान दें: दो अलग "प्रति व्यक्ति" आँकड़े</strong>
+    आर्थिक सर्वेक्षण की "प्रति व्यक्ति आय" ₹2,73,921 है, जबकि PRS ने बजट विश्लेषण में "प्रति व्यक्ति GSDP" ₹2,96,012 (2024-25) बताया है [4]। दोनों अलग पैमाने हैं: प्रति व्यक्ति आय शुद्ध राज्य घरेलू उत्पाद (NSDP) से निकलती है, प्रति व्यक्ति GSDP सकल उत्पाद से। प्रश्न में जो शब्द हो, वही आँकड़ा चुनें।
+  </div>
+
+  <h2 id="bajat">2. बजट 2026-27</h2>
+  <ul>
+    <li><b>कब और कहाँ:</b> 9 मार्च 2026, विधानसभा भवन भराड़ीसैंण (गैरसैंण, ग्रीष्मकालीन राजधानी) [3]।</li>
+    <li><b>किसने:</b> मुख्यमंत्री पुष्कर सिंह धामी, जिनके पास वित्त विभाग भी है। राज्य के इतिहास में पहली बार बजट सत्र के पहले दिन, राज्यपाल के अभिभाषण के बाद ही बजट पेश हुआ [3]।</li>
+    <li><b>आकार:</b> ₹1,11,703.21 करोड़, पिछले वर्ष से लगभग 10% अधिक; राज्य का अब तक का सबसे बड़ा बजट [3][4]।</li>
+    <li><b>थीम:</b> "GYAN" मॉडल, यानी गरीब, युवा, अन्नदाता (किसान) और नारी [3]।</li>
+    <li><b>मुख्य आँकड़े (PRS):</b> पूँजीगत परिव्यय ₹18,153 करोड़ (22% वृद्धि); राजस्व अधिशेष ₹2,536 करोड़ (GSDP का 0.6%); राजकोषीय घाटा ₹15,989 करोड़ (GSDP का 3.7%) [4]।</li>
+    <li><b>अनुपूरक बजट:</b> 27 अक्टूबर 2026 को गैरसैंण में ₹7,844.18 करोड़; कुल बजट बढ़कर <b>₹1,19,547.39 करोड़</b> [5]।</li>
+    <li><b>FRBM संशोधन:</b> अक्टूबर 2026 में मंत्रिमंडल ने 1 अप्रैल 2026 से 31 मार्च 2031 तक राजकोषीय घाटे की सीमा GSDP का 3% और कुल बकाया कर्ज़ की सीमा 30% रखने वाला संशोधन विधेयक मंज़ूर किया [20]।</li>
+  </ul>
+
+  <h2 id="suchkank">3. राष्ट्रीय सूचकांकों में उत्तराखंड</h2>
+  <table>
+    <thead><tr><th>सूचकांक</th><th>उत्तराखंड</th><th>याद रखें</th></tr></thead>
+    <tbody>
+      <tr><td>SDG इंडिया इंडेक्स 2023-24 (NITI आयोग, जुलाई 2024)</td><td><b>पहला</b>, केरल के साथ संयुक्त (स्कोर 79)</td><td>यही अब तक का नवीनतम संस्करण है; भारत का स्कोर 71 [21]</td></tr>
+      <tr><td>राजकोषीय स्वास्थ्य सूचकांक 2026 (NITI आयोग, 11 मार्च 2026; वर्ष 2023-24 के आँकड़े)</td><td>पूर्वोत्तर व हिमालयी राज्यों में <b>दूसरा</b> (स्कोर 52.5)</td><td>पहला अरुणाचल प्रदेश (59.5)। बड़े राज्यों में पहला ओडिशा [6]</td></tr>
+      <tr><td>पूर्ण साक्षरता (ULLAS)</td><td><b>छठा</b> पूर्ण साक्षर राज्य (8 जुलाई 2026)</td><td>पहले: मिज़ोरम, गोवा, त्रिपुरा, हिमाचल, सिक्किम। मानक 95% [7]</td></tr>
+      <tr><td>38वें राष्ट्रीय खेल (2025)</td><td><b>सातवाँ</b> स्थान, 103 पदक (24 स्वर्ण)</td><td>2023 (गोवा) में 25वाँ। पहला सर्विसेज़ (68 स्वर्ण) [11]</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="kanoon">4. कानून और नीतियाँ</h2>
+  <h3>समान नागरिक संहिता (UCC)</h3>
+  <ul>
+    <li><b>27 जनवरी 2025</b> से लागू; स्वतंत्र भारत में UCC लागू करने वाला पहला राज्य [9]।</li>
+    <li>पहली वर्षगाँठ (27 जनवरी 2026) "UCC दिवस" के रूप में मनाई गई। उसी समय <b>UCC (संशोधन) अध्यादेश 2026</b> अनुच्छेद 213 के तहत लागू हुआ: विवाह और लिव-इन से जुड़े नियम सख़्त हुए, दंड प्रावधानों में IPC/CrPC की जगह नए आपराधिक कानून (BNS, BNSS) जोड़े गए [9]।</li>
+    <li>अक्टूबर 2026 में मंत्रिमंडल ने "UCC, उत्तराखंड (संशोधन) अधिनियम 2026" को लागू करने वाले संशोधित नियम मंज़ूर किए [20]।</li>
+  </ul>
+  <h3>उत्तराखंड अल्पसंख्यक शिक्षा अधिनियम 2025</h3>
+  <ul>
+    <li>राज्यपाल की स्वीकृति अक्टूबर 2025 में। <b>मदरसा बोर्ड समाप्त करने वाला देश का पहला राज्य</b> [10]।</li>
+    <li>मदरसा शिक्षा बोर्ड अधिनियम 2016 और अरबी-फ़ारसी मदरसा मान्यता नियमावली 2019, <b>1 जुलाई 2026</b> से समाप्त [10]।</li>
+    <li>अब सभी अल्पसंख्यक संस्थानों (मुस्लिम, ईसाई, सिख, बौद्ध, जैन, पारसी) को "उत्तराखंड अल्पसंख्यक शिक्षा प्राधिकरण" से मान्यता और उत्तराखंड विद्यालयी शिक्षा परिषद से संबद्धता लेनी होगी। पहले यह मान्यता केवल मुस्लिम समुदाय तक सीमित थी [10]।</li>
+  </ul>
+
+  <h2 id="ghatnayen">5. प्रमुख घटनाएँ, तिथि क्रम से</h2>
+  <table>
+    <thead><tr><th>तिथि</th><th>घटना</th></tr></thead>
+    <tbody>{timeline.map(([d, t, s]) => <tr><td><b>{d}</b></td><td><Fragment set:html={t} /> {srcNums(s)}</td></tr>)}</tbody>
+  </table>
+
+  <h2 id="vyakti">6. पद और व्यक्ति</h2>
+  <table>
+    <thead><tr><th>पद</th><th>नाम</th><th>टिप्पणी</th></tr></thead>
+    <tbody>
+      <tr><td>राज्यपाल (9वें)</td><td><b>डॉ. ढाल सिंह बिसेन</b></td><td>19 अक्टूबर 2026 से; मध्य प्रदेश से। शपथ कार्यवाहक मुख्य न्यायाधीश मनोज कुमार तिवारी ने दिलाई [8]</td></tr>
+      <tr><td>पूर्व राज्यपाल (8वें)</td><td>ले. जन. गुरमीत सिंह (से.नि.)</td><td>15 सितंबर 2021 – 19 अक्टूबर 2026 [8]</td></tr>
+      <tr><td>मुख्यमंत्री</td><td>पुष्कर सिंह धामी</td><td>वित्त विभाग भी; 2026-27 का बजट स्वयं पेश किया [3]</td></tr>
+      <tr><td>पद्म भूषण 2026</td><td>भगत सिंह कोश्यारी</td><td>पूर्व मुख्यमंत्री, सार्वजनिक कार्य श्रेणी [17]</td></tr>
+    </tbody>
+  </table>
+  <p class="small">राज्यपाल का आधिकारिक निवास-कार्यालय अब "लोक भवन" कहलाता है (पहले राजभवन) [22]।</p>
+
+  <h2 id="aage">7. आगे क्या: 2027 के बड़े आयोजन</h2>
+  <h3>हरिद्वार कुंभ 2027</h3>
+  <p>14 जनवरी से 20 अप्रैल 2027 तक; कुल <b>10 स्नान पर्व</b>, जिनमें <b>3 अमृत स्नान</b> हैं। यह अर्धकुंभ है, पर इसे पूर्ण कुंभ की तरह मनाने और पहली बार अर्धकुंभ में अमृत (शाही) स्नान कराने का निर्णय हुआ [16]।</p>
+  <table>
+    <thead><tr><th>तिथि (2027)</th><th>पर्व</th></tr></thead>
+    <tbody>
+      <tr><td>14 जनवरी</td><td>मकर संक्रांति</td></tr>
+      <tr><td>6 फ़रवरी</td><td>मौनी अमावस्या</td></tr>
+      <tr><td>11 फ़रवरी</td><td>बसंत पंचमी</td></tr>
+      <tr><td>20 फ़रवरी</td><td>माघ पूर्णिमा</td></tr>
+      <tr><td><b>6 मार्च</b></td><td><b>महाशिवरात्रि (पहला अमृत स्नान)</b></td></tr>
+      <tr><td><b>8 मार्च</b></td><td><b>फाल्गुन अमावस्या (अमृत स्नान)</b></td></tr>
+      <tr><td>7 अप्रैल</td><td>नव संवत्सर</td></tr>
+      <tr><td><b>14 अप्रैल</b></td><td><b>मेष संक्रांति (अमृत स्नान)</b></td></tr>
+      <tr><td>15 अप्रैल</td><td>श्रीराम नवमी</td></tr>
+      <tr><td>20 अप्रैल</td><td>चैत्र पूर्णिमा (अंतिम स्नान)</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li><b>श्री नंदा देवी राजजात:</b> 2026 से स्थगित होकर 2027 में प्रस्तावित। विवरण <a href="/gk/uttarakhand-sanskriti-janjatiyan/">संस्कृति पेज</a> पर [19]।</li>
+    <li><b>विधानसभा चुनाव 2027:</b> पाँचवीं विधानसभा का कार्यकाल 2027 में पूरा होगा; अक्टूबर 2026 का अनुपूरक बजट इसी से पहले आया [5]।</li>
+  </ul>
+
+  <h2 id="chardham">8. चारधाम यात्रा: एक नज़र</h2>
+  <ul>
+    <li><b>2025:</b> यात्रा 30 अप्रैल को गंगोत्री-यमुनोत्री के कपाट खुलने से शुरू हुई; केदारनाथ 2 मई, बद्रीनाथ 4 मई को खुले। केदारनाथ में रिकॉर्ड श्रद्धालु आए [23]।</li>
+    <li><b>2026:</b> यात्रा 19 अप्रैल से शुरू। 21 अगस्त तक 125 दिनों में 48 लाख से अधिक श्रद्धालु, जो पिछले वर्ष की इसी अवधि से लगभग 5.2 लाख अधिक हैं [23]।</li>
+  </ul>
+  <p class="small">ये आँकड़े राज्य सरकार की विज्ञप्तियों पर आधारित समाचारों से हैं; अंतिम वार्षिक संख्या के लिए पर्यटन विभाग की रिपोर्ट देखें।</p>
+
+  <h2 id="quiz">9. अभ्यास क्विज़ (15 प्रश्न)</h2>
+  <p>ये इस पेज से बने अभ्यास प्रश्न हैं, पिछले वर्षों के प्रश्न नहीं।</p>
+  <Quiz id="varsh-2025-26" title="उत्तराखंड 2025–26 क्विज़" questions={questions} />
+
+  <h2 id="srot">स्रोत</h2>
+  <ol class="sources">
+    <li>Business Standard (6.3.2026) — Uttarakhand Economic Survey 2025-26: GSDP, per capita income, MPI, growth — <a href="https://www.business-standard.com/economy/news/uttarakhand-gsdp-rises-fy25-economic-survey-growth-fy27-126030600295_1.html" rel="nofollow noopener" target="_blank">business-standard.com</a></li>
+    <li>NCAER — Economic Survey 2025-26, Uttarakhand (project page, sponsored by DES Uttarakhand) — <a href="https://ncaer.org/project/economic-survey-2025-26-uttarakhand/" rel="nofollow noopener" target="_blank">ncaer.org</a>; ZeeBiz (₹3,81,889 करोड़) — <a href="https://www.zeebiz.com/branded/report-uttarakhand-2024-25-gsdp-stood-at-rs-381889-crore-391544" rel="nofollow noopener" target="_blank">zeebiz.com</a></li>
+    <li>Garhwal Post (9.3.2026) — बजट ₹1,11,703.21 करोड़, भराड़ीसैंण — <a href="https://garhwalpost.in/?p=101507" rel="nofollow noopener" target="_blank">garhwalpost.in</a>; Asianet/ANI — पहली बार सत्र के पहले दिन, GYAN मॉडल — <a href="https://newsable.asianetnews.com/india/uttarakhand-budget-202627-cm-dhami-unveils-rs-111-lakh-crore-plan-articleshow-x23dfzo" rel="nofollow noopener" target="_blank">asianetnews.com</a></li>
+    <li>PRS Legislative Research — Uttarakhand Budget Analysis 2026-27 (17.4.2026) — <a href="https://prsindia.org/budgets/states/uttarakhand-budget-analysis-2026-27" rel="nofollow noopener" target="_blank">prsindia.org</a> (<a href="https://hi.prsindia.org/files/budget/budget_state/uttarakhand/2026/Budget_Analysis_2026-27-UK(H).pdf" rel="nofollow noopener" target="_blank">हिंदी PDF</a>)</li>
+    <li>Devdiscourse/ANI (27.10.2026) — अनुपूरक बजट ₹7,844.18 करोड़, कुल ₹1,19,547.39 करोड़ — <a href="https://www.devdiscourse.com/article/headlines/3998049-uttarakhand-state-budget-expands-to-rs-119-lakh-crore-major-boost-for-farmers-infrastructurelocal-bodies" rel="nofollow noopener" target="_blank">devdiscourse.com</a></li>
+    <li>NITI Aayog — Fiscal Health Index 2026 (FY 2023-24) — <a href="https://niti.gov.in/sites/default/files/2026-03/Fiscal-Health-Index-2026.pdf" rel="nofollow noopener" target="_blank">niti.gov.in</a>; स्कोर — <a href="https://www.policyedge.in/p/niti-aayog-fiscal-health-index-fhi-2026" rel="nofollow noopener" target="_blank">policyedge.in</a></li>
+    <li>आकाशवाणी समाचार (9.7.2026) — Uttarakhand becomes country's sixth fully literate State — <a href="https://newsonair.gov.in/uttarakhand-becomes-countrys-sixth-fully-literate-state/" rel="nofollow noopener" target="_blank">newsonair.gov.in</a>; मंत्रिमंडल 19 जून, 98.7% — <a href="https://www.gktoday.in/uttarakhand-becomes-indias-sixth-fully-literate-state/" rel="nofollow noopener" target="_blank">gktoday.in</a></li>
+    <li>Drishti (15.10.2026) / GKToday — डॉ. ढाल सिंह बिसेन की नियुक्ति (12.10.2026) और शपथ (19.10.2026) — <a href="https://www.drishtiias.com/state-pcs-current-affairs/dr-dhal-singh-bisen-appointed-as-the-new-governor-of-uttarakhand" rel="nofollow noopener" target="_blank">drishtiias.com</a>, <a href="https://www.gktoday.in/dhal-singh-bisen-takes-oath-as-uttarakhand-governor/" rel="nofollow noopener" target="_blank">gktoday.in</a></li>
+    <li>आकाशवाणी समाचार (27.1.2026) — UCC (Amendment) Ordinance 2026 — <a href="https://www.newsonair.gov.in/uttarakhand-govt-implements-the-ucc-amendment-ordinance-2026" rel="nofollow noopener" target="_blank">newsonair.gov.in</a>; अनुच्छेद 213, UCC दिवस — <a href="https://www.gktoday.in/uttarakhand-implements-uniform-civil-code-amendment-ordinance" rel="nofollow noopener" target="_blank">gktoday.in</a></li>
+    <li>आकाशवाणी समाचार (7.10.2025) — Governor approves Minority Education Bill — <a href="https://www.newsonair.gov.in/governor-approves-minority-education-bill-madrasas-in-uttarakhand-to-follow-national-curriculum" rel="nofollow noopener" target="_blank">newsonair.gov.in</a>; 1 जुलाई 2026 — <a href="https://news.careers360.com/uttarakhand-governor-approves-minority-education-bill-madrasa-board-act-be-abolished" rel="nofollow noopener" target="_blank">careers360 (PTI)</a></li>
+    <li>ThePrint (14.2.2025) — 38th National Games: Uttarakhand 103 medals, 24 gold, 7th — <a href="https://theprint.in/sport/38th-national-games-conclude-with-host-state-uttarakhand-bagging-103-medals-including-24-golds/2496393" rel="nofollow noopener" target="_blank">theprint.in</a>; Services 68 स्वर्ण — <a href="https://thebridge.in/national-games/38th-national-games-services-reign-supreme-tops-medal-tally-52059" rel="nofollow noopener" target="_blank">thebridge.in</a></li>
+    <li>उद्घाटन/समापन स्थल — <a href="https://www.indiatvnews.com/sports/other/national-games-2025-home-minister-amit-shah-uttarakhand-cm-dhami-attend-closing-ceremony-2025-02-14-976242" rel="nofollow noopener" target="_blank">indiatvnews.com</a>; शुभंकर मौली — <a href="https://utkarsh.com/current-affairs/services-wins-raja-bhalindra-singh-trophy-of-the-38th-national-games" rel="nofollow noopener" target="_blank">utkarsh.com</a></li>
+    <li>पंचायत चुनाव 2025: मतदान 69.16%, 12 ज़िले — <a href="https://theprint.in/india/counting-of-votes-continues-for-several-panchayat-posts-in-uttarakhand/2709561" rel="nofollow noopener" target="_blank">theprint.in (PTI)</a>; चरण 24 व 28 जुलाई — <a href="https://www.devdiscourse.com/article/headlines/3524123-uttarakhand-panchayat-polls-counting-begins-amid-high-turnout" rel="nofollow noopener" target="_blank">devdiscourse.com</a></li>
+    <li>ReliefWeb (6.8.2025) — Situation Report: Uttarakhand Cloudburst and Flash Flood, Dharali — <a href="https://reliefweb.int/report/india/situation-report-1-uttarakhand-cloudburst-and-flash-flood-date-06th-august-2025-time-1000am" rel="nofollow noopener" target="_blank">reliefweb.int</a>; <a href="https://www.newsonair.gov.in/extensive-damage-reports-emerge-from-dharali-uttarkashi-following-cloudburst-relief-operations-ongoing" rel="nofollow noopener" target="_blank">आकाशवाणी</a></li>
+    <li>आकाशवाणी समाचार (9.11.2025) — PM inaugurates projects in Uttarakhand Silver Jubilee — <a href="https://www.newsonair.gov.in/pm-modi-inaugurates-projects-in-uttarakhand-silver-jubilee" rel="nofollow noopener" target="_blank">newsonair.gov.in</a>; <a href="https://www.pmindia.gov.in/en/news_updates/pm-addresses-the-silver-jubilee-celebration-of-formation-of-uttarakhand-in-dehradun/" rel="nofollow noopener" target="_blank">pmindia.gov.in</a></li>
+    <li>कुंभ 2027 स्नान तिथियाँ (28.11.2025) — <a href="https://www.outlookindia.com/announcements/haridwar-kumbh-2027-cm-dhami-meets-saints-announces-key-bathing-dates" rel="nofollow noopener" target="_blank">outlookindia.com</a>, <a href="https://www.thestatesman.com/india/haridwar-kumbh-2027-will-be-from-january-14-to-april-20-as-aiap-seers-finalised-holy-bath-day-1503518967.html" rel="nofollow noopener" target="_blank">thestatesman.com</a>, <a href="https://www.theweek.in/wire-updates/national/2025/11/28/des89-ukd-ardh-kumbh-dhami.html" rel="nofollow noopener" target="_blank">The Week (PTI)</a></li>
+    <li>पद्म पुरस्कार 2026 — <a href="https://www.newsonair.gov.in/president-murmu-approves-conferment-of-131-padma-awards-for-year-2026/" rel="nofollow noopener" target="_blank">आकाशवाणी</a>; कोश्यारी, पद्म भूषण — <a href="https://theprint.in/india/padma-awards-recipients-2026-dharmendra-alka-yagnik-rohit-sharma-harmanpreet-kaur-shibu-soren-honoured/2836371" rel="nofollow noopener" target="_blank">theprint.in</a></li>
+    <li>नगर निकाय चुनाव 2025 कार्यक्रम — <a href="https://en.wikipedia.org/wiki/2025_Uttarakhand_local_elections" rel="nofollow noopener" target="_blank">Wikipedia (SEC परिणाम पोर्टल के हवाले से)</a></li>
+    <li>राजजात स्थगन — हमारे <a href="/gk/uttarakhand-sanskriti-janjatiyan/">संस्कृति और जनजातियाँ</a> पेज के स्रोत देखें</li>
+    <li>मंत्रिमंडल निर्णय: बनबसा (4.10.2026), FRBM व सिंचाई विधेयक — <a href="https://www.constructionworld.in/amp/policy-updates-and-economic-news/uttarakhand-cabinet-clears-24-proposals-at-banbasa-meeting/98561" rel="nofollow noopener" target="_blank">constructionworld.in</a>, <a href="https://indianmasterminds.com/news/uttarakhand-cabinet-decisions-2026-banbasa-239743/" rel="nofollow noopener" target="_blank">indianmasterminds.com</a>; UCC नियम (22.10.2026) — <a href="https://theprint.in/india/uttarakhand-cabinet-approves-changes-in-ucc-rules-24-other-proposals/3079174/" rel="nofollow noopener" target="_blank">theprint.in (PTI)</a></li>
+    <li>SDG India Index 2023-24 (12.7.2024): उत्तराखंड-केरल 79 — <a href="https://www.businesstoday.in/india/story/uttarakhand-becomes-the-top-performer-in-niti-aayogs-sdg-india-index-2023-24-436997-2024-07-12" rel="nofollow noopener" target="_blank">businesstoday.in</a>; <a href="https://india.un.org/en/node/274382" rel="nofollow noopener" target="_blank">UN India</a></li>
+    <li>लोक भवन, उत्तराखंड — प्रेस नोट (25.1.2026) — <a href="https://governoruk.gov.in/?p=56221" rel="nofollow noopener" target="_blank">governoruk.gov.in</a></li>
+    <li>चारधाम 2025 (कपाट तिथियाँ) — <a href="https://www.latestly.com/agency-news/india-news-uttarakhand-pilgrims-throng-kedarnath-over-16-52-lakh-devotees-visit-shrine-till-date-7150258.html" rel="nofollow noopener" target="_blank">ANI</a>; 2026 (125 दिन, 48 लाख) — <a href="https://www.newkerala.com/news/a/char-dham-yatra-crosses-48-million-pilgrims-125-699.htm" rel="nofollow noopener" target="_blank">ANI/NewKerala</a></li>
+  </ol>
+</Article>
+
+<style>
+  .small { font-size: .9rem; color: #475569; }
+  .sources { font-size: .85rem; line-height: 1.6; }
+  .box-trap { background: #fef2f2; border-left: 5px solid #ef4444; border-radius: 12px; padding: 10px 16px; margin: 12px 0; }
+  .box-trap > strong:first-child { display: block; margin-bottom: 2px; }
+</style>
