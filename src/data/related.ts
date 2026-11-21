@@ -15,6 +15,8 @@ const L: Record<string, string> = {
   '/geography/climate/': 'जलवायु', '/geography/soils-vegetation/': 'मिट्टी और वनस्पति', '/geography/biodiversity-protected-areas/': 'जैव विविधता और संरक्षित क्षेत्र',
   '/polity/': 'उत्तराखंड राजव्यवस्था', '/polity/state-formation-constitutional-process/': 'राज्य गठन की संवैधानिक प्रक्रिया',
   '/polity/political-evolution/': 'राजनीतिक विकास',
+  '/polity/legislative-assembly/': 'उत्तराखंड विधानसभा', '/polity/judiciary/': 'उच्च न्यायालय और निचली अदालतें',
+  '/polity/land-revenue-system/': 'भूमि व्यवस्था और राजस्व प्रशासन', '/polity/special-laws/': 'उत्तराखंड के ख़ास कानून',
   '/gk/uttarakhand-tulnatmak-talikayen/': 'तुलनात्मक तालिकाएँ (जिलों की रैंक)', '/gk/uttarakhand-sanskriti-janjatiyan/': 'संस्कृति और जनजातियाँ',
   '/gk/uttarakhand-varsh-2025-26/': 'वर्ष 2025–26 की समीक्षा', '/gk/uttarakhand-pariksha-tathya/': 'परीक्षा के लिए जरूरी तथ्य',
   '/gk/uttarakhand-yojanayen/': 'उत्तराखंड की योजनाएँ', '/gk/uttarakhand-maps/': 'उत्तराखंड के नक्शे',
@@ -43,8 +45,8 @@ const M: Record<string, string[]> = {
   '/history/kartikeyapur-katyuri/': ['/gk/districts/bageshwar/', '/gk/districts/almora/', '/gk/districts/chamoli/'],
   '/history/chand-dynasty/': ['/gk/districts/champawat/', '/gk/districts/almora/', '/gk/districts/pithoragarh/', '/gk/districts/nainital/'],
   '/history/parmar-dynasty/': ['/gk/districts/chamoli/', '/gk/districts/pauri-garhwal/', '/gk/districts/tehri-garhwal/'],
-  '/history/gorkha-rule/': ['/gk/districts/almora/', '/gk/districts/dehradun/', '/gk/districts/champawat/'],
-  '/history/british-rule/': ['/gk/districts/nainital/', '/gk/districts/bageshwar/', '/gk/districts/haridwar/', '/gk/districts/pauri-garhwal/'],
+  '/history/gorkha-rule/': ['/polity/land-revenue-system/', '/gk/districts/almora/', '/gk/districts/dehradun/', '/gk/districts/champawat/'],
+  '/history/british-rule/': ['/polity/land-revenue-system/', '/gk/districts/nainital/', '/gk/districts/bageshwar/', '/gk/districts/haridwar/', '/gk/districts/pauri-garhwal/'],
   '/history/freedom-struggle/': ['/gk/districts/tehri-garhwal/', '/gk/districts/bageshwar/', '/gk/districts/almora/'],
   '/history/statehood-movement/': ['/polity/state-formation-constitutional-process/', '/polity/political-evolution/', '/gk/districts/udham-singh-nagar/', '/gk/districts/dehradun/'],
   // भूगोल → जिले
@@ -57,7 +59,11 @@ const M: Record<string, string[]> = {
   '/geography/soils-vegetation/': ['/gk/uttarakhand-tulnatmak-talikayen/', '/gk/districts/chamoli/', '/gk/districts/udham-singh-nagar/'],
   '/geography/biodiversity-protected-areas/': ['/gk/districts/nainital/', '/gk/districts/chamoli/', '/gk/districts/uttarkashi/', '/gk/uttarakhand-tulnatmak-talikayen/'],
   // राजव्यवस्था
-  '/polity/': ['/history/statehood-movement/', '/gk/uttarakhand-varsh-2025-26/', '/gk/uttarakhand-pariksha-tathya/'],
+  '/polity/': ['/polity/legislative-assembly/', '/polity/judiciary/', '/polity/special-laws/', '/polity/land-revenue-system/', '/history/statehood-movement/', '/gk/uttarakhand-varsh-2025-26/'],
+  '/polity/legislative-assembly/': ['/polity/judiciary/', '/polity/special-laws/', '/polity/state-formation-constitutional-process/', '/history/statehood-movement/'],
+  '/polity/judiciary/': ['/polity/legislative-assembly/', '/polity/special-laws/', '/gk/districts/nainital/', '/polity/land-revenue-system/'],
+  '/polity/special-laws/': ['/polity/land-revenue-system/', '/polity/judiciary/', '/gk/uttarakhand-varsh-2025-26/', '/gk/uttarakhand-pariksha-tathya/'],
+  '/polity/land-revenue-system/': ['/history/british-rule/', '/history/gorkha-rule/', '/polity/political-evolution/', '/polity/special-laws/', '/tools/nali-calculator/'],
   '/polity/state-formation-constitutional-process/': ['/polity/political-evolution/', '/polity/', '/history/statehood-movement/', '/gk/uttarakhand-pariksha-tathya/'],
   '/polity/political-evolution/': ['/polity/state-formation-constitutional-process/', '/polity/', '/gk/uttarakhand-varsh-2025-26/', '/gk/uttarakhand-pariksha-tathya/'],
   // विशेष पेज
@@ -69,6 +75,7 @@ const M: Record<string, string[]> = {
   '/pyq/': ['/gk/uttarakhand-pariksha-tathya/', '/exams/', '/notices/', '/methodology/'],
   '/current-affairs/': ['/gk/uttarakhand-pariksha-tathya/', '/exams/', '/notices/'],
   '/exams/': ['/notices/', '/pyq/', '/tools/nali-calculator/'],
+  '/tools/nali-calculator/': ['/polity/land-revenue-system/', '/gk/uttarakhand-pariksha-tathya/'],
   '/notices/': ['/exams/', '/pyq/'],
   '/about/': ['/methodology/', '/pyq/'],
 };

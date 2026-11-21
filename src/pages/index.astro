@@ -18,29 +18,38 @@ const open2 = open.slice(0, 2);
 import { SITE } from '../data/site';
 
 const topics = [
-  { icon: 'district', t: 'जिले', d: '13 जिले, मुख्यालय, सीमाएँ', href: '/gk/uttarakhand-districts/' },
-  { icon: 'river', t: 'भूगोल', d: 'मानचित्रों सहित अध्याय-दर-अध्याय', href: '/geography/' },
-  { icon: 'shield', t: 'राजव्यवस्था', d: 'संविधान, राज्यपाल, विधानसभा, पंचायत', href: '/polity/' },
-  { icon: 'river', t: 'नदियाँ', d: 'उद्गम, संगम, पंच प्रयाग', href: '/gk/uttarakhand-rivers/' },
-  { icon: 'quiz', t: 'क्विज़', d: 'टॉपिक-वाइज MCQ अभ्यास', href: '/quiz/' },
-  { icon: 'exam', t: 'परीक्षाएँ', d: 'UKSSSC व UKPSC भर्तियाँ', href: '/exams/' },
+  { icon: 'history', t: 'इतिहास', d: 'प्रागैतिहासिक से राज्य आंदोलन तक, 9 अध्याय', href: '/history/' },
+  { icon: 'geography', t: 'भूगोल', d: 'मानचित्रों सहित 8 अध्याय', href: '/geography/' },
+  { icon: 'shield', t: 'राजव्यवस्था', d: 'विधानसभा, न्यायालय, ख़ास कानून, भूमि व्यवस्था', href: '/polity/' },
+  { icon: 'district', t: 'जिले', d: '13 जिलों के पूरे पेज', href: '/gk/districts/' },
+  { icon: 'culture', t: 'संस्कृति', d: 'जनजातियाँ, पर्व, मेले, लोक नृत्य', href: '/gk/uttarakhand-sanskriti-janjatiyan/' },
+  { icon: 'exam', t: 'पिछले प्रश्नपत्र', d: 'आधिकारिक उत्तर-कुंजी के साथ', href: '/pyq/' },
+  { icon: 'quiz', t: 'क्विज़', d: 'सभी अध्यायों के MCQ एक जगह', href: '/quiz/' },
   { icon: 'paper', t: 'करेंट अफेयर्स', d: 'रोज़ का संस्करण, तथ्य व क्विज़', href: '/current-affairs/' },
-  { icon: 'district', t: 'सूचनाएँ', d: 'भर्ती, एडमिट कार्ड, परिणाम', href: '/notices/' },
 ];
-const soon = ['कला-संस्कृति', 'पिछले प्रश्न पत्र'];
+// LSS-2026 syllabus gaps (Uttarakhand units 7–10). live: link list; otherwise "जल्द आ रहा है".
+const syllabus = [
+  { n: 1, t: 'भूमि व्यवस्था और राजस्व प्रशासन', d: 'थोकदारी, बेनाप, नजूल, नयाबाद, सिविल-सोयम वन, वन पंचायत, ज़मींदारी उन्मूलन, राजस्व पुलिस, भू-कानून 2025', unit: 'इकाई 9', links: [['/polity/land-revenue-system/', 'अध्याय पढ़ें']] },
+  { n: 2, t: 'राज्य की राजव्यवस्था', d: 'विधानसभा, उच्च न्यायालय, लोकायुक्त, अधिकरण, सेवा का अधिकार, आरक्षण के कानून, UCC', unit: 'इकाई 9', links: [['/polity/legislative-assembly/', 'विधानसभा'], ['/polity/judiciary/', 'न्यायपालिका'], ['/polity/special-laws/', 'ख़ास कानून']] },
+  { n: 3, t: 'उत्तराखंड की अर्थव्यवस्था', d: 'राज्य GDP, प्रति व्यक्ति आय, उद्योग, खनिज, जलविद्युत, पर्यटन, बजट, मंडियाँ', unit: 'इकाई 10' },
+  { n: 4, t: 'कृषि और बागवानी', d: 'मुख्य फ़सलें, फ़सल चक्र, सिंचाई के साधन, जोतें, बागवानी', unit: 'इकाई 8' },
+  { n: 5, t: 'आपदा और पर्यावरण आंदोलन', d: 'आपदा प्रबंधन, जल संकट, चिपको, मैती, बीज बचाओ, शराबबंदी आंदोलन', unit: 'इकाई 8' },
+  { n: 6, t: 'जनसंख्या और पलायन', d: 'घनत्व, लिंगानुपात, साक्षरता, पलायन के कारण और असर', unit: 'इकाई 8' },
+  { n: 7, t: 'संस्कृति भाग 2', d: 'वेशभूषा, आभूषण, वाद्य यंत्र, खान-पान, साहित्यकार, खेल और पुरस्कार', unit: 'इकाई 7' },
+];
+const liveSyl = syllabus.filter((x) => x.links).length;
 const garhwal = ['देहरादून', 'हरिद्वार', 'टिहरी गढ़वाल', 'उत्तरकाशी', 'चमोली', 'रुद्रप्रयाग', 'पौड़ी गढ़वाल'];
 const districtPages: Record<string, string> = { 'देहरादून': '/gk/districts/dehradun/', 'हरिद्वार': '/gk/districts/haridwar/', 'नैनीताल': '/gk/districts/nainital/', 'अल्मोड़ा': '/gk/districts/almora/', 'पौड़ी गढ़वाल': '/gk/districts/pauri-garhwal/', 'टिहरी गढ़वाल': '/gk/districts/tehri-garhwal/', 'ऊधम सिंह नगर': '/gk/districts/udham-singh-nagar/', 'चमोली': '/gk/districts/chamoli/', 'पिथौरागढ़': '/gk/districts/pithoragarh/', 'उत्तरकाशी': '/gk/districts/uttarkashi/', 'रुद्रप्रयाग': '/gk/districts/rudraprayag/', 'बागेश्वर': '/gk/districts/bageshwar/', 'चंपावत': '/gk/districts/champawat/' };
 const kumaon = ['नैनीताल', 'अल्मोड़ा', 'पिथौरागढ़', 'बागेश्वर', 'चंपावत', 'ऊधम सिंह नगर'];
 const latest = [
-  { href: '/polity/political-evolution/', tag: 'उत्तराखंड राजव्यवस्था', t: 'नया अध्याय: राजाओं के शासन से लोकतंत्र तक — कत्यूरी से ग्राम सभा, पटवारी पुलिस 1819 से आज तक', img: '/images/uttarakhand-hills-thumb.webp' },
-  { href: '/polity/state-formation-constitutional-process/', tag: 'उत्तराखंड राजव्यवस्था', t: 'नया अध्याय: उत्तराखंड कैसे बना — अनुच्छेद 3, पुनर्गठन अधिनियम 2000, हरिद्वार केस और नाम परिवर्तन', img: '/maps/uttarakhand-political-800.webp' },
-  { href: '/polity/', tag: 'उत्तराखंड राजव्यवस्था', t: 'नई शृंखला: उत्तराखंड राजव्यवस्था — राज्य निर्माण, राज्यपाल, विधानसभा, पंचायत; अनुच्छेद एक्सप्लोरर व आरेख', img: '/maps/uttarakhand-political-800.webp' },
-  { href: '/gk/uttarakhand-yojanayen/', tag: 'उत्तराखंड GK', t: 'नया: उत्तराखंड सरकार की प्रमुख योजनाएँ 2000–2026 — लाभ, पात्रता, स्थिति', img: '/images/uttarakhand-hills-thumb.webp' },
-  { href: '/geography/', tag: 'उत्तराखंड का भूगोल', t: 'नई शृंखला: उत्तराखंड का भूगोल — स्थिति, हिमालय, भौतिक विभाग, नदियाँ, हिमनद (मानचित्रों सहित)', img: '/maps/geo/g04-river-systems-800.webp' },
-  { href: '/history/', tag: 'उत्तराखंड का इतिहास', t: 'नई शृंखला: उत्तराखंड का इतिहास — प्रागैतिहासिक, प्राचीन और कत्यूरी काल', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Ancient_Cave_Paintings_at_Lakhudiyar%2C_Almora_District%2C_Uttarakhand_India_-_1.jpeg/250px-Ancient_Cave_Paintings_at_Lakhudiyar%2C_Almora_District%2C_Uttarakhand_India_-_1.jpeg' },
-  { href: '/gk/uttarakhand-districts/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड के 13 जिले: मंडल, मुख्यालय और महत्वपूर्ण तथ्य', img: '/images/uttarakhand-hills-thumb.webp' },
-  { href: '/gk/uttarakhand-rivers/', tag: 'उत्तराखंड GK', t: 'उत्तराखंड की प्रमुख नदियाँ: उद्गम, संगम और पंच प्रयाग', img: '/images/river-confluence-thumb.webp' },
-  { href: '/quiz/uttarakhand-districts-rivers/', tag: 'क्विज़', t: 'उत्तराखंड जिले और नदियाँ क्विज़ (12 प्रश्न)', img: '/images/mountain-study-thumb.webp' },
+  { href: '/polity/land-revenue-system/', tag: 'नया अध्याय · लोअर PCS', t: 'भूमि व्यवस्था और राजस्व प्रशासन: थोकदारी, बेनाप, नजूल, नयाबाद, वन पंचायत, भू-कानून 2025', img: '/images/uttarakhand-hills-thumb.webp' },
+  { href: '/polity/legislative-assembly/', tag: 'नया अध्याय · राजव्यवस्था', t: 'उत्तराखंड विधानसभा: 70 सीटें, अध्यक्ष, शक्तियाँ, कानून कैसे बनता है, दल-बदल', img: '/maps/uttarakhand-political-800.webp' },
+  { href: '/polity/judiciary/', tag: 'नया अध्याय · राजव्यवस्था', t: 'उच्च न्यायालय और निचली अदालतें: नियुक्ति, लोक अदालत, लोक सेवा अधिकरण, लोकायुक्त', img: '/maps/uttarakhand-political-800.webp' },
+  { href: '/polity/special-laws/', tag: 'नया अध्याय · राजव्यवस्था', t: 'उत्तराखंड के ख़ास कानून: सेवा का अधिकार, आरक्षण, UCC, नकल विरोधी कानून, अल्पसंख्यक शिक्षा', img: '/maps/uttarakhand-political-800.webp' },
+  { href: '/pyq/', tag: 'पिछले प्रश्नपत्र', t: 'UKPSC के 8 प्रश्नपत्र, आधिकारिक उत्तर-कुंजी के साथ', img: '/images/mountain-study-thumb.webp' },
+  { href: '/gk/uttarakhand-varsh-2025-26/', tag: 'करेंट · वर्ष की समीक्षा', t: 'उत्तराखंड वर्ष 2025–26: बजट, अर्थव्यवस्था, कानून, नियुक्तियाँ एक जगह', img: '/images/uttarakhand-hills-thumb.webp' },
+  { href: '/gk/uttarakhand-tulnatmak-talikayen/', tag: 'उत्तराखंड GK', t: 'तुलनात्मक तालिकाएँ: जिलों की जनसंख्या, क्षेत्रफल, वन आवरण की रैंक', img: '/maps/uttarakhand-political-800.webp' },
+  { href: '/gk/uttarakhand-sanskriti-janjatiyan/', tag: 'उत्तराखंड GK', t: 'संस्कृति और जनजातियाँ: पाँच जनजातियाँ, पर्व, मेले, लोक नृत्य, GI टैग', img: '/images/uttarakhand-hills-thumb.webp' },
 ];
 ---
 <Base title={SITE.name} description={SITE.description}>
@@ -98,6 +107,28 @@ const latest = [
     <SeriesGrid compact />
   </section>
 
+  <section class="syl" aria-labelledby="syl-h">
+    <div class="syl-head">
+      <div>
+        <p class="kick">लोअर PCS 2026 पाठ्यक्रम · उत्तराखंड</p>
+        <h2 id="syl-h">पाठ्यक्रम के 7 नए अध्याय</h2>
+        <p>UKPSC के LSS-2026 विज्ञापन का पाठ्यक्रम पढ़कर हमने देखा कि उत्तराखंड के कौन-से विषय अभी तक हमारी साइट पर नहीं थे। ये सात अध्याय उसी कमी को भरेंगे, एक-एक करके।</p>
+      </div>
+      <div class="syl-prog"><b>{liveSyl} / 7</b><span>प्रकाशित</span><div class="bar"><div style={`width:${(liveSyl / 7) * 100}%`}></div></div></div>
+    </div>
+    <ol class="syl-grid">
+      {syllabus.map((x) => (
+        <li class={x.links ? 'live' : 'soon'}>
+          <span class="no">{x.n}</span>
+          <small>{x.unit} · {x.links ? 'नया' : 'जल्द आ रहा है'}</small>
+          <strong>{x.t}</strong>
+          <p>{x.d}</p>
+          {x.links ? <span class="go">{x.links.map(([h, l]) => <a href={h}>{l} →</a>)}</span> : <span class="wait">तैयार हो रहा है</span>}
+        </li>
+      ))}
+    </ol>
+  </section>
+
   <div class="two-col">
     <div>
       <h2>विषय चुनें</h2>
@@ -106,7 +137,6 @@ const latest = [
           <a class="topic" href={x.href}><span class="ic"><Icon name={x.icon} /></span><strong>{x.t}</strong><small>{x.d}</small></a>
         ))}
       </div>
-      <p class="soon-line"><b>जल्द आ रहे:</b> {soon.map((t) => <span>{t}</span>)}</p>
     </div>
     <aside>
       <DailyQuestion />
@@ -133,6 +163,30 @@ const latest = [
 </Base>
 
 <style>
+  .syl { margin: 28px 0; padding: 20px; border-radius: 18px; background: linear-gradient(135deg, #eef2ff, #f0fdf4); border: 1px solid var(--line); }
+  .syl-head { display: flex; gap: 18px; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; }
+  .syl-head h2 { margin: 2px 0 6px; }
+  .syl-head p { margin: 0; max-width: 640px; }
+  .syl .kick { margin: 0; font-size: .8rem; font-weight: 700; color: #4f46e5; }
+  .syl-prog { min-width: 150px; text-align: right; }
+  .syl-prog b { font-size: 1.6rem; color: #3730a3; display: block; line-height: 1; }
+  .syl-prog span { font-size: .85rem; }
+  .syl-prog .bar { height: 8px; background: #e0e7ff; border-radius: 99px; margin-top: 6px; overflow: hidden; }
+  .syl-prog .bar div { height: 100%; background: #4f46e5; }
+  .syl-grid { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .syl-grid li { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 14px 12px 52px; display: flex; flex-direction: column; gap: 4px; }
+  .syl-grid li.live { border: 2px solid #4f46e5; box-shadow: 0 4px 14px rgba(79,70,229,.12); }
+  .syl-grid li.soon { opacity: .8; }
+  .syl-grid .no { position: absolute; left: 12px; top: 14px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; background: #e0e7ff; color: #3730a3; }
+  .syl-grid li.live .no { background: #4f46e5; color: #fff; }
+  .syl-grid small { font-size: .75rem; font-weight: 700; color: #6b7280; }
+  .syl-grid li.live small { color: #15803d; }
+  .syl-grid strong { font-size: 1.02rem; }
+  .syl-grid p { margin: 0; font-size: .88rem; color: var(--muted, #555); line-height: 1.5; }
+  .syl-grid .go { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .syl-grid .go a { font-size: .85rem; font-weight: 700; padding: 4px 10px; border-radius: 99px; background: #4f46e5; color: #fff; text-decoration: none; }
+  .syl-grid .go a:hover { background: #3730a3; }
+  .syl-grid .wait { margin-top: 6px; font-size: .82rem; color: #6b7280; }
   .hero { position: relative; overflow: hidden; border-radius: 18px; min-height: 400px; display: flex; align-items: center; background: #14532d; }
   .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
   .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,30,18,.78) 0%, rgba(10,30,18,.5) 45%, rgba(10,30,18,.05) 80%); }
