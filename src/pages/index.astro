@@ -122,10 +122,10 @@ const latest = [
       {syllabus.map((x) => (
         <li class={x.links ? 'live' : 'soon'}>
           <span class="no">{x.n}</span>
-          <small>{x.unit} · {x.links ? 'उपलब्ध' : 'जल्द आ रहा है'}</small>
+          <small>{x.unit} · {x.links ? 'उपलब्ध' : 'जल्द उपलब्ध'}</small>
           <strong>{x.t}</strong>
           <p>{x.d}</p>
-          {x.links ? <span class="go">{x.links.map(([h, l]) => <a href={h}>{l} →</a>)}</span> : <span class="wait">जल्द उपलब्ध</span>}
+          {x.links ? <span class="go">{x.links.map(([h, l]) => <a href={h}>{l} →</a>)}</span> : null}
         </li>
       ))}
     </ol>
@@ -189,7 +189,6 @@ const latest = [
   .syl-grid .go { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
   .syl-grid .go a { font-size: .85rem; font-weight: 700; padding: 4px 10px; border-radius: 99px; background: #4f46e5; color: #fff; text-decoration: none; }
   .syl-grid .go a:hover { background: #3730a3; }
-  .syl-grid .wait { margin-top: 6px; font-size: .82rem; color: #6b7280; }
   .hero { position: relative; overflow: hidden; border-radius: 18px; min-height: 400px; display: flex; align-items: center; background: #14532d; }
   .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
   .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,30,18,.78) 0%, rgba(10,30,18,.5) 45%, rgba(10,30,18,.05) 80%); }

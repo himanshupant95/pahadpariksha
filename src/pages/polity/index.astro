@@ -12,7 +12,7 @@ import ThreeLists from '../../components/polity/diagrams/ThreeLists.astro';
 import '../../styles/longform.css';
 import '../../styles/polity.css';
 import questions from '../../data/quizzes/polity-hub.json';
-import { PSERIES, PUNITS, PCHAPTERS, HISTORY_LINKS, DASH, OFFICE, TIMELINE, CONFLICTS, TRAPS, GLOSSARY, SOURCES, GAPS, FAQ, VERIFIED_ON, pHref } from '../../data/polity';
+import { PSERIES, PUNITS, PCHAPTERS, HISTORY_LINKS, DASH, OFFICE, TIMELINE, CONFLICTS, TRAPS, GLOSSARY, SOURCES, FAQ, VERIFIED_ON, pHref } from '../../data/polity';
 import { ARTICLES } from '../../data/polity-articles';
 
 const url = 'https://pahadpariksha.in/polity/';
@@ -104,7 +104,7 @@ const mustCount = ARTICLES.filter((a) => a.lvl === 'must').length;
             {list.map((c) => c.live ? (
               <li><a class="pch" href={pHref(c)}><small>अध्याय {c.part}</small><strong>{c.title}</strong><span>{c.hook}</span><br /><span class="arts">{c.arts}</span></a></li>
             ) : (
-              <li><div class="pch soon"><small>अध्याय {c.part} · जल्द आ रहा है</small><strong>{c.title}</strong><span>{c.hook}</span><br /><span class="arts">{c.arts}</span></div></li>
+              <li><div class="pch soon"><small>अध्याय {c.part} · जल्द उपलब्ध</small><strong>{c.title}</strong><span>{c.hook}</span><br /><span class="arts">{c.arts}</span></div></li>
             ))}
           </ol>
         </section>
@@ -248,7 +248,7 @@ const mustCount = ARTICLES.filter((a) => a.lvl === 'must').length;
 
   <section id="matbhed">
     <h2>जहाँ स्रोत अलग-अलग बात कहते हैं</h2>
-    <p>कुछ तथ्यों पर किताबों और वेबसाइटों में अलग-अलग जानकारी मिलती है। हमने चुपचाप कोई एक नहीं चुनी। नीचे दोनों बातें हैं, और यह भी कि परीक्षा में क्या लिखना ठीक रहेगा।</p>
+    <p>कुछ तथ्यों पर किताबों और वेबसाइटों में अलग-अलग जानकारी मिलती है। नीचे दोनों पक्ष दिए गए हैं, और यह भी कि परीक्षा में क्या लिखना ठीक रहेगा।</p>
     <div class="table-wrap"><table class="conf">
       <thead><tr><th>विषय</th><th>एक स्रोत</th><th>दूसरा स्रोत</th><th>परीक्षा में क्या लिखें</th></tr></thead>
       <tbody>{CONFLICTS.map((c) => <tr><td>{c.topic}</td><td set:html={c.a} /><td set:html={c.b} /><td set:html={c.take} /></tr>)}</tbody>
@@ -259,7 +259,7 @@ const mustCount = ARTICLES.filter((a) => a.lvl === 'must').length;
 
   <section id="quiz">
     <h2>अभ्यास क्विज़ (15 प्रश्न)</h2>
-    <p class="muted">ये प्रश्न हमने UKPSC, UKSSSC और UPSC के स्तर पर <b>अभ्यास के लिए</b> बनाए हैं। ये पिछले वर्षों की परीक्षाओं के प्रश्न नहीं हैं। हर उत्तर के साथ बताया गया है कि प्रश्न कितना कठिन है, बाकी विकल्प ग़लत क्यों हैं, और जानकारी कहाँ से ली गई है।</p>
+    <p class="muted">ये UKPSC, UKSSSC और UPSC स्तर के <b>अभ्यास प्रश्न</b> हैं। ये पिछले वर्षों की परीक्षाओं के प्रश्न नहीं हैं। हर उत्तर के साथ बताया गया है कि प्रश्न कितना कठिन है, बाकी विकल्प ग़लत क्यों हैं, और जानकारी कहाँ से ली गई है।</p>
     <Quiz id="polity-hub" title="उत्तराखंड राजव्यवस्था — अभ्यास क्विज़" questions={questions} />
   </section>
 
@@ -274,10 +274,6 @@ const mustCount = ARTICLES.filter((a) => a.lvl === 'must').length;
   <section id="satyapan">
     <h2>जानकारी कहाँ से ली गई</h2>
     <p>हर तथ्य के साथ एक रंगीन निशान है जो बताता है कि वह किस तरह का तथ्य है: <b>संवैधानिक</b> (संविधान में लिखा), <b>वैधानिक</b> (किसी कानून या नियम में), <b>प्रशासनिक</b> (सरकार की व्यवस्था), <b>न्यायिक</b> (अदालत का फ़ैसला), या <b>समसामयिक</b> (आज की स्थिति, जो बदल सकती है)। समसामयिक तथ्य <time datetime={VERIFIED_ON}>{fmt(VERIFIED_ON)}</time> को जाँचे गए।</p>
-    <div class="gap-box">
-      <h3>इनकी जाँच अभी बाकी है (हमने अंदाज़ा नहीं लगाया)</h3>
-      <ul>{GAPS.map((g) => <li>{g}</li>)}</ul>
-    </div>
     <h3>स्रोतों की सूची</h3>
     <p class="muted" style="font-size:.85rem"><span class="tierlbl t1">स्तर 1</span> संविधान, कानून, सरकारी और अदालत की वेबसाइटें। <span class="tierlbl t2">स्तर 2</span> कानूनी डेटाबेस और शोध। <span class="tierlbl t3">स्तर 3</span> भरोसेमंद अख़बार, सिर्फ़ संदर्भ के लिए।</p>
     <ul class="src-list">{SOURCES.map((s) => <li><span class={`tierlbl t${s.tier}`}>स्तर {s.tier}</span><a href={s.u} target="_blank" rel="noopener nofollow">{s.t}</a></li>)}</ul>

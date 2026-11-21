@@ -42,7 +42,7 @@ const glossary: [string, string][] = [
 
 const faq = [
   { q: 'उत्तराखंड भूगोल की तैयारी कहाँ से शुरू करें?', a: 'अध्याय 1 (स्थिति-विस्तार) से क्रम में पढ़ें — हर अध्याय पिछले पर आधारित है। हर अध्याय के अंत के "याद रखें" बिंदु, मानचित्र अभ्यास और 10 MCQ दोहराव के लिए हैं।' },
-  { q: 'क्या ये प्रश्न पिछले वर्षों के हैं?', a: 'नहीं। सभी क्विज़ प्रश्न UKPSC/UKSSSC स्तर के अभ्यास प्रश्न हैं जो हमने बनाए हैं; किसी पिछले प्रश्न-पत्र का दावा नहीं किया गया है।' },
+  { q: 'क्या ये प्रश्न पिछले वर्षों के हैं?', a: 'नहीं। सभी क्विज़ प्रश्न UKPSC/UKSSSC स्तर के अभ्यास प्रश्न हैं। आयोग के असली प्रश्न पिछले प्रश्नपत्र वाले पेजों पर हैं।' },
   { q: 'मानचित्र किस आधार पर बने हैं?', a: 'ज़िला/राज्य सीमाएँ भारतीय सर्वेक्षण विभाग-जनगणना 2011 आधारित DataMeet आँकड़ों (CC BY 4.0) से, नदियाँ-हिमनद OpenStreetMap (ODbL) से और ऊँचाई NASA SRTM से। ये शैक्षिक मानचित्र हैं; आधिकारिक सीमा के लिए भारतीय सर्वेक्षण विभाग के मानचित्र देखें।' },
 ];
 ---
@@ -69,7 +69,7 @@ const faq = [
               <span class="in"><small>अध्याय {c.part}</small><strong>{c.title}</strong><span>{c.hook}</span></span>
             </a></li>
           ) : (
-            <li><div class="ch soon"><span class="in"><small>अध्याय {c.part} · जल्द</small><strong>{c.title}</strong><span>{c.hook}</span>{c.see && <a class="see" href={c.see[0]}>{c.see[1]} →</a>}</span></div></li>
+            <li><div class="ch soon"><span class="in"><small>अध्याय {c.part} · जल्द उपलब्ध</small><strong>{c.title}</strong><span>{c.hook}</span>{c.see && <a class="see" href={c.see[0]}>{c.see[1]} →</a>}</span></div></li>
           ))}
         </ol>
       </section>

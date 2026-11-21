@@ -18,7 +18,7 @@ const totalQuiz = groups.reduce((a, g) => a + g.items.length, 0);
     <div><b>{totalQ}</b><span>प्रश्न</span></div>
     <div><b>{PYQ_TOTAL}</b><span>असली PYQ</span></div>
   </div>
-  <p class="note">ये क्विज़ हमने अध्यायों से खुद बनाए हैं, ये पिछले वर्षों के प्रश्न नहीं हैं। आयोग के असली प्रश्न आधिकारिक उत्तर-कुंजी के साथ <a href="/pyq/">पिछले प्रश्नपत्र</a> पेज पर हैं।</p>
+  <p class="note">ये क्विज़ अध्यायों पर आधारित अभ्यास प्रश्न हैं, पिछले वर्षों के प्रश्न नहीं। आयोग के असली प्रश्न आधिकारिक उत्तर-कुंजी के साथ <a href="/pyq/">पिछले प्रश्नपत्र</a> पेज पर हैं।</p>
   <nav class="qjump" aria-label="विषय">{groups.map((g) => <a href={`#${g.id}`}>{g.title} ({g.items.length})</a>)}</nav>
   {groups.map((g) => (
     <section>
