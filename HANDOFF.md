@@ -212,3 +212,8 @@ Rules agreed with the user:
 - Redirects in astro.config `redirects`: /gk/uttarakhand-rivers/ → /geography/rivers-drainage/, /gk/uttarakhand-districts/ and /quiz/uttarakhand-districts-rivers/ → /gk/districts/. The district table, borders, formation years and the mixed quiz now live on /gk/districts/ (#ek-nazar, #quiz).
 - All meta descriptions ≤160 chars (pyq and current-affairs are templated; keep new ones short).
 - About, Contact, Disclaimer, Exams rewritten. Exams has the LSS-2026 pattern from the official ad, with a date check that flips "आवेदन चालू" after 26 Nov 2026.
+
+## Economy chapter (21 Nov 2026)
+- /gk/uttarakhand-arthvyavastha/ (Article layout): ES 2025-26 + PRS budget 2026-27 numbers, industry, energy, tourism 2025, agri, minerals, institutes, Indo-Tibet trade, GI table (GI_LIST, 29 items).
+- GI count is now 29 (Bedu + Badri cow ghee certificates 5 Nov 2025, GI Registry apps 1188/1390). Culture page and its quiz updated to match. Update GI_LIST when new GIs are registered.
+- Home syllabus card 3 is live. Refresh numbers after the 2027-28 budget / ES 2026-27.

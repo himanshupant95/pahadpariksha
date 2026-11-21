@@ -1,0 +1,273 @@
+---
+import Article from '../../layouts/Article.astro';
+import Quiz from '../../components/Quiz.astro';
+import questions from '../../data/quizzes/arthvyavastha.json';
+
+// LSS-2026 prelims unit 10 + mains "Economy of Uttarakhand". Numbers: Economic Survey 2025-26 (via Business Standard),
+// PRS budget analysis 2026-27, CEA, IBM, Tourism Dept (press), GI Registry (ipindia). Checked 21 Nov 2026.
+const CHECKED = '21 नवंबर 2026';
+const toc: [string, string][] = [
+  ['ek-nazar', 'एक नज़र में'], ['dhancha', 'अर्थव्यवस्था का ढाँचा'], ['bajat', 'बजट: कमाई और ख़र्च'], ['udyog', 'उद्योग और निवेश'],
+  ['urja', 'ऊर्जा'], ['paryatan', 'पर्यटन और तीर्थाटन'], ['krishi', 'कृषि, पशुपालन, जड़ी-बूटी'], ['khanij', 'खनिज'],
+  ['shiksha', 'शिक्षा संस्थान'], ['vyapar', 'भारत-तिब्बत व्यापार'], ['gi', 'GI टैग (सभी 29)'], ['quiz', 'क्विज़'],
+];
+
+// GI: 27 by 4 Dec 2023 (state + Drishti/ANI), +2 certificates dated 5 Nov 2025 (GI Registry apps 1188, 1390) = 29
+type GI = [string, string, string, string]; // name, category, year, note
+const GI_LIST: GI[] = [
+  ['तेजपत्ता (तेजपात)', 'कृषि', '2016', 'राज्य का पहला GI (31 मई 2016)'],
+  ['बासमती चावल', 'कृषि', '2016', 'कई राज्यों के साथ साझा GI'],
+  ['ऐपण कला', 'हस्तशिल्प', '2021', 'कुमाऊँ की लोक-कला (14 सितंबर 2021)'],
+  ['मुनस्यारी का सफ़ेद राजमा', 'कृषि', '2021', 'पिथौरागढ़'],
+  ['रिंगाल शिल्प', 'हस्तशिल्प', '2021', 'बाँस जैसी रिंगाल से टोकरी आदि'],
+  ['थुलमा', 'हस्तशिल्प', '2021', 'भोटिया ऊनी कंबल (14 सितंबर 2021)'],
+  ['भोटिया दन', 'हस्तशिल्प', '2021', 'ऊनी कालीन'],
+  ['च्यूरा तेल', 'कृषि', '2021', 'च्यूरा (इंडियन बटर ट्री) के बीज से'],
+  ['ताँबे के उत्पाद (अल्मोड़ा)', 'हस्तशिल्प', '2021', 'टम्टा कारीगरों का काम'],
+  ['चौलाई (रामदाना)', 'कृषि', '2023', '18 वाली सूची'],
+  ['झंगोरा', 'कृषि', '2023', 'मोटा अनाज (मिलेट)'],
+  ['मंडुआ', 'कृषि', '2023', 'मोटा अनाज (रागी)'],
+  ['लाल चावल', 'कृषि', '2023', 'राज्य की पहली चावल किस्म जिसे अलग GI मिला'],
+  ['अल्मोड़ा की लखौरी मिर्च', 'कृषि', '2023', ''],
+  ['बेरीनाग चाय', 'कृषि', '2023', 'पिथौरागढ़'],
+  ['रामनगर (नैनीताल) की लीची', 'कृषि', '2023', ''],
+  ['रामगढ़ का आड़ू', 'कृषि', '2023', 'नैनीताल'],
+  ['माल्टा', 'कृषि', '2023', 'नींबू वर्ग का फल'],
+  ['पहाड़ी तोर (अरहर) दाल', 'कृषि', '2023', ''],
+  ['गहत', 'कृषि', '2023', 'कुलथ दाल'],
+  ['काला भट्ट', 'कृषि', '2023', 'काली सोयाबीन'],
+  ['बुरांश शरबत', 'खाद्य पदार्थ', '2023', 'बुरांश (राज्य वृक्ष) के फूल से'],
+  ['नैनीताल की मोमबत्ती', 'निर्मित वस्तु', '2023', ''],
+  ['बिच्छूबूटी (कंडाली) फ़ैब्रिक', 'हस्तशिल्प', '2023', 'हिमालयी बिच्छू घास के रेशे से'],
+  ['कुमाऊँनी रंगवाली पिछौड़ा', 'हस्तशिल्प', '2023', 'शुभ अवसरों का ओढ़ना'],
+  ['चमोली के रम्माण मुखौटे', 'हस्तशिल्प', '2023', 'रम्माण उत्सव UNESCO सूची में (2009)'],
+  ['लिखाई (काष्ठ नक्काशी)', 'हस्तशिल्प', '2023', 'घरों के दरवाज़ों-खिड़कियों पर'],
+  ['बेडू (हिमालयी अंजीर)', 'कृषि', '2025', 'प्रमाणपत्र 5 नवंबर 2025'],
+  ['बद्री गाय का घी', 'खाद्य पदार्थ', '2025', 'प्रमाणपत्र 5 नवंबर 2025; आवेदक: उत्तराखंड सहकारी डेयरी फ़ेडरेशन'],
+];
+const giBy = (c: string) => GI_LIST.filter((g) => g[1] === c).length;
+
+const faq = [
+  { q: 'उत्तराखंड की प्रति व्यक्ति आय कितनी है?', a: 'राज्य के आर्थिक सर्वेक्षण 2025-26 के अनुसार 2024-25 में ₹2,73,921। PRS के बजट विश्लेषण में "प्रति व्यक्ति GSDP" ₹2,96,012 लिखा है, जो अलग पैमाना है।' },
+  { q: 'उत्तराखंड की अर्थव्यवस्था में सबसे बड़ा हिस्सा किस क्षेत्र का है?', a: 'सेवा क्षेत्र का, लगभग 49%। फिर उद्योग/विनिर्माण लगभग 41% और कृषि लगभग 10% (2024-25, वर्तमान मूल्य)।' },
+  { q: 'उत्तराखंड के कितने उत्पादों को GI टैग मिला है?', a: '29। दिसंबर 2023 तक 27 थे; नवंबर 2025 में बेडू और बद्री गाय के घी को GI मिला। राज्य का पहला GI तेजपत्ता (2016) था।' },
+  { q: '2025 में उत्तराखंड में कितने पर्यटक आए?', a: 'पर्यटन विभाग के अनुसार 6,03,21,194, जिनमें 1,92,533 विदेशी थे। राज्य बनने के बाद पहली बार 6 करोड़ पार। सबसे ज़्यादा हरिद्वार (लगभग 3.42 करोड़)।' },
+];
+---
+<Article
+  title="उत्तराखंड की अर्थव्यवस्था: GSDP, बजट, उद्योग, ऊर्जा, पर्यटन, कृषि, खनिज और सभी 29 GI टैग"
+  description="उत्तराखंड की अर्थव्यवस्था आसान हिंदी में: GSDP, प्रति व्यक्ति आय, बजट 2026-27, उद्योग, जलविद्युत, पर्यटन, कृषि, खनिज, शिक्षा संस्थान और सभी 29 GI टैग।"
+  breadcrumbs={[{ name: 'उत्तराखंड GK', href: '/gk/' }]}
+  published="2026-11-21"
+  hideHero={true}
+  faq={faq}
+>
+  <div class="keypoints">
+    <h2>यह अध्याय क्यों</h2>
+    <ul>
+      <li>लोअर PCS प्रारंभिक की <b>इकाई 10</b> (आर्थिक और प्राकृतिक संसाधन) और मुख्य परीक्षा का पूरा खंड <b>"Economy of Uttarakhand"</b> इसी पर है।</li>
+      <li>आँकड़े राज्य के <b>आर्थिक सर्वेक्षण 2025-26</b>, बजट 2026-27 के <b>PRS विश्लेषण</b>, केंद्रीय विद्युत प्राधिकरण, भारतीय खान ब्यूरो, पर्यटन विभाग और <b>GI रजिस्ट्री</b> से हैं। हर आँकड़े के साथ स्रोत की संख्या [ ] में है।</li>
+      <li>जाँच: {CHECKED}। नया बजट या आर्थिक सर्वेक्षण आने पर ये आँकड़े बदलेंगे।</li>
+    </ul>
+  </div>
+  <nav class="jump" aria-label="इस पेज पर">{toc.map(([id, l]) => <a href={`#${id}`}>{l}</a>)}</nav>
+
+  <h2 id="ek-nazar">1. एक नज़र में</h2>
+  <div class="stat-grid">
+    <div><b>₹3.82 लाख करोड़</b><span>GSDP 2024-25 (वर्तमान मूल्य) [1]</span></div>
+    <div><b>₹2,73,921</b><span>प्रति व्यक्ति आय 2024-25 [1]</span></div>
+    <div><b>49 : 41 : 10</b><span>सेवा : उद्योग : कृषि (% हिस्सा) [2]</span></div>
+    <div><b>₹1.12 लाख करोड़</b><span>बजट 2026-27 (मूल) [2]</span></div>
+    <div><b>6.03 करोड़</b><span>पर्यटक और तीर्थयात्री, 2025 [8]</span></div>
+    <div><b>29</b><span>GI उत्पाद [14][16]</span></div>
+  </div>
+
+  <h2 id="dhancha">2. अर्थव्यवस्था का ढाँचा</h2>
+  <p>किसी राज्य में एक साल में बनी सभी वस्तुओं और सेवाओं का कुल मूल्य <b>GSDP</b> (सकल राज्य घरेलू उत्पाद) कहलाता है। उत्तराखंड का GSDP 2021-22 में ₹2.54 लाख करोड़ था, जो 2024-25 में बढ़कर <b>₹3.82 लाख करोड़</b> हो गया [1]। 2026-27 के लिए अनुमान <b>₹4,27,716 करोड़</b> है [2]।</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>क्षेत्र</th><th>हिस्सा (2024-25)</th><th>इसमें क्या आता है</th></tr></thead>
+    <tbody>
+      <tr><td><b>सेवा (तृतीयक)</b></td><td><b>49%</b></td><td>पर्यटन, होटल, परिवहन, व्यापार, बैंक, सरकारी सेवाएँ</td></tr>
+      <tr><td><b>उद्योग/विनिर्माण (द्वितीयक)</b></td><td><b>41%</b></td><td>फ़ैक्ट्रियाँ (ज़्यादातर मैदानी ज़िलों में), बिजली, निर्माण</td></tr>
+      <tr><td><b>कृषि (प्राथमिक)</b></td><td><b>10%</b></td><td>खेती, बागवानी, पशुपालन, वन, मछली</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">स्रोत: PRS का बजट विश्लेषण 2026-27, वर्तमान मूल्यों पर [2]।</p>
+  <h3>विकास के दूसरे पैमाने (आर्थिक सर्वेक्षण 2025-26)</h3>
+  <ul>
+    <li><b>आर्थिक वृद्धि दर</b> 2024-25 में 7.23%; 2026-27 के लिए अनुमान 8.2% [1][3]।</li>
+    <li><b>बहुआयामी गरीबी</b> 2021-22 के 9.7% से घटकर 2024-25 में <b>6.92%</b> [1]।</li>
+    <li><b>मानव विकास सूचकांक (HDI)</b> 0.722 (2024-25); 2001 में यह 0.247 था [1]।</li>
+    <li><b>श्रम बल भागीदारी दर</b> 60.1% से बढ़कर 64.4% [1]।</li>
+    <li><b>शिशु मृत्यु दर</b> 20, <b>मातृ मृत्यु दर</b> 91, <b>औसत आयु</b> 73 साल [1]।</li>
+  </ul>
+  <div class="box-trap"><strong>दो अलग "प्रति व्यक्ति" आँकड़े</strong>आर्थिक सर्वेक्षण की <b>प्रति व्यक्ति आय</b> ₹2,73,921 है [1]। PRS ने <b>प्रति व्यक्ति GSDP</b> ₹2,96,012 (2024-25) बताया है, जबकि पूरे भारत का प्रति व्यक्ति GDP ₹2,34,859 है [2]। प्रति व्यक्ति आय शुद्ध उत्पाद (NSDP) से निकलती है, प्रति व्यक्ति GSDP सकल उत्पाद से। प्रश्न में जो शब्द हो, वही आँकड़ा चुनें।</div>
+
+  <h2 id="bajat">3. बजट: सरकार की कमाई और ख़र्च</h2>
+  <p>बजट 2026-27 <b>9 मार्च 2026</b> को भराड़ीसैंण (गैरसैंण) में पेश हुआ। कुल आकार <b>₹1,11,703 करोड़</b>, जिसमें ₹28,161 करोड़ पुराना कर्ज़ चुकाना भी शामिल है [2]। पूरे साल की बजट घटनाएँ <a href="/gk/uttarakhand-varsh-2025-26/#bajat">वर्ष 2025–26</a> पेज पर हैं।</p>
+  <div class="two">
+    <div>
+      <h3>पैसा कहाँ से आता है</h3>
+      <ul>
+        <li>राजस्व प्राप्ति ₹67,526 करोड़: इसमें <b>47%</b> राज्य के अपने स्रोतों से और <b>53%</b> केंद्र से [2]।</li>
+        <li>राज्य का अपना कर ₹25,913 करोड़; इसमें सबसे बड़ा हिस्सा <b>राज्य GST</b> (₹12,200 करोड़, लगभग 47%) का [2]।</li>
+        <li>फिर <b>आबकारी</b> ₹5,384 करोड़, <b>स्टांप और पंजीकरण</b> ₹3,092 करोड़, <b>VAT</b> ₹2,652 करोड़ [2]।</li>
+        <li>16वें वित्त आयोग में केंद्रीय करों में उत्तराखंड का हिस्सा <b>1.14%</b> (2026-31), पहले 1.12% [2]।</li>
+      </ul>
+    </div>
+    <div>
+      <h3>पैसा कहाँ जाता है</h3>
+      <ul>
+        <li>सबसे ज़्यादा <b>शिक्षा</b> पर: कुल ख़र्च का 15.9% (₹13,201 करोड़) [2]।</li>
+        <li>फिर कृषि 7.3%, ग्रामीण विकास 6.7%, स्वास्थ्य 5.9%, पुलिस 4% [2]।</li>
+        <li>वेतन, पेंशन और ब्याज जैसे बँधे ख़र्च राजस्व प्राप्ति का <b>61%</b> [2]।</li>
+        <li>पूँजीगत ख़र्च (सड़क, भवन जैसी संपत्ति) ₹18,153 करोड़, 22% ज़्यादा [2]।</li>
+      </ul>
+    </div>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>राजकोषीय संकेतक (2026-27 बजट अनुमान)</th><th>आँकड़ा</th></tr></thead>
+    <tbody>
+      <tr><td>राजकोषीय घाटा</td><td>₹15,989 करोड़, GSDP का <b>3.7%</b> [2]</td></tr>
+      <tr><td>राजस्व अधिशेष</td><td>₹2,536 करोड़, GSDP का 0.6% [2]</td></tr>
+      <tr><td>कुल बकाया देनदारी (कर्ज़)</td><td>GSDP का <b>28.5%</b> [2]</td></tr>
+      <tr><td>सरकारी पदों में रिक्ति</td><td>2.39 लाख स्वीकृत पदों में से 66,317 (28%) ख़ाली, मार्च 2025 [2]</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="udyog">4. उद्योग और निवेश</h2>
+  <ul>
+    <li>राज्य बनने के बाद केंद्र ने उत्तराखंड को <b>विशेष औद्योगिक पैकेज</b> दिया, जिसकी घोषणा प्रधानमंत्री ने मार्च 2002 में नैनीताल में की। इसी के बाद औद्योगिक नीति 2003 आई [4]।</li>
+    <li><b>SIIDCUL</b> (पहले SIDCUL) <b>2002</b> में बना। इसने <b>7 एकीकृत औद्योगिक क्षेत्र</b> बनाए: पंतनगर, हरिद्वार, देहरादून, सेलाकुई, कोटद्वार, सितारगंज और काशीपुर [5]। सबसे बड़ा <b>पंतनगर</b> है, जो वाहन (ऑटोमोबाइल) उद्योग का केंद्र है।</li>
+    <li>सेलाकुई (देहरादून) दवा उद्योग के लिए, और काशीपुर में <b>एरोमा पार्क</b> (सुगंधित पौधों के उद्योग के लिए) है [5]।</li>
+    <li>आर्थिक सर्वेक्षण 2025-26: <b>79,394 MSME</b> (2021-22 में 59,798), <b>128 बड़े उद्योग</b>, और <b>1,750 स्टार्टअप</b> (2017 से पहले शून्य) [1]।</li>
+    <li><b>ग्लोबल इन्वेस्टर्स समिट</b>: 8–9 दिसंबर 2023, FRI देहरादून, थीम "Peace to Prosperity"। <b>1,779 MoU</b>, लगभग <b>₹3.56 लाख करोड़</b> के [6]। सरकार के अनुसार लगभग ₹1 लाख करोड़ का निवेश ज़मीन पर उतरा; कुछ मीडिया जाँचों ने इस आँकड़े पर सवाल भी उठाए हैं [6]।</li>
+  </ul>
+
+  <h2 id="urja">5. ऊर्जा: पानी से बिजली</h2>
+  <p>तेज़ ढलान और सालभर बहने वाली नदियों के कारण उत्तराखंड में जलविद्युत की बड़ी संभावना है।</p>
+  <div class="table-wrap"><table>
+    <tbody>
+      <tr><th>जलविद्युत की कुल संभावना</th><td>लगभग <b>25,000 MW</b>, जिसमें लगभग 17,000 MW पर्यावरण के हिसाब से टिकाऊ [7]</td></tr>
+      <tr><th>पंप स्टोरेज की संभावना</th><td>लगभग 10,000 MW [7]</td></tr>
+      <tr><th>सबसे बड़ा केंद्र</th><td><b>टिहरी जलविद्युत परिसर</b> (THDC): टिहरी 1,000 MW + कोटेश्वर 400 MW + पंप स्टोरेज 1,000 MW = पूरा होने पर <b>2,400 MW</b>, देश का सबसे बड़ा जलविद्युत परिसर। टिहरी पंप स्टोरेज देश का पहला "वेरिएबल स्पीड" पंप स्टोरेज है [7]</td></tr>
+      <tr><th>दूसरे प्रमुख केंद्र</th><td>NHPC: धौलीगंगा 280 MW, टनकपुर 94.2 MW; राज्य निगम (UJVNL): छिबरो 240 MW, चीला 144 MW [7]</td></tr>
+      <tr><th>सौर ऊर्जा</th><td>सौर नीति 2023 में 2027 तक 2,500 MW का लक्ष्य; मार्च 2026 तक लगभग 861 MW चालू [7]</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">राज्य का बिजली उत्पादक निगम <b>UJVNL</b> (उत्तराखंड जल विद्युत निगम) और वितरण निगम <b>UPCL</b> है।</p>
+
+  <h2 id="paryatan">6. पर्यटन और तीर्थाटन</h2>
+  <ul>
+    <li><b>2025</b> में <b>6,03,21,194</b> पर्यटक और तीर्थयात्री आए, जिनमें <b>1,92,533</b> विदेशी थे। राज्य बनने के बाद पहली बार 6 करोड़ पार; 2024 में 5.96 करोड़ थे [8]।</li>
+    <li>सबसे ज़्यादा <b>हरिद्वार</b> (लगभग 3.42 करोड़), फिर देहरादून (67 लाख) और टिहरी (53 लाख) [8]।</li>
+    <li><b>चारधाम यात्रा 2025</b> में अक्टूबर के अंत तक 50 लाख से ज़्यादा यात्री [8]।</li>
+    <li>होटल और ठहरने की जगहें 10,509, <b>होमस्टे 6,161</b> (2024-25) [1]।</li>
+    <li>पर्यटन से जुड़ी दो योजनाएँ पाठ्यक्रम में नाम से लिखी हैं: <a href="/gk/uttarakhand-yojanayen/">वीर चंद्र सिंह गढ़वाली पर्यटन स्वरोजगार योजना (2002)</a> और <a href="/gk/uttarakhand-yojanayen/">दीन दयाल उपाध्याय गृह आवास (होमस्टे) योजना (2018)</a>।</li>
+  </ul>
+
+  <h2 id="krishi">7. कृषि, पशुपालन और जड़ी-बूटी</h2>
+  <ul>
+    <li>राज्य का लगभग <b>86%</b> क्षेत्र पहाड़ी है, और शुद्ध बोया गया क्षेत्र सिर्फ़ लगभग <b>14%</b> है, जबकि देश का औसत लगभग 43% है [9]।</li>
+    <li>इसलिए खेती के बजाय <b>बागवानी</b> (सेब, माल्टा, आड़ू, लीची, अखरोट) और मोटे अनाज (मंडुआ, झंगोरा) पर ज़ोर है।</li>
+    <li>दूध उत्पादन लगभग <b>54.5 लाख लीटर प्रतिदिन</b>; मछली 10,487 टन प्रति वर्ष [1]।</li>
+    <li><b>औषधीय और सगंध पौधों</b> की खेती 900 हेक्टेयर से बढ़कर <b>10,000 हेक्टेयर</b> (2024-25) [1]।</li>
+    <li>कृषि उपज की बिक्री: <b>उत्तराखंड कृषि उत्पादन मंडी परिषद</b>, जो उत्तराखंड कृषि उत्पाद विपणन अधिनियम, 2011 से बनी [10]।</li>
+  </ul>
+  <p class="muted">फ़सलें, फ़सल चक्र, सिंचाई और जोतों पर अलग अध्याय "कृषि और बागवानी" तैयार हो रहा है।</p>
+
+  <h2 id="khanij">8. खनिज</h2>
+  <ul>
+    <li>मुख्य खनिज: <b>चूना पत्थर</b> (अल्मोड़ा, बागेश्वर, देहरादून, नैनीताल, पौड़ी, पिथौरागढ़, टिहरी), <b>मैग्नेसाइट</b>, <b>सोपस्टोन (खड़िया/स्टीटाइट)</b>, रॉक फ़ॉस्फ़ेट, डोलोमाइट, जिप्सम, संगमरमर और ताँबा [11][12]।</li>
+    <li>भारतीय खान ब्यूरो के अनुसार उत्तराखंड <b>मैग्नेसाइट</b> और <b>स्टीटाइट (सोपस्टोन)</b> का देश में दूसरा बड़ा उत्पादक रहा है (2012-13) [11]।</li>
+    <li>पहाड़ में खनन से भूस्खलन और नदियों को नुक़सान का ख़तरा रहता है, इसलिए <b>अवैध खनन</b> मुख्य परीक्षा के पाठ्यक्रम में अलग से लिखा है।</li>
+  </ul>
+
+  <h2 id="shiksha">9. प्रमुख शिक्षा और शोध संस्थान</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>संस्थान</th><th>स्थान</th><th>याद रखें</th></tr></thead>
+    <tbody>
+      <tr><td><b>IIT रुड़की</b></td><td>हरिद्वार</td><td>1847 में थॉमसन कॉलेज के रूप में; 2001 में IIT बना</td></tr>
+      <tr><td><b>गोविंद बल्लभ पंत कृषि एवं प्रौद्योगिकी विश्वविद्यालय</b></td><td>पंतनगर</td><td>1960, देश का पहला कृषि विश्वविद्यालय</td></tr>
+      <tr><td><b>वन अनुसंधान संस्थान (FRI)</b></td><td>देहरादून</td><td>1906</td></tr>
+      <tr><td><b>भारतीय सैन्य अकादमी (IMA)</b></td><td>देहरादून</td><td>1932</td></tr>
+      <tr><td><b>हेमवती नंदन बहुगुणा गढ़वाल विश्वविद्यालय</b></td><td>श्रीनगर</td><td>1973; 2009 में केंद्रीय विश्वविद्यालय</td></tr>
+      <tr><td><b>कुमाऊँ विश्वविद्यालय</b></td><td>नैनीताल</td><td>1973</td></tr>
+      <tr><td><b>AIIMS</b></td><td>ऋषिकेश</td><td>2012 से</td></tr>
+      <tr><td><b>IIM</b></td><td>काशीपुर</td><td>2011</td></tr>
+      <tr><td><b>उत्तराखंड मुक्त विश्वविद्यालय</b></td><td>हल्द्वानी</td><td>2005</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">आर्थिक सर्वेक्षण 2025-26: राज्य में 139 डिग्री कॉलेज और 52 इंजीनियरिंग कॉलेज; माध्यमिक स्तर पर पढ़ाई छोड़ने की दर 7.65% से घटकर 4.59% [1]। राज्य 8 जुलाई 2026 को देश का छठा पूर्ण साक्षर राज्य घोषित हुआ (<a href="/gk/uttarakhand-varsh-2025-26/">वर्ष 2025–26</a>)।</p>
+
+  <h2 id="vyapar">10. भारत-तिब्बत व्यापार</h2>
+  <p>सदियों तक सीमांत ज़िलों (पिथौरागढ़, चमोली, उत्तरकाशी) की <b>भोटिया</b> जनजाति तिब्बत से नमक, ऊन और सुहागा लाती थी और बदले में अनाज, गुड़ और कपड़ा ले जाती थी। यही उनकी आजीविका थी। 1962 के युद्ध के बाद यह व्यापार बंद हो गया।</p>
+  <ul class="tl">
+    <li><span class="d">1991–92</span><b>लिपुलेख दर्रा</b> (पिथौरागढ़) को व्यापार के लिए चुना गया; 1992 में प्रोटोकॉल। व्यापार मंडी: भारत में <b>गुंजी</b>, तिब्बत में <b>पुरंग (पुलान)</b> [13]।</li>
+    <li><span class="d">2019–20</span>कोविड और 2020 के सीमा तनाव के बाद व्यापार रुका [13]।</li>
+    <li><span class="d">अगस्त 2025</span>भारत और चीन ने लिपुलेख, शिपकी ला और नाथू ला से सीमा व्यापार फिर खोलने पर सहमति दी [13]।</li>
+    <li><span class="d">1 अगस्त 2026</span>छह साल बाद सीमा व्यापार फिर शुरू हुआ [13]।</li>
+  </ul>
+
+  <h2 id="gi">11. GI टैग: उत्तराखंड के सभी 29 उत्पाद</h2>
+  <p><b>GI (भौगोलिक संकेत)</b> टैग बताता है कि कोई उत्पाद किसी ख़ास जगह से आता है और उसकी पहचान उसी जगह की वजह से है। भारत में इसका कानून <b>भौगोलिक उपदर्शन अधिनियम, 1999</b> है, रजिस्ट्री <b>चेन्नई</b> में है, और पंजीकरण <b>10 साल</b> के लिए होता है, जिसे फिर बढ़ाया जा सकता है [15]।</p>
+  <div class="stat-grid">
+    <div><b>2016</b><span>पहला GI: तेजपत्ता [14]</span></div>
+    <div><b>18</b><span>एक दिन में (4 दिसंबर 2023), देश में रिकॉर्ड [14]</span></div>
+    <div><b>27 → 29</b><span>5 नवंबर 2025 के प्रमाणपत्र: बेडू और बद्री गाय का घी [16]</span></div>
+    <div><b>{giBy('कृषि')}</b><span>कृषि उत्पाद; {giBy('हस्तशिल्प')} हस्तशिल्प; {giBy('खाद्य पदार्थ')} खाद्य; {giBy('निर्मित वस्तु')} निर्मित</span></div>
+  </div>
+  <div class="table-wrap"><table class="gi">
+    <thead><tr><th>#</th><th>उत्पाद</th><th>श्रेणी</th><th>साल</th><th>याद रखें</th></tr></thead>
+    <tbody>{GI_LIST.map(([n, c, y, x], i) => <tr class={`y${y}`}><td>{i + 1}</td><td><b>{n}</b></td><td>{c}</td><td>{y}</td><td>{x}</td></tr>)}</tbody>
+  </table></div>
+  <p class="small">पहले 9 उत्पादों में तेजपत्ता और बासमती 2016 के हैं, बाकी ज़्यादातर सितंबर 2021 के। 18 वाली सूची में 12 कृषि, 4 हस्तशिल्प, 1 खाद्य और 1 निर्मित वस्तु थी [14]। जुलाई 2026 में <b>हल्द्वानी</b> के वन प्रशिक्षण अकादमी में राज्य की <b>पहली GI उत्पाद गैलरी</b> खुली [17]।</p>
+  <div class="box-trap"><strong>संख्या पर ध्यान दें</strong>बहुत-सी किताबों और कुछ सरकारी भाषणों में अब भी "27 GI" लिखा मिलता है, क्योंकि यह दिसंबर 2023 की संख्या है। GI रजिस्ट्री के अनुसार नवंबर 2025 में बेडू और बद्री गाय के घी के प्रमाणपत्र जारी हुए, इसलिए अभी संख्या <b>29</b> है [16]। प्रश्न में साल दिया हो तो उसी साल की संख्या चुनें।</div>
+  <p>संस्कृति से जुड़े GI (ऐपण, पिछौड़ा, रम्माण) की पूरी कहानी: <a href="/gk/uttarakhand-sanskriti-janjatiyan/#kala">संस्कृति और जनजातियाँ</a>।</p>
+
+  <h2 id="quiz">क्विज़: 15 प्रश्न</h2>
+  <p class="muted">ये अभ्यास प्रश्न हमने इसी अध्याय से बनाए हैं। ये पिछले वर्षों के प्रश्न नहीं हैं।</p>
+  <Quiz id="arthvyavastha" title="उत्तराखंड की अर्थव्यवस्था और GI टैग: अभ्यास क्विज़" questions={questions} />
+
+  <h2>स्रोत</h2>
+  <ol class="sources">
+    <li>Business Standard (6.3.2026): Uttarakhand Economic Survey 2025-26 के आँकड़े (GSDP, प्रति व्यक्ति आय, MPI, HDI, LFPR, MSME, स्टार्टअप, कृषि, पर्यटन, शिक्षा) — <a href="https://www.business-standard.com/economy/news/uttarakhand-gsdp-rises-fy25-economic-survey-growth-fy27-126030600295_1.html" rel="nofollow noopener" target="_blank">business-standard.com</a></li>
+    <li>PRS Legislative Research: Uttarakhand Budget Analysis 2026-27 — <a href="https://prsindia.org/budgets/states/uttarakhand-budget-analysis-2026-27" rel="nofollow noopener" target="_blank">prsindia.org</a></li>
+    <li>NCAER: Economic Survey 2025-26, Uttarakhand (वृद्धि दर) — <a href="https://ncaer.org/project/economic-survey-2025-26-uttarakhand/" rel="nofollow noopener" target="_blank">ncaer.org</a></li>
+    <li>उत्तरांचल औद्योगिक नीति 2003 (मार्च 2002 का विशेष पैकेज) — <a href="https://chemindia.chemicals.gov.in/Policiespdf/Uttranchal%20Industrial%20Policy%202003.pdf" rel="nofollow noopener" target="_blank">chemicals.gov.in</a></li>
+    <li>SIIDCUL: परिचय (2002, 7 एकीकृत औद्योगिक क्षेत्र) — <a href="https://siidcul.com" rel="nofollow noopener" target="_blank">siidcul.com</a>; एरोमा पार्क — <a href="https://www.siidcul.com/uploads/images/news/news_2244254_Success%20Projects.pdf" rel="nofollow noopener" target="_blank">SIIDCUL PDF</a></li>
+    <li>ग्लोबल इन्वेस्टर्स समिट 2023: 1,779 MoU, ₹3.56 लाख करोड़ — <a href="https://www.pioneeredge.in/?p=125620" rel="nofollow noopener" target="_blank">Pioneer (20.12.2023)</a>; ₹1 लाख करोड़ ग्राउंडिंग — <a href="https://www.theweek.in/wire-updates/business/2025/07/18/dcm87-uttarakhand-investment.html" rel="nofollow noopener" target="_blank">PTI (18.7.2025)</a>; आलोचना — <a href="https://www.newslaundry.com/2026/07/08/when-psus-fertiliser-shops-and-flour-mills-became-uttarakhands-investors-after-global-summit" rel="nofollow noopener" target="_blank">Newslaundry (8.7.2026)</a></li>
+    <li>ऊर्जा: Powerline (मार्च 2026) — संभावना और सौर लक्ष्य — <a href="https://powerline.net.in/2026/03/23/ujvnl-building-a-strong-hydro-and-psp-pipeline/" rel="nofollow noopener" target="_blank">powerline.net.in</a>; <a href="https://renewablewatch.in/2026/03/02/ujvnl-building-a-strong-hydro-and-psp-pipeline/" rel="nofollow noopener" target="_blank">renewablewatch.in</a>; CEA — चालू जलविद्युत केंद्र (मई 2026) — <a href="https://cea.nic.in/wp-content/uploads/hpi/2026/05/In_Operation_HEPs__PSPs_as_on_31.05.2026-2.pdf" rel="nofollow noopener" target="_blank">cea.nic.in</a>; THDC — टिहरी PSP — <a href="https://thdc.co.in/en/node/6048" rel="nofollow noopener" target="_blank">thdc.co.in</a></li>
+    <li>पर्यटन विभाग के आँकड़े 2025 — <a href="https://pioneeredge.in/record-number-of-tourists-visit-uttarakhand-in-2025/" rel="nofollow noopener" target="_blank">Pioneer Edge</a>, <a href="https://garhwalpost.in/?p=99603" rel="nofollow noopener" target="_blank">Garhwal Post (3.2.2026)</a>; चारधाम 2025 — <a href="https://www.devdiscourse.com/article/entertainment/3677478-record-pilgrim-turnout-for-uttarakhands-chardham-yatra-despite-natural-disasters" rel="nofollow noopener" target="_blank">Devdiscourse (29.10.2025)</a></li>
+    <li>राज्य बागवानी मिशन, उत्तराखंड: कृषि योग्य/शुद्ध बोया गया क्षेत्र लगभग 14% — <a href="https://shm.uk.gov.in/?p=6487" rel="nofollow noopener" target="_blank">shm.uk.gov.in</a></li>
+    <li>उत्तराखंड कृषि उत्पादन मंडी परिषद (अधिनियम 2011) — <a href="https://emandiuk.in/MandiHome/About" rel="nofollow noopener" target="_blank">emandiuk.in</a></li>
+    <li>भारतीय खान ब्यूरो: Uttarakhand (Indian Minerals Yearbook) — <a href="https://www.ibm.gov.in/writereaddata/files/09232015123344Uttarakhand.pdf" rel="nofollow noopener" target="_blank">ibm.gov.in</a></li>
+    <li>MSME विकास संस्थान: उत्तराखंड का औद्योगिक प्रोफ़ाइल (खनिज) — <a href="https://dcmsme.gov.in/dips/state_wise_dips/SIPSR%20-%20Uttarakhand.pdf" rel="nofollow noopener" target="_blank">dcmsme.gov.in</a></li>
+    <li>भारत-तिब्बत व्यापार: ThePrint (लिपुलेख 1991–92, गुंजी-पुलान) — <a href="https://theprint.in/diplomacy/india-in-talks-with-china-for-resumption-of-trade-via-3-border-passes-ahead-of-modis-sco-visit/2717192" rel="nofollow noopener" target="_blank">theprint.in</a>; Deccan Herald (20.8.2025) — <a href="https://www.deccanherald.com/india/india-china-agree-to-reopen-river-border-trade-3688354" rel="nofollow noopener" target="_blank">deccanherald.com</a>; ISAS (अगस्त 2026) — <a href="https://www.isas.nus.edu.sg/?p=19249" rel="nofollow noopener" target="_blank">isas.nus.edu.sg</a></li>
+    <li>GI: Drishti (4.12.2023) — एक दिन में 18, कुल 27 — <a href="https://www.drishtiias.com/hindi/pdf/1711427962.pdf" rel="nofollow noopener" target="_blank">drishtiias.com</a>; श्रेणियाँ — <a href="https://affairscloud.com/18-new-products-of-uttarakhand-gets-gi-tag/" rel="nofollow noopener" target="_blank">affairscloud.com</a>; तेजपत्ता 31 मई 2016 — <a href="https://ssrana.in/articles/india-geographical-indication-tag-conferred-on-uttarakhands-tejpatta/" rel="nofollow noopener" target="_blank">ssrana.in</a></li>
+    <li>GI का कानून, रजिस्ट्री और 10 साल की वैधता — <a href="https://www.drishtiias.com/state-pcs-current-affairs/uttarakhand-opens-first-dedicated-gi-products-gallery-in-haldwan/print_manually" rel="nofollow noopener" target="_blank">Drishti (20.7.2026)</a></li>
+    <li>भारतीय बौद्धिक संपदा कार्यालय (GI रजिस्ट्री): Uttarakhand Bedu (आवेदन 1188) — <a href="https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/1188" rel="nofollow noopener" target="_blank">ipindia.gov.in</a>; Uttarakhand Badri Cow Ghee (आवेदन 1390) — <a href="https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/1390" rel="nofollow noopener" target="_blank">ipindia.gov.in</a></li>
+    <li>हल्द्वानी में पहली GI गैलरी (जुलाई 2026) — <a href="https://www.drishtiias.com/state-pcs-current-affairs/uttarakhand-opens-first-dedicated-gi-products-gallery-in-haldwan" rel="nofollow noopener" target="_blank">drishtiias.com</a></li>
+  </ol>
+</Article>
+
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 18px; }
+  .jump a { border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; font-size: .85rem; text-decoration: none; background: var(--card); }
+  h2[id] { scroll-margin-top: 130px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin: 12px 0; }
+  .stat-grid div { background: var(--card); border: 1px solid var(--line); border-top: 4px solid #0f766e; border-radius: 12px; padding: 10px 12px; }
+  .stat-grid b { display: block; font-size: 1.25rem; color: #0f766e; }
+  .stat-grid span { font-size: .84rem; line-height: 1.4; }
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .small { font-size: .9rem; color: #475569; }
+  .sources { font-size: .85rem; line-height: 1.6; }
+  .box-trap { background: #fef2f2; border-left: 5px solid #ef4444; border-radius: 12px; padding: 10px 16px; margin: 12px 0; }
+  .box-trap > strong:first-child { display: block; margin-bottom: 2px; }
+  .tl { list-style: none; padding: 0; margin: 10px 0; border-left: 3px solid #99f6e4; }
+  .tl li { position: relative; padding: 4px 0 8px 16px; line-height: 1.55; }
+  .tl li::before { content: ''; position: absolute; left: -7px; top: 12px; width: 11px; height: 11px; border-radius: 50%; background: #0f766e; border: 2px solid #fff; }
+  .tl .d { font-weight: 700; color: #115e59; margin-right: 6px; }
+  .gi tr.y2025 td { background: #ecfdf5; }
+  .gi tr.y2016 td { background: #fffbeb; }
+</style>

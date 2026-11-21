@@ -31,7 +31,7 @@ const topics = [
 const syllabus = [
   { n: 1, t: 'भूमि व्यवस्था और राजस्व प्रशासन', d: 'थोकदारी, बेनाप, नजूल, नयाबाद, सिविल-सोयम वन, वन पंचायत, ज़मींदारी उन्मूलन, राजस्व पुलिस, भू-कानून 2025', unit: 'इकाई 9', links: [['/polity/land-revenue-system/', 'अध्याय पढ़ें']] },
   { n: 2, t: 'राज्य की राजव्यवस्था', d: 'विधानसभा, उच्च न्यायालय, लोकायुक्त, अधिकरण, सेवा का अधिकार, आरक्षण के कानून, UCC', unit: 'इकाई 9', links: [['/polity/legislative-assembly/', 'विधानसभा'], ['/polity/judiciary/', 'न्यायपालिका'], ['/polity/special-laws/', 'ख़ास कानून']] },
-  { n: 3, t: 'उत्तराखंड की अर्थव्यवस्था', d: 'राज्य GDP, प्रति व्यक्ति आय, उद्योग, खनिज, जलविद्युत, पर्यटन, बजट, मंडियाँ', unit: 'इकाई 10' },
+  { n: 3, t: 'उत्तराखंड की अर्थव्यवस्था', d: 'राज्य GDP, प्रति व्यक्ति आय, बजट, उद्योग, जलविद्युत, पर्यटन, खनिज और सभी 29 GI टैग', unit: 'इकाई 10', links: [['/gk/uttarakhand-arthvyavastha/', 'अध्याय पढ़ें'], ['/gk/uttarakhand-arthvyavastha/#gi', 'GI टैग']] },
   { n: 4, t: 'कृषि और बागवानी', d: 'मुख्य फ़सलें, फ़सल चक्र, सिंचाई के साधन, जोतें, बागवानी', unit: 'इकाई 8' },
   { n: 5, t: 'आपदा और पर्यावरण आंदोलन', d: 'आपदा प्रबंधन, जल संकट, चिपको, मैती, बीज बचाओ, शराबबंदी आंदोलन', unit: 'इकाई 8' },
   { n: 6, t: 'जनसंख्या और पलायन', d: 'घनत्व, लिंगानुपात, साक्षरता, पलायन के कारण और असर', unit: 'इकाई 8' },
@@ -42,6 +42,7 @@ const garhwal = ['देहरादून', 'हरिद्वार', 'टि
 const districtPages: Record<string, string> = { 'देहरादून': '/gk/districts/dehradun/', 'हरिद्वार': '/gk/districts/haridwar/', 'नैनीताल': '/gk/districts/nainital/', 'अल्मोड़ा': '/gk/districts/almora/', 'पौड़ी गढ़वाल': '/gk/districts/pauri-garhwal/', 'टिहरी गढ़वाल': '/gk/districts/tehri-garhwal/', 'ऊधम सिंह नगर': '/gk/districts/udham-singh-nagar/', 'चमोली': '/gk/districts/chamoli/', 'पिथौरागढ़': '/gk/districts/pithoragarh/', 'उत्तरकाशी': '/gk/districts/uttarkashi/', 'रुद्रप्रयाग': '/gk/districts/rudraprayag/', 'बागेश्वर': '/gk/districts/bageshwar/', 'चंपावत': '/gk/districts/champawat/' };
 const kumaon = ['नैनीताल', 'अल्मोड़ा', 'पिथौरागढ़', 'बागेश्वर', 'चंपावत', 'ऊधम सिंह नगर'];
 const latest = [
+  { href: '/gk/uttarakhand-arthvyavastha/', tag: 'नया अध्याय · लोअर PCS', t: 'उत्तराखंड की अर्थव्यवस्था: GSDP, बजट, उद्योग, ऊर्जा, पर्यटन, खनिज और सभी 29 GI टैग', img: '/images/uttarakhand-hills-thumb.webp' },
   { href: '/polity/land-revenue-system/', tag: 'नया अध्याय · लोअर PCS', t: 'भूमि व्यवस्था और राजस्व प्रशासन: थोकदारी, बेनाप, नजूल, नयाबाद, वन पंचायत, भू-कानून 2025', img: '/images/uttarakhand-hills-thumb.webp' },
   { href: '/polity/legislative-assembly/', tag: 'नया अध्याय · राजव्यवस्था', t: 'उत्तराखंड विधानसभा: 70 सीटें, अध्यक्ष, शक्तियाँ, कानून कैसे बनता है, दल-बदल', img: '/maps/uttarakhand-political-800.webp' },
   { href: '/polity/judiciary/', tag: 'नया अध्याय · राजव्यवस्था', t: 'उच्च न्यायालय और निचली अदालतें: नियुक्ति, लोक अदालत, लोक सेवा अधिकरण, लोकायुक्त', img: '/maps/uttarakhand-political-800.webp' },
