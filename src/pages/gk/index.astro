@@ -122,7 +122,7 @@ const jump = [['#mukhya', 'मुख्य विषय'], ['#zile', 'ज़ि�
   .stats b { display: block; font-size: 1.5rem; color: #fff; line-height: 1.1; }
   .stats span { font-size: .82rem; color: #d1fae5; }
 
-  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; position: sticky; top: 0; z-index: 2; background: var(--bg); padding: 8px 0; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; padding: 4px 0; }
   .jump a { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; text-decoration: none; color: var(--green); font-size: .92rem; }
   .jump a:hover { border-color: var(--green-2); background: var(--green-soft); }
 
@@ -148,7 +148,7 @@ const jump = [['#mukhya', 'मुख्य विषय'], ['#zile', 'ज़ि�
   .division { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; }
   .division h3 { margin: 2px 0 8px; color: var(--green); font-size: 1.05rem; }
   .division h3 small { color: var(--muted); font-weight: 400; }
-  .division ul { list-style: none; margin: 0; padding: 0; }
+  .division ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px 8px; }
   .division li a { display: flex; gap: 10px; align-items: flex-start; padding: 7px 6px; border-radius: 10px; text-decoration: none; color: inherit; }
   .division li a:hover { background: var(--green-soft); }
   .part { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--green); color: #fff; font-size: .8rem; display: grid; place-items: center; margin-top: 2px; }
@@ -168,6 +168,7 @@ const jump = [['#mukhya', 'मुख्य विषय'], ['#zile', 'ज़ि�
   @media (max-width: 860px) {
     .subjects { grid-template-columns: 1fr; }
     .divisions { grid-template-columns: 1fr; }
+    .subject ol { columns: 2; column-gap: 24px; }
     .stats { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
