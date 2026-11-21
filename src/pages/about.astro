@@ -1,18 +1,56 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE } from '../data/site';
+import { TOTAL as PYQ_TOTAL, PAPERS } from '../data/pyq';
+import { PCHAPTERS } from '../data/polity';
+const quizFiles = import.meta.glob('../data/quizzes/*.json', { eager: true }) as Record<string, { default: any[] }>;
+const quizCount = Object.keys(quizFiles).length;
+const qCount = Object.values(quizFiles).reduce((a, m) => a + m.default.length, 0);
+const polityLive = PCHAPTERS.filter((c) => c.live).length;
+const chapters = 9 + 8 + polityLive;
+const schema = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: `${SITE.name} के बारे में`, url: SITE.url + '/about/',
+  mainEntity: { '@type': 'Organization', name: SITE.nameEn, alternateName: SITE.name, url: SITE.url, founder: { '@type': 'Person', name: SITE.author.nameEn, url: SITE.url + SITE.author.url } } }];
 ---
-<Base title="हमारे बारे में" description={`${SITE.name} के बारे में — उत्तराखंड प्रतियोगी परीक्षाओं के अभ्यर्थियों के लिए मुफ्त हिंदी अध्ययन सामग्री।`}>
+<Base title="हमारे बारे में: पहाड़ परीक्षा कौन चलाता है और सामग्री कैसे बनती है" description="पहाड़ परीक्षा उत्तराखंड की प्रतियोगी परीक्षाओं के लिए मुफ़्त हिंदी वेबसाइट है। जानिए इसे कौन चलाता है, सामग्री कैसे जाँची जाती है और गलती कैसे ठीक होती है।" schema={schema}>
+  <nav class="crumbs"><a href="/">होम</a> › हमारे बारे में</nav>
   <h1>हमारे बारे में</h1>
-  <p><strong>{SITE.name}</strong> उत्तराखंड की प्रतियोगी परीक्षाओं — UKSSSC और UKPSC — की तैयारी कर रहे अभ्यर्थियों के लिए एक स्वतंत्र, मुफ्त हिंदी वेबसाइट है।</p>
-  <h2>हमारा उद्देश्य</h2>
-  <p>पहाड़ के हर अभ्यर्थी तक भरोसेमंद, परीक्षा-केंद्रित और सरल भाषा में अध्ययन सामग्री पहुँचाना — चाहे उसके पास महंगी कोचिंग की सुविधा हो या नहीं।</p>
-  <h2>हमारी सामग्री कैसे तैयार होती है</h2>
-  <ul>
-    <li>तथ्य मानक पुस्तकों, सरकारी स्रोतों और पिछले वर्षों के प्रश्न पत्रों से मिलान करके लिखे जाते हैं।</li>
-    <li>हर पेज पर "अपडेट" तिथि दी जाती है; नई जानकारी आने पर पेज संशोधित किए जाते हैं।</li>
-    <li>त्रुटि की सूचना मिलने पर उसे जल्द से जल्द सुधारा जाता है।</li>
-  </ul>
-  <p>स्रोत, AI के उपयोग और तथ्य-जाँच की पूरी प्रक्रिया: <a href="/methodology/">हमारी कार्यप्रणाली</a></p>
-  <p>लेखक के बारे में: <a href={SITE.author.url}>{SITE.author.name}</a></p>
+  <p class="lead"><strong>{SITE.name}</strong> उत्तराखंड की सरकारी भर्ती परीक्षाओं (UKSSSC और UKPSC) की तैयारी के लिए एक <b>स्वतंत्र और पूरी तरह मुफ़्त</b> हिंदी वेबसाइट है। इसका किसी आयोग या सरकारी विभाग से कोई संबंध नहीं है।</p>
+
+  <div class="stats">
+    <div><b>{chapters}</b><span>अध्याय (इतिहास, भूगोल, राजव्यवस्था)</span></div>
+    <div><b>13</b><span>ज़िलों के पूरे पेज</span></div>
+    <div><b>{PYQ_TOTAL}</b><span>असली प्रश्न, {PAPERS.length} प्रश्नपत्रों से</span></div>
+    <div><b>{qCount}</b><span>अभ्यास प्रश्न, {quizCount} क्विज़ में</span></div>
+  </div>
+
+  <h2>यह साइट कौन चलाता है</h2>
+  <p>इसे <a href={SITE.author.url}>{SITE.author.name}</a> चलाते हैं। वे उत्तराखंड (कोटद्वार) से जुड़े हैं, अंग्रेज़ी में MA हैं और ख़ुद UKSSSC-UKPSC की तैयारी करते हैं। तैयारी के दौरान जो नोट्स और प्रश्न बने, उन्हें यहाँ व्यवस्थित करके सबके लिए मुफ़्त रखा गया है।</p>
+
+  <h2>हम क्यों बने</h2>
+  <p>उत्तराखंड GK की ज़्यादातर किताबों और वेबसाइटों में एक ही तथ्य के अलग-अलग जवाब मिलते हैं, और स्रोत नहीं लिखा होता। पहाड़ के कई अभ्यर्थियों के पास महंगी कोचिंग नहीं होती। हमारा लक्ष्य है: <b>हर तथ्य के साथ उसका स्रोत</b>, आसान भाषा, और सब कुछ मुफ़्त।</p>
+
+  <h2>हमारी सामग्री के पाँच नियम</h2>
+  <ol class="rules">
+    <li><b>सरकारी स्रोत पहले।</b> आयोग की विज्ञप्ति और उत्तर-कुंजी, India Code, राजपत्र, जनगणना, वन सर्वेक्षण (ISFR), IMD, विधानसभा और उच्च न्यायालय की वेबसाइटें। उसके बाद विश्वविद्यालय की किताबें और प्रतिष्ठित समाचार।</li>
+    <li><b>हर पेज पर स्रोत-सूची।</b> पेज के नीचे वे सभी लिंक दिए जाते हैं जिनसे तथ्य लिए गए।</li>
+    <li><b>मतभेद छिपाए नहीं जाते।</b> जहाँ दो स्रोत अलग बात कहते हैं, वहाँ दोनों लिखकर बताया जाता है कि परीक्षा में कौन-सा उत्तर सुरक्षित है।</li>
+    <li><b>असली और अभ्यास प्रश्न अलग।</b> "पिछले प्रश्नपत्र" में सिर्फ़ आयोग के असली प्रश्न हैं, उत्तर आधिकारिक कुंजी से। बाकी क्विज़ हमारे बनाए अभ्यास प्रश्न हैं, और उन पर यह साफ़ लिखा है।</li>
+    <li><b>तारीख़ के साथ।</b> हर पेज पर "अपडेट" की तारीख़ है। पद पर बैठे लोगों जैसी बदलने वाली जानकारी के साथ जाँच की तारीख़ भी लिखी जाती है।</li>
+  </ol>
+  <p>करेंट अफेयर्स में AI का उपयोग कैसे होता है और हर हिस्सा कैसे जाँचा जाता है, यह <a href="/methodology/">हमारी कार्यप्रणाली</a> पेज पर विस्तार से लिखा है।</p>
+
+  <h2>गलती दिखे तो</h2>
+  <p>कोई तथ्य गलत लगे तो <a href="/contact/">संपर्क पेज</a> से बताइए, साथ में सही जानकारी का स्रोत लिखिए। हम उसे जाँचकर पेज ठीक करते हैं और पेज की अपडेट तारीख़ बदलते हैं।</p>
+
+  <h2>पैसा कहाँ से</h2>
+  <p>अभी साइट पर न विज्ञापन है, न कोई पेड कोर्स। साइट मुफ़्त होस्टिंग पर चलती है। भविष्य में कुछ बदला तो <a href="/disclaimer/">अस्वीकरण</a> पेज पर साफ़ लिखा जाएगा।</p>
 </Base>
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted); margin: 4px 0 10px; }
+  .lead { font-size: 1.05rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 16px 0; }
+  .stats div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-align: center; }
+  .stats b { display: block; font-size: 1.6rem; color: var(--green); }
+  .stats span { font-size: .85rem; }
+  .rules li { margin: 6px 0; line-height: 1.6; }
+</style>

@@ -7,7 +7,7 @@ const schema = {
   itemListElement: CHAPTERS.filter((c) => c.live).map((c) => ({ '@type': 'ListItem', position: c.part, url: `https://pahadpariksha.in${chapterHref(c)}`, name: c.title })),
 };
 ---
-<Base title={`${HSERIES.name} — अध्याय-दर-अध्याय (UKSSSC/UKPSC)`} description={`${HSERIES.name}: ${HSERIES.blurb}`}>
+<Base title={`${HSERIES.name} — अध्याय-दर-अध्याय (UKSSSC/UKPSC)`} description="उत्तराखंड का इतिहास हिंदी में, 9 अध्याय: प्रागैतिहासिक काल, कत्यूरी, चंद, परमार, गोरखा, ब्रिटिश शासन, स्वतंत्रता संग्राम और राज्य आंदोलन। क्विज़ सहित।">
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
   <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › इतिहास</nav>
   <header class="sh">
@@ -17,6 +17,15 @@ const schema = {
     <div class="prog" aria-label={`${done} of ${CHAPTERS.length} published`}><div style={`width:${(done / CHAPTERS.length) * 100}%`}></div></div>
     <p class="pl">{done} / {CHAPTERS.length} अध्याय प्रकाशित</p>
   </header>
+
+  <h2>इतिहास को तीन हिस्सों में समझिए</h2>
+  <p>लोअर PCS के पाठ्यक्रम में उत्तराखंड का इतिहास तीन कालों में बँटा है। पहले यह ढाँचा याद कर लीजिए, फिर अध्याय पढ़िए:</p>
+  <div class="eras">
+    <div><small>शुरुआत से 1200 ई. तक</small><b>प्राचीन काल</b><p>पाषाण युग के शैलचित्र, कुणिंद, कालसी शिलालेख, ब्रह्मपुर, और <b>कत्यूरी</b> राजवंश।</p><span>अध्याय 1, 2, 3</span></div>
+    <div><small>1200 से 1815 ई. तक</small><b>मध्यकाल</b><p>कुमाऊँ में <b>चंद</b>, गढ़वाल में <b>परमार</b>; फिर 1790–1815 का <b>गोरखा</b> शासन।</p><span>अध्याय 4, 5, 6</span></div>
+    <div><small>1815 से आज तक</small><b>आधुनिक काल</b><p>ब्रिटिश कुमाऊँ और टिहरी रियासत, कुली बेगार से आज़ादी तक, और <b>राज्य आंदोलन</b> से 9 नवंबर 2000।</p><span>अध्याय 7, 8, 9</span></div>
+  </div>
+  <p class="muted">इतिहास से जुड़े दूसरे पेज: <a href="/polity/land-revenue-system/">भूमि व्यवस्था और बंदोबस्त</a> · <a href="/polity/political-evolution/">शासन का विकास</a> · <a href="/gk/uttarakhand-sanskriti-janjatiyan/">संस्कृति और जनजातियाँ</a> · <a href="/pyq/">पिछले प्रश्नपत्रों के इतिहास वाले प्रश्न</a></p>
 
   <h2>सभी अध्याय</h2>
   <ol class="chs">
@@ -64,4 +73,10 @@ const schema = {
   .what { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; list-style: none; padding: 0; }
   .what li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .92rem; }
   .what b { color: var(--green); }
+  .eras { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 10px 0; }
+  .eras div { background: var(--card); border: 1px solid var(--line); border-top: 4px solid #9a3412; border-radius: 12px; padding: 10px 14px; }
+  .eras small { color: var(--muted); font-size: .78rem; display: block; }
+  .eras b { color: #9a3412; font-size: 1.05rem; }
+  .eras p { margin: 4px 0; font-size: .9rem; line-height: 1.5; }
+  .eras span { font-size: .8rem; font-weight: 700; color: var(--green); }
 </style>

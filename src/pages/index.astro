@@ -88,6 +88,7 @@ const latest = [
     <div class="up-col">
       <div class="ln-head"><h2>करेंट अफेयर्स</h2><a href={caDay ? `/current-affairs/#${dayAnchor(caDay)}` : '/current-affairs/'}>{caDay ? `${fmtDay(caDay).replace(/ \d{4}$/, '')} के सभी →` : 'सभी →'}</a></div>
       {news5.length ? <PointList items={news5} compact showCat={false} /> : <p class="muted">जल्द।</p>}
+      <p class="ca-arch"><a href="/current-affairs/#archive">साप्ताहिक और मासिक संकलन →</a></p>
     </div>
   </section>
 
@@ -163,6 +164,7 @@ const latest = [
 </Base>
 
 <style>
+  .ca-arch { margin: 6px 0 0; font-size: .85rem; font-weight: 600; }
   .syl { margin: 28px 0; padding: 20px; border-radius: 18px; background: linear-gradient(135deg, #eef2ff, #f0fdf4); border: 1px solid var(--line); }
   .syl-head { display: flex; gap: 18px; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; }
   .syl-head h2 { margin: 2px 0 6px; }

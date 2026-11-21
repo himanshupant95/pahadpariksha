@@ -7,6 +7,12 @@ const THIN = new Set(thinPaths().map((p) => `https://pahadpariksha.in${p}`));
 export default defineConfig({
   site: 'https://pahadpariksha.in',
   trailingSlash: 'always',
+  // old thin pages merged into stronger ones (21 Nov 2026); static meta-refresh redirects with canonical
+  redirects: {
+    '/gk/uttarakhand-rivers/': '/geography/rivers-drainage/',
+    '/gk/uttarakhand-districts/': '/gk/districts/',
+    '/quiz/uttarakhand-districts-rivers/': '/gk/districts/',
+  },
   build: { format: 'directory' },
   integrations: [
     sitemap({

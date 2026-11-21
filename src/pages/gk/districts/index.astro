@@ -2,14 +2,32 @@
 import Base from '../../../layouts/Base.astro';
 import SeriesGrid from '../../../components/SeriesGrid.astro';
 import { SERIES, DISTRICTS, liveCount, districtHref } from '../../../data/districts';
+import Quiz from '../../../components/Quiz.astro';
+import questions from '../../../data/quizzes/districts-rivers.json';
+// one-line exam notes per district (merged from the old /gk/districts/ table, now redirected here)
+const NOTE: Record<string, string> = {
+  dehradun: 'अस्थायी राजधानी; FRI, IMA, LBSNAA (मसूरी)', haridwar: '1988 में सहारनपुर से अलग; जनसंख्या और जनघनत्व में पहला',
+  'tehri-garhwal': 'टिहरी बाँध; मुख्यालय नई टिहरी', uttarkashi: 'सबसे कम जनघनत्व; गंगोत्री और यमुनोत्री', chamoli: 'बद्रीनाथ, फूलों की घाटी, हेमकुंड साहिब; मुख्यालय गोपेश्वर',
+  rudraprayag: '1997 में बना; केदारनाथ; सबसे कम जनसंख्या', 'pauri-garhwal': 'गढ़वाल मंडल का मुख्यालय', nainital: 'कुमाऊँ मंडल का मुख्यालय; उच्च न्यायालय',
+  almora: 'चंद राजधानी; लिंगानुपात में पहला', pithoragarh: 'चीन और नेपाल दोनों से सीमा', bageshwar: '1997 में बना; सरयू-गोमती संगम, उत्तरायणी',
+  champawat: '1997 में बना; क्षेत्रफल में सबसे छोटा', 'udham-singh-nagar': '1995 में नैनीताल से अलग; तराई, मुख्यालय रुद्रपुर',
+};
+const div = (d: string) => DISTRICTS.filter((x) => x.division === d);
+const faq = [
+  { q: 'उत्तराखंड में कुल कितने ज़िले हैं?', a: '13 ज़िले: गढ़वाल मंडल में 7 और कुमाऊँ मंडल में 6।' },
+  { q: 'किस ज़िले की सीमा चीन और नेपाल दोनों से लगती है?', a: 'केवल पिथौरागढ़।' },
+  { q: 'किन ज़िलों का मुख्यालय ज़िले के नाम से अलग है?', a: 'टिहरी गढ़वाल (नई टिहरी), चमोली (गोपेश्वर), पौड़ी गढ़वाल (पौड़ी) और ऊधम सिंह नगर (रुद्रपुर)।' },
+];
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 const done = liveCount();
 const schema = {
   '@context': 'https://schema.org', '@type': 'ItemList', name: `${SERIES.name}: उत्तराखंड के 13 ज़िले`,
   itemListElement: DISTRICTS.filter((d) => d.live).map((d) => ({ '@type': 'ListItem', position: d.part, url: `https://pahadpariksha.in${districtHref(d)}`, name: `${d.name} ज़िला` })),
 };
 ---
-<Base title={`${SERIES.name}: उत्तराखंड के 13 ज़िलों की संपूर्ण शृंखला (${SERIES.tagline})`} description={`${SERIES.name} — ${SERIES.blurb} UKSSSC/UKPSC के लिए।`}>
+<Base title={`${SERIES.name}: उत्तराखंड के 13 ज़िलों की संपूर्ण शृंखला (${SERIES.tagline})`} description="उत्तराखंड के 13 ज़िले: मंडल, मुख्यालय, सीमाएँ, गठन वर्ष और हर ज़िले का पूरा पेज (इतिहास, भूगोल, मेले, जनगणना, क्विज़)। UKSSSC और UKPSC के लिए।">
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <nav class="crumbs"><a href="/">होम</a> › <a href="/gk/">उत्तराखंड GK</a> › {SERIES.name}</nav>
   <header class="sh">
     <p class="kick">शृंखला · {SERIES.nameEn}</p>
@@ -33,7 +51,43 @@ const schema = {
     <li><b>ट्रिक प्रश्न (सावधान)</b> और <b>One-liners</b> — दोहराव के लिए</li>
     <li><b>15–20 प्रश्नों का क्विज़</b> — तुरंत उत्तर व व्याख्या</li>
   </ul>
-  <p class="muted">सभी ज़िलों की एक-पंक्ति तुलना के लिए देखें: <a href="/gk/uttarakhand-districts/">उत्तराखंड के 13 जिले — सारणी</a>।</p>
+  <h2 id="ek-nazar">13 ज़िले एक नज़र में</h2>
+  <p>राज्य में <b>2 मंडल</b> हैं: गढ़वाल (मुख्यालय <b>पौड़ी</b>) और कुमाऊँ (मुख्यालय <b>नैनीताल</b>)। हर ज़िले के नाम पर क्लिक करके उसका पूरा पेज पढ़ें।</p>
+  {['गढ़वाल', 'कुमाऊँ'].map((dv) => (
+    <>
+      <h3>{dv} मंडल ({div(dv as any).length} ज़िले)</h3>
+      <div class="table-wrap"><table class="dt">
+        <thead><tr><th>ज़िला</th><th>मुख्यालय</th><th>परीक्षा के लिए एक बात</th></tr></thead>
+        <tbody>{div(dv as any).map((d) => <tr><td><a href={districtHref(d)}><b>{d.name}</b></a></td><td>{d.hq}</td><td>{NOTE[d.slug]}</td></tr>)}</tbody>
+      </table></div>
+    </>
+  ))}
+  <div class="tip"><b>याद रखने की ट्रिक:</b> जिनका मुख्यालय नाम से अलग है: <b>टिहरी (नई टिहरी), चमोली (गोपेश्वर), पौड़ी गढ़वाल (पौड़ी), ऊधम सिंह नगर (रुद्रपुर)</b>।</div>
+
+  <h2 id="seema">सीमा वाले ज़िले</h2>
+  <ul class="what">
+    <li><b>चीन (तिब्बत) से:</b> उत्तरकाशी, चमोली, पिथौरागढ़</li>
+    <li><b>नेपाल से:</b> पिथौरागढ़, चंपावत, ऊधम सिंह नगर</li>
+    <li><b>दोनों देशों से:</b> केवल पिथौरागढ़</li>
+    <li><b>हिमाचल प्रदेश से:</b> उत्तरकाशी, देहरादून</li>
+    <li><b>किसी राज्य या देश से सीमा नहीं:</b> टिहरी गढ़वाल, रुद्रप्रयाग, अल्मोड़ा, बागेश्वर</li>
+  </ul>
+
+  <h2 id="gathan">ज़िले कब बने</h2>
+  <ul class="what">
+    <li><b>1960:</b> उत्तरकाशी, चमोली, पिथौरागढ़ (सीमांत ज़िले)</li>
+    <li><b>1988:</b> हरिद्वार (सहारनपुर से अलग)</li>
+    <li><b>1995:</b> ऊधम सिंह नगर (नैनीताल से अलग)</li>
+    <li><b>1997:</b> रुद्रप्रयाग, बागेश्वर, चंपावत</li>
+  </ul>
+  <p class="muted">जनसंख्या, क्षेत्रफल, जनघनत्व, साक्षरता और वन आवरण में ज़िलों की रैंक के लिए देखें: <a href="/gk/uttarakhand-tulnatmak-talikayen/">तुलनात्मक तालिकाएँ</a>। नदियों के लिए: <a href="/geography/rivers-drainage/">नदियाँ और अपवाह तंत्र</a>।</p>
+
+  <h2 id="quiz">मिश्रित क्विज़: ज़िले और नदियाँ</h2>
+  <p class="muted">ये अभ्यास प्रश्न हमने बनाए हैं; ये पिछले वर्षों के प्रश्न नहीं हैं। हर ज़िले का अलग क्विज़ उसके पेज पर है।</p>
+  <Quiz id="districts-rivers" title="उत्तराखंड ज़िले और नदियाँ: मिश्रित क्विज़" questions={questions} />
+
+  <h2>सवाल-जवाब</h2>
+  {faq.map((f) => <details class="fq"><summary>{f.q}</summary><p>{f.a}</p></details>)}
 </Base>
 
 <style>
@@ -49,4 +103,9 @@ const schema = {
   .what { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; list-style: none; padding: 0; }
   .what li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .92rem; }
   .what b { color: var(--green); }
+  h2[id] { scroll-margin-top: 130px; }
+  .dt a { color: var(--green); }
+  .tip { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 10px; padding: 8px 12px; margin: 10px 0; font-size: .94rem; }
+  .fq { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 6px 0; background: var(--card); }
+  .fq summary { cursor: pointer; font-weight: 600; }
 </style>

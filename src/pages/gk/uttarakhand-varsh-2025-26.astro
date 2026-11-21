@@ -2,6 +2,8 @@
 import Article from '../../layouts/Article.astro';
 import Quiz from '../../components/Quiz.astro';
 import questions from '../../data/quizzes/varsh-2025-26.json';
+import { months, monthLabel } from '../../lib/digest';
+const ms = months().slice(0, 6);
 
 const CHECKED = '21 नवंबर 2026';
 
@@ -37,7 +39,7 @@ const faq = [
 ---
 <Article
   title="उत्तराखंड वर्ष 2025–26: अर्थव्यवस्था, बजट, सूचकांक और प्रमुख घटनाएँ"
-  description="उत्तराखंड करेंट अफेयर्स 2025–26 एक जगह: आर्थिक सर्वेक्षण 2025-26, बजट 2026-27 और अनुपूरक बजट, NITI आयोग सूचकांक, UCC, अल्पसंख्यक शिक्षा अधिनियम, पूर्ण साक्षर राज्य, नए राज्यपाल, राष्ट्रीय खेल, रजत जयंती और कुंभ 2027 — आधिकारिक स्रोतों सहित, क्विज़ के साथ।"
+  description="उत्तराखंड वर्ष 2025–26 एक जगह: आर्थिक सर्वेक्षण, बजट 2026-27, सूचकांक, नए कानून, नियुक्तियाँ और कुंभ 2027। समयरेखा और क्विज़।"
   breadcrumbs={[{ name: 'उत्तराखंड GK', href: '/gk/' }]}
   published="2026-11-21"
   hideHero={true}
@@ -51,6 +53,7 @@ const faq = [
       <li>जाँच: {CHECKED}। नई घटनाएँ जुड़ने पर यह पेज अपडेट होगा।</li>
     </ul>
   </div>
+  <p class="muted">इससे जुड़े पेज: <a href="/gk/uttarakhand-pariksha-tathya/">UKPSC प्रश्नपत्रों से निकले ख़ास तथ्य</a> · <a href="/polity/special-laws/">उत्तराखंड के ख़ास कानून</a>{ms.length > 0 && <> · मासिक करेंट संकलन: {ms.map((m, i) => <>{i > 0 && ', '}<a href={`/current-affairs/month/${m.key}/`}>{monthLabel(m.key)}</a></>)}</>}</p>
 
   <h2 id="arthvyavastha">1. अर्थव्यवस्था: आर्थिक सर्वेक्षण 2025-26</h2>
   <p>राज्य का आर्थिक सर्वेक्षण 2025-26 मार्च 2026 में बजट सत्र से पहले जारी हुआ। इस बार इसे <b>NCAER</b> (राष्ट्रीय व्यावहारिक आर्थिक अनुसंधान परिषद) के साथ मिलकर तैयार किया गया [1][2]।</p>

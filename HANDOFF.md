@@ -207,3 +207,8 @@ Rules agreed with the user:
 - Live: 1 land-revenue-system (new polity part 14; later parts renumbered), 2 = legislative-assembly + judiciary + special-laws.
 - Soon: 3 economy, 4 agriculture/horticulture, 5 disasters & environmental movements, 6 population & migration, 7 culture part 2.
 - HC CJ in OFFICE now acting CJ Manoj Kumar Tiwari (from 9 Oct 2026). Update when a regular CJ is appointed.
+
+## Cleanup (21 Nov 2026)
+- Redirects in astro.config `redirects`: /gk/uttarakhand-rivers/ → /geography/rivers-drainage/, /gk/uttarakhand-districts/ and /quiz/uttarakhand-districts-rivers/ → /gk/districts/. The district table, borders, formation years and the mixed quiz now live on /gk/districts/ (#ek-nazar, #quiz).
+- All meta descriptions ≤160 chars (pyq and current-affairs are templated; keep new ones short).
+- About, Contact, Disclaimer, Exams rewritten. Exams has the LSS-2026 pattern from the official ad, with a date check that flips "आवेदन चालू" after 26 Nov 2026.

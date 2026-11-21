@@ -3,10 +3,32 @@ import Base from '../layouts/Base.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { SITE } from '../data/site';
 ---
-<Base title="संपर्क करें" description={`${SITE.name} से संपर्क करें — किसी तथ्य में त्रुटि की सूचना, सुझाव या सहयोग के लिए फ़ॉर्म भरें।`}>
+<Base title="संपर्क करें: गलती बताएँ, सुझाव दें" description="पहाड़ परीक्षा से संपर्क करें: किसी तथ्य में गलती, नया टॉपिक, या सुझाव के लिए फ़ॉर्म भरें। स्रोत के साथ भेजी गई सूचना जल्दी जाँची जाती है।">
+  <nav class="crumbs"><a href="/">होम</a> › संपर्क</nav>
   <h1>संपर्क करें</h1>
-  <p>किसी तथ्य में त्रुटि दिखी, कोई नया टॉपिक चाहिए, या सहयोग करना चाहते हैं? नीचे फ़ॉर्म भरें — संदेश सीधे हमारे पास पहुँचता है।</p>
+  <p>किसी तथ्य में गलती दिखी, कोई नया टॉपिक चाहिए, या कोई सुझाव है? नीचे फ़ॉर्म भरें। संदेश सीधे साइट चलाने वाले <a href={SITE.author.url}>{SITE.author.name}</a> तक पहुँचता है।</p>
+
+  <div class="how">
+    <h2>गलती बताते समय ये तीन चीज़ें लिखें</h2>
+    <ol>
+      <li><b>पेज का लिंक</b> या नाम, और कौन-सी लाइन गलत है।</li>
+      <li><b>सही जानकारी</b> क्या है।</li>
+      <li><b>स्रोत</b>: आयोग की विज्ञप्ति, सरकारी वेबसाइट, राजपत्र, किताब का नाम और पेज, या समाचार का लिंक।</li>
+    </ol>
+    <p class="muted">स्रोत वाली सूचना हम जाँचकर पेज ठीक करते हैं और उसकी अपडेट तारीख़ बदलते हैं। बिना स्रोत की सूचना भी पढ़ी जाती है, पर उसे जाँचने में समय लगता है।</p>
+  </div>
+
   <ContactForm />
   {SITE.telegram && <p>टेलीग्राम चैनल: <a href={SITE.telegram} rel="noopener" target="_blank">{SITE.telegram}</a></p>}
-  <p class="muted">त्रुटि बताते समय सही जानकारी का स्रोत (आधिकारिक वेबसाइट, पुस्तक, समाचार) ज़रूर लिखें — हम हर सूचना जाँचकर पेज अपडेट करते हैं। जवाब चाहिए तो अपना ईमेल या मोबाइल नंबर लिखें; यह केवल जवाब देने के लिए उपयोग होगा।</p>
+
+  <h2>ध्यान दें</h2>
+  <ul>
+    <li>हम किसी आयोग से जुड़े नहीं हैं। आवेदन, एडमिट कार्ड या परिणाम की शिकायत के लिए सीधे <a href="https://sssc.uk.gov.in/" rel="noopener" target="_blank">UKSSSC</a> या <a href="https://psc.uk.gov.in/" rel="noopener" target="_blank">UKPSC</a> से संपर्क करें।</li>
+    <li>जवाब चाहिए तो अपना ईमेल या मोबाइल नंबर लिखें। यह सिर्फ़ जवाब देने के लिए उपयोग होगा (देखें: <a href="/privacy-policy/">निजता नीति</a>)।</li>
+  </ul>
 </Base>
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted); margin: 4px 0 10px; }
+  .how { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 4px 16px 10px; margin: 14px 0; }
+  .how h2 { font-size: 1.05rem; }
+</style>
