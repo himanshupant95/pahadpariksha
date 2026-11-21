@@ -197,3 +197,7 @@ Rules agreed with the user:
 - Code → exam: SDJ Upper PCS pre 2025 P-I (key 1385921111); XYA AG office RO/ARO 2024 (956306142); RGS SEC RO 2024 pre (736704039); GSI ACF/FRO 2025 (39397394); SDP DSO main 2025 P-I (8275244); HCA HC ARO 2025 (345848352, PROVISIONAL — swap to amended key when UKPSC publishes it); KOT SEC RO main 2024 (285809332); APK APS main 2024 (1072485139). All at psc.uk.gov.in/public/uploads/answerkey/<id>.pdf.
 - Not included: GSP (PCS 2025 GAT, no UK content), VPS/LPS (PCS 2012, no key online).
 - Question text is our Hindi rendering; explanations note where the commission's answer differs from common books (e.g. largest district, longest river = Kali per APK key).
+
+## Interlinking (21 Nov 2026)
+- `src/data/related.ts` + `src/components/RelatedLinks.astro` → "आगे पढ़ें" block injected in Base.astro for mapped paths. When adding a new page, add its label to `L` and a mapping in `M`.
+- `src/data/quiz-index.ts` holds QUIZ_URL (used by DailyQuestion) and QUIZ_GROUPS (used by /quiz/ hub). New quiz → add to both.
