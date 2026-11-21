@@ -1,29 +1,30 @@
 ---
-import { QUIZ_URL } from '../data/quiz-index';
-// "आज का प्रश्न" — picks one question per day from all quiz files (rotates daily, same for everyone).
-const files = import.meta.glob('../data/quizzes/*.json', { eager: true }) as Record<string, { default: any[] }>;
-const pool = Object.entries(files).flatMap(([path, m]) => {
-  const slug = path.split('/').pop()!.replace('.json', '');
-  return m.default.map((q) => ({ ...q, slug }));
-});
-const quizUrl = QUIZ_URL;
-const data = pool.map((q) => ({ q: q.q, o: q.options, a: q.answer, e: q.explain, u: quizUrl[q.slug] ?? '/quiz/' }));
+import { dailyPool, dayIndex } from '../lib/daily-pool';
+// "आज का प्रश्न" — one question per day from all quiz files (rotates daily, same for everyone).
+// Only today's question is inlined (build day, IST); the full pool (/daily-questions.json) is fetched
+// only if the visitor's date differs from the build date. Keeps the home page HTML small.
+const pool = dailyPool();
+const ist = new Date(Date.now() + 5.5 * 3600e3);
+const buildDay = dayIndex(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate());
+const today = { ...pool[((buildDay % pool.length) + pool.length) % pool.length], d: buildDay };
 ---
 <section class="daily" aria-labelledby="daily-h">
   <div class="daily-head">
     <h2 id="daily-h">आज का प्रश्न</h2>
     <span class="daily-date" id="daily-date"></span>
   </div>
-  <p class="daily-q" id="daily-q">लोड हो रहा है…</p>
+  <p class="daily-q" id="daily-q">{today.q}</p>
   <div class="daily-opts" id="daily-opts"></div>
   <p class="daily-exp" id="daily-exp" hidden></p>
 </section>
-<script type="application/json" id="daily-data" set:html={JSON.stringify(data)} />
+<script type="application/json" id="daily-data" set:html={JSON.stringify(today)} />
 <script>
-  const pool = JSON.parse(document.getElementById('daily-data')!.textContent!);
   const now = new Date();
   const day = Math.floor((Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - Date.UTC(2026, 0, 1)) / 864e5);
-  const item = pool[((day % pool.length) + pool.length) % pool.length];
+  let item = JSON.parse(document.getElementById('daily-data')!.textContent!);
+  if (item.d !== day) {
+    try { const pool = await (await fetch('/daily-questions.json')).json(); item = pool[((day % pool.length) + pool.length) % pool.length]; } catch {}
+  }
   document.getElementById('daily-date')!.textContent = now.toLocaleDateString('hi-IN', { day: 'numeric', month: 'long' });
   document.getElementById('daily-q')!.textContent = item.q;
   const box = document.getElementById('daily-opts')!;

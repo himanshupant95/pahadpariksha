@@ -1,6 +1,8 @@
 ---
 import { SITE, NAV } from '../data/site';
 import RelatedLinks from '../components/RelatedLinks.astro';
+import digest from '../data/digest.json';
+const latestMonth = (digest as any).points.map((p: any) => p.date).sort().at(-1)?.slice(0, 7);
 
 interface Props {
   title: string;
@@ -129,6 +131,8 @@ const enUrl = `https://pahadpariksha-in.translate.goog${path}?_x_tr_sl=hi&_x_tr_
         <div>
           <strong>Explore <span>· देखें</span></strong>
           <ul>
+            <li><a href="/current-affairs/">Current Affairs <span>· करेंट अफेयर्स</span></a></li>
+            {latestMonth && <li><a href={`/current-affairs/month/${latestMonth}/`}>Monthly Compilation <span>· मासिक संकलन</span></a></li>}
             <li><a href="/notices/">Notices &amp; Admit Cards <span>· सूचनाएँ</span></a></li>
             <li><a href="/exams/">Exams <span>· परीक्षाएँ</span></a></li>
             <li><a href="/gk/">Uttarakhand GK <span>· सामान्य ज्ञान</span></a></li>

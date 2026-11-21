@@ -15,7 +15,7 @@ const faq = [
 ];
 ---
 <Article
-  title={`${p.short}: उत्तराखंड प्रश्न और उत्तर`}
+  title={p.short.length > 36 ? `${p.short}: प्रश्न-उत्तर` : `${p.short}: उत्तराखंड प्रश्न`}
   description={`UKPSC ${p.short} (${p.examDate}) के उत्तराखंड से जुड़े ${p.questions.length} प्रश्न, आधिकारिक उत्तर-कुंजी से उत्तर और आसान हिंदी व्याख्या के साथ।`}
   breadcrumbs={[{ name: 'पिछले वर्षों के प्रश्न', href: '/pyq/' }]}
   published="2026-11-21"
