@@ -286,9 +286,267 @@
   "ed62f4d4e322",
   "1885107ecb73",
   "eba05d41dddf",
-  "97869955f173"
+  "97869955f173",
+  "44d2a5ff5a40",
+  "c1b0372bbe80",
+  "6f5a4e72c016",
+  "c635983f238e",
+  "dc3bdc95b2fb",
+  "7b21ad559439",
+  "aeeaff4b6a19",
+  "f029eaad5028",
+  "b590fd93804f",
+  "2d2bc1c530ff",
+  "053f6ed3dbee",
+  "c350e94580ad",
+  "2e57e6446f5d",
+  "dd8f21b25c2a",
+  "7e01e5beeb44",
+  "1538f099a75c",
+  "a0c8932d9ab1",
+  "f0c8f8ce0dc7",
+  "fb28a096df9c",
+  "6231c09f19af",
+  "e889ea64a43b",
+  "69d000efcc57",
+  "c7fbb003dcea",
+  "ae1f5f7f051c",
+  "eacb42f31499",
+  "e71c0cd5170b",
+  "33260d77589c",
+  "4147315cb6bd",
+  "802788646d6e",
+  "8e5b17cfde8c",
+  "1a96708dfbc8",
+  "d4e7d2d56294",
+  "8446cb273642",
+  "48fd199abe94",
+  "673a6c6a9627",
+  "f2f024b0e9eb",
+  "2ecd328eaf84",
+  "7c959e5c1220",
+  "5a1a222cf937",
+  "b37de790c3af",
+  "4c204c7ef0d3",
+  "db66d7854d9e",
+  "514c92769e71",
+  "eff5e18b7c6d",
+  "2551ad1a63e1",
+  "e083d973fa39",
+  "a6a04f7b4fc9",
+  "081be13e956c",
+  "25f5dffe63ee",
+  "81bb6b91f850",
+  "99019340c188",
+  "27b4a77450b5",
+  "b93adf8bba5d",
+  "ef5f458e7535",
+  "5557e17e98c5",
+  "e661f4f9a38c",
+  "f3304c4f6fe3",
+  "d334b383c204",
+  "f4d3819834b7",
+  "02055dbce902"
  ],
  "points": [
+  {
+   "id": "1b39c37426",
+   "date": "2026-11-20",
+   "fact": "अमित शाह ने उत्तराखंड पुलिस को राष्ट्रपति पुलिस ध्वज प्रदान किया, 206 शहीदों को सम्मानित किया।",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 3,
+   "tag": "President's Colour",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Amit Shah presents President’s Colour to Uttarakhand Police, honours 206 personnel who made supreme sacrifice",
+     "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNSVBZZXVuRkpCZzRKZ3ZTbVpDS2l6ZEM3ajlqcV81LW8zeTVnVGxkQ3pjNW5JbFZZdXVVS24yd3RzclhIV3lwN0RiQ2Q2RnFLTkRITWNnUnZhdVFrUHJGMzFTNl9pSUZFUVVLV19jR0FLTUpzSXJEbkgxei1ZRHlpUnFWUFZVSjlXZXExZ3MxZGRCalNpREN2NGlNQ0xxcTJoUVdiZmFib1NHMXVXQmMtNEI0MDVnS1hmSHFZU21yMVU2Zm96MWxqRlJfSjNWdw?oc=5",
+     "source": "DD News"
+    }
+   ],
+   "added": "2026-11-21T00:09:01.968Z",
+   "details": [
+    {
+     "k": "सम्मान",
+     "v": "राष्ट्रपति निशान (President’s Colour)"
+    },
+    {
+     "k": "स्थान",
+     "v": "देहरादून"
+    },
+    {
+     "k": "अमित शाह",
+     "v": "अमित शाह भारत के गृह मंत्री हैं",
+     "t": "g"
+    }
+   ],
+   "sum": "केन्द्रीय गृह मंत्री अमित शाह ने देहरादून में उत्तराखंड पुलिस को राष्ट्रपति निशान प्रदान किया और 206 शहीदों को सम्मानित किया।",
+   "quiz": {
+    "q": "उत्तराखंड पुलिस को राष्ट्रपति का कौन सा सम्मान मिला?",
+    "a": "राष्ट्रपति निशान"
+   },
+   "depth": "headlines",
+   "unverified": true
+  },
+  {
+   "id": "78cf4f555d",
+   "date": "2026-11-20",
+   "fact": "डॉ. धन सिंह रावत को उत्तराखंड पूर्ण साक्षरता गौरव सम्मान‑2026 से सम्मानित किया गया।",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 2,
+   "tag": "पूर्ण साक्षरता गौरव सम्मान",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "शिक्षा के क्षेत्र में योगदान के लिए डॉ. धन सिंह रावत को ‘उत्तराखंड पूर्ण साक्षरता गौरव सम्मान–2026’",
+     "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQNEJMQndKU2VrRV9lODl6eEVzOGdFOGYtQVgza0hVZ2t6UVQxWklHOWw0NjVEM3F3NXBwRFhJZ2VhZDgtNDFBOTQxNjZvOTlfUlVMUlBIdlN5c1dXMDVwN1N1Q28tVnU5S1EtaTh4U282X1pYVjJOVHI5aWltN3hFUEw4ODFENFNWU0xnNVJsX0RWSkFZNHJCVHdXbG5BaFp0cFBGOThBa3lGbnNuYUczYjRHUS1jMU9XS1lTYkZab1ByaGlRd3FoMzU3WG9XTmxOWDZmVWM0akxLZ1lSb0dwRy1EaF92N0lpd3Z1dFNjdVBQRjJlamc?oc=5",
+     "source": "liveskgnews"
+    }
+   ],
+   "added": "2026-11-21T00:09:01.968Z",
+   "details": [
+    {
+     "k": "क्षेत्र",
+     "v": "शिक्षा"
+    }
+   ],
+   "sum": "डॉ. धन सिंह रावत को शिक्षा के क्षेत्र में योगदान के लिए उत्तराखंड पूर्ण साक्षरता गौरव सम्मान‑2026 से सम्मानित किया गया।",
+   "quiz": {
+    "q": "डॉ. धन सिंह रावत को किस सम्मान से सम्मानित किया गया?",
+    "a": "उत्तराखंड पूर्ण साक्षरता गौरव सम्मान‑2026"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "6c0208882a",
+   "date": "2026-11-20",
+   "fact": "हरिद्वार के वार्ड 59‑60 में 80 करोड़ रुपये की सेवर लाइन परियोजना शुरू की जाएगी।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 2,
+   "tag": "सेवर लाइन परियोजना",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Haridwar News: वार्ड 59 व 60 में 80 करोड़ से बिछेगी सीवर लाइन परियोजना",
+     "link": "https://www.amarujala.com/uttarakhand/haridwar/sewer-line-project-to-be-laid-in-wards-59-and-60-at-a-cost-of-rs-80-crore-haridwar-news-c-35-1-hrd1002-156875-2026-11-20",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-21T00:09:01.968Z",
+   "details": [
+    {
+     "k": "लाइन की लंबाई",
+     "v": "35 किलोमीटर"
+    },
+    {
+     "k": "विधायक",
+     "v": "आदेश चौहान ने शुभारंभ किया"
+    },
+    {
+     "k": "वित्त पोषण",
+     "v": "केएफडब्ल्यू पोषित पैकेज‑3 से स्वीकृत"
+    },
+    {
+     "k": "हरिद्वार नगर निगम",
+     "v": "हरिद्वार नगर निगम उत्तराखंड का शहरी निकाय है",
+     "t": "g"
+    },
+    {
+     "k": "केएफडब्ल्यू",
+     "v": "केएफडब्ल्यू जर्मनी की विकास बैंक है",
+     "t": "g"
+    }
+   ],
+   "sum": "हरिद्वार के वार्ड 59‑60 में 35 किमी लंबी 80 करोड़ रुपये की सीवर लाइन परियोजना का शुभारंभ विधायक आदेश चौहान ने किया।",
+   "quiz": {
+    "q": "हरिद्वार के वार्ड 59‑60 में शुरू हुई सीवर लाइन परियोजना की लागत कितनी है?",
+    "a": "80 करोड़ रुपये"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "3f315caf26",
+   "date": "2026-11-20",
+   "fact": "उत्ताखंड में नंदा गौरा योजना के तहत पात्र बालिकाओं के लिए ऑनलाइन आवेदन 30 नवंबर तक खुलेगा।",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "नंदा गौरा योजना",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Pithoragarh News: नंदा गौरा योजना के लिए 30 नवंबर तक करें ऑनलाइन आवेदन",
+     "link": "https://www.amarujala.com/uttarakhand/pithoragarh/submit-online-applications-for-the-nanda-gaura-yojana-by-november-30-pithoragarh-news-c-229-1-cpt1009-146999-2026-11-20",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-21T00:09:01.968Z",
+   "details": [
+    {
+     "k": "उच्च शिक्षा सहायता",
+     "v": "51 हजार रुपये"
+    },
+    {
+     "k": "जन्म पर सहायता",
+     "v": "11 हजार रुपये"
+    },
+    {
+     "k": "लाभार्थी सीमा",
+     "v": "एक परिवार की अधिकतम दो जीवित पात्र बालिकाएं"
+    }
+   ],
+   "sum": "चंपावत जिले में नंदा गौरा योजना के तहत पात्र बालिकाओं के लिए ऑनलाइन आवेदन प्रक्रिया शुरू हो गई है, जिसमें उच्च शिक्षा के लिए 51 हजार रुपये की सहायता दी जाती है।",
+   "quiz": {
+    "q": "नंदा गौरा योजना के तहत उच्च शिक्षा के लिए कितनी आर्थिक सहायता दी जाती है?",
+    "a": "51 हजार रुपये"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "50ec54d4fb",
+   "date": "2026-11-20",
+   "fact": "सीटीआर में लेपर्ड संरक्षण की नई योजना शुरू की गई।",
+   "cat": "पर्यावरण",
+   "imp": 2,
+   "tag": "लेपर्ड संरक्षण योजना",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Nainital News: सीटीआर में लकड़बग्घों के संरक्षण की योजना शुरू",
+     "link": "https://www.amarujala.com/uttarakhand/nainital/conservation-plan-for-hyenas-launched-in-ctr-nainital-news-c-418-1-ntl1004-11999-2026-11-20",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-21T00:09:01.968Z",
+   "details": [
+    {
+     "k": "स्थान",
+     "v": "कॉर्बेट टाइगर रिजर्व (सीटीआर)"
+    },
+    {
+     "k": "शोध का उद्देश्य",
+     "v": "लकड़बग्घों की संख्या, ऐतिहासिक स्थिति और विचरण क्षेत्र का आकलन"
+    },
+    {
+     "k": "अंतिम कैमरा ट्रैप रिकॉर्ड",
+     "v": "वर्ष 2019 में सात ट्रैप कैमरा पर तस्वीरें मिली थीं"
+    },
+    {
+     "k": "पार्क निदेशक",
+     "v": "साकेत बडोला"
+    },
+    {
+     "k": "पार्क का स्थान",
+     "v": "उत्तराखंड के नैनीताल और पौड़ी जिलों में",
+     "t": "g"
+    }
+   ],
+   "sum": "कॉर्बेट टाइगर रिजर्व प्रशासन ने लकड़बग्घों की मौजूदगी के बाद उनके संरक्षण और विस्तृत शोध की नई योजना शुरू की है।",
+   "quiz": {
+    "q": "कॉर्बेट टाइगर रिजर्व में लकड़बग्घों के संरक्षण की योजना किसके निर्णय पर शुरू की गई?",
+    "a": "पार्क प्रशासन"
+   },
+   "depth": "article"
+  },
   {
    "id": "1b9c8967f4",
    "date": "2026-11-19",
@@ -2542,5 +2800,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-20T04:57:37.000Z"
+ "updated": "2026-11-21T00:12:43.362Z"
 }
