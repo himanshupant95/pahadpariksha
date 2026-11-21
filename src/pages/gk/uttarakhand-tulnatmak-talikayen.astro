@@ -1,0 +1,231 @@
+---
+import Article from '../../layouts/Article.astro';
+import Quiz from '../../components/Quiz.astro';
+import questions from '../../data/quizzes/tulnatmak-talikayen.json';
+
+const CHECKED = '21 नवंबर 2026';
+
+// Census 2011 (final). area km², population, density (pop ÷ area), sex ratio, literacy %, decadal growth % 2001–11
+const census = [
+  { d: 'हरिद्वार', s: 'haridwar', area: 2360, pop: 1890422, sr: 880, lit: 73.43, gr: 30.63 },
+  { d: 'देहरादून', s: 'dehradun', area: 3088, pop: 1696694, sr: 902, lit: 84.25, gr: 32.33 },
+  { d: 'ऊधम सिंह नगर', s: 'udham-singh-nagar', area: 2542, pop: 1648902, sr: 920, lit: 73.10, gr: 33.45 },
+  { d: 'नैनीताल', s: 'nainital', area: 4251, pop: 954605, sr: 934, lit: 83.88, gr: 25.13 },
+  { d: 'पौड़ी गढ़वाल', s: 'pauri-garhwal', area: 5329, pop: 687271, sr: 1103, lit: 82.02, gr: -1.41 },
+  { d: 'अल्मोड़ा', s: 'almora', area: 3144, pop: 622506, sr: 1139, lit: 80.47, gr: -1.28 },
+  { d: 'टिहरी गढ़वाल', s: 'tehri-garhwal', area: 3642, pop: 618931, sr: 1077, lit: 76.36, gr: 2.35 },
+  { d: 'पिथौरागढ़', s: 'pithoragarh', area: 7090, pop: 483439, sr: 1020, lit: 82.25, gr: 4.58 },
+  { d: 'चमोली', s: 'chamoli', area: 8030, pop: 391605, sr: 1019, lit: 82.65, gr: 5.74 },
+  { d: 'उत्तरकाशी', s: 'uttarkashi', area: 8016, pop: 330086, sr: 958, lit: 75.81, gr: 11.89 },
+  { d: 'बागेश्वर', s: 'bageshwar', area: 2241, pop: 259898, sr: 1090, lit: 80.01, gr: 4.18 },
+  { d: 'चंपावत', s: 'champawat', area: 1766, pop: 259648, sr: 980, lit: 79.83, gr: 15.63 },
+  { d: 'रुद्रप्रयाग', s: 'rudraprayag', area: 1984, pop: 242285, sr: 1114, lit: 81.30, gr: 6.53 },
+].map((r) => ({ ...r, den: Math.round(r.pop / r.area) }));
+
+// ISFR 2023, Vol II, Table 10.28.3 — forest cover km² and % of district geographical area
+const forest = [
+  { d: 'चंपावत', fc: 1219.39, pct: 69.06 }, { d: 'नैनीताल', fc: 2866.55, pct: 67.43 }, { d: 'पौड़ी गढ़वाल', fc: 3360.55, pct: 63.07 },
+  { d: 'टिहरी गढ़वाल', fc: 2222.68, pct: 61.03 }, { d: 'रुद्रप्रयाग', fc: 1146.61, pct: 57.79 }, { d: 'बागेश्वर', fc: 1263.37, pct: 56.38 },
+  { d: 'अल्मोड़ा', fc: 1722.96, pct: 54.80 }, { d: 'देहरादून', fc: 1640.30, pct: 53.12 }, { d: 'उत्तरकाशी', fc: 3023.86, pct: 37.72 },
+  { d: 'चमोली', fc: 2641.30, pct: 32.89 }, { d: 'पिथौरागढ़', fc: 2137.33, pct: 30.15 }, { d: 'हरिद्वार', fc: 564.76, pct: 23.93 },
+  { d: 'ऊधम सिंह नगर', fc: 494.17, pct: 19.44 },
+];
+
+const n = (x: number) => x.toLocaleString('en-IN');
+const by = <T,>(arr: T[], k: (t: T) => number) => [...arr].sort((a, b) => k(b) - k(a));
+const top = (k: (t: typeof census[0]) => number) => by(census, k);
+
+const ranks = [
+  { t: 'जनसंख्या', hi: top((r) => r.pop).slice(0, 3).map((r) => `${r.d} (${n(r.pop)})`), lo: top((r) => r.pop).slice(-3).reverse().map((r) => `${r.d} (${n(r.pop)})`) },
+  { t: 'क्षेत्रफल (वर्ग किमी)', hi: top((r) => r.area).slice(0, 3).map((r) => `${r.d} (${n(r.area)})`), lo: top((r) => r.area).slice(-3).reverse().map((r) => `${r.d} (${n(r.area)})`) },
+  { t: 'जनसंख्या घनत्व', hi: top((r) => r.den).slice(0, 3).map((r) => `${r.d} (${r.den})`), lo: top((r) => r.den).slice(-3).reverse().map((r) => `${r.d} (${r.den})`) },
+  { t: 'लिंगानुपात', hi: top((r) => r.sr).slice(0, 3).map((r) => `${r.d} (${r.sr})`), lo: top((r) => r.sr).slice(-3).reverse().map((r) => `${r.d} (${r.sr})`) },
+  { t: 'साक्षरता (%)', hi: top((r) => r.lit).slice(0, 3).map((r) => `${r.d} (${r.lit.toFixed(2)})`), lo: top((r) => r.lit).slice(-3).reverse().map((r) => `${r.d} (${r.lit.toFixed(2)})`) },
+  { t: 'दशकीय वृद्धि 2001–11 (%)', hi: top((r) => r.gr).slice(0, 3).map((r) => `${r.d} (${r.gr})`), lo: top((r) => r.gr).slice(-3).reverse().map((r) => `${r.d} (${r.gr})`) },
+];
+
+const faq = [
+  { q: 'उत्तराखंड का सबसे बड़ा ज़िला चमोली है या उत्तरकाशी?', a: 'जनगणना 2011 की ज़िला तालिका में चमोली 8,030 और उत्तरकाशी 8,016 वर्ग किमी है, और सभी 13 ज़िलों का जोड़ इन्हीं आँकड़ों से 53,483 वर्ग किमी बनता है। फिर भी कई किताबें और कुछ परीक्षा-प्रश्न उत्तरकाशी को सबसे बड़ा मानते हैं। विकल्पों में केवल उत्तरकाशी हो तो उत्तरकाशी चुनें; क्रम वाले प्रश्नों में UKPSC ने जनगणना वाला क्रम (चमोली पहले) इस्तेमाल किया है।' },
+  { q: 'उत्तराखंड में वन आवरण कितना है?', a: 'ISFR 2023 के अनुसार 24,303.83 वर्ग किमी, यानी राज्य के क्षेत्रफल का 45.44%। जबकि अभिलिखित वन क्षेत्र (कागज़ों में "वन" दर्ज ज़मीन) लगभग 38,000 वर्ग किमी (71.05%) है। दोनों अलग चीज़ें हैं।' },
+  { q: 'घनत्व के आँकड़े अलग-अलग किताबों में थोड़े अलग क्यों होते हैं?', a: 'घनत्व = जनसंख्या ÷ क्षेत्रफल। अलग स्रोत क्षेत्रफल के थोड़े अलग आँकड़े लेते हैं, इसलिए 1–3 का अंतर आ जाता है (जैसे रुद्रप्रयाग 119 या 122)। क्रम (कौन सबसे ऊपर, कौन सबसे नीचे) नहीं बदलता, परीक्षा में वही पूछा जाता है।' },
+];
+---
+<Article
+  title="उत्तराखंड: ज़िलों की तुलना और रैंक तालिकाएँ (जनगणना 2011, ISFR 2023)"
+  description="उत्तराखंड के 13 ज़िलों की तुलना: क्षेत्रफल, जनसंख्या, घनत्व, लिंगानुपात, साक्षरता, दशकीय वृद्धि (जनगणना 2011) और वन आवरण (ISFR 2023)। सबसे अधिक व सबसे कम वाले ज़िले, क्रम वाले प्रश्नों की ट्रिक, मिलान-तालिकाएँ और क्विज़।"
+  breadcrumbs={[{ name: 'उत्तराखंड GK', href: '/gk/' }]}
+  published="2026-11-21"
+  hideHero={true}
+  faq={faq}
+>
+  <div class="keypoints">
+    <h2>यह पेज कैसे इस्तेमाल करें</h2>
+    <ul>
+      <li>UKPSC अक्सर पूछता है: "ज़िलों को घटते क्रम में लगाइए" या "मिलान कीजिए"। इसके लिए नीचे की तालिकाएँ और "सबसे ऊपर / सबसे नीचे" वाला सार याद करें।</li>
+      <li>बड़ी तालिकाओं में किसी भी कॉलम के शीर्षक पर क्लिक करके उसी हिसाब से क्रम बदल सकते हैं (मोबाइल पर तालिका कार्ड बन जाती है)।</li>
+      <li>आँकड़े सरकारी स्रोतों से: जनगणना 2011 और भारतीय वन सर्वेक्षण की ISFR 2023। जाँच: {CHECKED}।</li>
+    </ul>
+  </div>
+
+  <h2 id="saar">1. एक नज़र में: सबसे ऊपर और सबसे नीचे</h2>
+  <table>
+    <thead><tr><th>पैमाना</th><th>सबसे अधिक (पहले 3)</th><th>सबसे कम (नीचे के 3)</th></tr></thead>
+    <tbody>{ranks.map((r) => <tr><td><b>{r.t}</b></td><td>{r.hi.join(', ')}</td><td>{r.lo.join(', ')}</td></tr>)}</tbody>
+  </table>
+  <ul>
+    <li><b>राज्य (जनगणना 2011):</b> जनसंख्या 1,00,86,292; क्षेत्रफल 53,483 वर्ग किमी; लिंगानुपात 963; साक्षरता 78.82%; दशकीय वृद्धि 18.81% [1][2]।</li>
+    <li><b>नगरीय आबादी:</b> राज्य में 30.23%। सबसे अधिक <b>देहरादून (लगभग 55.5%)</b>, सबसे कम <b>बागेश्वर (लगभग 3.5%)</b>, फिर रुद्रप्रयाग (4.1%) और उत्तरकाशी (7.4%) [3]।</li>
+    <li><b>ऋणात्मक वृद्धि:</b> केवल दो ज़िले, <b>पौड़ी गढ़वाल (−1.41%)</b> और <b>अल्मोड़ा (−1.28%)</b>। यह पहाड़ से पलायन का सबसे बड़ा आँकड़ा-प्रमाण है [2]।</li>
+  </ul>
+
+  <div class="box-trap">
+    <strong>परीक्षा में क्या लिखें: सबसे बड़ा ज़िला</strong>
+    जनगणना 2011 की तालिका में <b>चमोली (8,030)</b> उत्तरकाशी (8,016) से 14 वर्ग किमी बड़ा है, और इन्हीं आँकड़ों से 13 ज़िलों का जोड़ ठीक 53,483 बनता है। पर कई किताबें उत्तरकाशी को सबसे बड़ा लिखती हैं। हाल के UKPSC पेपरों में दोनों रूप दिखे: क्रम वाले प्रश्नों में जनगणना वाला क्रम (चमोली, उत्तरकाशी, पिथौरागढ़, पौड़ी) था, जबकि एक मिलान प्रश्न में विकल्पों में चमोली था ही नहीं और "सबसे बड़ा" के लिए उत्तरकाशी अपेक्षित था। <b>नियम:</b> दोनों विकल्प हों तो जनगणना (चमोली) वाला क्रम; केवल उत्तरकाशी हो तो उत्तरकाशी।
+  </div>
+
+  <h2 id="janganana">2. ज़िलेवार तालिका: जनगणना 2011</h2>
+  <table class="sortable">
+    <thead><tr><th>ज़िला</th><th data-num>क्षेत्रफल (वर्ग किमी)</th><th data-num>जनसंख्या</th><th data-num>घनत्व</th><th data-num>लिंगानुपात</th><th data-num>साक्षरता %</th><th data-num>वृद्धि % (2001–11)</th></tr></thead>
+    <tbody>
+      {census.map((r) => <tr><td><a href={`/gk/districts/${r.s}/`}>{r.d}</a></td><td data-v={r.area}>{n(r.area)}</td><td data-v={r.pop}>{n(r.pop)}</td><td data-v={r.den}>{r.den}</td><td data-v={r.sr}>{r.sr}</td><td data-v={r.lit}>{r.lit.toFixed(2)}</td><td data-v={r.gr}>{r.gr > 0 ? '+' : ''}{r.gr}</td></tr>)}
+      <tr class="total"><td><b>उत्तराखंड</b></td><td>53,483</td><td>1,00,86,292</td><td>189</td><td>963</td><td>78.82</td><td>+18.81</td></tr>
+    </tbody>
+  </table>
+  <p class="small">स्रोत: जनगणना 2011 प्राथमिक जनगणना सार और तालिका A-2 (दशकीय परिवर्तन) [1][2]; संकलित ज़िला सूची [4]। घनत्व यहाँ जनसंख्या ÷ क्षेत्रफल से निकाला गया है, इसलिए कुछ किताबों से 1–3 अंक का अंतर हो सकता है (जैसे रुद्रप्रयाग 119 या 122); क्रम वही रहता है।</p>
+
+  <h3>क्रम वाले प्रश्नों के लिए याद रखें</h3>
+  <ul>
+    <li><b>क्षेत्रफल, घटते क्रम में:</b> चमोली &gt; उत्तरकाशी &gt; पिथौरागढ़ &gt; पौड़ी &gt; नैनीताल &gt; टिहरी &gt; अल्मोड़ा &gt; देहरादून &gt; ऊधम सिंह नगर &gt; हरिद्वार &gt; बागेश्वर &gt; रुद्रप्रयाग &gt; चंपावत।</li>
+    <li><b>जनसंख्या, घटते क्रम में:</b> हरिद्वार &gt; देहरादून &gt; ऊधम सिंह नगर &gt; नैनीताल &gt; पौड़ी &gt; अल्मोड़ा &gt; टिहरी &gt; पिथौरागढ़ &gt; चमोली &gt; उत्तरकाशी &gt; बागेश्वर &gt; चंपावत &gt; रुद्रप्रयाग।</li>
+    <li><b>लिंगानुपात:</b> पहाड़ी ज़िले 1,000 से ऊपर (पलायन में पुरुष बाहर जाते हैं); मैदानी ज़िले (हरिद्वार, देहरादून, ऊधम सिंह नगर) सबसे नीचे।</li>
+    <li><b>तेज़ वृद्धि</b> वाले तीनों ज़िले मैदानी हैं: ऊधम सिंह नगर, देहरादून, हरिद्वार।</li>
+  </ul>
+
+  <h2 id="van">3. ज़िलेवार वन आवरण: ISFR 2023</h2>
+  <p>भारतीय वन सर्वेक्षण (देहरादून) हर दो साल में "भारत वन स्थिति रिपोर्ट" (ISFR) निकालता है। ISFR 2023 (दिसंबर 2024 में जारी) के अनुसार उत्तराखंड में <b>24,303.83 वर्ग किमी</b> वन आवरण है, जो राज्य के क्षेत्रफल का <b>45.44%</b> है [5]। इसमें अति सघन वन लगभग 5,266, मध्यम सघन 12,517 और खुला वन 6,519 वर्ग किमी है [6]।</p>
+  <table class="sortable">
+    <thead><tr><th>ज़िला</th><th data-num>वन आवरण (वर्ग किमी)</th><th data-num>ज़िले के क्षेत्रफल का %</th></tr></thead>
+    <tbody>{forest.map((r) => <tr><td>{r.d}</td><td data-v={r.fc}>{r.fc.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td><td data-v={r.pct}>{r.pct.toFixed(2)}</td></tr>)}</tbody>
+  </table>
+  <p class="small">स्रोत: ISFR 2023, खंड II, तालिका 10.28.3 [5]; संकलन [7][8]। तेरह ज़िलों का जोड़ 24,303.83 वर्ग किमी है, जो राज्य के कुल से मेल खाता है। मूल रिपोर्ट में पौड़ी (गढ़वाल) की पंक्ति का कुल 3,560.55 छपा है, जबकि उसकी श्रेणियों का जोड़ 3,360.55 है; जोड़ मिलाने पर 3,360.55 (63.07%) ही सही बैठता है।</p>
+  <ul>
+    <li><b>प्रतिशत में सबसे अधिक:</b> चंपावत (69.06%), नैनीताल (67.43%), पौड़ी (63.07%)। <b>सबसे कम:</b> ऊधम सिंह नगर (19.44%), हरिद्वार (23.93%), पिथौरागढ़ (30.15%)।</li>
+    <li><b>क्षेत्रफल में सबसे अधिक वन:</b> पौड़ी (3,360.55), उत्तरकाशी (3,023.86), नैनीताल (2,866.55)। <b>सबसे कम:</b> ऊधम सिंह नगर (494.17), हरिद्वार (564.76)।</li>
+    <li><b>2021 से बदलाव:</b> सबसे अधिक कमी ऊधम सिंह नगर (−11.29 वर्ग किमी), फिर उत्तरकाशी (−10.65); सबसे अधिक बढ़ोतरी टिहरी गढ़वाल (+8.87) [8]।</li>
+    <li><b>वन आवरण बनाम अभिलिखित वन:</b> कागज़ों में "वन" दर्ज ज़मीन लगभग 38,000 वर्ग किमी (71.05%) है, पर उसमें से सब पर पेड़ नहीं हैं [9]। "45%" और "71%" को आपस में न मिलाएँ।</li>
+    <li>2023-24 के मौसम में देश में सबसे अधिक वनाग्नि की घटनाएँ उत्तराखंड में दर्ज हुईं [6]।</li>
+  </ul>
+
+  <h2 id="milan">4. मिलान-तालिकाएँ (एक जगह)</h2>
+  <p>ये तथ्य हमारे भूगोल अध्यायों में स्रोत सहित विस्तार से हैं; यहाँ केवल दोहराने के लिए छोटी तालिकाएँ हैं।</p>
+
+  <h3>राष्ट्रीय उद्यान: वर्ष और ज़िला</h3>
+  <table>
+    <thead><tr><th>उद्यान</th><th>वर्ष</th><th>ज़िला</th><th>याद रखें</th></tr></thead>
+    <tbody>
+      <tr><td>जिम कॉर्बेट</td><td>1936</td><td>नैनीताल, पौड़ी</td><td>भारत का पहला (हेली नेशनल पार्क); बाद में रामगंगा राष्ट्रीय उद्यान, फिर कॉर्बेट</td></tr>
+      <tr><td>नंदा देवी</td><td>1982</td><td>चमोली</td><td>विश्व धरोहर 1988</td></tr>
+      <tr><td>फूलों की घाटी</td><td>1982</td><td>चमोली</td><td>सबसे छोटा; विश्व धरोहर विस्तार 2005</td></tr>
+      <tr><td>राजाजी</td><td>1983</td><td>देहरादून, हरिद्वार, पौड़ी</td><td>राजाजी, मोतीचूर, चीला अभयारण्य मिलाकर</td></tr>
+      <tr><td>गंगोत्री</td><td>1989</td><td>उत्तरकाशी</td><td>सबसे बड़ा</td></tr>
+      <tr><td>गोविंद</td><td>1990</td><td>उत्तरकाशी</td><td>टोंस घाटी, हर की दून</td></tr>
+    </tbody>
+  </table>
+  <p class="small">विस्तार: <a href="/geography/biodiversity-protected-areas/">जैव विविधता और संरक्षित क्षेत्र</a>।</p>
+
+  <h3>बाँध और नदियाँ</h3>
+  <table>
+    <thead><tr><th>बाँध / परियोजना</th><th>नदी</th><th>ज़िला</th></tr></thead>
+    <tbody>
+      <tr><td>टिहरी (+ कोटेश्वर)</td><td>भागीरथी (भिलंगना संगम)</td><td>टिहरी</td></tr>
+      <tr><td>मनेरी भाली I व II</td><td>भागीरथी</td><td>उत्तरकाशी</td></tr>
+      <tr><td>कालागढ़ (रामगंगा) बाँध</td><td>रामगंगा</td><td>पौड़ी (कॉर्बेट सीमा)</td></tr>
+      <tr><td>लखवाड़</td><td>यमुना</td><td>देहरादून</td></tr>
+      <tr><td>किशाऊ</td><td>टोंस</td><td>देहरादून (उत्तराखंड-हिमाचल सीमा)</td></tr>
+      <tr><td>जमरानी</td><td>गौला</td><td>नैनीताल</td></tr>
+      <tr><td>तपोवन-विष्णुगाड</td><td>धौलीगंगा (पश्चिमी)</td><td>चमोली</td></tr>
+      <tr><td>धौलीगंगा (NHPC)</td><td>धौलीगंगा (पूर्वी)</td><td>पिथौरागढ़</td></tr>
+      <tr><td>टनकपुर / शारदा बैराज</td><td>काली (शारदा)</td><td>चंपावत</td></tr>
+    </tbody>
+  </table>
+  <p class="small">विस्तार: <a href="/geography/rivers-drainage/">नदियाँ और अपवाह तंत्र</a>, <a href="/gk/uttarakhand-yojanayen/">योजनाएँ (लखवाड़, किशाऊ, जमरानी)</a>।</p>
+
+  <h3>दर्रे और ज़िले</h3>
+  <table>
+    <thead><tr><th>दर्रा</th><th>ज़िला</th><th>किस ओर</th></tr></thead>
+    <tbody>
+      <tr><td>लिपुलेख</td><td>पिथौरागढ़</td><td>व्यास घाटी से तिब्बत (कैलाश मानसरोवर मार्ग)</td></tr>
+      <tr><td>लंपिया धुरा, दारमा, मांगशा धुरा</td><td>पिथौरागढ़</td><td>दारमा-व्यास घाटियों से तिब्बत</td></tr>
+      <tr><td>उंटा धुरा, किंगरी-बिंगरी</td><td>पिथौरागढ़</td><td>जोहार (मिलम) से तिब्बत</td></tr>
+      <tr><td>माणा (डुंगरी ला), नीति</td><td>चमोली</td><td>सरस्वती व धौलीगंगा घाटी से तिब्बत</td></tr>
+      <tr><td>मुलिंग ला, थागा ला</td><td>उत्तरकाशी</td><td>नेलांग-जाड़ गंगा घाटी से तिब्बत</td></tr>
+    </tbody>
+  </table>
+  <p class="small">विस्तार: <a href="/geography/physiographic-divisions/">भौतिक विभाजन (दर्रे व चोटियाँ)</a>।</p>
+
+  <h3>सबसे ऊँची चोटियाँ</h3>
+  <table>
+    <thead><tr><th>क्रम</th><th>चोटी</th><th>ऊँचाई (मी)</th><th>ज़िला</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>नंदा देवी</td><td>7,816</td><td>चमोली</td></tr>
+      <tr><td>2</td><td>कामेट</td><td>7,756</td><td>चमोली</td></tr>
+      <tr><td>3</td><td>चौखंबा</td><td>7,138</td><td>उत्तरकाशी-चमोली-रुद्रप्रयाग सीमा</td></tr>
+      <tr><td>4</td><td>त्रिशूल</td><td>7,120</td><td>चमोली-बागेश्वर</td></tr>
+      <tr><td>5</td><td>सतोपंथ</td><td>7,075</td><td>चमोली/उत्तरकाशी</td></tr>
+      <tr><td>6</td><td>द्रोणागिरि (दूनागिरि)</td><td>7,066</td><td>चमोली</td></tr>
+    </tbody>
+  </table>
+
+  <h3>पंच प्रयाग (ऊपर से नीचे)</h3>
+  <p>विष्णुप्रयाग (धौलीगंगा) &gt; नंदप्रयाग (नंदाकिनी) &gt; कर्णप्रयाग (पिंडर) &gt; रुद्रप्रयाग (मंदाकिनी) &gt; देवप्रयाग (भागीरथी, यहीं से "गंगा")। सभी संगम अलकनंदा पर हैं।</p>
+
+  <h2 id="quiz">5. अभ्यास क्विज़ (12 प्रश्न)</h2>
+  <p>ये इस पेज से बने अभ्यास प्रश्न हैं, पिछले वर्षों के प्रश्न नहीं।</p>
+  <Quiz id="tulnatmak-talikayen" title="ज़िलों की तुलना क्विज़" questions={questions} />
+
+  <h2 id="srot">स्रोत</h2>
+  <ol class="sources">
+    <li>Census of India 2011 — Primary Census Abstract / Uttarakhand Data — <a href="https://censusindia.gov.in/nada/index.php/catalog/43338" rel="nofollow noopener" target="_blank">censusindia.gov.in</a></li>
+    <li>Census of India 2011 — Table A-2: Decadal Variation in Population 1901–2011, Uttarakhand (PDF) — <a href="https://new.census.gov.in/nada/index.php/catalog/6839/download/9922/05%20A-2%20Uttarakhand.pdf" rel="nofollow noopener" target="_blank">census.gov.in</a></li>
+    <li>"Characteristics of Urban Centres and Urbanization in Uttarakhand" (Hiroshima University repository; Census 2011 आधारित) — <a href="https://ir.lib.hiroshima-u.ac.jp/49127/files/40135" rel="nofollow noopener" target="_blank">ir.lib.hiroshima-u.ac.jp</a></li>
+    <li>ज़िलेवार संकलन (जनगणना 2011 के अंतिम आँकड़े) — <a href="https://www.census2011.co.in/census/state/districtlist/uttarakhand.html" rel="nofollow noopener" target="_blank">census2011.co.in</a></li>
+    <li>Forest Survey of India — ISFR 2023, Volume II (Table 10.28.3) — <a href="https://fsi.nic.in/uploads/isfr2023/isfr_book_eng-vol-2_2023.pdf" rel="nofollow noopener" target="_blank">fsi.nic.in</a></li>
+    <li>Hindustan Times (22.12.2024) — ISFR 2023, उत्तराखंड श्रेणियाँ; ISFR 2023 वनाग्नि — <a href="https://magzter.com/stories/newspaper/Hindustan-Times-Uttarakhand/STATES-FOREST-COVER-REDUCED-BY-2298-SQKM-SINCE-2021-REPORT" rel="nofollow noopener" target="_blank">HT</a>, <a href="https://drishtiias.com/daily-updates/daily-news-analysis/18th-india-state-of-forest-report-2023" rel="nofollow noopener" target="_blank">Drishti</a></li>
+    <li>ज़िलेवार संकलन (ISFR 2023) — <a href="https://uttarakhandhub.com/pariksha/gk/geography-and-forests" rel="nofollow noopener" target="_blank">uttarakhandhub.com</a></li>
+    <li>ISFR 2023 उत्तराखंड सार (बदलाव) — <a href="https://www.studyiq.net/lecture_ppt/lesson197530/Uttarakhand-Forest-Report-2023_1752326850.pdf" rel="nofollow noopener" target="_blank">StudyIQ PDF</a></li>
+    <li>Forest Survey of India — ISFR 2019 Vol II, Uttarakhand (अभिलिखित वन 38,000 वर्ग किमी, 71.05%) — <a href="https://fsi.nic.in/isfr19/vol2/isfr-2019-vol-ii-uttarakhand.pdf" rel="nofollow noopener" target="_blank">fsi.nic.in</a></li>
+  </ol>
+</Article>
+
+<script>
+  // click a header to sort (numbers use data-v)
+  document.querySelectorAll('table.sortable').forEach((t) => {
+    const ths = t.querySelectorAll('thead th');
+    ths.forEach((th, i) => {
+      th.style.cursor = 'pointer';
+      th.title = 'क्रम बदलने के लिए क्लिक करें';
+      let asc = false;
+      th.addEventListener('click', () => {
+        const body = t.querySelector('tbody')!;
+        const rows = [...body.querySelectorAll('tr')];
+        const total = rows.filter((r) => r.classList.contains('total'));
+        const data = rows.filter((r) => !r.classList.contains('total'));
+        asc = !asc;
+        data.sort((a, b) => {
+          const ca = a.children[i] as HTMLElement, cb = b.children[i] as HTMLElement;
+          if (th.hasAttribute('data-num')) return (asc ? 1 : -1) * (Number(ca.dataset.v) - Number(cb.dataset.v));
+          return (asc ? 1 : -1) * ca.textContent!.localeCompare(cb.textContent!, 'hi');
+        });
+        [...data, ...total].forEach((r) => body.appendChild(r));
+      });
+    });
+  });
+</script>
+
+<style>
+  .small { font-size: .9rem; color: #475569; }
+  .sources { font-size: .85rem; line-height: 1.6; }
+  tr.total td { background: #f1f5f9; font-weight: 600; }
+  .box-trap { background: #fef2f2; border-left: 5px solid #ef4444; border-radius: 12px; padding: 10px 16px; margin: 12px 0; }
+  .box-trap > strong:first-child { display: block; margin-bottom: 2px; }
+</style>
