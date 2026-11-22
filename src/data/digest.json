@@ -390,13 +390,88 @@
  ],
  "points": [
   {
+   "fact": "राज्य सरकार ने स्वैच्छिक व आंशिक चकबंदी के लिए 2026-27 में नया बजट मद खोलकर राज्य आकस्मिकता निधि से ₹100 करोड़ स्वीकृत किए; कुल ₹155.96 करोड़ के कार्य मंज़ूर।",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "चकबंदी, ₹100 करोड़",
+   "refs": [
+    {
+     "title": "सड़क, पुल, पार्किंग से लेकर पेंशन तक... धामी कैबिनेट के फैसलों से किसे क्या मिला?",
+     "link": "https://newstrack.com/uttarakhand/uttarakhand-cm-dhami-development-works-155-crore-da-hike-ops-649650",
+     "source": "Newstrack"
+    }
+   ],
+   "details": [
+    {
+     "k": "महँगाई भत्ता",
+     "v": "1 जुलाई 2026 से छठे वेतनमान में 262% से 269%, पाँचवें वेतनमान में 483% से 497%"
+    },
+    {
+     "k": "पुरानी पेंशन",
+     "v": "178 पुलिसकर्मी (आरक्षी, PAC, IRB) NPS से पुरानी पेंशन योजना (OPS) में"
+    },
+    {
+     "k": "पार्किंग",
+     "v": "लोहाघाट (चंपावत) में बहुमंज़िला पार्किंग ₹998.55 लाख, मौलेखाल (अल्मोड़ा) ₹591.16 लाख"
+    }
+   ],
+   "sum": "मुख्यमंत्री ने ₹155.96 करोड़ के कार्य मंज़ूर किए, जिनमें चकबंदी के लिए ₹100 करोड़ शामिल हैं; DA भी बढ़ा।",
+   "quiz": {
+    "q": "2026-27 में स्वैच्छिक व आंशिक चकबंदी के लिए किस निधि से ₹100 करोड़ स्वीकृत हुए?",
+    "a": "राज्य आकस्मिकता निधि"
+   },
+   "id": "bc98c46beb",
+   "date": "2026-11-21",
+   "model": "manual-review",
+   "added": "2026-11-22T04:11:27.391Z",
+   "depth": "article"
+  },
+  {
+   "fact": "ऋषिकेश–कर्णप्रयाग रेल लाइन परियोजना की कुल भौतिक प्रगति 79% और सुरंग खुदाई लगभग 97% पूरी हुई।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "ऋषिकेश–कर्णप्रयाग रेल",
+   "refs": [
+    {
+     "title": "Rishikesh-Karnaprayag Rail Line Project In Uttarakhand Achieves 79 Per Cent Progress, 97 Per Cent Tunnel Excavation Completed",
+     "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQanU2S3V3WnZUOExCa1Atc2s3cTNzQkRsZlA5WG9ySm15Y0ZRTjFDX3hPMTd5NnZZb0M2dkppUkpXU205b1pnV09IaWdWZ2xyc1hHYnBUWGhhM0ZpTFVwZlBiNnRZR2xkMnFHMlVZTHRhY2xuYVVLU2NSTlV5THRkWjVyS0o3ZE1oZDZ1YWt1OE9RWEc0RjdXcDgxTTUzLXFzQW1IQjF5T29mQk96Q3JIZ1NLckE0QTdFWnVaUTBGMzMyUnhBOG1ERnBCczVaZkJGcEsyUWtqS0diWklNZDN6am1KY19QQ2ZRb3dudzhVb09XTXU4bXfSAYYCQVVfeXFMTUc1SGJGSHRQRFJmdzdRd1Byc2w2RDhhdmJjeEc2bmVpQk1kdkpmV3ZDRlpnUC1BZTN4NUlOcDY0ZDVid2NvX0RuM3pUMnlxakZXSy1EMVlQUHR0S0c5RXhORzZ4OE9ic1g0Tlc5eFBhTDFDLWlIZlBLQTRXOG05T2dHOHl1dDRadW1tNkR3c1NNbDYxMjQ1MGdjNXZfOEZhcWU1TjBZT2tFRHhkRWFCLUNDMFp5MHRBV3NnVXkyRl9hdldKUy12V3VaVTV3Q2xsUFc0elVxU2F6S1BKYWl6ZkVyMDB0NUszTjlEb0FNX0xpV3h0X0dGaXB6VmZLdktKX1lOak9VUQ?oc=5",
+     "source": "Swarajya"
+    }
+   ],
+   "details": [
+    {
+     "k": "लंबाई",
+     "v": "125 किमी; 12 स्टेशन, 213 किमी सुरंगें (मुख्य + एस्केप)"
+    },
+    {
+     "k": "संस्था",
+     "v": "रेल विकास निगम लिमिटेड (RVNL); पूरा होने का लक्ष्य दिसंबर 2029"
+    },
+    {
+     "k": "ज़िले",
+     "v": "देहरादून, टिहरी, पौड़ी, रुद्रप्रयाग, चमोली",
+     "t": "g"
+    }
+   ],
+   "sum": "ऋषिकेश–कर्णप्रयाग रेल लाइन 79% पूरी हो चुकी है; सुरंग खुदाई लगभग 97% पूरी।",
+   "quiz": {
+    "q": "ऋषिकेश–कर्णप्रयाग रेल परियोजना किस संस्था द्वारा बनाई जा रही है?",
+    "a": "रेल विकास निगम लिमिटेड (RVNL)"
+   },
+   "id": "f32a9461de",
+   "date": "2026-11-21",
+   "model": "manual-review",
+   "added": "2026-11-22T04:11:27.391Z",
+   "depth": "article"
+  },
+  {
    "id": "83a49c4c7c",
    "date": "2026-11-21",
-   "fact": "नमामि गंगे मिशन के तहत उत्तराखंड की हेवल नदी (Heval River) का पुनरुद्धार नदी संरक्षण के सफल मॉडल के रूप में उभरा।",
+   "fact": "नमामि गंगे मिशन के तहत टिहरी गढ़वाल ज़िले की हेवल नदी का पुनरुद्धार नदी संरक्षण के सफल मॉडल के रूप में उभरा।",
    "cat": "पर्यावरण",
    "imp": 2,
-   "tag": "हेवल नदी पुनरुद्धार",
-   "model": "gemini-3.8-flash",
+   "tag": "हेवल नदी, टिहरी",
+   "model": "manual-review",
    "refs": [
     {
      "title": "Uttarakhand: Heval River revival sets example under Namami Gange Mission for river conservation",
@@ -404,68 +479,29 @@
      "source": "ANI News"
     }
    ],
-   "added": "2026-11-21T23:33:18.377Z",
+   "added": "2026-11-22T04:11:27.391Z",
    "details": [
     {
      "k": "स्थान",
-     "v": "तेह्री जिला"
+     "v": "टिहरी गढ़वाल ज़िला; चंबा क्षेत्र के लगभग 34 गाँव इस नदी पर निर्भर"
     },
     {
-     "k": "नमामि गंगे शुरू वर्ष",
-     "v": "2014",
+     "k": "संगम",
+     "v": "शिवपुरी (ऋषिकेश के पास) में गंगा से मिलती है",
      "t": "g"
     },
     {
-     "k": "नमामि गंगे उद्देश्य",
-     "v": "नदी संरक्षण",
+     "k": "पृष्ठभूमि",
+     "v": "अक्टूबर 2026 में प्रधानमंत्री ने ‘मन की बात’ में हेवल पुनरुद्धार की सराहना की; नमामि गंगे जून 2014 में शुरू",
      "t": "g"
     }
    ],
-   "sum": "हेवल नदी का पुनरुद्धार नमामि गंगे मिशन के तहत किया गया और यह नदी संरक्षण का राष्ट्रीय उदाहरण बन गया।",
+   "sum": "टिहरी गढ़वाल की हेवल नदी का पुनरुद्धार नमामि गंगे मिशन के तहत नदी संरक्षण का उदाहरण बना।",
    "quiz": {
     "q": "हेवल नदी का पुनरुद्धार किस मिशन के तहत किया गया?",
     "a": "नमामि गंगे"
    },
    "depth": "headlines"
-  },
-  {
-   "id": "1079316751",
-   "date": "2026-11-21",
-   "fact": "तिरुवनंतपुरम (केरल) में आयोजित नेशनल डेफ सीनियर स्पोर्ट्स चैंपियनशिप में उत्तराखंड के प्रखर और रोहित ने रजत पदक जीते।",
-   "cat": "खेल",
-   "imp": 2,
-   "tag": "नेशनल डेफ चैंपियनशिप",
-   "model": "gemini-3.8-flash",
-   "refs": [
-    {
-     "title": "Rishikesh News: प्रखर और रोहित ने जीते रजत पदक",
-     "link": "https://www.amarujala.com/uttarakhand/rishikesh/prakhar-and-rohit-won-silver-medals-rishikesh-news-c-5-1-drn1027-1116885-2026-11-21",
-     "source": "Amar Ujala"
-    }
-   ],
-   "added": "2026-11-21T23:33:18.377Z",
-   "details": [
-    {
-     "k": "तिथि",
-     "v": "13 से 15 नवंबर"
-    },
-    {
-     "k": "केरल की राजधानी",
-     "v": "त्रिवेंद्रम",
-     "t": "g"
-    },
-    {
-     "k": "त्रिवेंद्रम जिला",
-     "v": "त्रिवेंद्रम",
-     "t": "g"
-    }
-   ],
-   "sum": "तिरुवनंतपुरम (केरल) में 13‑15 नवंबर आयोजित नेशनल डेफ सीनियर स्पोर्ट्स चैंपियनशिप में उत्तराखंड के प्रखर चमोली ने एकल में और प्रखर‑रोहित जोड़ी ने युगल में रजत पदक जीते।",
-   "quiz": {
-    "q": "नेशनल डेफ सीनियर स्पोर्ट्स चैंपियनशिप में एकल वर्ग में उत्तराखंड के किस खिलाड़ी ने रजत पदक जीता?",
-    "a": "प्रखर चमोली"
-   },
-   "depth": "article"
   },
   {
    "id": "ac6a628304",
@@ -2922,5 +2958,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-22T03:17:51.208Z"
+ "updated": "2026-11-22T04:11:27.391Z"
 }
