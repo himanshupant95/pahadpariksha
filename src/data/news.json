@@ -1,6 +1,19 @@
 {
- "updated": "2026-11-22T00:42:06.867Z",
+ "updated": "2026-11-22T03:17:50.688Z",
  "items": [
+  {
+   "id": "c64cdce14897",
+   "title": "उत्तराखंड: वन्यजीव अंग कार्यालयों से गायब हुए तो डीएफओ होंगे जिम्मेदार, पीसीसीएफ ने जारी किए दिशा-निर्देश",
+   "link": "https://www.amarujala.com/dehradun/dfos-to-be-held-responsible-if-wildlife-parts-go-missing-from-offices-pccf-issues-guidelines-2026-11-22",
+   "source": "Amar Ujala",
+   "published": "2026-11-22T02:56:59.000Z",
+   "lang": "hi",
+   "summary": "वन विभाग के कार्यालयों में रखे हुए हाथी दांत समेत अन्य वन्यजीव अंग गायब हुए तो व्यक्तिगत तौर पर डीएफओ जिम्मेदार होंगे। इसके अलावा जहां पर वन्यजीव अंग रखे गए हैं, वहां पर सुरक्षा और कड़ी की जाएगी।",
+   "score": 2,
+   "cat": "पर्यावरण",
+   "sources": [],
+   "firstSeen": "2026-11-22T03:17:41.171Z"
+  },
   {
    "id": "66ab620e96b6",
    "title": "करोड़ों साल पुराने जीवाश्म दिलाएंगे पिथौरागढ़ को राष्ट्रीय पहचान, उत्तराखंड का पहला ऐसा स्थल",
@@ -120,7 +133,9 @@
    "lang": "hi",
    "score": 2,
    "cat": "योजना/नीति",
-   "sources": [],
+   "sources": [
+    "Uttarakhand City News"
+   ],
    "firstSeen": "2026-11-21T14:55:41.660Z"
   },
   {
@@ -195,7 +210,8 @@
    "score": 4,
    "cat": "योजना/नीति",
    "sources": [
-    "https://www.indiagazette.com/"
+    "https://www.indiagazette.com/",
+    "Big News Network.com"
    ],
    "firstSeen": "2026-11-21T14:55:43.037Z"
   },
