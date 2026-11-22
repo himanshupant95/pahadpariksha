@@ -386,45 +386,224 @@
   "d828a5c75622",
   "cd21b91e92b2",
   "c0a562db1bd4",
-  "497996966cc9"
+  "497996966cc9",
+  "6a250c90f3c2",
+  "7e1c90f63e33",
+  "d91d6a7e6176",
+  "c4096a96a2d7",
+  "5375fb4c5183",
+  "66ab620e96b6",
+  "5c39fad8f564",
+  "75fbf962b4f3",
+  "e390b0991eff",
+  "12b0d0466b54",
+  "64940d16609d",
+  "d0a8e14d1f34",
+  "c64cdce14897",
+  "a650b7bd0382",
+  "b0eb35aff498",
+  "030c90e7a2a9",
+  "18c0fd02c7b1",
+  "f3bb9ef689b9",
+  "1aa47ae3ac53",
+  "d0d032c601fe",
+  "853a605170cf",
+  "37063baf3877",
+  "9d2c3c12075d",
+  "da905f5204aa",
+  "a4ea416cc19d",
+  "91add08f748b",
+  "7678c69423b7",
+  "cd57f0722257",
+  "a12e8a16fee2",
+  "9d6a556f8870",
+  "24d4f8a22ec1",
+  "13e3a0d99250",
+  "e2922e348876",
+  "061cee9146bb",
+  "5e6e9abdc32f"
  ],
  "points": [
   {
-   "fact": "राज्य सरकार ने स्वैच्छिक व आंशिक चकबंदी के लिए 2026-27 में नया बजट मद खोलकर राज्य आकस्मिकता निधि से ₹100 करोड़ स्वीकृत किए; कुल ₹155.96 करोड़ के कार्य मंज़ूर।",
-   "cat": "योजना/नीति",
-   "imp": 2,
-   "tag": "चकबंदी, ₹100 करोड़",
+   "id": "87b59daf33",
+   "date": "2026-11-22",
+   "fact": "छार्छुम पुल, काली नदी पर, भारत के प्रधानमंत्री नरेंद्र मोदी और नेपाल के प्रधानमंत्री बालेंद्र शाह ने ऑनलाइन उद्घाटन किया।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "छार्छुम पुल",
+   "model": "groq/openai/gpt-oss-120b",
    "refs": [
     {
-     "title": "सड़क, पुल, पार्किंग से लेकर पेंशन तक... धामी कैबिनेट के फैसलों से किसे क्या मिला?",
-     "link": "https://newstrack.com/uttarakhand/uttarakhand-cm-dhami-development-works-155-crore-da-hike-ops-649650",
-     "source": "Newstrack"
+     "title": "Pithoragarh News: भारत और नेपाल के प्रधानमंत्री आज करेंगे छार्छुम पुल का उद्घाटन",
+     "link": "https://www.amarujala.com/uttarakhand/pithoragarh/the-prime-ministers-of-india-and-nepal-will-inaugurate-the-charchum-bridge-today-pithoragarh-news-c-230-1-pth1005-149184-2026-11-22",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "उत्तराखंड में मैत्री सेतु: भारत-नेपाल पीएम करेंगे छारछुम पुल का लोकार्पण",
+     "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMENaWnFGZ3BZcE4zNUFLVk0za1pWYjduX0N3emtzN1FiSGtJc29IcEEtQUE4bFB3RHZYSGZhVk0yZnVCZTBtUGQ4YUZ0d2NrUmNMdFJpY2VxbzVDYWhNNUZWM1FTMWU4eTlZTG9OenVvb05rbW9zR3Z0NWIyNnRaRWZmMVRBMGV0eFc1VFFqcmhWQ2plc2RMU24tb0RqeGlRbmwwMXBOTmtKU0kzNVUxSFlRZEg4UDUzcTdLSkVkN3VWOC1y0gHKAUFVX3lxTE84MVhKTkcwQzhoZWJRQmxIbGRVMEFPcGJaYnJnM1ZtMnZUYXFmbnFlUmJKbVlRaWVkd1B4WjQzY1k1MzkzTHFvOVNCX0hQSU84dWJuWGcxQWk4UVdXaTJEa1plWDZydjRfQ1B6SjNHT1I0bVZILW5PTjJZLWJabExob3gxdEhRaWxvSkJzQ1dLYzZ3bFJPM1hfTGRPeFZRcExncnVVRnJPcy1DTkVuT09BT0lqcnVxWHZRMjhhZl9vblNLcXgwNC1xY2c?oc=5",
+     "source": "ETV Bharat"
+    },
+    {
+     "title": "Modi, Nepal PM Balen Shah To Inaugurate International Bridge Over Kali River In Uttarakhand's Pithoragarh",
+     "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQWG1PQjJoVDVaQ19NRjNBbGFSUXRHMkgzVzZ5RmpBZ240azBxc3VRbkhyTXhRMnd0bG92UXU5dVk1UXlXRzJVVnBIZUl2dFhJMjlnZXA0T3EzVXFmWDFqZFBTSkl5S2JjQ0owN0JqX29pTUo5NUF6b1RudG9vSFNPX3g3dzRpTzRaakw3ZU9qTTl4N3pNY3hGOExIVWF5SjdmU0l1Q3Y4eWVFcE5nNFVxNldiZEFvbVFSdk1ENTN2RmZIZlXSAcgBQVVfeXFMTjJIWVZUOTZoYjFZZFctZDNCLVk1UnhrU25wSXFPczhvOG54TE12VFN5TC1ncUJ2Ry05Rk00RjAweUVLQ2prRGZMWFRZVEpkZDhQMG9JQ3Nqc3BNS3BxOW1ZVTRmdnBtRHk4SEhoV19oTV9Gdm5EV0tleHZLYVV0TVA1T0JtRWNXVHVwa0xWRTJCRHBrVVV3ODRHWVdhcjN6Wi1lem5FMW9WcE84cGpRdTg4bjF2aGgzTlV1VlVHM0duUzNUSWhtbks?oc=5",
+     "source": "ETV Bharat"
     }
    ],
+   "added": "2026-11-22T23:50:34.190Z",
    "details": [
     {
-     "k": "महँगाई भत्ता",
-     "v": "1 जुलाई 2026 से छठे वेतनमान में 262% से 269%, पाँचवें वेतनमान में 483% से 497%"
+     "k": "पुल का स्थान",
+     "v": "पिथौरागढ़ जिले, छार्छुम तहसील क्षेत्र, काली नदी पर"
     },
     {
-     "k": "पुरानी पेंशन",
-     "v": "178 पुलिसकर्मी (आरक्षी, PAC, IRB) NPS से पुरानी पेंशन योजना (OPS) में"
+     "k": "निर्माण एजेंसी",
+     "v": "लोक निर्माण विभाग (लोनिवि)"
     },
     {
-     "k": "पार्किंग",
-     "v": "लोहाघाट (चंपावत) में बहुमंज़िला पार्किंग ₹998.55 लाख, मौलेखाल (अल्मोड़ा) ₹591.16 लाख"
+     "k": "उद्घाटन समय",
+     "v": "सोमवार दोपहर 12 बजे"
     }
    ],
-   "sum": "मुख्यमंत्री ने ₹155.96 करोड़ के कार्य मंज़ूर किए, जिनमें चकबंदी के लिए ₹100 करोड़ शामिल हैं; DA भी बढ़ा।",
+   "sum": "पिथौरागढ़ जिले के छार्छुम में काली नदी पर बने मोटर पुल का उद्घाटन भारत और नेपाल के प्रधानमंत्रियों ने ऑनलाइन किया।",
    "quiz": {
-    "q": "2026-27 में स्वैच्छिक व आंशिक चकबंदी के लिए किस निधि से ₹100 करोड़ स्वीकृत हुए?",
-    "a": "राज्य आकस्मिकता निधि"
+    "q": "छार्छुम मोटर पुल किस नदी पर बना है?",
+    "a": "काली नदी"
    },
-   "id": "bc98c46beb",
-   "date": "2026-11-21",
-   "model": "manual-review",
-   "added": "2026-11-22T04:11:27.391Z",
+   "depth": "headlines"
+  },
+  {
+   "id": "2a7183e17d",
+   "date": "2026-11-22",
+   "fact": "पिथौरागढ़ में स्ट्रोमैटोलाइट जीवाश्मों को राष्ट्रीय भू‑विरासत स्थल घोषित किया गया, यह उत्तराखंड का पहला ऐसा स्थल है।",
+   "cat": "पर्यावरण",
+   "imp": 3,
+   "tag": "राष्ट्रीय भूविरासत",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "करोड़ों साल पुराने जीवाश्म दिलाएंगे पिथौरागढ़ को राष्ट्रीय पहचान, उत्तराखंड का पहला ऐसा स्थल",
+     "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONEVUcXBweDRZOHdQb2VYZG5jWXBRZWFGcFlPSDRUekU3WmhOMDBEWnplNGxuczJRb2x5U0MzRzNEMS1TbnY3NzU0WjBJWkRqVnNSOVpVc0lmNk5jOUQxSTFfcjF1V3c2a2RlMnNwRlpScHdON0FQWjZXdjFVSHpJcm5vMDdaajRhOU1xRWZBaTNGdjllc05lN3BQbUFKV2ZCTVRqUzIxWWRxdVNpTVZVQXJOdjBtdG8waUpwRmFuU0p3RFhfOWoydjJRa3BoUTBF?oc=5",
+     "source": "Jagran"
+    },
+    {
+     "title": "पिथौरागढ़: हाट कालिका मंदिर के आसपास मिले स्ट्रोमैटोलाइट जीवाश्म, राष्ट्रीय भू-विरासत की मिली मान्यता",
+     "link": "https://www.amarujala.com/uttarakhand/nainital/stromatolite-fossils-discovered-near-hat-kalika-temple-granted-national-geo-heritage-status-2026-11-22",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-22T23:50:34.190Z",
+   "details": [
+    {
+     "k": "घोषणा तिथि",
+     "v": "9 अक्टूबर 2026"
+    },
+    {
+     "k": "घोषणा करने वाली संस्था",
+     "v": "भारतीय भूवैज्ञानिक सर्वेक्षण"
+    },
+    {
+     "k": "सर्वेक्षण टीम प्रमुख",
+     "v": "डॉ. स्निग्धा घटक (उपमहानिदेशक)"
+    },
+    {
+     "k": "सर्वेक्षण अवधि",
+     "v": "18 से 20 नवंबर"
+    },
+    {
+     "k": "परियोजना निगरानी",
+     "v": "पर्यावरण मंत्रालय और राष्ट्रीय हिमालयी अध्ययन मिशन"
+    },
+    {
+     "k": "जीवाश्म की उम्र",
+     "v": "3.5 से 3.7 अरब वर्ष"
+    },
+    {
+     "k": "नोडल अधिकारी",
+     "v": "श्री महेंद्र लोढ़ी"
+    },
+    {
+     "k": "स्ट्रोमैटोलाइट की प्रकृति",
+     "v": "सायनोबैक्टीरिया द्वारा बनाई गई परतदार चट्टानें",
+     "t": "g"
+    }
+   ],
+   "sum": "गंगोलीहाट के हाट कालिका मंदिर क्षेत्र में मिले स्ट्रोमैटोलाइट जीवाश्मों को राष्ट्रीय भू-विरासत स्थल घोषित किया गया, जो उत्तराखंड का पहला ऐसा स्थल है।",
+   "quiz": {
+    "q": "उत्तराखंड का पहला राष्ट्रीय भू-विरासत स्थल कौन सा है?",
+    "a": "गंगोलीहाट के हाट कालिका मंदिर क्षेत्र में स्थित स्ट्रोमैटोलाइट जीवाश्म स्थल"
+   },
    "depth": "article"
+  },
+  {
+   "id": "0c3ccf5bce",
+   "date": "2026-11-22",
+   "fact": "उत्तराखंड में 2,500 से अधिक अवैध मदरसे बंद कर यूसीसी (UCC) लागू किया गया।",
+   "cat": "योजना/नीति",
+   "imp": 3,
+   "tag": "UCC मदरसे",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Uttarakhand CM Dhami outlines UCC rollout, closure of 2,500 madrasas",
+     "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOeEItM0JUQ0c4RVV5SFh1MEh4TDk5RmJ1czJSc1M1cFJ4WURXY3E5RHNpbEVQa0VZamlNSWhqOURjMVpSZlJyR3AtT015NFJqTUlwQ0VaY29iZS1wdGluZzRaNE5ZWWhXT2E1WG5QWEtpSmxBMVNtMXFud1IycXUxXzNSWGg1VU03eFd3ZmxPMWtKTlNjVDI3REJNTHJJTnJv?oc=5",
+     "source": "The News Mill"
+    },
+    {
+     "title": "उत्तराखंड में 2,500 से ज्यादा अवैध मदरसे बंद: CM धामी बोले-अल्पसंख्यक बच्चों के भविष्य के लिए UCC लागू किया",
+     "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQdmFxeWlOQ2E3blhVRGhnVGxDU2F0WjFnSDVscWFkZFZRaktKbHoxbFlWQ05kbzhVZGMwRkdwZ3VvbTBPODJucGh6T1EzZ0kyRmdheW0ySFhvMVpnLWduQzZVU0hwSU1TbnB2QkJqOF9zanJJcWx6Z0JCX0RITnhUUENMYWlXSU1aMG03dm0xVWZOU3lLdm42REc5aWVLcXU3NE1SSnRvSk1rYng4TzB2YkpVZGxCZzdWYVk0Q01Wak5tNDFYYm5QellZTlptNUt3T1gtQVpWMkhnQlRGS1plRDZyRUNRX3FIaFh4MWVkY0LSAfYBQVVfeXFMUGowNVpkLTBfNDZqdENzTU5NXzR6OUNRSjhqSkVzd2FSTlpkaWRhSnJGRDBJdEtNTlA2WEk2S0RTV05ybmVmTE11dlZCdHRqMC03anlYYTV1RHR0TU0yRVBrTFN3MGVBOFdSR3pNandJYlk4bmRnWUJDU1pwcktxUm9xa0huZlhmdGE1UDFpLXdydzVJclZhNFozTVVxT3lfTXJNNGZ0bVJrTnBmWkxvSjZYN2JGNVdWd0hmT19qWVY3eTQ4NUVNd2xpWmFGdk12SHdYZy1RSmNWYm9FMTRlM2NDTW0zTHNzYVAyY0FrZGlMWWl5aXZn?oc=5",
+     "source": "ThePrint Hindi"
+    }
+   ],
+   "added": "2026-11-22T23:50:34.190Z",
+   "details": [
+    {
+     "k": "जानकारी देने वाला",
+     "v": "मुख्यमंत्री धामी"
+    },
+    {
+     "k": "बैठक का नाम",
+     "v": "बीजेपी राज्य कार्य समिति बैठक"
+    }
+   ],
+   "sum": "मुख्यमंत्री धामी ने बीजेपी राज्य कार्य समिति बैठक में 2,500 से अधिक अवैध मदरसों के बंद होने और यूसीसी लागू करने की जानकारी दी।",
+   "quiz": {
+    "q": "मुख्यमंत्री धामी ने कितने अवैध मदरसों के बंद होने की जानकारी दी?",
+    "a": "2,500 से अधिक"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "4c3774e3a8",
+   "date": "2026-11-22",
+   "fact": "पिथौरागढ़ को 102.72 करोड़ रुपये की 25 योजनाओं की सौगात मिली।",
+   "cat": "अर्थव्यवस्था",
+   "imp": 2,
+   "tag": "102.72 करोड़",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "पिथौरागढ़ को 102.72 करोड़ की 25 योजनाओं की सौगात",
+     "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPRFhRNXN0T0p4R085X3JUV19GU1BScmZnUVE5WUdwN2llQldoX0FueHlCQk00dTZpdTZYdXFvZjE3bTU2TmN5YXliYzFNSHdyalpxYzE4S0YzaVFKM0pOcVl6VGNPRXhsUG8wRHl4MzAyeDdUeDAtNHBGdmlzR2NPQ0l0TnBuSjlMODZxYVQtTHl4UzhPMmkxYg?oc=5",
+     "source": "Shikhar Himalaya"
+    }
+   ],
+   "added": "2026-11-22T23:50:34.190Z",
+   "details": [
+    {
+     "k": "योजनाएँ",
+     "v": "25 विभिन्न विकास योजनाएँ"
+    },
+    {
+     "k": "मुख्यालय",
+     "v": "पिथौरागढ़ जिला मुख्यालय पिथौरागढ़ शहर",
+     "t": "g"
+    }
+   ],
+   "quiz": {
+    "q": "पिथौरागढ़ को कितनी राशि की कितनी योजनाएँ मिलीं?",
+    "a": "102.72 करोड़ रुपये की 25 योजनाएँ"
+   },
+   "depth": "headlines"
   },
   {
    "fact": "ऋषिकेश–कर्णप्रयाग रेल लाइन परियोजना की कुल भौतिक प्रगति 79% और सुरंग खुदाई लगभग 97% पूरी हुई।",
@@ -459,6 +638,43 @@
     "a": "रेल विकास निगम लिमिटेड (RVNL)"
    },
    "id": "f32a9461de",
+   "date": "2026-11-21",
+   "model": "manual-review",
+   "added": "2026-11-22T04:11:27.391Z",
+   "depth": "article"
+  },
+  {
+   "fact": "राज्य सरकार ने स्वैच्छिक व आंशिक चकबंदी के लिए 2026-27 में नया बजट मद खोलकर राज्य आकस्मिकता निधि से ₹100 करोड़ स्वीकृत किए; कुल ₹155.96 करोड़ के कार्य मंज़ूर।",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "चकबंदी, ₹100 करोड़",
+   "refs": [
+    {
+     "title": "सड़क, पुल, पार्किंग से लेकर पेंशन तक... धामी कैबिनेट के फैसलों से किसे क्या मिला?",
+     "link": "https://newstrack.com/uttarakhand/uttarakhand-cm-dhami-development-works-155-crore-da-hike-ops-649650",
+     "source": "Newstrack"
+    }
+   ],
+   "details": [
+    {
+     "k": "महँगाई भत्ता",
+     "v": "1 जुलाई 2026 से छठे वेतनमान में 262% से 269%, पाँचवें वेतनमान में 483% से 497%"
+    },
+    {
+     "k": "पुरानी पेंशन",
+     "v": "178 पुलिसकर्मी (आरक्षी, PAC, IRB) NPS से पुरानी पेंशन योजना (OPS) में"
+    },
+    {
+     "k": "पार्किंग",
+     "v": "लोहाघाट (चंपावत) में बहुमंज़िला पार्किंग ₹998.55 लाख, मौलेखाल (अल्मोड़ा) ₹591.16 लाख"
+    }
+   ],
+   "sum": "मुख्यमंत्री ने ₹155.96 करोड़ के कार्य मंज़ूर किए, जिनमें चकबंदी के लिए ₹100 करोड़ शामिल हैं; DA भी बढ़ा।",
+   "quiz": {
+    "q": "2026-27 में स्वैच्छिक व आंशिक चकबंदी के लिए किस निधि से ₹100 करोड़ स्वीकृत हुए?",
+    "a": "राज्य आकस्मिकता निधि"
+   },
+   "id": "bc98c46beb",
    "date": "2026-11-21",
    "model": "manual-review",
    "added": "2026-11-22T04:11:27.391Z",
@@ -2958,5 +3174,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-22T04:11:27.391Z"
+ "updated": "2026-11-22T23:52:58.559Z"
 }
