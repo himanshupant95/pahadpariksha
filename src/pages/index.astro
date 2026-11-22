@@ -89,7 +89,7 @@ const latest = [
     <div class="up-col">
       <div class="ln-head"><h2>करेंट अफेयर्स</h2><a href={caDay ? `/current-affairs/#${dayAnchor(caDay)}` : '/current-affairs/'}>{caDay ? `${fmtDay(caDay).replace(/ \d{4}$/, '')} के सभी →` : 'सभी →'}</a></div>
       {news5.length ? <PointList items={news5} compact showCat={false} /> : <p class="muted">जल्द।</p>}
-      <p class="ca-arch"><a href="/current-affairs/#archive">साप्ताहिक और मासिक संकलन →</a></p>
+      <p class="ca-arch"><a href="/current-affairs/#archive">साप्ताहिक और मासिक संकलन →</a> · <a href="/current-affairs/national/">राष्ट्रीय-अंतरराष्ट्रीय (साप्ताहिक PDF) →</a></p>
     </div>
   </section>
 

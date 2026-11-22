@@ -43,6 +43,7 @@ const tags = [...new Set(items.filter((p) => p.tag).map((p) => p.tag))];
 <nav class="pn no-print">
   {prev ? <a href={prev.href}>← {prev.label}</a> : <span />}
   <a href="/current-affairs/">सभी करेंट अफेयर्स</a>
+  <a href="/current-affairs/national/">राष्ट्रीय-अंतरराष्ट्रीय</a>
   {next ? <a href={next.href}>{next.label} →</a> : <span />}
 </nav>
 <p class="note">बिंदु समाचार शीर्षकों से AI सहायता द्वारा संकलित हैं और मूल स्रोत से जुड़े हैं। परीक्षा में लिखने से पहले आधिकारिक स्रोत से पुष्टि करें।</p>

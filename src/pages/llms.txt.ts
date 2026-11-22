@@ -29,6 +29,7 @@ export const GET: APIRoute = () => {
     '',
     '## Current affairs',
     link('उत्तराखंड करेंट अफेयर्स (दैनिक)', '/current-affairs/', 'exam-relevant Uttarakhand facts, newest day first, with sources'),
+    link('राष्ट्रीय-अंतरराष्ट्रीय करेंट अफेयर्स (साप्ताहिक)', '/current-affairs/national/', 'weekly national & international exam facts verified against PIB/official sources, with quiz and PDF'),
     link('All current-affairs facts (CSV)', '/current-affairs/facts.csv', 'machine-readable: date, category, fact, details, source link'),
     '',
     `## ${SERIES.name} — ${SERIES.tagline}`,

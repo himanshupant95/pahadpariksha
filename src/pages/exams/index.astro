@@ -6,7 +6,7 @@ const psc = ['सम्मिलित राज्य (सिविल) प्�
 const lssOpen = Date.now() <= Date.parse('2026-11-26T23:59:59+05:30'); // site rebuilds nightly
 // LSS-2026: UKPSC advertisement A-1/E-2/DR/LSS/2026-27 (read from the official PDF, 21 Nov 2026)
 const lssMap = [
-  ['5. सामयिक घटनाएँ', [['/current-affairs/', 'रोज़ का करेंट'], ['/gk/uttarakhand-varsh-2025-26/', 'वर्ष 2025–26']]],
+  ['5. सामयिक घटनाएँ', [['/current-affairs/', 'रोज़ का करेंट (उत्तराखंड)'], ['/current-affairs/national/', 'राष्ट्रीय-अंतरराष्ट्रीय (साप्ताहिक)'], ['/gk/uttarakhand-varsh-2025-26/', 'वर्ष 2025–26']]],
   ['6. उत्तराखंड का इतिहास', [['/history/', 'इतिहास के 9 अध्याय']]],
   ['7. उत्तराखंड की संस्कृति', [['/gk/uttarakhand-sanskriti-janjatiyan/', 'संस्कृति और जनजातियाँ']]],
   ['8. भूगोल और जनांकिकी', [['/geography/', 'भूगोल के 8 अध्याय'], ['/gk/uttarakhand-tulnatmak-talikayen/', 'ज़िलों की तुलना']]],
@@ -63,6 +63,7 @@ const lssMap = [
     <a class="card" href="/pyq/"><h3>पिछले प्रश्नपत्र</h3><p>UKPSC के {PAPERS.length} प्रश्नपत्र, आधिकारिक उत्तर-कुंजी के साथ।</p></a>
     <a class="card" href="/quiz/"><h3>प्रैक्टिस क्विज़</h3><p>पढ़े हुए अध्याय का तुरंत अभ्यास।</p></a>
     <a class="card" href="/current-affairs/"><h3>करेंट अफेयर्स</h3><p>रोज़ के परीक्षा-उपयोगी बिंदु।</p></a>
+    <a class="card" href="/current-affairs/national/"><h3>राष्ट्रीय-अंतरराष्ट्रीय करेंट अफेयर्स</h3><p>हर सप्ताह के सत्यापित बिंदु, क्विज़ और PDF।</p></a>
   </div>
 </Base>
 <style>

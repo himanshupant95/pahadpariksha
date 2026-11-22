@@ -20,7 +20,7 @@ const L: Record<string, string> = {
   '/gk/uttarakhand-tulnatmak-talikayen/': 'तुलनात्मक तालिकाएँ (जिलों की रैंक)', '/gk/uttarakhand-sanskriti-janjatiyan/': 'संस्कृति और जनजातियाँ',
   '/gk/uttarakhand-varsh-2025-26/': 'वर्ष 2025–26 की समीक्षा', '/gk/uttarakhand-pariksha-tathya/': 'परीक्षा के लिए जरूरी तथ्य',
   '/gk/uttarakhand-yojanayen/': 'उत्तराखंड की योजनाएँ', '/gk/uttarakhand-arthvyavastha/': 'अर्थव्यवस्था और GI टैग', '/gk/uttarakhand-maps/': 'उत्तराखंड के नक्शे',
-  '/pyq/': 'पिछले प्रश्नपत्र (आधिकारिक कुंजी)', '/quiz/': 'सभी क्विज़', '/current-affairs/': 'रोज़ का करेंट अफेयर्स',
+  '/pyq/': 'पिछले प्रश्नपत्र (आधिकारिक कुंजी)', '/quiz/': 'सभी क्विज़', '/current-affairs/': 'रोज़ का करेंट अफेयर्स', '/current-affairs/national/': 'साप्ताहिक राष्ट्रीय-अंतरराष्ट्रीय करेंट अफेयर्स',
   '/exams/': 'UKSSSC / UKPSC परीक्षाएँ', '/notices/': 'ताज़ा सूचनाएँ और एडमिट कार्ड', '/methodology/': 'हम सामग्री कैसे जाँचते हैं',
   '/tools/nali-calculator/': 'नाली-बीघा भूमि कैलकुलेटर',
 };
@@ -74,7 +74,8 @@ const M: Record<string, string[]> = {
   '/gk/uttarakhand-arthvyavastha/': ['/gk/uttarakhand-varsh-2025-26/', '/gk/uttarakhand-yojanayen/', '/gk/uttarakhand-sanskriti-janjatiyan/', '/polity/land-revenue-system/', '/geography/rivers-drainage/'],
   '/gk/uttarakhand-yojanayen/': ['/gk/uttarakhand-arthvyavastha/', '/gk/uttarakhand-varsh-2025-26/', '/gk/uttarakhand-pariksha-tathya/', '/current-affairs/'],
   '/pyq/': ['/gk/uttarakhand-pariksha-tathya/', '/exams/', '/notices/', '/methodology/'],
-  '/current-affairs/': ['/gk/uttarakhand-pariksha-tathya/', '/exams/', '/notices/'],
+  '/current-affairs/': ['/current-affairs/national/', '/gk/uttarakhand-pariksha-tathya/', '/exams/', '/notices/'],
+  '/current-affairs/national/': ['/current-affairs/', '/quiz/', '/exams/', '/gk/uttarakhand-varsh-2025-26/'],
   '/exams/': ['/notices/', '/pyq/', '/tools/nali-calculator/'],
   '/tools/nali-calculator/': ['/polity/land-revenue-system/', '/gk/uttarakhand-pariksha-tathya/'],
   '/notices/': ['/exams/', '/pyq/'],
