@@ -88,6 +88,7 @@ const short = (d: string) => fmtDay(d).replace(/ \d{4}$/, '');
     <h1>उत्तराखंड करेंट अफेयर्स</h1>
     {latest && <p class="edition">आज का संस्करण: <strong>{fmtDay(latest)}</strong> ({weekdayHi(latest)}) <span class="en">· Uttarakhand Current Affairs {fmtDayEn(latest)}</span></p>}
     <p class="intro">रोज़ की सैकड़ों ख़बरों में से केवल वे बिंदु जो <strong>UKSSSC और UKPSC परीक्षा में पूछे जा सकते हैं</strong> — हर बिंदु के साथ <strong>क्या हुआ</strong>, <strong>परीक्षा के तथ्य</strong>, <strong>जुड़ा स्थायी GK</strong> और <strong>अभ्यास प्रश्न</strong>। आज का संस्करण पूरा खुला है; पिछले दिनों के बिंदु पर क्लिक करते ही उसके तथ्य खुल जाते हैं। <strong>★</strong> वाले बिंदु सबसे महत्वपूर्ण हैं।</p>
+    <p class="intro"><a href="/current-affairs/national/">🇮🇳🌍 साप्ताहिक राष्ट्रीय-अंतरराष्ट्रीय करेंट अफेयर्स (PDF सहित) →</a></p>
     <div class="meta-row">
       {upd && <span class="muted">अंतिम अपडेट: <time datetime={updIso}>{upd}</time> · हर रात नया संस्करण</span>}
       <span class="share">
@@ -165,6 +166,7 @@ const short = (d: string) => fmtDay(d).replace(/ \d{4}$/, '');
     {faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
   </div>
 
+  <div class="note"><b>राष्ट्रीय-अंतरराष्ट्रीय करेंट अफेयर्स:</b> <a href="/current-affairs/national/">हर सप्ताह के राष्ट्रीय व अंतरराष्ट्रीय परीक्षा बिंदु, क्विज़ और PDF →</a></div>
   <div class="note"><b>पूरे वर्ष का सार:</b> <a href="/gk/uttarakhand-varsh-2025-26/">उत्तराखंड वर्ष 2025–26 (अर्थव्यवस्था, बजट, सूचकांक, प्रमुख घटनाएँ) →</a></div>
   <div class="note">बिंदु देशभर के समाचार स्रोतों से चुने और संक्षेपित किए जाते हैं; हर बिंदु मूल ख़बर से जुड़ा है। परीक्षा में लिखने से पहले आधिकारिक स्रोत (सरकारी विज्ञप्ति/PIB) से पुष्टि करें। कोई त्रुटि दिखे तो <a href="/contact/?topic=करेंट अफेयर्स में त्रुटि&page=/current-affairs/">हमें बताएँ</a>।</div>
 </Base>

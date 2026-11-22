@@ -1,0 +1,114 @@
+---
+// Weekly National & International current affairs — ONE page, weekly editions stacked newest first.
+// Each week = one JSON in src/data/national-ca/<sunday-date>.json (+ PDF in public/pdf/).
+import Base from '../../layouts/Base.astro';
+import Quiz from '../../components/Quiz.astro';
+import { SITE } from '../../data/site';
+
+interface Item { id: string; cat: string; region: string; date: string; tag: string; h: string; pts: string[]; static?: string[]; exam: string; differ?: string; uk?: boolean; src: [string, string][] }
+interface Week { week: { from: string; to: string; label: string; slug: string }; items: Item[]; quiz: { q: string; options: string[]; answer: number; explain: string }[]; pdf?: string }
+
+const files = import.meta.glob<Week>('../../data/national-ca/*.json', { eager: true, import: 'default' });
+const weeks = Object.values(files).sort((a, b) => b.week.slug.localeCompare(a.week.slug));
+const latest = weeks[0];
+
+const CAT_ORDER = ['राजव्यवस्था व शासन', 'अर्थव्यवस्था', 'सरकारी योजनाएँ व पहल', 'रिपोर्ट व सूचकांक', 'अंतरराष्ट्रीय संबंध व संगठन',
+  'पर्यावरण व पारिस्थितिकी', 'विज्ञान, प्रौद्योगिकी, अंतरिक्ष व रक्षा', 'पुरस्कार व सम्मान', 'नियुक्तियाँ', 'खेल', 'कला, संस्कृति व फ़िल्म'];
+const grouped = (w: Week) => {
+  const cats = [...CAT_ORDER, ...new Set(w.items.map((i) => i.cat).filter((c) => !CAT_ORDER.includes(c)))];
+  return cats.map((c) => [c, w.items.filter((i) => i.cat === c)] as const).filter(([, l]) => l.length);
+};
+const MON = ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'];
+const hd = (s: string) => { const [y, m, d] = s.split('-'); return `${+d} ${MON[+m - 1]} ${y}`; };
+
+const url = new URL('/current-affairs/national/', SITE.url).href;
+const title = `राष्ट्रीय-अंतरराष्ट्रीय करेंट अफेयर्स: ${latest.week.label}`;
+const description = `${latest.week.label} के राष्ट्रीय व अंतरराष्ट्रीय करेंट अफेयर्स: CPI-WPI, आसियान, ICJ, COP31, SAFF, खेल व पुरस्कार। सत्यापित स्रोत, क्विज़ और PDF।`;
+const crumbs = [{ name: 'होम', href: '/' }, { name: 'करेंट अफेयर्स', href: '/current-affairs/' }, { name: 'राष्ट्रीय-अंतरराष्ट्रीय', href: '/current-affairs/national/' }];
+const schema: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, description, url, inLanguage: 'hi-IN',
+    datePublished: `${weeks[weeks.length - 1].week.to}T06:00:00+05:30`, dateModified: `${latest.week.to}T11:00:00+05:30`,
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url + '/' },
+    author: { '@type': 'Person', name: SITE.author.nameEn, url: SITE.url + SITE.author.url },
+    publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: SITE.url + '/logo.png' } },
+    mainEntity: { '@type': 'ItemList', itemListOrder: 'https://schema.org/ItemListOrderDescending', numberOfItems: weeks.length,
+      itemListElement: weeks.map((w, i) => ({ '@type': 'ListItem', position: i + 1, url: `${url}#week-${w.week.slug}`, name: `राष्ट्रीय-अंतरराष्ट्रीय करेंट अफेयर्स ${w.week.label} (${w.items.length} बिंदु)` })) },
+  },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, SITE.url).href })) },
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <nav class="crumbs" aria-label="ब्रेडक्रम्ब"><a href="/">होम</a> › <a href="/current-affairs/">करेंट अफेयर्स</a> › <span aria-current="page">राष्ट्रीय-अंतरराष्ट्रीय</span></nav>
+  <h1>साप्ताहिक राष्ट्रीय एवं अंतरराष्ट्रीय करेंट अफेयर्स</h1>
+  <p class="lead">हर सप्ताह के परीक्षा-उपयोगी राष्ट्रीय व अंतरराष्ट्रीय घटनाक्रम — UKPSC, UKSSSC, UPSC, SSC, बैंकिंग और अन्य परीक्षाओं के लिए। हर बिंदु PIB, मंत्रालयों और आधिकारिक संस्थाओं के स्रोतों से मिलाया गया है।</p>
+  <p class="ukl">उत्तराखण्ड के रोज़ के करेंट अफेयर्स यहाँ पढ़ें → <a href="/current-affairs/">उत्तराखण्ड करेंट अफेयर्स</a></p>
+  {weeks.length > 1 && <nav class="wknav" aria-label="सप्ताह">{weeks.map((w) => <a href={`#week-${w.week.slug}`}>{w.week.label}</a>)}</nav>}
+
+  {weeks.map((w) => (
+    <section class="wk" id={`week-${w.week.slug}`}>
+      <h2><a href={`#week-${w.week.slug}`} class="anc">{w.week.label}</a> <small class="muted">· {w.items.length} बिंदु</small></h2>
+      {w.pdf && <p class="dl"><a class="btn" href={w.pdf} download>📥 पूरा साप्ताहिक PDF डाउनलोड करें</a> <small class="muted">(उत्तराखण्ड + राष्ट्रीय + अंतरराष्ट्रीय, एक पंक्ति में सार और 20 प्रश्न)</small></p>}
+      <p class="legend muted">✅ सत्यापित = आधिकारिक स्रोत · ☑️ पुष्ट = दो विश्वसनीय स्रोत · शीर्षक पर क्लिक करें</p>
+      {grouped(w).map(([c, list]) => (
+        <>
+          <h3>{c}</h3>
+          {list.map((i) => (
+            <details id={`${i.id}-${w.week.slug}`}>
+              <summary>{i.h}</summary>
+              <div class="body">
+                <ul>{i.pts.map((p) => <li>{p}</li>)}</ul>
+                {i.static && i.static.length > 0 && <><p class="lbl">स्थैतिक जोड़</p><ul class="st">{i.static.map((s) => <li>{s}</li>)}</ul></>}
+                <p class="ex"><b>परीक्षा दृष्टि:</b> {i.exam}</p>
+                {i.differ && <p class="df"><b>स्रोतों में भिन्नता:</b> {i.differ}</p>}
+                {i.uk && <p class="uk">🏔️ उत्तराखण्ड कनेक्शन</p>}
+                <p class="src"><b>{i.tag === '✅' ? '✅ सत्यापित' : '☑️ पुष्ट'}</b> | {hd(i.date)} | स्रोत: {i.src.map(([t, u], k) => <>{k > 0 && ' · '}<a href={u} rel="noopener" target="_blank">{t}</a></>)}</p>
+              </div>
+            </details>
+          ))}
+        </>
+      ))}
+      <h3>एक पंक्ति में</h3>
+      <div class="tw"><table>
+        <thead><tr><th>श्रेणी</th><th>तथ्य</th><th>तिथि</th></tr></thead>
+        <tbody>{grouped(w).flatMap(([c, l]) => l.map((i) => <tr><td>{c}</td><td>{i.h}</td><td>{hd(i.date)}</td></tr>))}</tbody>
+      </table></div>
+      {w.quiz && w.quiz.length > 0 && <>
+        <h3>साप्ताहिक प्रश्नोत्तरी ({w.quiz.length} प्रश्न)</h3>
+        <p class="muted">स्व-निर्मित अभ्यास प्रश्न — पिछले वर्षों के प्रश्न नहीं।</p>
+        <Quiz id={`national-ca-${w.week.slug}`} title={`राष्ट्रीय-अंतरराष्ट्रीय करेंट अफेयर्स क्विज़ ${w.week.label}`} questions={w.quiz} />
+      </>}
+    </section>
+  ))}
+
+  <div class="note">यह संकलन PIB, केंद्रीय मंत्रालयों, आकाशवाणी/DD और अंतरराष्ट्रीय संस्थाओं की आधिकारिक विज्ञप्तियों से तैयार किया गया है; हर बिंदु के अंत में स्रोत दिया है। कोई त्रुटि दिखे तो <a href="/contact/?topic=करेंट अफेयर्स में त्रुटि&page=/current-affairs/national/">हमें बताएँ</a>।</div>
+</Base>
+
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+  .lead { font-size: 1.02rem; }
+  .ukl { background: var(--green-soft); border-left: 4px solid var(--green-2); padding: 8px 12px; border-radius: 6px; }
+  .wknav { display: flex; flex-wrap: wrap; gap: 6px; margin: .8em 0; }
+  .wknav a { border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font-size: .9rem; text-decoration: none; }
+  .wk { margin-top: 1.6em; }
+  .wk h2 .anc { color: inherit; text-decoration: none; }
+  .wk h3 { margin: 1.4em 0 .5em; padding-bottom: .25em; border-bottom: 2px solid var(--green-soft); color: var(--green-2); font-size: 1.08rem; }
+  .btn { display: inline-block; background: var(--green-2); color: #fff; padding: 8px 14px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+  .legend { margin: .3em 0 0; }
+  details { border: 1px solid var(--line); border-radius: 10px; margin: .5em 0; background: var(--card); }
+  summary { cursor: pointer; padding: .65em .9em; font-weight: 600; line-height: 1.5; }
+  details[open] summary { border-bottom: 1px solid var(--line); }
+  .body { padding: .3em 1em .8em; }
+  .body ul { margin: .3em 0 .5em 1.1em; padding: 0; }
+  .body li { margin: .2em 0; }
+  .lbl { margin: .5em 0 0; font-weight: 600; color: #7c2d12; }
+  .ex { background: #fffbeb; padding: .35em .6em; border-radius: 4px; margin: .5em 0; }
+  .df { background: #fef2f2; padding: .35em .6em; border-radius: 4px; }
+  .uk { color: var(--green-2); font-weight: 600; margin: .3em 0; }
+  .src { font-size: .85rem; color: var(--muted); margin: .5em 0 0; overflow-wrap: anywhere; }
+  .tw { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+  td, th { border: 1px solid var(--line); padding: .35em .5em; vertical-align: top; }
+  th { background: #f8fafc; }
+  .note { background: #fff7ed; border-left: 4px solid var(--accent); padding: 10px 14px; border-radius: 6px; margin: 1.5em 0; }
+</style>
