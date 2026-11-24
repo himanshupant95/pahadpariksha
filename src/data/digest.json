@@ -423,9 +423,247 @@
   "061cee9146bb",
   "5e6e9abdc32f",
   "c6fc5a985758",
-  "e0771310a818"
+  "e0771310a818",
+  "38b86f473c2c",
+  "9d49cd47019f",
+  "120d0206077e",
+  "caea2b800a1e",
+  "c3f8aaaa5543",
+  "09ef3cb27079",
+  "21ee8c1ed8b3",
+  "753bc2d44e8d",
+  "636d53cd7ac1",
+  "ab377b326c35",
+  "4e3d99f92161",
+  "6e0e268b07f8",
+  "ac1736ca8f3a",
+  "94047ccd22eb",
+  "0f8d3f626344",
+  "00ef22acfc19",
+  "efdb14e8a0ce",
+  "0076b9127828",
+  "3dfa1dd1019c",
+  "eb7c1290f697",
+  "8bb9b5e3e23a",
+  "c02bea7b8980",
+  "1ef903d6a7ca",
+  "a72b00123701",
+  "27f50147c391",
+  "291d2970d0e8",
+  "b58e261153a3",
+  "6315809ad8b7",
+  "6e390236900c",
+  "fecf539656ef",
+  "9033a8599d4d",
+  "97446e50cd14",
+  "9744c0d3e4e6",
+  "d649be4d2dcc",
+  "7e8320501383",
+  "e9498995cbee",
+  "1427974cfcc8",
+  "268ababa7272",
+  "c46dbf054427",
+  "b6491904e6ee",
+  "987f1d541996",
+  "f6d261e12422",
+  "24da8d65b9e8",
+  "b37fcd07111a",
+  "aba3db3fb84b",
+  "83ceed26358d",
+  "5882a7e3e6c0",
+  "97710d696b20",
+  "913d9d6bbe26",
+  "fe0ce5d71a49",
+  "1923df4950d5",
+  "09366260efdb",
+  "dc279d87be06",
+  "658bbf0c3a64",
+  "7e55217714e5",
+  "5bda2af78adb"
  ],
  "points": [
+  {
+   "id": "823a5535c4",
+   "date": "2026-11-23",
+   "fact": "उत्तराखंड पहला राज्य बना, अलग आपदा प्रबंधन विभाग स्थापित, 525 हाइड्रो‑मौसमी सेंसर लगाए",
+   "cat": "प्रशासन",
+   "imp": 3,
+   "tag": "आपदा प्रबंधन विभाग",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "आपदा प्रबंधन के लिए अलग विभाग गठित करने वाला पहला राज्य बना उत्तराखंड, 525 हाइड्रो-मौसमी सेंसर स्थापित",
+     "link": "https://www.tv9hindi.com/india/pushkar-singh-dhami-on-uttarakhand-hydro-meteorological-sensors-state-disaster-response-force-3972388.html",
+     "source": "TV9 Bharatvarsh"
+    }
+   ],
+   "added": "2026-11-24T03:14:17.319Z",
+   "details": [
+    {
+     "k": "सेंसर विभाजन",
+     "v": "432 मौसम, 87 हाइड्रोलॉजिकल, 3 डॉप्लर वेदर रडार और 3 लाइटनिंग सेंसर शामिल हैं"
+    },
+    {
+     "k": "प्रशिक्षण आँकड़े",
+     "v": "2020-21 से 2025-26 तक 2,339 कार्यक्रमों में 2,69,038 लोगों को प्रशिक्षण दिया गया"
+    },
+    {
+     "k": "पहली प्रणाली",
+     "v": "चमोली के वसुधारा ताल में पहली सेंसर आधारित ग्लेशियल लेक पूर्व चेतावनी प्रणाली लगी"
+    },
+    {
+     "k": "संस्था गठन",
+     "v": "वर्ष 2007 में उत्तराखंड राज्य आपदा प्रबंधन प्राधिकरण (यूएसडीएमए) का गठन किया गया"
+    },
+    {
+     "k": "वसुधारा ताल स्थान",
+     "v": "वसुधारा ताल चमोली जिले में स्थित है",
+     "t": "g"
+    }
+   ],
+   "sum": "उत्तराखंड ने देश में पहली बार अलग आपदा प्रबंधन विभाग बनाया और 525 हाइड्रो-मौसमी सेंसर लगाकर पूर्व चेतावनी प्रणाली को मजबूत किया।",
+   "quiz": {
+    "q": "उत्तराखंड में कुल कितने हाइड्रो-मौसमी सेंसर स्थापित किए गए हैं?",
+    "a": "525"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "9590cbe24f",
+   "date": "2026-11-23",
+   "fact": "चम्पावत में 54 विकास योजनाएँ, कुल लागत ₹165.68 करोड़, मुख्यमंत्री धामी ने उद्घाटन किया",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 2,
+   "tag": "चम्पावत विकास",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "चंपावत: सीएम धामी की साैगात, 165.68 करोड़ की 54 विकास योजनाओं का लोकार्पण और शिलान्यास किया",
+     "link": "https://www.amarujala.com/uttarakhand/champawat/cm-dhami-inauguration-and-foundation-stone-laying-for-54-development-projects-in-champawat-2026-11-23",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "Uttarakhand CM Pushkar Singh Dhami Launches 54 Development Projects Worth Rs. 165.68 Crore in Champawat",
+     "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPVmZZVjdyTjFEWnBEbnlzeEw0M1Z1V05iTmNEZ2x3WkR3TldIa2JVTUlDbmV3cDBLZWl2bFRRTlo5Z0llcEpJaE1UUUVvbGxjUm56M0p2dGhDQUZYZ2gyVjZTQmxUUGlQZzdXbnRyeF92WXhEbVBnNzBfdEx4VmxZVzZXNzhNeFk5c0ZnVFVwMVZwOG80ZUl2VjV0M01vVEx4WXdHTl8tVEdNZw?oc=5",
+     "source": "Indian Masterminds"
+    }
+   ],
+   "added": "2026-11-24T03:14:17.319Z",
+   "details": [
+    {
+     "k": "विभाजन",
+     "v": "21 योजनाओं का लोकार्पण और 33 योजनाओं का शिलान्यास किया गया"
+    },
+    {
+     "k": "स्थान",
+     "v": "कार्यक्रम चंपावत जिले में आयोजित किया गया"
+    }
+   ],
+   "sum": "मुख्यमंत्री पुष्कर सिंह धामी ने चंपावत में 165.68 करोड़ रुपये की 54 विकास योजनाओं का लोकार्पण और शिलान्यास किया।",
+   "quiz": {
+    "q": "चंपावत में उद्घाटित 54 योजनाओं में से कितनी का शिलान्यास किया गया?",
+    "a": "33"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "0f63239772",
+   "date": "2026-11-23",
+   "fact": "उत्तराखंड सरकार ने 1.15 लाख छात्रों को मुफ्त टैबलेट वितरण योजना शुरू की",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "टैबलेट योजना",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "उत्तराखंड के 1.15 लाख छात्रों को मिलेंगे मुफ्त टैबलेट, धामी सरकार का बड़ा फैसला; बोर्ड परीक्षा से पहले मिलेगी ऑनलाइन कोचिंग की सुविधा",
+     "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQQ1NyX1A1UFZua2dTMXhuc2dORmcxaVhpM1RlZEhXWjROTkx0b250MjJHNl9QVExMa01tbkZrRjlXTWpRSmhaRjliRFpCOG11NGdjNVJVVWw4Vk42aWJkRVc0VjB4ZllqeTFRMmZ2T2ZVcWQ4STdzZkY1M3FSSHQ1LU5ZX01iVEpFZEZTOQ?oc=5",
+     "source": "Arth Parkash"
+    }
+   ],
+   "added": "2026-11-24T03:14:17.319Z",
+   "details": [
+    {
+     "k": "अतिरिक्त सुविधा",
+     "v": "बोर्ड परीक्षा से पहले ऑनलाइन कोचिंग की सुविधा मिलेगी"
+    }
+   ],
+   "sum": "धामी सरकार ने 1.15 लाख छात्रों को मुफ्त टैबलेट देने की योजना शुरू की, जिसमें बोर्ड परीक्षा से पहले ऑनलाइन कोचिंग की सुविधा भी शामिल है।",
+   "quiz": {
+    "q": "उत्तराखंड में मुफ्त टैबलेट योजना से कितने छात्रों को लाभ मिलेगा?",
+    "a": "1.15 लाख"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "a45ca0b247",
+   "date": "2026-11-23",
+   "fact": "बैन‑भुली योजना के तहत 5.23 लाख महिलाओं को ₹10 हज़ार सीधे खाते में मिलेगा",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "बैन‑भुली योजना",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "उत्तराखंड: 5.23 लाख महिलाओं को दिए जाएंगे 10 हजार रुपये, बैणी-भुली योजना व स्वयं सहायता समूहों को होगा लाभ",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-5-lakh-women-to-receive-10000-each-benefits-extended-under-baini-bhuli-scheme-2026-11-23",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "Baini Bhuli Yojana: उत्तराखंड की महिलाओं को दिसंबर में मिलेंगे 10 हजार रुपये, चुनाव से पहले बड़ा एलान",
+     "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOazdxeDZJcVhUM3YyV1ktejhMQ2o4WkI3YTNRQWhpNmhHZlJUTmxLZ053QmlEdWdzQmRVSFpxNWhWUnpjT0s4RHNwMXNfaXlwR0tRc19QN1NDMjNiaXpVT29RT3E4LXQ3c2tqdWhLZDhKa2NnQldaQ05TM3JIdmw3VFMxaEEwcnNleXEzYjBMQXBfMVhkckZPU0V6MVJyWXd2ZTdRMU5kLWYyU1RNQ0JUZEJuSFdhbFNRU0R6cnhuanZqM1VTODJkR29pQW5KVzQtMGd2VkFxQ0RqSFROSGlPYWpJRXZ2V3RwTThJTzBmMNIB9AFBVV95cUxQZFF0VW95RlhZZ1Z1TFpVQV9yZU5JS3NBaUZxdnVLQTRVUS01UUpoV1k5OE10MlNOeDE3VmtQWUxyYUVUdExESnFSZnhKUkRtaWJKTHN2YVkyX19kWS1NNUV0dVJkLUNFXzVoNUQ5YXZCLWRZajd0V2JtMVhMRFA1alNBaTRaak1hWHNPN1hBeGtxWGltMFhBZ2p0eS1NM1hhX3RhQTkwWTJYaVZiY3ZfOWFWWjdxRks1QWdEVTltZG41eHNzY3h6aFRWZ0NLd2xodU5qVGZkUEdldzhFN0ZMZzJZbkRvMi1ma1lTbk92TUNnUUpN?oc=5",
+     "source": "CNBC TV18"
+    },
+    {
+     "title": "बैणी-भुली योजना के तहत उत्तराखंड की 5 लाख महिलाओं को मिलेगा पैसा, डायरेक्ट खाते में आएगी धनराशि",
+     "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPaG96Vzk3RjE3RU4tMGwtN2wzXzNiOGNGaTFvYV9vOUdZNTRsTzJieXVseFJpWTdMelBDanZhVzg2X2JGcjZZQkNnSjcyRjVsRWFEUmJ6WjBqTzhKd0V4ZWp5cUEzdG5GeDJ2d2J5Y2MtQnhGSDdsWjdaY0R0azNweDVHbVo0VFZmRnN1cVZrRVZfOXM2RkdHQVpzLTR6Z1M2UkFvdVQ2ZTdlaWdrc0VhZUtmVlU5QQ?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-24T03:14:17.319Z",
+   "depth": "article"
+  },
+  {
+   "id": "9407eb113d",
+   "date": "2026-11-23",
+   "fact": "बनबासा में मुख्यमंत्री धामी ने ₹176 करोड़ मूल्य के कई बुनियादी परियोजनाओं का उद्घाटन किया",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 2,
+   "tag": "बनबासा परियोजनाएँ",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Uttarakhand CM Dhami inaugurates Rs 176 crore projects in Banbasa",
+     "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPVlFJaVVOX1NrNExCNXRNc0hNODhGM0ZHbjkzbHlHLVVwdzNSZ2VDanNUZEdfcEFXV29wNmIzRlFiT1Z3cGluRmZzN08yaDBCMDhSdEpUd1FBOVprSzFfVmZfUDVEbVo0OVBCeFpaU3JLNzNSYjRUNlZrakxPR2RmNkVjejk3ZDRyY0FnWjhVN2Z3b3ZPeUlRSExIUXpQZ00?oc=5",
+     "source": "The News Mill"
+    }
+   ],
+   "added": "2026-11-24T03:14:17.319Z",
+   "depth": "headlines"
+  },
+  {
+   "id": "b307ab4b0b",
+   "date": "2026-11-23",
+   "fact": "श्रीनगर में विज्ञान शहर (Science City) की घोषणा, साथ ही हेलीकॉप्टर सेवा शुरू करने का प्रस्ताव",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 2,
+   "tag": "साइंस सिटी",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "CM Dhami Inaugurates Baikunth Chaturdashi Mela, Announces Helicopter Service And Science City",
+     "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQT0lJdWJXSGpKQ3kzMmZUeThMX0VoVWJTMW1QQ1JOUEEyZlhzTFM0SW5udjZERUxGc2dmb0RQVWU1OVRMSFY1TERSZlptU3R5OXZRYTR4LVM2V0Y1WVlfRTM1WEVRRk5hNnpIZ2JJckI4Zk5NQjczb2tBUWR2eTNHQnVhaVNZTUtleVpwZnVNSHlEY25jZ3FfVjBtU0duTk4zWUN0NUhUX1psRmlZT2JOSGg1bzhOYWpidHBldVRWWWhiVmdrZmlERkxHUzlpZjV0UWxQWEh2a3JJb2FMWWRJaWZhWFZ3Z9IB6wFBVV95cUxPclRZYnpNa21fUFE2UUxMMnBLUHBabmdrV0NNLWZSZ05hNXo5bDQ1ZzFEMUdNY1gydm1oZ28teGNMc01wRHQzQkM4UWVKMzFWVEZkeFlFQ2JrTWtkMnkxRDF3bi1WWDJpNzlJSlZWREdQZDJrREZtN291OUFmWkUxTTNrOC1mU3ZkNU0ydnpjQUN3cmRFM0NDMUN3Sm9aVlBhOVA0emV6SVhSZXFtOW0wdUZnX0t6YXE2Z2sxQ0FaN3lleWpuNTdYTGlNREFLR2tzMXNzZnBmekE1aldObFFKYXJ3dU9nS2gxWVpN?oc=5",
+     "source": "Asianet Newsable"
+    },
+    {
+     "title": "बैकुंठ चतुर्दशी मेले में पहुंचे सीएम धामी, श्रीनगर को साइंस सिटी और नई विकास योजनाओं की दी सौगात",
+     "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQYnZPZkRpLWZ0bGtrRWViYTNaWmt6NXdaejQ0dEptV3pEOC1xM3RWdGxMd1lMUl9Oc3pabExmOXBqOWxsVVZNNkNka3NkdkNYX1hmeHJyMlNWNXlNQTdxQ2NsSmY5YTJRSGViczVDd0t2UDgwRVByS3lsamdKV0FoMUxLSU1ra2tNdDhRQWprVEJnTW05NDJ3TGtSOURqNzlJV2d1ZlU1c19KQlluVjJxMTJOd2wyaDFQbVNfYlhQUW1hOUtiQlhQU2owejVEdXpmbm9xcEJLdmU4Vjg?oc=5",
+     "source": "liveskgnews"
+    }
+   ],
+   "added": "2026-11-24T03:14:17.319Z",
+   "depth": "headlines"
+  },
   {
    "id": "87b59daf33",
    "date": "2026-11-22",
@@ -3176,5 +3414,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-23T03:59:31.607Z"
+ "updated": "2026-11-24T03:16:55.968Z"
 }
