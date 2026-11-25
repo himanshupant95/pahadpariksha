@@ -517,7 +517,8 @@
   "5a77433e2148",
   "84512b8e3292",
   "4d88b1f4d870",
-  "b7beb7744f16"
+  "b7beb7744f16",
+  "7c1f154b3ca7"
  ],
  "points": [
   {
@@ -560,6 +561,39 @@
     "a": "उत्तराखंड अल्पसंख्यक आयोग के उपाध्यक्ष"
    },
    "depth": "article"
+  },
+  {
+   "id": "1265012d3a",
+   "date": "2026-11-24",
+   "fact": "उत्तराखंड में UCC लागू हुआ, हर नागरिक को समान अधिकार मिला",
+   "cat": "योजना/नीति",
+   "imp": 3,
+   "tag": "UCC",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "उत्तराखंड में लागू हुआ UCC, हर नागरिक को मिला समान अधिकार: सीएम पुष्कर सिंह धामी- cm pushkar singh dhami samarasta sankalp yatra haridwar guru ravidas jayanti",
+     "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOM1ZpSEx5cjBHd0M3YjlVWnhnWUNIZnBfQW1ITlZzUUZaYS16aGRHM1RwV29NWlJ6UmlmNXdZODNZVXdZUS1kQWZKUzlldVFNRTZTaTkyalQ1aHZINERSNmxPNG9ZeFM3STE5MFNUWG82RFJ2czNDa1g3aXF0UmdFS25qeTVZTDFiSmkwRkNxcmVEaXRZY20xdUoxSVhYRGVhOHZ2bUNkX3RTWmh2UURyQndSTTRDdnlyMGhiaFdkYnotZkVyQzVTMGh5RWFId9IBzgFBVV95cUxOM1ZpSEx5cjBHd0M3YjlVWnhnWUNIZnBfQW1ITlZzUUZaYS16aGRHM1RwV29NWlJ6UmlmNXdZODNZVXdZUS1kQWZKUzlldVFNRTZTaTkyalQ1aHZINERSNmxPNG9ZeFM3STE5MFNUWG82RFJ2czNDa1g3aXF0UmdFS25qeTVZTDFiSmkwRkNxcmVEaXRZY20xdUoxSVhYRGVhOHZ2bUNkX3RTWmh2UURyQndSTTRDdnlyMGhiaFdkYnotZkVyQzVTMGh5RWFIdw?oc=5",
+     "source": "Newsnation"
+    }
+   ],
+   "added": "2026-11-25T03:48:50.314Z",
+   "details": [
+    {
+     "k": "मुख्य घोषणाकर्ता",
+     "v": "मुख्यमंत्री पुष्कर सिंह धामी"
+    },
+    {
+     "k": "बंद मदरसे",
+     "v": "2,500 गैरकानूनी मदरसे बंद किए गए"
+    }
+   ],
+   "sum": "उत्तराखंड सरकार ने नागरिक समानता संहिता (UCC) लागू की, जिससे सभी नागरिकों को समान अधिकार मिले; इसे मुख्यमंत्री पुष्कर सिंह धामी ने हरिद्वार में सार्मथ्य यात्रा के दौरान बताया।",
+   "quiz": {
+    "q": "UCC लागू करने की घोषणा किसने की?",
+    "a": "मुख्यमंत्री पुष्कर सिंह धामी"
+   },
+   "depth": "headlines"
   },
   {
    "id": "35d773ded1",
@@ -3625,5 +3659,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-25T02:48:04.606Z"
+ "updated": "2026-11-25T03:49:18.480Z"
 }
