@@ -1,6 +1,43 @@
 {
- "updated": "2026-11-25T03:46:13.014Z",
+ "updated": "2026-11-25T05:30:46.282Z",
  "items": [
+  {
+   "id": "77c0bc3b86f1",
+   "title": "उत्तराखंड: प्रदेश में बंदर और लंगूरों की गिनती का बदलेगा तरीका, भारतीय वन्यजीव संस्थान ने तैयार किया मोबाइल एप",
+   "link": "https://www.amarujala.com/dehradun/uttarakhand-to-count-monkeys-and-langurs-through-mobile-app-public-to-join-wildlife-census-2026-11-25",
+   "source": "Amar Ujala",
+   "published": "2026-11-25T05:14:35.000Z",
+   "lang": "hi",
+   "summary": "प्रदेश में अब बंदर और लंगूरों की गणना मोबाइल एप के माध्यम से की जाएगी। इसके लिए भारतीय वन्यजीव संस्थान (डब्ल्यूआईआई) एप विकसित कर रहा है।",
+   "score": 2,
+   "cat": "पर्यावरण",
+   "sources": [],
+   "firstSeen": "2026-11-25T05:30:36.724Z"
+  },
+  {
+   "id": "9f7c5595b8ba",
+   "title": "उत्तराखंड में फार्मासिस्टों के 275 पदों पर भर्ती की तैयारी, 10 हजार से अधिक प्रशिक्षित युवाओं को जगी उम्मीद",
+   "link": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNbjZncUtWS2N2MEVXQ1ZfZlpreXkwVk54SWNLaDFaR1NMa2EyOTE5ODFreTVqYVNMNjE5c21zOGsxdjlfekU1Vy1mUXdsTWRpbmt0Smd3UnJtTnMzLVZCVS1mTkltSWlJTkcwSlk2cEN0UkwtcUdCaEtBUnNzSlNkYTg1MmRmNGh2enBOcm1YNFlxVWxZX2NLNWlHUENUQ2lHMlQ3MjZTUFA0X1Bwel9McS1sbjhDMWFLbzJDUHJYZFZTaU9KWWxsSklqOThnNzBJaTNHQjB1MUZjT01ZMmpTWnB5V2tPenFnbTZz?oc=5",
+   "source": "Rainbow News",
+   "published": "2026-11-25T04:45:54.000Z",
+   "lang": "hi",
+   "score": 2,
+   "cat": "परीक्षा/भर्ती",
+   "sources": [],
+   "firstSeen": "2026-11-25T05:30:43.805Z"
+  },
+  {
+   "id": "3071527c0c7b",
+   "title": "आईआईटी टनकपुर की छात्रा लक्ष्मी ने लखनऊ में बढ़ाया उत्तराखंड का मान, पीएम मोदी ने किया सम्मान",
+   "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPUTNFRVdoYjJVQlpmb0ZEcDc3Tms5OUtUbVQzYWtGRUFFNnlKbTJJOGNpWno2aUtQeDZsdmlOaU9tY2EtX0dNaXZMRU13ZmtXNWd4ZnlSUUV5ZHF6VU5YbWJ6X3JVUnNuOXV2c0ZCYkhEMFo0QzV6aXU5MWlFQjd1LXZGS2NNY0IzTTV2OWpPX0ZMX19ORy1wVEhkN25kSW05XzF3WUtzN1pGZDhsaDk2V2I5MFY4bXF2Yzc5dUVmYmFIVVNtZUgtV3VCYkM2UnFGZ1JTR25xMENGeDBkQlJwSVZPSzBGZw?oc=5",
+   "source": "Jagran",
+   "published": "2026-11-25T04:04:00.000Z",
+   "lang": "hi",
+   "score": 3,
+   "cat": "पुरस्कार/खेल",
+   "sources": [],
+   "firstSeen": "2026-11-25T05:30:42.992Z"
+  },
   {
    "id": "13791ec1f1af",
    "title": "गंगोत्री तक ऑल वेदर रोड का रास्ता साफ, नितिन गडकरी ने बताई तारीख",
@@ -60,7 +97,9 @@
    "lang": "hi",
    "score": 2,
    "cat": "संस्कृति",
-   "sources": [],
+   "sources": [
+    "Newsnation"
+   ],
    "firstSeen": "2026-11-25T02:43:29.577Z"
   },
   {
@@ -824,7 +863,8 @@
    "score": 2,
    "cat": "योजना/नीति",
    "sources": [
-    "NDTV India"
+    "NDTV India",
+    "Asianet News Hindi"
    ],
    "firstSeen": "2026-11-23T18:43:37.453Z"
   },
