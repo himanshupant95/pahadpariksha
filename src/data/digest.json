@@ -479,9 +479,188 @@
   "dc279d87be06",
   "658bbf0c3a64",
   "7e55217714e5",
-  "5bda2af78adb"
+  "5bda2af78adb",
+  "48d3c42b38f4",
+  "ac2e2b1d9e11",
+  "0a2a55424658",
+  "f0928c330fb7",
+  "d947f1adac87",
+  "cca2518ee774",
+  "6f42abe0b312",
+  "37159fd53116",
+  "21abb8f90701",
+  "caafe62cdb7c",
+  "85344ff570dd",
+  "174f3637577d",
+  "826aec711a0e",
+  "718d8c63ff92",
+  "d535b817d049",
+  "17a74cff5152",
+  "dc2d0a7734c7",
+  "8ab5dd3227d7",
+  "4b38cd8c11b2",
+  "735072b585d6",
+  "17bbf9c91e4e",
+  "b259dbfbf9de",
+  "8e15278da4c6",
+  "f9a551554dd2",
+  "5dfb707a269e",
+  "74692315e7b5",
+  "77610bc36154",
+  "2f271d023afc",
+  "5773d7979165",
+  "bb54393183f1",
+  "5c6d543f185c",
+  "5aff6a4fc931",
+  "2cbae3cc0fcd",
+  "d73e97f26cf3",
+  "5a77433e2148",
+  "84512b8e3292",
+  "4d88b1f4d870",
+  "b7beb7744f16"
  ],
  "points": [
+  {
+   "id": "9cf5d2b20a",
+   "date": "2026-11-24",
+   "fact": "गगनदीप सिंह बेदी को उत्तराखंड अल्पसंख्यक आयोग के उपाध्यक्ष नियुक्त किया गया।",
+   "cat": "नियुक्ति",
+   "imp": 3,
+   "tag": "अल्पसंख्यक आयोग",
+   "model": "groq/qwen/qwen3.8-27b",
+   "refs": [
+    {
+     "title": "Rishikesh News: गगनदीप सिंह बेदी उत्तराखंड अल्पसंख्यक आयोग के उपाध्यक्ष नियुक्त",
+     "link": "https://www.amarujala.com/uttarakhand/rishikesh/gagandeep-singh-bedi-appointed-as-vice-chairman-of-the-uttarakhand-minorities-commission-rishikesh-news-c-38-1-rks1008-149239-2026-11-24",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-25T02:46:20.999Z",
+   "details": [
+    {
+     "k": "स्थान",
+     "v": "ऋषिकेश"
+    },
+    {
+     "k": "मुख्यमंत्री",
+     "v": "पुष्कर सिंह धामी"
+    },
+    {
+     "k": "उद्देश्य",
+     "v": "अल्पसंख्यक समुदाय के हितों की रक्षा और उत्थान"
+    },
+    {
+     "k": "आधिकारिक आदेश",
+     "v": "नियुक्ति पर जारी किया गया"
+    }
+   ],
+   "sum": "राज्य सरकार ने गगनदीप सिंह बेदी को उत्तराखंड अल्पसंख्यक आयोग के उपाध्यक्ष नियुक्त किया; उन्होंने मुख्यमंत्री धामी को धन्यवाद दिया और अल्पसंख्यकों के हितों की रक्षा का वचन दिया।",
+   "quiz": {
+    "q": "गगनदीप सिंह बेदी को किस पद पर नियुक्त किया गया?",
+    "a": "उत्तराखंड अल्पसंख्यक आयोग के उपाध्यक्ष"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "35d773ded1",
+   "date": "2026-11-24",
+   "fact": "राष्ट्रीय व्हीलचेयर पिकलबाल प्रतियोगिता में उत्तराखंड की टीम ने कांस्य पदक जीता।",
+   "cat": "खेल",
+   "imp": 2,
+   "tag": "व्हीलचेयर पिकलबाल",
+   "model": "groq/qwen/qwen3.8-27b",
+   "refs": [
+    {
+     "title": "Udham Singh Nagar News: राष्ट्रीय व्हीलचेयर पिकलबाल में उत्तराखंड की टीम ने जीता कांस्य",
+     "link": "https://www.amarujala.com/uttarakhand/udham-singh-nagar/uttarakhand-team-wins-bronze-at-national-wheelchair-pickleball-rudrapur-news-c-242-1-rdp1022-150109-2026-11-24",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-25T02:46:20.999Z",
+   "details": [
+    {
+     "k": "खिलाड़ी",
+     "v": "अजय रावत, डॉ. अकील अहमद, पुष्पा देवी, लक्ष्मी देवी, शाकिर, रुमा देवी"
+    }
+   ],
+   "sum": "मैसूर में आयोजित राष्ट्रीय व्हीलचेयर पिकलबाल चैंपियनशिप में उत्तराखंड की छह सदस्यीय टीम ने कांस्य पदक जीता, जिसमें तीन महिला खिलाड़ियों ने भी पदक हासिल किया।",
+   "quiz": {
+    "q": "उत्तराखंड की टीम ने राष्ट्रीय व्हीलचेयर पिकलबाल चैंपियनशिप में कौन सा पदक जीता?",
+    "a": "कांस्य पदक"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "cd2f8a1190",
+   "date": "2026-11-24",
+   "fact": "हरिद्वार में कार्तिक पूर्णिमा पर गंगा स्नान करने वाले 39 लाख श्रद्धालुओं की रिकॉर्ड संख्या दर्ज की गई।",
+   "cat": "संस्कृति/धर्म",
+   "imp": 2,
+   "tag": "कार्तिक पूर्णिमा",
+   "model": "groq/qwen/qwen3.8-27b",
+   "refs": [
+    {
+     "title": "Record 39 Lakh devotees take holy dip in Ganga on Kartik Purnima in Haridwar",
+     "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOOE52bWlpR2dDSjFhS2U2Q0M4TUJNc0lqR3BjVFRqRXFUSWVuSEs3eVFhMmJQd0h3OHFiUG5ha25wM1FBU0dwMWk3TEI5WTVWUE52dXNBZW4yclU4RVAzUFYyUUZRSE5GN18xVTJmY09wY1Vrdk91RWpMOC13MkQ0SXVtaFZTQWtKWkdFOWZHTW9EVDJaY3o4TjJ2RU1heVpVNUR4b1NtNXVsQQ?oc=5",
+     "source": "Prashant News"
+    }
+   ],
+   "added": "2026-11-25T02:46:20.999Z",
+   "details": [
+    {
+     "k": "रिकॉर्ड",
+     "v": "इतिहास में सबसे बड़ी संख्या दर्ज"
+    },
+    {
+     "k": "स्थानीय महत्व",
+     "v": "हर की पौड़ी गंगा किनारे स्थित प्रमुख घाट है",
+     "t": "g"
+    }
+   ],
+   "sum": "कार्तिक पूर्णिमा के अवसर पर हरिद्वार के हर की पौड़ी में 39 लाख श्रद्धालुओं ने गंगा में स्नान किया, जो अब तक की सबसे बड़ी संख्या है।",
+   "quiz": {
+    "q": "कार्तिक पूर्णिमा पर हरिद्वार में गंगा स्नान करने वाले श्रद्धालुओं की संख्या कितनी दर्ज हुई?",
+    "a": "39 लाख श्रद्धालु"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "0534d1df68",
+   "date": "2026-11-24",
+   "fact": "ऋषिकेश बाईपास परियोजना के वन भूमि हस्तांतरण की अड़चन दूर, क्षेत्रीय अधिकार प्राप्त समिति ने सहमति दी।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 2,
+   "tag": "ऋषिकेश बाईपास",
+   "model": "groq/qwen/qwen3.8-27b",
+   "refs": [
+    {
+     "title": "ऋषिकेश बाईपास परियोजना: वन भूमि हस्तांतरण की अड़चन दूर, क्षेत्रीय अधिकार प्राप्त समिति की बैठक में हुआ फैसला",
+     "link": "https://www.amarujala.com/dehradun/rishikesh-bypass-project-gets-forest-clearance-ministry-approves-land-transfer-proposal-uttarakhand-chardham-2026-11-24",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-25T02:46:20.999Z",
+   "details": [
+    {
+     "k": "परियोजना चरण",
+     "v": "स्टेज‑एक की अनुमति मिली, स्टेज‑दो की प्रक्रिया शुरू होगी"
+    },
+    {
+     "k": "बाईपास लंबाई",
+     "v": "लगभग 13 किलोमीटर बाईपास योजना"
+    },
+    {
+     "k": "आवश्यक वन भूमि",
+     "v": "निर्माण के लिए 47 हेक्टेयर वन भूमि चाहिए"
+    }
+   ],
+   "sum": "पर्यावरण, वन एवं जलवायु परिवर्तन मंत्रालय की क्षेत्रीय अधिकार प्राप्त समिति ने ऋषिकेश बाईपास के लिए आवश्यक 47 हेक्टेयर वन भूमि के हस्तांतरण को मंजूरी दी, जिससे स्टेज‑एक पूरा हुआ और स्टेज‑दो शुरू होगा।",
+   "quiz": {
+    "q": "ऋषिकेश बाईपास परियोजना के लिए कितनी हेक्टेयर वन भूमि की आवश्यकता है?",
+    "a": "47 हेक्टेयर"
+   },
+   "depth": "article"
+  },
   {
    "id": "823a5535c4",
    "date": "2026-11-23",
@@ -527,6 +706,38 @@
     "a": "525"
    },
    "depth": "article"
+  },
+  {
+   "id": "e551fb3292",
+   "date": "2026-11-23",
+   "fact": "बैणी-भुली योजना के तहत पहली किस्त ₹10,000 दिसंबर 2026 में जारी होगी।",
+   "cat": "योजना/नीति",
+   "imp": 3,
+   "tag": "बैणी-भुली योजना",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "उत्तराखंड की ‘बैणी-भुली’ योजना के तहत 10,000 रुपये की पहली किस्त दिसंबर में जारी होगी: मंत्री",
+     "link": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQRE9tYkFPWEQzTTROcDFSR2M4RFo5Ymppd3dIa2tsdEF1VVdmX1VWZ05fck9rRy05ZG80VzN3ZzN5cW9LRVBIanVKd1JNWURZZzFqVlNNd0tZenJydHlyWk5WZWFGS2tXOHRQUGQ2VDROLXJHNzM4OW1VSmpUenB3RXRWSy1iNHpBdDhZWjZYMDd3T2JDQk10RU5wclgwZHVDdFFnVUNsMWxzcWgwZTR2R0NpUW80VkZRQXV2eVVEbWhKMnZISjBoWENEaGtUWkVTbHk2bE9RMnFTLTQ4LXY1WnBWRlNWOXdOZ2Vr?oc=5",
+     "source": "IBC24"
+    }
+   ],
+   "added": "2026-11-25T02:45:11.172Z",
+   "details": [
+    {
+     "k": "लाभार्थी संख्या",
+     "v": "5.23 लाख ग्रामीण महिलाएँ"
+    },
+    {
+     "k": "भुगतान विधि",
+     "v": "सीधे लाभार्थियों के बैंक खातों में"
+    }
+   ],
+   "quiz": {
+    "q": "बैणी-भुली योजना की पहली किस्त की राशि कितनी है?",
+    "a": "10,000 रुपये"
+   },
+   "depth": "headlines"
   },
   {
    "id": "9590cbe24f",
@@ -3414,5 +3625,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-24T06:59:22.750Z"
+ "updated": "2026-11-25T02:48:04.606Z"
 }
