@@ -42,8 +42,13 @@ jobs:
         run: |
           MODE="${{ inputs.mode }}"
           if [ -z "$MODE" ]; then
-            H=$(TZ=Asia/Kolkata date +%H)
-            if [ "$H" -lt 15 ]; then MODE=start; else MODE=finish; fi
+            # GitHub can run scheduled jobs hours late (22 Nov: the Sunday-night runs fired at 2:42 and 4:02 AM Monday
+            # and were read as "start"). Decide by IST day + hour: start only on Sunday 6 AM–3 PM, finish on Sunday
+            # evening or (late runs) Monday before noon; anything else is a no-op.
+            D=$(TZ=Asia/Kolkata date +%u); H=$((10#$(TZ=Asia/Kolkata date +%H)))
+            if [ "$D" = "7" ] && [ "$H" -ge 6 ] && [ "$H" -lt 15 ]; then MODE=start
+            elif { [ "$D" = "7" ] && [ "$H" -ge 15 ]; } || { [ "$D" = "1" ] && [ "$H" -lt 12 ]; }; then MODE=finish
+            else echo "Outside the contest window (IST day $D, hour $H) — nothing to do."; exit 0; fi
           fi
           node scripts/contest.mjs "$MODE"
       - name: Save state
@@ -51,6 +56,8 @@ jobs:
           [ "$(cat contest-changed 2>/dev/null)" = "1" ] || { echo "Nothing to save."; exit 0; }
           git config user.name "contest-bot"
           git config user.email "contest-bot@users.noreply.github.com"
-          git add src/data/contest-state.json src/data/contest-results.json 2>/dev/null || true
+          # add each file on its own: one missing path made the old combined `git add` fail and save nothing
+          for f in src/data/contest-state.json src/data/contest-results.json; do [ -f "$f" ] && git add "$f"; done
+          git diff --cached --quiet && { echo "Nothing staged."; exit 0; }
           git commit -m "Quiz contest state [skip ci]"
           for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done

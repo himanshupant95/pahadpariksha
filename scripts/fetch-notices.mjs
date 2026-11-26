@@ -132,7 +132,9 @@ try {
   newAdvts = rec.filter((r) => !prevKeys.has(r.advt)).map((r) => ({ id: idOf('advt', r.advt, r.end), source: r.source, title: `नई भर्ती: ${r.title} (विज्ञापन ${r.advt}, अंतिम तिथि ${r.end.split('-').reverse().join('/')})`, url: r.apply, category: 'भर्ती/विज्ञापन' }));
   if (prev.length === 0) newAdvts = []; // first run: seed silently
   // keep hand-imported UKPSC applications (import-ukpsc.mjs) until their last date passes
-  const manual = prev.filter((r) => r.manual && r.end >= new Date().toISOString().slice(0, 10));
+  const manual = prev.filter((r) => r.manual && r.end >= new Date().toISOString().slice(0, 10)
+    // hand-added UKSSSC rows (when the portal is slow to list a new advertisement) drop out once the portal has them
+    && !rec.some((x) => x.advt === r.advt || (x.start === r.start && x.end === r.end)));
   await writeFile(RECRUIT, JSON.stringify([...rec, ...ukpscOpen, ...manual], null, 2) + '\n');
 } catch (e) {
   console.error(`ERROR ${e.message}`);

@@ -18,9 +18,17 @@ const SITE = 'https://pahadpariksha.in';
 const mode = process.argv[2];
 
 const tg = async (method, payload) => {
-  const r = await fetch(`https://api.telegram.org/bot${TOKEN}/${method}`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: AbortSignal.timeout(30000),
-  });
+  let r;
+  for (let i = 0; ; i++) { // retry network timeouts to api.telegram.org (seen on GitHub runners, 23 Nov)
+    try {
+      r = await fetch(`https://api.telegram.org/bot${TOKEN}/${method}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: AbortSignal.timeout(30000),
+      });
+      break;
+    } catch (e) { // only connect-phase errors: the message cannot have been sent, so a retry never double-posts
+      const code = e.cause?.code || e.cause?.errors?.[0]?.code;
+      if (i >= 3 || !/^(ETIMEDOUT|ENETUNREACH|ECONNREFUSED|EAI_AGAIN|UND_ERR_CONNECT_TIMEOUT)$/.test(code || '')) throw e; console.log(`${method}: network error (${e.cause?.code || e.message}), retry ${i + 1}`); await new Promise((s) => setTimeout(s, 15000 * (i + 1))); }
+  }
   const j = await r.json().catch(() => ({}));
   if (!j.ok) throw new Error(`${method}: ${j.description || r.status}`);
   return j.result;

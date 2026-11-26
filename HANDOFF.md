@@ -235,3 +235,10 @@ Rules agreed with the user:
 - Answers come from the Cloudflare Worker: `poll_answer` updates stored in KV binding `CONTEST` (60 days); GitHub reads them via `/contest?key=sha256(BOT_TOKEN+':contest')`. Worker URL lives in `src/data/contests/config.json`.
 - Test: Actions → Weekly quiz contest → mode `selftest`, test ✓ → 3 polls in the owner chat, 4 min, result.
 - Add a new set every week (subject rotation: इतिहास, भूगोल, राजव्यवस्था, ज़िले, संस्कृति, अर्थव्यवस्था, करेंट).
+
+## Catch-up review (26 Nov 2026)
+- Current affairs 22–25 Nov manually reviewed: 8 weak/duplicate/political points dropped (UCC speeches, Banbasa figure clash, duplicate Baini-Bhuli, tablets, minor sports), 12 corrected (Chharchum bridge moved to 23 Nov; stromatolite site = Gangolihat, GSI 9 Oct 2026, removed the unsourced "3.5–3.7 bn yr" age; WII founded 1982 not 1999), 4 added (Board exams 2027, Gopal Ratna – Sudhesh Chauhan, Gangotri all-weather road, UKSSSC 200 SI posts). 26 Nov is left to the nightly edition.
+- recruitments.json: hand-added UKSSSC Advt 84 (constable 1694, 25 Nov–25 Dec) and the 200-post SI advt (1–31 Dec) because ukssscrecruitment.in has not listed them yet; fetch-notices drops these once the portal lists the same advt/dates.
+- UKPSC notices NOT imported since 20 Nov (needs the owner's browser in India). Upper PCS prelims 29 Nov.
+- Contest bug fixed: `git add` of a missing results file saved no state, and late Sunday-night runs (2:42/4:02 AM Mon) were read as "start" → itihas-1 was posted twice on 23 Nov and never closed. Mode is now decided by IST day+hour; state saves per file. itihas-1 is still unplayed, so it runs again on 29 Nov.
+- Telegram scripts retry connect-phase network errors (23 Nov timeouts).
