@@ -518,9 +518,251 @@
   "84512b8e3292",
   "4d88b1f4d870",
   "b7beb7744f16",
-  "7c1f154b3ca7"
+  "7c1f154b3ca7",
+  "bbe949bd00db",
+  "2df4b3a718ed",
+  "283c2ef19385",
+  "ac015ca68054",
+  "54198271cc27",
+  "ab08822739f8",
+  "b92707c6a150",
+  "a4bd8e777a3b",
+  "19262441ed8a",
+  "19ad5385e46b",
+  "8b0dcb8774f5",
+  "13791ec1f1af",
+  "3071527c0c7b",
+  "6edd9fafca82",
+  "1072ce86dd3c",
+  "9f7c5595b8ba",
+  "77c0bc3b86f1",
+  "8c75531d9ca7",
+  "4db95578b059",
+  "b2695169e8f6",
+  "1a85f6059751",
+  "5d1b4bf20ed1",
+  "dd4cb7441102",
+  "876592fa0856",
+  "3c7421a3f477",
+  "55a06f5356be",
+  "2d79243cc643",
+  "5c8c71ff5a27",
+  "5b34427b28f5",
+  "fb84b5b1c7e1",
+  "c11c22165450",
+  "af5a93539524",
+  "8543a1032f9a",
+  "7e0f2f963b76",
+  "cd210ef49bd4",
+  "b277d7b9e1ca",
+  "57659ad73e7a",
+  "6f565d702fb9",
+  "428d98aca1ba",
+  "46d33a2e3daf",
+  "b553a47535be",
+  "af0e66f42b2a",
+  "eaee6ab1ab77",
+  "65944d75cedf",
+  "ff563a63c9af",
+  "54338f814d95",
+  "057042b95730",
+  "9473a01cead9",
+  "a0679b5b2b95",
+  "cd0f6e91d8cf",
+  "03dffef1fb76",
+  "a3cdaf6571c2",
+  "9a7897c25093",
+  "3832e25b21e6",
+  "d1d250a0d406",
+  "0d2863059380",
+  "948c354dc98e",
+  "82cb57d64c4f",
+  "53702d41b032",
+  "6db4e94f6187",
+  "02e98bc7a37a"
  ],
  "points": [
+  {
+   "id": "2558f902a9",
+   "date": "2026-11-25",
+   "fact": "उत्तराखंड में बंदरों और लंगूरों की वैज्ञानिक गणना के लिए भारतीय वन्यजीव संस्थान (WII) ने एक नया मोबाइल ऐप विकसित किया है।",
+   "cat": "पर्यावरण",
+   "imp": 2,
+   "tag": "बंदर लंगूर गणना",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "उत्तराखंड: प्रदेश में बंदर और लंगूरों की गिनती का बदलेगा तरीका, भारतीय वन्यजीव संस्थान ने तैयार किया मोबाइल एप",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-to-count-monkeys-and-langurs-through-mobile-app-public-to-join-wildlife-census-2026-11-25",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "Uttarakhand to count monkeys, langurs through mobile app amid rising human-wildlife conflict",
+     "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNaGIwZE53MjVKV1pXQVI4S2RPcjhLckJ1b2I0VTN0aWd4dkNsNV9mdkp3djY3TDFMb25pUDFMOExYVnE0Y2VKUEk5a1Noa0RJTnVmZ3hlaEU3RFhCWFE4YTJCSURKMnZTNm1NS1NvRWdSeHpsOHRMeGc0QWJRdDNMMWFhNXJUSHZTWXY2QzFnNWhDVGRPZTJlZS1wSnF6eHYwRW1neTEycHUxaWhoaUk3RmVlalhSNGEwb211Wnp6WlNNX2RoNkZHWW1GTlBTakJwUFFwYnZiS3BnUdIB5wFBVV95cUxOczFVTlItb3JlTGFKci14N05aV3hYQWx0QzdSc25wcHg5bDRmaFFXb2dGeXdLS0xnQ3RKTmctUHFYVEZyZzNzRnVyejJYUXEtOXdmNTdIaW1kdGZycmc2bjlDWDMyLW5fY3NZcnEyNnF4Q1NSMDMzYVJyWWJrZVlQLTJlX1BiTVd0U0JpZnpzNGU1emM3aEs0V1pwdlVSeHhkR3NrUFZudUV3ejVMU1NZSDBQaGxBNVJVVnBGVWRxc2tLVERSbXZVdDhwWXo3MVdHdkdCdWFRQlJYYVZpTUVBcW1JMnFQT3c?oc=5",
+     "source": "The New Indian Express"
+    }
+   ],
+   "added": "2026-11-26T01:55:20.689Z",
+   "details": [
+    {
+     "k": "वैज्ञानिक",
+     "v": "डॉ. बिलाल हबीब"
+    },
+    {
+     "k": "पहला उपयोग",
+     "v": "हरियाणा में इसी तकनीक से बंदरों की गिनती की गई"
+    },
+    {
+     "k": "डेटा संग्रह",
+     "v": "एप खोलते ही जीपीएस लोकेशन और फोटो अपलोड कर संख्या दर्ज होगी"
+    },
+    {
+     "k": "संस्थागत स्थापना",
+     "v": "भारतीय वन्यजीव संस्थान 1999 में देहरादून में स्थापित",
+     "t": "g"
+    }
+   ],
+   "sum": "भारतीय वन्यजीव संस्थान ने उत्तराखंड में बंदर‑लंगूर गिनती के लिए मोबाइल एप तैयार किया है, जिससे आम लोग फोटो और जीपीएस के साथ डेटा भेज सकेंगे।",
+   "depth": "article"
+  },
+  {
+   "id": "46e874aa3a",
+   "date": "2026-11-25",
+   "fact": "मुख्यमंत्री कप में खेलों की संख्या 32 से बढ़ाकर 50 की गई तथा खिलाड़ियों की पुरस्कार राशि दोगुनी करने के प्रस्ताव को मंजूरी दी गई।",
+   "cat": "खेल",
+   "imp": 2,
+   "tag": "मुख्यमंत्री कप खेल",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "उत्तराखंड: मुख्यमंत्री कप की पुरस्कार राशि की दोगुनी, चैंपियनशिप ट्रॉफी में खेलों की संख्या 50 हुई",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-prize-money-for-chief-minister-cup-doubled-number-of-sports-in-championship-trophy-increased-2026-11-25",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "धामी कैबिनेट के बड़े फैसले, खिलाड़ियों की इनामी राशि दोगुनी; सफाई कर्मियों को भी राहत | News Track in...",
+     "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPR2tGbGxQM3lybHdXSW5rd2RGN182NlZIOTdGUEpTXzBXMWJqd3ZPdlJrU0dxY0hFT2JZajk1SzczczFkYzZ3MzFnRTc5bmlxU0FrTnc5UWJvbHYxZnNEVVBEa094QldhcFhZcWxqSlg2UXZ5NHlYVExLWmdMamxXdjdqSV9feEJ0MEdqWkcyS2dKaDhZYWhwUi0zSkVMMGFvT2pqekNieVIwLVhn0gGyAUFVX3lxTE8zVloyOXJpQk5FWlNjcWZYSnRKbXNwV0JhRHBMdE4zRnhndGJwUmh5dWYzS2NSTWxqR1cwSHF1ajRpN1AzSGxKZ0ZYQXEwUXhtMmFNLWVYbXZ5UDZia3R1X0ltVjFQTG5pc1JhZTFyanpHRlgyVEM3TjMwRjM4bDNVcHFYSS1FNXZUbFM1RHhHQWE5YUlLQW9uZFB0VjNCc1A0SnlWUElLSXp4UEtxNll2aUE?oc=5",
+     "source": "Newstrack"
+    },
+    {
+     "title": "उत्तराखंड में अब 32 नहीं, 50 खेलों में होगी चैंपियनशिप: गांव-गांव बनेंगे खेल क्लब, खिलाड़ियों का इनाम भी बढ...",
+     "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOU3FXbE5HNWllMVhJXzZGeW5DQWt6MUwyMEs1NnloemtZOUN3LTVBX1lzR2V3dW5hcjl6UGVwc3Z1eFRjbUFlT2lqWG9FUjFxRUR4dVIwbS1pMWZZalJqT0tuU09PUTFlNGgtMWltZEFEd29QckxNNFdPR0VnVFN5WjI4Tk1BU2hudjN3Y0d5VWszNFg3bzdFOXRWNnhMcFBsUUxoa1pDNGpnN1NmVl9nTzRySC00bGpoaTZCQ01ndE1DWmZ6X25fNzVveDludldZanlfZ1VhYXZid9IB3wFBVV95cUxQczkwMEN5YWhFRnc0UTBhQ3NSZ1NSZmFEcVZqQ3BuWVpTcGsyaXd5TEZPLWpXc240MGF1bVpYcERWYl9WR3lUTkw5cmRnMVBPUUZCYlkxSEk1Y21sRjVLb3pFTnJJcGdXYVZPWmRaZ05QWE13Vnp4akVRLUIzakpGSDlmWG1GTnlMNHkzajl5OFFqRzM3SjczaU4xMkxFVXVHVUJTeURCX2xsLVZDTHRZUkd0eEhfUnMwTndWRWNNYzBIX0dpbDhnUURuN0hEd0lJa2ZCUHJGc25jY0MwSkN3?oc=5",
+     "source": "Dainik Bhaskar"
+    },
+    {
+     "title": "Uttarakhand CM Dhami Approves Higher Sports Prize Money, 50 Games And Village Sports Clubs",
+     "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPMWdJMnN1bWVrbUk2ZWdPckh3Y2RnOVpOUi1rYVM3MGRZZ2NaMzVjdy0tSGs2UmNiRUJYakpDbWhJR1pBa2UtSEFoQUtraHdlWUNELVRoRklYQlNvcF9sb0xRcDJkS29kZnNjTDROQ3Y5am9Ba0dlQzA1S1Z3LXJGRWdZV3VxOGpiTjdyclZfWUFXWUxWQWZ4aFlXR1NNNTRST1k4UmI3QmU1RFRIVWhMck9ZdGFjbUdQRFFpMVhCQ2pSanNPakJRT0wwU3VPNDAyejRXOHUwbm5EYjgyT3lmaDBn0gHnAUFVX3lxTFBPM296UWd2SnVlT041aXdJYWFuYm1Fd3pKaTEtbWkyazJWT016Mjh5ZFJOdWI3Tkc2NDNkNk5vTjVnZzgxTVpwd25pSS0tZS1rbERNNEliam9YQ1dCUmRPdnJsdm5RdGl6cVF3VHVxeDZPZlBYZzRTeW5XaGhQY3E4ODFrbWt1UGx2bzQxTW0xcGp5dTlVQjVtVU96VXRIakcwTm5wdy1EZXVkZWhqU2NOTjZxTnBqWmV3NHJrVWVjWVllWm8yeUxIZHpfSXNNdHF6Z0h3eGRFNE40S1otZnMtRi1ybjYxVQ?oc=5",
+     "source": "Asianet Newsable"
+    },
+    {
+     "title": "उत्तराखंड में खिलाड़ियों की बढ़ेगी पुरस्कार राशि, विजेता जिले को मिलेंगे 10 लाख रुपये, सफाई कर्मचारियों के…",
+     "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNSkhkei1kV2ZXVnRKMVB1MUNpYUF0N2R5bC1jaEJtSnFCUDBza1dGdDJLU2VQZmdqVVdETW5XRTBNYUdWQ2g2bmdIVTAycG94VG1rOVY5Z0thRGFmLTJVSWxMLXdEdUxiQTdDWDdSeEZFTFpUeGR1XzFodENVWUNPNTh1TW1pMnM4dzdFYzA1SFNMdy1SSkFXeW9vWWhyZUZxcVVkbHhpdFg5WGkyeGxZS1Q1S1RMOVUxaDNvTVBB?oc=5",
+     "source": "MP Breaking News"
+    }
+   ],
+   "added": "2026-11-26T01:55:20.689Z",
+   "details": [
+    {
+     "k": "पुरस्कार राशि",
+     "v": "मुख्यमंत्री कप की राशि पाँच लाख से दस लाख रुपये हुई"
+    },
+    {
+     "k": "स्वीकृति",
+     "v": "सीएम पुष्कर सिंह धामी ने प्रस्ताव मंजूर किया"
+    },
+    {
+     "k": "परम्परागत खेल",
+     "v": "नई सूची में उत्तराखंड के पारम्परिक खेल शामिल किए गए"
+    }
+   ],
+   "sum": "मुख्यमंत्री कप की पुरस्कार राशि पाँच लाख से बढ़ाकर दस लाख रुपये कर दी गई और खेलों की संख्या 32 से बढ़ाकर 50 कर दी गई।",
+   "quiz": {
+    "q": "मुख्यमंत्री कप की पुरस्कार राशि नई सीमा क्या है?",
+    "a": "दस लाख रुपये"
+   },
+   "depth": "headlines"
+  },
+  {
+   "id": "6164e426f3",
+   "date": "2026-11-25",
+   "fact": "भीमताल झील के पुनर्जीवन और ड्रेजिंग के लिए स्प्रिंग एंड रिवर रिजुवनेशन अथॉरिटी (SARRA) ने झील की गहराई व गाद का वैज्ञानिक सर्वेक्षण कराया।",
+   "cat": "पर्यावरण",
+   "imp": 2,
+   "tag": "भीमताल झील सर्वेक्षण",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "देहरादून: भीमताल झील की गहराई और गाद का होगा वैज्ञानिक आकलन, पुनर्जीवन-ड्रेजिंग के लिए तैयार होगी कार्ययोजना",
+     "link": "https://www.amarujala.com/dehradun/bhimtal-lake-restoration-four-day-bathymetric-survey-completed-to-assess-depth-and-silt-deposits-sarra-2026-11-25",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "Scientific survey of Uttarakhand's Bhimtal Lake completed to assess desilting feasibility",
+     "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOdWxPRlNXMG45d0JlczJSMl9IbnE4cHFoOW1oWElONnV6VUkxWGxtZUhVQXNxVjBBdUpicThNQkRMMzJXNkN6RUFRTnRxVGpMdnlkTmphbF9uNERibVBMQXFFZm5UWWM4RDFjVXlXbktEaUR0eGlhYkhaZDFxcnROWkFnYW5pLVBhMkRJM2xmai1KX09GLTNFZzBuY3g4UTgydnUyV2U5N25nZ1BUOExjbUxCUnRvVGFobVVOUWprVVdWQ1ZicW41NndiVERfZlpFZTNfSlNn0gHjAUFVX3lxTFBxVkQzQmFzZEprUEtyeldmVHFiVHJ2aTVJM1BKVFhSTEU2YWJnejBSZmx1MDNqUmhYQ0IxcE5IR1I3Rmh4NVFPbnFGUlBfeE16b2dfQWd5dzc0czkwNTBHRENhYk1xSEhtZTFJa29DZUNSNk1ndjhfbGdtYWRrMFhaS3Nfb3NydWUzTERDRHYzQkZYaHR3TnhaMXhiYTBUWUhQdVVxQW5mbVEyRGdRSnU0SzhIbTlKWWZ6N3pNazBKNllpdTA1d21ybVEzT1AtZFRnOUZmUzZVTHRnVHN1c1lqRDJ3?oc=5",
+     "source": "The New Indian Express"
+    }
+   ],
+   "added": "2026-11-26T01:55:20.689Z",
+   "details": [
+    {
+     "k": "सर्वेक्षण एजेंसी",
+     "v": "मैसर्स जियोसाइंस कंसल्टेंसी सर्विसेज ने सर्वेक्षण किया"
+    },
+    {
+     "k": "अवधि",
+     "v": "चार दिवसीय बैथिमेट्रिक सर्वेक्षण किया गया"
+    },
+    {
+     "k": "उद्देश्य",
+     "v": "झील की गहराई, जल भंडारण क्षमता और तल में जमा गाद का आकलन"
+    },
+    {
+     "k": "प्रमुख अधिकारी",
+     "v": "जलागम मंत्री राम सिंह कैड़ा ने निर्देश दिया"
+    },
+    {
+     "k": "स्थान",
+     "v": "भिमताल झील नैनिताल जिला, उत्तराखंड",
+     "t": "g"
+    }
+   ],
+   "sum": "स्प्रिंग एंड रिवर रिजुवनेशन अथॉरिटी ने जलागम मंत्री के निर्देश पर भीमताल झील का चार दिवसीय बैथिमेट्रिक सर्वेक्षण कर गहराई व गाद का वैज्ञानिक आकलन किया।",
+   "depth": "article"
+  },
+  {
+   "id": "955872692b",
+   "date": "2026-11-25",
+   "fact": "राष्ट्रीय शूटिंग चैंपियनशिप में उत्तराखंड के निशानेबाज दिग्विजय सिंह ने ट्रैप स्पर्धा में स्वर्ण पदक जीता।",
+   "cat": "खेल",
+   "imp": 2,
+   "tag": "दिग्विजय सिंह स्वर्ण",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "राष्ट्रीय शूटिंग चैंपियनशिप में उत्तराखंड के दिग्विजय सिंह ने ट्रैप स्पर्धा में जीता स्वर्ण",
+     "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNNHhYZDlLQ0N3ZUJEUS11b196X18wU2NWY1JZdjJKbU5jUVZMcFg5cENKU2Zad0xIdzREa3ZKRG5TR0NIT1gxZTNJNlBNZWpsdFJUTFJhRHFuV19YbmZCN0E1ZzItVlBVYW95TlRBWlo2WWZOOWF3ZHdIa3JYVF90RQ?oc=5",
+     "source": "Vocal TV"
+    }
+   ],
+   "added": "2026-11-26T01:55:20.689Z",
+   "details": [
+    {
+     "k": "श्रेणी",
+     "v": "सीनियर मास्टर पुरुष ट्रैप"
+    },
+    {
+     "k": "आयोजन आवृत्ति",
+     "v": "राष्ट्रीय शूटिंग चैंपियनशिप भारत में वार्षिक आयोजित होती है",
+     "t": "g"
+    }
+   ],
+   "sum": "दिग्विजय सिंह ने राष्ट्रीय शूटिंग चैंपियनशिप में ट्रैप स्पर्धा में स्वर्ण पदक जीता, जिससे उत्तराखंड का गौरव बढ़ा।",
+   "quiz": {
+    "q": "दिग्विजय सिंह ने राष्ट्रीय शूटिंग चैंपियनशिप में किस श्रेणी में स्वर्ण पदक जीता?",
+    "a": "सीनियर मास्टर पुरुष ट्रैप"
+   },
+   "depth": "headlines"
+  },
   {
    "id": "9cf5d2b20a",
    "date": "2026-11-24",
@@ -3659,5 +3901,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-25T05:30:46.575Z"
+ "updated": "2026-11-26T01:59:07.188Z"
 }
