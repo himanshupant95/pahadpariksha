@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T01:54:30.832Z",
+ "updated": "2026-11-26T03:09:27.919Z",
  "items": [
   {
    "id": "1026f4086d0e",
@@ -10,7 +10,9 @@
    "lang": "hi",
    "score": 5,
    "cat": "योजना/नीति",
-   "sources": [],
+   "sources": [
+    "Head Topics"
+   ],
    "firstSeen": "2026-11-26T01:54:28.027Z"
   },
   {
@@ -35,7 +37,9 @@
    "lang": "hi",
    "score": 2,
    "cat": "परीक्षा/भर्ती",
-   "sources": [],
+   "sources": [
+    "liveskgnews"
+   ],
    "firstSeen": "2026-11-26T01:54:27.301Z"
   },
   {
@@ -285,6 +289,18 @@
    "cat": "योजना/नीति",
    "sources": [],
    "firstSeen": "2026-11-25T17:37:11.518Z"
+  },
+  {
+   "id": "1a463025da94",
+   "title": "पारदर्शी भर्ती प्रक्रिया के जरिए उत्तराखंड में 36 हजार युवाओं को मिला रोजगार: CM धामी",
+   "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBJTHkwMWdWSmxIQ01YeUVjVGlCcVhsMnJJY0t2MGI2a190UzRBMElheU9COVYwTnZPY3FRbHBIczF1SHBnX3NZZ1A4Zm5LYmFNRGdzRGhEbDFMNmY4ek80QV9XTXhWTUFLOExFaTNGeEVXM2NxcHhZVw?oc=5",
+   "source": "TNP News",
+   "published": "2026-11-25T10:46:24.000Z",
+   "lang": "hi",
+   "score": 2,
+   "cat": "परीक्षा/भर्ती",
+   "sources": [],
+   "firstSeen": "2026-11-26T03:09:25.884Z"
   },
   {
    "id": "ff563a63c9af",
@@ -681,7 +697,8 @@
    "score": 5,
    "cat": "पुरस्कार/खेल",
    "sources": [
-    "Jagran"
+    "Jagran",
+    "Head Topics"
    ],
    "firstSeen": "2026-11-25T17:36:59.943Z"
   },
