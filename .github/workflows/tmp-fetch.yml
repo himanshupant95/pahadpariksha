@@ -1,0 +1,19 @@
+name: tmp article fetch
+on:
+  push:
+    branches: [tmp-fetch-articles]
+permissions:
+  contents: read
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scripts/run.mjs
+      - run: |
+          sudo apt-get -qq install -y poppler-utils >/dev/null
+          curl -sL -A "Mozilla/5.0" -o si.pdf "https://cdnbbsr.s3waas.gov.in/s34ffd0e19d2069412274bd3025b0e176c/uploads/2026/11/202611251036354999.pdf" && pdftotext -layout si.pdf - | head -150 || true
+          curl -sL -A "Mozilla/5.0" -o c.pdf "https://cdnbbsr.s3waas.gov.in/s34ffd0e19d2069412274bd3025b0e176c/uploads/2026/11/20261117947374675.pdf" && pdftotext -layout c.pdf - | head -80 || true
+          curl -sL -A "Mozilla/5.0" https://ukssscrecruitment.in/ | sed 's/<[^>]*>/ /g' | tr -s ' \n' | grep -iE "Advt|UKSSSC/2026|Last|Start|अंतिम" | head -40 || true
