@@ -1,6 +1,43 @@
 {
- "updated": "2026-11-27T01:52:28.066Z",
+ "updated": "2026-11-27T03:17:50.056Z",
  "items": [
+  {
+   "id": "7f7924bf39e5",
+   "title": "उत्तराखंड कैबिनेट बैठक आज, पीआरडी जवानों की नजर",
+   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOOTNmeFZhTzcwLXh4aEhmbDRwX21GWDNNcUxWdEFrbzlHaGQyN2F1QjB2TGFGYU0tbHE5YXZlX3VaQTdRTmx0X1ZHQ0RJRW4xVFJMRU9ZOHBJTHlEZGhENmVmLVZkdkxuT0V6MlJNSFUzaXpDb0FGWE5sZ3R5a2VwUkl2TWhVdjM2dEV5N3pSV1RmLU5yWUtPa2ZJVWlDT29sWlRhU1ZicXV6V1R0M0N0UE01bXB4OFZoeW83RjZiUG0?oc=5",
+   "source": "Jagran",
+   "published": "2026-11-27T02:26:00.000Z",
+   "lang": "hi",
+   "score": 3,
+   "cat": "योजना/नीति",
+   "sources": [],
+   "firstSeen": "2026-11-27T03:17:46.584Z"
+  },
+  {
+   "id": "071a84a97018",
+   "title": "उत्तराखंड: कैबिनेट बैठक आज, महिलाओं और किसानों को मिल सकती है राहत, बिजली बिल सरचार्ज माफी पर भी फैसला संभव",
+   "link": "https://www.amarujala.com/dehradun/uttarakhand-cabinet-meeting-today-decisions-likely-on-bijli-bill-surcharge-waiver-and-baini-bhuli-scheme-2026-11-27",
+   "source": "Amar Ujala",
+   "published": "2026-11-27T02:10:59.000Z",
+   "lang": "hi",
+   "summary": "मुख्यमंत्री पुष्कर सिंह धामी की अध्यक्षता में कैबिनेट की बैठक आज शुक्रवार को होगी, जिसमें कई महत्वपूर्ण घोषणाओं पर मुहर लगेगी।",
+   "score": 3,
+   "cat": "योजना/नीति",
+   "sources": [],
+   "firstSeen": "2026-11-27T03:17:42.401Z"
+  },
+  {
+   "id": "df7bd931890c",
+   "title": "धामी कैबिनेट में खुलेगा लाखों लोगों की जेब का रास्ता: आंगनबाड़ी से भोजनमाता तक बढ़ेगा मानदेय; बिजली बिल के ...",
+   "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOeGEzcU5KdV9HRWw1R3ltcTE0RW5oSVFoZ0YyU0J1SDAxWUxfTlRnVU42TWZRN1BoZHh6Wi1RWXlpb3JLeXdwaTJFblYwQVdFRllzY1hXc2ZNa1cyc3FZYTd2OElGUWFPYUNWLUxZR3o4ZUdodjdqLTZyak1TLWhYV0RXUElFdldsOVByVjJMQ2trS0poZWZOSUExUDZqZmRIRVRHaFo1NHpTNzFJb3VpMEUtS2kwb00ybWdfb1FxeGt5R2F4SjA3TmlpNGpyS1ZUNmdz0gHYAUFVX3lxTFBWUkFzc0N3SGVWSlRjWFRxOW5ZeGZjUmx2M1NUVDd0NFBqcVpGdENobl9QbUx0b2syUnRYQW40T2Q4S3BrTGxpTFphS21FNWNSZVk0QjlNTVFZM3BWZ0hHV21yRFNKREJkV1B0ano4NEZnUl91Z1JCM1dxSC1zcERlQVVjSm9raWVhNS15S3QzNkp4NHZfUTRhRGhrWm15RURYSUJ1M2psM09jOEVlamhudUxrY3FpcnBYdGRrOW84VkZmc0NHQU91WXZsTU0xOVJudk43NTdUSQ?oc=5",
+   "source": "Dainik Bhaskar",
+   "published": "2026-11-27T02:10:24.000Z",
+   "lang": "hi",
+   "score": 3,
+   "cat": "योजना/नीति",
+   "sources": [],
+   "firstSeen": "2026-11-27T03:17:47.433Z"
+  },
   {
    "id": "51fcaa7fc1f5",
    "title": "उत्तराखंड पुलिस में निकली 200 पदों पर भर्ती, यहां चेक करें पूरा शेड्यूल",
@@ -10,7 +47,10 @@
    "lang": "hi",
    "score": 2,
    "cat": "परीक्षा/भर्ती",
-   "sources": [],
+   "sources": [
+    "Jagran Josh",
+    "liveskgnews"
+   ],
    "firstSeen": "2026-11-27T01:52:25.147Z"
   },
   {
@@ -139,6 +179,18 @@
    "firstSeen": "2026-11-27T01:35:13.928Z"
   },
   {
+   "id": "c03aa7f87d95",
+   "title": "Advertisement For 200 Uniformed Posts उत्तराखंड में उप निरीक्षकों सहित 200 वर्दीधारी पदों पर भर्ती के लिए विज्ञापन जारी... | Navin Samachar | 1 New Positive | Advertisement Issued For The Recruitment Of 200 Uniformed Posts",
+   "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9SMXBFR2NJTThibG5iU0ozYXNERm50TGRNMzVUbTEwTW9qWFYwZ003ZDB0aGp2SEx6WFd1a1ltd08tZmRvVmItZkVFZVlnRnQtX0tZNm9SRlNwSG9WM2E3MlE3Zi1rSFFaUzU5TEFSUlo0bmE1aE5jYQ?oc=5",
+   "source": "Navin Samachar",
+   "published": "2026-11-26T16:26:43.000Z",
+   "lang": "hi",
+   "score": 2,
+   "cat": "परीक्षा/भर्ती",
+   "sources": [],
+   "firstSeen": "2026-11-27T03:17:47.010Z"
+  },
+  {
    "id": "b39426a09cc5",
    "title": "उत्तराखंड-:इस दिन होगी धामी कैबिनेट की बैठक,हो सकते हैं अहम निर्णय ।।",
    "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNVGdyc2Ryc0tndXVqM0hPeVBXMERPSlB2LUVDSldBZmw1NzZOVHJEUUc1OWV4aERNM2JhQXYwYjFXU3k0eHZIZWxuMk5uR1otVG9oNE9sQTR5VHhta1hPRThTM0piVDRFalBjclZ5R3pyVUtWWUp0QXJHck5zVzdNVHBMbFNqckxnWlBiQ1dWeGZrOHYybHVjTjRJSS1LZXUxcC1PLVJjZktQbzFPZ1paSndTWDgwalFhMHJPOU01TVVJZw?oc=5",
@@ -187,9 +239,13 @@
    "score": 5,
    "cat": "योजना/नीति",
    "sources": [
-    "liveskgnews"
+    "liveskgnews",
+    "Amar Ujala",
+    "Live Hindustan"
    ],
-   "firstSeen": "2026-11-26T17:17:40.697Z"
+   "firstSeen": "2026-11-26T17:17:40.697Z",
+   "summary": "मुख्यमंत्री पुष्कर सिंह धामी के कार्यकाल के बीते पांच वर्षों में उत्तराखंड ने कानून व्यवस्था को सुदृढ़ करने और प्रशासनिक जवाबदेही तय करने की दिशा में कई ऐतिहासिक कदम उठाए हैं।",
+   "read": "https://www.amarujala.com/dehradun/uttarakhand-bjp-report-card-ucc-strict-anti-copying-law-and-other-major-decisions-under-dhami-government-2026-11-27"
   },
   {
    "id": "5894af9336db",
@@ -845,7 +901,9 @@
    "lang": "en",
    "score": 2,
    "cat": "पुरस्कार/खेल",
-   "sources": [],
+   "sources": [
+    "Garhwal Post"
+   ],
    "firstSeen": "2026-11-25T17:37:13.378Z"
   },
   {
