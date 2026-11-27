@@ -623,9 +623,58 @@
   "ad9f84002ccc",
   "33a6af62c461",
   "b39426a09cc5",
-  "2df2539a2592"
+  "2df2539a2592",
+  "fdcfdd9a041e",
+  "e2942c5f9030",
+  "7a00b673c902"
  ],
  "points": [
+  {
+   "id": "e8151e2bb2",
+   "date": "2026-11-26",
+   "cat": "अर्थव्यवस्था",
+   "imp": 3,
+   "tag": "GSDP व प्रति व्यक्ति आय 2024-25",
+   "fact": "राज्य सरकार के पाँच वर्ष पूरे होने पर जारी आँकड़ों के अनुसार 2024-25 में उत्तराखंड का सकल राज्य घरेलू उत्पाद (GSDP) ₹3,81,889 करोड़ और प्रति व्यक्ति आय ₹2,73,921 रही; राज्य की आर्थिक विकास दर 7.23% दर्ज हुई।",
+   "refs": [
+    {
+     "title": "उत्तराखंड की अर्थव्यवस्था में उछाल: जीएसडीपी डेढ़ गुना, रिवर्स पलायन की दर में 44 प्रतिशत की हुई वृद्धि",
+     "link": "https://www.amarujala.com/dehradun/reverse-migration-rate-increased-by-44-percent-in-uttarakhand-2026-11-26",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "उत्तराखंड: चुनाव से पहले सीएम धामी ने दिया पांच वर्षों का लेखा-जोखा, नारी शक्ति समेत ये पांच नीतियां रहीं खास",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-ahead-of-elections-cm-dhami-presents-report-card-for-past-five-years-these-five-policies-stand-out-2026-11-26",
+     "source": "Amar Ujala"
+    }
+   ],
+   "details": [
+    {
+     "k": "तुलना",
+     "v": "GSDP 2021-22 के मुकाबले डेढ़ गुना से अधिक; प्रति व्यक्ति आय ₹1,94,670 (2021-22) से बढ़कर ₹2,73,921"
+    },
+    {
+     "k": "गरीबी",
+     "v": "बहुआयामी गरीबी सूचकांक (MPI) 9.7% (2021-22) से घटकर 6.92% (2024-25)"
+    },
+    {
+     "k": "बजट",
+     "v": "राज्य बजट 10.41% बढ़ोतरी के साथ ₹1.19 लाख करोड़ से अधिक"
+    },
+    {
+     "k": "पलायन",
+     "v": "रिवर्स पलायन (गाँव लौटने) की दर में 44% वृद्धि का दावा"
+    }
+   ],
+   "sum": "2024-25: GSDP ₹3,81,889 करोड़, प्रति व्यक्ति आय ₹2,73,921, विकास दर 7.23%, MPI 6.92%।",
+   "quiz": {
+    "q": "2024-25 में उत्तराखंड की प्रति व्यक्ति आय कितनी रही?",
+    "a": "₹2,73,921"
+   },
+   "model": "manual-review",
+   "added": "2026-11-27T01:41:30.818Z",
+   "depth": "article"
+  },
   {
    "id": "c52b2a5cfd",
    "date": "2026-11-26",
@@ -662,6 +711,39 @@
     "a": "28%"
    },
    "depth": "article"
+  },
+  {
+   "id": "17815058ce",
+   "date": "2026-11-26",
+   "fact": "Bagartoli गाँव ने पिथौरागढ़ में जनगणना 2027 के लिए आत्म‑गणना पहले पूरी की।",
+   "cat": "रिपोर्ट/रैंकिंग",
+   "imp": 2,
+   "tag": "Bagartoli जनगणना",
+   "model": "groq/openai/gpt-oss-120b",
+   "refs": [
+    {
+     "title": "Uttarakhand: Bagartoli village first to complete self-enumeration for Census 2027 in Pithoragarh",
+     "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQRURwNjZYNlhRaVlpejV1SUMzOFl6WTVZM0x5RTk5SGVZTU1tSnMzUzltSHRmZWE1MmE1STJ6ejNHeExmV1E0blhmOTVqSV9RSHRoQmM5dF9pWXN3TW9BMmZ0U1ZNSWp5V1JYbS1FdnVGS01qb3hBeUYyWUptdEZuOXFqaWpIczYwSWFtaWUwQXR0N241ZjlXRVRCVE9ZbnVjSExXaEctWEtaejkyUDN2RTlxUUJVelFmWjZUYzR4RlRmVkRuajN5UA?oc=5",
+     "source": "www.thesamaja.com"
+    }
+   ],
+   "added": "2026-11-27T01:54:08.886Z",
+   "details": [
+    {
+     "k": "गाँव",
+     "v": "बगरटोली"
+    },
+    {
+     "k": "जनगणना अंतराल",
+     "v": "भारत में जनगणना हर दस साल में आयोजित होती है",
+     "t": "g"
+    }
+   ],
+   "quiz": {
+    "q": "बगरटोली गाँव ने किस जनगणना के लिए आत्म‑गणना पहले पूरी की?",
+    "a": "जनगणना 2027"
+   },
+   "depth": "headlines"
   },
   {
    "id": "2558f902a9",
@@ -3839,53 +3921,7 @@
     "a": "ऊधम सिंह नगर"
    },
    "depth": "headlines"
-  },
-  {
-   "id": "e8151e2bb2",
-   "date": "2026-11-26",
-   "cat": "अर्थव्यवस्था",
-   "imp": 3,
-   "tag": "GSDP व प्रति व्यक्ति आय 2024-25",
-   "fact": "राज्य सरकार के पाँच वर्ष पूरे होने पर जारी आँकड़ों के अनुसार 2024-25 में उत्तराखंड का सकल राज्य घरेलू उत्पाद (GSDP) ₹3,81,889 करोड़ और प्रति व्यक्ति आय ₹2,73,921 रही; राज्य की आर्थिक विकास दर 7.23% दर्ज हुई।",
-   "refs": [
-    {
-     "title": "उत्तराखंड की अर्थव्यवस्था में उछाल: जीएसडीपी डेढ़ गुना, रिवर्स पलायन की दर में 44 प्रतिशत की हुई वृद्धि",
-     "link": "https://www.amarujala.com/dehradun/reverse-migration-rate-increased-by-44-percent-in-uttarakhand-2026-11-26",
-     "source": "Amar Ujala"
-    },
-    {
-     "title": "उत्तराखंड: चुनाव से पहले सीएम धामी ने दिया पांच वर्षों का लेखा-जोखा, नारी शक्ति समेत ये पांच नीतियां रहीं खास",
-     "link": "https://www.amarujala.com/dehradun/uttarakhand-ahead-of-elections-cm-dhami-presents-report-card-for-past-five-years-these-five-policies-stand-out-2026-11-26",
-     "source": "Amar Ujala"
-    }
-   ],
-   "details": [
-    {
-     "k": "तुलना",
-     "v": "GSDP 2021-22 के मुकाबले डेढ़ गुना से अधिक; प्रति व्यक्ति आय ₹1,94,670 (2021-22) से बढ़कर ₹2,73,921"
-    },
-    {
-     "k": "गरीबी",
-     "v": "बहुआयामी गरीबी सूचकांक (MPI) 9.7% (2021-22) से घटकर 6.92% (2024-25)"
-    },
-    {
-     "k": "बजट",
-     "v": "राज्य बजट 10.41% बढ़ोतरी के साथ ₹1.19 लाख करोड़ से अधिक"
-    },
-    {
-     "k": "पलायन",
-     "v": "रिवर्स पलायन (गाँव लौटने) की दर में 44% वृद्धि का दावा"
-    }
-   ],
-   "sum": "2024-25: GSDP ₹3,81,889 करोड़, प्रति व्यक्ति आय ₹2,73,921, विकास दर 7.23%, MPI 6.92%।",
-   "quiz": {
-    "q": "2024-25 में उत्तराखंड की प्रति व्यक्ति आय कितनी रही?",
-    "a": "₹2,73,921"
-   },
-   "model": "manual-review",
-   "added": "2026-11-27T01:41:30.818Z",
-   "depth": "article"
   }
  ],
- "updated": "2026-11-27T01:41:30.818Z"
+ "updated": "2026-11-27T01:54:59.841Z"
 }
