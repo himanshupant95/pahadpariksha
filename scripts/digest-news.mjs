@@ -223,17 +223,23 @@ async function askGroq(user, system) {
 const istDay = (iso) => new Date(iso).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
 const hash = (s) => createHash('sha1').update(s).digest('hex').slice(0, 10);
 
-let geminiDown = false; // set once Gemini times out or runs out of quota: the rest of the run goes straight to Groq
+let geminiDown = false; // set once Gemini runs out of daily quota: the rest of the run goes straight to Groq
+const slow = new Set(); // Gemini models that timed out this run
+const noEffort = new Set(); // Gemini models that reject reasoning_effort
 async function ask(user, system = SYSTEM) {
   let lastErr;
-  for (const model of (geminiDown ? [] : MODELS)) {
+  for (const model of (geminiDown ? [] : [...MODELS.filter((m) => !slow.has(m)), ...MODELS.filter((m) => slow.has(m))])) { // models that timed out earlier in this run go last
     for (let attempt = 0; attempt < 3; attempt++) {
       const res = await fetch(`${API}/openai/chat/completions`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json', Accept: 'application/json' },
+        // Gemini 3.x "thinks" at a high level by default and took >75 s per call from 24 Nov (every run fell to Groq).
+        // Low reasoning is plenty for picking facts from headlines and answers far faster; if a model rejects the
+        // field (HTTP 400) the next attempt goes without it.
         body: JSON.stringify({ model, temperature: 0.1, max_tokens: 8000, response_format: { type: 'json_object' },
+          ...(noEffort.has(model) ? {} : { reasoning_effort: 'low' }),
           messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }),
-        signal: AbortSignal.timeout(75000),
+        signal: AbortSignal.timeout(180000),
       }).catch((e) => ({ ok: false, status: 0, text: async () => String(e) }));
       if (res.ok) {
         const raw = await res.text();
@@ -244,7 +250,9 @@ async function ask(user, system = SYSTEM) {
       }
       const body = (await res.text()).slice(0, 200);
       lastErr = `${model}: HTTP ${res.status} ${body}`;
-      if (res.status === 0 || (res.status === 429 && /quota/i.test(body))) { geminiDown = !!GROQ; break; } // timeout or daily quota gone: retrying only burns minutes
+      if (res.status === 400 && /reasoning/i.test(body) && !noEffort.has(model)) { noEffort.add(model); continue; }
+      if (res.status === 429 && /quota/i.test(body)) { geminiDown = !!GROQ; break; } // daily quota gone: retrying only burns minutes
+      if (res.status === 0) { slow.add(model); if (slow.size >= MODELS.length) geminiDown = !!GROQ; break; } // every model timed out → Groq for the rest // timeout: try the next (older/faster) Gemini model, not Groq straight away
       if (res.status === 429 || res.status >= 500) await new Promise((r) => setTimeout(r, 20000 * (attempt + 1)));
       else break; // 4xx other than 429 → try next model
     }
