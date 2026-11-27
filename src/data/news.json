@@ -1,6 +1,107 @@
 {
- "updated": "2026-11-26T17:17:43.242Z",
+ "updated": "2026-11-27T01:35:16.107Z",
  "items": [
+  {
+   "id": "129c3635c9bf",
+   "title": "Pithoragarh News: ठंड के साथ बढ़ने लगी दुर्लभ वन्यजीवों की सुरक्षा की चुनौती",
+   "link": "https://www.amarujala.com/uttarakhand/pithoragarh/as-the-cold-sets-in-the-challenge-of-protecting-rare-wildlife-begins-to-grow-pithoragarh-news-c-230-1-pth1005-149326-2026-11-27",
+   "source": "Amar Ujala",
+   "published": "2026-11-26T20:34:21.000Z",
+   "lang": "hi",
+   "summary": "ठंड के साथ बढ़ने लगी दुर्लभ वन्यजीवों की सुरक्षा की चुनौती",
+   "score": 2,
+   "cat": "पर्यावरण",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:08.944Z"
+  },
+  {
+   "id": "d773dd349a57",
+   "title": "Udham Singh Nagar News: झनकईया मेले में उमड़े मेलार्थी",
+   "link": "https://www.amarujala.com/uttarakhand/udham-singh-nagar/crowds-flock-to-the-jhankaiya-fair-khatima-news-c-236-1-ktm1001-116526-2026-11-27",
+   "source": "Amar Ujala",
+   "published": "2026-11-26T19:59:22.000Z",
+   "lang": "hi",
+   "score": 2,
+   "cat": "संस्कृति",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:06.839Z"
+  },
+  {
+   "id": "dd9a17dda2f1",
+   "title": "Udham Singh Nagar News: युवाओं को उद्यमिता से जोड़ेगा नाबार्ड, अभियान शुरू",
+   "link": "https://www.amarujala.com/uttarakhand/udham-singh-nagar/nabard-to-connect-youth-with-entrepreneurship-campaign-launched-sitarganj-news-c-242-1-rdp1022-150236-2026-11-27",
+   "source": "Amar Ujala",
+   "published": "2026-11-26T19:56:16.000Z",
+   "lang": "hi",
+   "summary": "युवाओं को उद्यमिता से जोड़ेगा नाबार्ड, अभियान शुरू",
+   "score": 2,
+   "cat": "योजना/नीति",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:06.845Z"
+  },
+  {
+   "id": "c1c010db033d",
+   "title": "Udham Singh Nagar News: 104 अभ्यर्थियों ने उत्तीर्ण की दक्षता परीक्षा",
+   "link": "https://www.amarujala.com/uttarakhand/udham-singh-nagar/104-candidates-passed-the-proficiency-test-kashipur-news-c-235-1-ksp1004-151833-2026-11-27",
+   "source": "Amar Ujala",
+   "published": "2026-11-26T19:54:13.000Z",
+   "lang": "hi",
+   "summary": "104 अभ्यर्थियों ने उत्तीर्ण की दक्षता परीक्षा",
+   "score": 2,
+   "cat": "परीक्षा/भर्ती",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:06.851Z"
+  },
+  {
+   "id": "2cbca22a4d6f",
+   "title": "Nainital News: वोविनाम चैंपियनशिप में भारत का प्रतिनिधित्व करेंगे नैनीताल के सागर",
+   "link": "https://www.amarujala.com/uttarakhand/nainital/sagar-from-nainital-will-represent-india-at-the-vovinam-championship-haldwani-news-c-238-1-shld1020-132686-2026-11-27",
+   "source": "Amar Ujala",
+   "published": "2026-11-26T19:51:45.000Z",
+   "lang": "hi",
+   "summary": "वोविनाम चैंपियनशिप में भारत का प्रतिनिधित्व करेंगे नैनीताल के सागर",
+   "score": 2,
+   "cat": "पुरस्कार/खेल",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:05.955Z"
+  },
+  {
+   "id": "923a7ddee14f",
+   "title": "Nainital News: युवा संसद प्रतियोगिता में खुर्पाताल की टीम विजेता",
+   "link": "https://www.amarujala.com/uttarakhand/nainital/khurpatal-team-wins-youth-parliament-competition-haldwani-news-c-418-1-shld1006-12160-2026-11-27",
+   "source": "Amar Ujala",
+   "published": "2026-11-26T19:49:01.000Z",
+   "lang": "hi",
+   "summary": "युवा संसद प्रतियोगिता में खुर्पाताल की टीम विजेता",
+   "score": 3,
+   "cat": "पुरस्कार/खेल",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:05.960Z"
+  },
+  {
+   "id": "0911f74d9da2",
+   "title": "मुख्यमंत्री धामी के नेतृत्व में उत्तराखंड की अर्थव्यवस्था ने पकड़ी रफ्तार, जीएसडीपी डेढ़ गुने से अधिक बढ़कर 3.81 लाख करोड़ पहुंची",
+   "link": "https://news.google.com/rss/articles/CBMipAJBVV95cUxQSFZ4WDF6cEJ5Vjd4QlYtSTJIbEwxR2tFcy14ZnVDbnVKNTdtRHFpeHJJUTQ3YS1HUkpfTUhMUURWUl9BUFJBemIzSE1ZbUFwV1BXampaSE9YRUlnSkZYUVVWVThBVGZtamRyR0NfNEtZZ1FMbDliTjVkLWN6R2NlUzdEakQ1S2d2SFFiNVlVb2UzQldXckIwTFotaWRyWUJWeTVIYU53eThVUHdJa0ZkQXR6LUpKZFNmMlJRTVR6UGNUWUhZOTFCZmRqSnBYRG1QTjU5c05LWlRkNGsxckx4TDI3d2JheUh5aUpMN2l0T1JqYmt4Z3RTNTBVc3htUGRIZ2tvaVNkbWowVUo2VndJd2tIS0NndjJNSEdUM0sxcmpGbWdz?oc=5",
+   "source": "liveskgnews",
+   "published": "2026-11-26T19:18:55.000Z",
+   "lang": "hi",
+   "score": 2,
+   "cat": "अर्थव्यवस्था",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:13.196Z"
+  },
+  {
+   "id": "2df2539a2592",
+   "title": "Dehradun News: धामी कैबिनेट की बैठक में मानदेय वृद्धि समेत इन प्रस्तावों पर लग सकती है मुहर",
+   "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNS2lSeFdBSmxRQUJ4UGgzOWhnVW5uR1ZfNjVpQllTeUVGN1pGMFdIX2Z1c1ZZMU5vS0ZMYjNkekhVNXg5R0FCV0I2SnFlSFBKd3gySUJiOTMyb0ZBZnV4eTJzdGsyUWZFRjI3a3UtdkZaa0NNOE9XQklsQW5pVE0xdFUxOVdUTmZGel8wZTdJY2pJSlZHeV94ZHhPZw?oc=5",
+   "source": "Uttarakhand Morning Post",
+   "published": "2026-11-26T17:30:10.000Z",
+   "lang": "hi",
+   "score": 3,
+   "cat": "योजना/नीति",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:13.928Z"
+  },
   {
    "id": "b39426a09cc5",
    "title": "उत्तराखंड-:इस दिन होगी धामी कैबिनेट की बैठक,हो सकते हैं अहम निर्णय ।।",
@@ -37,7 +138,9 @@
    "lang": "hi",
    "score": 5,
    "cat": "योजना/नीति",
-   "sources": [],
+   "sources": [
+    "liveskgnews"
+   ],
    "firstSeen": "2026-11-26T17:17:40.697Z"
   },
   {
@@ -164,6 +267,18 @@
    "firstSeen": "2026-11-26T17:17:33.376Z"
   },
   {
+   "id": "3e7fef776f36",
+   "title": "Women Empowerment: Pushkar Singh Dhami Highlights Government Schemes for Women in Uttarakhand",
+   "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOcVM1MnhQX2hITFNCaVBiSnZZWFBaTFFPZFJoWkduc1hRYTZmVTNXTzQ0Y3JBQU9jNHRYUWpCRlVoZ3M5YzdldExGTDBwd3NuUFZsLXJ0SktOQWljeTBuaGpnZHJWWE56RjJwdEl0SjJCaEtyZzBPT3RDa2pjS29lMXl2akVJN3NpVjN2QVZiVFFKWHRjNlVWSF9FZV9zQXdKaURHckNNTmd2ckdveEpfUHdSTEdoQWtRcnFrTHhPbnlZN01LVGlBaXh1dFRtMmNyT2FwOTVMbHlLbjjSAeABQVVfeXFMTmtRM0pWdld1TjRIR3JuZTNRSlFMLU55YU52ZmlyUU1QT0o4OFFsaUZVaEg1cEpQdTd1Tld4TUJIY0xjNFoxRTlMZUNYd1Vyb0xMYUM3MzM1STgxU3FmdmJoLWVEemlWYjBNVWo0d1RWTEZVUHRqMEx2d0l5ZlVmWVFDVGpreXRscFlKaTV5cmYyVVNXZE5yUjRLM25sMUMyNm02bEZfcUNrMGw4cU4xdzl0VjRablRxMlhXaGhQVFNKN2hrOXIxMk5GakxnU05pQ2FjZ3dMRExYT3QxZVY4VFo?oc=5",
+   "source": "ABP Live English",
+   "published": "2026-11-26T08:06:19.000Z",
+   "lang": "en",
+   "score": 2,
+   "cat": "योजना/नीति",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:15.144Z"
+  },
+  {
    "id": "c4b4b6f81b8a",
    "title": "धामी सरकार का लंबा चौड़ा रिपोर्ट कार्ड पेश, बैंणी-भुली से लेकर UCC तक सब गिनाया, दोहराया 'हैट्रिक' का दावा",
    "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPRWRqYldSTFNaOWlaVWZuZ2pMaWJZa3E2SHJsQ3dfTmlFVFlmSHBQVWdJRTdiRXJMS0pDRDFqUzdvZDYxVzdmTjNCWVdhLV9KV3NPa0p1bFByc2dWZVRENXdiLXJrOFgta2pSMHlWVHowTllTOVJxOUlrdGlMMzJUdTJGSEVheVRUWnFycS1rY2Via3pCY2QzZW84ZkNmS0dTeWZ5b0NOOVIxVGZnRjRYbjVyMzZ4YXgxY2NhU1cwNmFZT05VV2hXdHdFVlBlS0M3STk5M9IB2gFBVV95cUxNd3JZRUU5OTJZb25nOVlSWVhBaG9ncDlFY2hoZjhhUFV0TmdUOUYzWTBhV1FOVzJobUxfYm5WV1BMaF9zM3pMamZnX3NhaUdsWFJzT29IbERNMnZ3eFV6bVBWZUJmRGROQTlieXZsOTZfTkxndmlSRk5kOFoyNVphV2Y1VmJxR3M4S1Myb29JMF8zTm1UREVlUVN1NDB5M1FPWWhRWjAxTmlxU2xUZkRJVmtVODJ4R29tTXZzZThDRm1KTkpvNG9wRVktWEVnNXliTjZ4Yk0ySldIZw?oc=5",
@@ -210,6 +325,19 @@
    "cat": "संस्कृति",
    "sources": [],
    "firstSeen": "2026-11-26T17:17:39.847Z"
+  },
+  {
+   "id": "6c434d4269ac",
+   "title": "Pithoragarh News: पिथौरागढ़ में 8974 विद्यार्थी देंगे बोर्ड परीक्षा, 85 केंद्र बनाए",
+   "link": "https://www.amarujala.com/uttarakhand/pithoragarh/8974-students-will-take-board-exams-in-pithoragarh-85-centres-have-been-set-up-pithoragarh-news-c-230-1-pth1004-149307-2026-11-26",
+   "source": "Amar Ujala",
+   "published": "2026-11-26T06:12:05.000Z",
+   "lang": "hi",
+   "summary": "सीमांत जिले में बोर्ड परीक्षा की तैयारी शुरू हो गई है। बोर्ड परीक्षा के लिए 85 केंद्रों का निर्धारण हो चुका है।",
+   "score": 2,
+   "cat": "परीक्षा/भर्ती",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:08.953Z"
   },
   {
    "id": "3cd046a0f619",
@@ -390,7 +518,9 @@
    "summary": "उत्तराखंड अधीनस्थ सेवा चयन आयोग (यूकेएसएसएससी) ने पुलिस और आबकारी विभाग में उप निरीक्षक (दरोगा), प्लाटून कमांडर और अग्निशमन द्वितीय अधिकारी के कुल 200 पदों पर सीधी भर्ती के लिए विज्ञापन जारी कर दिया है।",
    "score": 2,
    "cat": "परीक्षा/भर्ती",
-   "sources": [],
+   "sources": [
+    "Uttarakhand City News"
+   ],
    "firstSeen": "2026-11-26T17:17:31.977Z"
   },
   {
@@ -473,6 +603,18 @@
    "firstSeen": "2026-11-26T01:54:27.307Z"
   },
   {
+   "id": "58cfa0890dad",
+   "title": "Kedarnath, Yamunotri Dham portals close for winters",
+   "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBWV1Z3ZHRwVkxFUWZzZHRJWGRSVS1ZZTRmM0tfOVRNWmpoWE1WRENDVUk2ckk5bE9GTk05NEdhNEVzMy1ZYUJwdl9LLVBMOVhHSGNmcjBNc05kSWczQU1kRUtqN0FBNjRXbTJUd1RBS1c4UmdadG1SZXFVX1lDQXc?oc=5",
+   "source": "Pioneer Edge",
+   "published": "2026-11-25T20:03:26.000Z",
+   "lang": "en",
+   "score": 2,
+   "cat": "संस्कृति",
+   "sources": [],
+   "firstSeen": "2026-11-27T01:35:15.865Z"
+  },
+  {
    "id": "463c3a340238",
    "title": "उत्तराखंड स्टेट टेबल टेनिस चैंपियनशिप-2026, कायरा भंडारी ने जीते गर्ल्स के सारे खिताब, लड़कों में स्वप्निल बने चैंपियन",
    "link": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNS1g0dGJwU21Kd1d4MzluN3F6VDktYjJZODhVS3V1N2VVNkNSbTBycS1VaE5qSVRvck1LX09kam05STIxVmxfRWZUSTVqcWxHN3FEVURQS0VrUkV1RGNTa1gwMG5YVHdRM3F4bGxUU1NQS0N4MXJlYjZURXJ6c1NTUG5jMUZPN0ttWUNydnBSa2RJM3h6VzJ1dDFnMTg5WnR3WkFlNHJPaUZSZVBycmpBaUxnWlZINFB0eVFubzFGNWdzb2YyR3JQQmNZOERtOUc0bk5qRzU4b1VZdXQ5eDk0SER6bmQyVkFJSl9kU9IB8gFBVV95cUxOUE9hVzBxSEtKWW52ZlU2ZVRJMVplWl83U3VyV053M18wNEw5T1lvM1pjVV9lRzFZSVRsY0hvYl9MN2hYNzhmdG9HT1JWSXJqZkEyVjZEVVZtZjU5dXVCZjJhdHdYVTY3LWFyNWhJRkRRcHpFRDR3R2c0Z2FGWGNnRlM0WTRhNGF6Nzg2WFZSelQyYnhQeGg0TmdTNkVOVFJCREZLdVN0OWJiQjRtQUd0Y3UtZ0JhUWNYVzBGRUp0cGp5MjE4OVMyRkxYRUNRWVlQRWNNcWo4QzlfdjRwWDE4N3VOODhYa2poTVAwSFdkbldZdw?oc=5",
@@ -518,7 +660,8 @@
    "score": 2,
    "cat": "परियोजना",
    "sources": [
-    "Indian Masterminds"
+    "Indian Masterminds",
+    "Asianet Newsable"
    ],
    "firstSeen": "2026-11-25T17:37:12.353Z"
   },
@@ -2355,8 +2498,12 @@
    "lang": "hi",
    "score": 2,
    "cat": "परीक्षा/भर्ती",
-   "sources": [],
-   "firstSeen": "2026-11-23T01:09:10.430Z"
+   "sources": [
+    "Amar Ujala"
+   ],
+   "firstSeen": "2026-11-23T01:09:10.430Z",
+   "summary": "अग्निवीर भर्ती रैली में नौ बैचों में हुई दौड़, 700 युवा सफल",
+   "read": "https://www.amarujala.com/uttarakhand/champawat/agniveer-recruitment-rally-running-held-in-nine-batches-700-youths-qualify-champawat-news-c-229-1-alm1014-147245-2026-11-27"
   },
   {
    "id": "94047ccd22eb",

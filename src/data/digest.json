@@ -580,9 +580,132 @@
   "53702d41b032",
   "6db4e94f6187",
   "02e98bc7a37a",
-  "1a463025da94"
+  "1a463025da94",
+  "fd900c9ee565",
+  "463c3a340238",
+  "58cfa0890dad",
+  "2ac6f8a49021",
+  "45256d714542",
+  "f517a95e3c83",
+  "5982abd715c5",
+  "0b1b29bcb9b2",
+  "8aa14827f978",
+  "d04bfe2df391",
+  "395f4470c20c",
+  "de39222f2f55",
+  "3a1908151576",
+  "4242e66c16fb",
+  "890f9dd12afd",
+  "1026f4086d0e",
+  "a93a536b2da3",
+  "775d0af37209",
+  "42a562d459b2",
+  "3c241cb1483d",
+  "883c670ac7aa",
+  "e3243a370166",
+  "3cd046a0f619",
+  "6c434d4269ac",
+  "7258c3e5926c",
+  "58250bfea36f",
+  "44c8eaf0d792",
+  "c4b4b6f81b8a",
+  "3e7fef776f36",
+  "1d5b4021ad8d",
+  "6a62835903e1",
+  "bbeeb9fbf1d8",
+  "8375782269c3",
+  "5c4d7ab24f46",
+  "ea38f50f7fe7",
+  "083c2d861f2d",
+  "5f88ad31fe01",
+  "5a72a6f5f0dc",
+  "5894af9336db",
+  "ad9f84002ccc",
+  "33a6af62c461",
+  "b39426a09cc5",
+  "2df2539a2592"
  ],
  "points": [
+  {
+   "id": "a4b4ffe60e",
+   "date": "2026-11-26",
+   "fact": "हरिद्वार के सीआईएसएफ अधिकारी इमरोज खान ने फिनलैंड में आयोजित अंतरराष्ट्रीय बॉक्सिंग प्रतियोगिता में कांस्य पदक जीता।",
+   "cat": "खेल",
+   "imp": 2,
+   "tag": "इमरोज खान बॉक्सिंग",
+   "model": "groq/qwen/qwen3.8-27b",
+   "refs": [
+    {
+     "title": "Haridwar News: सीआईएसएफ के इमरोज खान ने फिनलैंड में जीता कांस्य पदक",
+     "link": "https://www.amarujala.com/uttarakhand/haridwar/cisfs-imroz-khan-wins-bronze-medal-in-finland-haridwar-news-c-35-1-hrd1013-157133-2026-11-26",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-27T01:37:44.828Z",
+   "details": [
+    {
+     "k": "पदनाम",
+     "v": "इमरोज खान सहायक उपनिरीक्षक (एएसआई) हैं"
+    },
+    {
+     "k": "सीआईएसएफ स्थापना",
+     "v": "केंद्रीय औद्योगिक सुरक्षा बल 1969 में स्थापित",
+     "t": "g"
+    }
+   ],
+   "sum": "हरिद्वार की सीआईएसएफ इकाई में तैनात सहायक उपनिरीक्षक इमरोज खान ने फिनलैंड में आयोजित अंतरराष्ट्रीय बॉक्सिंग प्रतियोगिता में कांस्य पदक जीता।",
+   "quiz": {
+    "q": "इमरोज खान ने फिनलैंड में किस पदक के साथ प्रतिस्पर्धा समाप्त की?",
+    "a": "कांस्य पदक"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "c52b2a5cfd",
+   "date": "2026-11-26",
+   "fact": "उत्तराखंड में कक्षा 9 से 12 तक के दिव्यांग विद्यार्थियों को परीक्षा में उत्तीर्ण होने के लिए पांच अंकों की छूट दी जाएगी।",
+   "cat": "विज्ञान/शिक्षा",
+   "imp": 2,
+   "tag": "दिव्यांग छात्र छूट",
+   "model": "groq/qwen/qwen3.8-27b",
+   "refs": [
+    {
+     "title": "उत्तराखंड: दिव्यांग विद्यार्थियों को परीक्षा में मिलेगी पांच अंकों की छूट, 28 प्रतिशत अंक लाने पर होंगे पास",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-disabled-students-will-get-five-mark-exemption-in-exam-will-qualify-if-score-28-percent-mark-2026-11-25",
+     "source": "Amar Ujala"
+    }
+   ],
+   "added": "2026-11-27T01:37:44.828Z",
+   "details": [
+    {
+     "k": "छूट की शर्तें",
+     "v": "बौद्धिक अक्षमता, मानसिक बीमारी, ऑटिज्म स्पेक्ट्रम, सेरेब्रल पाल्सी, विशेष शिक्षण अक्षमता के लिए"
+    },
+    {
+     "k": "प्रमाण पत्र आवश्यकता",
+     "v": "छूट के लिए दिव्यांगता प्रमाण पत्र प्रस्तुत करना होगा"
+    },
+    {
+     "k": "न्यूनतम पास प्रतिशत",
+     "v": "पाँच अंक की छूट से पास होने के लिए न्यूनतम 28 प्रतिशत अंक चाहिए"
+    },
+    {
+     "k": "व्यावसायिक शिक्षा मानक",
+     "v": "व्यावसायिक शिक्षा के विषयों में मानक नहीं बदले"
+    },
+    {
+     "k": "शिक्षा विभाग",
+     "v": "उत्तराखंड विद्यालयी शिक्षा विभाग राज्य की शैक्षणिक नीतियों का कार्यान्वयन करता है",
+     "t": "g"
+    }
+   ],
+   "sum": "उत्तराखंड में कक्षा 9‑12 के दिव्यांग विद्यार्थियों को परीक्षा में पास होने के लिए पाँच अंक की छूट दी गई, न्यूनतम 28 % अंक लाने पर पास माना जाएगा।",
+   "quiz": {
+    "q": "दिव्यांग विद्यार्थियों को परीक्षा में पास होने के लिए न्यूनतम कितना प्रतिशत अंक चाहिए?",
+    "a": "28 प्रतिशत"
+   },
+   "depth": "article"
+  },
   {
    "id": "2558f902a9",
    "date": "2026-11-25",
@@ -715,6 +838,40 @@
    }
   },
   {
+   "id": "4e3be0e738",
+   "date": "2026-11-25",
+   "cat": "परीक्षा/भर्ती",
+   "imp": 2,
+   "tag": "UKSSSC उप निरीक्षक, 200 पद",
+   "fact": "UKSSSC ने पुलिस व आबकारी विभाग में उप निरीक्षक, प्लाटून कमांडर और अग्निशमन द्वितीय अधिकारी के 200 पदों का विज्ञापन जारी किया; ऑनलाइन आवेदन 1 से 31 दिसंबर 2026 तक।",
+   "refs": [
+    {
+     "title": "उत्तराखंड: यूकेएसएसएससी ने दरोगा भर्ती का विज्ञापन किया जारी, एक दिसंबर से कर सकते हैं आवेदन",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-police-recruitment-2026-uksssc-releases-notification-for-200-si-and-other-posts-2026-11-26",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "उत्तराखंड पुलिस में 200 सब इंस्पेक्टर के लिए निकली भर्ती, आवेदन की अंतिम तिथि 31 दिसंबर",
+     "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNVzl3bWNEbmhUWExyUXhqQ2NBR2x2RUtXeXExY293Ykw5ck9vZTRWRUl5N1J3TFNFSFBKNXVOZEtkWGNYa0ZmU0djeDRuRjJJUnp2OHNqcy1iQWpMTXpqRnNEQVFQWFkyVUw1VWZXd0piY2RjVEZJaVlJSTdwck5MUm9GcV81dGc1WGdadEpxeW5iVDFXTF9iVFhNM3JtMi0yM1EyaXdBNFVlbHpRTGo5Qkd3ek8zamo0ckktNlJB?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "details": [
+    {
+     "k": "पद",
+     "v": "उप निरीक्षक (नागरिक पुलिस) 93, उप निरीक्षक (अभिसूचना) 19, प्लाटून कमांडर (PAC/IRB, पुरुष) 81, अग्निशमन द्वितीय अधिकारी 5, उप आबकारी निरीक्षक 2"
+    },
+    {
+     "k": "आवेदन",
+     "v": "sssc.uk.gov.in पर"
+    }
+   ],
+   "sum": "UKSSSC: दरोगा व अन्य 200 पद, आवेदन 1–31 दिसंबर।",
+   "model": "manual-review",
+   "added": "2026-11-26T18:16:01.923Z",
+   "depth": "article"
+  },
+  {
    "id": "9cf5d2b20a",
    "date": "2026-11-24",
    "fact": "राज्य सरकार ने गगनदीप सिंह बेदी को उत्तराखंड अल्पसंख्यक आयोग का उपाध्यक्ष नियुक्त किया।",
@@ -807,6 +964,40 @@
    "depth": "article"
   },
   {
+   "id": "b0ab55e6be",
+   "date": "2026-11-24",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 2,
+   "tag": "उत्तरकाशी–गंगोत्री ऑल वेदर रोड",
+   "fact": "केंद्रीय सड़क परिवहन मंत्री नितिन गडकरी ने मुख्यमंत्री को पत्र में बताया कि उत्तरकाशी–गंगोत्री ऑल वेदर रोड के 100 किमी में से 14 किमी के कार्य स्वीकृत हैं और शेष 86 किमी को 2027-28 में स्वीकृत करने का लक्ष्य है।",
+   "refs": [
+    {
+     "title": "गंगोत्री तक ऑल वेदर रोड का रास्ता साफ, नितिन गडकरी ने बताई तारीख",
+     "link": "https://www.livehindustan.com/uttarakhand/gangotri-all-weather-road-project-gets-green-signal-nitin-gadkari-announces-timeline-for-approval-201795576374618.html",
+     "source": "Live Hindustan"
+    },
+    {
+     "title": "Uttarakhand Highway Projects: Nitin Gadkari Shares Progress After CM Dhami's Request; Several Sections Targeted for 2027–28",
+     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNeWhrZ1pxekpncWxRRllOVi1haFdSRXpNdkkzRWdLTjlSUmQwUVh0a1dWNkkyYm1aVVRySnZ3WEdhWFU0Zm9SajUtNFNOOTA5NDBXVkM1UldDSzVNUlVYMVh6V3ZZOVdFbzRxeDNhVkE1YTI2MVFzRS1vd0hLTXBNbXFkNjdYZjh6QUNmeEdtb3hKWElMd1ZHTEdCRWJiY09TaG9FYkZ4VUg?oc=5",
+     "source": "Indian Masterminds"
+    }
+   ],
+   "details": [
+    {
+     "k": "अन्य",
+     "v": "टनकपुर–बागेश्वर, बागेश्वर–कर्णप्रयाग और ऋषिकेश–उत्तरकाशी मार्गों के चौड़ीकरण की प्रगति भी बताई गई"
+    }
+   ],
+   "sum": "उत्तरकाशी–गंगोत्री ऑल वेदर रोड: 14 किमी स्वीकृत, 86 किमी 2027-28 में।",
+   "quiz": {
+    "q": "उत्तरकाशी–गंगोत्री ऑल वेदर रोड के शेष 86 किमी को किस वर्ष स्वीकृत करने का लक्ष्य है?",
+    "a": "2027-28"
+   },
+   "model": "manual-review",
+   "added": "2026-11-26T18:16:01.923Z",
+   "depth": "article"
+  },
+  {
    "id": "823a5535c4",
    "date": "2026-11-23",
    "fact": "राज्य आपदा प्रबंधन दिवस (28 नवंबर) से पहले सरकार ने बताया कि उत्तराखंड पृथक आपदा प्रबंधन विभाग बनाने वाला देश का पहला राज्य है और राज्य में 525 हाइड्रो-मौसमी सेंसर लगाए जा चुके हैं।",
@@ -841,6 +1032,54 @@
    "quiz": {
     "q": "उत्तराखंड में राज्य आपदा प्रबंधन दिवस किस तिथि को मनाया जाता है?",
     "a": "28 नवंबर (सिल्क्यारा सुरंग बचाव की याद में)"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "87b59daf33",
+   "date": "2026-11-23",
+   "fact": "भारत-नेपाल सीमा पर काली (महाकाली) नदी पर बने छारछुम–असिगाड़ मोटर पुल का 23 नवंबर को प्रधानमंत्री नरेंद्र मोदी और नेपाल के प्रधानमंत्री बालेंद्र शाह ने वर्चुअल लोकार्पण किया; पुल पर वाहनों की आवाजाही शुरू हो गई।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "छारछुम–असिगाड़ मोटर पुल",
+   "model": "manual-review",
+   "refs": [
+    {
+     "title": "Pithoragarh News: भारत और नेपाल के प्रधानमंत्री आज करेंगे छार्छुम पुल का उद्घाटन",
+     "link": "https://www.amarujala.com/uttarakhand/pithoragarh/the-prime-ministers-of-india-and-nepal-will-inaugurate-the-charchum-bridge-today-pithoragarh-news-c-230-1-pth1005-149184-2026-11-22",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "उत्तराखंड में मैत्री सेतु: भारत-नेपाल पीएम करेंगे छारछुम पुल का लोकार्पण",
+     "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMENaWnFGZ3BZcE4zNUFLVk0za1pWYjduX0N3emtzN1FiSGtJc29IcEEtQUE4bFB3RHZYSGZhVk0yZnVCZTBtUGQ4YUZ0d2NrUmNMdFJpY2VxbzVDYWhNNUZWM1FTMWU4eTlZTG9OenVvb05rbW9zR3Z0NWIyNnRaRWZmMVRBMGV0eFc1VFFqcmhWQ2plc2RMU24tb0RqeGlRbmwwMXBOTmtKU0kzNVUxSFlRZEg4UDUzcTdLSkVkN3VWOC1y0gHKAUFVX3lxTE84MVhKTkcwQzhoZWJRQmxIbGRVMEFPcGJaYnJnM1ZtMnZUYXFmbnFlUmJKbVlRaWVkd1B4WjQzY1k1MzkzTHFvOVNCX0hQSU84dWJuWGcxQWk4UVdXaTJEa1plWDZydjRfQ1B6SjNHT1I0bVZILW5PTjJZLWJabExob3gxdEhRaWxvSkJzQ1dLYzZ3bFJPM1hfTGRPeFZRcExncnVVRnJPcy1DTkVuT09BT0lqcnVxWHZRMjhhZl9vblNLcXgwNC1xY2c?oc=5",
+     "source": "ETV Bharat"
+    },
+    {
+     "title": "Modi, Nepal PM Balen Shah To Inaugurate International Bridge Over Kali River In Uttarakhand's Pithoragarh",
+     "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQWG1PQjJoVDVaQ19NRjNBbGFSUXRHMkgzVzZ5RmpBZ240azBxc3VRbkhyTXhRMnd0bG92UXU5dVk1UXlXRzJVVnBIZUl2dFhJMjlnZXA0T3EzVXFmWDFqZFBTSkl5S2JjQ0owN0JqX29pTUo5NUF6b1RudG9vSFNPX3g3dzRpTzRaakw3ZU9qTTl4N3pNY3hGOExIVWF5SjdmU0l1Q3Y4eWVFcE5nNFVxNldiZEFvbVFSdk1ENTN2RmZIZlXSAcgBQVVfeXFMTjJIWVZUOTZoYjFZZFctZDNCLVk1UnhrU25wSXFPczhvOG54TE12VFN5TC1ncUJ2Ry05Rk00RjAweUVLQ2prRGZMWFRZVEpkZDhQMG9JQ3Nqc3BNS3BxOW1ZVTRmdnBtRHk4SEhoV19oTV9Gdm5EV0tleHZLYVV0TVA1T0JtRWNXVHVwa0xWRTJCRHBrVVV3ODRHWVdhcjN6Wi1lem5FMW9WcE84cGpRdTg4bjF2aGgzTlV1VlVHM0duUzNUSWhtbks?oc=5",
+     "source": "ETV Bharat"
+    }
+   ],
+   "added": "2026-11-26T18:16:01.923Z",
+   "details": [
+    {
+     "k": "स्थान",
+     "v": "छारछुम (धारचूला तहसील, पिथौरागढ़) से असिगाड़ (महाकाली नगरपालिका, दार्चुला, नेपाल)"
+    },
+    {
+     "k": "विवरण",
+     "v": "110 मीटर स्पैन का डबल-लेन मोटर पुल, भारत की सहायता से लोक निर्माण विभाग (PWD) ने बनाया"
+    },
+    {
+     "k": "पृष्ठभूमि",
+     "v": "शिलान्यास 19 सितंबर 2022 को मुख्यमंत्री धामी ने किया; बनबसा (चंपावत) के बाद उत्तराखंड में भारत-नेपाल के बीच दूसरा मोटर पुल",
+     "t": "g"
+    }
+   ],
+   "sum": "धारचूला के छारछुम में काली नदी पर बना भारत-नेपाल मोटर पुल 23 नवंबर को दोनों देशों के प्रधानमंत्रियों ने वर्चुअल रूप से खोला।",
+   "quiz": {
+    "q": "छारछुम–असिगाड़ भारत-नेपाल मोटर पुल किस नदी पर बना है?",
+    "a": "काली (महाकाली) नदी"
    },
    "depth": "article"
   },
@@ -957,51 +1196,80 @@
    }
   },
   {
-   "id": "87b59daf33",
+   "id": "edcfc91df7",
    "date": "2026-11-23",
-   "fact": "भारत-नेपाल सीमा पर काली (महाकाली) नदी पर बने छारछुम–असिगाड़ मोटर पुल का 23 नवंबर को प्रधानमंत्री नरेंद्र मोदी और नेपाल के प्रधानमंत्री बालेंद्र शाह ने वर्चुअल लोकार्पण किया; पुल पर वाहनों की आवाजाही शुरू हो गई।",
-   "cat": "परियोजना/अवसंरचना",
-   "imp": 3,
-   "tag": "छारछुम–असिगाड़ मोटर पुल",
-   "model": "manual-review",
+   "cat": "विज्ञान/शिक्षा",
+   "imp": 2,
+   "tag": "बोर्ड परीक्षा 2027",
+   "fact": "उत्तराखंड विद्यालयी शिक्षा परिषद की हाईस्कूल-इंटरमीडिएट बोर्ड परीक्षाएँ 2027 फरवरी के दूसरे सप्ताह से 1,270 केंद्रों पर होंगी; 146 केंद्र संवेदनशील और 5 अति संवेदनशील घोषित।",
    "refs": [
     {
-     "title": "Pithoragarh News: भारत और नेपाल के प्रधानमंत्री आज करेंगे छार्छुम पुल का उद्घाटन",
-     "link": "https://www.amarujala.com/uttarakhand/pithoragarh/the-prime-ministers-of-india-and-nepal-will-inaugurate-the-charchum-bridge-today-pithoragarh-news-c-230-1-pth1005-149184-2026-11-22",
+     "title": "उत्तराखंड बोर्ड: 1270 केंद्रों पर फरवरी के दूसरे हफ्ते से शुरू होंगी परीक्षाएं, 146 संवेदनशील केंद्र घोषित",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-board-examinations-to-begin-in-second-week-of-february-2027-across-1270-centres-2026-11-23",
      "source": "Amar Ujala"
     },
     {
-     "title": "उत्तराखंड में मैत्री सेतु: भारत-नेपाल पीएम करेंगे छारछुम पुल का लोकार्पण",
-     "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMENaWnFGZ3BZcE4zNUFLVk0za1pWYjduX0N3emtzN1FiSGtJc29IcEEtQUE4bFB3RHZYSGZhVk0yZnVCZTBtUGQ4YUZ0d2NrUmNMdFJpY2VxbzVDYWhNNUZWM1FTMWU4eTlZTG9OenVvb05rbW9zR3Z0NWIyNnRaRWZmMVRBMGV0eFc1VFFqcmhWQ2plc2RMU24tb0RqeGlRbmwwMXBOTmtKU0kzNVUxSFlRZEg4UDUzcTdLSkVkN3VWOC1y0gHKAUFVX3lxTE84MVhKTkcwQzhoZWJRQmxIbGRVMEFPcGJaYnJnM1ZtMnZUYXFmbnFlUmJKbVlRaWVkd1B4WjQzY1k1MzkzTHFvOVNCX0hQSU84dWJuWGcxQWk4UVdXaTJEa1plWDZydjRfQ1B6SjNHT1I0bVZILW5PTjJZLWJabExob3gxdEhRaWxvSkJzQ1dLYzZ3bFJPM1hfTGRPeFZRcExncnVVRnJPcy1DTkVuT09BT0lqcnVxWHZRMjhhZl9vblNLcXgwNC1xY2c?oc=5",
-     "source": "ETV Bharat"
-    },
-    {
-     "title": "Modi, Nepal PM Balen Shah To Inaugurate International Bridge Over Kali River In Uttarakhand's Pithoragarh",
-     "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQWG1PQjJoVDVaQ19NRjNBbGFSUXRHMkgzVzZ5RmpBZ240azBxc3VRbkhyTXhRMnd0bG92UXU5dVk1UXlXRzJVVnBIZUl2dFhJMjlnZXA0T3EzVXFmWDFqZFBTSkl5S2JjQ0owN0JqX29pTUo5NUF6b1RudG9vSFNPX3g3dzRpTzRaakw3ZU9qTTl4N3pNY3hGOExIVWF5SjdmU0l1Q3Y4eWVFcE5nNFVxNldiZEFvbVFSdk1ENTN2RmZIZlXSAcgBQVVfeXFMTjJIWVZUOTZoYjFZZFctZDNCLVk1UnhrU25wSXFPczhvOG54TE12VFN5TC1ncUJ2Ry05Rk00RjAweUVLQ2prRGZMWFRZVEpkZDhQMG9JQ3Nqc3BNS3BxOW1ZVTRmdnBtRHk4SEhoV19oTV9Gdm5EV0tleHZLYVV0TVA1T0JtRWNXVHVwa0xWRTJCRHBrVVV3ODRHWVdhcjN6Wi1lem5FMW9WcE84cGpRdTg4bjF2aGgzTlV1VlVHM0duUzNUSWhtbks?oc=5",
-     "source": "ETV Bharat"
+     "title": "2,08,424 candidates to appear in Uttarakhand Board Examinations 2027; 1,270 centres finalised",
+     "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVjhFLWhpN0Ftb3NHYndMblZDR1ZpWDVLQjdSNFplS3cxSmtCUTlYN0ZLczBwdFZIdWwtTGpDYi1QS29XTHBRY1JaYks0aEZUYV90bFZXQUxPVHZtbDdmNVRpQXlTdVFzVGFkQzh5bEZPU1U2NFpyNkZNMmJkazk0a1VtdXR3V0dJVWZtaFZra2xfMkg5YUgwWEdOSUh3NzB0Yi1OTlpiVmt5SjBKZDkxdXNwYw?oc=5",
+     "source": "Pioneer Edge"
     }
    ],
-   "added": "2026-11-26T18:16:01.923Z",
    "details": [
     {
-     "k": "स्थान",
-     "v": "छारछुम (धारचूला तहसील, पिथौरागढ़) से असिगाड़ (महाकाली नगरपालिका, दार्चुला, नेपाल)"
+     "k": "केंद्र",
+     "v": "49 एकल और 1,221 मिश्रित केंद्र; 2026 से 9 केंद्र अधिक"
     },
     {
-     "k": "विवरण",
-     "v": "110 मीटर स्पैन का डबल-लेन मोटर पुल, भारत की सहायता से लोक निर्माण विभाग (PWD) ने बनाया"
+     "k": "परीक्षार्थी",
+     "v": "लगभग 2.08 लाख (2,08,424)"
     },
     {
-     "k": "पृष्ठभूमि",
-     "v": "शिलान्यास 19 सितंबर 2022 को मुख्यमंत्री धामी ने किया; बनबसा (चंपावत) के बाद उत्तराखंड में भारत-नेपाल के बीच दूसरा मोटर पुल",
+     "k": "परिषद",
+     "v": "उत्तराखंड विद्यालयी शिक्षा परिषद का मुख्यालय रामनगर (नैनीताल)",
      "t": "g"
     }
    ],
-   "sum": "धारचूला के छारछुम में काली नदी पर बना भारत-नेपाल मोटर पुल 23 नवंबर को दोनों देशों के प्रधानमंत्रियों ने वर्चुअल रूप से खोला।",
+   "sum": "बोर्ड परीक्षा 2027: फरवरी के दूसरे सप्ताह से, 1,270 केंद्र, ~2.08 लाख परीक्षार्थी।",
    "quiz": {
-    "q": "छारछुम–असिगाड़ भारत-नेपाल मोटर पुल किस नदी पर बना है?",
-    "a": "काली (महाकाली) नदी"
+    "q": "उत्तराखंड विद्यालयी शिक्षा परिषद का मुख्यालय कहाँ है?",
+    "a": "रामनगर (नैनीताल)"
    },
+   "model": "manual-review",
+   "added": "2026-11-26T18:16:01.923Z",
+   "depth": "article"
+  },
+  {
+   "id": "2fe3944692",
+   "date": "2026-11-23",
+   "cat": "पुरस्कार/सम्मान",
+   "imp": 2,
+   "tag": "राष्ट्रीय गोपाल रत्न पुरस्कार",
+   "fact": "डोईवाला (देहरादून) के सुधेश चौहान का चयन कृत्रिम गर्भाधान में उत्कृष्ट कार्य के लिए राष्ट्रीय गोपाल रत्न पुरस्कार 2026 के लिए हुआ; पुरस्कार 26 नवंबर (राष्ट्रीय दुग्ध दिवस) को पटना में दिया जाना था।",
+   "refs": [
+    {
+     "title": "Rishikesh News: सुधेश चौहान को मिलेगा राष्ट्रीय गोपाल रत्न पुरस्कार",
+     "link": "https://www.amarujala.com/uttarakhand/rishikesh/sudhesh-chauhan-will-receive-the-national-gopal-ratna-award-rishikesh-news-c-38-1-sdrn1029-149180-2026-11-23",
+     "source": "Amar Ujala"
+    }
+   ],
+   "details": [
+    {
+     "k": "संस्था",
+     "v": "केंद्रीय मत्स्यपालन, पशुपालन एवं डेयरी मंत्रालय (पशुपालन एवं डेयरी विभाग)"
+    },
+    {
+     "k": "पृष्ठभूमि",
+     "v": "पुरस्कार राष्ट्रीय गोकुल मिशन के तहत 2021 से हर वर्ष; राष्ट्रीय दुग्ध दिवस 26 नवंबर डॉ. वर्गीज़ कुरियन की जयंती पर मनाया जाता है",
+     "t": "g"
+    }
+   ],
+   "sum": "सुधेश चौहान (डोईवाला) राष्ट्रीय गोपाल रत्न पुरस्कार 2026 के लिए चयनित।",
+   "quiz": {
+    "q": "राष्ट्रीय गोपाल रत्न पुरस्कार किस दिवस पर दिए जाते हैं?",
+    "a": "राष्ट्रीय दुग्ध दिवस (26 नवंबर)"
+   },
+   "model": "manual-review",
+   "added": "2026-11-26T18:16:01.923Z",
    "depth": "article"
   },
   {
@@ -3614,152 +3882,7 @@
     "a": "ऊधम सिंह नगर"
    },
    "depth": "headlines"
-  },
-  {
-   "id": "edcfc91df7",
-   "date": "2026-11-23",
-   "cat": "विज्ञान/शिक्षा",
-   "imp": 2,
-   "tag": "बोर्ड परीक्षा 2027",
-   "fact": "उत्तराखंड विद्यालयी शिक्षा परिषद की हाईस्कूल-इंटरमीडिएट बोर्ड परीक्षाएँ 2027 फरवरी के दूसरे सप्ताह से 1,270 केंद्रों पर होंगी; 146 केंद्र संवेदनशील और 5 अति संवेदनशील घोषित।",
-   "refs": [
-    {
-     "title": "उत्तराखंड बोर्ड: 1270 केंद्रों पर फरवरी के दूसरे हफ्ते से शुरू होंगी परीक्षाएं, 146 संवेदनशील केंद्र घोषित",
-     "link": "https://www.amarujala.com/dehradun/uttarakhand-board-examinations-to-begin-in-second-week-of-february-2027-across-1270-centres-2026-11-23",
-     "source": "Amar Ujala"
-    },
-    {
-     "title": "2,08,424 candidates to appear in Uttarakhand Board Examinations 2027; 1,270 centres finalised",
-     "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVjhFLWhpN0Ftb3NHYndMblZDR1ZpWDVLQjdSNFplS3cxSmtCUTlYN0ZLczBwdFZIdWwtTGpDYi1QS29XTHBRY1JaYks0aEZUYV90bFZXQUxPVHZtbDdmNVRpQXlTdVFzVGFkQzh5bEZPU1U2NFpyNkZNMmJkazk0a1VtdXR3V0dJVWZtaFZra2xfMkg5YUgwWEdOSUh3NzB0Yi1OTlpiVmt5SjBKZDkxdXNwYw?oc=5",
-     "source": "Pioneer Edge"
-    }
-   ],
-   "details": [
-    {
-     "k": "केंद्र",
-     "v": "49 एकल और 1,221 मिश्रित केंद्र; 2026 से 9 केंद्र अधिक"
-    },
-    {
-     "k": "परीक्षार्थी",
-     "v": "लगभग 2.08 लाख (2,08,424)"
-    },
-    {
-     "k": "परिषद",
-     "v": "उत्तराखंड विद्यालयी शिक्षा परिषद का मुख्यालय रामनगर (नैनीताल)",
-     "t": "g"
-    }
-   ],
-   "sum": "बोर्ड परीक्षा 2027: फरवरी के दूसरे सप्ताह से, 1,270 केंद्र, ~2.08 लाख परीक्षार्थी।",
-   "quiz": {
-    "q": "उत्तराखंड विद्यालयी शिक्षा परिषद का मुख्यालय कहाँ है?",
-    "a": "रामनगर (नैनीताल)"
-   },
-   "model": "manual-review",
-   "added": "2026-11-26T18:16:01.923Z",
-   "depth": "article"
-  },
-  {
-   "id": "2fe3944692",
-   "date": "2026-11-23",
-   "cat": "पुरस्कार/सम्मान",
-   "imp": 2,
-   "tag": "राष्ट्रीय गोपाल रत्न पुरस्कार",
-   "fact": "डोईवाला (देहरादून) के सुधेश चौहान का चयन कृत्रिम गर्भाधान में उत्कृष्ट कार्य के लिए राष्ट्रीय गोपाल रत्न पुरस्कार 2026 के लिए हुआ; पुरस्कार 26 नवंबर (राष्ट्रीय दुग्ध दिवस) को पटना में दिया जाना था।",
-   "refs": [
-    {
-     "title": "Rishikesh News: सुधेश चौहान को मिलेगा राष्ट्रीय गोपाल रत्न पुरस्कार",
-     "link": "https://www.amarujala.com/uttarakhand/rishikesh/sudhesh-chauhan-will-receive-the-national-gopal-ratna-award-rishikesh-news-c-38-1-sdrn1029-149180-2026-11-23",
-     "source": "Amar Ujala"
-    }
-   ],
-   "details": [
-    {
-     "k": "संस्था",
-     "v": "केंद्रीय मत्स्यपालन, पशुपालन एवं डेयरी मंत्रालय (पशुपालन एवं डेयरी विभाग)"
-    },
-    {
-     "k": "पृष्ठभूमि",
-     "v": "पुरस्कार राष्ट्रीय गोकुल मिशन के तहत 2021 से हर वर्ष; राष्ट्रीय दुग्ध दिवस 26 नवंबर डॉ. वर्गीज़ कुरियन की जयंती पर मनाया जाता है",
-     "t": "g"
-    }
-   ],
-   "sum": "सुधेश चौहान (डोईवाला) राष्ट्रीय गोपाल रत्न पुरस्कार 2026 के लिए चयनित।",
-   "quiz": {
-    "q": "राष्ट्रीय गोपाल रत्न पुरस्कार किस दिवस पर दिए जाते हैं?",
-    "a": "राष्ट्रीय दुग्ध दिवस (26 नवंबर)"
-   },
-   "model": "manual-review",
-   "added": "2026-11-26T18:16:01.923Z",
-   "depth": "article"
-  },
-  {
-   "id": "b0ab55e6be",
-   "date": "2026-11-24",
-   "cat": "परियोजना/अवसंरचना",
-   "imp": 2,
-   "tag": "उत्तरकाशी–गंगोत्री ऑल वेदर रोड",
-   "fact": "केंद्रीय सड़क परिवहन मंत्री नितिन गडकरी ने मुख्यमंत्री को पत्र में बताया कि उत्तरकाशी–गंगोत्री ऑल वेदर रोड के 100 किमी में से 14 किमी के कार्य स्वीकृत हैं और शेष 86 किमी को 2027-28 में स्वीकृत करने का लक्ष्य है।",
-   "refs": [
-    {
-     "title": "गंगोत्री तक ऑल वेदर रोड का रास्ता साफ, नितिन गडकरी ने बताई तारीख",
-     "link": "https://www.livehindustan.com/uttarakhand/gangotri-all-weather-road-project-gets-green-signal-nitin-gadkari-announces-timeline-for-approval-201795576374618.html",
-     "source": "Live Hindustan"
-    },
-    {
-     "title": "Uttarakhand Highway Projects: Nitin Gadkari Shares Progress After CM Dhami's Request; Several Sections Targeted for 2027–28",
-     "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNeWhrZ1pxekpncWxRRllOVi1haFdSRXpNdkkzRWdLTjlSUmQwUVh0a1dWNkkyYm1aVVRySnZ3WEdhWFU0Zm9SajUtNFNOOTA5NDBXVkM1UldDSzVNUlVYMVh6V3ZZOVdFbzRxeDNhVkE1YTI2MVFzRS1vd0hLTXBNbXFkNjdYZjh6QUNmeEdtb3hKWElMd1ZHTEdCRWJiY09TaG9FYkZ4VUg?oc=5",
-     "source": "Indian Masterminds"
-    }
-   ],
-   "details": [
-    {
-     "k": "अन्य",
-     "v": "टनकपुर–बागेश्वर, बागेश्वर–कर्णप्रयाग और ऋषिकेश–उत्तरकाशी मार्गों के चौड़ीकरण की प्रगति भी बताई गई"
-    }
-   ],
-   "sum": "उत्तरकाशी–गंगोत्री ऑल वेदर रोड: 14 किमी स्वीकृत, 86 किमी 2027-28 में।",
-   "quiz": {
-    "q": "उत्तरकाशी–गंगोत्री ऑल वेदर रोड के शेष 86 किमी को किस वर्ष स्वीकृत करने का लक्ष्य है?",
-    "a": "2027-28"
-   },
-   "model": "manual-review",
-   "added": "2026-11-26T18:16:01.923Z",
-   "depth": "article"
-  },
-  {
-   "id": "4e3be0e738",
-   "date": "2026-11-25",
-   "cat": "परीक्षा/भर्ती",
-   "imp": 2,
-   "tag": "UKSSSC उप निरीक्षक, 200 पद",
-   "fact": "UKSSSC ने पुलिस व आबकारी विभाग में उप निरीक्षक, प्लाटून कमांडर और अग्निशमन द्वितीय अधिकारी के 200 पदों का विज्ञापन जारी किया; ऑनलाइन आवेदन 1 से 31 दिसंबर 2026 तक।",
-   "refs": [
-    {
-     "title": "उत्तराखंड: यूकेएसएसएससी ने दरोगा भर्ती का विज्ञापन किया जारी, एक दिसंबर से कर सकते हैं आवेदन",
-     "link": "https://www.amarujala.com/dehradun/uttarakhand-police-recruitment-2026-uksssc-releases-notification-for-200-si-and-other-posts-2026-11-26",
-     "source": "Amar Ujala"
-    },
-    {
-     "title": "उत्तराखंड पुलिस में 200 सब इंस्पेक्टर के लिए निकली भर्ती, आवेदन की अंतिम तिथि 31 दिसंबर",
-     "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNVzl3bWNEbmhUWExyUXhqQ2NBR2x2RUtXeXExY293Ykw5ck9vZTRWRUl5N1J3TFNFSFBKNXVOZEtkWGNYa0ZmU0djeDRuRjJJUnp2OHNqcy1iQWpMTXpqRnNEQVFQWFkyVUw1VWZXd0piY2RjVEZJaVlJSTdwck5MUm9GcV81dGc1WGdadEpxeW5iVDFXTF9iVFhNM3JtMi0yM1EyaXdBNFVlbHpRTGo5Qkd3ek8zamo0ckktNlJB?oc=5",
-     "source": "Jagran"
-    }
-   ],
-   "details": [
-    {
-     "k": "पद",
-     "v": "उप निरीक्षक (नागरिक पुलिस) 93, उप निरीक्षक (अभिसूचना) 19, प्लाटून कमांडर (PAC/IRB, पुरुष) 81, अग्निशमन द्वितीय अधिकारी 5, उप आबकारी निरीक्षक 2"
-    },
-    {
-     "k": "आवेदन",
-     "v": "sssc.uk.gov.in पर"
-    }
-   ],
-   "sum": "UKSSSC: दरोगा व अन्य 200 पद, आवेदन 1–31 दिसंबर।",
-   "model": "manual-review",
-   "added": "2026-11-26T18:16:01.923Z",
-   "depth": "article"
   }
  ],
- "updated": "2026-11-26T18:16:01.923Z"
+ "updated": "2026-11-27T01:39:05.730Z"
 }
