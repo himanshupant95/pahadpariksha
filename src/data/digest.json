@@ -627,9 +627,379 @@
   "fdcfdd9a041e",
   "e2942c5f9030",
   "7a00b673c902",
-  "c03aa7f87d95"
+  "c03aa7f87d95",
+  "4a5091608564",
+  "0911f74d9da2",
+  "9c0267012f20",
+  "923a7ddee14f",
+  "2cbca22a4d6f",
+  "c1c010db033d",
+  "dd9a17dda2f1",
+  "d773dd349a57",
+  "129c3635c9bf",
+  "644c214bd22d",
+  "cf81301bef2b",
+  "ac9848c516e8",
+  "a93cafba085c",
+  "16f061e38991",
+  "51fcaa7fc1f5",
+  "6f452f23f7b5",
+  "f750088c72b7",
+  "d0de354a7f8b",
+  "78a2275c2627",
+  "df7bd931890c",
+  "071a84a97018",
+  "faf18ce22d7e",
+  "544512fe6a8f",
+  "7f7924bf39e5",
+  "1fb479f567c9",
+  "a3af136f4f49",
+  "c77f3121dad0",
+  "9321452c259a",
+  "c03f5184da9e",
+  "a935267ff8d5",
+  "39a2de3fcc79",
+  "e5b957c2b8c8",
+  "e47182d09a40",
+  "d7e7ecc69b39",
+  "0bbb607a92f6",
+  "76750ad732be",
+  "fbac84b09b85",
+  "566c18d1cb95",
+  "12dc5d46bd8e",
+  "5d610250ce61",
+  "bc74703b0c9a",
+  "7bcb7d280ed3",
+  "5cee15bee46a",
+  "dda63966b0a8",
+  "90b05082bf4d",
+  "923800c179f5",
+  "ee8fdba63328",
+  "27409b3c8156",
+  "5775939a05ca",
+  "c8e4c0bcc9e1",
+  "080b3858fe17",
+  "571c24badf63",
+  "1d09e21f10a0",
+  "694f39004c05",
+  "b71a764a1c1c",
+  "78868cd6e8a1",
+  "2ae80356bef6",
+  "e348b6b36a40",
+  "193beba85be3",
+  "8c608f54276e",
+  "a9df34f4a72b",
+  "532d2720225c",
+  "15ea418d5654",
+  "3169908cfff0",
+  "aba7b47c16c7",
+  "acc13b41fabc",
+  "cd062f15b90a",
+  "b8a332c28bed",
+  "a2285c4a3d62",
+  "9a5268f9e3c0",
+  "b276f960efd7",
+  "ccc0585d1c03",
+  "629ac940c088",
+  "80a0d8325bc4",
+  "a1a091c41c13",
+  "e07cfe9f99d6",
+  "0ff8d7072768",
+  "deabf44ab245",
+  "6a1f14d8b60d",
+  "604f532b8e02",
+  "f97bd06dfff5",
+  "cc7797578e2c",
+  "da3bc3004f38"
  ],
  "points": [
+  {
+   "id": "3febfcb955",
+   "date": "2026-11-27",
+   "fact": "उत्तराखंड कैबिनेट ने हरिद्वार में पॉड टैक्सी संचालित करने के लिए 'हरिद्वार दर्शन' परियोजना को मंजूरी प्रदान की।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "हरिद्वार पॉड टैक्सी",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "उत्तराखंड: हरिद्वार में जल्द दौड़ेगी पॉड टैक्सी, कैबिनेट ने 'हरिद्वार दर्शन' परियोजना की मंजूर",
+     "link": "https://www.amarujala.com/dehradun/pod-taxis-to-soon-operate-in-haridwar-uttarakhand-cabinet-gives-nod-to-haridwar-darshan-project-2026-11-27",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "हरिद्वार में चलेगी पॉड टैक्सी, आशाकर्मियों का बढ़ेगा पैसा… धामी कैबिनेट के 5 बड़े फैसले",
+     "link": "https://www.tv9hindi.com/state/uttarakhand/uttarakhand-cabinet-decisions-pg-doctor-bond-forest-guard-age-limit-hiked-asha-workers-to-get-more-salary-3976231.html",
+     "source": "TV9 Bharatvarsh"
+    }
+   ],
+   "added": "2026-11-28T01:44:27.288Z",
+   "details": [
+    {
+     "k": "परियोजना का नाम",
+     "v": "हरिद्वार दर्शन (पर्सनल रैपिड ट्रांजिट सिस्टम)"
+    },
+    {
+     "k": "ट्रैक की कुल लंबाई",
+     "v": "21.08 किलोमीटर"
+    },
+    {
+     "k": "प्रस्तावित स्टेशनों की संख्या",
+     "v": "21 स्टेशन (3 कॉरिडोर में)"
+    },
+    {
+     "k": "मुख्य कॉरिडोर (कॉरिडोर-1)",
+     "v": "सीतापुर से भारत माता मंदिर (15.58 किमी, 15 स्टेशन)"
+    },
+    {
+     "k": "वन आरक्षी भर्ती आयु सीमा",
+     "v": "अधिकतम आयु 25 वर्ष से बढ़ाकर 28 वर्ष की गई (31 दिसंबर 2028 तक लागू)"
+    },
+    {
+     "k": "आशा कार्यकर्ताओं का मानदेय",
+     "v": "मासिक मानदेय में 1,700 रुपये की बढ़ोतरी की गई"
+    },
+    {
+     "k": "पीजी डॉक्टरों के लिए अनिवार्य ",
+     "v": "दुर्गम व पहाड़ी क्षेत्रों के सरकारी अस्पतालों में 2 साल सेवा का बॉन्ड अनिवार्य"
+    },
+    {
+     "k": "हरिद्वार दर्शन पीआरटी डिपो",
+     "v": "हरिद्वार के सीतापुर क्षेत्र में प्रस्तावित है",
+     "t": "g"
+    }
+   ],
+   "sum": "उत्तराखंड कैबिनेट ने हरिद्वार में सार्वजनिक परिवहन को हाईटेक बनाने के लिए 'हरिद्वार दर्शन' पॉड टैक्सी परियोजना, वन आरक्षी आयु सीमा में वृद्धि और आशा कार्यकर्ताओं के मानदेय बढ़ोतरी को मंजूरी दी।",
+   "quiz": {
+    "q": "उत्तराखंड में 'हरिद्वार दर्शन' पॉड टैक्सी नेटवर्क की कुल प्रस्तावित लंबाई कितनी है?",
+    "a": "21.08 किलोमीटर"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "05bab82f19",
+   "date": "2026-11-27",
+   "fact": "ऋषिकेश-कर्णप्रयाग रेल परियोजना के तहत आरवीएनएल ने 6.59 किलोमीटर लंबी टनल-14 की खुदाई (ब्रेकथ्रू) सफलतापूर्वक पूरी की।",
+   "cat": "परियोजना/अवसंरचना",
+   "imp": 3,
+   "tag": "ऋषिकेश-कर्णप्रयाग रेल टनल",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "Pauri News: ऋषिकेश-कर्णप्रयाग रेल परियोजना को मिली बड़ी सफलता, 6.59 किमी लंबी टनल-14 का ब्रेकथ्रू पूरा",
+     "link": "https://www.amarujala.com/uttarakhand/pauri/major-milestone-for-rishikesh-karnaprayag-rail-project-breakthrough-achieved-in-659-km-long-tunnel-14-shrinagar-news-c-53-1-sdrn1039-128992-2026-11-27",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "Railway engineers at RVNL broke through a 6.59-km Himalayan rail tunnel in Uttarakhand, digging beneath homes with only 20 to 30 metres of loose soil overhead on a 125-km line where 97% of tunnel excavation is done",
+     "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQVXhPbHlydUZNdS0yeS1XNVVLQ18yamk5RzJPM2JIZVd5eV8xeXlqbHBHLWRxTXNCQVRpSE56bnRKYXBUVW5WeDZuenZfenNtekx6TEFTNXc3SmpIemtwb3dFenhOTHFDVUJnSnk3RjA2VEhITkVnZllzUHdjeWo3clhTT01jelZPcHJVeld1ZU42Xy1YR0k1SEhObDM?oc=5",
+     "source": "CPG Click Oil and Gas"
+    },
+    {
+     "title": "Indian Railways achieves breakthrough in 6.59-km tunnel in Uttarakhand",
+     "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNSDdKS2VFT29MMElYQUtPMDJVV1VZV3Zta1ZYSXRtUWdiYWJlblVKMTJ5VjdoVmNGSUR0c1doRE1PdGVuVmp0ZUNtOVY5b1VWV0ZfeVhHVW52NTZmUnpCNmJ6R04zcjNINFdMNGt2Z2pNWXJWUUhXTEtveW5Tb201VUJTUGdZRnliZlRQVERHYVB4VGJ3OUl1Z18yaTc?oc=5",
+     "source": "News On AIR"
+    },
+    {
+     "title": "Tunnel-14 breakthrough ends Package-08 main-tunnel digging in Uttarakhand",
+     "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNc1ZkTVV5NnlBbFdvUVNmbVJjUjA0eUtmdzFzMmtxaHl2eFJNc0xWLUlBcm14UXNiSE9NYWhiUWVaQnZ6cjFwYWo4aUdNbkF6dnhnUUJjbHBpSEVYRUdZZDR4TnZUWGtxVXZ3SWdQR2tTV0lnbERveHBqSUlNZW5yT0xhWmhJQ0pwOUp2TklZSG9pTU9MdHhLajRkTGhWeFdOMnZz?oc=5",
+     "source": "Railway Supply"
+    }
+   ],
+   "added": "2026-11-28T01:44:27.288Z",
+   "details": [
+    {
+     "k": "स्थान",
+     "v": "रुद्रप्रयाग जिला (सुमेरपुर और मरोड़ा पोर्टल के बीच)"
+    },
+    {
+     "k": "निर्माण एजेंसी",
+     "v": "रेल विकास निगम लिमिटेड (RVNL)"
+    },
+    {
+     "k": "उत्खनन विवरण",
+     "v": "सुमेरपुर पोर्टल-1 से 4.7 किमी और मरोड़ा पोर्टल-2 से 1.79 किमी खुदाई की गई"
+    },
+    {
+     "k": "तकनीकी विधि",
+     "v": "कमजोर मिट्टी में प्री-एक्सकेवेशन, माइक्रोपाइलिंग और कंट्रोल ब्लास्टिंग का प्रयोग"
+    },
+    {
+     "k": "आरवीएनएल (RVNL) की स्थापना",
+     "v": "वर्ष 2003 में भारतीय रेल की ढांचागत परियोजनाओं के क्रियान्वयन हेतु की गई थी",
+     "t": "g"
+    }
+   ],
+   "sum": "ऋषिकेश-कर्णप्रयाग रेल परियोजना के तहत रेल विकास निगम लिमिटेड (RVNL) ने रुद्रप्रयाग जिले में 6.59 किलोमीटर लंबी टनल-14 का निर्माण और खुदाई कार्य (ब्रेकथ्रू) सफलतापूर्वक पूरा किया।",
+   "quiz": {
+    "q": "ऋषिकेश-कर्णप्रयाग रेल परियोजना के तहत रुद्रप्रयाग में हाल ही में ब्रेकथ्रू हासिल करने वाली टनल-14 की लंबाई कितनी है?",
+    "a": "6.59 किलोमीटर"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "6a89beacf3",
+   "date": "2026-11-27",
+   "fact": "उत्तराखंड कैबिनेट ने आशा कार्यकर्ताओं के मासिक मानदेय में ₹1,700 की बढ़ोतरी को मंजूरी दी, जिससे मानदेय ₹10,000 प्रति माह हो गया।",
+   "cat": "प्रशासन",
+   "imp": 2,
+   "tag": "आशा कार्यकर्ता मानदेय",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "धामी कैबिनेट का फैसला: आशा कार्यकर्ताओं के लिए राहत भरी खबर, अब हर महीने खाते में आएंगे दस हजार",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-cabinet-decision-asha-workers-honorarium-increased-to-rs-10-000-per-month-2026-11-27",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "उत्तराखंड कैबिनेट का बड़ा फैसला: आशा कार्यकर्ताओं का मानदेय बढ़ा, 23 प्रस्तावों को मिली मंजूरी",
+     "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOOTNmeFZhTzcwLXh4aEhmbDRwX21GWDNNcUxWdEFrbzlHaGQyN2F1QjB2TGFGYU0tbHE5YXZlX3VaQTdRTmx0X1ZHQ0RJRW4xVFJMRU9ZOHBJTHlEZGhENmVmLVZkdkxuT0V6MlJNSFUzaXpDb0FGWE5sZ3R5a2VwUkl2TWhVdjM2dEV5N3pSV1RmLU5yWUtPa2ZJVWlDT29sWlRhU1ZicXV6V1R0M0N0UE01bXB4OFZoeW83RjZiUG0?oc=5",
+     "source": "Jagran"
+    },
+    {
+     "title": "Uttarakhand Cabinet approves proposal to increase ASHA workers’ honorarium by Rs 1,700 per month",
+     "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOdkFIeU9rUWRDZUw0WkJkeWctOFA3X3I3N01wUDlHTlcxSlZnb0s0Yy1kUmVRcXJYMkluNzk1a1hLcks2M2tPSFItRW1qZkhLZDVMel93N1N1QnlrUjQ2a014Z2thaWNaMEZVNDI1YzZrdzVBVUtJNTg2Uy1ubURtaXVnMTNlZ05iS3N3Y1NhMklTMkQxUFNHUnk0Vmp5OTVDOW9JbmtzNHJWMFdhNHUxeWRPMGM5emFudFlBRUxHMDNfSTR4M0xqMNIBzgFBVV95cUxNZ2hjTXJYanZzd19qN1VOQUR3d3FfcFJIWW8wZmtFNHoxaXBWdE9MWEUzTEk3Mjdod0tVY2kxWWJzNzFtSU5Qd21rOTMya2dVMGFURWJKczhvdjItQW9zSEFnWWxWbXBfYjNGY0FIeGpqbXRMeEloQWQycWpBSkR4YzNkSGlqZUNvSnFwaXlVQWJRQ2M2RF9idVctZFZNb2FLaGkzWlhiYmZ3VTFTM1owc19DVnVTckp3clpKeGRENWREcHVQVWhlY2ItWTY1UQ?oc=5",
+     "source": "ThePrint"
+    },
+    {
+     "title": "आशा कार्यकर्ताओं की सैलरी 10 हजार हुई, हरिद्वार को मिली बड़ी सौगात, उत्तराखंड कैबिनेट के बड़े फैसले",
+     "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxONURNMXJhcU9wai1wUUp5a1N6ZzhRcnNIZG5BSmEtUDlzMjgzOHI0S0VZOE1SYVF5ckk4MVFHZ2JyQ0ZfYXEzT0JENVcxZEt6TzV5UWFMTEVtV1JjUDR3S0FVN1JNQXhlNWtvQi10OFVQaDF0RXduRTI1ZVM3Y0xWb3A0dDdtc2ZhSndTaG9CT3NCcU5UUlBiYzgxZUZtdlhGcWZVQUkzYlhSdDFheDgwTEtDQXNGcTBNTl9uUXdSeXktOTVGSEdnd0FCWE9vd3Y1WkdfNkkxYkNqWDNKUWo1Q2pYcmNEamFNLWhsaENZcVZLOTdiT1E?oc=5",
+     "source": "NDTV India"
+    }
+   ],
+   "added": "2026-11-28T01:44:27.288Z",
+   "details": [
+    {
+     "k": "बैठक के अध्यक्ष",
+     "v": "मुख्यमंत्री पुष्कर सिंह धामी"
+    },
+    {
+     "k": "कैबिनेट में स्वीकृत कुल प्रस्त",
+     "v": "23 प्रस्ताव"
+    }
+   ],
+   "sum": "मुख्यमंत्री पुष्कर सिंह धामी की अध्यक्षता में उत्तराखंड कैबिनेट ने आशा कार्यकर्ताओं के मासिक मानदेय में ₹1,700 की वृद्धि को मंजूरी दी, जिससे उनका मानदेय ₹8,300 से बढ़कर ₹10,000 प्रति माह हो गया है।",
+   "quiz": {
+    "q": "उत्तराखंड कैबिनेट के हालिया निर्णय के अनुसार आशा कार्यकर्ताओं का नया मासिक मानदेय कितना निर्धारित किया गया है?",
+    "a": "₹10,000 प्रति माह"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "a5c18f8ef6",
+   "date": "2026-11-27",
+   "fact": "राज्य कैबिनेट ने वन आरक्षी (फॉरेस्ट गार्ड) भर्ती के लिए अधिकतम आयु सीमा को 25 वर्ष से बढ़ाकर 28 वर्ष करने का फैसला किया।",
+   "cat": "परीक्षा/भर्ती",
+   "imp": 2,
+   "tag": "वन आरक्षी आयु सीमा",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "उत्तराखंड कैबिनेट के 23 बड़े फैसले, वन आरक्षी भर्ती में उम्र सीमा 25 से बढ़कर 28 साल",
+     "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNeG9MclJlejdIVGdmWk4yd1pLRG9LaW1HMllUdVc1bEtCanJDOFNnZGFyR04xWndZSVRGd3BXeDZ1Y3NFV1VhMDNGUi1iamxHdF9HdlBRby10M0E5Vm0tT0lPMlVicGFsalNTQ0NqbFRzcERwajV0c09WcTVMeGxNTHBvXzZYSzhOdFZMUEd1YVFvaE9KOGZPVjVJcDkteTZVb1ByQmZYbnpMcDJFNHEwNGJSX3hyd9IBuwFBVV95cUxObENXblZmSkhyVFFmeEZXMmxVRzdYTDhKeFBpMHJGR3B3c3FoYWdvbWpscDQtQ182Z1dOeTEyc2xrSzRqYktWcTdTeTRXSFBHWU13SHdUQzY5M09wY2tORlRyZVlSSHA5bnJpQmMzbkFYcG9DRzlKdWdqZlR6MlM1VFFiR01MdE02NU5XZFNVVEZJMUVwb2hmclNtMUxhUm5FVktnaVhqNjl5R1J2YW9UVjlKMnRvTW94dnRF?oc=5",
+     "source": "Patrika News",
+     "read": "https://www.livehindustan.com/uttarakhand/uttarakhand-cabinet-decisions-anganwadi-workers-honorarium-hike-forest-guard-recruitment-age-limit-raise-201795764746799.html"
+    },
+    {
+     "title": "उत्तराखंड: धामी कैबिनेट के 23 फैसले: वन आरक्षी की आयु सीमा बढ़ी, चीनी मिलों को 207.75 करोड़ की बैंक गारंटी",
+     "link": "https://www.amarujala.com/dehradun/uttarakhand-cabinet-meeting-today-decisions-likely-on-bijli-bill-surcharge-waiver-and-baini-bhuli-scheme-2026-11-27",
+     "source": "Amar Ujala"
+    },
+    {
+     "title": "उत्तराखंड कैबिनेट: महिलाओं, युवाओं और कामगारों को धामी सरकार की बड़ी सौगात, वन आरक्षी भर्ती में बढ़ाई आयु सीमा",
+     "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNOTlvQ25tWXVZa1J0aW9rQjQwczJSVTVPVXhGZ3BJUkZPN2c4Vk5jMUhLbUd5anlhWUdSZ25kakxqRDlFSVcwWGxBZzVfajUzRXNEcFdmQmh1ZjVRYV9MQlVTNGVXTDBiQ2I0Yk1JaXoyUjdkOVhmdDBIWGxJYUxIWFdpUWNBSXlQWVBkSmVRUmloMEYzRDkzb09ZNUp3Z2lGblRnazZVWnJpTVhjVkZYS3NQQVhXNWVJbmRLYXJRMA?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-28T01:44:27.288Z",
+   "details": [
+    {
+     "k": "छूट लागू रहने की तिथि",
+     "v": "31 दिसंबर 2028 तक"
+    },
+    {
+     "k": "फैसलों की जानकारी देने वाले अध",
+     "v": "मुख्यमंत्री के अपर सचिव बंशीधर तिवारी"
+    }
+   ],
+   "sum": "उत्तराखंड सरकार ने वन आरक्षी (फॉरेस्ट गार्ड) भर्ती प्रक्रिया में अभ्यर्थियों की अधिकतम आयु सीमा 25 वर्ष से बढ़ाकर 28 वर्ष करने का निर्णय लिया है। यह छूट 31 दिसंबर 2028 तक प्रभावी रहेगी।",
+   "quiz": {
+    "q": "उत्तराखंड में वन आरक्षी भर्ती की संशोधित अधिकतम आयु सीमा किस तिथि तक लागू रहेगी?",
+    "a": "31 दिसंबर 2028 तक"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "bc36f52775",
+   "date": "2026-11-27",
+   "fact": "कैबिनेट ने सरकारी मेडिकल कॉलेजों से पीजी करने वाले डॉक्टरों के लिए 2 वर्ष की अनिवार्य पर्वतीय/सरकारी सेवा का बॉन्ड अनिवार्य किया; उल्लंघन पर ₹75 लाख जुर्माना तय।",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "पीजी डॉक्टर सेवा बॉन्ड",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "हरिद्वार में चलेगी पॉड टैक्सी, आशाकर्मियों का बढ़ेगा पैसा… धामी कैबिनेट के 5 बड़े फैसले",
+     "link": "https://www.tv9hindi.com/state/uttarakhand/uttarakhand-cabinet-decisions-pg-doctor-bond-forest-guard-age-limit-hiked-asha-workers-to-get-more-salary-3976231.html",
+     "source": "TV9 Bharatvarsh"
+    },
+    {
+     "title": "कैबिनेट फैसला, उत्तराखंड में पीजी डॉक्टरों के लिए 2 साल का सेवा बॉन्ड अनिवार्य, तोड़ने पर लगेगा 75 लाख का जुर्माना",
+     "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQX1BHV2pBNUU2T1Z2REJjSE9zd0hUMEtKM1laamEtQU9MdlZVTEZ4TXktZmlBQzBUd0ozV25mXzkxX293THBGOTdQODgwZktxWTk3OVFTUU5FdkhoVHpwRkR5Z05RY1VqdGRpNXJMUThzRG9WeDlHZXl6RVBrejVXVDJMdHBtM3RCeXpWMUNTQklQVXhFWXBBZDhTSDhNYVlXR3ZSV2pKWTVYd2JvVnNkb0RFMHBtalhIZlQ5SVpWODdNa2laVFlkckJuTFlwcnFqS05LXzhlV0p0ZE3SAeABQVVfeXFMTjI5SkFYaGVYRjByYmhlMVU2UFU3YUk2TVdiZHppdlFhcU9jSGI5VmZtcEppNDZwbmJnM1RFangybEFqZ3htdjRWNUJxMkJwSTJIdFZPUHJZbWNYTUN2SERGUlBvcHZraThaRlpienFXaURKRnE0ODRnamRaSC11Z3VMTjB3SERPU292RVBaclMxMElmbFRfbHFYMUxOOUhkaVM4d1N4RTRPUTBBZ0Z2THpXSnBzdDlab2lxZlpYdlBFTjJta1VreDg2ZjIxWEFYd2xGS1VRYnhjQU5TQ3dUYWw?oc=5",
+     "source": "ETV Bharat"
+    }
+   ],
+   "added": "2026-11-28T01:44:27.288Z",
+   "details": [
+    {
+     "k": "अभिप्राय क्षेत्र",
+     "v": "राज्य के दुर्गम और पहाड़ी क्षेत्र"
+    },
+    {
+     "k": "योजना का मुख्य उद्देश्य",
+     "v": "सीनियर रेजिडेंट डॉक्टरों की कमी को दूर करना"
+    }
+   ],
+   "sum": "उत्तराखंड कैबिनेट ने राज्य के सरकारी मेडिकल कॉलेजों से पीजी करने वाले डॉक्टरों के लिए पहाड़ी और दुर्गम क्षेत्रों के सरकारी अस्पतालों में 2 साल की अनिवार्य सेवा का बॉन्ड लागू किया है।",
+   "quiz": {
+    "q": "उत्तराखंड में सरकारी मेडिकल कॉलेजों से पीजी डॉक्टरों के लिए निर्धारित अनिवार्य सेवा बॉन्ड का उल्लंघन करने पर कितना जुर्माना तय किया गया है?",
+    "a": "₹75 लाख"
+   },
+   "depth": "article"
+  },
+  {
+   "id": "39f0b57562",
+   "date": "2026-11-27",
+   "fact": "मुख्यमंत्री ने प्रथम राज्य आपदा प्रबंधन दिवस पर घोषणा की कि घरों में आग लगने की घटना को अब आपदा की श्रेणी में शामिल कर एसडीआरएफ से राहत दी जाएगी।",
+   "cat": "योजना/नीति",
+   "imp": 2,
+   "tag": "आपदा राहत दायरा",
+   "model": "gemini-3.8-flash",
+   "refs": [
+    {
+     "title": "प्रथम आपदा प्रबंधन दिवस पर सीएम धामी की बड़ी घोषणाएं: घरों में आग लगना अब आपदा की श्रेणी में, पीड़ितों को मिलेगी एसडीआरएफ राहत - uttarakhand cm dhami boosts disaster relief fire victims aid",
+     "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQbFNjRnJCYWNMZ3ZvVEZLWnBEaWxMejNDUkFWenZYYjk5SW1PcWdVeHpLMlZlTHE0ZlV0eTVPUmNQUDlSNGRZZmlMeFlqN29sbnRWMFE2VjJRalhwWFdpVDJaU2VEMW96VTlrOGU3OGNhcWwyQnlDU0lTS2tKeUNhNkRIRGV4UUl2UlMzOFZBb0xUVW40cHVjU3hJMTZBUmJvUll6SUt3NmVQdHhKb2QwbnlYTHlfVHNzQXpfanhjNEI?oc=5",
+     "source": "Jagran"
+    }
+   ],
+   "added": "2026-11-28T01:44:27.288Z",
+   "details": [
+    {
+     "k": "मुख्य घोषणा",
+     "v": "घरों में आग लगने की घटनाओं को आपदा का दर्जा दिया जाएगा"
+    },
+    {
+     "k": "घोषणाकर्ता",
+     "v": "मुख्यमंत्री पुष्कर सिंह धामी"
+    }
+   ],
+   "sum": "मुख्यमंत्री पुष्कर सिंह धामी ने प्रथम राज्य आपदा प्रबंधन दिवस पर घोषणा की कि आवासीय भवनों में आग लगने की घटनाओं को अब आपदा की श्रेणी में शामिल किया जाएगा, जिससे पीड़ितों को एसडीआरएफ से मुआवजा और राहत मिल सकेगी।",
+   "quiz": {
+    "q": "उत्तराखंड में प्रथम राज्य आपदा प्रबंधन दिवस पर किस घटना को आपदा की श्रेणी में शामिल करने की घोषणा की गई?",
+    "a": "घरों में आग लगने की घटनाओं को"
+   },
+   "depth": "headlines"
+  },
   {
    "id": "e8151e2bb2",
    "date": "2026-11-26",
@@ -3924,5 +4294,5 @@
    "depth": "headlines"
   }
  ],
- "updated": "2026-11-27T05:10:02.092Z"
+ "updated": "2026-11-28T01:46:16.216Z"
 }
