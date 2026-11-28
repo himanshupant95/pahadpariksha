@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T01:35:04.125Z",
+ "updated": "2026-11-28T02:58:12.400Z",
  "items": [
   {
    "id": "cf4e75975f9f",
@@ -73,8 +73,15 @@
    "lang": "hi",
    "score": 5,
    "cat": "योजना/नीति",
-   "sources": [],
-   "firstSeen": "2026-11-28T01:35:00.770Z"
+   "sources": [
+    "Live Hindustan",
+    "Janta Se Rishta",
+    "Hindustan",
+    "News Today Network"
+   ],
+   "firstSeen": "2026-11-28T01:35:00.770Z",
+   "summary": "आज धामी कैबिनेट की अहम बैठक में 23 बड़े और अहम फैसले लिए गए। इसमें आंगनबाड़ी कार्यकर्ताओं के मानदेय में 1700 रुपए की बढ़ोत्तरी होगी। वन आरक्षी भर्ती में उम्र सीमा बढ़ाई गई है।",
+   "read": "https://www.livehindustan.com/uttarakhand/uttarakhand-cabinet-decisions-anganwadi-workers-honorarium-hike-forest-guard-recruitment-age-limit-raise-201795764746799.html"
   },
   {
    "id": "604f532b8e02",
@@ -147,7 +154,9 @@
    "lang": "hi",
    "score": 2,
    "cat": "रिपोर्ट/रैंकिंग",
-   "sources": [],
+   "sources": [
+    "Uttarakhand City News"
+   ],
    "firstSeen": "2026-11-27T16:58:20.183Z"
   },
   {
@@ -551,6 +560,18 @@
    "firstSeen": "2026-11-27T16:58:19.505Z"
   },
   {
+   "id": "22ed285cac90",
+   "title": "उत्तराखंड की अर्थव्यवस्था बढ़ी, प्रति व्यक्ति आय 2.73 लाख के पार",
+   "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQZGc2WElmQWxORWxGS0NjTFBOTUMzdWttaUVwdVo4R3ZaSC1aRTBKaUhheTFPYk1NcFJJdmhLMWZxSHhfQXVXSVpUOGZ4bndjZ3ZBV0pXTG1sYTdqSzFGaGt5NlY2SjVNbHVpR3daOGF3N0FyMU1FSFpNSWVZT3Y0aGpwOWpYaWxQdmpteUtPdTJqQXlEMXZLTGZWZVI3S0J6akpHZHRoRXpZZ3Voam8wYV8tMm1iUVpBSHh6V2N6cmhmaF9nZ1hlSEdWd9IB0AFBVV95cUxPQVRUSWRVUWpWMWprRWl5b01MQWRsRTB2WHYwMkxQTGlWVXhYa3l0dWpPb3ROdzZkeHp4RFpMYTh4YmdpODI1QlUwc21SWXdkNUp4SUdLM1dVMWc2VllJWDRKWVYzMWFTdmFremljeXhVT2ctVE41SlVNRE9fU0dNZlhfemxicC1tV29IVm40ZXhZSUhzc2FkRTVSSE1GRE9SaXUzQmZvNHFnS0JVMXZibHJFWkY3QUZ2WVZHUTZpdVdaNnQtNGo0c1p0WlFIY3ZO?oc=5",
+   "source": "Janta Se Rishta",
+   "published": "2026-11-27T08:28:21.000Z",
+   "lang": "hi",
+   "score": 2,
+   "cat": "अर्थव्यवस्था",
+   "sources": [],
+   "firstSeen": "2026-11-28T02:58:10.486Z"
+  },
+  {
    "id": "5cee15bee46a",
    "title": "13 साल की कायरा भंडारी बनीं उत्तराखंड की नंबर 1 प्लेयर, दो रैंकिंग टूर्नामेंट के बाद स्टेट चैंपियनशिप में भी झटके चारों गोल्ड मेडल",
    "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNTDFXd19rYzVuakJLRGctTjczT1U5RGlWczRoUkRPVjlmZU9DRndxdzZ2LUU4RmZYSUlBS1ZEaGxzMW9hUnJWYmFMTVpHQVVSc2ZsSFFNUWtjTjdSSlUtcmxYY012UldybXh2TVBjMWI1aUFEQ2ZMZURRV2NRM0tQYzhUN3VnN3FPSUx5YTlMS1FDRndLTUV4eWU4VlR0Q0VBV3hVLUNLU3VhME5ScHEwSHV4Wlhxang0UnRRak9xSER3cm1VdTVENDA0ZmVRNkpqX3pBdXlOdlljQdIB3wFBVV95cUxOaEpHcGFDSUpKZ0kxbXhvZTlpRmE1X1JtNEVmMml3cTFiX0NRZXhVeTN2elpydWtoS053c1o2ekFRVkIxeW12RXdIV2NPa256ZUZFLVFNb1hnS2tsSWdFZGtVcDFfbzBqUXRBR0ZRLUVJZjdWaFdpQ0pBNzY0bXJjNTJkTGFBYXRNcnRXbzZPQk81U2Jaa00zX1ZUS2thRFlWc3V6Y0szM01oUjZxSUlyZkpQZHJNQWNTX2kyWnFzQkxkWGE5VWo4Y1lacWU5U2dKc0s5VGZFRUJhVTJDN3lr?oc=5",
@@ -749,7 +770,9 @@
    "summary": "धर्मनगरी हरिद्वार की यातायात व्यवस्था को हाईटेक बनाने और श्रद्धालुओं को जाम से मुक्ति दिलाने के लिए राज्य सरकार ने बड़ा कदम उठाया है।",
    "score": 7,
    "cat": "योजना/नीति",
-   "sources": [],
+   "sources": [
+    "devbhoomidarshan.in"
+   ],
    "firstSeen": "2026-11-28T01:34:53.669Z"
   },
   {
@@ -799,7 +822,8 @@
    "score": 3,
    "cat": "योजना/नीति",
    "sources": [
-    "ABP News"
+    "ABP News",
+    "India Daily"
    ],
    "firstSeen": "2026-11-27T05:09:59.111Z"
   },
@@ -981,6 +1005,18 @@
    "cat": "परियोजना",
    "sources": [],
    "firstSeen": "2026-11-27T16:58:12.449Z"
+  },
+  {
+   "id": "5d75d8b522d0",
+   "title": "Good Morning India: अमेरिका में तूफान ने मचाया हाहाकार, 9 लाख से ज्यादा घरों की बिजली गुल! केंद्र सरकार ने बुलाया संसद का विशेष सत्र, पेश हो सकता है परिसीमन बिल! उत्तराखंड में धामी कैबिनेट की",
+   "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPRXpyOWZWTC1oaFQzNklkYUVhbWg2ZFFJeHRHc3d1Zm9JZmJjNEtLWC1iMHBlUG16VTJtY2xvcGN4dTg1RFJzQXZvWVBJMHlmQ0RXU1RpdEVDZG9BSTdsS2tnTWpiVFdFUGhueDR6d1NRSWVrTEN0V3JnX0tSVWR5dmpLaS1FWjAzTmp3TkctbTI?oc=5",
+   "source": "awaaz24x7.com",
+   "published": "2026-11-26T21:53:37.000Z",
+   "lang": "hi",
+   "score": 3,
+   "cat": "योजना/नीति",
+   "sources": [],
+   "firstSeen": "2026-11-28T02:58:09.788Z"
   },
   {
    "id": "cf81301bef2b",
@@ -1212,7 +1248,8 @@
    "sources": [
     "liveskgnews",
     "Amar Ujala",
-    "Live Hindustan"
+    "Live Hindustan",
+    "Front News Network"
    ],
    "firstSeen": "2026-11-26T17:17:40.697Z",
    "summary": "मुख्यमंत्री पुष्कर सिंह धामी के कार्यकाल के बीते पांच वर्षों में उत्तराखंड ने कानून व्यवस्था को सुदृढ़ करने और प्रशासनिक जवाबदेही तय करने की दिशा में कई ऐतिहासिक कदम उठाए हैं।",
@@ -1398,7 +1435,9 @@
    "lang": "en",
    "score": 2,
    "cat": "परियोजना",
-   "sources": [],
+   "sources": [
+    "Urban Acres"
+   ],
    "firstSeen": "2026-11-26T17:17:42.185Z"
   },
   {
